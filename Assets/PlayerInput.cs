@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private bool debug = false;
 
     // Input-Updated Values
-    [HideInInspector] private Vector2 movementInput;
+    [HideInInspector] public Vector2 movementInput;
     [HideInInspector] public bool shootInput;
 
     private PlayerControls playerControls;
