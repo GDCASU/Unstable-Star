@@ -61,7 +61,14 @@ public class JerryPlayerController : MonoBehaviour
 
 
         position += new Vector3(x * moveSpeed * Time.deltaTime, y * moveSpeed * Time.deltaTime);
-
+        if (position.y >= _boundaryYMax)
+        {
+            position.y = _boundaryYMax;
+        }
+        if (position.y<= _boundaryYMin)
+        {
+            position.y = _boundaryYMin;
+        }
         if (position.x >= _boundaryXMax && x > 0) {
             position.x = _boundaryXMin;
         }
