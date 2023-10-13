@@ -13,34 +13,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 7d6f8371c634f7b48be0754aac2c7348, type: 2}
     - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -54,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185126898089598967, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
       propertyPath: m_Name
-      value: RedProjectile Variant
+      value: RedLaser Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

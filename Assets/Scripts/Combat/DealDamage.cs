@@ -14,7 +14,6 @@ public class DealDamage : MonoBehaviour
      * 
      */
 
-    //Testing commit webhook 123
 
     [Header("Ignored Entities")]
     [SerializeField] List<string> ignoredTags;
