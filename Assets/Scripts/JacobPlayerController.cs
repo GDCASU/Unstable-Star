@@ -6,12 +6,12 @@ public class JacobPlayerController : MonoBehaviour
 {
     public float speed = 10.0f;
     public float xRange = 10;
-    Vector2 movementVector = PlayerInput.instance.movementInput;
+    Vector2 movementVector;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        movementVector = PlayerInput.instance.movementInput;
     }
 
     // Update is called once per frame
