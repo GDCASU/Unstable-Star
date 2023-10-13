@@ -11,7 +11,7 @@ public class JerryPlayerController : MonoBehaviour
     // public Rigidbody2D playerRB;
     public Transform playerTF;
 
-
+    //Todo:  should be assigned in the Start()
     [SerializeField]private float _boundaryXMax;
     [SerializeField] private float _boundaryXMin;
     [SerializeField] private float _boundaryYMax;
@@ -42,7 +42,11 @@ public class JerryPlayerController : MonoBehaviour
 
 
 
-
+    /// <summary>
+    /// Move the player, within the Y bound and jump around the X bound
+    /// </summary>
+    /// <param name="x">The direction of x axis, more of a velocity(dx) </param>
+    /// <param name="y">The direction of y axis, more of a velocity(dy)</param>
     void MovePlayer(float x, float y)
     {
 
@@ -50,10 +54,10 @@ public class JerryPlayerController : MonoBehaviour
 
 
         //Out of bound Checker
-        if (position.y>= _boundaryYMax&&y>0|| position.y <= _boundaryYMin && y < 0)
-        {
-            y = 0;
-        }
+        //if (position.y>= _boundaryYMax&&y>0|| position.y <= _boundaryYMin && y < 0)
+        //{
+        //    y = 0;
+        //}
         //if (position.x >= _boundaryXMax && x > 0 || position.x <= _boundaryXMin && x < 0)
         //{
         //    x = 0;
@@ -61,6 +65,9 @@ public class JerryPlayerController : MonoBehaviour
 
 
         position += new Vector3(x * moveSpeed * Time.deltaTime, y * moveSpeed * Time.deltaTime);
+
+
+        //if out of y bound, make it on the bound
         if (position.y >= _boundaryYMax)
         {
             position.y = _boundaryYMax;
@@ -69,6 +76,9 @@ public class JerryPlayerController : MonoBehaviour
         {
             position.y = _boundaryYMin;
         }
+
+
+        //if out of x bound, jump to the other side of bound
         if (position.x >= _boundaryXMax && x > 0) {
             position.x = _boundaryXMin;
         }
