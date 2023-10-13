@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class JerryPlayerController : MonoBehaviour
 {
 
     private Vector2 playerMovementVector;
