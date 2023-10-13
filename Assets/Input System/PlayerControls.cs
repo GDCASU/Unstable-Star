@@ -44,6 +44,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AngleLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""a80e649f-40ca-417e-b8fc-175c93fe8b79"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AngleRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""b887e6b3-15b4-4fbb-b5c4-f9a95d3f934c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -110,6 +128,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4362d63-c9b2-4fe7-add0-9b222b615284"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e20d482-b860-4a10-a271-b5ee976c5683"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -638,6 +678,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ShipControls = asset.FindActionMap("ShipControls", throwIfNotFound: true);
         m_ShipControls_Move = m_ShipControls.FindAction("Move", throwIfNotFound: true);
         m_ShipControls_Shoot = m_ShipControls.FindAction("Shoot", throwIfNotFound: true);
+        m_ShipControls_AngleLeft = m_ShipControls.FindAction("AngleLeft", throwIfNotFound: true);
+        m_ShipControls_AngleRight = m_ShipControls.FindAction("AngleRight", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -713,12 +755,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IShipControlsActions> m_ShipControlsActionsCallbackInterfaces = new List<IShipControlsActions>();
     private readonly InputAction m_ShipControls_Move;
     private readonly InputAction m_ShipControls_Shoot;
+    private readonly InputAction m_ShipControls_AngleLeft;
+    private readonly InputAction m_ShipControls_AngleRight;
     public struct ShipControlsActions
     {
         private @PlayerControls m_Wrapper;
         public ShipControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_ShipControls_Move;
         public InputAction @Shoot => m_Wrapper.m_ShipControls_Shoot;
+        public InputAction @AngleLeft => m_Wrapper.m_ShipControls_AngleLeft;
+        public InputAction @AngleRight => m_Wrapper.m_ShipControls_AngleRight;
         public InputActionMap Get() { return m_Wrapper.m_ShipControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -734,6 +780,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @AngleLeft.started += instance.OnAngleLeft;
+            @AngleLeft.performed += instance.OnAngleLeft;
+            @AngleLeft.canceled += instance.OnAngleLeft;
+            @AngleRight.started += instance.OnAngleRight;
+            @AngleRight.performed += instance.OnAngleRight;
+            @AngleRight.canceled += instance.OnAngleRight;
         }
 
         private void UnregisterCallbacks(IShipControlsActions instance)
@@ -744,6 +796,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @AngleLeft.started -= instance.OnAngleLeft;
+            @AngleLeft.performed -= instance.OnAngleLeft;
+            @AngleLeft.canceled -= instance.OnAngleLeft;
+            @AngleRight.started -= instance.OnAngleRight;
+            @AngleRight.performed -= instance.OnAngleRight;
+            @AngleRight.canceled -= instance.OnAngleRight;
         }
 
         public void RemoveCallbacks(IShipControlsActions instance)
@@ -883,6 +941,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnAngleLeft(InputAction.CallbackContext context);
+        void OnAngleRight(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
