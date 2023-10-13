@@ -11,7 +11,7 @@ public class JacobPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        movementVector = PlayerInput.instance.movementInput;
+
     }
 
     // Update is called once per frame
@@ -33,6 +33,8 @@ public class JacobPlayerController : MonoBehaviour
             transform.position = new Vector2(xRange, transform.position.y);
         }
         */
+
+        movementVector = PlayerInput.instance.movementInput;
         transform.Translate(movementVector * Time.deltaTime * speed);
     }
 }
