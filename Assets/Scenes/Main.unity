@@ -551,7 +551,7 @@ Transform:
   m_GameObject: {fileID: 1101132009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -478, y: -156, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -666,11 +666,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6317753055055756569, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 476
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6317753055055756569, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 154
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6317753055055756569, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -714,19 +714,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7563097432384685013, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
       propertyPath: _boundaryXMax
-      value: 540
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 7563097432384685013, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
       propertyPath: _boundaryXMin
-      value: 410
+      value: -65
       objectReference: {fileID: 0}
     - target: {fileID: 7563097432384685013, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
       propertyPath: _boundaryYMax
-      value: 188
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7563097432384685013, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
       propertyPath: _boundaryYMin
-      value: 125
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 7939654170732795851, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
       propertyPath: m_Materials.Array.size
