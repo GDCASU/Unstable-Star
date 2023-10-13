@@ -15,9 +15,9 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private bool debug = false;
 
     // Input-Updated Values
-    [HideInInspector] public Vector2 movementInput;
-    [HideInInspector] public bool shootInput;
-    public float shootAngleInput;
+    [HideInInspector] public Vector2 movementInput; // Vector2 for movement
+    [HideInInspector] public bool shootInput;       // A boolean that is true when shooting button is held down; false otherwise
+    [HideInInspector] public float shootAngleInput; // holds the angle of shooting for the player
 
     private PlayerControls playerControls;
     private float signAngleMult = 0;
