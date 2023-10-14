@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010086693, g: 0.052703455, b: 0.15289176, a: 1}
+  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -323,27 +323,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 872289785}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &733869388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8720998934021106729, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
-  m_PrefabInstance: {fileID: 4846181728166070920}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &733869390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 733869388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bef06b99e0291f4f852365f8f6e789f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 60
-  xRange: 70
-  lowerYBound: -28
-  upperYBound: 30
 --- !u!1 &773049855
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,19 +743,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -1418174570743618351, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
     m_RemovedGameObjects: []
-<<<<<<< Updated upstream
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6317753055055756569, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1101132010}
     m_AddedComponents: []
-=======
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8720998934021106729, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 733869390}
->>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: 5cd537f3fc5851c4ca6410e1b1707d9b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
