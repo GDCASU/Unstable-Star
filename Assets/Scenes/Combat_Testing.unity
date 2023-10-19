@@ -564,8 +564,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c859d4aabbc84f74c9792263f641efbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeShootAngSpeed: 10
+  maxShootAngle: 30
   debug: 0
+  movementInput: {x: 0, y: 0}
   shootInput: 0
+  shootAngleInput: 0
+--- !u!1 &1962382715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1962382717}
+  - component: {fileID: 1962382716}
+  m_Layer: 0
+  m_Name: Test Spawner
+  m_TagString: Player
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1962382716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962382715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76eb38d7f491cea47bb1e6e06eb0d1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultLaser: {fileID: 0}
+  Lasers: []
+  LaserTest: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
+  spawn: 0
+--- !u!4 &1962382717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962382715}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.22967196, w: 0.9732681}
+  m_LocalPosition: {x: -25.45, y: 10.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -26.556}
 --- !u!1001 &982503528199602475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -772,6 +824,8 @@ MonoBehaviour:
   defaultLaser: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
   Lasers:
   - {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
+  LaserTest: {fileID: 0}
+  spawn: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -784,3 +838,4 @@ SceneRoots:
   - {fileID: 773049858}
   - {fileID: 1468256313251263835}
   - {fileID: 982503528199602475}
+  - {fileID: 1962382717}
