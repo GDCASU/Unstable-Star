@@ -46,7 +46,55 @@ public class ProjectileObject : MonoBehaviour
 
     //TODO: ADD COLLISION DETECTION HERE -------------------------------
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        string foreignerTag = collision.gameObject.tag;
 
+        //Return if the object is of the same type
+        if (this.CompareTag(foreignerTag))
+        {
+            return;
+            //TODO: Ask design if enemies can kill each other
+        }
+        
+        
+        switch (foreignerTag)
+        {
+            case "Player":
+                //Register Hit on player
+                PlayerRegisterHit(collision.gameObject);
+                break;
+            case "Enemy":
+                //Register Hit on Enemy
+                EnemyRegisterHit(collision.gameObject);
+                break;
+            case "Asteroid":
+                //Register Hit on Asteroit, TODO: Ask design if asteroids can be destroyed
+                AsteroidRegisterHit(collision.gameObject);
+                break;
+            default:
+                //FIXME: Ignore Collision???
+                break;
+        }
+    }
+
+    private void PlayerRegisterHit(GameObject foreignerObject)
+    {
+        //TODO:
+    }
+
+    private void EnemyRegisterHit(GameObject foreignerObject)
+    {
+        //TODO:
+        Vector3 previousVelocity = rgbd.velocity;
+        Destroy(foreignerObject);
+        rgbd.velocity = previousVelocity;
+    }
+
+    private void AsteroidRegisterHit(GameObject foreignerObject)
+    {
+        //TODO:
+    }
 
 
     // -----------------------------------------------------------------

@@ -56,7 +56,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pink Laser Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8885292888188968338, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
