@@ -18,30 +18,50 @@ public class ProjectileObject : MonoBehaviour
     public bool isThisTracking;
 
     //Local Variables
-    public float speed;
     public float damage;
+    private Rigidbody rgbd;
 
-    //NOTE: Check with design if there's more world objects other than enemies and asteroids
+    //Stored Computed Variables for better efficiency and readability
+    private readonly float halfPi = Mathf.PI / 2;
 
+    private void Awake()
+    {
+        rgbd = GetComponent<Rigidbody>();
 
+    }
 
+    //TODO: Check with design if there's more world objects other than enemies and asteroids
 
     //Should be called by the creator
-    public void SetData(string creator, float speed, float damage)
+    public void SetData(string creator, float speed, Quaternion creatorRotation)
     {
         this.creator = creator;
+        float zAngle;
         /* Taken from the list of tags in the project
          * List of Entities:
          * "Player"
          * "Enemy"
          * "Asteroid"
          */
+
+        //Set Velocity, Added 90 Degrees in radians since Unity's default Z points to the right
+        zAngle = Mathf.Deg2Rad * creatorRotation.eulerAngles.z;
+        rgbd.velocity = new Vector3(Mathf.Cos(halfPi + zAngle) * speed, Mathf.Sin(halfPi + zAngle) * speed, 0);
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
+    //TODO: ADD COLLISION DETECTION HERE -------------------------------
 
 
+
+
+    // -----------------------------------------------------------------
+
+
+
+    //TODO: ADD TIMER DELETION HERE ------------------------------------
+
+
+
+
+    // -----------------------------------------------------------------
 }

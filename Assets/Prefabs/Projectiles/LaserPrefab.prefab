@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1210575897106606382}
   - component: {fileID: 1430236530066026855}
   - component: {fileID: 782302371994487461}
-  - component: {fileID: 8987379324689210834}
   - component: {fileID: 6195168318824351250}
   m_Layer: 0
   m_Name: LaserPrefab
@@ -122,27 +121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ef86f7107bfb647acdab97a6868be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectForeigner: 1
-  printCollisionCheck: 0
-  printWhenDeleted: 0
   creator: 
   currentSpeed: 0
   currentDamage: 0
   isThisTracking: 0
---- !u!114 &8987379324689210834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185126898089598967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ed5a11b876cfd24daed4b327775059f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ignoredTags:
-  - 
+  speed: 0
+  damage: 0
 --- !u!54 &6195168318824351250
 Rigidbody:
   m_ObjectHideFlags: 0

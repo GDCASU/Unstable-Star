@@ -6,49 +6,59 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     [Header("Laser Prefabs")]
-    [SerializeField] private GameObject defaultLaser;
-    [SerializeField] private List<GameObject> Lasers;
+    [SerializeField] private List<string> laserChoices;
+    [SerializeField] private string defaultLaserName;
+    //TODO: Figure out how to make a selection list of choices instead of an input list
 
-    //Local variables
-    private List<GameObject> SpawnedLasers = new();
-    private GameObject testProjectile;
-    private ProjectileObject projectileData;
-    private Rigidbody rgbd;
-
-    public GameObject LaserTest;
+    [Header("Testing vars")]
     public bool spawn = false;
 
-    //[SerializeField] private GameObject currentLaser;
+    //Local variables
+    private string sCurrLaser;
+    private ShootSpawningBehaviour projectileBehaviour;
 
-    //Assign Laser that is being currently being shot
+    private void Awake()
+    {
+        projectileBehaviour = GetComponent<ShootSpawningBehaviour>();
+        SetLaserFire(defaultLaserName);
+    }
+
+
+    //HACK: Testing loop
     private void Update()
     {
         if (spawn)
         {
-            shootProjectile();
+            ShootProjectile();
             spawn = false;
         }
     }
 
-
-    //Testing
-    public void shootProjectile()
+    //Assign Laser that is currently being shot
+    //HACK: Find a better way to set this?
+    public void SetLaserFire(string laserType)
     {
-        testProjectile = Instantiate(LaserTest, this.transform.position, this.transform.rotation);
-        projectileData = testProjectile.GetComponent<ProjectileObject>();
-        rgbd = testProjectile.GetComponent<Rigidbody>();
+        //NOTE: The string must have something contained within the name of the prebab
+        //So if you input "Red", it should set the Red Laser
+        int i;
 
-        projectileData.SetData(this.tag, 1, 0);
-        rgbd.velocity = new Vector3(0,3,0);
-
-        SpawnedLasers.Add(testProjectile);
-
-        
-
+        //Go through list, find laserType
+        for (i = 0; i < laserChoices.Count; i++)
+        {
+            if (laserChoices[i].Equals(laserType))
+            {
+                sCurrLaser = laserChoices[i];
+                return;
+            }
+        }
+        Debug.Log("ERROR! LaserType String passed in Shoot.cs wasnt found within the available lasers");
     }
 
-    void Awake()
+    //Function to call everytime player shoots
+    //It also creates the laser with its designed behaviour
+    public void ShootProjectile()
     {
-        
+        projectileBehaviour.BehaviourSpawn(sCurrLaser);
     }
+
 }
