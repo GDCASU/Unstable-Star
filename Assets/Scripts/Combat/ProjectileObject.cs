@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class ProjectileObject : MonoBehaviour
 {
-    //Headers for inspector
-    //[Header("Debugging")]
-    //[SerializeField] private bool detectForeigner = false;
-    //[SerializeField] private bool printCollisionCheck = false;
-    //[SerializeField] private bool printWhenDeleted = false;
-
     [Header("Current Data")]
     public string creator = "";
     public float currentSpeed;
@@ -27,7 +21,8 @@ public class ProjectileObject : MonoBehaviour
     private void Awake()
     {
         rgbd = GetComponent<Rigidbody>();
-
+        Physics.IgnoreLayerCollision(6, 6); //Ignores collisions between projectiles
+        //TODO: ask design if there's projectiles that collide with other projectiles
     }
 
     //TODO: Check with design if there's more world objects other than enemies and asteroids

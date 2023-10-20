@@ -23,6 +23,8 @@ public class ShootSpawningBehaviour : MonoBehaviour
     //Creator Data
     private Vector3 creatorPosition;
     private Quaternion creatorRotation;
+    private Vector3 creatorLocalPosition;
+    private Transform creatorTransform;
 
     //Get Data List
     private void Awake()
@@ -36,6 +38,7 @@ public class ShootSpawningBehaviour : MonoBehaviour
     {
         this.creatorPosition = this.transform.position;
         this.creatorRotation = this.transform.rotation;
+        this.creatorLocalPosition = this.transform.localPosition;
     }
 
 
@@ -61,7 +64,7 @@ public class ShootSpawningBehaviour : MonoBehaviour
 
     }
 
-    //TODO: Temp description >> Pistol-like laser, medium speed, only shoots 1
+    //TODO: Temp description >> Pistol-like laser, only shoots 1
     private void SpawnRedLaser()
     {
         //Red Laser Data
@@ -71,7 +74,7 @@ public class ShootSpawningBehaviour : MonoBehaviour
         InstantiateProjectile(laserData.RedLaser, speed);
     }
 
-    //Triple 30 degree shot
+    //fan style shot -> \ | /
     private void SpawnYellowLaser()
     {
         //Yellow Laser Data
@@ -81,18 +84,19 @@ public class ShootSpawningBehaviour : MonoBehaviour
         //InstantiateProjectile(laserData.YellowLaser, speed);
         InstantiateProjectile(laserData.YellowLaser, speed, 30f);
         InstantiateProjectile(laserData.YellowLaser, speed, -30f);
+        InstantiateProjectile(laserData.YellowLaser, speed, 0, 1);
     }
 
-    //Fast laser, 3 same direction shots
+    //Buckshot laser, 3 same direction shots
     private void SpawnPinkLaser()
     {
         //Pink Laser Data
         float speed = 12;
 
         //Create the Projectile
-        InstantiateProjectile(laserData.PinkLaser, speed);
-        InstantiateProjectile(laserData.PinkLaser, speed, 1, -1);
-        InstantiateProjectile(laserData.PinkLaser, speed, -1, -1);
+        InstantiateProjectile(laserData.PinkLaser, speed, 0, 1);
+        InstantiateProjectile(laserData.PinkLaser, speed, 2, -2);
+        InstantiateProjectile(laserData.PinkLaser, speed, -2, -2);
     }
 
     /* Overloaded Function
@@ -125,9 +129,11 @@ public class ShootSpawningBehaviour : MonoBehaviour
     //offset Spawning point
     private void InstantiateProjectile(GameObject laser, float speed, float offsetX, float offsetY)
     {
-        //Create Spawn Offset
-        //FIXME: Offset doesnt work properly when its creator rotates
-        Vector3 overridenPosition = new Vector3(creatorPosition.x + offsetX, creatorPosition.y + offsetY, creatorPosition.z);
+        //Create Vector with offset on local space
+        Vector3 point = new Vector3(offsetX, offsetY, 0);
+
+        //Translate Vector to global space
+        Vector3 overridenPosition = this.transform.TransformPoint(point);
 
         //Spawn Projectile
         firedProjectile = Instantiate(laser, overridenPosition, creatorRotation, projectileContainer.transform);
@@ -138,11 +144,14 @@ public class ShootSpawningBehaviour : MonoBehaviour
     //add to angle and offset spawn point
     private void InstantiateProjectile(GameObject laser, float speed, float offsetX, float offsetY, float addedAngle)
     {
-        //Create Spawn Offset
-        //FIXME: Offset doesnt work properly when its creator rotates
-        Vector3 overridenPosition = new Vector3(creatorPosition.x + offsetX, creatorPosition.y + offsetY, creatorPosition.z);
+        //Position Offset -----------------------
+        //Create Vector with offset on local space
+        Vector3 point = new Vector3(offsetX, offsetY, 0);
 
-        //Create Rotation Offset
+        //Translate Vector to global space
+        Vector3 overridenPosition = this.transform.TransformPoint(point);
+
+        // Create Rotation Offset ---------------
         //Angle is multiplied by -1 so the rotation in game world makes logical sense
         Quaternion modifiedRotation = creatorRotation * Quaternion.Euler(0, 0, (-1 * addedAngle));
 

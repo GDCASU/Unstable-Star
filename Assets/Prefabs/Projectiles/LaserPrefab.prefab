@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 782302371994487461}
   - component: {fileID: 6195168318824351250}
   - component: {fileID: -8885292888188968338}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LaserPrefab
   m_TagString: Projectile
   m_Icon: {fileID: 0}

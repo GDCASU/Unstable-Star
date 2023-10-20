@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185126898089598967, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
       propertyPath: m_Name
-      value: YellowLaser Variant
+      value: Yellow Laser Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

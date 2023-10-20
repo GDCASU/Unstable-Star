@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010086427, g: 0.052700892, b: 0.15289137, a: 1}
+  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -883,6 +883,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Container For Projectiles
       objectReference: {fileID: 0}
+    - target: {fileID: 4612775327817726707, guid: cc19a803328c5ca4d81b95ddd1d90c3d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1501,7 +1505,7 @@ MonoBehaviour:
   - Red
   - Yellow
   - Pink
-  defaultLaserName: Pink
+  defaultLaserName: Yellow
   spawn: 0
 --- !u!4 &1962382717
 Transform:
