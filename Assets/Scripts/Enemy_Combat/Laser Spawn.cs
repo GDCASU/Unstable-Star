@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+//Old system. Only use as reference. Delete later//
 public class LaserSpawn : MonoBehaviour
 {
     bool enemyDeath = false;

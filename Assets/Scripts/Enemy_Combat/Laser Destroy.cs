@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Old system. Only use as reference. Delete later//
 public class LaserDestroy : MonoBehaviour
 {
 
     GameObject laser;
-    float y;
+    float yBoundTop = 10;
+    float yBoundBottom = -40;
+    float xBoundRight = 20;
+    float xBoundLeft = -20;
 
     // Start is called before the first frame update
     void Start()
@@ -17,18 +20,19 @@ public class LaserDestroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DestroyLaser();
+        PositionDestroyLaser();
     }
 
-    void DestroyLaser()
+    void PositionDestroyLaser()
     {
-        if (laser.transform.position.y < -40)
+        if (laser.transform.position.y < yBoundBottom && laser.transform.position.y > yBoundTop &&
+            laser.transform.position.x < xBoundRight && laser.transform.position.x > xBoundLeft)
         {
-            Destroy(laser);
+            DestroyImmediate(laser);
         }
     }
     void OnDestroy()
     {
-        gameObject.SetActive(false);
+        laser.SetActive(false);
     }
 }
