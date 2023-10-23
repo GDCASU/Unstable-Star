@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EntityHealth : MonoBehaviour
 {
-    [SerializeField] private readonly int MAX_HEALTH;
-    [SerializeField] private readonly int MAX_SHIELD;
-    [SerializeField] private readonly float SHIELD_REGEN_TIME; // in seconds
-    [SerializeField] private readonly float SHIELD_REGEN_DELAY_TIME; // in seconds
-    [SerializeField] private readonly float INVULN_TIME; // in seconds
+    public readonly int MAX_HEALTH;
+    public readonly int MAX_SHIELD;
+    public readonly float SHIELD_REGEN_TIME; // in seconds
+    public readonly float SHIELD_REGEN_DELAY_TIME; // in seconds
+    public readonly float INVULN_TIME; // in seconds
 
     public int health { get; private set; }
     public int shield { get; private set; }
@@ -17,7 +17,10 @@ public class EntityHealth : MonoBehaviour
     public float shieldRegenDelayTimer { get; private set; }
     public float invulnTimer { get; private set; }
 
-    // Need health changed, death, and maybe shield broken events
+    public delegate void OnHealthChangedDelegate();
+    public event OnHealthChangedDelegate OnHealthChanged;
+    public delegate void OnDeathDelegate();
+    public event OnDeathDelegate OnDeath;
 
 	private void Start()
 	{
@@ -46,7 +49,7 @@ public class EntityHealth : MonoBehaviour
                 }
                 shieldRegenTimer = SHIELD_REGEN_TIME;
 
-                // Raise health changed event
+                OnHealthChanged?.Invoke();
             }
         }
     }
@@ -81,12 +84,11 @@ public class EntityHealth : MonoBehaviour
                 // Raise shield broken event?
             }
         }
-
-        // Raise health changed event
+        OnHealthChanged?.Invoke();
 
         if(health <= 0)
 		{
-            // Raise death event
+            OnDeath?.Invoke();
 		}
 
         invulnTimer = INVULN_TIME;
@@ -99,6 +101,6 @@ public class EntityHealth : MonoBehaviour
 		{
             health = MAX_HEALTH;
 		}
-        // Raise health changed event
-	}
+        OnHealthChanged?.Invoke();
+    }
 }
