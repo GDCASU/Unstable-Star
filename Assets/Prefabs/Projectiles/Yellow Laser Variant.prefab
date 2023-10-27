@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7247643506519738172
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1210575897106606382, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1000ae6f53b3f0445bfd2538bfa5c7f1, type: 2}
+    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434216174557318121, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9185126898089598967, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
+      propertyPath: m_Name
+      value: Yellow Laser Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6204084d82e7fef479107f664d4e5012, type: 3}
