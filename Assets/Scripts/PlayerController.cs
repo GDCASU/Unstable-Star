@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 10.0f;
+    [SerializeField] private float speed = 60.0f;
     [SerializeField] private float xRange = 70;
-    [SerializeField] private float lowerYBound = -28;
-    [SerializeField] private float upperYBound = 30;
+    private float lowerYBound = -28;
+    private float upperYBound = 30;
 
     Vector2 movementVector;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         movePlayer();
     }
