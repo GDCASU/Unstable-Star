@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-    float playerViewWidth = 50f; //Serialize
+    [SerializeField] float playerViewWidth = 50f; //Serialize
     bool spawnAsteroid = true;
     [SerializeField] GameObject asteroid;
     float maxXPos;
+    float asteroidWidth;
     // Start is called before the first frame update
     void Start()
     {
-        float maxXPos = transform.position.x + (playerViewWidth / 2); //subtract asteriods width
+        asteroidWidth = asteroid.GetComponent<MeshRenderer>().bounds.size.x;
+        maxXPos = transform.position.x + (playerViewWidth / 2) - (asteroidWidth / 2); //subtract asteriods width
         StartCoroutine(Spawner());
     }
 
@@ -27,6 +29,7 @@ public class AsteroidSpawner : MonoBehaviour
         {
             initiateAsteroid();
             yield return new WaitForSeconds(3f + Random.Range(0f, 3f));
+            
         }
         yield return null;
     }
