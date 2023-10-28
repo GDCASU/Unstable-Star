@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08f7f50cb4185e4ba8d0dce127e1cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RedLaser: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
-  YellowLaser: {fileID: 2012244134953392331, guid: 16d6fcc442bb2254a9c669c693ccdb3c, type: 3}
-  PinkLaser: {fileID: 749766531753731313, guid: ef24889faf58bcf4e88dbdb156434f06, type: 3}
+  PistolBullet: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
+  BirdshotBullet: {fileID: 2012244134953392331, guid: 16d6fcc442bb2254a9c669c693ccdb3c, type: 3}
+  BuckshotBullet: {fileID: 749766531753731313, guid: ef24889faf58bcf4e88dbdb156434f06, type: 3}
