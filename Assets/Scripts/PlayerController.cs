@@ -5,13 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 60.0f;
-    [SerializeField] private float xRange = 70;
-    private float lowerYBound = -28;
-    private float upperYBound = 30;
+    private float xRange = 60;
 
     Vector2 movementVector;
 
-    void FixedUpdate()
+    void Update()
     {
         movePlayer();
     }
@@ -26,17 +24,6 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x > xRange)
         {
             transform.position = new Vector2(-xRange, transform.position.y);
-        }
-
-        //prevents player from going past the bottom of screen
-        if (transform.position.y < lowerYBound)
-        {
-            transform.position = new Vector2(transform.position.x, lowerYBound);
-        }
-        //prevents player from going past the top of screen
-        if (transform.position.y > upperYBound)
-        {
-            transform.position = new Vector2(transform.position.x, upperYBound);
         }
 
         movementVector = PlayerInput.instance.movementInput;
