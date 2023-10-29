@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//Script attached to anything that is a projectile
 public class ProjectileObject : MonoBehaviour
 {
     [Header("Current Data")]
     public string creator = "";
     public float currentSpeed;
+    public int damage;
     public float currentDamage;
     public bool isThisTracking;
 
     //Local Variables
-    public float damage;
     private Rigidbody rgbd;
 
     //Stored Computed Variables for better efficiency and readability
@@ -21,16 +22,14 @@ public class ProjectileObject : MonoBehaviour
     private void Awake()
     {
         rgbd = GetComponent<Rigidbody>();
-        Physics.IgnoreLayerCollision(6, 6); //Ignores collisions between projectiles
-        //TODO: ask design if there's projectiles that collide with other projectiles
     }
-
     //TODO: Check with design if there's more world objects other than enemies and asteroids
 
     //Should be called by the creator
-    public void SetData(string creator, float speed, Quaternion creatorRotation)
+    public void SetData(string creator, float speed, int damage, Quaternion creatorRotation)
     {
         this.creator = creator;
+        this.damage = damage;
         float zAngle;
         /* Taken from the list of tags in the project
          * List of Entities:
@@ -44,67 +43,23 @@ public class ProjectileObject : MonoBehaviour
         rgbd.velocity = new Vector3(Mathf.Cos(halfPi + zAngle) * speed, Mathf.Sin(halfPi + zAngle) * speed, 0);
     }
 
-    //TODO: ADD COLLISION DETECTION HERE -------------------------------
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        string foreignerTag = collision.gameObject.tag;
-
-        //Return if the object is of the same type
-        if (this.CompareTag(foreignerTag))
+        //Bullets wont damage objects on the same tag, as in, enemies cant damage other enemies
+        //TODO: Ask design if bullets should also be destroyed if colliding with enemies
+        if (other.gameObject.CompareTag(creator))
         {
             return;
-            //TODO: Ask design if enemies can kill each other
         }
         
-        
-        switch (foreignerTag)
+        //Findout if object we collided against can be damaged
+        if (other.TryGetComponent<IDamageable>(out var damageable))
         {
-            case "Player":
-                //Register Hit on player
-                PlayerRegisterHit(collision.gameObject);
-                break;
-            case "Enemy":
-                //Register Hit on Enemy
-                EnemyRegisterHit(collision.gameObject);
-                break;
-            case "Asteroid":
-                //Register Hit on Asteroit, TODO: Ask design if asteroids can be destroyed
-                AsteroidRegisterHit(collision.gameObject);
-                break;
-            default:
-                //FIXME: Ignore Collision???
-                break;
+            damageable.TakeDamage(damage);
         }
+
+        //Destroy bullet after collision
+        Destroy(this.gameObject);
     }
 
-    private void PlayerRegisterHit(GameObject foreignerObject)
-    {
-        //TODO:
-    }
-
-    private void EnemyRegisterHit(GameObject foreignerObject)
-    {
-        //TODO:
-        Vector3 previousVelocity = rgbd.velocity;
-        Destroy(foreignerObject);
-        rgbd.velocity = previousVelocity;
-    }
-
-    private void AsteroidRegisterHit(GameObject foreignerObject)
-    {
-        //TODO:
-    }
-
-
-    // -----------------------------------------------------------------
-
-
-
-    //TODO: ADD TIMER DELETION HERE ------------------------------------
-
-
-
-
-    // -----------------------------------------------------------------
 }

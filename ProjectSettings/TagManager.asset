@@ -7,15 +7,16 @@ TagManager:
   - Projectile
   - Enemy
   - Asteroid
+  - Game Bounds
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Projectiles
-  - 
+  - Enemies
   - 
   - 
   - 
