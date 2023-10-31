@@ -8,7 +8,12 @@ public interface IDamageable
 }
 
 //TODO: Maybe use an interface to easily see what objects react to the death of the player?
-public interface IReactToPlayerDeath
+public interface IListensToPlayerDeath
 {
-    void OnPlayerDeath();
+    void WhenPlayerDies();
+}
+
+public interface IConsumable
+{
+    //TODO: See if design wants power ups and the like
 }

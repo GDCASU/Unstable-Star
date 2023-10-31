@@ -1,39 +1,68 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//Script that allows any object to shoot projectiles
 public class Shoot : MonoBehaviour
 {
-    //Dictionary to access the prefab objects of all projectile types
-    [Header("Laser Data GameObject")]
+    //List to access the prefab objects of all projectile models
+    [Header("Projectile Prefab Data")]
     [SerializeField] private GameObject DataPrefab;
 
-    [Header("Laser Prefabs")]
-    [SerializeField] private List<string> laserChoices;
-    [SerializeField] private string defaultLaserName;
-    //TODO: Figure out how to make a selection list of choices instead of an input list
+    [Header("Weapon Data")]
+    [SerializeField] private List<string> WeaponChoices;
+    [SerializeField] private string defaultWeaponName;
+
+    [Header("Current Weapon Info")]
+    [SerializeField] private int damage;
+    [SerializeField] private float bulletSpeed;
+    //NOTE: In either the player controller or enemy AI script,
+    //Both have to define projectile speed and damages
+    //Should allow to make more difficult enemies
 
     [Header("Testing Variables")]
-    public bool spawn = false;
+    public bool TestShoot = false;
 
     private void Awake()
     {
-        //Script API Section
-        SetLaserFire(defaultLaserName);
+        // Script API Section -----------------------------------
+        SetWeaponFire(defaultWeaponName);
 
-        //Behaviour Section
-        laserData = DataPrefab.GetComponent<LaserPrefabList>(); //Get data list
+        // Behaviour Section ------------------------------------
+        BulletData = DataPrefab.GetComponent<ProjectilePrefabList>(); //Get data list
         projectileContainer = GameObject.Find("Container For Projectiles"); //Stores projectiles in "Container For Projectiles"
+
+        //Sets the layer of the bullet depending on if its the player shooting or the enemy
+        switch (this.gameObject.tag)
+        {
+            case "Player":
+                //The player is shooting
+                projectileLayer = LayerMask.NameToLayer("Projectiles Player");
+                break;
+            case "Enemy":
+                //The Enemy is shooting
+                projectileLayer = LayerMask.NameToLayer("Projectiles Enemies");
+                break;
+            default:
+                Debug.Log("ERORR!!! AN OBJECT THAT IS SHOOTING IS UNTAGGED AND/OR UNDEFINED IN SHOOT.CS");
+                break;
+        }
+
+        //Populate the dictionary with Weapon behaviors
+        projectileBehaviors["Pistol"] = SpawnPistol;
+        projectileBehaviors["Birdshot"] = SpawnBirdshot;
+        projectileBehaviors["Buckshot"] = SpawnBuckshot;
     }
 
     private void Update()
     {
         //HACK: Testing loop
-        if (spawn)
+        if (TestShoot)
         {
-            ShootProjectile();
-            spawn = false;
+            ShootProjectile(1,30f);
+            TestShoot = false;
         }
     }
 
@@ -41,41 +70,51 @@ public class Shoot : MonoBehaviour
                                 SHOOT SCRIPT API
 
         This section contains all relevant functions that should be
-        accessed by other objects, like for example the input system.
-      -----------------------------------------------------------------------
-    */
-
+        accessed by other objects, like for example the player controller.
+      ----------------------------------------------------------------------- */
 
     //Local variables
-    private string sCurrLaser;
+    private string sCurrWeapon;
 
-    //Assign Laser that is currently being shot
-    public void SetLaserFire(string laserType)
+    //Dictionary of function calls
+    private Dictionary<string, Action> projectileBehaviors = new();
+
+    //Assign Weapon that is currently being shot
+    public void SetWeaponFire(string firingType)
     {
-        //NOTE: The string must have something contained within the name of the prebab
-        //So if you input "Red", it should set the Red Laser.
-        //It has to also bee in the list of available lasers, set on the inspector window
+        //NOTE: The string must have something contained within the name of the prefab
+        //So if you input "Pistol", it should set the weapon to Pistol.
+        //It has to be in the list of available weapons, set on the inspector window
         int i;
 
-        //Go through list, find laserType
-        for (i = 0; i < laserChoices.Count; i++)
+        //Go through list, find if firingType is in it
+        for (i = 0; i < WeaponChoices.Count; i++)
         {
-            if (laserChoices[i].Equals(laserType))
+            if (WeaponChoices[i].Equals(firingType))
             {
-                sCurrLaser = laserChoices[i];
+                sCurrWeapon = WeaponChoices[i];
                 return;
             }
         }
-        Debug.Log("ERROR! LaserType String passed in Shoot.cs wasnt found within the available lasers");
+        Debug.Log("ERROR! firingType String passed in Shoot.cs wasnt found within the available firing choices");
     }
 
     //Function to call to make the object shoot
-    //It also creates the laser with its designed behaviour
-    public void ShootProjectile()
+    //It also creates the bullet with its designed behaviour
+    public void ShootProjectile(int damage, float bulletSpeed)
     {
-        BehaviourSpawn(sCurrLaser);
+        this.damage = damage;
+        this.bulletSpeed = bulletSpeed;
+        
+        if (projectileBehaviors.ContainsKey(sCurrWeapon))
+        {
+            projectileBehaviors[sCurrWeapon].Invoke();
+        }
+        else
+        {
+            Debug.Log("ERROR! UNEXPECTED BEHAVIOR TRIGGERED ON SHOOT.CS/API");
+        }
     }
-
 
     /* -----------------------------------------------------------------------
                         BEHAVIOUR OF SPAWNED PROJECTILES
@@ -83,137 +122,105 @@ public class Shoot : MonoBehaviour
         This section contains the behaviour of all bullets/laser when they
         spawn. Should be able to spawn single, double, triple bullets
         Bullets that slow or speed up, anything design needs/wants
-      -----------------------------------------------------------------------
-    */
-
+      ----------------------------------------------------------------------- */
 
     //Local Variables
     private GameObject firedProjectile;
     private ProjectileObject projectileData;
-    private LaserPrefabList laserData;
+    private ProjectilePrefabList BulletData;
+    private int projectileLayer;
 
     //Stores all projectiles here, allows to colapse all projectiles within an empty object
     private GameObject projectileContainer;
 
-    //Calls their bullet function for spawning
-    public void BehaviourSpawn(string sLaserType)
-    {
-        //Select The laser Type
-        switch (sLaserType)
-        {
-            case "Pistol":
-                SpawnPistol();
-                break;
-            case "Birdshot":
-                SpawnBirdshot();
-                break;
-            case "Buckshot":
-                SpawnBuckshot();
-                break;
-            default:
-                Debug.Log("ERROR! UNEXPECTED BEHAVIOUR TRIGGERED ON ShootSpawningBehaviour");
-                break;
-        }
-
-    }
-
-    //TODO: Temp description >> Pistol-like laser, only shoots 1 projectile
+    //Pistol: only shoots 1 projectile
     private void SpawnPistol()
     {
-        //Pistol Data
-        float speed = 20;
-        int damage = 1;
-
         //Create the Projectile
-        InstantiateProjectile(laserData.PistolBullet, damage, speed);
+        InstantiateProjectile(BulletData.RedBullet, this.damage, this.bulletSpeed);
     }
 
     // Birdshot: fan style shot -> \ | /
     private void SpawnBirdshot()
     {
-        //Birdshot Data
-        float speed = 20;
-        int damage = 1;
-
         //Create the Projectile
-        InstantiateProjectile(laserData.BirdshotBullet, damage, speed, 30f);
-        InstantiateProjectile(laserData.BirdshotBullet, damage, speed, -30f);
-        InstantiateProjectile(laserData.BirdshotBullet, damage, speed, 0, 1);
+        InstantiateProjectile(BulletData.YellowBullet, this.damage, this.bulletSpeed, 30f);
+        InstantiateProjectile(BulletData.YellowBullet, this.damage, this.bulletSpeed, -30f);
+        InstantiateProjectile(BulletData.YellowBullet, this.damage, this.bulletSpeed, 0, 1);
     }
 
-    //Buckshot laser, 3 separated but same direction shots
+    //Buckshot: 3 separated but same direction shots
     private void SpawnBuckshot()
     {
-        //Buckshot Data
-        float speed = 20;
-        int damage = 1;
-
         //Create the Projectile
-        InstantiateProjectile(laserData.BuckshotBullet, damage, speed, 0, 1);
-        InstantiateProjectile(laserData.BuckshotBullet, damage, speed, 2, -2);
-        InstantiateProjectile(laserData.BuckshotBullet, damage, speed, -2, -2);
+        InstantiateProjectile(BulletData.PinkBullet, this.damage, this.bulletSpeed, 0, 1);
+        InstantiateProjectile(BulletData.PinkBullet, this.damage, this.bulletSpeed, 2, -2);
+        InstantiateProjectile(BulletData.PinkBullet, this.damage, this.bulletSpeed, -2, -2);
     }
 
-    /* Overloaded Function
-     * Spawns Projectile, do not call directly, only within the LaserTypes functions
-     * HACK: If the ship rotates in any non-z axis, bullets come out weird, but works for now
-     * Note: Is it neccessary to add the Z value? if the player cant move away or closer to the camera
-     */
+    //Overloaded Function, Spawns the projectile
 
     //Shoot straight
-    private void InstantiateProjectile(GameObject laser, int damage, float speed)
+    private void InstantiateProjectile(GameObject bullet, int damage, float speed)
     {
-        firedProjectile = Instantiate(laser, this.transform.position, this.transform.rotation, projectileContainer.transform);
+        //Create a quaternion with only the Z axis
+        Quaternion zRotation = Quaternion.Euler(0f, 0f, this.transform.rotation.eulerAngles.z);
+
+        //Spawn projectile
+        firedProjectile = Instantiate(bullet, this.transform.position, zRotation, projectileContainer.transform);
         projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, speed, damage, this.transform.rotation);
+        projectileData.SetData(this.tag, projectileLayer, speed, damage, zRotation);
     }
 
     //Add a float to the angle (In degrees)
-    private void InstantiateProjectile(GameObject laser, int damage, float speed, float addedAngle)
+    private void InstantiateProjectile(GameObject bullet, int damage, float speed, float addedAngle)
     {
         //Create Rotation Offset
-        //Angle is multiplied by -1 so the rotation in game world makes logical sense
-        Quaternion modifiedRotation = this.transform.rotation * Quaternion.Euler(0, 0, (-1 * addedAngle));
+        Quaternion modifiedRotation = Quaternion.Euler(0f, 0f, this.transform.rotation.eulerAngles.z + addedAngle);
 
         //Spawn Projectile
-        firedProjectile = Instantiate(laser, this.transform.position, modifiedRotation, projectileContainer.transform);
+        firedProjectile = Instantiate(bullet, this.transform.position, modifiedRotation, projectileContainer.transform);
         projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, speed, damage, modifiedRotation);
+        projectileData.SetData(this.tag, projectileLayer, speed, damage, modifiedRotation);
     }
 
     //offset Spawning point
-    private void InstantiateProjectile(GameObject laser, int damage, float speed, float offsetX, float offsetY)
+    //HACK: If the ship rotates on any non-z axis, bullets come out weird
+    private void InstantiateProjectile(GameObject bullet, int damage, float speed, float offsetX, float offsetY)
     {
+        //Create a quaternion with only the Z axis
+        Quaternion zRotation = Quaternion.Euler(0f, 0f, this.transform.rotation.eulerAngles.z);
+
         //Create Vector with offset on local space
-        Vector3 point = new Vector3(offsetX, offsetY);
+        Vector3 point = new Vector3(offsetX, offsetY, 0f);
 
         //Translate Vector to global space
         Vector3 overridenPosition = this.transform.TransformPoint(point);
 
         //Spawn Projectile
-        firedProjectile = Instantiate(laser, overridenPosition, this.transform.rotation, projectileContainer.transform);
+        firedProjectile = Instantiate(bullet, overridenPosition, zRotation, projectileContainer.transform);
         projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, speed, damage, this.transform.rotation);
+        projectileData.SetData(this.tag, projectileLayer, speed, damage, zRotation);
     }
 
     //add to angle and offset spawn point
-    private void InstantiateProjectile(GameObject laser, int damage, float speed, float offsetX, float offsetY, float addedAngle)
+    //HACK: If the ship rotates on any non-z axis, bullets come out weird
+    private void InstantiateProjectile(GameObject bullet, int damage, float speed, float offsetX, float offsetY, float addedAngle)
     {
         //Position Offset -----------------------
         //Create Vector with offset on local space
-        Vector3 point = new Vector3(offsetX, offsetY);
+        Vector3 point = new Vector3(offsetX, offsetY, 0f);
 
         //Translate Vector to global space
         Vector3 overridenPosition = this.transform.TransformPoint(point);
 
         // Create Rotation Offset ---------------
-        //Angle is multiplied by -1 so the rotation in game world makes logical sense
-        Quaternion modifiedRotation = this.transform.rotation * Quaternion.Euler(0, 0, (-1 * addedAngle));
+        Quaternion modifiedRotation = Quaternion.Euler(0f, 0f, this.transform.rotation.eulerAngles.z + addedAngle);
 
         //Spawn Projectile
-        firedProjectile = Instantiate(laser, overridenPosition, modifiedRotation, projectileContainer.transform);
+        firedProjectile = Instantiate(bullet, overridenPosition, modifiedRotation, projectileContainer.transform);
         projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, speed, damage, modifiedRotation);
+        projectileData.SetData(this.tag, projectileLayer, speed, damage, modifiedRotation);
 
     }
 

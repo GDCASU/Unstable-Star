@@ -26,10 +26,11 @@ public class ProjectileObject : MonoBehaviour
     //TODO: Check with design if there's more world objects other than enemies and asteroids
 
     //Should be called by the creator
-    public void SetData(string creator, float speed, int damage, Quaternion creatorRotation)
+    public void SetData(string creator, int LayerInt, float speed, int damage, Quaternion creatorRotation)
     {
         this.creator = creator;
         this.damage = damage;
+        this.gameObject.layer = LayerInt;
         float zAngle;
         /* Taken from the list of tags in the project
          * List of Entities:
@@ -45,17 +46,14 @@ public class ProjectileObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Bullets wont damage objects on the same tag, as in, enemies cant damage other enemies
         //TODO: Ask design if bullets should also be destroyed if colliding with enemies
-        if (other.gameObject.CompareTag(creator))
-        {
-            return;
-        }
+
+        Debug.Log("COLLIDED AGAINST: " + other.tag);
         
-        //Findout if object we collided against can be damaged
+        //For anything else, find out if object we collided against can be damaged
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(this.damage);
         }
 
         //Destroy bullet after collision

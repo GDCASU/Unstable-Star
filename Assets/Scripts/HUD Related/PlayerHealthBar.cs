@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerHealthBar : MonoBehaviour
 {
-    [SerializeField] private DummyPlayerHealth player;
+ //   [SerializeField] private DummyPlayerHealth player;
 
-    private void Start()
-    {
-		player.OnHealthChanged += OnHealthChanged;
-    }
+ //   private void Start()
+ //   {
+	//	player.OnHealthChanged += OnHealthChanged;
+ //   }
 
-	private void OnHealthChanged()
-	{
+	//private void OnHealthChanged()
+	//{
 		
-	}
+	//}
 }

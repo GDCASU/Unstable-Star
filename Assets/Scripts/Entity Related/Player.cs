@@ -3,55 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Script that manages all the stats conected to the player
-public class PlayerStats : MonoBehaviour, IDamageable
+public class Player : CombatEntity
 {
     //Singleton for any other scripts that interact with the player, like UI (?)
-    public static PlayerStats Instance;
+    public static Player Instance;
 
     //Readonly vars, has to be assigned here
     //TODO: Ask design if Max health and shield can be upgraded one day
-    private readonly int MAX_HEALTH = 20;
-    private readonly int MAX_SHIELD = 100;
+    private readonly int MAX_HEALTH = 10;
+    private readonly int MAX_SHIELD = 5;
     //how much % of the shield is regenerated every second, format = 15%, 30%, etc.
-    private readonly float SHIELD_PERCENTAGE_REGEN_BASE = 5f;
+    private readonly float SHIELD_PERCENTAGE_REGEN_BASE = 20f;
     private readonly float INVULN_TIME = 1f; // in seconds
-    private readonly float SHIELD_REGEN_DELAY_TIME = 6f; // in seconds, STACKS WITH INVULN_TIME!!
+    private readonly float SHIELD_REGEN_DELAY_TIME = 3f; // in seconds, STACKS WITH INVULN_TIME!!
 
     [Header("Player Stats Readings")]
-    public int HealthRead;
-    public int ShieldRead;
-    public float shieldFloatRead;
-    public bool isShieldBrokenRead;
-    public bool isInvulnerableRead;
-    public bool isRegeningRead;
+    [SerializeField] private int HealthRead;
+    [SerializeField] private int ShieldRead;
+    [SerializeField] private float ShieldFloatRead;
+    [SerializeField] private bool IsShieldBrokenRead;
+    [SerializeField] private bool IsInvulnerableRead;
+    [SerializeField] private bool IsRegeningRead;
 
     [Header("Debugging")]
-    public bool isDebugLogging;
-    public bool DamageTest;
-    public bool HealTest;
-
-    //Delegates and events
-    //Event that everything on the game should be aware of: player's death
-    public delegate void OnPlayerDeathDelegate();
-    public static event OnPlayerDeathDelegate OnPlayerDeath;
-
-    //Events used to call an update to the UI, play animations, sounds, etc.
-    public delegate void OnHealthLostDelegate();
-    public static event OnHealthLostDelegate OnHealthLost; //Health Lost
-
-    public delegate void OnHealthAddedDelegate();
-    public static event OnHealthAddedDelegate OnHealthAdded; //Health Added
-
-    public delegate void OnShieldDamagedDelegate();
-    public static event OnShieldDamagedDelegate OnShieldDamaged; //Shield Damaged
-
-    public delegate void OnShieldBrokenDelegate();
-    public static event OnShieldBrokenDelegate OnShieldBroken; //Shield Broken
+    [SerializeField] private bool IsDebugLogging;
+    [SerializeField] private bool DamageTest;
+    [SerializeField] private bool HealTest;
 
     //Local variables
     private Coroutine ShieldRoutine;
-    public int health { get; private set; }
-    public int shield { get; private set; }
+    public int Health { get; private set; }
+    public int Shield { get; private set; }
     private float shieldPercentageVal;
     private bool isInvulnerable;
     private bool isShieldBroken;
@@ -63,20 +45,18 @@ public class PlayerStats : MonoBehaviour, IDamageable
         //Sets the singleton
         Instance = this;
 
+        //Add WhenPlayerDies action to the event OnPlayerDeath
+        EventData.OnPlayerDeath += WhenPlayerDies;
+
         //Set Variables
         ShieldRoutine = null;
-        health = MAX_HEALTH;
-        shield = 5; //HACK: Testing shield regen and hull dmg, later should be set to MAX_SHIELD
-        shieldFloat = shield;
+        Health = MAX_HEALTH;
+        Shield = MAX_SHIELD;
+        shieldFloat = Shield;
         isInvulnerable = false;
         isShieldBroken = false;
         isShieldRegening = false;
         changeShieldRegenPercentage(SHIELD_PERCENTAGE_REGEN_BASE);
-
-        //Debugging
-        HealthRead = health;
-        ShieldRead = shield;
-        isRegeningRead = isShieldRegening;
     }
 
     //Update's only purpose is debugging, everything coded here runs on
@@ -84,12 +64,12 @@ public class PlayerStats : MonoBehaviour, IDamageable
     private void Update()
     {
         //Testing
-        HealthRead = health;
-        ShieldRead = shield;
-        isRegeningRead = isShieldRegening;
-        shieldFloatRead = shieldFloat;
-        isShieldBrokenRead = isShieldBroken;
-        isInvulnerableRead = isInvulnerable;
+        HealthRead = Health;
+        ShieldRead = Shield;
+        IsRegeningRead = isShieldRegening;
+        ShieldFloatRead = shieldFloat;
+        IsShieldBrokenRead = isShieldBroken;
+        IsInvulnerableRead = isInvulnerable;
         if (DamageTest)
         {
             TakeDamage(1);
@@ -105,27 +85,27 @@ public class PlayerStats : MonoBehaviour, IDamageable
     //Adds health to the player, should be used by health packs and the like
     public void AddHealth(int amount)
     {
-        health += amount;
-        if (health > MAX_HEALTH)
+        Health += amount;
+        if (Health > MAX_HEALTH)
         {
-            health = MAX_HEALTH;
+            Health = MAX_HEALTH;
         }
         //Invoke the event signaling a change of health
-        if (isDebugLogging) { Debug.Log("ATTEMPTED TO HEAL THE PLAYER"); };
-        OnHealthAdded?.Invoke();
+        if (IsDebugLogging) { Debug.Log("ATTEMPTED TO HEAL THE PLAYER"); };
+        EventData.RaiseOnHealthAdded();
     }
 
     //TODO: See if design plans to have buff items or something of the like
     public void changeShieldRegenPercentage(float newPercentage)
     {
         shieldPercentageVal = (MAX_SHIELD * newPercentage) / 100;
-        if (isDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldPercentageVal); };
+        if (IsDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldPercentageVal); };
     }
 
     //Damage recieved, declared as per contract with IDamageable interface
     //TODO: Ask design if projectiles should be deleted if colliding against
     //an invulnerable player, or let them phase through (?) 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         //Dont do anything if invulnerable
         if (isInvulnerable) { return; };
@@ -139,13 +119,13 @@ public class PlayerStats : MonoBehaviour, IDamageable
         StartCoroutine(iFramesTimer());
 
         //Variables for checking
-        int shieldDmgCheck = shield - damage;
-        int healthDmgCheck = health - Mathf.Abs(shieldDmgCheck);
-        bool triggeredReturn = false;
+        int shieldDmgCheck = Shield - damage;
+        int healthDmgCheck = Health + shieldDmgCheck;
+        bool triggeredReturn;
 
         //Explore Damage done to shield
         triggeredReturn = ExploreShieldDmg(shieldDmgCheck);
-        
+
         //Start checking for when the shield regenerates at least 1 point
         //It finished instantly if theres more than 1 point
         StartCoroutine(CheckForShieldRestore());
@@ -163,20 +143,20 @@ public class PlayerStats : MonoBehaviour, IDamageable
         //Try to damage the shield, wont execute if its already broken
         if (shieldDmgCheck > 0)
         {
-            if (isDebugLogging) { Debug.Log("DAMAGE RECIEVED TO SHIELD: " + (shield - shieldDmgCheck)); };
-            shield = shieldDmgCheck;
-            shieldFloat = (float)shield;
-            OnShieldDamaged?.Invoke();
+            if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO SHIELD: " + (Shield - shieldDmgCheck)); };
+            Shield = shieldDmgCheck;
+            shieldFloat = (float)Shield;
+            EventData.RaiseOnShieldDamaged();
         }
         //If value is negative or zero, it means we broke it.
         //Wont run if it was already broken before regenerating 1 shield point
         else if (!isShieldBroken)
         {
-            if (isDebugLogging) { Debug.Log("SHIELD WAS BROKEN"); };
-            shield = 0;
+            if (IsDebugLogging) { Debug.Log("SHIELD WAS BROKEN"); };
+            Shield = 0;
             shieldFloat = 0;
             isShieldBroken = true;
-            OnShieldBroken?.Invoke();
+            EventData.RaiseOnShieldBroken();
             //Return here to negate damage after shield break
             return true;
         }
@@ -199,36 +179,49 @@ public class PlayerStats : MonoBehaviour, IDamageable
         //If we passed everything above, it means damage to the hull
         if (healthDmgCheck > 0)
         {
-            if (isDebugLogging) { Debug.Log("DAMAGE RECIEVED TO HULL: " + (health - healthDmgCheck)); };
-            health = healthDmgCheck;
-            OnHealthLost?.Invoke();
+            if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO HULL: " + (Health - healthDmgCheck)); };
+            Health = healthDmgCheck;
+            EventData.RaiseOnHealthLost();
         }
         //else, the player died
         else
         {
-            if (isDebugLogging) { Debug.Log("EVENT: TRIGERRED PLAYER'S DEATH!!!!!"); };
-            health = 0;
-            OnPlayerDeath?.Invoke();
+            if (IsDebugLogging) { Debug.Log("EVENT: TRIGERRED PLAYER'S DEATH!!!!!"); };
+            Health = 0;
+            EventData.RaiseOnPlayerDeath();
         }
+    }
+
+    public override void WhenPlayerDies()
+    {
+        //NOTE: after death triggers, TakeDamage() wont respond to incoming damage anymore
+        StopAllCoroutines();
+        isInvulnerable = true;
+
+        //TODO: Add here events that happens when player dies ---------------
+
+
+
+        //-----------------------------------------------------------------------
     }
 
     private IEnumerator CheckForShieldRestore()
     {
         //Runs until shield regenerated 1 point
-        while (shield < 1) 
+        while (Shield < 1)
         {
             //Wait until 1 frame has passed
             yield return new WaitForSeconds(Time.deltaTime);
         }
         isShieldBroken = false;
     }
-    
+
 
     //Coroutine that runs for the amount of time the player is invincible
     //TODO: Call invlunerabiliy animation here?
     private IEnumerator iFramesTimer()
     {
-        if (isDebugLogging) { Debug.Log("STARTED IFRAMES TIMER"); }; //Debugging
+        if (IsDebugLogging) { Debug.Log("STARTED IFRAMES TIMER"); }; //Debugging
 
         isInvulnerable = true;
         //Runs the iframes timer
@@ -240,7 +233,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         //NOTE: Duration stacks with the regen delay here
         ShieldRoutine = StartCoroutine(ShieldRegenBehaviour());
 
-        if (isDebugLogging) { Debug.Log("IFRAMES TIMER FINISHED"); };
+        if (IsDebugLogging) { Debug.Log("IFRAMES TIMER FINISHED"); };
     }
 
     //Coroutine that handles the regeneration of the shield
@@ -257,22 +250,22 @@ public class PlayerStats : MonoBehaviour, IDamageable
         //First, wait for shield regen delay
         yield return new WaitForSeconds(SHIELD_REGEN_DELAY_TIME);
 
-        if (isDebugLogging) { Debug.Log("STARTED REGEN SHIELD BEHAVIOUR"); };
+        if (IsDebugLogging) { Debug.Log("STARTED REGEN SHIELD BEHAVIOUR"); };
 
         //Start Regen of the shield
         while (shieldFloat < MAX_SHIELD)
         {
             shieldFloat += shieldPercentageVal * Time.deltaTime;
             //Assign the float value to player's shiled, typecasted
-            shield = (int)shieldFloat;
+            Shield = (int)shieldFloat;
             //Wait until 1 frame has passed
             yield return new WaitForSeconds(Time.deltaTime);
         }
         //We finished regening the shield, assign it MAX_SHIELD in case we went over before
-        shield = MAX_SHIELD;
-        shieldFloat = (float)shield;
+        Shield = MAX_SHIELD;
+        shieldFloat = (float)Shield;
         isShieldRegening = false;
 
-        if (isDebugLogging) { Debug.Log("REGEN SHIELD BEHAVIOUR FINISHED"); };
+        if (IsDebugLogging) { Debug.Log("REGEN SHIELD BEHAVIOUR FINISHED"); };
     }
 }

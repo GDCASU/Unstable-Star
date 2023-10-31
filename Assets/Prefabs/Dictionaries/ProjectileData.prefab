@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4680402056304425920}
-  - component: {fileID: 8298931183301926665}
+  - component: {fileID: 3288829493600135450}
   m_Layer: 6
   m_Name: ProjectileData
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8298931183301926665
+--- !u!114 &3288829493600135450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08f7f50cb4185e4ba8d0dce127e1cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PistolBullet: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
-  BirdshotBullet: {fileID: 2012244134953392331, guid: 16d6fcc442bb2254a9c669c693ccdb3c, type: 3}
-  BuckshotBullet: {fileID: 749766531753731313, guid: ef24889faf58bcf4e88dbdb156434f06, type: 3}
+  RedBullet: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
+  YellowBullet: {fileID: 2012244134953392331, guid: 16d6fcc442bb2254a9c669c693ccdb3c, type: 3}
+  PinkBullet: {fileID: 749766531753731313, guid: ef24889faf58bcf4e88dbdb156434f06, type: 3}

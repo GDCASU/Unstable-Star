@@ -12,15 +12,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Projectiles
+  - Player
+  - Projectiles Player
+  - Projectiles Enemies
   - Enemies
-  - 
-  - 
-  - 
-  - 
+  - Asteroid Collider Entities
+  - Asteroid Collider Projectiles
   - 
   - 
   - 
