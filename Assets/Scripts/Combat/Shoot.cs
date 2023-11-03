@@ -61,7 +61,7 @@ public class Shoot : MonoBehaviour
         //HACK: Testing loop
         if (TestShoot)
         {
-            ShootProjectile(1,30f);
+            ShootProjectile(damage: 1, bulletSpeed: 30f);
             TestShoot = false;
         }
     }
@@ -112,7 +112,7 @@ public class Shoot : MonoBehaviour
         }
         else
         {
-            Debug.Log("ERROR! UNEXPECTED BEHAVIOR TRIGGERED ON SHOOT.CS/API");
+            Debug.Log("ERROR! sCurrWeapon NOT FOUND IN DICTIONARY / SHOOT.CS");
         }
     }
 

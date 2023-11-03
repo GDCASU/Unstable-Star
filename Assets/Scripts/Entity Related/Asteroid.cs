@@ -29,17 +29,27 @@ public class Asteroid : CombatEntity
     //Execute instructions for when player dies
     public override void WhenPlayerDies()
     {
-        //Stub, maybe asteroids just go their merry way offscreen
+        //Stub, maybe asteroids just go their merry way offscreen?
     }
 
     public override void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        int healthCheck = health - damage;
+        
+        //Check if the asteroid has been destroyed
+        if (healthCheck <= 0)
         {
+            HitpointsRenderer.Instance.PrintDamage(this.transform.position, health, false);
+            health = 0;
+            
             //TODO: Program everything that happens when the entity dies
             Destroy(this.gameObject);
+            return;
         }
+        
+        //Asteroid is not destroyed yet
+        HitpointsRenderer.Instance.PrintDamage(this.transform.position, health - healthCheck, false);
+        health = healthCheck;
     }
 
     public void SetHealth(int health)

@@ -9,7 +9,7 @@ public class Player : CombatEntity
     public static Player Instance;
 
     //Readonly vars, has to be assigned here
-    //TODO: Ask design if Max health and shield can be upgraded one day
+    //TODO: Ask design if Max health and shield can be upgraded at one point
     private readonly int MAX_HEALTH = 10;
     private readonly int MAX_SHIELD = 5;
     //how much % of the shield is regenerated every second, format = 15%, 30%, etc.
@@ -40,7 +40,7 @@ public class Player : CombatEntity
     private bool isShieldRegening;
     private float shieldFloat;
 
-    private void Start()
+    void Start()
     {
         //Sets the singleton
         Instance = this;
@@ -60,7 +60,7 @@ public class Player : CombatEntity
     }
 
     //Update's only purpose is debugging, everything coded here runs on
-    //Take damage, independent of update
+    //Coroutines, independent of update
     private void Update()
     {
         //Testing
@@ -82,7 +82,7 @@ public class Player : CombatEntity
         }
     }
 
-    //Adds health to the player, should be used by health packs and the like
+    //Adds health to the player, should be used by health packs and the like (?)
     public void AddHealth(int amount)
     {
         Health += amount;
@@ -91,7 +91,7 @@ public class Player : CombatEntity
             Health = MAX_HEALTH;
         }
         //Invoke the event signaling a change of health
-        if (IsDebugLogging) { Debug.Log("ATTEMPTED TO HEAL THE PLAYER"); };
+        if (IsDebugLogging) { Debug.Log("ATTEMPTED TO HEAL THE PLAYER"); }
         EventData.RaiseOnHealthAdded();
     }
 
@@ -99,7 +99,7 @@ public class Player : CombatEntity
     public void changeShieldRegenPercentage(float newPercentage)
     {
         shieldPercentageVal = (MAX_SHIELD * newPercentage) / 100;
-        if (IsDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldPercentageVal); };
+        if (IsDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldPercentageVal); }
     }
 
     //Damage recieved, declared as per contract with IDamageable interface
@@ -133,8 +133,8 @@ public class Player : CombatEntity
         //If no damage is to be passed to hull, return
         if (triggeredReturn) { return; };
 
-        //Explore damage to hull
-        ExploreDamageToHull(healthDmgCheck);
+        //Else, damage to hull
+        DealDamageToHull(healthDmgCheck);
     }
 
     //Explores what happens if we try to damage the shield
@@ -143,7 +143,8 @@ public class Player : CombatEntity
         //Try to damage the shield, wont execute if its already broken
         if (shieldDmgCheck > 0)
         {
-            if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO SHIELD: " + (Shield - shieldDmgCheck)); };
+            if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO SHIELD: " + (Shield - shieldDmgCheck)); }
+            HitpointsRenderer.Instance.PrintDamage(this.transform.position, Shield - shieldDmgCheck, true);
             Shield = shieldDmgCheck;
             shieldFloat = (float)Shield;
             EventData.RaiseOnShieldDamaged();
@@ -152,7 +153,8 @@ public class Player : CombatEntity
         //Wont run if it was already broken before regenerating 1 shield point
         else if (!isShieldBroken)
         {
-            if (IsDebugLogging) { Debug.Log("SHIELD WAS BROKEN"); };
+            if (IsDebugLogging) { Debug.Log("SHIELD WAS BROKEN"); }
+            HitpointsRenderer.Instance.PrintDamage(this.transform.position, Shield, true);
             Shield = 0;
             shieldFloat = 0;
             isShieldBroken = true;
@@ -174,19 +176,21 @@ public class Player : CombatEntity
         return false;
     }
 
-    private void ExploreDamageToHull(int healthDmgCheck)
+    private void DealDamageToHull(int healthDmgCheck)
     {
         //If we passed everything above, it means damage to the hull
         if (healthDmgCheck > 0)
         {
-            if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO HULL: " + (Health - healthDmgCheck)); };
+            if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO HULL: " + (Health - healthDmgCheck)); }
+            HitpointsRenderer.Instance.PrintDamage(this.transform.position, Health - healthDmgCheck, false);
             Health = healthDmgCheck;
             EventData.RaiseOnHealthLost();
         }
         //else, the player died
         else
         {
-            if (IsDebugLogging) { Debug.Log("EVENT: TRIGERRED PLAYER'S DEATH!!!!!"); };
+            if (IsDebugLogging) { Debug.Log("EVENT: TRIGERRED PLAYER'S DEATH!!!!!"); }
+            HitpointsRenderer.Instance.PrintDamage(this.transform.position, Health, false);
             Health = 0;
             EventData.RaiseOnPlayerDeath();
         }
@@ -221,7 +225,7 @@ public class Player : CombatEntity
     //TODO: Call invlunerabiliy animation here?
     private IEnumerator iFramesTimer()
     {
-        if (IsDebugLogging) { Debug.Log("STARTED IFRAMES TIMER"); }; //Debugging
+        if (IsDebugLogging) { Debug.Log("STARTED IFRAMES TIMER"); } //Debugging
 
         isInvulnerable = true;
         //Runs the iframes timer
@@ -233,7 +237,7 @@ public class Player : CombatEntity
         //NOTE: Duration stacks with the regen delay here
         ShieldRoutine = StartCoroutine(ShieldRegenBehaviour());
 
-        if (IsDebugLogging) { Debug.Log("IFRAMES TIMER FINISHED"); };
+        if (IsDebugLogging) { Debug.Log("IFRAMES TIMER FINISHED"); }
     }
 
     //Coroutine that handles the regeneration of the shield
@@ -242,15 +246,10 @@ public class Player : CombatEntity
         //Set the regen flag
         isShieldRegening = true;
 
-        /* Create a float holder so regen can be consecutive
-         * If we were to add the regen value to an int, we would need to typecast a float, and depending
-         * On the number its at, we will loose some regen every few executions
-         */
-
         //First, wait for shield regen delay
         yield return new WaitForSeconds(SHIELD_REGEN_DELAY_TIME);
 
-        if (IsDebugLogging) { Debug.Log("STARTED REGEN SHIELD BEHAVIOUR"); };
+        if (IsDebugLogging) { Debug.Log("STARTED REGEN SHIELD BEHAVIOUR"); }
 
         //Start Regen of the shield
         while (shieldFloat < MAX_SHIELD)
@@ -266,6 +265,6 @@ public class Player : CombatEntity
         shieldFloat = (float)Shield;
         isShieldRegening = false;
 
-        if (IsDebugLogging) { Debug.Log("REGEN SHIELD BEHAVIOUR FINISHED"); };
+        if (IsDebugLogging) { Debug.Log("REGEN SHIELD BEHAVIOUR FINISHED"); }
     }
 }

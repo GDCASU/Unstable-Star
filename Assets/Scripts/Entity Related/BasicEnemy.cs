@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 //On Visual studio, press F12 over "CombatEntity" to open that script
 
@@ -36,13 +37,23 @@ public class BasicEnemy : CombatEntity
 
     public override void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        int healthCheck = health - damage;
+        
+        
+        if (healthCheck <= 0)
         {
+            HitpointsRenderer.Instance.PrintDamage(this.transform.position, health, false);
+
             //TODO: DEFINE WHAT HAPPENS WHEN ENEMY DIES
             //TODO: It should also increase the kill counter here
+
             Destroy(this.gameObject);
+            return;
         }
+
+        //Else, the enemy still is alive after hit
+        HitpointsRenderer.Instance.PrintDamage(this.transform.position, health - healthCheck, false);
+        health -= damage;
     }
 
     public void SetDamage(int damage)

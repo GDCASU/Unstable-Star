@@ -15,17 +15,16 @@ public class PhysicsSets : MonoBehaviour
         int AsteroidsColliderProjectiles = LayerMask.NameToLayer("Asteroid Collider Projectiles");
         int AsteroidsColliderEntities = LayerMask.NameToLayer("Asteroid Collider Entities");
 
-        //Ignores collisions between enemy projectiles
+        //Ignores collisions between enemy projectiles and themselves
         Physics.IgnoreLayerCollision(ProjectilesEnemies, ProjectilesEnemies);
+        Physics.IgnoreLayerCollision(ProjectilesEnemies, Enemies);
 
-        //Ignores collisions between player projectiles
+        //Ignores collisions between player projectiles and the player itself
         Physics.IgnoreLayerCollision(ProjectilesPlayer, ProjectilesPlayer);
-
-        //Ignores collisions between enemies, will go through each other
-        Physics.IgnoreLayerCollision(Enemies, Enemies);
-
-        //Ignore collisions between player and its own bullets
         Physics.IgnoreLayerCollision(ProjectilesPlayer, Player);
+
+        //NOTE: Ignores collisions between enemies, will go through each other
+        Physics.IgnoreLayerCollision(Enemies, Enemies);
 
         // Asteroids need a bit of special treatment --------------------------------
 
@@ -43,16 +42,5 @@ public class PhysicsSets : MonoBehaviour
         Physics.IgnoreLayerCollision(AsteroidsColliderEntities, AsteroidsColliderEntities);
 
         // --------------------------------------------------------------------------
-
-
-
-
-
-
-        //Ignores collisions between Player projectiles and enemy projectiles
-        //NOTE: By nature of projectiles being on trigger, this shouldnt be neccesary
-        //But im doing it anyways in case we make a bullet that doesnt use OnTrigger
-        //in the future
-        Physics.IgnoreLayerCollision(ProjectilesEnemies, ProjectilesPlayer);
     }
 }

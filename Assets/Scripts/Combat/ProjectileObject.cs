@@ -48,8 +48,6 @@ public class ProjectileObject : MonoBehaviour
     {
         //TODO: Ask design if bullets should also be destroyed if colliding with enemies
 
-        Debug.Log("COLLIDED AGAINST: " + other.tag);
-        
         //For anything else, find out if object we collided against can be damaged
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
