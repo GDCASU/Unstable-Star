@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//An Asteroid. Inherits from the "CombatEntity" class
+/// <summary> An Asteroid. Inherits from the "CombatEntity" class </summary>
 public class Asteroid : CombatEntity
 {
     //Enemy Values
@@ -12,7 +12,7 @@ public class Asteroid : CombatEntity
 
     //Local Variables
 
-    //TODO: Ask if design wants asteroids to become harder with time
+    //TODO: Ask if design wants asteroids to become harder with time or if its level specific
     private float healthMult;
     private float damageMult;
 

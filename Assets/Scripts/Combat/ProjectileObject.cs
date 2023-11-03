@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//Script attached to anything that is a projectile
+/// <summary> Script/Class attached to anything that is a projectile </summary>
 public class ProjectileObject : MonoBehaviour
 {
     [Header("Current Data")]
@@ -25,7 +25,7 @@ public class ProjectileObject : MonoBehaviour
     }
     //TODO: Check with design if there's more world objects other than enemies and asteroids
 
-    //Should be called by the creator
+    /// <summary> Should be called by the creator and set the projectile data </summary>
     public void SetData(string creator, int LayerInt, float speed, int damage, Quaternion creatorRotation)
     {
         this.creator = creator;

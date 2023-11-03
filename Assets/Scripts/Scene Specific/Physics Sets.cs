@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Script that sets the interaction matrix among layers in the game
+/// <summary> Script that sets the interaction matrix among layers in the game </summary>
 public class PhysicsSets : MonoBehaviour
 {
     private void Start()

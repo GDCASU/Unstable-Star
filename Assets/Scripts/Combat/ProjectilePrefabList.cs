@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Used by Shoot.cs to access all possible laser prefabs
+/// <summary> Used by Shoot.cs to access all possible bullet prefabs </summary>
 public class ProjectilePrefabList : MonoBehaviour
 {
     //All possible bullet prefabs must be added here
@@ -10,4 +10,6 @@ public class ProjectilePrefabList : MonoBehaviour
     public GameObject RedBullet;
     public GameObject YellowBullet;
     public GameObject PinkBullet;
+
+    //TODO: Maybe consider making a weapon class and store them here too
 }

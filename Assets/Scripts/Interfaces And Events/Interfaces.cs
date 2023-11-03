@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Interface to implement if the object can be damaged by bullets
+/// <summary> Interface to implement if the object can be damaged by bullets </summary>
 public interface IDamageable
 {
     void TakeDamage(int damage);
 }
 
-//interface to implement if the object reacts to the death of the player
+/// <summary> Interface to implement if the object reacts to the death of the player </summary>
 public interface IListensToPlayerDeath
 {
     void WhenPlayerDies();

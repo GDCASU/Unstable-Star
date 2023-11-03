@@ -7,7 +7,7 @@ using System.Buffers.Text;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.UIElements;
 
-//Script used to display damage numbers on the game
+/// <summary> Script used to display damage numbers on the game </summary>
 public class HitpointsRenderer : MonoBehaviour
 {
     [Header("Hitpoints Container")]
@@ -17,7 +17,7 @@ public class HitpointsRenderer : MonoBehaviour
     [SerializeField] private bool DisableHitpoints;
     [SerializeField] private bool TestAnimation;
 
-    //Singleton
+    /// <summary> HitpointsRenderer's Singleton </summary>
     public static HitpointsRenderer Instance;
 
     //Local Variables
@@ -42,6 +42,9 @@ public class HitpointsRenderer : MonoBehaviour
         }
     }
 
+    // HACK: Because we are using "Screen Space - Camera" on the game, getting a point on the canvas
+    // Is very difficult, so it creates a 3D object of the number in the world instead
+    /// <summary> Display the damage number on the screen </summary>
     public void PrintDamage(Vector3 entityPos, int damage, bool isShield)
     {
         //Dont do anything if disabled

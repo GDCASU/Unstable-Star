@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Script that manages all the stats conected to the player
+/// <summary> Script/Class that manages all the stats conected to the player </summary>
 public class Player : CombatEntity
 {
-    //Singleton for any other scripts that interact with the player, like UI (?)
+    /// <summary> Player's Stats Singleton </summary>
     public static Player Instance;
 
-    //Readonly vars, has to be assigned here
+    //Readonly vars
     //TODO: Ask design if Max health and shield can be upgraded at one point
     private readonly int MAX_HEALTH = 10;
     private readonly int MAX_SHIELD = 5;
@@ -82,7 +82,7 @@ public class Player : CombatEntity
         }
     }
 
-    //Adds health to the player, should be used by health packs and the like (?)
+    /// <summary> Adds health to the player </summary>
     public void AddHealth(int amount)
     {
         Health += amount;
@@ -96,6 +96,7 @@ public class Player : CombatEntity
     }
 
     //TODO: See if design plans to have buff items or something of the like
+    /// <summary> Changes the % of shield regenerated every seconds </summary>
     public void changeShieldRegenPercentage(float newPercentage)
     {
         shieldPercentageVal = (MAX_SHIELD * newPercentage) / 100;
@@ -240,7 +241,7 @@ public class Player : CombatEntity
         if (IsDebugLogging) { Debug.Log("IFRAMES TIMER FINISHED"); }
     }
 
-    //Coroutine that handles the regeneration of the shield
+    /// <summary> Coroutine that handles the regeneration of the shield </summary>
     private IEnumerator ShieldRegenBehaviour()
     {
         //Set the regen flag

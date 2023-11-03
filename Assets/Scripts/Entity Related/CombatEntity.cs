@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Abstract class from which all entities involved in combat should derive
+/// <summary> Abstract class from which all entities involved in combat should derive </summary>
 public abstract class CombatEntity : MonoBehaviour, IDamageable, IListensToPlayerDeath
 {
-    //Function called when player dies
+    /// <summary> Function called when player dies </summary>
     public abstract void WhenPlayerDies();
 
-    //The take damage function used by the combat system
+    /// <summary> The TakeDamage function used by the combat system </summary>
     public abstract void TakeDamage(int damage);
 }

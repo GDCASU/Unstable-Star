@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//Script that allows any object to shoot projectiles
+/// <summary> Script/Class that allows any object to shoot projectiles </summary>
 public class Shoot : MonoBehaviour
 {
     //List to access the prefab objects of all projectile models
@@ -20,7 +20,6 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float bulletSpeed;
     //NOTE: In either the player controller or enemy AI script,
     //Both have to define projectile speed and damages
-    //Should allow to make more difficult enemies
 
     [Header("Testing Variables")]
     public bool TestShoot = false;
@@ -56,9 +55,9 @@ public class Shoot : MonoBehaviour
         projectileBehaviors["Buckshot"] = SpawnBuckshot;
     }
 
+    //Testing loop
     private void Update()
     {
-        //HACK: Testing loop
         if (TestShoot)
         {
             ShootProjectile(damage: 1, bulletSpeed: 30f);
@@ -79,7 +78,10 @@ public class Shoot : MonoBehaviour
     //Dictionary of function calls
     private Dictionary<string, Action> projectileBehaviors = new();
 
-    //Assign Weapon that is currently being shot
+    /// <summary> 
+    /// Set the Weapon of the entity, 
+    /// it must be on the list of avaliable weapons
+    /// </summary>
     public void SetWeaponFire(string firingType)
     {
         //NOTE: The string must have something contained within the name of the prefab
@@ -98,9 +100,11 @@ public class Shoot : MonoBehaviour
         }
         Debug.Log("ERROR! firingType String passed in Shoot.cs wasnt found within the available firing choices");
     }
-
-    //Function to call to make the object shoot
-    //It also creates the bullet with its designed behaviour
+    
+    //HACK: Until the movement and weapon variety is decided, the controller will hold the values of damage and speed
+    /// <summary>
+    /// Makes the object shoot its weapon, needs to be passed the damage and speed of bullet
+    /// </summary>
     public void ShootProjectile(int damage, float bulletSpeed)
     {
         this.damage = damage;
@@ -130,17 +134,18 @@ public class Shoot : MonoBehaviour
     private ProjectilePrefabList BulletData;
     private int projectileLayer;
 
-    //Stores all projectiles here, allows to colapse all projectiles within an empty object
+
+    //Stores all projectiles here, allows to colapse all projectiles within an empty object 
     private GameObject projectileContainer;
 
-    //Pistol: only shoots 1 projectile
+    /// <summary> Pistol: only shoots 1 projectile </summary>
     private void SpawnPistol()
     {
         //Create the Projectile
         InstantiateProjectile(BulletData.RedBullet, this.damage, this.bulletSpeed);
     }
 
-    // Birdshot: fan style shot -> \ | /
+    /// <summary> Birdshot: fan style shot -> \ | / </summary>
     private void SpawnBirdshot()
     {
         //Create the Projectile
@@ -149,7 +154,7 @@ public class Shoot : MonoBehaviour
         InstantiateProjectile(BulletData.YellowBullet, this.damage, this.bulletSpeed, 0, 1);
     }
 
-    //Buckshot: 3 separated but same direction shots
+    /// <summary> Buckshot: 3 separated but same direction shots </summary>
     private void SpawnBuckshot()
     {
         //Create the Projectile
@@ -158,9 +163,9 @@ public class Shoot : MonoBehaviour
         InstantiateProjectile(BulletData.PinkBullet, this.damage, this.bulletSpeed, -2, -2);
     }
 
-    //Overloaded Function, Spawns the projectile
+    //Overloaded Functions, Spawns the projectile
 
-    //Shoot straight
+    /// <summary> Shoot Straight </summary>
     private void InstantiateProjectile(GameObject bullet, int damage, float speed)
     {
         //Create a quaternion with only the Z axis
@@ -172,7 +177,7 @@ public class Shoot : MonoBehaviour
         projectileData.SetData(this.tag, projectileLayer, speed, damage, zRotation);
     }
 
-    //Add a float to the angle (In degrees)
+    /// <summary> Add a float to the angle (In degrees) </summary>
     private void InstantiateProjectile(GameObject bullet, int damage, float speed, float addedAngle)
     {
         //Create Rotation Offset
@@ -184,8 +189,10 @@ public class Shoot : MonoBehaviour
         projectileData.SetData(this.tag, projectileLayer, speed, damage, modifiedRotation);
     }
 
-    //offset Spawning point
-    //HACK: If the ship rotates on any non-z axis, bullets come out weird
+    /// <summary>
+    /// Offset Spawning point
+    /// | HACK: If the ship rotates on any non-z axis, bullets come out weird
+    /// </summary>
     private void InstantiateProjectile(GameObject bullet, int damage, float speed, float offsetX, float offsetY)
     {
         //Create a quaternion with only the Z axis
@@ -203,8 +210,8 @@ public class Shoot : MonoBehaviour
         projectileData.SetData(this.tag, projectileLayer, speed, damage, zRotation);
     }
 
-    //add to angle and offset spawn point
     //HACK: If the ship rotates on any non-z axis, bullets come out weird
+    /// <summary> Add to angle and offset spawn point </summary>
     private void InstantiateProjectile(GameObject bullet, int damage, float speed, float offsetX, float offsetY, float addedAngle)
     {
         //Position Offset -----------------------
