@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 60.0f;
-    private float xRange = 60;
+    private float xRange = 23.5f;
 
     Vector2 movementVector;
 
