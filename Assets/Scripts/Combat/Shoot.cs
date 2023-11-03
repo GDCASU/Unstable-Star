@@ -12,8 +12,8 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject DataPrefab;
 
     [Header("Weapon Data")]
-    [SerializeField] private List<string> WeaponChoices;
-    [SerializeField] private string defaultWeaponName;
+    [SerializeField] public List<string> WeaponChoices;
+    [SerializeField] public string defaultWeaponName;
 
     [Header("Current Weapon Info")]
     [SerializeField] private int damage;
