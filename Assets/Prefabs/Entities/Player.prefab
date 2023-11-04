@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4037662377074237159}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9107542585775615140}
+  - {fileID: 684543501890706576}
   m_Father: {fileID: 6317753055055756569}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
 --- !u!1 &8720998934021106729
@@ -41,13 +41,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6317753055055756569}
-  - component: {fileID: 5951697637565218283}
-  - component: {fileID: 3693904737372673455}
-  - component: {fileID: 7788024811511919899}
-  - component: {fileID: 4528621970514599210}
-  m_Layer: 6
+  - component: {fileID: 1691417654863971500}
+  - component: {fileID: -4982512830097246830}
+  m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +66,7 @@ Transform:
   - {fileID: 4037662377074237159}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5951697637565218283
+--- !u!114 &1691417654863971500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,19 +75,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8720998934021106729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76eb38d7f491cea47bb1e6e06eb0d1e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bef06b99e0291f4f852365f8f6e789f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DataPrefab: {fileID: 4243425474322137966, guid: 88546c550ed6e5c45846ab30ac682bb9, type: 3}
-  WeaponChoices:
-  - Pistol
-  - Buckshot
-  - Birdshot
-  defaultWeaponName: Pistol
-  damage: 0
-  bulletSpeed: 0
-  TestShoot: 0
---- !u!114 &3693904737372673455
+  speed: 70
+--- !u!114 &-4982512830097246830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,53 +88,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8720998934021106729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20ff4a63106fa5443a1fcfca7b8a6229, type: 3}
+  m_Script: {fileID: 11500000, guid: c86c700d18dd86b4693fc083039e5c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthRead: 0
-  ShieldRead: 0
-  ShieldFloatRead: 0
-  IsShieldBrokenRead: 0
-  IsInvulnerableRead: 0
-  IsRegeningRead: 0
-  IsDebugLogging: 0
-  DamageTest: 0
-  HealTest: 0
---- !u!135 &7788024811511919899
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8720998934021106729}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4528621970514599210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8720998934021106729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e99a87be9b324a48bb0bfe023b16910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shoot: {fileID: 5951697637565218283}
---- !u!1001 &8786176282684066639
+--- !u!1001 &1077844434101615483
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -192,25 +139,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a4920a00949236f4e8d109b91aef8a85, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3731e49fc6a568a44acfa0eb206715a8, type: 2}
     - target: {fileID: 919132149155446097, guid: a4920a00949236f4e8d109b91aef8a85, type: 3}
       propertyPath: m_Name
       value: Temp Ship
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: a4920a00949236f4e8d109b91aef8a85, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4920a00949236f4e8d109b91aef8a85, type: 3}
---- !u!4 &9107542585775615140 stripped
+--- !u!4 &684543501890706576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a4920a00949236f4e8d109b91aef8a85, type: 3}
-  m_PrefabInstance: {fileID: 8786176282684066639}
+  m_PrefabInstance: {fileID: 1077844434101615483}
   m_PrefabAsset: {fileID: 0}
