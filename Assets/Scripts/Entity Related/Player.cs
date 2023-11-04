@@ -35,7 +35,7 @@ public class Player : CombatEntity
     public int Health { get; private set; }
     public int Shield { get; private set; }
     private float shieldPercentageVal;
-    private bool isInvulnerable;
+    public bool isInvulnerable;
     private bool isShieldBroken;
     private bool isShieldRegening;
     private float shieldFloat;
@@ -101,6 +101,22 @@ public class Player : CombatEntity
     {
         shieldPercentageVal = (MAX_SHIELD * newPercentage) / 100;
         if (IsDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldPercentageVal); }
+    }
+
+    //Will damage other entities on collision, they should damage the player back in return
+    public override void TakeCollisionDamage(Collider other)
+    {
+        if (onCooldown) { return; }
+
+        //Damage object we collided against
+        if (other.TryGetComponent<IDamageable>(out var damageable))
+        {
+            //Collision damage amount is defined in CombatEntity.cs
+            damageable.TakeDamage(CollisionDamage.dmg);
+        }
+
+        //Starts Collision Cooldown routine
+        StartCoroutine(CollisionCooldown());
     }
 
     //Damage recieved, declared as per contract with IDamageable interface
@@ -173,7 +189,7 @@ public class Player : CombatEntity
             return true;
         }
 
-        //If the shield was already broken, return false to execute change to Hull Health
+        //If the shield was already broken, return false to perform damage to Hull Health
         return false;
     }
 

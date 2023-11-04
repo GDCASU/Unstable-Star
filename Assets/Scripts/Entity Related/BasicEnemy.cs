@@ -10,8 +10,7 @@ public class BasicEnemy : CombatEntity
 {
     //Enemy Values
     [Header("Enemy Stats Readings")]
-    [SerializeField] private int health;
-    [SerializeField] private int damage;
+    public int health;
 
     //Local Variables
 
@@ -22,8 +21,7 @@ public class BasicEnemy : CombatEntity
     private void Awake()
     {
         //Set stats
-        health = 5; 
-        damage = 1; //This value should be used by enemy AI
+        health = 5;
 
         //Add WhenPlayerDies so it listens to the event OnPlayerDeath
         EventData.OnPlayerDeath += WhenPlayerDies;
@@ -38,8 +36,7 @@ public class BasicEnemy : CombatEntity
     public override void TakeDamage(int damage)
     {
         int healthCheck = health - damage;
-        
-        
+
         if (healthCheck <= 0)
         {
             HitpointsRenderer.Instance.PrintDamage(this.transform.position, health, false);
@@ -56,9 +53,27 @@ public class BasicEnemy : CombatEntity
         health -= damage;
     }
 
-    public void SetDamage(int damage)
+    public override void TakeCollisionDamage(Collider other)
     {
-        this.damage = damage;
+        //NOTE: I had to separate the collider for entities and the collider for
+        //projectiles, so the player and enemy rigidbody wont get pushed around by collisions
+
+        if (onCooldown) { return; }
+
+        //Take into account if the player is invulnerable
+        if (other.TryGetComponent<Player>(out var playerStats))
+        {
+            if (playerStats.isInvulnerable) { return; }
+        }
+
+        //Damage other entity, the other entity should deal damage back
+        if (other.TryGetComponent<IDamageable>(out var damageable))
+        {
+            damageable.TakeDamage(CollisionDamage.dmg);
+        }
+
+        //Starts Collision Cooldown routine
+        StartCoroutine(CollisionCooldown());
     }
 
     public void SetHealth(int health)
