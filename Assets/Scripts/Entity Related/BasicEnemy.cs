@@ -5,8 +5,8 @@ using static UnityEngine.Rendering.DebugUI;
 
 //On Visual studio, press F12 over "CombatEntity" to open that script
 
-//A basic Enemy. Inherits from the "CombatEntity" class
-public class BasicEnemy : CombatEntity
+//A basic Enemy. Inherits from the "ParentEnemy" class
+public class BasicEnemy : ParentEnemy
 {
     //Enemy Values
     [Header("Enemy Stats Readings")]
@@ -27,12 +27,6 @@ public class BasicEnemy : CombatEntity
         EventData.OnPlayerDeath += WhenPlayerDies;
     }
 
-    //Execute instructions for when player dies
-    public override void WhenPlayerDies()
-    {
-        //Stub
-    }
-
     public override void TakeDamage(int damage)
     {
         int healthCheck = health - damage;
@@ -41,10 +35,8 @@ public class BasicEnemy : CombatEntity
         {
             HitpointsRenderer.Instance.PrintDamage(this.transform.position, health, false);
 
-            //TODO: DEFINE WHAT HAPPENS WHEN ENEMY DIES
-            //TODO: It should also increase the kill counter here
-
-            Destroy(this.gameObject);
+            //Enemy died
+            OnDeath();
             return;
         }
 
@@ -53,27 +45,24 @@ public class BasicEnemy : CombatEntity
         health -= damage;
     }
 
-    public override void TakeCollisionDamage(Collider other)
+    //Execute instructions for when player dies
+    public override void WhenPlayerDies()
     {
-        //NOTE: I had to separate the collider for entities and the collider for
-        //projectiles, so the player and enemy rigidbody wont get pushed around by collisions
+        //Stub
+    }
 
-        if (onCooldown) { return; }
+    // Behaviours on death
+    public override void OnDeath()
+    {
+        //TODO: DEFINE WHAT HAPPENS WHEN ENEMY DIES
+        //TODO: It should also increase the kill counter here
 
-        //Take into account if the player is invulnerable
-        if (other.TryGetComponent<Player>(out var playerStats))
-        {
-            if (playerStats.isInvulnerable) { return; }
-        }
 
-        //Damage other entity, the other entity should deal damage back
-        if (other.TryGetComponent<IDamageable>(out var damageable))
-        {
-            damageable.TakeDamage(CollisionDamage.dmg);
-        }
 
-        //Starts Collision Cooldown routine
-        StartCoroutine(CollisionCooldown());
+        // -----------------------
+
+        StopAllCoroutines();
+        Destroy(this.gameObject);
     }
 
     public void SetHealth(int health)

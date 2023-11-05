@@ -12,26 +12,8 @@ public class Shoot : MonoBehaviour
 
     private void Awake()
     {
-        // Behaviour Section ------------------------------------
-        projectileContainer = GameObject.Find("Container For Projectiles"); //Stores projectiles in "Container For Projectiles"
-
-        //Sets the layer of the bullet depending on if its the player shooting or the enemy
-        switch (this.gameObject.tag)
-        {
-            case "Player":
-                //The player is shooting
-                isPlayer = true;
-                projectileLayer = LayerMask.NameToLayer("Projectiles Player");
-                break;
-            case "Enemy":
-                //The Enemy is shooting
-                isPlayer = false;
-                projectileLayer = LayerMask.NameToLayer("Projectiles Enemies");
-                break;
-            default:
-                Debug.Log("ERORR!!! AN OBJECT THAT IS SHOOTING IS UNTAGGED AND/OR UNDEFINED IN SHOOT.CS");
-                break;
-        }
+        BehaviourAwake();
+        APIAwake();
 
         //Load Weapon References, needs a delay to wait for initialization of WeaponData
         if (WeaponData.Instance == null) { StartCoroutine(DelayedWeaponLoad()); }
@@ -89,7 +71,7 @@ public class Shoot : MonoBehaviour
     {
         if (TestShoot)
         {
-            ShootProjectile();
+            ShootCurrentWeapon();
             TestShoot = false;
         }
     }
@@ -108,6 +90,28 @@ public class Shoot : MonoBehaviour
     //Dictionary of weapon function calls
     private Dictionary<Weapon, Action> WeaponCalls = new();
 
+    //The purpose of this function is to improve travel time in this script
+    private void APIAwake()
+    {
+        //Sets the layer of the bullet depending on if its the player shooting or the enemy
+        switch (this.gameObject.tag)
+        {
+            case "Player":
+                //The player is shooting
+                isPlayer = true;
+                projectileLayer = LayerMask.NameToLayer("Projectiles Player");
+                break;
+            case "Enemy":
+                //The Enemy is shooting
+                isPlayer = false;
+                projectileLayer = LayerMask.NameToLayer("Projectiles Enemies");
+                break;
+            default:
+                Debug.Log("ERORR!!! AN OBJECT THAT IS SHOOTING IS UNTAGGED AND/OR UNDEFINED IN SHOOT.CS");
+                break;
+        }
+    }
+
     /// <summary> 
     /// Set the Weapon of the entity, inputWeapon must already exists within Dictionary 
     /// </summary>
@@ -115,9 +119,15 @@ public class Shoot : MonoBehaviour
     {
         currWeapon = inputWeapon;
     }
+
+    /// <summary> Gets the current weapon this entity is holding </summary>
+    public Weapon GetCurrWeapon()
+    {
+        return currWeapon;
+    }
     
     /// <summary> Makes the object shoot its current weapon </summary>
-    public void ShootProjectile()
+    public void ShootCurrentWeapon()
     {
         WeaponCalls[currWeapon].Invoke();
     }
@@ -130,7 +140,17 @@ public class Shoot : MonoBehaviour
          * 2 = Birdshot Behaviour
          * 3 = Buckshot Behaviour
          */
-        
+
+        //First check if this weapon is already on the dictionary, to prevent errors
+        if (WeaponCalls.ContainsKey(weapon))
+        {
+            Debug.Log("ERROR! WEAPON CALLS DICTIONARY ALREADY HAD A WEAPON OF THIS TYPE");
+            Debug.Log("You tried to add weapon: " + weapon.GetName());
+            return;
+        }
+
+        //Else, assign it a spawning behaviour
+        //FIXME: Should we use enums for these objects?
         switch (spawningBehaviour)
         {
             case 1:
@@ -145,6 +165,12 @@ public class Shoot : MonoBehaviour
             default:
                 Debug.Log("ERROR! UKNOWN behaviourType NUMBER PASSED IN AddWeaponToShoot()");
                 break;
+        }
+
+        //If its the player adding a new weapon, also add it to PlayerWeaponList
+        if (this.gameObject.CompareTag("Player"))
+        {
+            WeaponData.Instance.PlayerWeaponList.Add(weapon);
         }
     }
 
@@ -161,6 +187,13 @@ public class Shoot : MonoBehaviour
 
     //Stores all projectiles here, allows to colapse all projectiles within an empty object 
     private GameObject projectileContainer;
+
+    //The purpose of this function is to improve travel time in this script
+    private void BehaviourAwake()
+    {
+        //Stores projectiles in "Container For Projectiles"
+        projectileContainer = GameObject.Find("Container For Projectiles"); 
+    }
 
     /// <summary> Pistol: only shoots 1 projectile </summary>
     private void SpawnPistol()

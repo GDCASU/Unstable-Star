@@ -30,6 +30,13 @@ public class HitpointsRenderer : MonoBehaviour
     {
         Instance = this; //Singleton set
         TestAnimation = false;
+
+        // HACK: Render the first ever hitpoint behind the camera to circumvent
+        // A bug where for some reason the first ever rendered hitpoint lags the game and also
+        // Appears offset
+        Vector3 moddedCameraPos = Camera.main.transform.position;
+        moddedCameraPos += Vector3.back * 10f;
+        PrintDamage(moddedCameraPos, 2, true);
     }
 
     //Testing
@@ -43,7 +50,9 @@ public class HitpointsRenderer : MonoBehaviour
     }
 
     // HACK: Because we are using "Screen Space - Camera" on the game, getting a point on the canvas
-    // Is very difficult, so it creates a 3D object of the number in the world instead
+    // Is very difficult, so it creates a 3D object of the number in the world instead.
+    // This solution, however, makes the number not face the camera the further along the left and right
+    // Axis they are
     /// <summary> Display the damage number on the screen </summary>
     public void PrintDamage(Vector3 entityPos, int damage, bool isShield)
     {
@@ -72,7 +81,6 @@ public class HitpointsRenderer : MonoBehaviour
     }
 
     //Animation Coroutine
-    //FIXME: For some reason, the first hitpoint ever rendered is offset, but never happens again (?)
     private IEnumerator AnimateHitpoint(GameObject hitpoint)
     {
         float speed = startingSpeed;

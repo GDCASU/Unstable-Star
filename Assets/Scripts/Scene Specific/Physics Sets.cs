@@ -8,25 +8,37 @@ public class PhysicsSets : MonoBehaviour
     private List<int> AllButPlayerProjectiles = new List<int>();
     private List<int> EnemyRelatedLayers = new List<int>();
     private List<int> PlayerRelatedLayers = new List<int>();
-    private List<int> AsteroidRelatedLayers = new List<int>();
+    private List<int> HazardRelatedLayers = new List<int>();
     private List<int> AllProjectileLayers = new List<int>();
+    private List<int> AllLayers = new List<int>();
 
     private void Start()
     {
         //Sets the numbers using the names of the layers, so its not hardcoded
         int Player = LayerMask.NameToLayer("Player");
+        int DefaultProjectileLayer = LayerMask.NameToLayer("Default Projectile Layer");
         int ProjectilesPlayer = LayerMask.NameToLayer("Projectiles Player");
         int ProjectilesEnemies = LayerMask.NameToLayer("Projectiles Enemies");
-        int AsteroidsColliderProjectiles = LayerMask.NameToLayer("Asteroid Collider Projectiles");
-        int AsteroidsColliderEntities = LayerMask.NameToLayer("Asteroid Collider Entities");
+        int HazardColliderProjectiles = LayerMask.NameToLayer("Hazard Collider Projectiles");
+        int HazardColliderEntities = LayerMask.NameToLayer("Hazard Collider Entities");
         int EnemyColliderProjectiles = LayerMask.NameToLayer("Enemy Collider Projectiles");
         int EnemyColliderEntities = LayerMask.NameToLayer("Enemy Collider Entities");
+
+        //Populate List of all layers (Skipping default and some that are unused right now)
+        AllLayers.Add(Player);
+        AllLayers.Add(DefaultProjectileLayer);
+        AllLayers.Add(ProjectilesPlayer);
+        AllLayers.Add(ProjectilesEnemies);
+        AllLayers.Add(HazardColliderEntities);
+        AllLayers.Add(HazardColliderProjectiles);
+        AllLayers.Add(EnemyColliderProjectiles);
+        AllLayers.Add(EnemyColliderEntities);
 
         //Populate list of all layers that arent the player's projectiles
         AllButPlayerProjectiles.Add(Player);
         AllButPlayerProjectiles.Add(ProjectilesEnemies);
-        AllButPlayerProjectiles.Add(AsteroidsColliderEntities);
-        AllButPlayerProjectiles.Add(AsteroidsColliderProjectiles);
+        AllButPlayerProjectiles.Add(HazardColliderEntities);
+        AllButPlayerProjectiles.Add(HazardColliderProjectiles);
         AllButPlayerProjectiles.Add(EnemyColliderProjectiles);
         AllButPlayerProjectiles.Add(EnemyColliderEntities);
 
@@ -39,36 +51,37 @@ public class PhysicsSets : MonoBehaviour
         PlayerRelatedLayers.Add(Player);
         PlayerRelatedLayers.Add(ProjectilesPlayer);
 
-        //Populate list of all layers belonging to the asteroids
-        AsteroidRelatedLayers.Add(AsteroidsColliderEntities);
-        AsteroidRelatedLayers.Add(EnemyColliderProjectiles);
+        //Populate list of all layers belonging to the Hazards
+        HazardRelatedLayers.Add(HazardColliderEntities);
+        HazardRelatedLayers.Add(EnemyColliderProjectiles);
 
         //Populate list of all layers belonging to projectiles
         AllProjectileLayers.Add(ProjectilesPlayer);
         AllProjectileLayers.Add(ProjectilesEnemies);
 
+        /****************************************************************/
+
+
+        // Make default projectile layer ignore all other layers -------------
+        IgnoreAllLayers(DefaultProjectileLayer);
 
         // Player -------------------------------------------------
 
         //Ignores collisions between player projectiles and the player itself
         IgnoreCollisionsAmongPlayers();
 
-
-        // Asteroids ---------------------------------------------
-
+        // Hazards ---------------------------------------------
 
         //Ignore collisions in the Projectile Collider with anything that isnt the player projectiles
-        IgnoreAllButPlayerProjectiles(AsteroidsColliderProjectiles);
+        IgnoreAllButPlayerProjectiles(HazardColliderProjectiles);
 
         //Ignore collisions on the Entity Collider with anything that is a projectile
-        IgnoreAllProjectiles(AsteroidsColliderEntities);
+        IgnoreAllProjectiles(HazardColliderEntities);
 
-        //Ignore collisions between asteroids, will go through each other
-        IgnoreCollisionsAmongAsteroids();
-
+        //Ignore collisions between Hazards, will go through each other
+        IgnoreCollisionsAmongHazards();
 
         // Enemies -----------------------------------------------
-
 
         //Ignore collisions in the Projectile Collider between anything else that isnt the player projectiles
         IgnoreAllButPlayerProjectiles(EnemyColliderProjectiles);
@@ -78,7 +91,15 @@ public class PhysicsSets : MonoBehaviour
 
         //Ignore collisions between enemies, will go through each other
         IgnoreCollisionsAmongEnemies();
+    }
 
+    //Ignore all layers
+    private void IgnoreAllLayers(int targetLayer)
+    {
+        for (int i = 0; i < AllLayers.Count; i++)
+        {
+            Physics.IgnoreLayerCollision(targetLayer, AllLayers[i]);
+        }
     }
 
     //Even ignores contact with the same collider
@@ -98,11 +119,13 @@ public class PhysicsSets : MonoBehaviour
         }
     }
 
+    //HACK: I know there must be a more efficient way to iterate over these
+    //But it works for now
     private void IgnoreCollisionsAmongEnemies()
     {
         for (int i = 0; i < EnemyRelatedLayers.Count; i++)
         {
-            for (int j = i + 1; j < EnemyRelatedLayers.Count; j++)
+            for (int j = 0; j < EnemyRelatedLayers.Count; j++)
             {
                 Physics.IgnoreLayerCollision(EnemyRelatedLayers[i], EnemyRelatedLayers[j]);
             }
@@ -113,20 +136,20 @@ public class PhysicsSets : MonoBehaviour
     {
         for (int i = 0; i < PlayerRelatedLayers.Count; i++)
         {
-            for (int j = i + 1; j < PlayerRelatedLayers.Count; j++)
+            for (int j = 0; j < PlayerRelatedLayers.Count; j++)
             {
                 Physics.IgnoreLayerCollision(PlayerRelatedLayers[i], PlayerRelatedLayers[j]);
             }
         }
     }
 
-    private void IgnoreCollisionsAmongAsteroids()
+    private void IgnoreCollisionsAmongHazards()
     {
-        for (int i = 0; i < AsteroidRelatedLayers.Count; i++)
+        for (int i = 0; i < HazardRelatedLayers.Count; i++)
         {
-            for (int j = i + 1; j < AsteroidRelatedLayers.Count; j++)
+            for (int j = 0; j < HazardRelatedLayers.Count; j++)
             {
-                Physics.IgnoreLayerCollision(AsteroidRelatedLayers[i], AsteroidRelatedLayers[j]);
+                Physics.IgnoreLayerCollision(HazardRelatedLayers[i], HazardRelatedLayers[j]);
             } 
         }
     }

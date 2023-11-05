@@ -14,13 +14,14 @@ public class ColliderParentRef : MonoBehaviour, IDamageable
         parentScript = parentObject.GetComponent<CombatEntity>();
     }
 
-    //Will be used to detect entity collision with other Entities (except player)
+    //Will be used to detect entity collision with other Entities
+    // (AKA: Asteroids and enemies) (not players)
     private void OnTriggerEnter(Collider other)
     {
         parentScript.TakeCollisionDamage(other);
     }
 
-    //IDamageable reference on parent, needed by the player collider
+    //IDamageable reference on parent, needed by the player to perform an entity collision
     public void TakeDamage(int damage)
     {
         parentScript.TakeDamage(damage);

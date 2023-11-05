@@ -18,11 +18,11 @@ TagManager:
   - Player
   - Projectiles Player
   - Projectiles Enemies
-  - Asteroid Collider Entities
-  - Asteroid Collider Projectiles
+  - Hazard Collider Entities
+  - Hazard Collider Projectiles
   - Enemy Collider Entities
   - Enemy Collider Projectiles
-  - 
+  - Default Projectile Layer
   - 
   - 
   - 

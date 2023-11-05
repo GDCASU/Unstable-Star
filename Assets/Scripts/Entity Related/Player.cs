@@ -106,6 +106,9 @@ public class Player : CombatEntity
     //Will damage other entities on collision, they should damage the player back in return
     public override void TakeCollisionDamage(Collider other)
     {
+        //Collision cooldown
+        //HACK: If the player invuln time is any bigger that the collision cooldown
+        //The player will be able to harm other entities without recieving damage
         if (onCooldown) { return; }
 
         //Damage object we collided against
@@ -239,7 +242,6 @@ public class Player : CombatEntity
 
 
     //Coroutine that runs for the amount of time the player is invincible
-    //TODO: Call invlunerabiliy animation here?
     private IEnumerator iFramesTimer()
     {
         if (IsDebugLogging) { Debug.Log("STARTED IFRAMES TIMER"); } //Debugging

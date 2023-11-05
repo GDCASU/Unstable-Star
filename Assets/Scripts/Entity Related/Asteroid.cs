@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-/// <summary> An Asteroid. Inherits from the "CombatEntity" class </summary>
-public class Asteroid : CombatEntity
+/// <summary> An Asteroid. Inherits from the "ParentHazard" class </summary>
+public class Asteroid : ParentHazard
 {
     //Enemy Values
     [Header("Asteroid Stats Readings")]
@@ -34,9 +34,10 @@ public class Asteroid : CombatEntity
         {
             HitpointsRenderer.Instance.PrintDamage(this.transform.position, health, false);
             health = 0;
+
+            //Asteroid Destroyed
+            OnDeath();
             
-            //TODO: Program everything that happens when the entity dies
-            Destroy(this.gameObject);
             return;
         }
         
@@ -45,34 +46,19 @@ public class Asteroid : CombatEntity
         health = healthCheck;
     }
 
+    public override void OnDeath()
+    {
+        //TODO: Program everything that happens when the entity dies
+
+
+
+        // -------------------------
+        StopAllCoroutines();
+        Destroy(this.gameObject);
+    }
+
     public void SetHealth(int health)
     {
         this.health = health;
-    }
-
-    //Damage the other entity we collided with
-    public override void TakeCollisionDamage(Collider other)
-    {
-        //NOTE: I had to separate the collider for entities and the collider for
-        //projectiles, so if someone uses rigidbodies on enemies or player, they wont get
-        //pushed around by the asteroid hitting them
-
-        if (onCooldown) { return; }
-
-        //If collided againt the player, take into account their invulnerability
-        if (other.TryGetComponent<Player>(out var playerStats))
-        {
-            if (playerStats.isInvulnerable) { return; }
-        }
-
-        //else, attempt to damage it
-        if (other.TryGetComponent<IDamageable>(out var damageable))
-        {
-            //Collision damage amount is defined in CombatEntity.cs
-            damageable.TakeDamage(CollisionDamage.dmg);
-        }
-
-        //Starts Cooldown Routine
-        StartCoroutine(CollisionCooldown());
     }
 }

@@ -11,31 +11,43 @@ public class WeaponData : MonoBehaviour
     //All possible bullet prefabs must be added here
     [Header("All Possible Bullet Prefabs")]
     public GameObject RedBullet;
+    public GameObject GreenBullet;
     public GameObject YellowBullet;
-    public GameObject PinkBullet;
 
     //Player Weapons
     public Pistol PlayerPistol;
     public Birdshot PlayerBirdshot;
     public Buckshot PlayerBuckshot;
+    public List<Weapon> PlayerWeaponList = new();
 
     //Enemy Weapons
     public Pistol defaultEnemPistol;
+    
+    //TODO: Consider creating a PlayerData File to separate Weapons from enemies (?)
 
     //Create the Weapons
     private void Start()
     {
-        //Player Weapons
-        PlayerPistol = new Pistol(RedBullet, 30f, 1);
-        PlayerBirdshot = new Birdshot(YellowBullet, 30f, 1);
-        PlayerBuckshot = new Buckshot(PinkBullet, 30f, 1);
+        //Player Weapons ---------------------------------------------------------
+        PlayerPistol = new Pistol(RedBullet, 30f, 1, "Pistol");
+        PlayerBirdshot = new Birdshot(GreenBullet, 30f, 1, "Birdshot");
+        PlayerBuckshot = new Buckshot(YellowBullet, 30f, 1, "Buckshot");
 
-        //Enemy weapons
-        defaultEnemPistol = new Pistol(RedBullet, 10f, 1);
+        //Add them to list
 
-        //Set Singleton at last, its here to make fully sure all weapons were loaded
-        //Before Any scripts accesses this data
+        //The default weapon must always be first, due to index value used in GunTypeSwitch
+        PlayerWeaponList.Add(PlayerPistol);
 
+        //The rest
+        PlayerWeaponList.Add(PlayerBirdshot);
+        PlayerWeaponList.Add(PlayerBuckshot);
+
+        //Enemy weapons ---------------------------------------------------------
+        defaultEnemPistol = new Pistol(RedBullet, 10f, 1, "Enemy Pistol");
+
+        // ----------------------------------------------------------------------
+
+        //Set Singleton last to ensure all the things above loaded
         Instance = this;
     }
 
@@ -70,7 +82,7 @@ public abstract class Weapon
 public class Pistol : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Pistol(float speed, int damage)
+    public Pistol(float speed, int damage, string name)
     {
         //Error message utility
         if (WeaponData.Instance == null)
@@ -81,16 +93,16 @@ public class Pistol : Weapon
         this.prefab = WeaponData.Instance.RedBullet;
         this.speed = speed;
         this.damage = damage;
-        this.sName = "Pistol";
+        this.sName = name;
     }
 
     /// <summary> Constructor to override prefab of bullet </summary>
-    public Pistol(GameObject prefab, float speed, int damage) 
+    public Pistol(GameObject prefab, float speed, int damage, string name) 
     {
         this.prefab = prefab;
         this.speed = speed;
         this.damage = damage;
-        this.sName = "Pistol";
+        this.sName = name;
     }
 }
 
@@ -98,7 +110,35 @@ public class Pistol : Weapon
 public class Birdshot : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Birdshot(float speed, int damage)
+    public Birdshot(float speed, int damage, string name)
+    {
+        //Error message utility
+        if (WeaponData.Instance == null)
+        {
+            PrintLoadError();
+        }
+
+        this.prefab = WeaponData.Instance.GreenBullet;
+        this.speed = speed;
+        this.damage = damage;
+        this.sName = name;
+    }
+
+    /// <summary> Constructor to override prefab of bullet </summary>
+    public Birdshot(GameObject prefab, float speed, int damage, string name)
+    {
+        this.prefab = prefab;
+        this.speed = speed;
+        this.damage = damage;
+        this.sName = name;
+    }
+}
+
+/// <summary> The Buckshot Weapon Class </summary>
+public class Buckshot : Weapon
+{
+    /// <summary> Default Constructor </summary>
+    public Buckshot(float speed, int damage, string name)
     {
         //Error message utility
         if (WeaponData.Instance == null)
@@ -109,43 +149,15 @@ public class Birdshot : Weapon
         this.prefab = WeaponData.Instance.YellowBullet;
         this.speed = speed;
         this.damage = damage;
-        this.sName = "Birdshot";
+        this.sName = name;
     }
 
     /// <summary> Constructor to override prefab of bullet </summary>
-    public Birdshot(GameObject prefab, float speed, int damage)
+    public Buckshot(GameObject prefab, float speed, int damage, string name)
     {
         this.prefab = prefab;
         this.speed = speed;
         this.damage = damage;
-        this.sName = "Birdshot";
-    }
-}
-
-/// <summary> The Buckshot Weapon Class </summary>
-public class Buckshot : Weapon
-{
-    /// <summary> Default Constructor </summary>
-    public Buckshot(float speed, int damage)
-    {
-        //Error message utility
-        if (WeaponData.Instance == null)
-        {
-            PrintLoadError();
-        }
-
-        this.prefab = WeaponData.Instance.PinkBullet;
-        this.speed = speed;
-        this.damage = damage;
-        this.sName = "Buckshot";
-    }
-
-    /// <summary> Constructor to override prefab of bullet </summary>
-    public Buckshot(GameObject prefab, float speed, int damage)
-    {
-        this.prefab = prefab;
-        this.speed = speed;
-        this.damage = damage;
-        this.sName = "Buckshot";
+        this.sName = name;
     }
 }
