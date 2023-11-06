@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3410435366407674151}
   - component: {fileID: 8254234161511867977}
   - component: {fileID: 4355376603595022585}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Temp Ship
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,8 +116,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4197837346681745348}
   - {fileID: 6220606477133568811}
+  - {fileID: 4197837346681745348}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4305429923321551922
@@ -203,9 +203,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6220606477133568811}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

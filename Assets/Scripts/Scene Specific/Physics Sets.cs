@@ -119,13 +119,11 @@ public class PhysicsSets : MonoBehaviour
         }
     }
 
-    //HACK: I know there must be a more efficient way to iterate over these
-    //But it works for now
     private void IgnoreCollisionsAmongEnemies()
     {
         for (int i = 0; i < EnemyRelatedLayers.Count; i++)
         {
-            for (int j = 0; j < EnemyRelatedLayers.Count; j++)
+            for (int j = i; j < EnemyRelatedLayers.Count; j++)
             {
                 Physics.IgnoreLayerCollision(EnemyRelatedLayers[i], EnemyRelatedLayers[j]);
             }
@@ -136,7 +134,7 @@ public class PhysicsSets : MonoBehaviour
     {
         for (int i = 0; i < PlayerRelatedLayers.Count; i++)
         {
-            for (int j = 0; j < PlayerRelatedLayers.Count; j++)
+            for (int j = i; j < PlayerRelatedLayers.Count; j++)
             {
                 Physics.IgnoreLayerCollision(PlayerRelatedLayers[i], PlayerRelatedLayers[j]);
             }
@@ -147,7 +145,7 @@ public class PhysicsSets : MonoBehaviour
     {
         for (int i = 0; i < HazardRelatedLayers.Count; i++)
         {
-            for (int j = 0; j < HazardRelatedLayers.Count; j++)
+            for (int j = i; j < HazardRelatedLayers.Count; j++)
             {
                 Physics.IgnoreLayerCollision(HazardRelatedLayers[i], HazardRelatedLayers[j]);
             } 
