@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary> Interface to implement if the object can be damaged by bullets </summary>
 public interface IDamageable
 {
-    void TakeDamage(int damage);
+    void TakeDamage(int damageIn, out int dmgRecieved, out bool wasShield);
 }
 
 /// <summary> Interface to implement if the object reacts to the death of the player </summary>

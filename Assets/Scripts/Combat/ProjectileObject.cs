@@ -51,7 +51,8 @@ public class ProjectileObject : MonoBehaviour
         //For anything else, find out if object we collided against can be damaged
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.TakeDamage(this.damage);
+            damageable.TakeDamage(this.damage, out int dmgRecieved, out bool wasShield);
+            HitpointsRenderer.Instance.PrintDamage(this.transform.position, dmgRecieved, wasShield);
         }
 
         //Destroy bullet after collision

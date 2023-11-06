@@ -25,25 +25,22 @@ public class Asteroid : ParentHazard
         //Stub, maybe asteroids just go their merry way offscreen?
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damageIn, out int dmgRecieved, out bool wasShield)
     {
-        int healthCheck = health - damage;
-        
-        //Check if the asteroid has been destroyed
+        int healthCheck = health - damageIn;
+        wasShield = false; //This would change if enemy has a shield
+
         if (healthCheck <= 0)
         {
-            HitpointsRenderer.Instance.PrintDamage(this.transform.position, health, false);
-            health = 0;
-
-            //Asteroid Destroyed
+            dmgRecieved = health; //out var set
+            //Enemy died
             OnDeath();
-            
             return;
         }
-        
-        //Asteroid is not destroyed yet
-        HitpointsRenderer.Instance.PrintDamage(this.transform.position, health - healthCheck, false);
-        health = healthCheck;
+
+        //Else, the enemy still is alive after hit
+        dmgRecieved = health - healthCheck;
+        health -= damageIn;
     }
 
     public override void OnDeath()

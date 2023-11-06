@@ -37,6 +37,7 @@ public class PhysicsSets : MonoBehaviour
         //Populate list of all layers that arent the player's projectiles
         AllButPlayerProjectiles.Add(Player);
         AllButPlayerProjectiles.Add(ProjectilesEnemies);
+        AllButPlayerProjectiles.Add(DefaultProjectileLayer);
         AllButPlayerProjectiles.Add(HazardColliderEntities);
         AllButPlayerProjectiles.Add(HazardColliderProjectiles);
         AllButPlayerProjectiles.Add(EnemyColliderProjectiles);
@@ -58,6 +59,7 @@ public class PhysicsSets : MonoBehaviour
         //Populate list of all layers belonging to projectiles
         AllProjectileLayers.Add(ProjectilesPlayer);
         AllProjectileLayers.Add(ProjectilesEnemies);
+        AllProjectileLayers.Add(DefaultProjectileLayer);
 
         /****************************************************************/
 

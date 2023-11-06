@@ -72,7 +72,8 @@ public class Player : CombatEntity
         IsInvulnerableRead = isInvulnerable;
         if (DamageTest)
         {
-            TakeDamage(1);
+            TakeDamage(1, out int dmgRecieved, out bool wasShield);
+            HitpointsRenderer.Instance.PrintDamage(this.transform.position, dmgRecieved, wasShield);
             DamageTest = false;
         }
         if (HealTest)
@@ -115,18 +116,29 @@ public class Player : CombatEntity
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
             //Collision damage amount is defined in CombatEntity.cs
-            damageable.TakeDamage(CollisionDamage.dmg);
+            damageable.TakeDamage(CollisionDamage.dmg, out int dmgRecieved, out bool wasShield);
+            HitpointsRenderer.Instance.PrintDamage(other.transform.position, dmgRecieved, wasShield);
         }
 
         //Starts Collision Cooldown routine
         StartCoroutine(CollisionCooldown());
     }
 
+    //Detects collisions with other objects, if so, damage the other object
+    public void OnTriggerEnter(Collider other)
+    {
+        TakeCollisionDamage(other);
+    }
+
     //Damage recieved, declared as per contract with IDamageable interface
     //TODO: Ask design if projectiles should be deleted if colliding against
     //an invulnerable player, or let them phase through (?) 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damageIn, out int dmgRecieved, out bool wasShield)
     {
+        //Set these so they return properly if invulnerable
+        dmgRecieved = 0;
+        wasShield = false;
+        
         //Dont do anything if invulnerable
         if (isInvulnerable) { return; };
 
@@ -139,12 +151,14 @@ public class Player : CombatEntity
         StartCoroutine(iFramesTimer());
 
         //Variables for checking
-        int shieldDmgCheck = Shield - damage;
+        int shieldDmgCheck = Shield - damageIn;
         int healthDmgCheck = Health + shieldDmgCheck;
         bool triggeredReturn;
 
         //Explore Damage done to shield
-        triggeredReturn = ExploreShieldDmg(shieldDmgCheck);
+        triggeredReturn = ExploreShieldDmg(shieldDmgCheck, out int ShieldDmgRecieved);
+        dmgRecieved = ShieldDmgRecieved;
+        wasShield = true;
 
         //Start checking for when the shield regenerates at least 1 point
         //It finished instantly if theres more than 1 point
@@ -154,27 +168,39 @@ public class Player : CombatEntity
         if (triggeredReturn) { return; };
 
         //Else, damage to hull
-        DealDamageToHull(healthDmgCheck);
+        DealDamageToHull(healthDmgCheck, out int HullDmgRecieved);
+        dmgRecieved = HullDmgRecieved;
+        wasShield = false;
     }
 
     //Explores what happens if we try to damage the shield
-    private bool ExploreShieldDmg(int shieldDmgCheck)
+    private bool ExploreShieldDmg(int shieldDmgCheck, out int ShieldDmgRecieved)
     {
         //Try to damage the shield, wont execute if its already broken
         if (shieldDmgCheck > 0)
         {
             if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO SHIELD: " + (Shield - shieldDmgCheck)); }
-            HitpointsRenderer.Instance.PrintDamage(this.transform.position, Shield - shieldDmgCheck, true);
+
+            ShieldDmgRecieved = Shield - shieldDmgCheck; //Set outgoing vars
+            //Update shield numbers
             Shield = shieldDmgCheck;
             shieldFloat = (float)Shield;
             EventData.RaiseOnShieldDamaged();
+
+            //If the shield was not broken, it means no changes to health, so return and stop here
+            //TODO: Ask design if any damage should be negated with shield break, lets say I recieve
+            //10 damage with only 3 shield, should the hull loose 7 points?
+            //As it is, we negate all damage with shield break
+            return true;
         }
         //If value is negative or zero, it means we broke it.
         //Wont run if it was already broken before regenerating 1 shield point
         else if (!isShieldBroken)
         {
             if (IsDebugLogging) { Debug.Log("SHIELD WAS BROKEN"); }
-            HitpointsRenderer.Instance.PrintDamage(this.transform.position, Shield, true);
+
+            ShieldDmgRecieved = Shield; //Set outgoing vars
+            //Update vars
             Shield = 0;
             shieldFloat = 0;
             isShieldBroken = true;
@@ -183,26 +209,18 @@ public class Player : CombatEntity
             return true;
         }
 
-        //If the shield was not broken, it means no changes to health, so return and stop here
-        //TODO: Ask design if any damage should be negated with shield break, lets say I recieve
-        //10 damage with only 3 shield, should the hull loose 7 points?
-        //As it is, we negate all damage with shield break
-        if (!isShieldBroken)
-        {
-            return true;
-        }
-
         //If the shield was already broken, return false to perform damage to Hull Health
+        ShieldDmgRecieved = 0;
         return false;
     }
 
-    private void DealDamageToHull(int healthDmgCheck)
+    private void DealDamageToHull(int healthDmgCheck, out int HullDmgRecieved)
     {
         //If we passed everything above, it means damage to the hull
         if (healthDmgCheck > 0)
         {
             if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO HULL: " + (Health - healthDmgCheck)); }
-            HitpointsRenderer.Instance.PrintDamage(this.transform.position, Health - healthDmgCheck, false);
+            HullDmgRecieved = Health - healthDmgCheck; //Set outgoing var
             Health = healthDmgCheck;
             EventData.RaiseOnHealthLost();
         }
@@ -210,7 +228,7 @@ public class Player : CombatEntity
         else
         {
             if (IsDebugLogging) { Debug.Log("EVENT: TRIGERRED PLAYER'S DEATH!!!!!"); }
-            HitpointsRenderer.Instance.PrintDamage(this.transform.position, Health, false);
+            HullDmgRecieved = Health; //Set outgoing var
             Health = 0;
             EventData.RaiseOnPlayerDeath();
         }

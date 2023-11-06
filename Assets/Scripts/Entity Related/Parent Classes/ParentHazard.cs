@@ -24,7 +24,8 @@ public abstract class ParentHazard : CombatEntity
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
             //Collision damage amount is defined in CombatEntity.cs
-            damageable.TakeDamage(CollisionDamage.dmg);
+            damageable.TakeDamage(CollisionDamage.dmg, out int dmgRecieved, out bool wasShield);
+            HitpointsRenderer.Instance.PrintDamage(other.transform.position, dmgRecieved, wasShield);
         }
 
         //Starts Cooldown Routine

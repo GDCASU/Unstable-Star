@@ -9,16 +9,10 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable, IListensToPlaye
     public abstract void WhenPlayerDies();
 
     /// <summary> The TakeDamage function used by the combat system </summary>
-    public abstract void TakeDamage(int damage);
+    public abstract void TakeDamage(int damageIn, out int dmgRecieved, out bool wasShield);
 
     /// <summary> Handle Collision Damage, will be called by CombatParentRef </summary>
     public abstract void TakeCollisionDamage(Collider other);
-
-    /// <summary> Used by player to collide with other entities </summary>
-    public void OnTriggerEnter(Collider other)
-    {
-        TakeCollisionDamage(other);
-    }
 
     //Cooldown of Impact Collisions
     protected bool onCooldown = false;

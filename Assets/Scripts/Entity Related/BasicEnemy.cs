@@ -27,22 +27,22 @@ public class BasicEnemy : ParentEnemy
         EventData.OnPlayerDeath += WhenPlayerDies;
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damageIn, out int dmgRecieved, out bool wasShield)
     {
-        int healthCheck = health - damage;
+        int healthCheck = health - damageIn;
+        wasShield = false; //This would change if enemy has a shield
 
         if (healthCheck <= 0)
         {
-            HitpointsRenderer.Instance.PrintDamage(this.transform.position, health, false);
-
+            dmgRecieved = health; //out var set
             //Enemy died
             OnDeath();
             return;
         }
 
         //Else, the enemy still is alive after hit
-        HitpointsRenderer.Instance.PrintDamage(this.transform.position, health - healthCheck, false);
-        health -= damage;
+        dmgRecieved = health - healthCheck;
+        health -= damageIn;
     }
 
     //Execute instructions for when player dies

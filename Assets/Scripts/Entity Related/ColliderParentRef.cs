@@ -22,8 +22,10 @@ public class ColliderParentRef : MonoBehaviour, IDamageable
     }
 
     //IDamageable reference on parent, needed by the player to perform an entity collision
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, out int dmgRecieved, out bool wasShield)
     {
-        parentScript.TakeDamage(damage);
+        parentScript.TakeDamage(damage, out int dmgTaken, out bool shieldEval);
+        dmgRecieved = dmgTaken;
+        wasShield = shieldEval;
     }
 }

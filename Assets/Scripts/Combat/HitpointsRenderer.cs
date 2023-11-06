@@ -54,10 +54,10 @@ public class HitpointsRenderer : MonoBehaviour
     // This solution, however, makes the number not face the camera the further along the left and right
     // Axis they are
     /// <summary> Display the damage number on the screen </summary>
-    public void PrintDamage(Vector3 entityPos, int damage, bool isShield)
+    public void PrintDamage(Vector3 entityPos, int damage, bool wasShield)
     {
-        //Dont do anything if disabled
-        if (DisableHitpoints) { return; }
+        //Dont do anything if disabled or damage is less than 1
+        if (DisableHitpoints || (damage <= 0) ) { return; }
 
         //Calculate the position of the hitpoint on the canvas based of the location of the entity
         float offsetZ = 6f; //towards the camera
@@ -74,7 +74,7 @@ public class HitpointsRenderer : MonoBehaviour
 
         // Assign the color of the hitpoint, using magenta here because blue is
         // hard to see against the background
-        if (isShield) { hitpointMesh.color = Color.blue; }
+        if (wasShield) { hitpointMesh.color = Color.blue; }
         else { hitpointMesh.color = Color.red; }
 
         StartCoroutine(AnimateHitpoint(hitpoint));

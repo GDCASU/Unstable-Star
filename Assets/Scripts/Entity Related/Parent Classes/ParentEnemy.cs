@@ -22,7 +22,8 @@ public abstract class ParentEnemy : CombatEntity
         //Damage other entity, the other entity should deal damage back
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.TakeDamage(CollisionDamage.dmg);
+            damageable.TakeDamage(CollisionDamage.dmg, out int dmgRecieved, out bool wasShield);
+            HitpointsRenderer.Instance.PrintDamage(other.transform.position, dmgRecieved, wasShield);
         }
 
         //Starts Collision Cooldown routine
