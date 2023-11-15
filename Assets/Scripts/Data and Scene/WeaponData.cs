@@ -26,7 +26,7 @@ public class WeaponData : MonoBehaviour
     //TODO: Consider creating a PlayerData File to separate Weapons from enemies (?)
 
     //Create the Weapons
-    private void Start()
+    private void Awake()
     {
         //Player Weapons ---------------------------------------------------------
         PlayerPistol = new Pistol(RedBullet, 30f, 1, "Pistol");
@@ -65,17 +65,6 @@ public abstract class Weapon
     public void SetSpeed(float speed) { this.speed = speed; }
     public void SetPrefab(GameObject prefab) { this.prefab = prefab; }
     public string GetName() { return sName; }
-
-    /// <summary> The Utility Error Message </summary>
-    protected void PrintLoadError()
-    {
-        // If this error pops up in your console, you need to delay
-        // The load of your weapons until [WeaponsData.Instance] is set.
-        // Reference the last part of the Awake() function call in for how to handle
-        // delayed loading or contact Ian Fletcher for help if needed
-        Debug.Log("ERROR! ATTEMPTED TO CREATE A WEAPON OBJECT BEFORE WeaponData.Instance WAS INSTANTIATED (Thrown in Weapon Constructor)");
-        Debug.Log("Please Open the script WeaponData.cs for more information");
-    }
 }
 
 /// <summary> The Pistol Weapon Class </summary>
@@ -84,12 +73,6 @@ public class Pistol : Weapon
     /// <summary> Default Constructor </summary>
     public Pistol(float speed, int damage, string name)
     {
-        //Error message utility
-        if (WeaponData.Instance == null)
-        {
-            PrintLoadError();
-        }
-
         this.prefab = WeaponData.Instance.RedBullet;
         this.speed = speed;
         this.damage = damage;
@@ -112,12 +95,6 @@ public class Birdshot : Weapon
     /// <summary> Default Constructor </summary>
     public Birdshot(float speed, int damage, string name)
     {
-        //Error message utility
-        if (WeaponData.Instance == null)
-        {
-            PrintLoadError();
-        }
-
         this.prefab = WeaponData.Instance.GreenBullet;
         this.speed = speed;
         this.damage = damage;
@@ -140,12 +117,6 @@ public class Buckshot : Weapon
     /// <summary> Default Constructor </summary>
     public Buckshot(float speed, int damage, string name)
     {
-        //Error message utility
-        if (WeaponData.Instance == null)
-        {
-            PrintLoadError();
-        }
-
         this.prefab = WeaponData.Instance.YellowBullet;
         this.speed = speed;
         this.damage = damage;

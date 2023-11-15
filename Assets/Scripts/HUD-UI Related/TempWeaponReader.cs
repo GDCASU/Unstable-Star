@@ -13,7 +13,7 @@ public class TempWeaponReader : MonoBehaviour
     private TMP_Text WeaponReadoutText;
     private Shoot playerShootScript;
 
-    private void Awake()
+    private void Start()
     {
         WeaponReadoutText = GetComponent<TMP_Text>();
         playerShootScript = PlayerObj.GetComponent<Shoot>();
@@ -23,12 +23,6 @@ public class TempWeaponReader : MonoBehaviour
     //Has a good framework set up
     private void Update()
     {
-        //Dont try to access Player Shoot script until its finished loading
-        if (playerShootScript.GetCurrWeapon() == null)
-        {
-            return;
-        }
-
         //Set Text
         WeaponReadoutText.text = playerShootScript.GetCurrWeapon().GetName();
     }

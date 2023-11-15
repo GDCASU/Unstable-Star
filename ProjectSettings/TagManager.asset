@@ -6,8 +6,9 @@ TagManager:
   tags:
   - Projectile
   - Enemy
-  - Asteroid
   - Game Bounds
+  - Hazard
+  - Asteroid
   layers:
   - Default
   - TransparentFX
@@ -15,14 +16,14 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
+  - Boundary Barrier
   - Projectiles Player
   - Projectiles Enemies
-  - Hazard Collider Entities
-  - Hazard Collider Projectiles
-  - Enemy Collider Entities
-  - Enemy Collider Projectiles
+  - Player
+  - Enemy
+  - Hazard
   - Default Projectile Layer
+  - 
   - 
   - 
   - 

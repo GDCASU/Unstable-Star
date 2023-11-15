@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3790054857496516646}
   - component: {fileID: 5887066001311718502}
   - component: {fileID: 1575873295469402884}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: West Bound
   m_TagString: Game Bounds
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 6891905685071914984}
   - component: {fileID: 8848968918254544778}
   - component: {fileID: 4274337159957001264}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: East Bound
   m_TagString: Game Bounds
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1587822693349114030}
   - component: {fileID: 5645941735054887892}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Game Bounds Box
   m_TagString: Game Bounds
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 8671377174519467634}
   - component: {fileID: 6764035082228800595}
   - component: {fileID: 6182505459285201709}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: South Bound
   m_TagString: Game Bounds
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 1560621913719170422}
   - component: {fileID: 3765144026776524898}
   - component: {fileID: 2255133627509857828}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: North Bound
   m_TagString: Game Bounds
   m_Icon: {fileID: 0}

@@ -36,7 +36,7 @@ public class HitpointsRenderer : MonoBehaviour
         // Appears offset
         Vector3 moddedCameraPos = Camera.main.transform.position;
         moddedCameraPos += Vector3.back * 10f;
-        PrintDamage(moddedCameraPos, 2, true);
+        PrintDamage(moddedCameraPos, 2, Color.white);
     }
 
     //Testing
@@ -44,7 +44,7 @@ public class HitpointsRenderer : MonoBehaviour
     {
         if (TestAnimation)
         {
-            PrintDamage(Vector3.zero, 1, false);
+            PrintDamage(Vector3.zero, 1, Color.red);
             TestAnimation = false;
         }
     }
@@ -54,10 +54,10 @@ public class HitpointsRenderer : MonoBehaviour
     // This solution, however, makes the number not face the camera the further along the left and right
     // Axis they are
     /// <summary> Display the damage number on the screen </summary>
-    public void PrintDamage(Vector3 entityPos, int damage, bool wasShield)
+    public void PrintDamage(Vector3 entityPos, int damage, Color colorIn)
     {
         //Dont do anything if disabled or damage is less than 1
-        if (DisableHitpoints || (damage <= 0) ) { return; }
+        if (DisableHitpoints || (damage < 1) ) { return; }
 
         //Calculate the position of the hitpoint on the canvas based of the location of the entity
         float offsetZ = 6f; //towards the camera
@@ -71,11 +71,7 @@ public class HitpointsRenderer : MonoBehaviour
 
         // Set the data
         hitpointMesh.text = damage.ToString();
-
-        // Assign the color of the hitpoint, using magenta here because blue is
-        // hard to see against the background
-        if (wasShield) { hitpointMesh.color = Color.blue; }
-        else { hitpointMesh.color = Color.red; }
+        hitpointMesh.color = colorIn;
 
         StartCoroutine(AnimateHitpoint(hitpoint));
     }
@@ -88,14 +84,13 @@ public class HitpointsRenderer : MonoBehaviour
         //Animates the hitpoint going up using gravity
         while (speed > -startingSpeed)
         {
-            //Gravity
-            speed -= Time.deltaTime * acceleration;
-
-            //Animating up
+            //Animation, midpoint rule
+            speed -= Time.deltaTime * acceleration * 0.5f;
             hitpoint.transform.position += speed * Time.deltaTime * Vector3.up;
+            speed -= Time.deltaTime * acceleration * 0.5f;
 
             //Wait 1 frame
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return null;
         }
 
         //Now hold number in position for a bit

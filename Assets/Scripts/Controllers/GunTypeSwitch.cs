@@ -10,7 +10,7 @@ public class GunTypeSwitch : MonoBehaviour
     private int currWeaponIndex;
     private int TEMPLOCK; //Add weapon locker
 
-    private void Awake()
+    private void Start()
     {
         playerShootScript = GetComponent<Shoot>();
         currWeaponIndex = 0;
@@ -22,9 +22,7 @@ public class GunTypeSwitch : MonoBehaviour
     // > Left click shoots
     void Update()
     {
-        // HACK: I would suggest maybe a switch statement or dictionary for checking these
-        // In the future, but this suffices since I (Ian F.) am not working on the player
-        // Controller
+        // HACK: Dont do inputs like this, its a temporary solution right now
         
         // Input system for shooting
         if (Input.GetMouseButtonDown(0))
@@ -49,8 +47,8 @@ public class GunTypeSwitch : MonoBehaviour
         //TESTING: ADD NEW WEAPON TO PLAYER ARSENAL
         if ( Input.GetKeyDown(KeyCode.L) && (TEMPLOCK < 1) )
         {
-            Buckshot fastBuckshot = new Buckshot(60f, 2, "Fast Buckshot");
-            playerShootScript.AddWeaponToShoot(fastBuckshot, 3);
+            Pistol lethalPistol = new Pistol(60f, 7, "Lethal Pistol");
+            playerShootScript.AddWeaponToShoot(lethalPistol, 1);
             Debug.Log("ADDED TEST WEAPON TO ARSENAL");
             TEMPLOCK++; //Stops this from being used more than once
         }

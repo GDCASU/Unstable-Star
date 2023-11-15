@@ -10,26 +10,10 @@ public class Shoot : MonoBehaviour
     [Header("Testing Variables")]
     public bool TestShoot = false;
 
-    private void Awake()
+    private void Start()
     {
-        BehaviourAwake();
-        APIAwake();
-
-        //Load Weapon References, needs a delay to wait for initialization of WeaponData
-        if (WeaponData.Instance == null) { StartCoroutine(DelayedWeaponLoad()); }
-        //The Instance was already set, load right away
-        else { LoadWeaponData(); }
-    }
-
-    /// <summary> Delayed loader for weapon data </summary>
-    private IEnumerator DelayedWeaponLoad()
-    {
-        while (WeaponData.Instance == null)
-        {
-            //Wait one frame between checks
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-        //The instance has been set, Load Weapon Data
+        BehaviourStart();
+        API_Start();
         LoadWeaponData();
     }
 
@@ -50,9 +34,9 @@ public class Shoot : MonoBehaviour
     private void LoadPlayerWeaponData()
     {
         //Player
-        WeaponCalls[WeaponData.Instance.PlayerPistol] = SpawnPistol;
-        WeaponCalls[WeaponData.Instance.PlayerBirdshot] = SpawnBirdshot;
-        WeaponCalls[WeaponData.Instance.PlayerBuckshot] = SpawnBuckshot;
+        WeaponCalls[WeaponData.Instance.PlayerPistol] = SingleShotBehaviour;
+        WeaponCalls[WeaponData.Instance.PlayerBirdshot] = FanShotBehaviour;
+        WeaponCalls[WeaponData.Instance.PlayerBuckshot] = OffsetBehaviour;
         //Set default Weapon
         currWeapon = WeaponData.Instance.PlayerPistol;
     }
@@ -61,7 +45,7 @@ public class Shoot : MonoBehaviour
     private void LoadEnemyWeaponData()
     {
         //Enemies
-        WeaponCalls[WeaponData.Instance.defaultEnemPistol] = SpawnPistol;
+        WeaponCalls[WeaponData.Instance.defaultEnemPistol] = SingleShotBehaviour;
         //Set default weapon
         currWeapon = WeaponData.Instance.defaultEnemPistol;
     }
@@ -84,14 +68,14 @@ public class Shoot : MonoBehaviour
       ----------------------------------------------------------------------- */
 
     //Local variables
-    private Weapon currWeapon;
+    private Weapon currWeapon = new Pistol(null, 0, 0, "NULL"); //Needs to start null
     private bool isPlayer;
 
     //Dictionary of weapon function calls
     private Dictionary<Weapon, Action> WeaponCalls = new();
 
     //The purpose of this function is to improve travel time in this script
-    private void APIAwake()
+    private void API_Start()
     {
         //Sets the layer of the bullet depending on if its the player shooting or the enemy
         switch (this.gameObject.tag)
@@ -133,12 +117,12 @@ public class Shoot : MonoBehaviour
     }
 
     /// <summary> Add a new weapon to the arsenal, DOES NOT SET IT TO CURRENT WEAPON </summary>
-    public void AddWeaponToShoot(Weapon weapon, int spawningBehaviour)
+    public void AddWeaponToShoot(Weapon weapon, int shootingBehaviour)
     {
         /* Number Index:
-         * 1 = Pistol Behaviour
-         * 2 = Birdshot Behaviour
-         * 3 = Buckshot Behaviour
+         * 1 = One shot Behaviour
+         * 2 = Fanning triple shot Behaviour
+         * 3 = Offset Triple shot Behaviour
          */
 
         //First check if this weapon is already on the dictionary, to prevent errors
@@ -150,17 +134,16 @@ public class Shoot : MonoBehaviour
         }
 
         //Else, assign it a spawning behaviour
-        //FIXME: Should we use enums for these objects?
-        switch (spawningBehaviour)
+        switch (shootingBehaviour)
         {
             case 1:
-                WeaponCalls[weapon] = SpawnPistol;
+                WeaponCalls[weapon] = SingleShotBehaviour;
                 break;
             case 2:
-                WeaponCalls[weapon] = SpawnBirdshot;
+                WeaponCalls[weapon] = FanShotBehaviour;
                 break;
             case 3:
-                WeaponCalls[weapon] = SpawnBuckshot;
+                WeaponCalls[weapon] = OffsetBehaviour;
                 break;
             default:
                 Debug.Log("ERROR! UKNOWN behaviourType NUMBER PASSED IN AddWeaponToShoot()");
@@ -189,21 +172,23 @@ public class Shoot : MonoBehaviour
     private GameObject projectileContainer;
 
     //The purpose of this function is to improve travel time in this script
-    private void BehaviourAwake()
+    private void BehaviourStart()
     {
         //Stores projectiles in "Container For Projectiles"
         projectileContainer = GameObject.Find("Container For Projectiles"); 
     }
 
-    /// <summary> Pistol: only shoots 1 projectile </summary>
-    private void SpawnPistol()
+    //TODO: Should these behaviours get their own script?
+
+    /// <summary> Only shoots 1 projectile </summary>
+    private void SingleShotBehaviour()
     {
         //Create the Projectile
         InstantiateProjectile(currWeapon);
     }
 
-    /// <summary> Birdshot: fan style shot -> \ | / </summary>
-    private void SpawnBirdshot()
+    /// <summary> spawns the bullet in a fan style shot -> \ | / </summary>
+    private void FanShotBehaviour()
     {
         //Create the Projectile
         InstantiateProjectile(currWeapon, 30f);
@@ -211,8 +196,8 @@ public class Shoot : MonoBehaviour
         InstantiateProjectile(currWeapon, 0, 1);
     }
 
-    /// <summary> Buckshot: 3 separated but same direction shots </summary>
-    private void SpawnBuckshot()
+    /// <summary> OffsetBehaviour: 3 separated but same direction shots </summary>
+    private void OffsetBehaviour()
     {
         //Create the Projectile
         InstantiateProjectile(currWeapon, 0, 1);
@@ -231,7 +216,7 @@ public class Shoot : MonoBehaviour
         //Spawn projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, this.transform.position, zRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage, zRotation);
+        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
     }
 
     /// <summary> Add a float to the angle (In degrees) </summary>
@@ -243,12 +228,12 @@ public class Shoot : MonoBehaviour
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, this.transform.position, modifiedRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage, modifiedRotation);
+        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
     }
 
     /// <summary>
-    /// Offset Spawning point
-    /// | HACK: If the ship rotates on any non-z axis, bullets come out weird
+    /// Offset Spawning point <para />
+    /// HACK: If the gameObject rotates on any non-z axis, bullets come out weird
     /// </summary>
     private void InstantiateProjectile(Weapon weapon, float offsetX, float offsetY)
     {
@@ -264,11 +249,12 @@ public class Shoot : MonoBehaviour
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, zRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage, zRotation);
+        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
     }
 
-    //HACK: If the ship rotates on any non-z axis, bullets come out weird
-    /// <summary> Add to angle and offset spawn point </summary>
+    /// <summary> Add to angle and offset spawn point <para />
+    /// HACK: If the gameObject rotates on any non-z axis, bullets come out weird
+    /// </summary>
     private void InstantiateProjectile(Weapon weapon, float offsetX, float offsetY, float addedAngle)
     {
         //Position Offset -----------------------
@@ -284,7 +270,7 @@ public class Shoot : MonoBehaviour
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, modifiedRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage, modifiedRotation);
+        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
 
     }
 

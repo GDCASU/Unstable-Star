@@ -13,7 +13,7 @@ public class TempPlayerStatsReader : MonoBehaviour
     private TMP_Text StatsReadoutText;
     private Player playerStats;
 
-    private void Awake()
+    private void Start()
     {
         playerStats = PlayerObj.GetComponent<Player>();
         StatsReadoutText = GetComponent<TMP_Text>();
@@ -24,6 +24,6 @@ public class TempPlayerStatsReader : MonoBehaviour
     private void Update()
     {
         //Set Text
-        StatsReadoutText.text = "Shield: " + playerStats.Shield + "\n" + "Hull HP: " + playerStats.Health;
+        StatsReadoutText.text = "Shield: " + playerStats.GetShield() + "\n" + "Hull HP: " + playerStats.GetHealth();
     }
 }
