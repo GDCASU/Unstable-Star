@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary> Weapon switch and fire utility. TODO: should one day be migrated to PlayerController </summary>
-public class GunTypeSwitch : MonoBehaviour
+/// <summary> Weapon utilities. TODO: should one day be migrated to PlayerController </summary>
+public class TempPlayerGunInput : MonoBehaviour
 {
+    [Header("Anchor Point")]
+    [SerializeField] private GameObject LaserSightAnchor;
+
     //Local Variables
     private Shoot playerShootScript;
     private int currWeaponIndex;
     private int TEMPLOCK; //Add weapon locker
+    private float xVal;
+    private float yVal;
+    private float zVal;
 
     private void Start()
     {
@@ -22,10 +28,22 @@ public class GunTypeSwitch : MonoBehaviour
     // > Left click shoots
     void Update()
     {
-        // HACK: Dont do inputs like this, its a temporary solution right now
+        // HACK: Dont do inputs like this, its bad, bad bad bad.
+        // Its a temporary solution right now
+
+        //Store the values
+        xVal = this.gameObject.transform.rotation.eulerAngles.x;
+        yVal = this.gameObject.transform.rotation.eulerAngles.y;
+        zVal = this.gameObject.transform.rotation.eulerAngles.z;
         
+        //Add the offset provided by the controller
+        zVal += PlayerInput.instance.shootAngleInput;
+
+        //Update Laser Sight rotation
+        LaserSightAnchor.transform.rotation = Quaternion.Euler(xVal, yVal, zVal);
+
         // Input system for shooting
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             playerShootScript.ShootCurrentWeapon();
         }

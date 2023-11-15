@@ -7,26 +7,47 @@ using UnityEngine;
 /// <summary> Script/Class that allows any object to shoot projectiles </summary>
 public class Shoot : MonoBehaviour
 {
-    [Header("Testing Variables")]
-    public bool TestShoot = false;
+    [Header("Shoot.cs Variables")]
+    [SerializeField] private GameObject AnchorObject;
+    [SerializeField] private bool TestShoot = false;
+
+    //Local Variables
+    private int projectileLayer;
+    private Weapon currWeapon = new Pistol(null, 0, 0, "NULL"); //Needs to start null
+    private GameObject projectileContainer; //Projectile storage in hierarchy
+    private Dictionary<Weapon, Action> WeaponCalls = new();
 
     private void Start()
     {
-        BehaviourStart();
-        API_Start();
-        LoadWeaponData();
+        //Stores projectiles in "Container For Projectiles"
+        projectileContainer = GameObject.Find("Container For Projectiles");
+
+        //Sets the layer of the bullet depending on if its the player shooting or the enemy
+        switch (this.gameObject.tag)
+        {
+            case "Player":
+                //The player is shooting
+                projectileLayer = LayerMask.NameToLayer("Projectiles Player");
+                LoadPlayerWeaponData();
+                break;
+            case "Enemy":
+                //The Enemy is shooting
+                projectileLayer = LayerMask.NameToLayer("Projectiles Enemies");
+                LoadEnemyWeaponData();
+                break;
+            default:
+                Debug.Log("ERORR!!! AN OBJECT THAT IS SHOOTING IS UNTAGGED AND/OR UNDEFINED IN SHOOT.CS");
+                break;
+        }
     }
 
-    //Weapon Data loader with a switch between enemies and players, better performance
-    private void LoadWeaponData()
+    //Testing loop
+    private void Update()
     {
-        if (isPlayer)
+        if (TestShoot)
         {
-            LoadPlayerWeaponData();
-        }
-        else
-        {
-            LoadEnemyWeaponData();
+            ShootCurrentWeapon();
+            TestShoot = false;
         }
     }
 
@@ -42,6 +63,7 @@ public class Shoot : MonoBehaviour
     }
 
     //Load Enemies default weapons
+    //NOTE: it might be necessary to edit this if we have many enemies with many different weapons
     private void LoadEnemyWeaponData()
     {
         //Enemies
@@ -50,15 +72,7 @@ public class Shoot : MonoBehaviour
         currWeapon = WeaponData.Instance.defaultEnemPistol;
     }
 
-    //Testing loop
-    private void Update()
-    {
-        if (TestShoot)
-        {
-            ShootCurrentWeapon();
-            TestShoot = false;
-        }
-    }
+    #region SHOOT SCRIPT API
 
     /* -----------------------------------------------------------------------
                                 SHOOT SCRIPT API
@@ -66,35 +80,6 @@ public class Shoot : MonoBehaviour
         This section contains all relevant functions that should be
         accessed by other objects, like for example the player controller.
       ----------------------------------------------------------------------- */
-
-    //Local variables
-    private Weapon currWeapon = new Pistol(null, 0, 0, "NULL"); //Needs to start null
-    private bool isPlayer;
-
-    //Dictionary of weapon function calls
-    private Dictionary<Weapon, Action> WeaponCalls = new();
-
-    //The purpose of this function is to improve travel time in this script
-    private void API_Start()
-    {
-        //Sets the layer of the bullet depending on if its the player shooting or the enemy
-        switch (this.gameObject.tag)
-        {
-            case "Player":
-                //The player is shooting
-                isPlayer = true;
-                projectileLayer = LayerMask.NameToLayer("Projectiles Player");
-                break;
-            case "Enemy":
-                //The Enemy is shooting
-                isPlayer = false;
-                projectileLayer = LayerMask.NameToLayer("Projectiles Enemies");
-                break;
-            default:
-                Debug.Log("ERORR!!! AN OBJECT THAT IS SHOOTING IS UNTAGGED AND/OR UNDEFINED IN SHOOT.CS");
-                break;
-        }
-    }
 
     /// <summary> 
     /// Set the Weapon of the entity, inputWeapon must already exists within Dictionary 
@@ -109,7 +94,7 @@ public class Shoot : MonoBehaviour
     {
         return currWeapon;
     }
-    
+
     /// <summary> Makes the object shoot its current weapon </summary>
     public void ShootCurrentWeapon()
     {
@@ -157,6 +142,10 @@ public class Shoot : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region SPAWNING BEHAVIOURS
+
     /* -----------------------------------------------------------------------
                         BEHAVIOUR OF SPAWNED PROJECTILES
 
@@ -164,19 +153,6 @@ public class Shoot : MonoBehaviour
         spawn. Should be able to spawn single, double, triple bullets
         Bullets that slow or speed up, anything design needs/wants
       ----------------------------------------------------------------------- */
-
-    //Local Variables
-    private int projectileLayer;
-
-    //Stores all projectiles here, allows to colapse all projectiles within an empty object 
-    private GameObject projectileContainer;
-
-    //The purpose of this function is to improve travel time in this script
-    private void BehaviourStart()
-    {
-        //Stores projectiles in "Container For Projectiles"
-        projectileContainer = GameObject.Find("Container For Projectiles"); 
-    }
 
     //TODO: Should these behaviours get their own script?
 
@@ -205,16 +181,22 @@ public class Shoot : MonoBehaviour
         InstantiateProjectile(currWeapon, -2, -2);
     }
 
-    //Overloaded Functions, Spawns the projectile
+    #endregion
+
+    #region INSTANTIATE INSTRUCTIONS
+
+    // Overloaded Functions, Spawns the projectile
+    // NOTE: The bullets spawn where the anchor points is located, this could be fixed with an offset
+    // If necessary, but the entities use long capsule colliders, so its fine now
 
     /// <summary> Shoot Straight </summary>
     private void InstantiateProjectile(Weapon weapon)
     {
         //Create a quaternion with only the Z axis
-        Quaternion zRotation = Quaternion.Euler(0f, 0f, this.transform.rotation.eulerAngles.z);
+        Quaternion zRotation = computeRotation();
 
         //Spawn projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, this.transform.position, zRotation, projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, zRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -223,10 +205,10 @@ public class Shoot : MonoBehaviour
     private void InstantiateProjectile(Weapon weapon, float addedAngle)
     {
         //Create Rotation Offset
-        Quaternion modifiedRotation = Quaternion.Euler(0f, 0f, this.transform.rotation.eulerAngles.z + addedAngle);
+        Quaternion modifiedRotation = computeRotation(addedAngle);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, this.transform.position, modifiedRotation, projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, modifiedRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -238,13 +220,13 @@ public class Shoot : MonoBehaviour
     private void InstantiateProjectile(Weapon weapon, float offsetX, float offsetY)
     {
         //Create a quaternion with only the Z axis
-        Quaternion zRotation = Quaternion.Euler(0f, 0f, this.transform.rotation.eulerAngles.z);
+        Quaternion zRotation = computeRotation();
 
         //Create Vector with offset on local space
         Vector3 point = new Vector3(offsetX, offsetY, 0f);
 
         //Translate Vector to global space
-        Vector3 overridenPosition = this.transform.TransformPoint(point);
+        Vector3 overridenPosition = AnchorObject.transform.TransformPoint(point);
 
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, zRotation, projectileContainer.transform);
@@ -262,10 +244,10 @@ public class Shoot : MonoBehaviour
         Vector3 point = new Vector3(offsetX, offsetY, 0f);
 
         //Translate Vector to global space
-        Vector3 overridenPosition = this.transform.TransformPoint(point);
+        Vector3 overridenPosition = AnchorObject.transform.TransformPoint(point);
 
         // Create Rotation Offset ---------------
-        Quaternion modifiedRotation = Quaternion.Euler(0f, 0f, this.transform.rotation.eulerAngles.z + addedAngle);
+        Quaternion modifiedRotation = computeRotation(addedAngle);
 
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, modifiedRotation, projectileContainer.transform);
@@ -274,4 +256,14 @@ public class Shoot : MonoBehaviour
 
     }
 
+    // Helper method for creating the quaternion of rotation.
+    // Hopefully makes it easier to read
+    private Quaternion computeRotation(float addedAngle = 0f)
+    {
+        float angle = AnchorObject.transform.rotation.eulerAngles.z + addedAngle;
+        Quaternion newRotation = Quaternion.Euler(0f, 0f, angle);
+        return newRotation;
+    }
+
+    #endregion
 }

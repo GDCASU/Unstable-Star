@@ -45,7 +45,7 @@ public class PhysicsSets : MonoBehaviour
         EnemyLayer = LayerMask.NameToLayer("Enemy");
         HazardLayer = LayerMask.NameToLayer("Hazard");
 
-        //Populate List of all layers (Skipping boundaries and some that are unused right now)
+        //Populate List of all layers (Skipping Deletion Zone and some others that are unused right now)
         AllLayers.Add(DefaultLayer);
         AllLayers.Add(DefaultProjectileLayer);
         AllLayers.Add(ProjectilesPlayer);

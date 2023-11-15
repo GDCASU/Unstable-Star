@@ -6,9 +6,9 @@ TagManager:
   tags:
   - Projectile
   - Enemy
-  - Game Bounds
   - Hazard
   - Asteroid
+  - Deletion Zones
   layers:
   - Default
   - TransparentFX
@@ -16,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Boundary Barrier
+  - Deletion Zones
   - Projectiles Player
   - Projectiles Enemies
   - Player

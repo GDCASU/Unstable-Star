@@ -305,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 826, y: -456}
+  m_AnchoredPosition: {x: -505, y: -680}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &357972070
@@ -330,10 +330,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Switch Weapons: Q
 
-    Shoot: Left Click
+    Shoot: Spacebar
 
-    (Once only) Test Add Weapon:
-    L'
+    Move Laser Right: Left Click
+
+    Move
+    Laser Left: RightClick
+
+    (Once only) Test Add Weapon: L'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -367,7 +371,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -396,7 +400,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -330.96753, y: -112.85472, z: 0, w: 0}
+  m_margin: {x: -330.96753, y: -168.20949, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1408,7 +1412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3340109211020326896, guid: e17e256db85c3ce4da4fa614c29836e7, type: 3}
       propertyPath: m_Name
-      value: Game Bounds Box
+      value: Deletion Zone Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
