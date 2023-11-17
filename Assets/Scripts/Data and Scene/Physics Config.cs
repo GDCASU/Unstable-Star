@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary> Script that sets the interaction matrix among layers in the game </summary>
-public class PhysicsSets : MonoBehaviour
+public class PhysicsConfig : MonoBehaviour
 {
     //Bool to disable Physics Sets for debugging
-    bool DisablePhysicsSets = false;
+    bool disablePhysicsConfig = false;
 
     //Singleton
-    public static PhysicsSets Instance;
+    public static PhysicsConfig Instance;
 
     //Lists
     private List<int> EnemyRelatedLayers = new List<int>();
@@ -31,7 +31,7 @@ public class PhysicsSets : MonoBehaviour
         //Singleton set
         Instance = this;
 
-        if (DisablePhysicsSets)
+        if (disablePhysicsConfig)
         {
             return;
         }

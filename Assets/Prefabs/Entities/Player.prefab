@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4037662377074237159}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5629808577792131461}
   m_Layer: 0
   m_Name: Weapon Anchor
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 6317753055055756569}
   - component: {fileID: 3693904737372673455}
   - component: {fileID: 3367169279472031147}
-  - component: {fileID: 5951697637565218283}
   - component: {fileID: -3586298265979222775}
   - component: {fileID: 4528621970514599210}
   - component: {fileID: 4315850991115212518}
@@ -269,6 +268,8 @@ MonoBehaviour:
   DeathTest: 0
   InvulnerabilityTest: 0
   shieldFloat: 0
+  TestShoot: 0
+  WeaponAnchor: {fileID: 2771126060896347954}
 --- !u!114 &3367169279472031147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,20 +283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70
---- !u!114 &5951697637565218283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8720998934021106729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76eb38d7f491cea47bb1e6e06eb0d1e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnchorObject: {fileID: 2771126060896347954}
-  TestShoot: 0
 --- !u!114 &-3586298265979222775
 MonoBehaviour:
   m_ObjectHideFlags: 0

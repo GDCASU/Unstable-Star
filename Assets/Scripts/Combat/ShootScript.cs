@@ -4,145 +4,61 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-/// <summary> Script/Class that allows any object to shoot projectiles </summary>
-public class Shoot : MonoBehaviour
+/// <summary> Component that allows any object to shoot projectiles </summary>
+public class ShootScript : ScriptableObject
 {
-    [Header("Shoot.cs Variables")]
-    [SerializeField] private GameObject AnchorObject;
-    [SerializeField] private bool TestShoot = false;
-
     //Local Variables
+    private Dictionary<string, Action> WeaponDictionary = new();
     private int projectileLayer;
-    private Weapon currWeapon = new Pistol(null, 0, 0, "NULL"); //Needs to start null
     private GameObject projectileContainer; //Projectile storage in hierarchy
-    private Dictionary<Weapon, Action> WeaponCalls = new();
+    private GameObject AnchorObject;
+    private Weapon weaponReference;
 
-    private void Start()
+    /// <summary> Creates a ShootScript Object </summary>
+    public static ShootScript CreateInstance(GameObject weaponAnchor)
     {
-        //Stores projectiles in "Container For Projectiles"
-        projectileContainer = GameObject.Find("Container For Projectiles");
+        ShootScript newScript = ScriptableObject.CreateInstance<ShootScript>();
+        newScript.InitializeData(weaponAnchor);
+        return newScript;
+    }
+
+    private void InitializeData(GameObject Anchor)
+    {
+        //Sets the projectile container, which WeaponData finds at Awake
+        projectileContainer = WeaponData.Instance.projectileContainer;
+
+        //Set anchor
+        AnchorObject = Anchor;
 
         //Sets the layer of the bullet depending on if its the player shooting or the enemy
-        switch (this.gameObject.tag)
+        switch (this.AnchorObject.tag)
         {
             case "Player":
                 //The player is shooting
-                projectileLayer = LayerMask.NameToLayer("Projectiles Player");
-                LoadPlayerWeaponData();
+                projectileLayer = PhysicsConfig.Instance.ProjectilesPlayer;
                 break;
             case "Enemy":
                 //The Enemy is shooting
-                projectileLayer = LayerMask.NameToLayer("Projectiles Enemies");
-                LoadEnemyWeaponData();
+                projectileLayer = PhysicsConfig.Instance.ProjectilesEnemies;
                 break;
             default:
                 Debug.Log("ERORR!!! AN OBJECT THAT IS SHOOTING IS UNTAGGED AND/OR UNDEFINED IN SHOOT.CS");
                 break;
         }
-    }
 
-    //Testing loop
-    private void Update()
-    {
-        if (TestShoot)
-        {
-            ShootCurrentWeapon();
-            TestShoot = false;
-        }
-    }
-
-    //Load Player weapons
-    private void LoadPlayerWeaponData()
-    {
-        //Player
-        WeaponCalls[WeaponData.Instance.PlayerPistol] = SingleShotBehaviour;
-        WeaponCalls[WeaponData.Instance.PlayerBirdshot] = FanShotBehaviour;
-        WeaponCalls[WeaponData.Instance.PlayerBuckshot] = OffsetBehaviour;
-        //Set default Weapon
-        currWeapon = WeaponData.Instance.PlayerPistol;
-    }
-
-    //Load Enemies default weapons
-    //NOTE: it might be necessary to edit this if we have many enemies with many different weapons
-    private void LoadEnemyWeaponData()
-    {
-        //Enemies
-        WeaponCalls[WeaponData.Instance.defaultEnemPistol] = SingleShotBehaviour;
-        //Set default weapon
-        currWeapon = WeaponData.Instance.defaultEnemPistol;
-    }
-
-    #region SHOOT SCRIPT API
-
-    /* -----------------------------------------------------------------------
-                                SHOOT SCRIPT API
-
-        This section contains all relevant functions that should be
-        accessed by other objects, like for example the player controller.
-      ----------------------------------------------------------------------- */
-
-    /// <summary> 
-    /// Set the Weapon of the entity, inputWeapon must already exists within Dictionary 
-    /// </summary>
-    public void SetWeaponFire(Weapon inputWeapon)
-    {
-        currWeapon = inputWeapon;
-    }
-
-    /// <summary> Gets the current weapon this entity is holding </summary>
-    public Weapon GetCurrWeapon()
-    {
-        return currWeapon;
+        //Add all the different spawning behaviours to the dictionary
+        //NOTE: All the functions in "Spawning Behaviours" Must be present here
+        WeaponDictionary["SingleShot"] = SingleShotBehaviour;
+        WeaponDictionary["FanShot"] = FanShotBehaviour;
+        WeaponDictionary["TripleOffset"] = TripleOffsetBehaviour;
     }
 
     /// <summary> Makes the object shoot its current weapon </summary>
-    public void ShootCurrentWeapon()
+    public void ShootWeapon(Weapon inputWeapon)
     {
-        WeaponCalls[currWeapon].Invoke();
+        weaponReference = inputWeapon;
+        WeaponDictionary[weaponReference.BehaviourSpawnType].Invoke();
     }
-
-    /// <summary> Add a new weapon to the arsenal, DOES NOT SET IT TO CURRENT WEAPON </summary>
-    public void AddWeaponToShoot(Weapon weapon, int shootingBehaviour)
-    {
-        /* Number Index:
-         * 1 = One shot Behaviour
-         * 2 = Fanning triple shot Behaviour
-         * 3 = Offset Triple shot Behaviour
-         */
-
-        //First check if this weapon is already on the dictionary, to prevent errors
-        if (WeaponCalls.ContainsKey(weapon))
-        {
-            Debug.Log("ERROR! WEAPON CALLS DICTIONARY ALREADY HAD A WEAPON OF THIS TYPE");
-            Debug.Log("You tried to add weapon: " + weapon.GetName());
-            return;
-        }
-
-        //Else, assign it a spawning behaviour
-        switch (shootingBehaviour)
-        {
-            case 1:
-                WeaponCalls[weapon] = SingleShotBehaviour;
-                break;
-            case 2:
-                WeaponCalls[weapon] = FanShotBehaviour;
-                break;
-            case 3:
-                WeaponCalls[weapon] = OffsetBehaviour;
-                break;
-            default:
-                Debug.Log("ERROR! UKNOWN behaviourType NUMBER PASSED IN AddWeaponToShoot()");
-                break;
-        }
-
-        //If its the player adding a new weapon, also add it to PlayerWeaponList
-        if (this.gameObject.CompareTag("Player"))
-        {
-            WeaponData.Instance.PlayerWeaponList.Add(weapon);
-        }
-    }
-
-    #endregion
 
     #region SPAWNING BEHAVIOURS
 
@@ -154,31 +70,29 @@ public class Shoot : MonoBehaviour
         Bullets that slow or speed up, anything design needs/wants
       ----------------------------------------------------------------------- */
 
-    //TODO: Should these behaviours get their own script?
-
     /// <summary> Only shoots 1 projectile </summary>
     private void SingleShotBehaviour()
     {
         //Create the Projectile
-        InstantiateProjectile(currWeapon);
+        InstantiateProjectile(weaponReference);
     }
 
     /// <summary> spawns the bullet in a fan style shot -> \ | / </summary>
     private void FanShotBehaviour()
     {
         //Create the Projectile
-        InstantiateProjectile(currWeapon, 30f);
-        InstantiateProjectile(currWeapon, -30f);
-        InstantiateProjectile(currWeapon, 0, 1);
+        InstantiateProjectile(weaponReference, 30f);
+        InstantiateProjectile(weaponReference, -30f);
+        InstantiateProjectile(weaponReference, 0, 1);
     }
 
-    /// <summary> OffsetBehaviour: 3 separated but same direction shots </summary>
-    private void OffsetBehaviour()
+    /// <summary> TripleOffsetBehaviour: 3 separated but same direction shots </summary>
+    private void TripleOffsetBehaviour()
     {
         //Create the Projectile
-        InstantiateProjectile(currWeapon, 0, 1);
-        InstantiateProjectile(currWeapon, 2, -2);
-        InstantiateProjectile(currWeapon, -2, -2);
+        InstantiateProjectile(weaponReference, 0, 1);
+        InstantiateProjectile(weaponReference, 2, -2);
+        InstantiateProjectile(weaponReference, -2, -2);
     }
 
     #endregion
@@ -198,7 +112,7 @@ public class Shoot : MonoBehaviour
         //Spawn projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, zRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
+        projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
 
     /// <summary> Add a float to the angle (In degrees) </summary>
@@ -210,7 +124,7 @@ public class Shoot : MonoBehaviour
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, modifiedRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
+        projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
 
     /// <summary>
@@ -231,7 +145,7 @@ public class Shoot : MonoBehaviour
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, zRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
+        projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
 
     /// <summary> Add to angle and offset spawn point <para />
@@ -252,7 +166,7 @@ public class Shoot : MonoBehaviour
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, modifiedRotation, projectileContainer.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
-        projectileData.SetData(this.tag, projectileLayer, weapon.speed, weapon.damage);
+        projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
 
     }
 

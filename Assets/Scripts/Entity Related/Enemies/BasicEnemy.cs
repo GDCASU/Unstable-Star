@@ -7,15 +7,36 @@ using static UnityEngine.Rendering.DebugUI;
 public class BasicEnemy : CombatEntity
 {
     //Local Variables
+    [Header("Enemy Parameters")]
+    [SerializeField] private GameObject WeaponAnchor;
+    public bool testShoot;
+
+    //Local variables
+    private ShootScript shootComponent;
+    private Weapon currWeapon;
 
     private void Start()
     {
         //Remember to look into the CombatEntity class to see what variables
         //Should be kept track of or re-set here if needed
-        
-        //Set stats
+
+        //Initialize Component
+        shootComponent = ShootScript.CreateInstance(WeaponAnchor);
+
+        //Set variables
         health = 5;
         shield = 5;
+        currWeapon = new Pistol(15f, 1, "Enemy Pistol", "SingleShot");
+    }
+
+    //Testing
+    private void Update()
+    {
+        if (testShoot)
+        {
+            shootComponent.ShootWeapon(currWeapon);
+            testShoot = false;
+        }
     }
 
     //Execute instructions for when player dies

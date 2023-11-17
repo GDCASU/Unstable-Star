@@ -5,18 +5,21 @@ using UnityEngine;
 /// <summary> Script/Class that manages all the stats conected to the player </summary>
 public class Player : CombatEntity
 {
-    /// <summary> Player's Stats Singleton </summary>
+    //Singleton
     public static Player Instance;
 
     //Player Related
     [SerializeField] private int MAX_HEALTH = 10;
     [SerializeField] private int MAX_SHIELD = 5;
     [SerializeField] private float shieldRegenPercent;
-    [SerializeField] private float shieldRegenDelayTime = 3f; // in seconds, does not stack with invulnerable times
+    [SerializeField] private float shieldRegenDelayTime = 3f; // in seconds, does not stack with invulnerable time
     [SerializeField] private bool isShieldBroken;
 
-    //Debugging
+    //Settings
+    [SerializeField] private GameObject WeaponAnchor;
     [SerializeField] private bool IsDebugLogging;
+
+    //Testing
     [SerializeField] private bool DamageTest;
     [SerializeField] private bool HealTest;
     [SerializeField] private bool DeathTest;
@@ -24,13 +27,20 @@ public class Player : CombatEntity
     [SerializeField] private float shieldFloat;
 
     //Local variables
+    private ShootScript shootComponent;
+    private List<Weapon> weaponArsenal = new List<Weapon>();
+    private Weapon currWeapon;
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
+    private int weaponIndex;
     
     private void Start()
     {
         //Sets the singleton
         Instance = this;
+
+        //Instantiates Components
+        shootComponent = ShootScript.CreateInstance(WeaponAnchor);
 
         //Set Stats
         health = MAX_HEALTH;
@@ -43,6 +53,17 @@ public class Player : CombatEntity
         ShieldRoutine = null;
         isShieldRestoredRoutine = null;
         isShieldBroken = false;
+
+        //Add Weapons
+        Pistol pistol = new Pistol(30f, 1, "Pistol", "SingleShot");
+        Birdshot birdshot = new Birdshot(30f, 1, "Birdshot", "FanShot");
+        Buckshot buckshot = new Buckshot(30f, 1, "Buckshot", "TripleOffset");
+
+        weaponArsenal.Add(pistol);
+        weaponArsenal.Add(birdshot);
+        weaponArsenal.Add(buckshot);
+        currWeapon = weaponArsenal[0];
+        weaponIndex = 0;
     }
 
     //Update's only purpose is debugging, everything else runs on
@@ -73,6 +94,40 @@ public class Player : CombatEntity
         }
     }
 
+    #region WEAPON UTILITIES
+
+    /// <summary> Shoots the current weapon the player has selected </summary>
+    public void ShootWeapon()
+    {
+        shootComponent.ShootWeapon(currWeapon);
+    }
+
+    /// <summary> Switches to the next weapon in the arsenal, from left to right </summary>
+    public void SwitchToNextWeapon()
+    {
+        //Check if we arent at the end of the list 
+        if (weaponIndex >= weaponArsenal.Count - 1)
+        {
+            //Return to start
+            currWeapon = weaponArsenal[0];
+            weaponIndex = 0;
+        }
+
+        //Else, switch to next in list
+        ++weaponIndex;
+        currWeapon = weaponArsenal[weaponIndex];
+    }
+
+    /// <summary> Adds a new weapon to the player's arsenal </summary>
+    public void AddNewWeapon(Weapon newWeapon)
+    {
+        weaponArsenal.Add(newWeapon);
+    }
+
+    #endregion
+
+    #region STATS MODIFIERS
+
     /// <summary> Adds health to the player </summary>
     public void AddHealth(int amount)
     {
@@ -93,6 +148,10 @@ public class Player : CombatEntity
         shieldRegenPercent = newPercentage;
         if (IsDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldRegenPercent); }
     }
+
+    #endregion
+
+    #region DAMAGE HANDLING
 
     //Damage recieved, declared as per contract with IDamageable interface
     //TODO: Ask design if projectiles should be deleted if colliding against
@@ -193,6 +252,10 @@ public class Player : CombatEntity
         TriggerDeath();
     }
 
+    #endregion
+
+    #region EVENT HANDLING
+
     //Should only contain calls to animations, sounds, sfx and the like on death
     protected override void TriggerDeath()
     {
@@ -232,8 +295,8 @@ public class Player : CombatEntity
         {
             // Stop current invulnerabily routine if still running
             StopCoroutine(invulnRoutine);
-            Physics.IgnoreLayerCollision(PhysicsSets.Instance.PlayerLayer, PhysicsSets.Instance.EnemyLayer, false);
-            Physics.IgnoreLayerCollision(PhysicsSets.Instance.PlayerLayer, PhysicsSets.Instance.HazardLayer, false);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.EnemyLayer, false);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.HazardLayer, false);
         }
 
         invulnRoutine = StartCoroutine(iFramesRoutine(seconds, isDamage));
@@ -248,8 +311,8 @@ public class Player : CombatEntity
         //Disable Entity collisions if it was triggered by damage
         if (isDamage)
         {
-            Physics.IgnoreLayerCollision(PhysicsSets.Instance.PlayerLayer, PhysicsSets.Instance.EnemyLayer, true);
-            Physics.IgnoreLayerCollision(PhysicsSets.Instance.PlayerLayer, PhysicsSets.Instance.HazardLayer, true);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.EnemyLayer, true);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.HazardLayer, true);
         }
 
         // Runs the iframes timer
@@ -263,8 +326,8 @@ public class Player : CombatEntity
         //Re-enable collisions upon end
         if (isDamage)
         {
-            Physics.IgnoreLayerCollision(PhysicsSets.Instance.PlayerLayer, PhysicsSets.Instance.EnemyLayer, false);
-            Physics.IgnoreLayerCollision(PhysicsSets.Instance.PlayerLayer, PhysicsSets.Instance.HazardLayer, false);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.EnemyLayer, false);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.HazardLayer, false);
         }
 
         // Player can be hurt again
@@ -336,6 +399,10 @@ public class Player : CombatEntity
         isShieldRestoredRoutine = null;
     }
 
+    #endregion
+
+    #region GETTERS AND SETTERS
+
     //Getters
     public int GetHealth() { return health; }
     public int GetShield() { return shield; }
@@ -343,4 +410,7 @@ public class Player : CombatEntity
     public int GetMaxHealth() { return MAX_HEALTH; }
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
+    public Weapon GetCurrWeapon() { return currWeapon; }
+
+    #endregion
 }

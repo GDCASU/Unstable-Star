@@ -11,12 +11,12 @@ public class TempWeaponReader : MonoBehaviour
 
     //Local Variables
     private TMP_Text WeaponReadoutText;
-    private Shoot playerShootScript;
+    private Player playerScript;
 
     private void Start()
     {
         WeaponReadoutText = GetComponent<TMP_Text>();
-        playerShootScript = PlayerObj.GetComponent<Shoot>();
+        playerScript = PlayerObj.GetComponent<Player>();
     }
 
     //HACK: This is a pretty bad way of doing this, but it works for now until UI
@@ -24,6 +24,6 @@ public class TempWeaponReader : MonoBehaviour
     private void Update()
     {
         //Set Text
-        WeaponReadoutText.text = playerShootScript.GetCurrWeapon().GetName();
+        WeaponReadoutText.text = playerScript.GetCurrWeapon().GetName();
     }
 }

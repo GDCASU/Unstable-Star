@@ -9,8 +9,7 @@ public class TempPlayerGunInput : MonoBehaviour
     [SerializeField] private GameObject LaserSightAnchor;
 
     //Local Variables
-    private Shoot playerShootScript;
-    private int currWeaponIndex;
+    private Player playerScript;
     private int TEMPLOCK; //Add weapon locker
     private float xVal;
     private float yVal;
@@ -18,8 +17,7 @@ public class TempPlayerGunInput : MonoBehaviour
 
     private void Start()
     {
-        playerShootScript = GetComponent<Shoot>();
-        currWeaponIndex = 0;
+        playerScript = GetComponent<Player>();
         TEMPLOCK = 0;
     }
 
@@ -45,28 +43,20 @@ public class TempPlayerGunInput : MonoBehaviour
         // Input system for shooting
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerShootScript.ShootCurrentWeapon();
+            playerScript.ShootWeapon();
         }
 
         // Switching guns
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            //Increase weapon index
-            ++currWeaponIndex;
-            if (currWeaponIndex >= WeaponData.Instance.PlayerWeaponList.Count) 
-            { 
-                //Return to start
-                currWeaponIndex = 0; 
-            }
-            //Set the weapon on the player
-            playerShootScript.SetWeaponFire(WeaponData.Instance.PlayerWeaponList[currWeaponIndex]);
+            playerScript.SwitchToNextWeapon();
         }
 
         //TESTING: ADD NEW WEAPON TO PLAYER ARSENAL
         if ( Input.GetKeyDown(KeyCode.L) && (TEMPLOCK < 1) )
         {
-            Pistol lethalPistol = new Pistol(60f, 7, "Lethal Pistol");
-            playerShootScript.AddWeaponToShoot(lethalPistol, 1);
+            Pistol lethalPistol = new Pistol(60f, 7, "Lethal Pistol", "SingleShot");
+            playerScript.AddNewWeapon(lethalPistol);
             Debug.Log("ADDED TEST WEAPON TO ARSENAL");
             TEMPLOCK++; //Stops this from being used more than once
         }
