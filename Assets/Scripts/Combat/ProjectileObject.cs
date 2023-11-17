@@ -1,110 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+/// <summary> Script/Class attached to anything that is a projectile </summary>
 public class ProjectileObject : MonoBehaviour
 {
     [Header("Current Data")]
     public string creator = "";
-    public float currentSpeed;
+    public float currentSpeed = 0f;
+    public int damage;
     public float currentDamage;
-    public bool isThisTracking;
 
     //Local Variables
-    public float damage;
-    private Rigidbody rgbd;
 
-    //Stored Computed Variables for better efficiency and readability
-    private readonly float halfPi = Mathf.PI / 2;
-
-    private void Awake()
+    private void Update()
     {
-        rgbd = GetComponent<Rigidbody>();
-        Physics.IgnoreLayerCollision(6, 6); //Ignores collisions between projectiles
-        //TODO: ask design if there's projectiles that collide with other projectiles
+        this.transform.Translate(currentSpeed * Time.deltaTime * Vector3.up);
     }
 
-    //TODO: Check with design if there's more world objects other than enemies and asteroids
-
-    //Should be called by the creator
-    public void SetData(string creator, float speed, Quaternion creatorRotation)
+    /// <summary> Should be called by the creator and set the projectile data </summary>
+    public void SetData(string creator, int LayerInt, float speed, int damage)
     {
-        this.creator = creator;
-        float zAngle;
+        this.damage = damage;
+        this.currentSpeed = speed;
+        this.gameObject.layer = LayerInt;
+
         /* Taken from the list of tags in the project
          * List of Entities:
          * "Player"
          * "Enemy"
          * "Asteroid"
          */
-
-        //Set Velocity, Added 90 Degrees in radians since Unity's default Z points to the right
-        zAngle = Mathf.Deg2Rad * creatorRotation.eulerAngles.z;
-        rgbd.velocity = new Vector3(Mathf.Cos(halfPi + zAngle) * speed, Mathf.Sin(halfPi + zAngle) * speed, 0);
+        this.creator = creator;
     }
-
-    //TODO: ADD COLLISION DETECTION HERE -------------------------------
 
     private void OnCollisionEnter(Collision collision)
     {
-        string foreignerTag = collision.gameObject.tag;
+        //TODO: Ask design if bullets should also be destroyed if colliding with enemies
 
-        //Return if the object is of the same type
-        if (this.CompareTag(foreignerTag))
+        //For anything else, find out if object we collided against can be damaged
+        if (collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
-            return;
-            //TODO: Ask design if enemies can kill each other
+            damageable.TakeDamage(this.damage, out int dmgRecieved, out Color colorSet);
+            HitpointsRenderer.Instance.PrintDamage(this.transform.position, dmgRecieved, colorSet);
         }
-        
-        
-        switch (foreignerTag)
-        {
-            case "Player":
-                //Register Hit on player
-                PlayerRegisterHit(collision.gameObject);
-                break;
-            case "Enemy":
-                //Register Hit on Enemy
-                EnemyRegisterHit(collision.gameObject);
-                break;
-            case "Asteroid":
-                //Register Hit on Asteroit, TODO: Ask design if asteroids can be destroyed
-                AsteroidRegisterHit(collision.gameObject);
-                break;
-            default:
-                //FIXME: Ignore Collision???
-                break;
-        }
+
+        //Destroy bullet after collision
+        Destroy(this.gameObject);
     }
 
-    private void PlayerRegisterHit(GameObject foreignerObject)
-    {
-        //TODO:
-    }
-
-    private void EnemyRegisterHit(GameObject foreignerObject)
-    {
-        //TODO:
-        Vector3 previousVelocity = rgbd.velocity;
-        Destroy(foreignerObject);
-        rgbd.velocity = previousVelocity;
-    }
-
-    private void AsteroidRegisterHit(GameObject foreignerObject)
-    {
-        //TODO:
-    }
-
-
-    // -----------------------------------------------------------------
-
-
-
-    //TODO: ADD TIMER DELETION HERE ------------------------------------
-
-
-
-
-    // -----------------------------------------------------------------
 }
