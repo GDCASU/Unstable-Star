@@ -111,6 +111,7 @@ public class Player : CombatEntity
             //Return to start
             currWeapon = weaponArsenal[0];
             weaponIndex = 0;
+            return;
         }
 
         //Else, switch to next in list
