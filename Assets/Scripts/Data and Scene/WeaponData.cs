@@ -1,6 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+// Enum declared for all classes to identify their weapon types
+public enum BehaviourTypes
+{
+    SingleShot,
+    FanShot,
+    TripleOffset,
+    Gatling // (?)
+}
+
 
 /// <summary> Used by Shoot.cs to access all weapon settings </summary>
 public class WeaponData : MonoBehaviour
@@ -19,11 +30,12 @@ public class WeaponData : MonoBehaviour
 
     private void Awake()
     {
+        //Create Projectile Container
+        projectileContainer = Instantiate(new GameObject());
+        projectileContainer.name = "Projectile Container";
+
         //Set Singleton
         Instance = this;
-
-        //Finds the projectile container
-        projectileContainer = GameObject.Find("Container For Projectiles");
     }
 
 }
@@ -32,39 +44,33 @@ public class WeaponData : MonoBehaviour
 public abstract class Weapon
 {
     public GameObject prefab;
+    public BehaviourTypes behaviour;
+    public string sName;
     public float speed;
     public int damage;
-    /// <summary> Defined in ShootScript.cs </summary>
-    public string BehaviourSpawnType;
-    public string sName;
-
-    public void SetDamage(int damage) { this.damage = damage; }
-    public void SetSpeed(float speed) { this.speed = speed; }
-    public void SetPrefab(GameObject prefab) { this.prefab = prefab; }
-    public string GetName() { return sName; }
 }
 
 /// <summary> The Pistol Weapon Class </summary>
 public class Pistol : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Pistol(float speed, int damage, string name, string BehaviourSpawnType)
+    public Pistol(float speed, int damage, string name)
     {
         this.prefab = WeaponData.Instance.RedBullet;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
-        this.BehaviourSpawnType = BehaviourSpawnType;
+        this.behaviour = BehaviourTypes.SingleShot;
     }
 
     /// <summary> Constructor to override prefab of bullet </summary>
-    public Pistol(GameObject prefab, float speed, int damage, string name, string BehaviourSpawnType) 
+    public Pistol(GameObject prefab, float speed, int damage, string name) 
     {
         this.prefab = prefab;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
-        this.BehaviourSpawnType = BehaviourSpawnType;
+        this.behaviour = BehaviourTypes.SingleShot;
     }
 }
 
@@ -72,23 +78,23 @@ public class Pistol : Weapon
 public class Birdshot : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Birdshot(float speed, int damage, string name, string BehaviourSpawnType)
+    public Birdshot(float speed, int damage, string name)
     {
         this.prefab = WeaponData.Instance.GreenBullet;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
-        this.BehaviourSpawnType = BehaviourSpawnType;
+        this.behaviour = BehaviourTypes.FanShot;
     }
 
     /// <summary> Constructor to override prefab of bullet </summary>
-    public Birdshot(GameObject prefab, float speed, int damage, string name, string BehaviourSpawnType)
+    public Birdshot(GameObject prefab, float speed, int damage, string name)
     {
         this.prefab = prefab;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
-        this.BehaviourSpawnType = BehaviourSpawnType;
+        this.behaviour = BehaviourTypes.FanShot;
     }
 }
 
@@ -96,22 +102,22 @@ public class Birdshot : Weapon
 public class Buckshot : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Buckshot(float speed, int damage, string name, string BehaviourSpawnType)
+    public Buckshot(float speed, int damage, string name)
     {
         this.prefab = WeaponData.Instance.YellowBullet;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
-        this.BehaviourSpawnType = BehaviourSpawnType;
+        this.behaviour = BehaviourTypes.TripleOffset;
     }
 
     /// <summary> Constructor to override prefab of bullet </summary>
-    public Buckshot(GameObject prefab, float speed, int damage, string name, string BehaviourSpawnType)
+    public Buckshot(GameObject prefab, float speed, int damage, string name)
     {
         this.prefab = prefab;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
-        this.BehaviourSpawnType = BehaviourSpawnType;
+        this.behaviour = BehaviourTypes.TripleOffset;
     }
 }

@@ -9,7 +9,7 @@ public class PhysicsConfig : MonoBehaviour
     bool disablePhysicsConfig = false;
 
     //Singleton
-    public static PhysicsConfig Instance;
+    public static PhysicsConfig Get;
 
     //Lists
     private List<int> EnemyRelatedLayers = new List<int>();
@@ -29,7 +29,7 @@ public class PhysicsConfig : MonoBehaviour
     private void Awake()
     {
         //Singleton set
-        Instance = this;
+        Get = this;
 
         if (disablePhysicsConfig)
         {

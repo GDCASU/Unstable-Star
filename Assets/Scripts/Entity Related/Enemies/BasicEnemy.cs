@@ -26,7 +26,7 @@ public class BasicEnemy : CombatEntity
         //Set variables
         health = 5;
         shield = 5;
-        currWeapon = new Pistol(15f, 1, "Enemy Pistol", "SingleShot");
+        currWeapon = new Pistol(15f, 1, "Enemy Pistol");
     }
 
     //Testing

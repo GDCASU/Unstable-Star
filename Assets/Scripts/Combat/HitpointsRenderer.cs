@@ -16,6 +16,7 @@ public class HitpointsRenderer : MonoBehaviour
     [Header("Other Tools")]
     [SerializeField] private bool DisableHitpoints;
     [SerializeField] private bool TestAnimation;
+    [SerializeField] private float offsetZ;
 
     /// <summary> HitpointsRenderer's Singleton </summary>
     public static HitpointsRenderer Instance;
@@ -30,6 +31,7 @@ public class HitpointsRenderer : MonoBehaviour
     {
         Instance = this; //Singleton set
         TestAnimation = false;
+        offsetZ = 6f;
 
         // HACK: Render the first ever hitpoint behind the camera to circumvent
         // A bug where for some reason the first ever rendered hitpoint lags the game and also
@@ -60,7 +62,6 @@ public class HitpointsRenderer : MonoBehaviour
         if (DisableHitpoints || (damage < 1) ) { return; }
 
         //Calculate the position of the hitpoint on the canvas based of the location of the entity
-        float offsetZ = 6f; //towards the camera
         Vector3 newPos = new Vector3(entityPos.x, entityPos.y, entityPos.z - offsetZ);
 
         // Create the Hitpoint

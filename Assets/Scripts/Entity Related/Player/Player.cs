@@ -55,9 +55,9 @@ public class Player : CombatEntity
         isShieldBroken = false;
 
         //Add Weapons
-        Pistol pistol = new Pistol(30f, 1, "Pistol", "SingleShot");
-        Birdshot birdshot = new Birdshot(30f, 1, "Birdshot", "FanShot");
-        Buckshot buckshot = new Buckshot(30f, 1, "Buckshot", "TripleOffset");
+        Pistol pistol = new Pistol(30f, 1, "Pistol");
+        Birdshot birdshot = new Birdshot(30f, 1, "Birdshot");
+        Buckshot buckshot = new Buckshot(30f, 1, "Buckshot");
 
         weaponArsenal.Add(pistol);
         weaponArsenal.Add(birdshot);
@@ -168,7 +168,7 @@ public class Player : CombatEntity
         if (isInvulnerable) { return; };
 
         //Starts iFrames pertinent to damage taken
-        TriggerInvulnerability(dmgInvulnTime, isDamage: true);
+        TriggerInvulnerability(dmgInvulnTime, ignoreCollisions: true);
 
         //Variables for checking
         int shieldDmgCheck = shield - damageIn;
@@ -283,7 +283,7 @@ public class Player : CombatEntity
         //-----------------------------------------------------------------------
     }
 
-    public override void TriggerInvulnerability(float seconds, bool isDamage = false)
+    public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false)
     {
         // If input is less, return
         if (seconds < timeLeftInvulnerable)
@@ -296,24 +296,24 @@ public class Player : CombatEntity
         {
             // Stop current invulnerabily routine if still running
             StopCoroutine(invulnRoutine);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.EnemyLayer, false);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.HazardLayer, false);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, false);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, false);
         }
 
-        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, isDamage));
+        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions));
     }
 
     // Overriden as to allow for disabling collisions with other entities while on iFrames
-    protected override IEnumerator iFramesRoutine(float seconds, bool isDamage)
+    protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
     {
         isInvulnerable = true;
         timeLeftInvulnerable = seconds;
 
         //Disable Entity collisions if it was triggered by damage
-        if (isDamage)
+        if (ignoreCollisions)
         {
-            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.EnemyLayer, true);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.HazardLayer, true);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, true);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, true);
         }
 
         // Runs the iframes timer
@@ -325,10 +325,10 @@ public class Player : CombatEntity
         }
 
         //Re-enable collisions upon end
-        if (isDamage)
+        if (ignoreCollisions)
         {
-            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.EnemyLayer, false);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Instance.PlayerLayer, PhysicsConfig.Instance.HazardLayer, false);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, false);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, false);
         }
 
         // Player can be hurt again

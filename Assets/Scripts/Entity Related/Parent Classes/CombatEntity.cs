@@ -91,8 +91,6 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     {
         // Account for this entity being invulnerable. We dont check the other entity
         // to allow immortal entities to not take damage while still being able to damage other entities
-        // HACK: This would allow the player to hurt others while invulnerable, but until we have the rest
-        // of the game designed, like possibly bubble shields and the sort, im leaving it like this
         if (this.isInvulnerable) { return; }
 
         int _id = other.GetInstanceID();
@@ -138,9 +136,9 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     /// <summary>
     /// Triggers Invulnerability Time. <para />
     /// Will override current invulnerability if the input time is bigger than the time left invulnerable <para />
-    /// NOTE: The bool isDamage is optional if the entity needs to differentiate between damage and another source
+    /// NOTE: The bool ignoreCollisions is optional if the entity needs to fully ignore collisions
     /// </summary>
-    public virtual void TriggerInvulnerability(float seconds, bool isDamage = false)
+    public virtual void TriggerInvulnerability(float seconds, bool ignoreCollisions = false)
     {
         // If input is less, return
         if (seconds < timeLeftInvulnerable)
@@ -155,12 +153,12 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
             StopCoroutine(invulnRoutine);
         }
 
-        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, isDamage));
+        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions));
     }
 
     // Invulnerability Routine, isDamage is unused on purpose to fix an edge case solved by
     // Overriding this method on the player class
-    protected virtual IEnumerator iFramesRoutine(float seconds, bool isDamage)
+    protected virtual IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
     {
         isInvulnerable = true;
         timeLeftInvulnerable = seconds;

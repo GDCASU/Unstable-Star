@@ -24,6 +24,6 @@ public class TempWeaponReader : MonoBehaviour
     private void Update()
     {
         //Set Text
-        WeaponReadoutText.text = playerScript.GetCurrWeapon().GetName();
+        WeaponReadoutText.text = playerScript.GetCurrWeapon().sName;
     }
 }

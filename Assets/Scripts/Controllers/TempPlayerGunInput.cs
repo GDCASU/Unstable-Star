@@ -55,7 +55,7 @@ public class TempPlayerGunInput : MonoBehaviour
         //TESTING: ADD NEW WEAPON TO PLAYER ARSENAL
         if ( Input.GetKeyDown(KeyCode.L) && (TEMPLOCK < 1) )
         {
-            Pistol lethalPistol = new Pistol(60f, 7, "Lethal Pistol", "SingleShot");
+            Pistol lethalPistol = new Pistol(60f, 7, "Lethal Pistol");
             playerScript.AddNewWeapon(lethalPistol);
             Debug.Log("ADDED TEST WEAPON TO ARSENAL");
             TEMPLOCK++; //Stops this from being used more than once

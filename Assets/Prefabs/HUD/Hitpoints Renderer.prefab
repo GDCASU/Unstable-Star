@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8962375759770157375}
   - component: {fileID: 7229213882756006493}
   m_Layer: 0
-  m_Name: Hitpoints Container
+  m_Name: Hitpoints Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
