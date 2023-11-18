@@ -44,32 +44,16 @@ public class ShootScript : ScriptableObject
     /// <summary> Makes the object shoot its current weapon </summary>
     public void ShootWeapon(Weapon inputWeapon)
     {
-        BulletInstructions.Use.CreateBullet(AnchorObject, projectileLayer, inputWeapon);
-    }
-}
-
-
-/// <summary>
-/// Class that holds all the instructions and calculations pertaining to bullets spawning in-game
-/// </summary>
-public class BulletInstructions : ScriptableObject
-{
-    //Static access variable
-    public static readonly BulletInstructions Use = ScriptableObject.CreateInstance<BulletInstructions>();
-
-    //Method to call for creating the bullets
-    public void CreateBullet(GameObject AnchorObject, int projectileLayer, Weapon weapon)
-    {
-        switch (weapon.behaviour)
+        switch (inputWeapon.behaviour)
         {
             case BehaviourTypes.SingleShot:
-                SingleShotBehaviour(AnchorObject, projectileLayer, weapon);
+                SingleShotBehaviour(inputWeapon);
                 break;
             case BehaviourTypes.TripleOffset:
-                TripleOffsetBehaviour(AnchorObject, projectileLayer, weapon);
+                TripleOffsetBehaviour(inputWeapon);
                 break;
             case BehaviourTypes.FanShot:
-                FanShotBehaviour(AnchorObject, projectileLayer, weapon);
+                FanShotBehaviour(inputWeapon);
                 break;
             case BehaviourTypes.Gatling:
                 // TODO: Implement here (?)
@@ -79,7 +63,6 @@ public class BulletInstructions : ScriptableObject
                 break;
         }
     }
-
 
     #region PROJECTILE BEHAVIOURS
 
@@ -92,28 +75,28 @@ public class BulletInstructions : ScriptableObject
       ----------------------------------------------------------------------- */
 
     /// <summary> Only shoots 1 projectile </summary>
-    private void SingleShotBehaviour(GameObject AnchorObject, int projectileLayer, Weapon weapon)
+    private void SingleShotBehaviour(Weapon weapon)
     {
         //Create the Projectile
-        Default(AnchorObject, projectileLayer, weapon);
+        Default(weapon);
     }
 
     /// <summary> spawns the bullet in a fan style shot -> \ | / </summary>
-    private void FanShotBehaviour(GameObject AnchorObject, int projectileLayer, Weapon weapon)
+    private void FanShotBehaviour(Weapon weapon)
     {
         //Create the Projectile
-        AddedAngle(AnchorObject, projectileLayer, weapon, 30f);
-        AddedAngle(AnchorObject, projectileLayer, weapon, -30f);
-        WithOffset(AnchorObject, projectileLayer, weapon, 0, 1);
+        AddedAngle(weapon, 30f);
+        AddedAngle(weapon, -30f);
+        WithOffset(weapon, 0, 1);
     }
 
     /// <summary> TripleOffsetBehaviour: 3 separated but same direction shots </summary>
-    private void TripleOffsetBehaviour(GameObject AnchorObject, int projectileLayer, Weapon weapon)
+    private void TripleOffsetBehaviour(Weapon weapon)
     {
         //Create the Projectile
-        WithOffset(AnchorObject, projectileLayer, weapon, 0, 1);
-        WithOffset(AnchorObject, projectileLayer, weapon, 2, -2);
-        WithOffset(AnchorObject, projectileLayer, weapon, -2, -2);
+        WithOffset(weapon, 0, 1);
+        WithOffset(weapon, 2, -2);
+        WithOffset(weapon, -2, -2);
     }
 
     #endregion
@@ -125,10 +108,10 @@ public class BulletInstructions : ScriptableObject
     // If necessary, but the entities use long capsule colliders, so its fine now
 
     /// <summary> Shoot Straight </summary>
-    private void Default(GameObject AnchorObject, int projectileLayer, Weapon weapon)
+    private void Default(Weapon weapon)
     {
         //Create a quaternion with only the Z axis
-        Quaternion zRotation = computeRotation(AnchorObject);
+        Quaternion zRotation = ComputeRotation();
 
         //Spawn projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, zRotation, WeaponData.Instance.projectileContainer.transform);
@@ -137,10 +120,10 @@ public class BulletInstructions : ScriptableObject
     }
 
     /// <summary> Add a float to the angle (In degrees) </summary>
-    private void AddedAngle(GameObject AnchorObject, int projectileLayer, Weapon weapon, float addedAngle)
+    private void AddedAngle(Weapon weapon, float addedAngle)
     {
         //Create Rotation Offset
-        Quaternion modifiedRotation = computeRotation(AnchorObject, addedAngle);
+        Quaternion modifiedRotation = ComputeRotation(addedAngle);
 
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, modifiedRotation, WeaponData.Instance.projectileContainer.transform);
@@ -152,10 +135,10 @@ public class BulletInstructions : ScriptableObject
     /// Offset Spawning point <para />
     /// HACK: If the gameObject rotates on any non-z axis, bullets come out weird
     /// </summary>
-    private void WithOffset(GameObject AnchorObject, int projectileLayer, Weapon weapon, float offsetX, float offsetY)
+    private void WithOffset(Weapon weapon, float offsetX, float offsetY)
     {
         //Create a quaternion with only the Z axis
-        Quaternion zRotation = computeRotation(AnchorObject);
+        Quaternion zRotation = ComputeRotation();
 
         //Create Vector with offset on local space
         Vector3 point = new Vector3(offsetX, offsetY, 0f);
@@ -172,7 +155,7 @@ public class BulletInstructions : ScriptableObject
     /// <summary> Add to angle and offset spawn point <para />
     /// HACK: If the gameObject rotates on any non-z axis, bullets come out weird
     /// </summary>
-    private void AngleAndOffset(GameObject AnchorObject, int projectileLayer, Weapon weapon, float offsetX, float offsetY, float addedAngle)
+    private void AngleAndOffset(Weapon weapon, float offsetX, float offsetY, float addedAngle)
     {
         //Position Offset -----------------------
         //Create Vector with offset on local space
@@ -182,7 +165,7 @@ public class BulletInstructions : ScriptableObject
         Vector3 overridenPosition = AnchorObject.transform.TransformPoint(point);
 
         // Create Rotation Offset ---------------
-        Quaternion modifiedRotation = computeRotation(AnchorObject, addedAngle);
+        Quaternion modifiedRotation = ComputeRotation(addedAngle);
 
         //Spawn Projectile
         GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, modifiedRotation, WeaponData.Instance.projectileContainer.transform);
@@ -193,7 +176,7 @@ public class BulletInstructions : ScriptableObject
 
     // Helper method for creating the quaternion of rotation.
     // Hopefully makes it easier to read
-    private Quaternion computeRotation(GameObject AnchorObject ,float addedAngle = 0f)
+    private Quaternion ComputeRotation(float addedAngle = 0f)
     {
         float angle = AnchorObject.transform.rotation.eulerAngles.z + addedAngle;
         Quaternion newRotation = Quaternion.Euler(0f, 0f, angle);
@@ -201,5 +184,4 @@ public class BulletInstructions : ScriptableObject
     }
 
     #endregion
-
 }
