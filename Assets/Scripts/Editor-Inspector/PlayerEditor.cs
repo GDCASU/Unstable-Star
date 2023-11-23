@@ -17,7 +17,7 @@ public class PlayerEditor : Editor
     //Stats
     SerializedProperty health;
     SerializedProperty shield;
-    SerializedProperty shieldRegenPercent;
+    SerializedProperty shieldPerSecond;
     SerializedProperty isInvulnerable;
     SerializedProperty timeLeftInvulnerable;
     SerializedProperty isShieldBroken;
@@ -54,7 +54,7 @@ public class PlayerEditor : Editor
         //Stats
         health = serializedObject.FindProperty("health");
         shield = serializedObject.FindProperty("shield");
-        shieldRegenPercent = serializedObject.FindProperty("shieldRegenPercent");
+        shieldPerSecond = serializedObject.FindProperty("shieldPerSecond");
         isInvulnerable = serializedObject.FindProperty("isInvulnerable");
         timeLeftInvulnerable = serializedObject.FindProperty("timeLeftInvulnerable");
         isShieldBroken = serializedObject.FindProperty("isShieldBroken");
@@ -96,7 +96,7 @@ public class PlayerEditor : Editor
         {
             EditorGUILayout.PropertyField(health);
             EditorGUILayout.PropertyField(shield);
-            EditorGUILayout.PropertyField(shieldRegenPercent);
+            EditorGUILayout.PropertyField(shieldPerSecond);
             EditorGUILayout.PropertyField(isShieldBroken);
             EditorGUILayout.PropertyField(isInvulnerable);
             EditorGUILayout.PropertyField(timeLeftInvulnerable);

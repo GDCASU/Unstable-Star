@@ -11,7 +11,7 @@ public class Player : CombatEntity
     //Player Related
     [SerializeField] private int MAX_HEALTH = 10;
     [SerializeField] private int MAX_SHIELD = 5;
-    [SerializeField] private float shieldRegenPercent;
+    [SerializeField] private float shieldPerSecond;
     [SerializeField] private float shieldRegenDelayTime = 3f; // in seconds, does not stack with invulnerable time
     [SerializeField] private bool isShieldBroken;
 
@@ -46,7 +46,7 @@ public class Player : CombatEntity
         health = MAX_HEALTH;
         shield = MAX_SHIELD;
         shieldFloat = shield;
-        shieldRegenPercent = 20f; //1 shield per second
+        shieldPerSecond = 1f; //1 shield per second
         dmgInvulnTime = 1f;
 
         //Set Variables
@@ -144,10 +144,10 @@ public class Player : CombatEntity
 
     //TODO: See if design plans to have buff items or something of the like
     /// <summary> Changes the % of shield regenerated every seconds </summary>
-    public void SetShieldRegenPercent(float newPercentage)
+    public void SetShieldRegen(float shieldPerSec)
     {
-        shieldRegenPercent = newPercentage;
-        if (IsDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldRegenPercent); }
+        shieldPerSecond = shieldPerSec;
+        if (IsDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldPerSecond); }
     }
 
     #endregion
@@ -355,12 +355,10 @@ public class Player : CombatEntity
 
         if (IsDebugLogging) { Debug.Log("STARTED REGEN SHIELD BEHAVIOUR"); }
 
-        float percentInDecimal = ((MAX_SHIELD * shieldRegenPercent) / 100);
-
         //Start Regen of the shield
         while (shieldFloat < MAX_SHIELD)
         {
-            shieldFloat += percentInDecimal * Time.deltaTime;
+            shieldFloat += shieldPerSecond * Time.deltaTime;
             //Assign the float value to player's shiled, typecasted
             shield = (int)shieldFloat;
             //Wait until 1 frame has passed
