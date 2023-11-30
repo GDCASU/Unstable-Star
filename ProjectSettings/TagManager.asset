@@ -6,22 +6,23 @@ TagManager:
   tags:
   - Projectile
   - Enemy
+  - Hazard
   - Asteroid
-  - Game Bounds
+  - Deletion Zones
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Projectiles
-  - Enemies
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Deletion Zones
+  - Projectiles Player
+  - Projectiles Enemies
+  - Player
+  - Enemy
+  - Hazard
+  - Default Projectile Layer
   - 
   - 
   - 
