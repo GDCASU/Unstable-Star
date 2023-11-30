@@ -25,7 +25,7 @@ public class ShootScript : ScriptableObject
         AnchorObject = Anchor;
 
         //Sets the layer of the bullet depending on if its the player shooting or the enemy
-        switch (this.AnchorObject.tag)
+        switch (Anchor.tag)
         {
             case "Player":
                 //The player is shooting

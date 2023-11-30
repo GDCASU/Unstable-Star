@@ -143,11 +143,11 @@ public class Player : CombatEntity
     }
 
     //TODO: See if design plans to have buff items or something of the like
-    /// <summary> Changes the % of shield regenerated every seconds </summary>
+    /// <summary> Changes the amount of shield per second regenerated </summary>
     public void SetShieldRegen(float shieldPerSec)
     {
         shieldPerSecond = shieldPerSec;
-        if (IsDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldPerSecond); }
+        if (IsDebugLogging) { Debug.Log("CHANGED SHIELD REGEN AMOUNT TO " + shieldPerSecond); }
     }
 
     #endregion
@@ -309,7 +309,7 @@ public class Player : CombatEntity
         isInvulnerable = true;
         timeLeftInvulnerable = seconds;
 
-        //Disable Entity collisions if it was triggered by damage
+        //Disable Entity collisions if bool "ignoreCollisions" was true
         if (ignoreCollisions)
         {
             Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, true);
