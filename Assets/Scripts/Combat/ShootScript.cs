@@ -61,10 +61,8 @@ public class ShootScript : MonoBehaviour
                 break;
         }
 
-        //Start cooldown shooting here
-        StartCoroutine(ShootingCooldown(1f));
-
-
+        //Start cooldown between shooting of current weapon
+        StartCoroutine(ShootingCooldown(inputWeapon.shootCooldown));
     }
 
     private IEnumerator ShootingCooldown(float time)
@@ -125,7 +123,7 @@ public class ShootScript : MonoBehaviour
         Quaternion zRotation = ComputeRotation();
 
         //Spawn projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, zRotation, WeaponData.Instance.projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, zRotation, WeaponData.Instance.ContainerTransform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -137,7 +135,7 @@ public class ShootScript : MonoBehaviour
         Quaternion modifiedRotation = ComputeRotation(addedAngle);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, modifiedRotation, WeaponData.Instance.projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, modifiedRotation, WeaponData.Instance.ContainerTransform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -158,7 +156,7 @@ public class ShootScript : MonoBehaviour
         Vector3 overridenPosition = AnchorObject.transform.TransformPoint(point);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, zRotation, WeaponData.Instance.projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, zRotation, WeaponData.Instance.ContainerTransform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -179,7 +177,7 @@ public class ShootScript : MonoBehaviour
         Quaternion modifiedRotation = ComputeRotation(addedAngle);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, modifiedRotation, WeaponData.Instance.projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, modifiedRotation, WeaponData.Instance.ContainerTransform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
 

@@ -21,12 +21,13 @@ public class BasicEnemy : CombatEntity
         //Should be kept track of or re-set here if needed
 
         //Initialize Component
-        shootComponent = ShootScript.CreateInstance(WeaponAnchor);
+        shootComponent = GetComponent<ShootScript>();
+        shootComponent.InitializeData(WeaponAnchor);
 
         //Set variables
         health = 5;
         shield = 5;
-        currWeapon = new Pistol(15f, 1, "Enemy Pistol");
+        currWeapon = new Pistol(15f, 1, "Enemy Pistol", 0.2f);
     }
 
     //Testing

@@ -56,9 +56,9 @@ public class Player : CombatEntity
         isShieldBroken = false;
 
         //Add Weapons
-        Pistol pistol = new Pistol(30f, 1, "Pistol");
-        Birdshot birdshot = new Birdshot(30f, 1, "Birdshot");
-        Buckshot buckshot = new Buckshot(30f, 1, "Buckshot");
+        Pistol pistol = new Pistol(30f, 1, "Pistol", 0.2f);
+        Birdshot birdshot = new Birdshot(30f, 1, "Birdshot", 0.2f);
+        Buckshot buckshot = new Buckshot(30f, 1, "Buckshot", 0.2f);
 
         weaponArsenal.Add(pistol);
         weaponArsenal.Add(birdshot);

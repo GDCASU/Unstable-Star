@@ -27,12 +27,14 @@ public class WeaponData : MonoBehaviour
 
     //Variables
     [HideInInspector] public GameObject projectileContainer { get; private set; }
+    [HideInInspector] public Transform ContainerTransform { get; private set; }
 
     private void Awake()
     {
         //Create Projectile Container
         projectileContainer = Instantiate(new GameObject());
         projectileContainer.name = "Projectile Container";
+        ContainerTransform = projectileContainer.transform;
 
         //Set Singleton
         Instance = this;
@@ -47,30 +49,32 @@ public abstract class Weapon
     public BehaviourTypes behaviour;
     public string sName;
     public float speed;
-    public int damage;
     public float shootCooldown;
+    public int damage;
 }
 
 /// <summary> The Pistol Weapon Class </summary>
 public class Pistol : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Pistol(float speed, int damage, string name)
+    public Pistol(float speed, int damage, string name, float timeBetweenShots)
     {
         this.prefab = WeaponData.Instance.RedBullet;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
+        this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.SingleShot;
     }
 
     /// <summary> Constructor to override prefab of bullet </summary>
-    public Pistol(GameObject prefab, float speed, int damage, string name) 
+    public Pistol(GameObject prefab, float speed, int damage, string name, float timeBetweenShots) 
     {
         this.prefab = prefab;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
+        this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.SingleShot;
     }
 }
@@ -79,22 +83,24 @@ public class Pistol : Weapon
 public class Birdshot : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Birdshot(float speed, int damage, string name)
+    public Birdshot(float speed, int damage, string name, float timeBetweenShots)
     {
         this.prefab = WeaponData.Instance.GreenBullet;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
+        this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.FanShot;
     }
 
     /// <summary> Constructor to override prefab of bullet </summary>
-    public Birdshot(GameObject prefab, float speed, int damage, string name)
+    public Birdshot(GameObject prefab, float speed, int damage, string name, float timeBetweenShots)
     {
         this.prefab = prefab;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
+        this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.FanShot;
     }
 }
@@ -103,22 +109,24 @@ public class Birdshot : Weapon
 public class Buckshot : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Buckshot(float speed, int damage, string name)
+    public Buckshot(float speed, int damage, string name, float timeBetweenShots)
     {
         this.prefab = WeaponData.Instance.YellowBullet;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
+        this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.TripleOffset;
     }
 
     /// <summary> Constructor to override prefab of bullet </summary>
-    public Buckshot(GameObject prefab, float speed, int damage, string name)
+    public Buckshot(GameObject prefab, float speed, int damage, string name, float timeBetweenShots)
     {
         this.prefab = prefab;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
+        this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.TripleOffset;
     }
 }
