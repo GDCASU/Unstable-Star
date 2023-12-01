@@ -15,9 +15,6 @@ public class EnemyMovement : MonoBehaviour // Dictates Enemy Behaviours
     public bool exitScreen;
     bool inScreen;
 
-    [Header("Inputted Objects")]
-    public Camera mainCamera;
-
     void Start()
     {
         GameObject gameObject = GetComponent<GameObject>();
@@ -36,7 +33,7 @@ public class EnemyMovement : MonoBehaviour // Dictates Enemy Behaviours
             enterScreen = false; // makes sure exit and enter don't play at same time
         }
 
-        if (mainCamera.WorldToScreenPoint(gameObject.transform.position).y <= mainCamera.pixelHeight)
+        if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y <= Camera.main.pixelHeight)
         {
             // variable that tells system when ship is in camera view
             inScreen = true;
