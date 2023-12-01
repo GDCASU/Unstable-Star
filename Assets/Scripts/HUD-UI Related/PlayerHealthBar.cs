@@ -107,7 +107,6 @@ public class PlayerHealthBar : MonoBehaviour
 
     #region SHIELD CHECKS
 
-    // FIXME: APPLY KNOWLEDGE FROM HERE TO ELSEWHERE
     private void OnShieldGained(int currShield)
     {
         // Will go through the segment list from the last shield segment index to the current one
@@ -116,7 +115,7 @@ public class PlayerHealthBar : MonoBehaviour
             shieldBarColored.GetChild(i).gameObject.SetActive(true);
         }
         
-        // Update before variable and start coroutine
+        // Update before variable
         shieldBefore = currShield;
     }
 
@@ -128,7 +127,7 @@ public class PlayerHealthBar : MonoBehaviour
             shieldBarColored.GetChild(i).gameObject.SetActive(false);
         }
 
-        // Update before variable and start coroutine
+        // Update before variable
         shieldBefore = currShield;
     }
 
