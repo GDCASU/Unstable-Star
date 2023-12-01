@@ -5,21 +5,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary> Component that allows any object to shoot projectiles </summary>
-public class ShootScript : ScriptableObject
+public class ShootScript : MonoBehaviour
 {
     //Local Variables
     private int projectileLayer;
+    private bool onShootingCooldown;
     private GameObject AnchorObject;
 
-    /// <summary> Creates a ShootScript Object </summary>
-    public static ShootScript CreateInstance(GameObject weaponAnchor)
-    {
-        ShootScript newScript = ScriptableObject.CreateInstance<ShootScript>();
-        newScript.InitializeData(weaponAnchor);
-        return newScript;
-    }
-
-    private void InitializeData(GameObject Anchor)
+    public void InitializeData(GameObject Anchor)
     {
         //Set anchor
         AnchorObject = Anchor;
@@ -44,6 +37,11 @@ public class ShootScript : ScriptableObject
     /// <summary> Makes the object shoot its current weapon </summary>
     public void ShootWeapon(Weapon inputWeapon)
     {
+        if (onShootingCooldown)
+        {
+            return;
+        }
+        
         switch (inputWeapon.behaviour)
         {
             case BehaviourTypes.SingleShot:
@@ -62,7 +60,20 @@ public class ShootScript : ScriptableObject
                 Debug.LogError("ERROR! Weapon Behaviour Instruction undefined/not implemented, thrown in ShootScript.cs");
                 break;
         }
+
+        //Start cooldown shooting here
+        StartCoroutine(ShootingCooldown(1f));
+
+
     }
+
+    private IEnumerator ShootingCooldown(float time)
+    {
+        onShootingCooldown = true;
+        yield return new WaitForSeconds(time);
+        onShootingCooldown = false;
+    }
+
 
     #region PROJECTILE BEHAVIOURS
 

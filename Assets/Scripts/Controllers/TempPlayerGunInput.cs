@@ -41,7 +41,7 @@ public class TempPlayerGunInput : MonoBehaviour
         LaserSightAnchor.transform.rotation = Quaternion.Euler(xVal, yVal, zVal);
 
         // Input system for shooting
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (PlayerInput.instance.shootInput)
         {
             playerScript.ShootWeapon();
         }

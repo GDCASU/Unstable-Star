@@ -19,17 +19,17 @@ public class EventData : MonoBehaviour
     /// <summary> Health Lost Event </summary>
     public static event System.Action<int> OnHealthLost;
     /// <summary> Triggers all functions subscribed to OnHealthLost </summary>
-    public static void RaiseOnHealthLost(int lostHealth) { OnHealthLost?.Invoke(lostHealth); }
+    public static void RaiseOnHealthLost(int currHealth) { OnHealthLost?.Invoke(currHealth); }
 
     /// <summary> Health Added Event </summary>
     public static event System.Action<int> OnHealthAdded;
     /// <summary> Triggers all functions subscribed to OnHealthAdded </summary>
-    public static void RaiseOnHealthAdded(int gainedHealth) { OnHealthAdded?.Invoke(gainedHealth); }
+    public static void RaiseOnHealthAdded(int currHealth) { OnHealthAdded?.Invoke(currHealth); }
 
     /// <summary> Shield Damaged Event </summary>
     public static event System.Action<int> OnShieldDamaged;
     /// <summary> Triggers all functions subscribed to OnShieldDamaged </summary>
-    public static void RaiseOnShieldDamaged(int lostShield) { OnShieldDamaged?.Invoke(lostShield); }
+    public static void RaiseOnShieldDamaged(int currShield) { OnShieldDamaged?.Invoke(currShield); }
 
     /// <summary> Shield Broken Event </summary>
     public static event System.Action OnShieldBroken;

@@ -40,7 +40,8 @@ public class Player : CombatEntity
         Instance = this;
 
         //Instantiates Components
-        shootComponent = ShootScript.CreateInstance(WeaponAnchor);
+        shootComponent = GetComponent<ShootScript>();
+        shootComponent.InitializeData(WeaponAnchor);
 
         //Set Stats
         health = MAX_HEALTH;
@@ -139,7 +140,7 @@ public class Player : CombatEntity
         }
         //Invoke the event signaling a change of health
         if (IsDebugLogging) { Debug.Log("ATTEMPTED TO HEAL THE PLAYER"); }
-        EventData.RaiseOnHealthAdded(amount);
+        EventData.RaiseOnHealthAdded(health);
     }
 
     //TODO: See if design plans to have buff items or something of the like
@@ -204,7 +205,7 @@ public class Player : CombatEntity
             //Update shield numbers
             shield = shieldDmgCheck;
             shieldFloat = (float)shield;
-            EventData.RaiseOnShieldDamaged(ShieldDmgRecieved);
+            EventData.RaiseOnShieldDamaged(shield);
 
             //If the shield was not broken, it means no changes to health, so return and stop here
             //TODO: Ask design if any damage should be negated with shield break, lets say I recieve
@@ -242,7 +243,7 @@ public class Player : CombatEntity
             if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO HULL: " + (health - healthDmgCheck)); }
             HullDmgRecieved = health - healthDmgCheck; //Set outgoing var
             health = healthDmgCheck;
-            EventData.RaiseOnHealthLost(HullDmgRecieved);
+            EventData.RaiseOnHealthLost(health);
             return;
         }
         

@@ -48,6 +48,7 @@ public abstract class Weapon
     public string sName;
     public float speed;
     public int damage;
+    public float shootCooldown;
 }
 
 /// <summary> The Pistol Weapon Class </summary>
