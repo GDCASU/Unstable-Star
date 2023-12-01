@@ -21,7 +21,8 @@ public class BasicEnemy : CombatEntity
         //Should be kept track of or re-set here if needed
 
         //Initialize Component
-        shootComponent = ShootScript.CreateInstance(WeaponAnchor);
+        shootComponent = GetComponent<ShootScript>();
+        shootComponent.InitializeData(WeaponAnchor);
 
         //Set variables
         health = 5;
