@@ -34,11 +34,19 @@ public class Player : CombatEntity
     private Coroutine isShieldRestoredRoutine;
     private int weaponIndex;
     
+    protected override void Awake()
+    {
+        base.Awake();
+
+        // Handle Singleton
+        if (Instance != null)
+            Destroy(gameObject);
+
+        Instance = this;
+    }
+
     private void Start()
     {
-        //Sets the singleton
-        Instance = this;
-
         //Instantiates Components
         shootComponent = GetComponent<ShootScript>();
         shootComponent.InitializeData(WeaponAnchor);
@@ -278,8 +286,6 @@ public class Player : CombatEntity
         isInvulnerable = true;
 
         //TODO: Add here events that happens when player dies ---------------
-
-
 
         //-----------------------------------------------------------------------
     }
