@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class PlayerHealthBar : MonoBehaviour
 {
+    [Header("Health Bar Objects")]
     [SerializeField] private Transform healthBarBlackedOut;
     [SerializeField] private Transform healthBarColored;
+
+    [Header("Shield Bar Objects")]
     [SerializeField] private Transform shieldBarBlackedOut;
     [SerializeField] private Transform shieldBarColored;
+
+    // Local Vars
     private readonly float statBarsOffset = 30; //As in, the space between the bars in the HUD
     private int healthBefore;
     private int shieldBefore;
@@ -21,7 +26,7 @@ public class PlayerHealthBar : MonoBehaviour
         EventData.OnShieldDamaged += OnShieldDamaged;
         EventData.OnShieldBroken += OnShieldDamaged;
 
-        //Set Vars
+        // Set Vars
         healthBefore = Player.Instance.GetMaxHealth();
         shieldBefore = Player.Instance.GetMaxShield();
 
@@ -83,7 +88,7 @@ public class PlayerHealthBar : MonoBehaviour
             healthBarColored.GetChild(i).gameObject.SetActive(true);
         }
 
-        //Update before variable
+        // Update before variable
         healthBefore = currHealth;
     }
 
@@ -94,7 +99,7 @@ public class PlayerHealthBar : MonoBehaviour
             healthBarColored.GetChild(i).gameObject.SetActive(false);
         }
 
-        //Update before variable
+        // Update before variable
         healthBefore = currHealth;
     }
 
@@ -102,28 +107,28 @@ public class PlayerHealthBar : MonoBehaviour
 
     #region SHIELD CHECKS
 
-    //FIXME: APPLY KNOWLEDGE FROM HERE TO ELSEWHERE
+    // FIXME: APPLY KNOWLEDGE FROM HERE TO ELSEWHERE
     private void OnShieldGained(int currShield)
     {
-        //Will go through the segment list from the last shield segment index to the current one
+        // Will go through the segment list from the last shield segment index to the current one
         for (int i = shieldBefore; i < currShield; i++)
         {
             shieldBarColored.GetChild(i).gameObject.SetActive(true);
         }
         
-        //Update before variable and start coroutine
+        // Update before variable and start coroutine
         shieldBefore = currShield;
     }
 
     private void OnShieldDamaged(int currShield)
     {
-        //Will go through the segment list from the last shield segment index to the current one
+        // Will go through the segment list from the last shield segment index to the current one
         for (int i = shieldBefore - 1; i > currShield - 1; i--)
         {
             shieldBarColored.GetChild(i).gameObject.SetActive(false);
         }
 
-        //Update before variable and start coroutine
+        // Update before variable and start coroutine
         shieldBefore = currShield;
     }
 
