@@ -31,7 +31,7 @@ public class PlayerHealthBar : MonoBehaviour
                 for (int i = 2; i < Player.Instance.GetMaxHealth(); i++)
                 {
                     GameObject segment = Instantiate(t.GetChild(i - 1).gameObject, t);
-                    segment.transform.localPosition = t.GetChild(i - 1).localPosition + new Vector3(22, 0, 0);
+                    segment.transform.localPosition = t.GetChild(i - 1).localPosition + new Vector3(30, 0, 0);
                 }
             }
         }
@@ -47,7 +47,7 @@ public class PlayerHealthBar : MonoBehaviour
                 for (int i = 2; i < Player.Instance.GetMaxShield(); i++)
                 {
                     GameObject segment = Instantiate(t.GetChild(i - 1).gameObject, t);
-                    segment.transform.localPosition = t.GetChild(i - 1).localPosition + new Vector3(22, 0, 0);
+                    segment.transform.localPosition = t.GetChild(i - 1).localPosition + new Vector3(30, 0, 0);
                 }
             }
         }

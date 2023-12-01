@@ -6,16 +6,15 @@ using UnityEngine;
 /// <summary> HACK: Temporary Reader of current player stats, not efficient but works </summary>
 public class TempPlayerStatsReader : MonoBehaviour
 {
-    [Header("Player Object")]
-    [SerializeField] private GameObject PlayerObj;
-
     //Local Variables
     private TMP_Text StatsReadoutText;
     private Player playerStats;
 
     private void Start()
     {
-        playerStats = PlayerObj.GetComponent<Player>();
+        GameObject PlayerObject = GameObject.Find("Player");
+
+        playerStats = PlayerObject.GetComponent<Player>();
         StatsReadoutText = GetComponent<TMP_Text>();
     }
 
