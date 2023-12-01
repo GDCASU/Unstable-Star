@@ -17,7 +17,7 @@ public class PlayerHealthBar : MonoBehaviour
 		shieldBar = transform.Find("Shield Bar");
 
 		// Scale the UI segments to whatever the max health/shield is
-		if(player.GetMaxHealth() > 1)
+		if(Player.Instance.GetMaxHealth() > 1)
 		{
 			foreach(Transform t in new Transform[] { healthBarEmpty, healthBar })
 			{
@@ -33,11 +33,11 @@ public class PlayerHealthBar : MonoBehaviour
 			Destroy(healthBarEmpty.Find("Middle").gameObject);
 			Destroy(healthBar.Find("Middle").gameObject);
 		}
-		if(player.GetMaxShield() > 1)
+		if(Player.Instance.GetMaxShield() > 1)
 		{
 			foreach(Transform t in new Transform[]{shieldBarEmpty, shieldBar})
 			{
-				for(int i = 2; i < player.GetMaxShield(); i++)
+				for(int i = 2; i < Player.Instance.GetMaxShield(); i++)
 				{
 					GameObject segment = Instantiate(t.GetChild(i - 1).gameObject, t);
 					segment.transform.localPosition = t.GetChild(i - 1).localPosition + new Vector3(22, 0, 0);
