@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerHealthBar : MonoBehaviour
 {
-	[SerializeField] private Player player;
 	private Transform healthBarEmpty;
 	private Transform healthBar;
 	private Transform shieldBarEmpty;
@@ -22,7 +21,7 @@ public class PlayerHealthBar : MonoBehaviour
 		{
 			foreach(Transform t in new Transform[] { healthBarEmpty, healthBar })
 			{
-				for(int i = 2; i < player.GetMaxHealth(); i++)
+				for(int i = 2; i < Player.Instance.GetMaxHealth(); i++)
 				{
 					GameObject segment = Instantiate(t.GetChild(i - 1).gameObject, t);
 					segment.transform.localPosition = t.GetChild(i - 1).localPosition + new Vector3(22, 0, 0);
@@ -60,11 +59,11 @@ public class PlayerHealthBar : MonoBehaviour
 	{
 		for(int i = 0; i < healthBar.childCount; i++)
 		{
-			healthBar.GetChild(i).gameObject.SetActive(i < player.GetHealth());
+			healthBar.GetChild(i).gameObject.SetActive(i < Player.Instance.GetHealth());
 		}
 		for(int i = 0; i < shieldBar.childCount; i++)
 		{
-			shieldBar.GetChild(i).gameObject.SetActive(i < player.GetShield());
+			shieldBar.GetChild(i).gameObject.SetActive(i < Player.Instance.GetShield());
 		}
 	}
 }
