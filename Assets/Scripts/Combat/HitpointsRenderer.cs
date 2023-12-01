@@ -19,7 +19,7 @@ public class HitpointsRenderer : MonoBehaviour
     [SerializeField] private float offsetZ;
 
     /// <summary> HitpointsRenderer's Singleton </summary>
-    public static HitpointsRenderer Instance;
+    [HideInInspector] public static HitpointsRenderer Instance;
 
     //Local Variables
     private readonly float acceleration = 1600;
@@ -29,7 +29,6 @@ public class HitpointsRenderer : MonoBehaviour
 
     void Awake()
     {
-        Instance = this; //Singleton set
         TestAnimation = false;
         offsetZ = 6f;
 
@@ -39,6 +38,10 @@ public class HitpointsRenderer : MonoBehaviour
         Vector3 moddedCameraPos = Camera.main.transform.position;
         moddedCameraPos += Vector3.back * 10f;
         PrintDamage(moddedCameraPos, 2, Color.white);
+
+        // Handle Singleton
+        if (Instance != null) { Destroy(gameObject); }
+        Instance = this;
     }
 
     //Testing

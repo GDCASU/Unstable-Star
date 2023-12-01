@@ -50,7 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9408205b2da92948872c05ea75fbfbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerObj: {fileID: 0}
 --- !u!222 &7309752889494405720
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -158,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3973623326736865515}
   m_Layer: 5
-  m_Name: Not Empty
+  m_Name: Colored
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,7 +378,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.3
+  m_fontSize: 38.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -415,7 +414,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -330.96753, y: -168.20949, z: 0, w: 0}
+  m_margin: {x: -330.96753, y: -168.20949, z: -47.83629, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -806,7 +805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8379503798937342291}
   m_Layer: 5
-  m_Name: Not Empty
+  m_Name: Colored
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -921,7 +920,7 @@ GameObject:
   - component: {fileID: 6792460509075713923}
   - component: {fileID: 8498375757758907807}
   m_Layer: 5
-  m_Name: UI
+  m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -998,10 +997,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabef0d55bc730449ac29342dd3db55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarEmpty: {fileID: 2032451845083798944}
-  healthBar: {fileID: 8379503798937342291}
-  shieldBarEmpty: {fileID: 4088627640544887965}
-  shieldBar: {fileID: 3973623326736865515}
+  healthBarBlackedOut: {fileID: 2032451845083798944}
+  healthBarColored: {fileID: 8379503798937342291}
+  shieldBarBlackedOut: {fileID: 4088627640544887965}
+  shieldBarColored: {fileID: 3973623326736865515}
 --- !u!1 &3234163541155809406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,7 +1151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2032451845083798944}
   m_Layer: 5
-  m_Name: Empty
+  m_Name: Blacked Out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1189,7 +1188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4088627640544887965}
   m_Layer: 5
-  m_Name: Empty
+  m_Name: Blacked Out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1416,7 +1415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec65b7f35d4db724984103da3c301f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerObj: {fileID: 0}
 --- !u!222 &3811443529837063882
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1474,7 +1472,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.35
+  m_fontSize: 56.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1510,7 +1508,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -90.58758, y: -70.05931, z: 0, w: 0}
+  m_margin: {x: -188.21503, y: -70.05931, z: -13.887867, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

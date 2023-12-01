@@ -12,13 +12,15 @@ public enum BehaviourTypes
     Gatling // (?)
 }
 
-
 /// <summary> Used by Shoot.cs to access all weapon settings </summary>
 public class WeaponData : MonoBehaviour
 {
     //Singleton
     [HideInInspector] public static WeaponData Instance;
-    
+
+    [Header("Projectile Container Object")]
+    [SerializeField] private GameObject projectileContainer;
+
     //All possible bullet prefabs must be added here
     [Header("All Possible Bullet Prefabs")]
     public GameObject RedBullet;
@@ -26,17 +28,15 @@ public class WeaponData : MonoBehaviour
     public GameObject YellowBullet;
 
     //Variables
-    [HideInInspector] public GameObject projectileContainer { get; private set; }
     [HideInInspector] public Transform ContainerTransform { get; private set; }
 
     private void Awake()
     {
-        //Create Projectile Container
-        projectileContainer = Instantiate(new GameObject());
-        projectileContainer.name = "Projectile Container";
+        //Get the Projectile Container Transform
         ContainerTransform = projectileContainer.transform;
 
-        //Set Singleton
+        // Handle Singleton
+        if (Instance != null) { Destroy(gameObject); }
         Instance = this;
     }
 

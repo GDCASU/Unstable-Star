@@ -28,14 +28,10 @@ public class PhysicsConfig : MonoBehaviour
 
     private void Awake()
     {
-        //Singleton set
+        // Handle Singleton
+        if (Get != null) { Destroy(gameObject); }
         Get = this;
 
-        if (disablePhysicsConfig)
-        {
-            return;
-        }
-        
         //Sets the numbers using the names of the layers, so its not hardcoded
         DefaultLayer = LayerMask.NameToLayer("Default");
         DefaultProjectileLayer = LayerMask.NameToLayer("Default Projectile Layer");
@@ -44,6 +40,12 @@ public class PhysicsConfig : MonoBehaviour
         PlayerLayer = LayerMask.NameToLayer("Player");
         EnemyLayer = LayerMask.NameToLayer("Enemy");
         HazardLayer = LayerMask.NameToLayer("Hazard");
+
+        //Dont change anything on the physics matrix if disabled
+        if (disablePhysicsConfig)
+        {
+            return;
+        }
 
         //Populate List of all layers (Skipping Deletion Zone and some others that are unused right now)
         AllLayers.Add(DefaultLayer);
@@ -93,7 +95,8 @@ public class PhysicsConfig : MonoBehaviour
         IgnoreCollisionsAmongEnemies();
     }
 
-    //Logic Functions
+    #region LOGIC HELPER FUNCTIONS
+
     private void IgnoreCollisionsAmongEnemies()
     {
         for (int i = 0; i < EnemyRelatedLayers.Count; i++)
@@ -135,4 +138,5 @@ public class PhysicsConfig : MonoBehaviour
         }
     }
 
+    #endregion
 }
