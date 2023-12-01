@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Data and Scene/Interfaces.cs.meta
+guid: 8de76038c5e6e6847b44c1262726f676
+========
 guid: e8d7619f66c9fbe4fa7e237f413711c8
+>>>>>>>> main:Assets/Scripts/Data and Scene/WeaponData.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
