@@ -12,7 +12,12 @@ public class PlayerHealthBar : MonoBehaviour
 
 	private void Start()
 	{
-		healthBarEmpty = transform.Find("Health Bar Empty");
+		// Subscribe to Events
+		EventData.OnHealthAdded += OnHealthChanged;
+		EventData.OnHealthLost += OnHealthChanged;
+
+
+        healthBarEmpty = transform.Find("Health Bar Empty");
 		healthBar = transform.Find("Health Bar");
 		shieldBarEmpty = transform.Find("Shield Bar Empty");
 		shieldBar = transform.Find("Shield Bar");
@@ -56,7 +61,7 @@ public class PlayerHealthBar : MonoBehaviour
 		//OnHealthChanged();
 	}
 
-	private void OnHealthChanged()
+	private void OnHealthChanged(int currentHealth)
 	{
 		for(int i = 0; i < healthBar.childCount; i++)
 		{
