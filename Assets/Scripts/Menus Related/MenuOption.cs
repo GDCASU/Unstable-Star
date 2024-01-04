@@ -97,8 +97,8 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
         Vector3 initialPosition = Camera.main.transform.position;
         Quaternion initialRotation = Camera.main.transform.rotation;
 
-        Debug.Log("INIT: " + initialPosition + "  " + initialRotation.eulerAngles);
-        Debug.Log("TARGET: " + targetPosition + "  " + targetRotationEulerAngles);
+        // Debug.Log("INIT: " + initialPosition + "  " + initialRotation.eulerAngles);
+        // Debug.Log("TARGET: " + targetPosition + "  " + targetRotationEulerAngles);
 
         float journeyLengthPos = Vector3.Distance(initialPosition, targetPosition);
         float journeyLengthRot = Quaternion.Angle(initialRotation, Quaternion.Euler(targetRotationEulerAngles));
