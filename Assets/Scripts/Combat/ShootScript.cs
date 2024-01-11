@@ -5,27 +5,20 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary> Component that allows any object to shoot projectiles </summary>
-public class ShootScript : ScriptableObject
+public class ShootScript : MonoBehaviour
 {
     //Local Variables
     private int projectileLayer;
+    private bool onShootingCooldown;
     private GameObject AnchorObject;
 
-    /// <summary> Creates a ShootScript Object </summary>
-    public static ShootScript CreateInstance(GameObject weaponAnchor)
-    {
-        ShootScript newScript = ScriptableObject.CreateInstance<ShootScript>();
-        newScript.InitializeData(weaponAnchor);
-        return newScript;
-    }
-
-    private void InitializeData(GameObject Anchor)
+    public void InitializeData(GameObject Anchor)
     {
         //Set anchor
         AnchorObject = Anchor;
 
         //Sets the layer of the bullet depending on if its the player shooting or the enemy
-        switch (this.AnchorObject.tag)
+        switch (Anchor.tag)
         {
             case "Player":
                 //The player is shooting
@@ -44,6 +37,11 @@ public class ShootScript : ScriptableObject
     /// <summary> Makes the object shoot its current weapon </summary>
     public void ShootWeapon(Weapon inputWeapon)
     {
+        if (onShootingCooldown)
+        {
+            return;
+        }
+        
         switch (inputWeapon.behaviour)
         {
             case BehaviourTypes.SingleShot:
@@ -62,7 +60,18 @@ public class ShootScript : ScriptableObject
                 Debug.LogError("ERROR! Weapon Behaviour Instruction undefined/not implemented, thrown in ShootScript.cs");
                 break;
         }
+
+        //Start cooldown between shooting of current weapon
+        StartCoroutine(ShootingCooldown(inputWeapon.shootCooldown));
     }
+
+    private IEnumerator ShootingCooldown(float time)
+    {
+        onShootingCooldown = true;
+        yield return new WaitForSeconds(time);
+        onShootingCooldown = false;
+    }
+
 
     #region PROJECTILE BEHAVIOURS
 
@@ -114,7 +123,7 @@ public class ShootScript : ScriptableObject
         Quaternion zRotation = ComputeRotation();
 
         //Spawn projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, zRotation, WeaponData.Instance.projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, zRotation, WeaponData.Instance.ContainerTransform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -126,7 +135,7 @@ public class ShootScript : ScriptableObject
         Quaternion modifiedRotation = ComputeRotation(addedAngle);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, modifiedRotation, WeaponData.Instance.projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, modifiedRotation, WeaponData.Instance.ContainerTransform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -147,7 +156,7 @@ public class ShootScript : ScriptableObject
         Vector3 overridenPosition = AnchorObject.transform.TransformPoint(point);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, zRotation, WeaponData.Instance.projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, zRotation, WeaponData.Instance.ContainerTransform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -168,7 +177,7 @@ public class ShootScript : ScriptableObject
         Quaternion modifiedRotation = ComputeRotation(addedAngle);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, modifiedRotation, WeaponData.Instance.projectileContainer.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, modifiedRotation, WeaponData.Instance.ContainerTransform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
 

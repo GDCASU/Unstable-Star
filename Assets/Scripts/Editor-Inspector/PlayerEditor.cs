@@ -37,6 +37,7 @@ public class PlayerEditor : Editor
     SerializedProperty IsDebugLogging;
     SerializedProperty DamageTest;
     SerializedProperty HealTest;
+    SerializedProperty GainShieldTest;
     SerializedProperty DeathTest;
     SerializedProperty InvulnerabilityTest;
     SerializedProperty shieldFloat;
@@ -74,6 +75,7 @@ public class PlayerEditor : Editor
         IsDebugLogging = serializedObject.FindProperty("IsDebugLogging");
         DamageTest = serializedObject.FindProperty("DamageTest");
         HealTest = serializedObject.FindProperty("HealTest");
+        GainShieldTest = serializedObject.FindProperty("GainShieldTest");
         DeathTest = serializedObject.FindProperty("DeathTest");
         InvulnerabilityTest = serializedObject.FindProperty("InvulnerabilityTest");
         shieldFloat = serializedObject.FindProperty("shieldFloat");
@@ -131,6 +133,7 @@ public class PlayerEditor : Editor
             EditorGUILayout.PropertyField(IsDebugLogging);
             EditorGUILayout.PropertyField(DamageTest);
             EditorGUILayout.PropertyField(HealTest);
+            EditorGUILayout.PropertyField(GainShieldTest);
             EditorGUILayout.PropertyField(DeathTest);
             EditorGUILayout.PropertyField(InvulnerabilityTest); 
             EditorGUILayout.LabelField("Note: I suggest not modifying these readouts");

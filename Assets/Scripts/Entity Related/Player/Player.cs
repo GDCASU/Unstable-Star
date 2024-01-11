@@ -22,6 +22,7 @@ public class Player : CombatEntity
     //Testing
     [SerializeField] private bool DamageTest;
     [SerializeField] private bool HealTest;
+    [SerializeField] private bool GainShieldTest;
     [SerializeField] private bool DeathTest;
     [SerializeField] private bool InvulnerabilityTest;
     [SerializeField] private float shieldFloat;
@@ -34,13 +35,22 @@ public class Player : CombatEntity
     private Coroutine isShieldRestoredRoutine;
     private int weaponIndex;
     
+    protected override void Awake()
+    {
+        base.Awake();
+
+        // Handle Singleton
+        if (Instance != null)
+            Destroy(gameObject);
+
+        Instance = this;
+    }
+
     private void Start()
     {
-        //Sets the singleton
-        Instance = this;
-
-        //Instantiates Components
-        shootComponent = ShootScript.CreateInstance(WeaponAnchor);
+        //Get Components
+        shootComponent = GetComponent<ShootScript>();
+        shootComponent.InitializeData(WeaponAnchor);
 
         //Set Stats
         health = MAX_HEALTH;
@@ -55,9 +65,9 @@ public class Player : CombatEntity
         isShieldBroken = false;
 
         //Add Weapons
-        Pistol pistol = new Pistol(30f, 1, "Pistol");
-        Birdshot birdshot = new Birdshot(30f, 1, "Birdshot");
-        Buckshot buckshot = new Buckshot(30f, 1, "Buckshot");
+        Pistol pistol = new Pistol(30f, 1, "Pistol", 0.2f);
+        Birdshot birdshot = new Birdshot(30f, 1, "Birdshot", 0.2f);
+        Buckshot buckshot = new Buckshot(30f, 1, "Buckshot", 0.2f);
 
         weaponArsenal.Add(pistol);
         weaponArsenal.Add(birdshot);
@@ -73,14 +83,19 @@ public class Player : CombatEntity
         //Testing
         if (DamageTest)
         {
-            TakeDamage(1, out int dmgRecieved, out Color colorSet);
+            TakeDamage(2, out int dmgRecieved, out Color colorSet);
             HitpointsRenderer.Instance.PrintDamage(this.transform.position, dmgRecieved, colorSet);
             DamageTest = false;
         }
         if (HealTest)
         {
-            AddHealth(1);
+            TryAddHealth(1);
             HealTest = false;
+        }
+        if (GainShieldTest)
+        {
+            TryAddShield(1);
+            GainShieldTest = false;
         }
         if (InvulnerabilityTest)
         {
@@ -129,25 +144,68 @@ public class Player : CombatEntity
 
     #region STATS MODIFIERS
 
-    /// <summary> Adds health to the player </summary>
-    public void AddHealth(int amount)
+    /// <summary> Try adding health to the player, returns false if its not possible </summary>
+    public bool TryAddHealth(int amount)
     {
+        //Dont do anything in case we already had max health
+        if (health >= MAX_HEALTH)
+        {
+            return false;
+        }
+
+        int healthBefore = health;
+
+        //Else, gain health
         health += amount;
         if (health > MAX_HEALTH)
         {
             health = MAX_HEALTH;
         }
+
         //Invoke the event signaling a change of health
-        if (IsDebugLogging) { Debug.Log("ATTEMPTED TO HEAL THE PLAYER"); }
-        EventData.RaiseOnHealthAdded();
+        EventData.RaiseOnHealthAdded(health);
+        if (IsDebugLogging)
+        {
+            string msg = "PLAYER HAS GAINED " + (health - healthBefore) + " HEALTH POINTS";
+            Debug.Log(msg);
+        }
+        return true;
+    }
+
+    /// <summary> Try adding Shield Points to the player, returns false if its not possible </summary>
+    public bool TryAddShield(int amount)
+    {
+        //Dont do anything in case we already had max shield
+        if (shield >= MAX_SHIELD)
+        {
+            return false;
+        }
+
+        int shieldBefore = shield;
+
+        //Else, gain shield
+        shield += amount;
+        if (shield > MAX_SHIELD)
+        {
+            shield = MAX_SHIELD;
+        }
+
+        //Invoke the event signaling a shield gain
+        EventData.RaiseOnShieldGained(shield);
+        if (IsDebugLogging) 
+        {
+            string msg = "PLAYER HAS GAINED " + (shield - shieldBefore) + " SHIELD POINTS";
+            Debug.Log(msg); 
+        }
+        return true;
     }
 
     //TODO: See if design plans to have buff items or something of the like
-    /// <summary> Changes the % of shield regenerated every seconds </summary>
+    /// <summary> Changes the amount of shield per second regenerated </summary>
     public void SetShieldRegen(float shieldPerSec)
     {
         shieldPerSecond = shieldPerSec;
-        if (IsDebugLogging) { Debug.Log("CHANGED HEALING PERCENTAGE TO " + shieldPerSecond); }
+        if (IsDebugLogging) { Debug.Log("CHANGED SHIELD REGEN AMOUNT TO " + shieldPerSecond); }
     }
 
     #endregion
@@ -204,7 +262,7 @@ public class Player : CombatEntity
             //Update shield numbers
             shield = shieldDmgCheck;
             shieldFloat = (float)shield;
-            EventData.RaiseOnShieldDamaged();
+            EventData.RaiseOnShieldDamaged(shield);
 
             //If the shield was not broken, it means no changes to health, so return and stop here
             //TODO: Ask design if any damage should be negated with shield break, lets say I recieve
@@ -223,7 +281,7 @@ public class Player : CombatEntity
             shield = 0;
             shieldFloat = 0;
             isShieldBroken = true;
-            EventData.RaiseOnShieldBroken();
+            EventData.RaiseOnShieldBroken(shield);
             //Return here to negate damage after shield break
             return true;
         }
@@ -242,7 +300,7 @@ public class Player : CombatEntity
             if (IsDebugLogging) { Debug.Log("DAMAGE RECIEVED TO HULL: " + (health - healthDmgCheck)); }
             HullDmgRecieved = health - healthDmgCheck; //Set outgoing var
             health = healthDmgCheck;
-            EventData.RaiseOnHealthLost();
+            EventData.RaiseOnHealthLost(health);
             return;
         }
         
@@ -251,36 +309,6 @@ public class Player : CombatEntity
         HullDmgRecieved = health; //Set outgoing var
         health = 0;
         TriggerDeath();
-    }
-
-    #endregion
-
-    #region EVENT HANDLING
-
-    //Should only contain calls to animations, sounds, sfx and the like on death
-    protected override void TriggerDeath()
-    {
-        //Stub
-        EventData.RaiseOnPlayerDeath();
-
-        // TODO: Check if this is a good idea:
-        // Never destroy the Player object, it will cause errors around the game
-        // Instead, Destroy only its model (?)
-        Destroy(this.ModelObject);
-    }
-
-    //What happens to the game and the player on death
-    protected override void WhenPlayerDies()
-    {
-        //NOTE: after death triggers, TakeDamage() wont respond to incoming damage anymore
-        StopAllCoroutines();
-        isInvulnerable = true;
-
-        //TODO: Add here events that happens when player dies ---------------
-
-
-
-        //-----------------------------------------------------------------------
     }
 
     public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false)
@@ -303,40 +331,6 @@ public class Player : CombatEntity
         invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions));
     }
 
-    // Overriden as to allow for disabling collisions with other entities while on iFrames
-    protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
-    {
-        isInvulnerable = true;
-        timeLeftInvulnerable = seconds;
-
-        //Disable Entity collisions if it was triggered by damage
-        if (ignoreCollisions)
-        {
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, true);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, true);
-        }
-
-        // Runs the iframes timer
-        while (timeLeftInvulnerable > 0f)
-        {
-            timeLeftInvulnerable -= Time.deltaTime;
-            // Wait a frame
-            yield return null;
-        }
-
-        //Re-enable collisions upon end
-        if (ignoreCollisions)
-        {
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, false);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, false);
-        }
-
-        // Player can be hurt again
-        timeLeftInvulnerable = 0f;
-        isInvulnerable = false;
-        invulnRoutine = null;
-    }
-
     private void HandleShieldRegen()
     {
         //If shield was regening before, restart it
@@ -347,6 +341,10 @@ public class Player : CombatEntity
         ShieldRoutine = StartCoroutine(ShieldRegenBehaviour()); //NOTE: Does not stack with iFrames
     }
 
+    #endregion
+
+    #region COROUTINES
+
     /// <summary> Coroutine that handles the regeneration of the shield </summary>
     private IEnumerator ShieldRegenBehaviour()
     {
@@ -354,6 +352,7 @@ public class Player : CombatEntity
         yield return new WaitForSeconds(shieldRegenDelayTime);
 
         if (IsDebugLogging) { Debug.Log("STARTED REGEN SHIELD BEHAVIOUR"); }
+        int shieldBefore = shield;
 
         //Start Regen of the shield
         while (shieldFloat < MAX_SHIELD)
@@ -361,9 +360,19 @@ public class Player : CombatEntity
             shieldFloat += shieldPerSecond * Time.deltaTime;
             //Assign the float value to player's shiled, typecasted
             shield = (int)shieldFloat;
+            
+            //Check if we have regenerated a point. If so, Raise shield point gained
+            if (shieldBefore < shield)
+            {
+                EventData.RaiseOnShieldGained(shield);
+            }
+
+            //Update shield before
+            shieldBefore = shield;
             //Wait until 1 frame has passed
             yield return null;
         }
+        
         //We finished regening the shield, assign it MAX_SHIELD in case we went over before
         shield = MAX_SHIELD;
         shieldFloat = (float)shield;
@@ -398,9 +407,72 @@ public class Player : CombatEntity
         isShieldRestoredRoutine = null;
     }
 
+    // Overriden as to allow for disabling collisions with other entities while on iFrames
+    protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
+    {
+        isInvulnerable = true;
+        timeLeftInvulnerable = seconds;
+
+        //Disable Entity collisions if bool "ignoreCollisions" was true
+        if (ignoreCollisions)
+        {
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, true);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, true);
+        }
+
+        // Runs the iframes timer
+        while (timeLeftInvulnerable > 0f)
+        {
+            timeLeftInvulnerable -= Time.deltaTime;
+            // Wait a frame
+            yield return null;
+        }
+
+        //Re-enable collisions upon end
+        if (ignoreCollisions)
+        {
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, false);
+            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, false);
+        }
+
+        // Player can be hurt again
+        timeLeftInvulnerable = 0f;
+        isInvulnerable = false;
+        invulnRoutine = null;
+    }
+
     #endregion
 
-    #region GETTERS AND SETTERS
+    #region EVENT HANDLING
+
+    //Should only contain calls to animations, sounds, sfx and the like on death
+    protected override void TriggerDeath()
+    {
+        //Stub
+        EventData.RaiseOnHealthLost(health); //To remove Last Health segment from UI
+        EventData.RaiseOnPlayerDeath();
+
+        // TODO: Check if this is a good idea:
+        // Never destroy the Player object, it will cause errors around the game
+        // Instead, Destroy only its model (?)
+        Destroy(this.ModelObject);
+    }
+
+    //What happens to the game and the player on death
+    protected override void WhenPlayerDies()
+    {
+        //NOTE: after death triggers, TakeDamage() wont respond to incoming damage anymore
+        StopAllCoroutines();
+        isInvulnerable = true;
+
+        //TODO: Add here events that happens when player dies ---------------
+
+        //-----------------------------------------------------------------------
+    }
+
+    #endregion
+
+    #region GETTERS
 
     //Getters
     public int GetHealth() { return health; }

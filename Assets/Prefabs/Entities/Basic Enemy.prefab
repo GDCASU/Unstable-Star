@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8412255195681629295}
   - component: {fileID: 4674963737278699074}
+  - component: {fileID: 8981244729871998477}
   - component: {fileID: 2852541011737675917}
   - component: {fileID: 8123882018951225678}
   m_Layer: 10
@@ -140,6 +141,18 @@ MonoBehaviour:
   isInvulnerable: 0
   WeaponAnchor: {fileID: 1805299238481945829}
   testShoot: 0
+--- !u!114 &8981244729871998477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936650888660271408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76eb38d7f491cea47bb1e6e06eb0d1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &2852541011737675917
 CapsuleCollider:
   m_ObjectHideFlags: 0
