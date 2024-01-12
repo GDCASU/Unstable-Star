@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8400793549468475864}
+  - component: {fileID: 5181159376948964385}
   m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
@@ -115,6 +116,22 @@ Transform:
   - {fileID: 3703414019256726584}
   m_Father: {fileID: 4766489936883066443}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5181159376948964385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229801600253490273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3668cff380a36429eaf6f91d549fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aroundXSpeed: 100
+  aroundYSpeed: -35
+  aroundZSpeed: 50
+  delay: 0
 --- !u!1 &6961159835698643870
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,9 +141,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4766489936883066443}
-  - component: {fileID: 4742224933395004391}
   - component: {fileID: 8466986038134667252}
   - component: {fileID: 3343577464410492565}
+  - component: {fileID: 4742224933395004391}
   m_Layer: 11
   m_Name: Asteroid 1
   m_TagString: Asteroid
@@ -150,25 +167,6 @@ Transform:
   - {fileID: 8400793549468475864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4742224933395004391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6961159835698643870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1612ed003342334790d7ed9b1488a77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ModelObject: {fileID: 2372571173406969705}
-  health: 0
-  shield: 0
-  collisionDamage: 2
-  timeLeftInvulnerable: 0
-  dmgInvulnTime: 1
-  isInvulnerable: 0
 --- !u!54 &8466986038134667252
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -219,3 +217,23 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4742224933395004391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961159835698643870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1612ed003342334790d7ed9b1488a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModelObject: {fileID: 2372571173406969705}
+  health: 10
+  shield: 0
+  collisionDamage: 2
+  timeLeftInvulnerable: 0
+  dmgInvulnTime: 1
+  isInvulnerable: 0
+  movementSpeed: 7

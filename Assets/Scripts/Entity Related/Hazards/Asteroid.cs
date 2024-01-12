@@ -6,6 +6,8 @@ using UnityEngine;
 /// <summary> An Asteroid. Inherits from the "CombatEntity" class </summary>
 public class Asteroid : CombatEntity
 {
+    [SerializeField] private float movementSpeed = 1.0f;
+
     //Local Variables
 
     private void Start()
@@ -16,6 +18,11 @@ public class Asteroid : CombatEntity
         //Set stats
         health = 20;
         collisionDamage = 3;
+    }
+
+    private void Update()
+    {
+        MoveDown();
     }
 
     //Execute instructions for when player dies
@@ -34,6 +41,11 @@ public class Asteroid : CombatEntity
 
         StopAllCoroutines();
         Destroy(this.gameObject);
+    }
+
+    private void MoveDown()
+    {
+        transform.Translate(Vector3.down * movementSpeed * Time.deltaTime);
     }
 
 }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7550531452737117471}
+  - component: {fileID: 5636385558685808011}
   m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
@@ -32,6 +33,22 @@ Transform:
   - {fileID: 1408719118001002073}
   m_Father: {fileID: 7170905514376720297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5636385558685808011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5819438090592694751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3668cff380a36429eaf6f91d549fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aroundXSpeed: 100
+  aroundYSpeed: -35
+  aroundZSpeed: 50
+  delay: 0
 --- !u!1 &6317372797897747317
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,12 +180,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModelObject: {fileID: 6317372797897747317}
-  health: 0
+  health: 1
   shield: 0
   collisionDamage: 2
   timeLeftInvulnerable: 0
   dmgInvulnTime: 1
   isInvulnerable: 0
+  movementSpeed: 7
 --- !u!54 &6077041292578520287
 Rigidbody:
   m_ObjectHideFlags: 0
