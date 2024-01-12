@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010086236, g: 0.052700967, b: 0.15289032, a: 1}
+  m_IndirectSpecularColor: {r: 0.010086427, g: 0.052700892, b: 0.15289137, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c859d4aabbc84f74c9792263f641efbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeShootAngSpeed: 50
+  changeShootAngSpeed: 10
   maxShootAngle: 30
   debug: 0
   movementInput: {x: 0, y: 0}
@@ -445,10 +445,6 @@ PrefabInstance:
     - target: {fileID: 1328816971595796129, guid: 1e149a05ddae9194bb2fe201b133be4a, type: 3}
       propertyPath: m_Name
       value: AsteroidTemp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328816971595796129, guid: 1e149a05ddae9194bb2fe201b133be4a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4659899378614337605, guid: 1e149a05ddae9194bb2fe201b133be4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -552,37 +548,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
---- !u!1 &1283794912
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1283794913}
-  m_Layer: 0
-  m_Name: Asteriod Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1283794913
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283794912}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1584903791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,13 +723,12 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1192960471}
+  - {fileID: 6994586057775332022}
   - {fileID: 1584903791}
   - {fileID: 1106683913}
-  - {fileID: 1283794913}
+  - {fileID: 1192960471}
   - {fileID: 872289785}
   - {fileID: 773049858}
   - {fileID: 1261016249}
   - {fileID: 1919905818459323913}
   - {fileID: 1224548422}
-  - {fileID: 6994586057775332022}
