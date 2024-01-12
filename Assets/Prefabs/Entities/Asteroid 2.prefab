@@ -49,6 +49,13 @@ MonoBehaviour:
   aroundYSpeed: -35
   aroundZSpeed: 50
   delay: 0
+  randomRotation: 1
+  minAroundXSpeed: -100
+  maxAroundXSpeed: 100
+  minAroundYSpeed: -100
+  maxAroundYSpeed: 100
+  minAroundZSpeed: -100
+  maxAroundZSpeed: 100
 --- !u!1 &2137299878479132191
 GameObject:
   m_ObjectHideFlags: 0
