@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4659899378614337605}
   - component: {fileID: 4180832799157326816}
   - component: {fileID: 4137949718781526296}
-  - component: {fileID: 9122488438110426822}
   - component: {fileID: 4287030915765123379}
   - component: {fileID: 1371148226985532220}
+  - component: {fileID: 9122488438110426822}
   m_Layer: 11
   m_Name: AsteroidTemp
   m_TagString: Asteroid
@@ -86,25 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9122488438110426822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1328816971595796129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1612ed003342334790d7ed9b1488a77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ModelObject: {fileID: 0}
-  health: 0
-  shield: 0
-  collisionDamage: 2
-  timeLeftInvulnerable: 0
-  dmgInvulnTime: 1
-  isInvulnerable: 0
 --- !u!54 &4287030915765123379
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,3 +136,23 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9122488438110426822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328816971595796129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1612ed003342334790d7ed9b1488a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModelObject: {fileID: 0}
+  health: 0
+  shield: 0
+  collisionDamage: 2
+  timeLeftInvulnerable: 0
+  dmgInvulnTime: 1
+  isInvulnerable: 0
+  movementSpeed: 1
