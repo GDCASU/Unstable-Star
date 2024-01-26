@@ -15,6 +15,11 @@ public class BasicEnemy : CombatEntity
     private ShootScript shootComponent;
     private Weapon currWeapon;
 
+    private float xRange = 23.5f;
+    private float speed = 30.0f;
+
+    Vector2 movementVector;
+
     private void Start()
     {
         //Remember to look into the CombatEntity class to see what variables
@@ -37,6 +42,7 @@ public class BasicEnemy : CombatEntity
             shootComponent.ShootWeapon(currWeapon);
             testShoot = false;
         }
+        moveEnemy();
     }
 
     //Execute instructions for when player dies
@@ -57,6 +63,29 @@ public class BasicEnemy : CombatEntity
 
         StopAllCoroutines();
         Destroy(this.gameObject);
+    }
+
+    private void moveEnemy() {
+        // Vector3 moveDirection = new Vector3(0,-1,0);
+        // float speed = 6.0f;
+        // gameObject.transform.position = new Vector2(transform.position.x+0.0001f,transform.position.y);
+
+        //puts player on other side of screen if touching side walls
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector2(xRange, transform.position.y);
+            // movementVector = new Vector2(1,0);
+            transform.Translate(Vector2.right * Time.deltaTime * speed);
+        }
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector2(-xRange, transform.position.y);
+            // movementVector = new Vector2(1,0);
+            transform.Translate(Vector2.left * Time.deltaTime * speed);
+        }
+
+
+        Debug.Log("Time.deltaTime = " + Time.deltaTime);
     }
 
 }
