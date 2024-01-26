@@ -5,28 +5,53 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 60.0f;
-    private float xRange = 23.5f;
-
     Vector2 movementVector;
+
+    // Local Variables
+    private Vector2 screenBounds;
+    private float objectHeight = 3;
+    private float playerModelHeight;
+    private Vector3 viewPos;
+
+    private void Awake()
+    {
+        // Get the boundary points of the play space
+        // FIXME: Is this the best way to do this?
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height,
+            Camera.main.transform.position.z));
+    }
+
+
+    private void Start()
+    {
+
+    }
 
     void Update()
     {
+        // Update position of player
+        
         movePlayer();
+    }
+
+    private void LateUpdate()
+    {
+        viewPos = this.transform.position;
+        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y + playerModelHeight, screenBounds.y * -1 - playerModelHeight);
+        transform.position = viewPos;
     }
 
     void movePlayer()
     {
-        //puts player on other side of screen if touching side walls
-        if (transform.position.x < -xRange)
-        {
-            transform.position = new Vector2(xRange, transform.position.y);
-        }
-        if (transform.position.x > xRange)
-        {
-            transform.position = new Vector2(-xRange, transform.position.y);
-        }
+        // TODO: Detect Player approaching the edge of the screen
 
+
+
+
+        // Move player according to input
         movementVector = PlayerInput.instance.movementInput;
         transform.Translate(movementVector * Time.deltaTime * speed);
+        // Restrict player movement here
+        this.transform.position = movementVector;
     }
 }

@@ -19,11 +19,16 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool shootInput;       // A boolean that is true when shooting button is held down; false otherwise
     [HideInInspector] public float shootAngleInput; // holds the angle of shooting for the player
 
+    // Local Variables
     private PlayerControls playerControls;
     private float signAngleMult = 0;
+    private bool angleCheck1;
+    private bool angleCheck2;
+    bool doChangeShootingAngle;
 
-    private void Awake()    // Handle Singleton
+    private void Awake()    
     {
+        // Handle Singleton
         if (instance == null)
         {
             instance = this;
@@ -35,8 +40,16 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if((signAngleMult > 0 && shootAngleInput < maxShootAngle) || (signAngleMult < 0 && shootAngleInput > -maxShootAngle)) // Keep delta angle in range of the maxShootAngle
+        // Keep delta angle in range of the maxShootAngle
+        angleCheck1 = (signAngleMult > 0) && (shootAngleInput < maxShootAngle);
+        angleCheck2 = (signAngleMult < 0) && (shootAngleInput > -maxShootAngle);
+        doChangeShootingAngle = angleCheck1 || angleCheck2;
+
+        if (doChangeShootingAngle)
+        {
+            // Modify the shooting angle of the player
             shootAngleInput += signAngleMult * changeShootAngSpeed * Time.deltaTime;
+        }
     }
 
     public void ToggleControls(bool toggle)     // Toggle the player controls with this method from any script

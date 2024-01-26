@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 6317753055055756569}
   - component: {fileID: 3693904737372673455}
   - component: {fileID: 3367169279472031147}
-  - component: {fileID: -3586298265979222775}
   - component: {fileID: 4528621970514599210}
   - component: {fileID: 4267910268128741752}
   - component: {fileID: 4315850991115212518}
@@ -267,6 +266,7 @@ MonoBehaviour:
   IsDebugLogging: 0
   DamageTest: 0
   HealTest: 0
+  GainShieldTest: 0
   DeathTest: 0
   InvulnerabilityTest: 0
   shieldFloat: 0
@@ -283,18 +283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70
---- !u!114 &-3586298265979222775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8720998934021106729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c86c700d18dd86b4693fc083039e5c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4528621970514599210
 MonoBehaviour:
   m_ObjectHideFlags: 0
