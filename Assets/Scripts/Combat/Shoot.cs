@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour
     //Local variables
     private List<GameObject> SpawnedLasers = new();
     private GameObject testProjectile;
-    private ProjectileObject projectileData;
+    //private ProjectileObject projectileData;
     private Rigidbody rgbd;
 
     public GameObject LaserTest;
@@ -25,7 +25,7 @@ public class Shoot : MonoBehaviour
     {
         if (spawn)
         {
-            shootProjectile();
+            //shootProjectile();
             spawn = false;
         }
     }
@@ -68,7 +68,7 @@ public class Shoot : MonoBehaviour
     }
 
 
-
+    /*
     //Testing
     public void shootProjectile()
     {
@@ -84,6 +84,6 @@ public class Shoot : MonoBehaviour
         
 
     }
-
+    */
     
 }
