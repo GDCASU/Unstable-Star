@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70
+  playerCopyPrefab: {fileID: 7396476796073729095, guid: d44a161c12495f34cb93b23f5fe8a1db, type: 3}
 --- !u!114 &4528621970514599210
 MonoBehaviour:
   m_ObjectHideFlags: 0
