@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour // Dictates Enemy Behaviours
+public class EnemyEntry : MonoBehaviour // Dictates Enemy Behaviours
 {
     [Header("Physics Variables")]
     public float acceleration = 0.008f;

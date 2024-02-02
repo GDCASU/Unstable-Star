@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
-/// <summary> A gatling Enemy. Inherits from the "CombatEntity" class </summary> P.S. most of this is copied from BasicEnemy.cs
+/// <summary> A gatling Enemy. Inherits from the "CombatEntity" class  P.S. most of this is copied from BasicEnemy.cs </summary>
 public class GatlingEnemy : CombatEntity
 {
     [Header("Enemy Parameters")]
@@ -27,12 +27,8 @@ public class GatlingEnemy : CombatEntity
         health = 10;
         shield = 5;
         currWeapon = new Gatling(15f, 1, "Enemy Gatling Gun", 0.1f);
+        //Player.Instance.transform.position
     }
-
-    private void Movement(){
-        
-    }
-
 
     //Testing. (┬┬﹏┬┬)
     private void Update()

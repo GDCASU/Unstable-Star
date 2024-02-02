@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +13,9 @@ public class ShootScript : MonoBehaviour
     private int projectileLayer;
     private bool onShootingCooldown;
     private GameObject AnchorObject;
+    public float bounds = 1.5f;
+    public float addedOffset = 0.1f;
+    public float currOffset = 0f;
 
     public void InitializeData(GameObject Anchor)
     {
@@ -107,12 +112,15 @@ public class ShootScript : MonoBehaviour
         WithOffset(weapon, 2, -2);
         WithOffset(weapon, -2, -2);
     }
-    /// <summary> Only shoots 1 projectile but faster (speed determined when creating the class, not here)</summary>
+    /// <summary> Shoots projectiles very fast (configured when creating the class) with offset that is constantly changing</summary>
     private void GatlingGunBehaviour(Weapon weapon)
     {
         //Create the Projectile
-        //i will use the default for the Gatling Gun bcs Gatling Gun is just a fast shooting pistol (don't quote me on this)
-        Default(weapon);
+        if(currOffset >= bounds || currOffset <= -bounds){
+            addedOffset *= -1;
+        }
+        WithOffset(weapon, currOffset, 0);
+        currOffset += addedOffset;
     }
 
     #endregion
