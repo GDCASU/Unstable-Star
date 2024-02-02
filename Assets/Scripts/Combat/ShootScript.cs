@@ -54,7 +54,7 @@ public class ShootScript : MonoBehaviour
                 FanShotBehaviour(inputWeapon);
                 break;
             case BehaviourTypes.Gatling:
-                // TODO: Implement here (?)
+                GatlingGunBehaviour(inputWeapon);
                 break;
             default:
                 Debug.LogError("ERROR! Weapon Behaviour Instruction undefined/not implemented, thrown in ShootScript.cs");
@@ -106,6 +106,13 @@ public class ShootScript : MonoBehaviour
         WithOffset(weapon, 0, 1);
         WithOffset(weapon, 2, -2);
         WithOffset(weapon, -2, -2);
+    }
+    /// <summary> Only shoots 1 projectile but faster (speed determined when creating the class, not here)</summary>
+    private void GatlingGunBehaviour(Weapon weapon)
+    {
+        //Create the Projectile
+        //i will use the default for the Gatling Gun bcs Gatling Gun is just a fast shooting pistol (don't quote me on this)
+        Default(weapon);
     }
 
     #endregion

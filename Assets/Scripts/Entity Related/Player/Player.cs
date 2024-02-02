@@ -68,10 +68,12 @@ public class Player : CombatEntity
         Pistol pistol = new Pistol(30f, 1, "Pistol", 0.2f);
         Birdshot birdshot = new Birdshot(30f, 1, "Birdshot", 0.2f);
         Buckshot buckshot = new Buckshot(30f, 1, "Buckshot", 0.2f);
+        Gatling gatling = new Gatling(30f, 1, "Gatling", 0.1f);
 
         weaponArsenal.Add(pistol);
         weaponArsenal.Add(birdshot);
         weaponArsenal.Add(buckshot);
+        weaponArsenal.Add(gatling);
         currWeapon = weaponArsenal[0];
         weaponIndex = 0;
     }

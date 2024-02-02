@@ -9,7 +9,7 @@ public enum BehaviourTypes
     SingleShot,
     FanShot,
     TripleOffset,
-    Gatling // (?)
+    Gatling
 }
 
 /// <summary> Used by Shoot.cs to access all weapon settings </summary>
@@ -128,5 +128,34 @@ public class Buckshot : Weapon
         this.sName = name;
         this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.TripleOffset;
+    }
+}
+
+/// <summary> The Gatling Weapon Class </summary>
+
+public class Gatling : Weapon
+{
+
+    /// <summary> Default Constructor </summary>
+
+    public Gatling(float speed, int damage, string name, float timeBetweenShots) 
+    {
+        this.prefab = WeaponData.Instance.RedBullet; //this is a temporary prefab change later when a true one is made
+        this.speed = speed;
+        this.damage = damage;
+        this.sName = name;
+        this.shootCooldown = timeBetweenShots;
+        this.behaviour = BehaviourTypes.Gatling;
+    }
+
+     /// <summary> Constructor to override prefab of bullet </summary>
+    public Gatling(GameObject prefab, float speed, int damage, string name, float timeBetweenShots) 
+    {
+        this.prefab = prefab;
+        this.speed = speed;
+        this.damage = damage;
+        this.sName = name;
+        this.shootCooldown = timeBetweenShots;
+        this.behaviour = BehaviourTypes.Gatling;
     }
 }
