@@ -152,6 +152,7 @@ public class PlayerInput : MonoBehaviour
         if (context.performed)
         {
             // Code to be fired when the player angles the turret
+            // IAN: i modified "isRight" so now it rotates left if left click is pressed
             if (isRight)       // angle left button was pressed
             {
                 signAngleMult = -1f;
