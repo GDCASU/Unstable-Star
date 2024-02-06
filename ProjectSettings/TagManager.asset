@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Projectile
+  - Enemy
+  - Hazard
+  - Asteroid
+  - Deletion Zones
   layers:
   - Default
   - TransparentFX
@@ -11,13 +16,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Deletion Zones
+  - Projectiles Player
+  - Projectiles Enemies
+  - Player
+  - Enemy
+  - Hazard
+  - Default Projectile Layer
   - 
   - 
   - 
