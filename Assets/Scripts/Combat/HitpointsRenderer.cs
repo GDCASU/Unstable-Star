@@ -14,6 +14,11 @@ public class HitpointsRenderer : MonoBehaviour
     [Header("Hitpoints Container")]
     [SerializeField] private GameObject HitPointPrefab;
 
+    [Header("Hitpoints Settings")]
+    [SerializeField] private float acceleration = 0.01f;
+    [SerializeField] private float startingSpeed = 5;
+    [SerializeField] private float hitpointStayTime = 1f;
+
     [Header("Other Tools")]
     [SerializeField] private bool DisableHitpoints;
     [SerializeField] private bool TestAnimation;
@@ -23,9 +28,7 @@ public class HitpointsRenderer : MonoBehaviour
 
     //Local Variables
     private RectTransform hitpointContainerRect;
-    private readonly float acceleration = 0.01f;
-    private readonly float startingSpeed = 5;
-    private readonly float hitpointStayTime = 1f;
+    
 
 
     void Awake()

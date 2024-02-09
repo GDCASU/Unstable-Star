@@ -58,26 +58,6 @@ public class PlayerInput : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void Update()
-    {
-        // IAN: I migrated this code into the angle change handler, not sure if you will like that Ryan
-        
-        /*
-
-        // Keep delta angle in range of the maxShootAngle
-        leftBoundCheck = (signAngleMult > 0) && (shootAngleInput < maxShootAngle); // False if at limit of left
-        rightBoundCheck = (signAngleMult < 0) && (shootAngleInput > -maxShootAngle); // False if at limit of right
-        doChangeShootingAngle = leftBoundCheck || rightBoundCheck;
-
-        if (doChangeShootingAngle)
-        {
-            // Modify the shooting angle of the player
-            shootAngleInput += signAngleMult * changeShootAngSpeed * Time.deltaTime;
-        }
-
-        */
-    }
-
     public void ToggleControls(bool toggle)     // Toggle the player controls with this method from any script
     {
         if (playerControls == null) 
@@ -107,11 +87,8 @@ public class PlayerInput : MonoBehaviour
             playerControls.ShipControls.AngleLeft.canceled += i => HandleShootAngleInput(i, false);     // perfomed event fires when the button is released
             playerControls.ShipControls.AngleRight.canceled += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is released
             
-            // CHECK IAN: I added these new controls, but im not sure if I did them correctly
             playerControls.ShipControls.SwitchNextWeapon.performed += i => { OnSwitchToNextWeapon?.Invoke(); };
             playerControls.ShipControls.SwitchPreviousWeapon.performed += i => { OnSwitchToPreviousWeapon?.Invoke(); };
-            // END OF ADDED CODE -------------------------------
-
         }
 
         playerControls.Enable();
@@ -131,17 +108,13 @@ public class PlayerInput : MonoBehaviour
         {
             shootInput = true; // Whenever the shooting button is pressed = true
 
-            // CHECK IAN: Coroutine handling of shooting
             HandleShootingRoutine(buttonHeld: true);
-            // END OF ADDED CODE --------------------------------------
         }
         else
         {
             shootInput = false;     // Whenever the shooting button is released = false
 
-            // CHECK IAN: Coroutine handling of shooting
             HandleShootingRoutine(buttonHeld: false);
-            // END OF ADDED CODE --------------------------------------
         }
 
         if (debug) Debug.Log(shootInput);
