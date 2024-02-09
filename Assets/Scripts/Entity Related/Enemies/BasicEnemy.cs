@@ -55,7 +55,7 @@ public class BasicEnemy : CombatEntity
 
 
         // -----------------------
-
+        EventData.RaiseOnEnemyKilled(); // Raises Event
         StopAllCoroutines();
         Destroy(this.gameObject);
     }
