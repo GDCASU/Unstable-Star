@@ -122,7 +122,7 @@ public class ShootScript : MonoBehaviour
         if(currOffset >= bounds || currOffset <= -bounds){
             addedOffset *= -1;
         }
-        WithOffset(weapon, currOffset, 0);
+        OffsetSpawn(weapon, currOffset, 0);
         currOffset += addedOffset;
     }
 
