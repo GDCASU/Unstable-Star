@@ -17,6 +17,9 @@ public class ShootScript : MonoBehaviour
     public float addedOffset = 0.1f;
     public float currOffset = 0f;
 
+    // Any entity that fires needs to set the anchor point of their weapons.
+    // So within their respective entities script. do [shootComponent.InitializeData(WeaponAnchorObj);]
+    // NOTE: This also means all weapons fire from the same spot unless offseted, but this can be fixed if necessary
     public void InitializeData(GameObject Anchor)
     {
         //Set anchor
@@ -66,7 +69,7 @@ public class ShootScript : MonoBehaviour
                 break;
         }
 
-        //Start cooldown between shooting of current weapon
+        //Start cooldown between shoots of current weapon
         StartCoroutine(ShootingCooldown(inputWeapon.shootCooldown));
     }
 
@@ -92,25 +95,25 @@ public class ShootScript : MonoBehaviour
     private void SingleShotBehaviour(Weapon weapon)
     {
         //Create the Projectile
-        Default(weapon);
+        DefaultSpawn(weapon);
     }
 
     /// <summary> spawns the bullet in a fan style shot -> \ | / </summary>
     private void FanShotBehaviour(Weapon weapon)
     {
         //Create the Projectile
-        AddedAngle(weapon, 30f);
-        AddedAngle(weapon, -30f);
-        WithOffset(weapon, 0, 1);
+        AddedAngleSpawn(weapon, 30f);
+        AddedAngleSpawn(weapon, -30f);
+        OffsetSpawn(weapon, 0, 1);
     }
 
     /// <summary> TripleOffsetBehaviour: 3 separated but same direction shots </summary>
     private void TripleOffsetBehaviour(Weapon weapon)
     {
         //Create the Projectile
-        WithOffset(weapon, 0, 1);
-        WithOffset(weapon, 2, -2);
-        WithOffset(weapon, -2, -2);
+        OffsetSpawn(weapon, 0, 1);
+        OffsetSpawn(weapon, 2, -2);
+        OffsetSpawn(weapon, -2, -2);
     }
     /// <summary> Shoots projectiles very fast (configured when creating the class) with offset that is constantly changing</summary>
     private void GatlingGunBehaviour(Weapon weapon)
@@ -128,11 +131,10 @@ public class ShootScript : MonoBehaviour
     #region INSTANTIATION FUNCTIONS
 
     // Overloaded Functions, Spawns the projectile
-    // NOTE: The bullets spawn where the anchor points is located, this could be fixed with an offset
-    // If necessary, but the entities use long capsule colliders, so its fine now
+    // NOTE: The bullets spawn where the anchor points is located, this could be changed with an offset if necessary
 
     /// <summary> Shoot Straight </summary>
-    private void Default(Weapon weapon)
+    private void DefaultSpawn(Weapon weapon)
     {
         //Create a quaternion with only the Z axis
         Quaternion zRotation = ComputeRotation();
@@ -144,7 +146,7 @@ public class ShootScript : MonoBehaviour
     }
 
     /// <summary> Add a float to the angle (In degrees) </summary>
-    private void AddedAngle(Weapon weapon, float addedAngle)
+    private void AddedAngleSpawn(Weapon weapon, float addedAngle)
     {
         //Create Rotation Offset
         Quaternion modifiedRotation = ComputeRotation(addedAngle);
@@ -159,7 +161,7 @@ public class ShootScript : MonoBehaviour
     /// Offset Spawning point <para />
     /// HACK: If the gameObject rotates on any non-z axis, bullets come out weird
     /// </summary>
-    private void WithOffset(Weapon weapon, float offsetX, float offsetY)
+    private void OffsetSpawn(Weapon weapon, float offsetX, float offsetY)
     {
         //Create a quaternion with only the Z axis
         Quaternion zRotation = ComputeRotation();
@@ -179,7 +181,7 @@ public class ShootScript : MonoBehaviour
     /// <summary> Add to angle and offset spawn point <para />
     /// HACK: If the gameObject rotates on any non-z axis, bullets come out weird
     /// </summary>
-    private void AngleAndOffset(Weapon weapon, float offsetX, float offsetY, float addedAngle)
+    private void AngleAndOffsetSpawn(Weapon weapon, float offsetX, float offsetY, float addedAngle)
     {
         //Position Offset -----------------------
         //Create Vector with offset on local space

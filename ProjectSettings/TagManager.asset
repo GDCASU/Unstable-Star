@@ -9,6 +9,7 @@ TagManager:
   - Hazard
   - Asteroid
   - Deletion Zones
+  - Screen Bounds
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Deletion Zones
+  - Collider Boxes
   - Projectiles Player
   - Projectiles Enemies
   - Player

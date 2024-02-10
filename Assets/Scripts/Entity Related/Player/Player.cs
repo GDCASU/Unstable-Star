@@ -119,11 +119,12 @@ public class Player : CombatEntity
         shootComponent.ShootWeapon(currWeapon);
     }
 
-    /// <summary> Switches to the next weapon in the arsenal, from left to right </summary>
+    /// <summary> Switches to the next weapon in the arsenal </summary>
     public void SwitchToNextWeapon()
     {
+        ++weaponIndex;
         //Check if we arent at the end of the list 
-        if (weaponIndex >= weaponArsenal.Count - 1)
+        if (weaponIndex > weaponArsenal.Count - 1)
         {
             //Return to start
             currWeapon = weaponArsenal[0];
@@ -132,7 +133,24 @@ public class Player : CombatEntity
         }
 
         //Else, switch to next in list
-        ++weaponIndex;
+        currWeapon = weaponArsenal[weaponIndex];
+    }
+
+    /// <summary> Switches to the previous weapon in the arsenal </summary>
+    public void SwitchToPreviousWeapon()
+    {
+        --weaponIndex;
+        //Check if we arent at the start of the list 
+        if (weaponIndex < 0)
+        {
+            //Return to end
+            int lastIndex = weaponArsenal.Count - 1;
+            currWeapon = weaponArsenal[lastIndex];
+            weaponIndex = lastIndex;
+            return;
+        }
+
+        //Else, switch to previous weapon in list
         currWeapon = weaponArsenal[weaponIndex];
     }
 
