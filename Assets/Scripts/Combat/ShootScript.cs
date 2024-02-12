@@ -41,13 +41,13 @@ public class ShootScript : MonoBehaviour
         }
     }
 
-    /// <summary> Makes the object shoot its current weapon </summary>
-    public void ShootWeapon(Weapon inputWeapon)
+    /// <summary> Makes the object shoot its current weapon, returns true if successful </summary>
+    public bool ShootWeapon(Weapon inputWeapon)
     {
         // Dont fire if weapon is on cooldown or its null
         if (onShootingCooldown || inputWeapon.color == BulletColors.NULL)
         {
-            return;
+            return false;
         }
         
         // Else fire with the programmed behaviour
@@ -72,6 +72,7 @@ public class ShootScript : MonoBehaviour
 
         //Start cooldown between shoots of current weapon
         StartCoroutine(ShootingCooldown(inputWeapon.shootCooldown));
+        return true;
     }
 
     private IEnumerator ShootingCooldown(float time)
