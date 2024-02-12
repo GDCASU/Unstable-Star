@@ -180,3 +180,6 @@ MonoBehaviour:
   currWeaponIndex: -1
   doDebugLog: 0
   loadDefaultArsenal: 1
+  PlayerPistol: {fileID: 11400000, guid: 21fda05e83f04d64595e8cec414a0f11, type: 2}
+  PlayerBirdshot: {fileID: 11400000, guid: c4b8e230f150827468bf43996f942989, type: 2}
+  PlayerBuckshot: {fileID: 11400000, guid: 5d3d97ba3b35c9542a6bcda837d73a18, type: 2}

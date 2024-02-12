@@ -33,6 +33,24 @@ public abstract class Weapon
     public int damage;
 }
 
+/// <summary>
+/// A general weapon class used for translating scripted weapons to objects.
+/// It will need its behaviour specified
+/// </summary>
+public class GeneralWeapon : Weapon
+{
+    /// <summary> Default Constructor </summary>
+    public GeneralWeapon(BulletColors color, BehaviourTypes behaviour, float speed, int damage, string name, float timeBetweenShots)
+    {
+        this.color = color;
+        this.speed = speed;
+        this.damage = damage;
+        this.sName = name;
+        this.shootCooldown = timeBetweenShots;
+        this.behaviour = behaviour;
+    }
+}
+
 /// <summary> The Pistol Weapon Class </summary>
 [Serializable]
 public class Pistol : Weapon

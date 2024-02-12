@@ -17,9 +17,15 @@ public class WeaponLoadoutEditor : Editor
     SerializedProperty currWeaponIndex;
     SerializedProperty loadDefaultArsenal;
 
+    //Serialized Weapons
+    SerializedProperty PlayerPistol;
+    SerializedProperty PlayerBirdshot;
+    SerializedProperty PlayerBuckshot;
+
     // Foldouts
     bool DebuggingGroup = true;
     bool WeaponArsenalGroup = true;
+    bool AllScriptedWeapons = false;
 
     private void OnEnable()
     {
@@ -28,6 +34,9 @@ public class WeaponLoadoutEditor : Editor
         weaponArsenalStrings = serializedObject.FindProperty("weaponArsenalStrings");
         currWeaponIndex = serializedObject.FindProperty("currWeaponIndex");
         loadDefaultArsenal = serializedObject.FindProperty("loadDefaultArsenal");
+        PlayerPistol = serializedObject.FindProperty("PlayerPistol");
+        PlayerBirdshot = serializedObject.FindProperty("PlayerBirdshot");
+        PlayerBuckshot = serializedObject.FindProperty("PlayerBuckshot");
     }
 
     public override void OnInspectorGUI()
@@ -76,6 +85,16 @@ public class WeaponLoadoutEditor : Editor
                 }
                 EditorGUI.indentLevel--;
             }
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
+
+        // All the scripted weapons
+        AllScriptedWeapons = EditorGUILayout.BeginFoldoutHeaderGroup(AllScriptedWeapons, "All Weapons");
+        if (AllScriptedWeapons) 
+        {
+            EditorGUILayout.PropertyField(PlayerPistol);
+            EditorGUILayout.PropertyField(PlayerBirdshot);
+            EditorGUILayout.PropertyField(PlayerBuckshot);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 

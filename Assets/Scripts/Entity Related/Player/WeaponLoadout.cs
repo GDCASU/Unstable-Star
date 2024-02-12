@@ -23,6 +23,11 @@ public class WeaponLoadout : MonoBehaviour
     [SerializeField] private bool doDebugLog;
     [SerializeField] private bool loadDefaultArsenal;
 
+    // All Scripted Weapons that have been designed so far
+    [SerializeField] private ScriptableWeapon PlayerPistol;
+    [SerializeField] private ScriptableWeapon PlayerBirdshot;
+    [SerializeField] private ScriptableWeapon PlayerBuckshot;
+
     private void Awake()
     {
         // Handle Singleton
@@ -34,12 +39,9 @@ public class WeaponLoadout : MonoBehaviour
         // Give the player the default arsenal if checked
         if (loadDefaultArsenal && weaponArsenal.Count <= 0)
         {
-            Pistol pistol = new Pistol(BulletColors.Red, 30f, 1, "Pistol", 0.2f);
-            Birdshot birdshot = new Birdshot(BulletColors.Green, 30f, 1, "Birdshot", 0.2f);
-            Buckshot buckshot = new Buckshot(BulletColors.Yellow, 30f, 1, "Buckshot", 0.2f);
-            AddWeaponToArsenal(pistol);
-            AddWeaponToArsenal(birdshot);
-            AddWeaponToArsenal(buckshot);
+            AddWeaponToArsenal( PlayerPistol.GetWeaponObject() );
+            AddWeaponToArsenal( PlayerBirdshot.GetWeaponObject() );
+            AddWeaponToArsenal( PlayerBuckshot.GetWeaponObject() );
         }
     }
 
