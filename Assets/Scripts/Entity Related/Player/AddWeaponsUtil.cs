@@ -20,16 +20,16 @@ public class AddWeaponsUtil : MonoBehaviour
     public int targetIndex = 0;
     public bool doRmTargetIndx = false;
     public bool doSwitchToIndex = false;
-    Pistol pistol;
-    Birdshot birdshot;
-    Buckshot buckshot;
+    Weapon pistol;
+    Weapon birdshot;
+    Weapon buckshot;
 
     private void Start()
     {
-        pistol = new Pistol(BulletColors.Red, 30f, 1, "Pistol", 0.2f);
-        birdshot = new Birdshot(BulletColors.Green ,30f, 1, "Birdshot", 0.2f);
-        buckshot = new Buckshot(BulletColors.Yellow, 30f, 1, "Buckshot", 0.2f);
         weaponLoadout = weaponArsenalObject.GetComponent<WeaponLoadout>();
+        pistol = weaponLoadout.PlayerPistol.GetWeaponObject();
+        birdshot = weaponLoadout.PlayerBirdshot.GetWeaponObject();
+        buckshot = weaponLoadout.PlayerBuckshot.GetWeaponObject();
     }
 
     // Update is called once per frame

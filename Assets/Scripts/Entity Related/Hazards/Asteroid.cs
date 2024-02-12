@@ -6,23 +6,33 @@ using UnityEngine;
 /// <summary> An Asteroid. Inherits from the "CombatEntity" class </summary>
 public class Asteroid : CombatEntity
 {
-    //Local Variables
-    [SerializeField] private float movementSpeed = 1.0f;
+    // Should hold the Stat data of this asteroid
+    [Header("Scriptable Data Object")]
+    [Tooltip("If ignoreDataHolder is true, the enemy will have the data set in the inspector")]
+    [SerializeField] private bool ignoreDataHolder;
+    [SerializeField] private ScriptableAsteroid statsData;
+
+    // Stats
+    [Header("Asteroid Stats")]
+    [SerializeField] private float movementSpeed;
+
+    // Debugging
+    [Header("Debugging")]
     [SerializeField] private bool disableMovement;
+
+    //Local Variables
+    
 
     private void Start()
     {
-        //Remember to look into the CombatEntity class to see what variables
-        //Should be kept track of or re-set here if needed
-
-        //Set stats if not set on the inspector
-        if (health <= 0)
+        //Set Stats from data holder if not ignored
+        if (!ignoreDataHolder)
         {
-            health = 20;
-        }
-        if (collisionDamage <= 0)
-        {
-            collisionDamage = 3;
+            health = statsData.health;
+            shield = statsData.shield;
+            collisionDamage = statsData.collisionDamage;
+            movementSpeed = statsData.movementSpeed;
+            isInvulnerable = statsData.isInvulnerable;
         }
     }
 

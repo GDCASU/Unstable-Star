@@ -24,9 +24,9 @@ public class WeaponLoadout : MonoBehaviour
     [SerializeField] private bool loadDefaultArsenal;
 
     // All Scripted Weapons that have been designed so far
-    [SerializeField] private ScriptableWeapon PlayerPistol;
-    [SerializeField] private ScriptableWeapon PlayerBirdshot;
-    [SerializeField] private ScriptableWeapon PlayerBuckshot;
+    public ScriptableWeapon PlayerPistol;
+    public ScriptableWeapon PlayerBirdshot;
+    public ScriptableWeapon PlayerBuckshot;
 
     private void Awake()
     {

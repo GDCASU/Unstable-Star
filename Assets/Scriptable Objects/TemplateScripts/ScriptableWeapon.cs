@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary> Scriptable Object that contains the prefab data to the bullets in game </summary>
-[CreateAssetMenu(fileName = "ScriptableWeaponData", menuName = "ScriptableObjects/New Scriptable Weapon")]
+/// <summary> Scriptable Object that contains the prefab data to the weapons in game </summary>
+[CreateAssetMenu(fileName = "ScriptableWeaponData", menuName = "ScriptableObjects/Weapon")]
 public class ScriptableWeapon : ScriptableObject
 {
     // Stats related to this weapon

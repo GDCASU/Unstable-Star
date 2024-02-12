@@ -436,10 +436,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9122488438110426822, guid: 1e149a05ddae9194bb2fe201b133be4a, type: 3}
-      propertyPath: disableMovement
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -942,6 +938,8 @@ MonoBehaviour:
   timeLeftInvulnerable: 0
   dmgInvulnTime: 1
   isInvulnerable: 0
+  ignoreDataHolder: 1
+  statsData: {fileID: 0}
   movementSpeed: 1
   disableMovement: 1
 --- !u!1660057539 &9223372036854775807

@@ -14,7 +14,7 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     [SerializeField] protected int shield = 0;
     [SerializeField] protected int collisionDamage = 0;
     [SerializeField] protected float timeLeftInvulnerable = 0f;
-    [SerializeField] protected float dmgInvulnTime = 1f; // in seconds
+    [SerializeField] protected float dmgInvulnTime = 0f; // in seconds
 
     // Public Variables
     public bool isInvulnerable = false;
