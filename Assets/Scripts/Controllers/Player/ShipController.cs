@@ -50,16 +50,6 @@ public class ShipController : MonoBehaviour
     {
         // Update position of player
         movePlayer();
-
-        //HACK TESTING: ADD NEW WEAPON TO PLAYER ARSENAL. TO BE DELETED
-        if (Input.GetKeyDown(KeyCode.L) && (TEMPLOCK < 1))
-        {
-            Pistol lethalPistol = new Pistol(60f, 7, "Lethal Pistol", 0.2f);
-            playerScript.AddNewWeapon(lethalPistol);
-            Debug.Log("ADDED TEST WEAPON TO ARSENAL");
-            TEMPLOCK++; //Stops this from being used more than once
-        }
-
     }
 
     void movePlayer()

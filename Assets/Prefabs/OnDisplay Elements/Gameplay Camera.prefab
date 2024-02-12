@@ -370,10 +370,7 @@ MonoBehaviour:
     Move
     Laser Right: [Right Click]
 
-    Move Laser Left: [Left Click]
-
-    (Once only)
-    Test Add Weapon: [L]'
+    Move Laser Left: [Left Click]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1535,6 +1532,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPointPrefab: {fileID: 6000427712012815678, guid: 4b1fc7f149338524b869485f6ccb7a49, type: 3}
+  acceleration: 0.01
+  startingSpeed: 5
+  hitpointStayTime: 1
   DisableHitpoints: 0
   TestAnimation: 0
 --- !u!1 &6045531188341585903
