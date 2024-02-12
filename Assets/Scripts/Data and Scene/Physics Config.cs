@@ -42,10 +42,7 @@ public class PhysicsConfig : MonoBehaviour
         HazardLayer = LayerMask.NameToLayer("Hazard");
 
         //Dont change anything on the physics matrix if disabled
-        if (disablePhysicsConfig)
-        {
-            return;
-        }
+        if (disablePhysicsConfig) { return; }
 
         //Populate List of all layers (Skipping Deletion Zone and some others that are unused right now)
         AllLayers.Add(DefaultLayer);
@@ -74,10 +71,10 @@ public class PhysicsConfig : MonoBehaviour
 //Default -----------------------------------------------
 
         // Make default projectile layer ignore all other layers
-        IgnoreAllLayers(targetLayer: DefaultProjectileLayer);
+        IgnoreAllListedLayers(targetLayer: DefaultProjectileLayer);
 
         //Make the Default Layer ignore all layers
-        IgnoreAllLayers(targetLayer: DefaultLayer);
+        IgnoreAllListedLayers(targetLayer: DefaultLayer);
 
 // Player -----------------------------------------------
 
@@ -130,7 +127,7 @@ public class PhysicsConfig : MonoBehaviour
         }
     }
 
-    private void IgnoreAllLayers(int targetLayer)
+    private void IgnoreAllListedLayers(int targetLayer)
     {
         for (int i = 0; i < AllLayers.Count; i++)
         {

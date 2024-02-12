@@ -83,14 +83,17 @@ public class PlayerEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        //On Inspector Update
+        serializedObject.Update();
+
         if (!EnableCustomEditor)
         {
             base.OnInspectorGUI();
             return;
         }
-        
-        //On Inspector Update
-        serializedObject.Update();
+
+        // Add the little shortcut box to the script
+        EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((Player)target), typeof(Player), false);
 
         //Stats Foldout
         StatsGroup = EditorGUILayout.BeginFoldoutHeaderGroup(StatsGroup, "Statistics");
