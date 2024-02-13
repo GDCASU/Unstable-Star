@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary> A custom editor layout for reading the weapon loadout of the player </summary>
-[CustomEditor(typeof(WeaponLoadout))]
+[CustomEditor(typeof(WeaponArsenal))]
 public class WeaponLoadoutEditor : Editor
 {
     //Change this bool if you want to enable/disable the custom editor for the loadout object
@@ -51,7 +51,7 @@ public class WeaponLoadoutEditor : Editor
         }
 
         // Add the little shortcut box to the script
-        EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((WeaponLoadout)target), typeof(WeaponLoadout), false);
+        EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((WeaponArsenal)target), typeof(WeaponArsenal), false);
 
         // Debug Settings
         DebuggingGroup = EditorGUILayout.BeginFoldoutHeaderGroup(DebuggingGroup, "Settings/Debugging");

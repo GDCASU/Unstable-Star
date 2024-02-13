@@ -9,7 +9,7 @@ public class AddWeaponsUtil : MonoBehaviour
 {
     // This will hold the DataObject for the weapon Loadout
     [SerializeField] private GameObject weaponArsenalObject;
-    private WeaponLoadout weaponLoadout;
+    private WeaponArsenal weaponLoadout;
 
     // Local Variables
     public bool doAddWeapon = false;
@@ -26,7 +26,7 @@ public class AddWeaponsUtil : MonoBehaviour
 
     private void Start()
     {
-        weaponLoadout = weaponArsenalObject.GetComponent<WeaponLoadout>();
+        weaponLoadout = weaponArsenalObject.GetComponent<WeaponArsenal>();
         pistol = weaponLoadout.PlayerPistol.GetWeaponObject();
         birdshot = weaponLoadout.PlayerBirdshot.GetWeaponObject();
         buckshot = weaponLoadout.PlayerBuckshot.GetWeaponObject();
@@ -45,7 +45,7 @@ public class AddWeaponsUtil : MonoBehaviour
         // Clear the stored weapons
         if (doClearLoadout)
         {
-            weaponLoadout.ClearWeaponLoadout();
+            weaponLoadout.ClearWeaponArsenal();
             doClearLoadout = false;
         }
         if (doRmPistol)

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary> Object that will hold the players weapon array data </summary>
-public class WeaponLoadout : MonoBehaviour
+public class WeaponArsenal : MonoBehaviour
 {
     // Singleton
-    public static WeaponLoadout instance;
+    public static WeaponArsenal instance;
 
     // List that will hold the weapons of the player, and a string array for the inspector
     [SerializeField] private List<string> weaponArsenalStrings = new();
@@ -31,10 +31,12 @@ public class WeaponLoadout : MonoBehaviour
     private void Awake()
     {
         // Handle Singleton
-        if (instance == null)
+        // Handle Singleton
+        if (instance != null)
         {
-            instance = this;
+            Destroy(gameObject);
         }
+        instance = this;
 
         // Give the player the default arsenal if checked
         if (loadDefaultArsenal && weaponArsenal.Count <= 0)
@@ -164,7 +166,7 @@ public class WeaponLoadout : MonoBehaviour
             }
         }
         // If debug is enabled, print to console that it wasnt found
-        if (doDebugLog) Debug.Log("Did not find weapon " + targetName + " In the Loadout");
+        if (doDebugLog) Debug.Log("Did not find weapon " + targetName + " In the Arsenal");
         return false;
     }
 
@@ -175,7 +177,7 @@ public class WeaponLoadout : MonoBehaviour
         if (index < 0 || index >= weaponArsenal.Count)
         {
             string msg = "<color=red>ERROR! INDEX PROVIDED IS OUTSIDE OF RANGE, OR ARRAY IS EMPTY!\n</color>";
-            msg += "<color=yellow>Error thrown on WeaponLoadout ScriptableObject at \"RemoveWeaponByIndex\"</color>";
+            msg += "<color=yellow>Error thrown on WeaponArsenal ScriptableObject at \"RemoveWeaponByIndex\"</color>";
             Debug.Log(msg);
             return false;
         }
@@ -220,12 +222,12 @@ public class WeaponLoadout : MonoBehaviour
             }
         }
         // If debug is enabled, print to console that it wasnt found
-        if (doDebugLog) Debug.Log("Did not find weapon " + targetName + " In the Loadout");
+        if (doDebugLog) Debug.Log("Did not find weapon " + targetName + " In the Arsenal");
         return false;
     }
 
     /// <summary> Clear the Weapon Array </summary>
-    public void ClearWeaponLoadout()
+    public void ClearWeaponArsenal()
     {
         weaponArsenal.Clear();
         weaponArsenalStrings.Clear();
@@ -292,12 +294,24 @@ public class WeaponLoadout : MonoBehaviour
         if (index < 0 || index >= weaponArsenal.Count)
         {
             string msg = "<color=red>ERROR! INDEX PROVIDED IS OUTSIDE OF RANGE, OR ARRAY IS EMPTY!\n</color>";
-            msg += "<color=yellow>Error thrown on WeaponLoadout ScriptableObject at \"GetWeapon\"</color>";
+            msg += "<color=yellow>Error thrown on WeaponArsenal ScriptableObject at \"GetWeapon\"</color>";
             Debug.Log(msg);
             return null;
         }
         // It was valid, return weapon
         return weaponArsenal[index];
+    }
+
+    // Get the current list size of the weapon arsenal
+    public int GetWeaponListCount()
+    {
+        return weaponArsenal.Count;
+    }
+
+    // Get the current max size of arsenal (set in inspector)
+    public int GetMaxArsenalCount()
+    {
+        return maxWeaponCount;
     }
 
     #endregion

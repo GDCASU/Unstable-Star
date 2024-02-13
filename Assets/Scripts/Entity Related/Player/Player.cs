@@ -102,7 +102,7 @@ public class Player : CombatEntity
     /// <summary> Shoots the current weapon the player has selected </summary>
     public void ShootWeapon()
     {
-        Weapon currWeapon = WeaponLoadout.instance.GetCurrentWeapon();
+        Weapon currWeapon = WeaponArsenal.instance.GetCurrentWeapon();
         bool didShoot = shootComponent.ShootWeapon(currWeapon);
         
         // HACK: Play a sound if we did shoot, will probably be annoying until properly managed
@@ -115,13 +115,13 @@ public class Player : CombatEntity
     /// <summary> Switches to the next weapon in the arsenal </summary>
     public void SwitchToNextWeapon()
     {
-        WeaponLoadout.instance.SwitchToNextWeapon();
+        WeaponArsenal.instance.SwitchToNextWeapon();
     }
 
     /// <summary> Switches to the previous weapon in the arsenal </summary>
     public void SwitchToPreviousWeapon()
     {
-        WeaponLoadout.instance.SwitchToPreviousWeapon();
+        WeaponArsenal.instance.SwitchToPreviousWeapon();
     }
 
     #endregion
@@ -465,7 +465,7 @@ public class Player : CombatEntity
     public int GetMaxHealth() { return MAX_HEALTH; }
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
-    public Weapon GetCurrWeapon() { return WeaponLoadout.instance.GetCurrentWeapon(); }
+    public Weapon GetCurrWeapon() { return WeaponArsenal.instance.GetCurrentWeapon(); }
 
     #endregion
 }
