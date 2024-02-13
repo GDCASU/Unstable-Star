@@ -18,8 +18,8 @@ public class WeaponLoadout : MonoBehaviour
     [SerializeField] private int currWeaponIndex = -1; // Will be -1 whenever there are no weapons
 
     // Debbuging
-    private Weapon currWeapon = new Pistol(BulletColors.NULL, 0, 0, "No Weapons", 0); // Starts as null
-    private readonly Pistol nullWeapon = new Pistol(BulletColors.NULL, 0, 0, "No Weapons", 0); // Helper null reference
+    private Weapon currWeapon = new Pistol(null, 0, 0, "No Weapons", 0); // Starts as null
+    private readonly Pistol nullWeapon = new Pistol(null, 0, 0, "No Weapons", 0); // Helper null reference
     [SerializeField] private bool doDebugLog;
     [SerializeField] private bool loadDefaultArsenal;
 

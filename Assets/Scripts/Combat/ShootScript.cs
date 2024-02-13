@@ -7,10 +7,6 @@ using UnityEngine;
 /// <summary> Component that allows any object to shoot projectiles </summary>
 public class ShootScript : MonoBehaviour
 {
-    // Assign the scriptable object with the laser prefabs here
-    [Header("Bullet Prefab Data Object")]
-    [SerializeField] private BulletPrefabs bulletPrefabs;
-
     //Local Variables
     private int projectileLayer;
     private bool onShootingCooldown;
@@ -45,7 +41,7 @@ public class ShootScript : MonoBehaviour
     public bool ShootWeapon(Weapon inputWeapon)
     {
         // Dont fire if weapon is on cooldown or its null
-        if (onShootingCooldown || inputWeapon.color == BulletColors.NULL)
+        if (onShootingCooldown || inputWeapon.prefab == null)
         {
             return false;
         }
@@ -128,14 +124,11 @@ public class ShootScript : MonoBehaviour
     /// <summary> Shoot Straight </summary>
     private void DefaultSpawn(Weapon weapon)
     {
-        // Get the bullet prefab associated with this weapon
-        GameObject prefab = bulletPrefabs.GetPrefab(weapon);
-
         //Create a quaternion with only the Z axis
         Quaternion zRotation = ComputeRotation();
 
         //Spawn projectile
-        GameObject firedProjectile = Instantiate(prefab, AnchorObject.transform.position, zRotation, ProjectileContainer.Instance.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, zRotation, ProjectileContainer.Instance.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -143,14 +136,11 @@ public class ShootScript : MonoBehaviour
     /// <summary> Add a float to the angle (In degrees) </summary>
     private void AddedAngleSpawn(Weapon weapon, float addedAngle)
     {
-        // Get the bullet prefab associated with this weapon
-        GameObject prefab = bulletPrefabs.GetPrefab(weapon);
-
         //Create Rotation Offset
         Quaternion modifiedRotation = ComputeRotation(addedAngle);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(prefab, AnchorObject.transform.position, modifiedRotation, ProjectileContainer.Instance.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, AnchorObject.transform.position, modifiedRotation, ProjectileContainer.Instance.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -161,9 +151,6 @@ public class ShootScript : MonoBehaviour
     /// </summary>
     private void OffsetSpawn(Weapon weapon, float offsetX, float offsetY)
     {
-        // Get the bullet prefab associated with this weapon
-        GameObject prefab = bulletPrefabs.GetPrefab(weapon);
-
         //Create a quaternion with only the Z axis
         Quaternion zRotation = ComputeRotation();
 
@@ -174,7 +161,7 @@ public class ShootScript : MonoBehaviour
         Vector3 overridenPosition = AnchorObject.transform.TransformPoint(point);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(prefab, overridenPosition, zRotation, ProjectileContainer.Instance.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, zRotation, ProjectileContainer.Instance.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
     }
@@ -184,9 +171,6 @@ public class ShootScript : MonoBehaviour
     /// </summary>
     private void AngleAndOffsetSpawn(Weapon weapon, float offsetX, float offsetY, float addedAngle)
     {
-        // Get the bullet prefab associated with this weapon
-        GameObject prefab = bulletPrefabs.GetPrefab(weapon);
-
         //Position Offset -----------------------
         //Create Vector with offset on local space
         Vector3 point = new Vector3(offsetX, offsetY, 0f);
@@ -198,7 +182,7 @@ public class ShootScript : MonoBehaviour
         Quaternion modifiedRotation = ComputeRotation(addedAngle);
 
         //Spawn Projectile
-        GameObject firedProjectile = Instantiate(prefab, overridenPosition, modifiedRotation, ProjectileContainer.Instance.transform);
+        GameObject firedProjectile = Instantiate(weapon.prefab, overridenPosition, modifiedRotation, ProjectileContainer.Instance.transform);
         ProjectileObject projectileData = firedProjectile.GetComponent<ProjectileObject>();
         projectileData.SetData(AnchorObject.tag, projectileLayer, weapon.speed, weapon.damage);
 

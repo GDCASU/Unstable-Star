@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ae3d18327cc6b47967bb606961e70b, type: 3}
   m_Name: Player Pistol
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
+  behaviour: 0
   weaponName: Pistol
+  damage: 1
   bulletSpeed: 30
   shotsCooldown: 0.2
-  damage: 1
-  color: 0
-  behaviour: 0

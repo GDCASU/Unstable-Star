@@ -12,21 +12,12 @@ public enum BehaviourTypes
     Gatling // (?)
 }
 
-// Enum used for color selection of the bullets
-public enum BulletColors
-{
-    Red,
-    Green,
-    Yellow,
-    NULL // Used for null weapon checks
-}
-
 /// <summary> Abstract class of all weapon types </summary>
 [Serializable]
 public abstract class Weapon
 {
-    public BulletColors color;
     public BehaviourTypes behaviour;
+    public GameObject prefab;
     public string sName;
     public float speed;
     public float shootCooldown;
@@ -40,9 +31,9 @@ public abstract class Weapon
 public class GeneralWeapon : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public GeneralWeapon(BulletColors color, BehaviourTypes behaviour, float speed, int damage, string name, float timeBetweenShots)
+    public GeneralWeapon(GameObject prefab, BehaviourTypes behaviour, float speed, int damage, string name, float timeBetweenShots)
     {
-        this.color = color;
+        this.prefab = prefab;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
@@ -56,9 +47,9 @@ public class GeneralWeapon : Weapon
 public class Pistol : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Pistol(BulletColors color, float speed, int damage, string name, float timeBetweenShots)
+    public Pistol(GameObject prefab, float speed, int damage, string name, float timeBetweenShots)
     {
-        this.color = color;
+        this.prefab= prefab;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
@@ -72,10 +63,10 @@ public class Pistol : Weapon
 public class Birdshot : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Birdshot(BulletColors color, float speed, int damage, string name, float timeBetweenShots)
+    public Birdshot(GameObject prefab, float speed, int damage, string name, float timeBetweenShots)
     {
-        this.color = color;
         this.speed = speed;
+        this.prefab = prefab;
         this.damage = damage;
         this.sName = name;
         this.shootCooldown = timeBetweenShots;
@@ -88,10 +79,10 @@ public class Birdshot : Weapon
 public class Buckshot : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public Buckshot(BulletColors color, float speed, int damage, string name, float timeBetweenShots)
+    public Buckshot(GameObject prefab, float speed, int damage, string name, float timeBetweenShots)
     {
-        this.color = color;
         this.speed = speed;
+        this.prefab = prefab;
         this.damage = damage;
         this.sName = name;
         this.shootCooldown = timeBetweenShots;
