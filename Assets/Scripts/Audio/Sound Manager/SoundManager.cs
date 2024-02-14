@@ -94,16 +94,22 @@ public class SoundManager : MonoBehaviour
     // Loop for inspector sliders, can be removed once UI can manage this
     private void LateUpdate()
     {
-        // Dont do anything if disabled
-        if (disableSliders)
-        {
-            return;
-        }
-        
         // Get the current volumes of their VCA's
         masterVCA.getVolume(out float currMasterVolume);
         musicVCA.getVolume(out float currMusicVolume);
         sfxVCA.getVolume(out float currSFXVolume);
+
+        // if disabled, lock the values of the sliders and update them
+        if (disableSliders)
+        {
+            masterSlider = currMasterVolume;
+            musicSlider = currMusicVolume;
+            sfxSlider = currSFXVolume;
+            previousMasterVolume = currMasterVolume;
+            previousMusicVolume = currMusicVolume;
+            previousSFXVolume = currSFXVolume;
+            return;
+        }
 
         // TWO VITAL CHECKS
 
