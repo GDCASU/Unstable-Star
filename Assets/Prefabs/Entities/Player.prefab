@@ -213,7 +213,6 @@ GameObject:
   - component: {fileID: 4267910268128741752}
   - component: {fileID: 4315850991115212518}
   - component: {fileID: 4656190976545876999}
-  - component: {fileID: 896335763678586378}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -297,7 +296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76eb38d7f491cea47bb1e6e06eb0d1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefabs: {fileID: 11400000, guid: 8460a73f96d34404e936da67ea9f9fff, type: 2}
 --- !u!136 &4315850991115212518
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -348,25 +346,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &896335763678586378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8720998934021106729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766d8a5befed24843b0956f87af7ab8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LaserShot:
-    Guid:
-      Data1: -1179885932
-      Data2: 1250484582
-      Data3: 989007238
-      Data4: 152891200
-    Path: event:/SFX/Player/RayGunEffect
 --- !u!1001 &8786176282684066639
 PrefabInstance:
   m_ObjectHideFlags: 0

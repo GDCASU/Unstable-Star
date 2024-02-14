@@ -10,6 +10,7 @@ public class ScriptableWeapon : ScriptableObject
     [Header("Weapon Stats")]
     public GameObject bulletPrefab;
     public BehaviourTypes behaviour;
+    public SoundTag sound;
     public string weaponName;
     public int damage;
     public float bulletSpeed;
@@ -20,6 +21,6 @@ public class ScriptableWeapon : ScriptableObject
     /// </summary>
     public Weapon GetWeaponObject()
     {
-        return new GeneralWeapon(bulletPrefab, behaviour, bulletSpeed, damage, weaponName, shotsCooldown);
+        return new GeneralWeapon(bulletPrefab, sound, behaviour, bulletSpeed, damage, weaponName, shotsCooldown);
     }
 }

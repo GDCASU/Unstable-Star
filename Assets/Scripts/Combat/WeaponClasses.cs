@@ -16,9 +16,10 @@ public enum BehaviourTypes
 [Serializable]
 public abstract class Weapon
 {
-    public BehaviourTypes behaviour;
     public GameObject prefab;
     public string sName;
+    public BehaviourTypes behaviour;
+    public SoundTag sound;
     public float speed;
     public float shootCooldown;
     public int damage;
@@ -28,12 +29,14 @@ public abstract class Weapon
 /// A general weapon class used for translating scripted weapons to objects.
 /// It will need its behaviour specified
 /// </summary>
+[Serializable]
 public class GeneralWeapon : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public GeneralWeapon(GameObject prefab, BehaviourTypes behaviour, float speed, int damage, string name, float timeBetweenShots)
+    public GeneralWeapon(GameObject prefab, SoundTag sound, BehaviourTypes behaviour, float speed, int damage, string name, float timeBetweenShots)
     {
         this.prefab = prefab;
+        this.sound = sound;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
@@ -41,6 +44,23 @@ public class GeneralWeapon : Weapon
         this.behaviour = behaviour;
     }
 }
+
+/* 
+
+###########################################################################
+
+ **** THE USAGE OF CUSTOM CLASSES FOR EACH WEAPON HAS BEEN DEPRECATED ****
+  
+ From now on, only one general class is used for weapons, [GeneralWeapon].
+   The parent Weapon Class and the other children classes are kept for 
+   debugging purposes, as to allow people to create a weapon within a 
+      script without having to go through the hassle of creating a 
+       scriptable object. However, weapons created from a script 
+             **SHOULDNT** be permanent implementations.
+
+###########################################################################
+
+*/
 
 /// <summary> The Pistol Weapon Class </summary>
 [Serializable]
@@ -55,6 +75,7 @@ public class Pistol : Weapon
         this.sName = name;
         this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.SingleShot;
+        this.sound = SoundTag.tempRayGunFire;
     }
 }
 
@@ -71,6 +92,7 @@ public class Birdshot : Weapon
         this.sName = name;
         this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.FanShot;
+        this.sound = SoundTag.tempRayGunFire;
     }
 }
 
@@ -87,5 +109,6 @@ public class Buckshot : Weapon
         this.sName = name;
         this.shootCooldown = timeBetweenShots;
         this.behaviour = BehaviourTypes.TripleOffset;
+        this.sound = SoundTag.tempRayGunFire;
     }
 }

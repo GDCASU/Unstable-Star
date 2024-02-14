@@ -29,7 +29,6 @@ public class Player : CombatEntity
 
     //Local variables
     private ShootScript shootComponent;
-    private PlayerSounds soundComponent;
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
     
@@ -47,7 +46,6 @@ public class Player : CombatEntity
     private void Start()
     {
         //Get Components
-        soundComponent = GetComponent<PlayerSounds>();
         shootComponent = GetComponent<ShootScript>();
         shootComponent.InitializeData(WeaponAnchor);
 
@@ -105,11 +103,9 @@ public class Player : CombatEntity
         Weapon currWeapon = WeaponArsenal.instance.GetCurrentWeapon();
         bool didShoot = shootComponent.ShootWeapon(currWeapon);
         
-        // HACK: Play a sound if we did shoot, will probably be annoying until properly managed
-        if (didShoot)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(soundComponent.LaserShot);
-        }
+        // Play a sound if we did shoot
+        // FIXME: Figure out if we should interrupt the sound or nah
+        if (didShoot) SoundManager.instance.PlaySound(currWeapon.sound);
     }
 
     /// <summary> Switches to the next weapon in the arsenal </summary>
