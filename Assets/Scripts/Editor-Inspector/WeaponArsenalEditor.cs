@@ -51,21 +51,25 @@ public class WeaponArsenalEditor : Editor
             return;
         }
 
-        // Add the little shortcut box to the script
-        EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((WeaponArsenal)target), typeof(WeaponArsenal), false);
-
         // Warning message foldout
-        warningMsgGroup = EditorGUILayout.BeginFoldoutHeaderGroup(warningMsgGroup, "Editor Warning");
+        warningMsgGroup = EditorGUILayout.BeginFoldoutHeaderGroup(warningMsgGroup, "Inspector Warning");
         if (warningMsgGroup)
         {
+
+            // Create A box so its easier to find this script and disable it
+            EditorGUILayout.ObjectField("Editor Script", MonoScript.FromScriptableObject(this), typeof(WeaponArsenalEditor), false);
+
             // Message in case Editor Script gets in the way of adding new entries
-            string warningMessage = "Note: Theres a custom editor script modifying how this insepctor window looks.\n";
+            string warningMessage = "\nNote: The Above script is modifying how this insepctor window looks.\n";
             warningMessage += "This means that if you ADD A VARIABLE for it to show on the inspector, ";
-            warningMessage += "IT WONT SHOW unless you program it in on the script \"PlayerEditor\" yourself.\n";
-            warningMessage += "Go to that script and change the boolean at the start to disable the custom editor.";
+            warningMessage += "IT WONT SHOW unless you PROGRAM IT into the editor script yourself.\n";
+            warningMessage += "Go to that script and change the \"EnableCustomEditor\" boolean to to disable the custom editor.\n";
             GUILayout.Label(warningMessage, EditorStyles.wordWrappedLabel);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
+
+        // Add the little shortcut box to the script
+        EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((WeaponArsenal)target), typeof(WeaponArsenal), false);
 
         // Debug Settings
         DebuggingGroup = EditorGUILayout.BeginFoldoutHeaderGroup(DebuggingGroup, "Settings/Debugging");
