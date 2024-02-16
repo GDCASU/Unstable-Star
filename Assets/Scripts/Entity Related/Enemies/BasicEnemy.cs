@@ -6,6 +6,12 @@ using static UnityEngine.Rendering.DebugUI;
 /// <summary> A basic Enemy. Inherits from the "CombatEntity" class </summary>
 public class BasicEnemy : CombatEntity
 {
+    // Should hold the Stat data of this enemy
+    [Header("Scriptable Data Object")]
+    [Tooltip("If ignoreDataHolder is true, the enemy will have the data set in the inspector")]
+    [SerializeField] private bool ignoreDataHolder;
+    [SerializeField] private ScriptableEnemy statsData;
+
     //Local Variables
     [Header("Enemy Parameters")]
     [SerializeField] private GameObject WeaponAnchor;
@@ -24,10 +30,16 @@ public class BasicEnemy : CombatEntity
         shootComponent = GetComponent<ShootScript>();
         shootComponent.InitializeData(WeaponAnchor);
 
-        //Set variables
-        health = 5;
-        shield = 5;
-        currWeapon = new Pistol(15f, 1, "Enemy Pistol", 0.2f);
+        //Set Stats from data holder if not ignored
+        if (!ignoreDataHolder)
+        {
+            health = statsData.health;
+            shield = statsData.shield;
+            collisionDamage = statsData.collisionDamage;
+            dmgInvulnTime = statsData.dmgInvulnTimeSecs;
+        }
+        // The weapon must be loaded from data however
+        currWeapon = statsData.weapon.GetWeaponObject();
     }
 
     //Testing

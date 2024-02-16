@@ -155,4 +155,7 @@ MonoBehaviour:
   timeLeftInvulnerable: 0
   dmgInvulnTime: 1
   isInvulnerable: 0
+  ignoreDataHolder: 0
+  statsData: {fileID: 11400000, guid: b93180171407c7749bbcda2196583c42, type: 2}
   movementSpeed: 1
+  disableMovement: 0
