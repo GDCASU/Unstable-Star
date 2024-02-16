@@ -49,6 +49,7 @@ public class PlayerEditor : Editor
     bool SettingsGroup = false;
     bool CollisionsGroup = false;
     bool DebuggingGroup = false;
+    bool warningMsgGroup = false;
 
     private void OnEnable()
     {
@@ -83,14 +84,30 @@ public class PlayerEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        //On Inspector Update
+        serializedObject.Update();
+
         if (!EnableCustomEditor)
         {
             base.OnInspectorGUI();
             return;
         }
-        
-        //On Inspector Update
-        serializedObject.Update();
+
+        // Add the little shortcut box to the script
+        EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((Player)target), typeof(Player), false);
+
+        // Warning message foldout
+        warningMsgGroup = EditorGUILayout.BeginFoldoutHeaderGroup(warningMsgGroup, "Editor Warning");
+        if (warningMsgGroup)
+        {
+            // Message in case Editor Script gets in the way of adding new entries
+            string warningMessage = "Note: Theres a custom editor script modifying how this insepctor window looks.\n";
+            warningMessage += "This means that if you ADD A VARIABLE for it to show on the inspector, ";
+            warningMessage += "IT WONT SHOW unless you program it in on the script \"PlayerEditor\" yourself.\n";
+            warningMessage += "Go to that script and change the boolean at the start to disable the custom editor.";
+            GUILayout.Label(warningMessage, EditorStyles.wordWrappedLabel);
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
         //Stats Foldout
         StatsGroup = EditorGUILayout.BeginFoldoutHeaderGroup(StatsGroup, "Statistics");

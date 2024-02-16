@@ -133,12 +133,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModelObject: {fileID: 2344877082647202605}
-  health: 0
-  shield: 0
+  health: 20
+  shield: 20
   collisionDamage: 2
   timeLeftInvulnerable: 0
   dmgInvulnTime: 1
   isInvulnerable: 0
+  ignoreDataHolder: 0
+  statsData: {fileID: 11400000, guid: e8f372be573bc164bb82d1ce5cebefe9, type: 2}
   WeaponAnchor: {fileID: 1805299238481945829}
   testShoot: 0
 --- !u!114 &8981244729871998477
@@ -153,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76eb38d7f491cea47bb1e6e06eb0d1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefabs: {fileID: 11400000, guid: 8460a73f96d34404e936da67ea9f9fff, type: 2}
 --- !u!136 &2852541011737675917
 CapsuleCollider:
   m_ObjectHideFlags: 0
