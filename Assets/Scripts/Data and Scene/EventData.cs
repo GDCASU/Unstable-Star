@@ -56,4 +56,13 @@ public class EventData : MonoBehaviour
 
     #endregion
 
+    #region GameEvents
+
+    /// <summary> An enemy died event </summary>
+    public static event System.Action OnEnemyKilled; //Action List
+    /// <summary> Triggers all functions subscribed to OnEnemyKilled </summary>
+    public static void RaiseOnEnemyKilled() { OnEnemyKilled?.Invoke(); } //Raiser
+
+    #endregion
+
 }

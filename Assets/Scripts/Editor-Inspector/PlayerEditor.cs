@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine;
+
 // This script's purpose is to improve the Player script appereance on the Editor/Inspector
 // Since it started to contain too many variables that made it difficult to work with
 // NOTE: Any new variable added to the player has to be added here for it to show on the
 // inspector and editor window
-
-using UnityEditor;
-using UnityEngine;
 
 [CustomEditor(typeof(Player))]
 public class PlayerEditor : Editor
@@ -49,6 +50,7 @@ public class PlayerEditor : Editor
     bool SettingsGroup = false;
     bool CollisionsGroup = false;
     bool DebuggingGroup = false;
+    bool warningMsgGroup = false;
 
     private void OnEnable()
     {
@@ -83,14 +85,33 @@ public class PlayerEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        //On Inspector Update
+        serializedObject.Update();
+
         if (!EnableCustomEditor)
         {
             base.OnInspectorGUI();
             return;
         }
-        
-        //On Inspector Update
-        serializedObject.Update();
+
+        // Warning message foldout
+        warningMsgGroup = EditorGUILayout.BeginFoldoutHeaderGroup(warningMsgGroup, "Inspector Warning");
+        if (warningMsgGroup)
+        {
+            // Create A box so its easier to find this script and disable it
+            EditorGUILayout.ObjectField("Editor Script", MonoScript.FromScriptableObject(this), typeof(PlayerEditor), false);
+
+            // Message in case Editor Script gets in the way of adding new entries
+            string warningMessage = "\nNote: The Above script is modifying how this insepctor window looks.\n";
+            warningMessage += "This means that if you ADD A VARIABLE for it to show on the inspector, ";
+            warningMessage += "IT WONT SHOW unless you PROGRAM IT into the editor script yourself.\n";
+            warningMessage += "Go to that script and change the \"EnableCustomEditor\" boolean to to disable the custom editor.\n";
+            GUILayout.Label(warningMessage, EditorStyles.wordWrappedLabel);
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
+
+        // Add the little shortcut box to the scripts
+        EditorGUILayout.ObjectField("Player Script", MonoScript.FromMonoBehaviour((Player)target), typeof(Player), false);
 
         //Stats Foldout
         StatsGroup = EditorGUILayout.BeginFoldoutHeaderGroup(StatsGroup, "Statistics");
