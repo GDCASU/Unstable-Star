@@ -8,15 +8,23 @@ public class HoverAndLerp : MonoBehaviour
     private bool isHovered = false;
     private Vector3 originalPosition;
     [SerializeField] private Material blackout;
+    public Material transDisk;
     private Material initMAT;
     public bool selected = false;
     public bool unlocked = true;
     private WeaponSelectUI WSUI;
+    private Material initDiskMat;
+    [SerializeField] private ScriptableWeapon weapon = null;
     void Start()
     {
         WSUI = GetComponentInParent<WeaponSelectUI>();
         originalPosition = transform.position;
         initMAT = transform.GetChild(0).gameObject.GetComponent<Renderer>().material;
+        if(!unlocked)
+        {
+            initDiskMat = gameObject.GetComponent<Material>();
+            gameObject.GetComponent<Renderer>().material = transDisk;
+        }
     }
 
     void Update()
@@ -57,11 +65,13 @@ public class HoverAndLerp : MonoBehaviour
         {
             transform.GetChild(0).gameObject.GetComponent<Renderer>().material = blackout;
             WSUI.Equipped++;
+            WSUI.setArseWeapon(weapon.GetWeaponObject());
         }
         else
         {
             transform.GetChild(0).gameObject.GetComponent<Renderer>().material = initMAT;
             WSUI.Equipped--;
+            WSUI.removeArseWeapon(weapon.GetWeaponObject());
         }
         selected = !selected;
 
@@ -83,5 +93,10 @@ public class HoverAndLerp : MonoBehaviour
             elapsedTime += Time.deltaTime * lerpSpeed;
             yield return null;
         }
+    }
+
+    public ScriptableWeapon GetScriptableWeapon()
+    {
+        return weapon;
     }
 }
