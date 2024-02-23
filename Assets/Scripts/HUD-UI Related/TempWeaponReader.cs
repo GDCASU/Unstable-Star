@@ -13,7 +13,7 @@ public class TempWeaponReader : MonoBehaviour
     private void Start()
     {
         GameObject PlayerObject = GameObject.Find("Player");
-        
+
         WeaponReadoutText = GetComponent<TMP_Text>();
         playerScript = PlayerObject.GetComponent<Player>();
     }
@@ -22,7 +22,12 @@ public class TempWeaponReader : MonoBehaviour
     //Has a good framework set up
     private void Update()
     {
-        //Set Text
+        // If the player has no weapons, then just write "No Weapons"
+        if (playerScript.GetCurrWeapon() == null)
+        {
+            WeaponReadoutText.text = "No Weapons";
+            return;
+        }
         WeaponReadoutText.text = playerScript.GetCurrWeapon().sName;
     }
 }
