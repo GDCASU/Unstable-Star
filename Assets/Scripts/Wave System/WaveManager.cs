@@ -9,6 +9,8 @@ public class WaveManager : MonoBehaviour
 
     public static WaveManager instance;
 
+    public Wave currentWave;
+
     [Header("Wave Pools")]
     [SerializeField] private List<WavePool> wavePools = new List<WavePool>();
 
@@ -29,6 +31,8 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        EventData.OnWaveComplete += SpawnWave;
+
         // CHECK IF WAVE SELECTED IS NULL TO PREVENT NULL REF EXC
         waveParent = GameObject.Find(WAVE_PARENT_NAME);
 
@@ -42,6 +46,7 @@ public class WaveManager : MonoBehaviour
         onWaveStart?.Invoke(waveCounter);
         // Spawn wave using RandomWaveSelect()
         GameObject wave = Instantiate(currentWavePool.RandomWaveSelect(), waveParent.transform);
+        currentWave = wave.GetComponent<Wave>();
 
         if (!wave)
         {

@@ -56,4 +56,19 @@ public class EventData : MonoBehaviour
 
     #endregion
 
+    #region ENEMY DEATH
+    // <Summary> Enemy Death Event </summary>
+    public static event System.Action<GameObject> OnEnemyDeath;
+
+    public static bool RaiseOnEnemyDeath(GameObject enemy)
+    { OnEnemyDeath?.Invoke(enemy); return true; }
+    #endregion
+
+    #region WAVES
+    // <Summary> Wave Complete Event </summary>
+    public static event System.Action OnWaveComplete;
+
+    public static void RaiseOnWaveComplete()
+    { OnWaveComplete?.Invoke();}
+    #endregion
 }

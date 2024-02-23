@@ -15,9 +15,10 @@ public class BasicEnemy : CombatEntity
     //Local Variables
     [Header("Enemy Parameters")]
     [SerializeField] private GameObject WeaponAnchor;
-    public bool testShoot;
+    [SerializeField] private float shootDelay = 1f;
 
     //Local variables
+    [HideInInspector] public bool canShoot = false;
     private ShootScript shootComponent;
     private Weapon currWeapon;
 
@@ -45,10 +46,10 @@ public class BasicEnemy : CombatEntity
     //Testing
     private void Update()
     {
-        if (testShoot)
+        if (canShoot)
         {
             shootComponent.ShootWeapon(currWeapon);
-            testShoot = false;
+            StartCoroutine(ShootDelayCo());
         }
     }
 
@@ -65,11 +66,23 @@ public class BasicEnemy : CombatEntity
         //TODO: It should also increase the kill counter here
 
 
-
+        EventData.RaiseOnEnemyDeath(gameObject);
         // -----------------------
 
         StopAllCoroutines();
-        Destroy(this.gameObject);
+        StartCoroutine(DestroyEnemyAfterCallCo());
     }
 
+    private IEnumerator ShootDelayCo()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(shootDelay);
+        canShoot = true;
+    }
+
+    private IEnumerator DestroyEnemyAfterCallCo()
+    {
+        yield return new WaitUntil(() => EventData.RaiseOnEnemyDeath(gameObject));
+        Destroy(this.gameObject);
+    }
 }

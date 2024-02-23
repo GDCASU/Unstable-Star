@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8412255195681629295}
+  - component: {fileID: 3114796476864968346}
   - component: {fileID: 4674963737278699074}
   - component: {fileID: 8981244729871998477}
   - component: {fileID: 2852541011737675917}
@@ -120,6 +121,22 @@ Transform:
   - {fileID: 6220606477133568811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3114796476864968346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936650888660271408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107fecf78081aa549993b92e4d6dce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 0.008
+  moveSpeed: 10
+  enterScreen: 0
+  exitScreen: 0
 --- !u!114 &4674963737278699074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +159,8 @@ MonoBehaviour:
   ignoreDataHolder: 0
   statsData: {fileID: 11400000, guid: e8f372be573bc164bb82d1ce5cebefe9, type: 2}
   WeaponAnchor: {fileID: 1805299238481945829}
-  testShoot: 0
+  shootDelay: 3
+  canShoot: 0
 --- !u!114 &8981244729871998477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76eb38d7f491cea47bb1e6e06eb0d1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefabs: {fileID: 11400000, guid: 8460a73f96d34404e936da67ea9f9fff, type: 2}
 --- !u!136 &2852541011737675917
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -232,13 +249,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805299238481945829}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: -3.3, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8412255195681629295}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!33 &6786880039769524380
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -313,11 +330,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2344877082647202605}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5000003, y: 0.49999973, z: -0.4999998, w: -0.50000024}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: -0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3410435366407674151}
   m_Father: {fileID: 8412255195681629295}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: -90, z: 90}
