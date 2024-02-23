@@ -310,14 +310,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3114796476864968346, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+    - {fileID: 4674963737278699074, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 5129906273779369210}
   m_SourcePrefab: {fileID: 100100000, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
 --- !u!4 &873921803204467472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8412255195681629295, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+  m_PrefabInstance: {fileID: 8691558844988473215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6346754882012525650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2344877082647202605, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+  m_PrefabInstance: {fileID: 8691558844988473215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7031008177840642970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1805299238481945829, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
   m_PrefabInstance: {fileID: 8691558844988473215}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8386047466978901583 stripped
@@ -325,3 +340,30 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
   m_PrefabInstance: {fileID: 8691558844988473215}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5129906273779369210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8386047466978901583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f034b8de3e1ced48a2103d5d9663c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModelObject: {fileID: 6346754882012525650}
+  health: 5
+  shield: 2
+  collisionDamage: 1
+  timeLeftInvulnerable: 0
+  dmgInvulnTime: 0
+  isInvulnerable: 0
+  moveSpeed: 5
+  enterScreen: 0
+  exitScreen: 0
+  ignoreDataHolder: 0
+  statsData: {fileID: 11400000, guid: e8f372be573bc164bb82d1ce5cebefe9, type: 2}
+  WeaponAnchor: {fileID: 7031008177840642970}
+  shootDelay: 1
+  canShoot: 0
