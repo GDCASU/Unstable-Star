@@ -16,4 +16,4 @@ MonoBehaviour:
   health: 15
   shield: 0
   collisionDamage: 3
-  movementSpeed: 0.5
+  movementSpeed: 7
