@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 8386047466978901583}
   - {fileID: 8801357112647768981}
   - {fileID: 6414413900781298247}
-  debug: 1
+  debug: 0
 --- !u!1001 &6195603369751733111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -360,10 +360,9 @@ MonoBehaviour:
   dmgInvulnTime: 0
   isInvulnerable: 0
   moveSpeed: 5
-  enterScreen: 0
-  exitScreen: 0
-  ignoreDataHolder: 0
-  statsData: {fileID: 11400000, guid: e8f372be573bc164bb82d1ce5cebefe9, type: 2}
+  enterSpeed: 20
+  arrivalPercentUpScreen: 0.8
   WeaponAnchor: {fileID: 7031008177840642970}
   shootDelay: 1
-  canShoot: 0
+  ignoreDataHolder: 0
+  statsData: {fileID: 11400000, guid: e8f372be573bc164bb82d1ce5cebefe9, type: 2}
