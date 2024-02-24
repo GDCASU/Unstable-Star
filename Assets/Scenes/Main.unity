@@ -654,14 +654,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gameplay Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 870557005013769567, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2978274450093127366, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4888234640289285784, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -719,8 +711,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1815162932}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 9084373584433533418, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
