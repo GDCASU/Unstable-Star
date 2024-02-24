@@ -22,12 +22,12 @@ public class Objective : MonoBehaviour
 		switch(objectiveData.type)
 		{
 			case ObjectiveType.KILLS:
-				EventData.OnEnemyKilled += OnEnemyKilled;
+				EventData.OnEnemyDeath += OnEnemyKilled;
 				break;
 		}
 	}
 
-	private void OnEnemyKilled()
+	private void OnEnemyKilled(GameObject nop)
 	{
 		if(slider.value < slider.maxValue)
 		{

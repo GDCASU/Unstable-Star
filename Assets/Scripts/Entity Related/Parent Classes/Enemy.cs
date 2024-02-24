@@ -122,7 +122,8 @@ public class Enemy : CombatEntity
         EventData.RaiseOnEnemyDeath(gameObject);
 
         StopAllCoroutines();
-        StartCoroutine(DestroyEnemyAfterCallCo());
+        //StartCoroutine(DestroyEnemyAfterCallCo());
+        Destroy(gameObject);
     }
 
     /// <summary>
