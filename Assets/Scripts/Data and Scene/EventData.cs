@@ -53,9 +53,8 @@ public class EventData : MonoBehaviour
     public static event System.Action<int> OnShieldBroken;
     /// <summary> Triggers all functions subscribed to OnShieldBroken </summary>
     public static void RaiseOnShieldBroken(int currShield) { OnShieldBroken?.Invoke(currShield); }
-
     #endregion
-
+    
     #region ENEMY DEATH
     // <Summary> Enemy Death Event </summary>
     public static event System.Action<GameObject> OnEnemyDeath;
