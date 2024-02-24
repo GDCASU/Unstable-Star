@@ -60,7 +60,7 @@ public class EventData : MonoBehaviour
     public static event System.Action<GameObject> OnEnemyDeath;
 
     public static bool RaiseOnEnemyDeath(GameObject enemy)
-    { OnEnemyDeath?.Invoke(enemy); Debug.Log("here");  return true; }
+    { OnEnemyDeath?.Invoke(enemy); return true; }
     #endregion
 
     #region WAVES
