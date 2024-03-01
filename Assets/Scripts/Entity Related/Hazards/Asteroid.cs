@@ -64,7 +64,7 @@ public class Asteroid : CombatEntity
 
     private void MoveDown()
     {
-        transform.Translate(Vector3.down * movementSpeed * Time.deltaTime);
+        transform.Translate(movementSpeed * Time.deltaTime * Vector3.down);
     }
 
 }

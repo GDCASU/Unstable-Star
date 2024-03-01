@@ -16,6 +16,7 @@ public class ShipController : MonoBehaviour
     private readonly float playerModelHeight = 2; // Offset used for upper screen boundary
 
     // Local Variables
+    private Animator animComponent;
     private GameObject currentCopyPlayer;
     private Coroutine checkIfOffScreen;
     private Vector3 viewPos;
@@ -44,6 +45,7 @@ public class ShipController : MonoBehaviour
     {
         // Get a reference to the player stats script
         playerScript = GetComponent<Player>();
+        animComponent = GetComponent<Animator>();
     }
 
     void Update()
@@ -58,6 +60,14 @@ public class ShipController : MonoBehaviour
         movementVector = PlayerInput.instance.movementInput;
         translationVector = speed * Time.deltaTime * movementVector;
         transform.Translate(translationVector);
+
+        // Handle Movement animation
+        animComponent.SetFloat("moveDirection", movementVector.x);
+        if (movementVector.x != 0)
+            animComponent.SetBool("isMoving", true);
+        else
+            animComponent.SetBool("isMoving", false);
+
 
         // Copy Movement over to copy player if they exist
         if (currentCopyPlayer != null) { currentCopyPlayer.transform.Translate(translationVector); }
