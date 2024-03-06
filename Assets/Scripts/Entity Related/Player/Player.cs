@@ -28,6 +28,7 @@ public class Player : CombatEntity
     [SerializeField] private float shieldFloat;
 
     //Local variables
+    private Animator animComponent;
     private ShootScript shootComponent;
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
@@ -46,6 +47,7 @@ public class Player : CombatEntity
     private void Start()
     {
         //Get Components
+        animComponent = GetComponent<Animator>();
         shootComponent = GetComponent<ShootScript>();
         shootComponent.InitializeData(WeaponAnchor);
 

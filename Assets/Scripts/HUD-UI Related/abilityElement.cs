@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class abilityElement : MonoBehaviour
+public class AbilityElement : MonoBehaviour
 {
     public Sprite fullSprite;
     public Sprite fillingSprite;
