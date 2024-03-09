@@ -9,7 +9,7 @@ public class ScriptableWeapon : ScriptableObject
     // Stats related to this weapon
     [Header("Weapon Stats")]
     public GameObject bulletPrefab;
-    public BehaviourTypes behaviour;
+    public WeaponTypes behaviour;
     public SoundTag sound;
     public string weaponName;
     public int damage;

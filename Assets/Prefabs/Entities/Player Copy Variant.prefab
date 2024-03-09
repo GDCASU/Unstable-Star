@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8720998934021106729, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
       propertyPath: m_Name
-      value: Copy Player Variant
+      value: Player Copy Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3367169279472031147, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
@@ -63,6 +63,7 @@ PrefabInstance:
     - {fileID: 4267910268128741752, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
     - {fileID: 4315850991115212518, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
     - {fileID: 4656190976545876999, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
+    - {fileID: 8063448138892404998, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2771126060896347954, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
     m_AddedGameObjects: []

@@ -16,7 +16,6 @@ public class Player : CombatEntity
     [SerializeField] private bool isShieldBroken;
 
     //Settings
-    [SerializeField] private GameObject WeaponAnchor;
     [SerializeField] private bool IsDebugLogging;
 
     //Testing
@@ -28,11 +27,11 @@ public class Player : CombatEntity
     [SerializeField] private float shieldFloat;
 
     //Local variables
-    private Animator animComponent;
-    private ShootScript shootComponent;
+    private ShootComponent shootComponent;
+    private AbilityComponent abilityComponent;
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
-    
+
     protected override void Awake()
     {
         base.Awake();
@@ -47,9 +46,8 @@ public class Player : CombatEntity
     private void Start()
     {
         //Get Components
-        animComponent = GetComponent<Animator>();
-        shootComponent = GetComponent<ShootScript>();
-        shootComponent.InitializeData(WeaponAnchor);
+        shootComponent = GetComponent<ShootComponent>();
+        abilityComponent = GetComponent<AbilityComponent>();
 
         //Set Stats
         health = MAX_HEALTH;
@@ -95,19 +93,28 @@ public class Player : CombatEntity
             TriggerDeath();
             DeathTest = false;
         }
+
+        // HACK: TESTING ABILITY SYSTEM HERE!
+        // Ability is triggered with left shift for now
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            UseAbility(AbilityInventory.instance.GetCurrentAbility());
+        }
     }
 
-    #region WEAPON UTILITIES
+    #region WEAPON SYSTEMS
 
     /// <summary> Shoots the current weapon the player has selected </summary>
     public void ShootWeapon()
     {
-        Weapon currWeapon = WeaponArsenal.instance.GetCurrentWeapon();
-        bool didShoot = shootComponent.ShootWeapon(currWeapon);
+        // Dont shoot if disabled
+        if (isShootingLocked) return;
         
-        // Play a sound if we did shoot
-        // FIXME: Figure out if we should interrupt the sound or nah
-        if (didShoot) SoundManager.instance.PlaySound(currWeapon.sound);
+        // Shoot weapon
+        Weapon currWeapon = WeaponArsenal.instance.GetCurrentWeapon();
+        // NOTE: Dont know if we will play a sound if shooting is disabled, so the bool is there
+        // Just in case
+        bool didShoot = shootComponent.ShootWeapon(currWeapon);
     }
 
     /// <summary> Switches to the next weapon in the arsenal </summary>
@@ -120,6 +127,20 @@ public class Player : CombatEntity
     public void SwitchToPreviousWeapon()
     {
         WeaponArsenal.instance.SwitchToPreviousWeapon();
+    }
+
+    #endregion
+
+    #region ABILITY SYSTEMS
+
+    /// <summary> Function that will attempt to trigger the player's selected ability </summary>
+    private void UseAbility(Ability ability)
+    {
+        // Dont use ability if locked
+        if (isAbilityLocked) return;
+
+        // Try using ability
+        abilityComponent.TriggerAbility(ability);
     }
 
     #endregion
@@ -296,20 +317,12 @@ public class Player : CombatEntity
     public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false)
     {
         // If input is less, return
-        if (seconds < timeLeftInvulnerable)
-        {
-            return;
-        }
+        if (seconds < timeLeftInvulnerable) return;
 
-        // Else, new invulnerability gives more time
-        if (invulnRoutine != null)
-        {
-            // Stop current invulnerabily routine if still running
-            StopCoroutine(invulnRoutine);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, false);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, false);
-        }
+        // Else, new invulnerability gives more time, Stop current invulnerabily routine if still running
+        if (invulnRoutine != null) StopCoroutine(invulnRoutine);
 
+        // Start invuln routine
         invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions));
     }
 
@@ -393,14 +406,8 @@ public class Player : CombatEntity
     protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
     {
         isInvulnerable = true;
+        isIgnoringCollisions = ignoreCollisions;
         timeLeftInvulnerable = seconds;
-
-        //Disable Entity collisions if bool "ignoreCollisions" was true
-        if (ignoreCollisions)
-        {
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, true);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, true);
-        }
 
         // Runs the iframes timer
         while (timeLeftInvulnerable > 0f)
@@ -410,16 +417,10 @@ public class Player : CombatEntity
             yield return null;
         }
 
-        //Re-enable collisions upon end
-        if (ignoreCollisions)
-        {
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, false);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, false);
-        }
-
         // Player can be hurt again
         timeLeftInvulnerable = 0f;
         isInvulnerable = false;
+        isIgnoringCollisions = false;
         invulnRoutine = null;
     }
 
@@ -464,6 +465,7 @@ public class Player : CombatEntity
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
     public Weapon GetCurrWeapon() { return WeaponArsenal.instance.GetCurrentWeapon(); }
+    public Ability GetCurrAbility() { return AbilityInventory.instance.GetCurrentAbility(); }
 
     #endregion
 }
