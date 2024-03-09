@@ -28,12 +28,10 @@ public class Player : CombatEntity
     [SerializeField] private float shieldFloat;
 
     //Local variables
+    private Animator animComponent;
     private ShootScript shootComponent;
-    private List<Weapon> weaponArsenal = new List<Weapon>();
-    private Weapon currWeapon;
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
-    private int weaponIndex;
     
     protected override void Awake()
     {
@@ -49,6 +47,7 @@ public class Player : CombatEntity
     private void Start()
     {
         //Get Components
+        animComponent = GetComponent<Animator>();
         shootComponent = GetComponent<ShootScript>();
         shootComponent.InitializeData(WeaponAnchor);
 
@@ -63,17 +62,6 @@ public class Player : CombatEntity
         ShieldRoutine = null;
         isShieldRestoredRoutine = null;
         isShieldBroken = false;
-
-        //Add Weapons
-        Pistol pistol = new Pistol(30f, 1, "Pistol", 0.2f);
-        Birdshot birdshot = new Birdshot(30f, 1, "Birdshot", 0.2f);
-        Buckshot buckshot = new Buckshot(30f, 1, "Buckshot", 0.2f);
-
-        weaponArsenal.Add(pistol);
-        weaponArsenal.Add(birdshot);
-        weaponArsenal.Add(buckshot);
-        currWeapon = weaponArsenal[0];
-        weaponIndex = 0;
     }
 
     //Update's only purpose is debugging, everything else runs on
@@ -114,30 +102,24 @@ public class Player : CombatEntity
     /// <summary> Shoots the current weapon the player has selected </summary>
     public void ShootWeapon()
     {
-        shootComponent.ShootWeapon(currWeapon);
+        Weapon currWeapon = WeaponArsenal.instance.GetCurrentWeapon();
+        bool didShoot = shootComponent.ShootWeapon(currWeapon);
+        
+        // Play a sound if we did shoot
+        // FIXME: Figure out if we should interrupt the sound or nah
+        if (didShoot) SoundManager.instance.PlaySound(currWeapon.sound);
     }
 
-    /// <summary> Switches to the next weapon in the arsenal, from left to right </summary>
+    /// <summary> Switches to the next weapon in the arsenal </summary>
     public void SwitchToNextWeapon()
     {
-        //Check if we arent at the end of the list 
-        if (weaponIndex >= weaponArsenal.Count - 1)
-        {
-            //Return to start
-            currWeapon = weaponArsenal[0];
-            weaponIndex = 0;
-            return;
-        }
-
-        //Else, switch to next in list
-        ++weaponIndex;
-        currWeapon = weaponArsenal[weaponIndex];
+        WeaponArsenal.instance.SwitchToNextWeapon();
     }
 
-    /// <summary> Adds a new weapon to the player's arsenal </summary>
-    public void AddNewWeapon(Weapon newWeapon)
+    /// <summary> Switches to the previous weapon in the arsenal </summary>
+    public void SwitchToPreviousWeapon()
     {
-        weaponArsenal.Add(newWeapon);
+        WeaponArsenal.instance.SwitchToPreviousWeapon();
     }
 
     #endregion
@@ -481,7 +463,7 @@ public class Player : CombatEntity
     public int GetMaxHealth() { return MAX_HEALTH; }
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
-    public Weapon GetCurrWeapon() { return currWeapon; }
+    public Weapon GetCurrWeapon() { return WeaponArsenal.instance.GetCurrentWeapon(); }
 
     #endregion
 }

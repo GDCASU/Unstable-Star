@@ -51,4 +51,15 @@ public class ProjectileObject : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    // Disable the projectile's collision detection once out of the playing space
+    private void OnTriggerEnter(Collider other)
+    {
+        // Technically this check is not necessary, but im doing it just in case some other object
+        // In the future decides to also use trigger colliders
+        if (other.gameObject.CompareTag("Screen Bounds"))
+        {
+            this.gameObject.layer = PhysicsConfig.Get.DefaultLayer;
+        }
+    }
+
 }
