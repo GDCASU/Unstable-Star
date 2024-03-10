@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Player Birdshot
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 749766531753731313, guid: ef24889faf58bcf4e88dbdb156434f06, type: 3}
-  behaviour: 1
+  behaviour: 2
+  sound: 0
   weaponName: Birdshot
   damage: 1
   bulletSpeed: 30

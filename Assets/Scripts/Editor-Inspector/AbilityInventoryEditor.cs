@@ -20,6 +20,7 @@ public class AbilityInventoryEditor : Editor
 
     //Serialized Abilities
     SerializedProperty phaseShiftAbility;
+    SerializedProperty proxiBombAbility;
 
     // Foldouts
     private bool DebuggingGroup = true;
@@ -35,6 +36,7 @@ public class AbilityInventoryEditor : Editor
         currAbilityIndex = serializedObject.FindProperty("currAbilityIndex");
         loadDefaultAbilities = serializedObject.FindProperty("loadDefaultAbilities");
         phaseShiftAbility = serializedObject.FindProperty("phaseShiftAbility");
+        proxiBombAbility = serializedObject.FindProperty("proxiBombAbility");
     }
 
     public override void OnInspectorGUI()
@@ -108,6 +110,7 @@ public class AbilityInventoryEditor : Editor
         if (AllScriptedAbilities)
         {
             EditorGUILayout.PropertyField(phaseShiftAbility);
+            EditorGUILayout.PropertyField(proxiBombAbility); 
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 

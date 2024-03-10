@@ -142,6 +142,7 @@ MonoBehaviour:
   doDebugLog: 0
   loadDefaultAbilities: 1
   phaseShiftAbility: {fileID: 11400000, guid: bf6c6b4ef7f97644da0a4ffdb5ee9b1f, type: 2}
+  proxiBombAbility: {fileID: 11400000, guid: a104534e6b19a4848bfcbf7e69406589, type: 2}
 --- !u!1 &8119377807636196420
 GameObject:
   m_ObjectHideFlags: 0

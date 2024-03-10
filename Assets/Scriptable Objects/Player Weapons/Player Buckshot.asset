@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Player Buckshot
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2012244134953392331, guid: 16d6fcc442bb2254a9c669c693ccdb3c, type: 3}
-  behaviour: 2
+  behaviour: 3
+  sound: 0
   weaponName: Buckshot
   damage: 1
   bulletSpeed: 30

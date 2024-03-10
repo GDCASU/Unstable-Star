@@ -27,6 +27,7 @@ public class AbilityInventory : MonoBehaviour
     // All Scripted Abilities that have been designed so far
     // placed here for debugging since we have a handler now in the menu
     public ScriptablePhaseShift phaseShiftAbility;
+    public ScriptableProxiBomb proxiBombAbility;
 
     private void Awake()
     {
@@ -40,7 +41,8 @@ public class AbilityInventory : MonoBehaviour
         // Give the player the default abilities if checked
         if (loadDefaultAbilities && abilityInventory.Count <= 0)
         {
-            AddAbilityToInventory(phaseShiftAbility.GetAbilityObject());
+            //AddAbilityToInventory(phaseShiftAbility.GetAbilityObject());
+            AddAbilityToInventory(proxiBombAbility.GetAbilityObject());
         }
     }
 

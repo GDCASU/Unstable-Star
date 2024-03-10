@@ -40,14 +40,14 @@ public class AbilityComponent : MonoBehaviour
         // If the passed ability is on cooldown, dont use it either
         if (inputAbility.isOnCooldown) return;
         
-        // Else, determine what ability type it is
+        // Else, determine what ability type it is and call its function
         switch(inputAbility.behaviour)
         {
             case AbilityTypes.PhaseShift:
                 PerformPhaseShift(inputAbility);
                 break;
             case AbilityTypes.ProxiBomb:
-                //
+                PerformProximityBomb(inputAbility);
                 break;
             default:
                 // Ability not recognized or not implemented
@@ -55,6 +55,8 @@ public class AbilityComponent : MonoBehaviour
                 break;
         }
     }
+
+    #region PHASE SHIFT
 
     // Function that triggers the effects of a phase ability
     private void PerformPhaseShift(Ability inputAbility)
@@ -93,6 +95,28 @@ public class AbilityComponent : MonoBehaviour
         meshRenderer.material = defaulMaterial;
     }
 
+    #endregion
+
+    #region PROXIMITY BOMB
+
+    // Proximity bomb
+    private void PerformProximityBomb(Ability inputAbility)
+    {
+        // Variables
+        GameObject bomb;
+        ProximityBomb bombScript;
+        // Create the proxibomb and set its data
+        bomb = Instantiate(inputAbility.bombPrefab);
+        // Set the bomb at the position of its creator
+        bomb.transform.position = this.transform.position;
+        // Set its data
+        bombScript = bomb.GetComponent<ProximityBomb>();
+        bombScript.StartBomb(inputAbility, this.gameObject);
+        // Start its cooldown
+        StartCoroutine(CooldownRoutine(inputAbility));
+    }
+
+    #endregion
 
     // Cooldown routine
     private IEnumerator CooldownRoutine(Ability input)

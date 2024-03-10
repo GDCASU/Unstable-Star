@@ -15,14 +15,20 @@ public enum AbilityTypes
 // Ability class
 public abstract class Ability
 {
-    // Variables
+    // Common Variables
     public string sName;
     public AbilityTypes behaviour;
     public SoundTag sound;
     public float cooldownTime;
     public float durationTime;
-    public int damage;
     public bool isOnCooldown;
+
+    // Proximity Bomb Variables
+    public GameObject bombPrefab;
+    public float bombRadius;
+    public int damage;
+
+    // Phase Shift Variables
     public Material PhaseShiftMaterial;
 
     // This variable should be useful for implementing UI
@@ -78,5 +84,19 @@ public class PhaseShiftAbility : Ability
 // The proximity bomb ability class
 public class ProximityBombAbility : Ability
 {
+    // Constructor
+    public ProximityBombAbility(string name, GameObject bombPrefab, float bombRadius, float cooldownTime, int damage)
+    {
+        // FIXME: UNFINISHED!!!
+        this.sName = name;
+        this.damage = damage;
+        this.bombPrefab = bombPrefab;
+        this.cooldownTime = cooldownTime;
+        this.bombRadius = bombRadius;
 
+        // Static sets
+        this.behaviour = AbilityTypes.ProxiBomb;
+        this.isOnCooldown = false;
+        timeLeftInCooldown = 0f;
+    }
 }
