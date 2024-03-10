@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sName: Proximity Bomb
   bombPrefab: {fileID: 9005415546113641476, guid: e98e380ec8531ef409e123fb2d3b6b37, type: 3}
+  charges: 50
   cooldownTime: 5
   bombRadius: 15
   damage: 10

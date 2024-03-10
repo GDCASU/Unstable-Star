@@ -33,7 +33,8 @@ public class TempAbilityReadout : MonoBehaviour
         }
 
         // Build readout
-        string readout = playerScript.GetCurrAbility().sName + "\n";
+        string readout = currentAbility.sName + "\n";
+        readout += "Charges Left = " + currentAbility.charges + "\n";
         if (currentAbility.isOnCooldown)
         {
             readout += "On Cooldown\n";

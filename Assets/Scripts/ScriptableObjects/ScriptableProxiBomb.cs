@@ -10,6 +10,7 @@ public class ScriptableProxiBomb : ScriptableObject
     [Header("Proximity Bomb Settings")]
     public string sName;
     public GameObject bombPrefab;
+    public int charges;
     public float cooldownTime;
     public float bombRadius;
     public int damage;
@@ -19,6 +20,6 @@ public class ScriptableProxiBomb : ScriptableObject
     /// </summary>
     public Ability GetAbilityObject()
     {
-        return new ProximityBombAbility(sName, bombPrefab, bombRadius, cooldownTime, damage);
+        return new ProximityBombAbility(sName, bombPrefab, bombRadius, cooldownTime, charges, damage);
     }
 }

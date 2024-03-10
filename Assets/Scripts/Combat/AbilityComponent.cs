@@ -66,6 +66,9 @@ public class AbilityComponent : MonoBehaviour
 
         // Start the cooldown of phase shift
         StartCoroutine(CooldownRoutine(inputAbility));
+
+        // Decrease the charges
+        inputAbility.charges--;
     }
 
     private IEnumerator PhaseShiftRoutine(Ability inputAbility)
@@ -129,6 +132,8 @@ public class AbilityComponent : MonoBehaviour
         bombScript.StartBomb(inputAbility, this.gameObject);
         // Start its cooldown
         StartCoroutine(CooldownRoutine(inputAbility));
+        // Decrease the charges
+        inputAbility.charges--;
     }
 
     #endregion
