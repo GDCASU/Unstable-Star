@@ -12,7 +12,6 @@ public class Enemy : CombatEntity
 
     //Local Variables
     [Header("Combat")]
-    [SerializeField] protected GameObject WeaponAnchor;
     [SerializeField] protected float shootDelay = 1f;
 
     // Should hold the Stat data of this enemy
@@ -32,7 +31,7 @@ public class Enemy : CombatEntity
     private bool moveDown = true;
 
     // References
-    protected ShootScript shootComponent;
+    protected ShootComponent shootComponent;
     protected Weapon currWeapon;
 
     protected virtual void Start()
@@ -41,8 +40,7 @@ public class Enemy : CombatEntity
         //Should be kept track of or re-set here if needed
 
         //Initialize Component
-        shootComponent = GetComponent<ShootScript>();
-        shootComponent.InitializeData(WeaponAnchor);
+        shootComponent = GetComponent<ShootComponent>();
 
         //Set Stats from data holder if not ignored
         if (!ignoreDataHolder)
