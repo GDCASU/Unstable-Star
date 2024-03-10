@@ -42,6 +42,16 @@ public class ShipController : MonoBehaviour
             Camera.main.transform.position.z));
     }
 
+    // Remove Input Events if object is destroyed
+    private void OnDestroy()
+    {
+        PlayerInput.OnSwitchToNextWeapon -= DoSwitchToNextWeapon;
+        PlayerInput.OnSwitchToNextAbility -= DoSwitchToNextAbility;
+        PlayerInput.OnRotateAim -= RotateAim;
+        PlayerInput.OnShootWeapon -= ShootPlayerWeapon;
+        PlayerInput.OnUseAbility -= UsePlayerAbility;
+    }
+
     private void Start()
     {
         // Get a reference to the player stats script
