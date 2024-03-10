@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Player Phase Shift
   m_EditorClassIdentifier: 
   sName: Phase Shift
+  phaseShiftMaterial: {fileID: 2100000, guid: 3b5240d8aa10d7443ba5f2c5e4668f25, type: 2}
+  particleEmitterPrefab: {fileID: 7437556055979850441, guid: b312827b1f62d254aabec894de1217d4, type: 3}
   cooldownTime: 6
   durationTime: 4
-  phaseShiftMaterial: {fileID: 2100000, guid: 3b5240d8aa10d7443ba5f2c5e4668f25, type: 2}

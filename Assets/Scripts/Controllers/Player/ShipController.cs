@@ -31,9 +31,10 @@ public class ShipController : MonoBehaviour
     {
         // Input Events
         PlayerInput.OnSwitchToNextWeapon += DoSwitchToNextWeapon;
-        PlayerInput.OnSwitchToPreviousWeapon += DoSwitchToPreviousWeapon;
+        PlayerInput.OnSwitchToNextAbility += DoSwitchToNextAbility;
         PlayerInput.OnRotateAim += RotateAim;
         PlayerInput.OnShootWeapon += ShootPlayerWeapon;
+        PlayerInput.OnUseAbility += UsePlayerAbility;
 
         // Get the boundary limits of the play space
         // FIXME: Is this the best way to do this?
@@ -163,13 +164,18 @@ public class ShipController : MonoBehaviour
         playerScript.ShootWeapon();
     }
 
+    private void UsePlayerAbility()
+    {
+        playerScript.UseAbility();
+    }
+
     private void DoSwitchToNextWeapon()
     {
         playerScript.SwitchToNextWeapon();
     }
 
-    private void DoSwitchToPreviousWeapon()
+    private void DoSwitchToNextAbility()
     {
-        playerScript.SwitchToPreviousWeapon();
+        playerScript.SwitchToNextAbility();
     }
 }

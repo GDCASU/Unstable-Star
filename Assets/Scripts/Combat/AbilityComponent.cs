@@ -79,11 +79,18 @@ public class AbilityComponent : MonoBehaviour
         // NOTE: If phase shift locks shooting, I guess it also locks other abilities
         entityComponent.LockAbilities();
 
-        // Change the material of the model
+        // Change the material of the model and create the particles
         meshRenderer.material = inputAbility.PhaseShiftMaterial;
+
+        // Create the particles
+        GameObject particleEmitter = Instantiate(inputAbility.particleEmitter);
+        particleEmitter.transform.position = this.transform.position;
 
         // Wait until ability ends
         yield return new WaitForSeconds(inputAbility.durationTime);
+
+        // Destroy the particle object
+        Destroy(particleEmitter);
 
         // Re-enable shooting
         entityComponent.UnlockShooting();
@@ -93,6 +100,14 @@ public class AbilityComponent : MonoBehaviour
 
         // Reset the material to default
         meshRenderer.material = defaulMaterial;
+
+        // Create the particles again once phase shift ends
+        particleEmitter = Instantiate(inputAbility.particleEmitter);
+        particleEmitter.transform.position = this.transform.position;
+
+        // Destroy the object after waiting a bit
+        yield return new WaitForSeconds(2f);
+        Destroy(particleEmitter);
     }
 
     #endregion

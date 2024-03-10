@@ -41,7 +41,7 @@ public class AbilityInventory : MonoBehaviour
         // Give the player the default abilities if checked
         if (loadDefaultAbilities && abilityInventory.Count <= 0)
         {
-            //AddAbilityToInventory(phaseShiftAbility.GetAbilityObject());
+            AddAbilityToInventory(phaseShiftAbility.GetAbilityObject());
             AddAbilityToInventory(proxiBombAbility.GetAbilityObject());
         }
     }

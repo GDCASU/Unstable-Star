@@ -35,11 +35,14 @@ public class PlayerInput : MonoBehaviour
     /// <summary> Player's Weapon Shooting event </summary>
     public static event System.Action OnShootWeapon; // Action List
 
+    /// <summary> Player's Ability Use event </summary>
+    public static event System.Action OnUseAbility; // Action List
+
     /// <summary> Player's Switch to next Weapon event </summary>
     public static event System.Action OnSwitchToNextWeapon; // Action List
 
-    /// <summary> Player's Switch to previous Weapon event </summary>
-    public static event System.Action OnSwitchToPreviousWeapon; // Action List
+    /// <summary> Player's Switch to next ability event </summary>
+    public static event System.Action OnSwitchToNextAbility; // Action List
 
     /// <summary> Player's Rotate Aim Event </summary>
     public static event System.Action OnRotateAim; // Action List
@@ -80,15 +83,15 @@ public class PlayerInput : MonoBehaviour
 
             playerControls.ShipControls.Shoot.performed += i => HandleShootingInput(i);     // perfomed event fires when the button is pressed
             playerControls.ShipControls.Shoot.canceled += i => HandleShootingInput(i);      // canceled event fires when the button is released
+            playerControls.ShipControls.UseAbility.performed += i => { OnUseAbility?.Invoke(); };
 
-            
             playerControls.ShipControls.AngleLeft.performed += i => HandleShootAngleInput(i, false);   // perfomed event fires when the button is pressed 
             playerControls.ShipControls.AngleRight.performed += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is pressed
             playerControls.ShipControls.AngleLeft.canceled += i => HandleShootAngleInput(i, false);     // perfomed event fires when the button is released
             playerControls.ShipControls.AngleRight.canceled += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is released
             
             playerControls.ShipControls.SwitchNextWeapon.performed += i => { OnSwitchToNextWeapon?.Invoke(); };
-            playerControls.ShipControls.SwitchPreviousWeapon.performed += i => { OnSwitchToPreviousWeapon?.Invoke(); };
+            playerControls.ShipControls.SwitchNextAbility.performed += i => { OnSwitchToNextAbility?.Invoke(); };
         }
 
         playerControls.Enable();

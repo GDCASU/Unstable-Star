@@ -7,8 +7,7 @@ public enum AbilityTypes
 {
     NULL,
     ProxiBomb,
-    PhaseShift,
-    //EMPGrenade // NOTE: Just an idea, probably wont implement
+    PhaseShift
 }
 
 
@@ -30,6 +29,7 @@ public abstract class Ability
 
     // Phase Shift Variables
     public Material PhaseShiftMaterial;
+    public GameObject particleEmitter;
 
     // This variable should be useful for implementing UI
     public float timeLeftInCooldown;
@@ -40,7 +40,6 @@ public abstract class Ability
 /// </summary>
 public class GeneralAbility : Ability
 {
-    // Full constructor FIXME: UNFINISHED!!!
     public GeneralAbility(string name, AbilityTypes behaviour, float cooldownTime, float durationTime)
     {
         this.sName = name;
@@ -66,11 +65,11 @@ public class GeneralAbility : Ability
 public class PhaseShiftAbility : Ability
 {
     // Constructor
-    public PhaseShiftAbility(string name, Material phaseShiftMaterial, float cooldownTime, float durationTime)
+    public PhaseShiftAbility(string name, Material phaseShiftMaterial, GameObject particleEmitter, float cooldownTime, float durationTime)
     {
-        // FIXME: UNFINISHED!!!
         this.sName = name;
         this.cooldownTime = cooldownTime;
+        this.particleEmitter = particleEmitter;
         this.durationTime = durationTime;
         this.PhaseShiftMaterial = phaseShiftMaterial;
 
@@ -87,7 +86,6 @@ public class ProximityBombAbility : Ability
     // Constructor
     public ProximityBombAbility(string name, GameObject bombPrefab, float bombRadius, float cooldownTime, int damage)
     {
-        // FIXME: UNFINISHED!!!
         this.sName = name;
         this.damage = damage;
         this.bombPrefab = bombPrefab;

@@ -921,11 +921,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4659899378807976794}
+  - component: {fileID: 9122488438301959641}
   - component: {fileID: 4180832799485698303}
   - component: {fileID: 4137949719006556679}
   - component: {fileID: 4287030915558443564}
   - component: {fileID: 1371148226758420515}
-  - component: {fileID: 9122488438301959641}
   m_Layer: 11
   m_Name: Asteroid (High Health)
   m_TagString: Asteroid

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015c80975db629c4f927381eee85b77d, type: 3}
   m_Name: Player ProxiBomb
   m_EditorClassIdentifier: 
-  sName: 
-  bombPrefab: {fileID: 0}
-  cooldownTime: 0
-  bombRadius: 0
-  damage: 0
+  sName: Proximity Bomb
+  bombPrefab: {fileID: 9005415546113641476, guid: e98e380ec8531ef409e123fb2d3b6b37, type: 3}
+  cooldownTime: 5
+  bombRadius: 15
+  damage: 10

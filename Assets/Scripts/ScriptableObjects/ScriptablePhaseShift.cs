@@ -10,6 +10,7 @@ public class ScriptablePhaseShift : ScriptableObject
     [Header("Phase Shift Settings")]
     public string sName;
     public Material phaseShiftMaterial;
+    public GameObject particleEmitterPrefab;
     public float cooldownTime;
     public float durationTime;
     
@@ -19,6 +20,6 @@ public class ScriptablePhaseShift : ScriptableObject
     /// </summary>
     public Ability GetAbilityObject()
     {
-        return new PhaseShiftAbility(sName, phaseShiftMaterial, cooldownTime, durationTime);
+        return new PhaseShiftAbility(sName, phaseShiftMaterial, particleEmitterPrefab, cooldownTime, durationTime);
     }
 }

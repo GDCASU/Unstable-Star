@@ -93,13 +93,6 @@ public class Player : CombatEntity
             TriggerDeath();
             DeathTest = false;
         }
-
-        // HACK: TESTING ABILITY SYSTEM HERE!
-        // Ability is triggered with left shift for now
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            UseAbility(AbilityInventory.instance.GetCurrentAbility());
-        }
     }
 
     #region WEAPON SYSTEMS
@@ -134,13 +127,25 @@ public class Player : CombatEntity
     #region ABILITY SYSTEMS
 
     /// <summary> Function that will attempt to trigger the player's selected ability </summary>
-    private void UseAbility(Ability ability)
+    public void UseAbility()
     {
         // Dont use ability if locked
         if (isAbilityLocked) return;
 
         // Try using ability
-        abilityComponent.TriggerAbility(ability);
+        abilityComponent.TriggerAbility(AbilityInventory.instance.GetCurrentAbility());
+    }
+
+    /// <summary> Switches to the next ability in the inventory </summary>
+    public void SwitchToNextAbility()
+    {
+        AbilityInventory.instance.SwitchToNextAbility();
+    }
+
+    /// <summary> Switches to the previous ability in the inventory </summary>
+    public void SwitchToPreviousAbility()
+    {
+        AbilityInventory.instance.SwitchToPreviousAbility();
     }
 
     #endregion

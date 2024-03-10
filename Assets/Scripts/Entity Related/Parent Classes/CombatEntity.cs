@@ -57,13 +57,13 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     /// <summary> Blocks the player from using their abilities </summary>
     public void LockAbilities()
     {
-        isShootingLocked = true;
+        isAbilityLocked = true;
     }
 
     /// <summary> enables the player to use their abilities </summary>
     public void UnlockAbilities()
     {
-        isShootingLocked = false;
+        isAbilityLocked = false;
     }
 
     /// <summary> The TakeDamage function used by the combat system </summary>
