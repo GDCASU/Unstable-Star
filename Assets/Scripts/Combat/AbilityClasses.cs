@@ -10,8 +10,7 @@ public enum AbilityTypes
     PhaseShift
 }
 
-
-// Ability class
+// Ability Parent Class
 public abstract class Ability
 {
     // Common Variables
@@ -21,6 +20,7 @@ public abstract class Ability
     public float cooldownTime;
     public float durationTime;
     public bool isOnCooldown;
+    public int charges;
 
     // Proximity Bomb Variables
     public GameObject bombPrefab;
@@ -50,6 +50,7 @@ public class GeneralAbility : Ability
         // Static sets
         this.isOnCooldown = false;
         timeLeftInCooldown = 0f;
+        charges = 10;
     }
 
     // Shortcut constructor to make a null ability with a name
@@ -65,18 +66,20 @@ public class GeneralAbility : Ability
 public class PhaseShiftAbility : Ability
 {
     // Constructor
-    public PhaseShiftAbility(string name, Material phaseShiftMaterial, GameObject particleEmitter, float cooldownTime, float durationTime)
+    public PhaseShiftAbility(string name, Material phaseShiftMaterial, GameObject particleEmitter, int charges, float cooldownTime, float durationTime)
     {
         this.sName = name;
         this.cooldownTime = cooldownTime;
         this.particleEmitter = particleEmitter;
         this.durationTime = durationTime;
         this.PhaseShiftMaterial = phaseShiftMaterial;
+        this.charges = charges;
 
         // Static sets
         this.behaviour = AbilityTypes.PhaseShift;
         this.isOnCooldown = false;
         timeLeftInCooldown = 0f;
+
     }
 }
 
@@ -84,13 +87,14 @@ public class PhaseShiftAbility : Ability
 public class ProximityBombAbility : Ability
 {
     // Constructor
-    public ProximityBombAbility(string name, GameObject bombPrefab, float bombRadius, float cooldownTime, int damage)
+    public ProximityBombAbility(string name, GameObject bombPrefab, float bombRadius, float cooldownTime, int charges, int damage)
     {
         this.sName = name;
         this.damage = damage;
         this.bombPrefab = bombPrefab;
         this.cooldownTime = cooldownTime;
         this.bombRadius = bombRadius;
+        this.charges = charges;
 
         // Static sets
         this.behaviour = AbilityTypes.ProxiBomb;

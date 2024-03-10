@@ -132,6 +132,9 @@ public class Player : CombatEntity
         // Dont use ability if locked
         if (isAbilityLocked) return;
 
+        // Dont use ability if out of charges
+        if (AbilityInventory.instance.GetCurrentAbility().charges <= 0) return;
+
         // Try using ability
         abilityComponent.TriggerAbility(AbilityInventory.instance.GetCurrentAbility());
     }
