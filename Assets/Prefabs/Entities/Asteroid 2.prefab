@@ -110,7 +110,10 @@ MonoBehaviour:
   timeLeftInvulnerable: 0
   dmgInvulnTime: 1
   isInvulnerable: 0
+  ignoreDataHolder: 0
+  statsData: {fileID: 11400000, guid: b93180171407c7749bbcda2196583c42, type: 2}
   movementSpeed: 7
+  disableMovement: 0
 --- !u!54 &2350877984632369161
 Rigidbody:
   m_ObjectHideFlags: 0

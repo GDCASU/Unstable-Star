@@ -8,18 +8,19 @@ public class ScriptableWeapon : ScriptableObject
 {
     // Stats related to this weapon
     [Header("Weapon Stats")]
+    public GameObject bulletPrefab;
+    public BehaviourTypes behaviour;
+    public SoundTag sound;
     public string weaponName;
+    public int damage;
     public float bulletSpeed;
     public float shotsCooldown;
-    public int damage;
-    public BulletColors color;
-    public BehaviourTypes behaviour;
 
     /// <summary>
     /// Helper function to construct a weapon object from stored data
     /// </summary>
     public Weapon GetWeaponObject()
     {
-        return new GeneralWeapon(color, behaviour, bulletSpeed, damage, weaponName, shotsCooldown);
+        return new GeneralWeapon(bulletPrefab, sound, behaviour, bulletSpeed, damage, weaponName, shotsCooldown);
     }
 }

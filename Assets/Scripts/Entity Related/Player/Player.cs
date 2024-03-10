@@ -28,6 +28,7 @@ public class Player : CombatEntity
     [SerializeField] private float shieldFloat;
 
     //Local variables
+    private Animator animComponent;
     private ShootScript shootComponent;
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
@@ -46,6 +47,7 @@ public class Player : CombatEntity
     private void Start()
     {
         //Get Components
+        animComponent = GetComponent<Animator>();
         shootComponent = GetComponent<ShootScript>();
         shootComponent.InitializeData(WeaponAnchor);
 
@@ -100,20 +102,24 @@ public class Player : CombatEntity
     /// <summary> Shoots the current weapon the player has selected </summary>
     public void ShootWeapon()
     {
-        Weapon currWeapon = WeaponLoadout.instance.GetCurrentWeapon();
-        shootComponent.ShootWeapon(currWeapon);
+        Weapon currWeapon = WeaponArsenal.instance.GetCurrentWeapon();
+        bool didShoot = shootComponent.ShootWeapon(currWeapon);
+        
+        // Play a sound if we did shoot
+        // FIXME: Figure out if we should interrupt the sound or nah
+        if (didShoot) SoundManager.instance.PlaySound(currWeapon.sound);
     }
 
     /// <summary> Switches to the next weapon in the arsenal </summary>
     public void SwitchToNextWeapon()
     {
-        WeaponLoadout.instance.SwitchToNextWeapon();
+        WeaponArsenal.instance.SwitchToNextWeapon();
     }
 
     /// <summary> Switches to the previous weapon in the arsenal </summary>
     public void SwitchToPreviousWeapon()
     {
-        WeaponLoadout.instance.SwitchToPreviousWeapon();
+        WeaponArsenal.instance.SwitchToPreviousWeapon();
     }
 
     #endregion
@@ -457,7 +463,7 @@ public class Player : CombatEntity
     public int GetMaxHealth() { return MAX_HEALTH; }
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
-    public Weapon GetCurrWeapon() { return WeaponLoadout.instance.GetCurrentWeapon(); }
+    public Weapon GetCurrWeapon() { return WeaponArsenal.instance.GetCurrentWeapon(); }
 
     #endregion
 }

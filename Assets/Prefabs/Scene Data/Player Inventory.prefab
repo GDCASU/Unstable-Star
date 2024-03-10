@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 6651864103714575993}
   - component: {fileID: 2236945867347826101}
   m_Layer: 0
-  m_Name: Weapon Loadout
+  m_Name: Weapon Arsenal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
