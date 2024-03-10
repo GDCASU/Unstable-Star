@@ -5,23 +5,20 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary> Component that allows any object to shoot projectiles </summary>
-public class ShootScript : MonoBehaviour
+public class ShootComponent : MonoBehaviour
 {
+    // Settings
+    [Header("Settings")]
+    [SerializeField] private GameObject AnchorObject;
+
     //Local Variables
     private int projectileLayer;
-    private bool onShootingCooldown;
-    private GameObject AnchorObject;
 
-    // Any entity that fires needs to set the anchor point of their weapons.
-    // So within their respective entities script. do [shootComponent.InitializeData(WeaponAnchorObj);]
-    // NOTE: This also means all weapons fire from the same spot unless offseted, but this can be fixed if necessary
-    public void InitializeData(GameObject Anchor)
+    // Initial setup
+    private void Start()
     {
-        //Set anchor
-        AnchorObject = Anchor;
-
         //Sets the layer of the bullet depending on if its the player shooting or the enemy
-        switch (Anchor.tag)
+        switch (this.gameObject.tag)
         {
             case "Player":
                 //The player is shooting
@@ -40,8 +37,11 @@ public class ShootScript : MonoBehaviour
     /// <summary> Makes the object shoot its current weapon, returns true if successful </summary>
     public bool ShootWeapon(Weapon inputWeapon)
     {
-        // Dont fire if weapon is on cooldown or its null
-        if (onShootingCooldown || inputWeapon.prefab == null)
+        // Dont shoot the weapon if its a null type
+        if (inputWeapon.behaviour == WeaponTypes.NULL) return false;
+        
+        // Dont fire if weapon is on cooldown or its bullet prefab is null
+        if (inputWeapon.isOnCooldown || inputWeapon.prefab == null)
         {
             return false;
         }
@@ -49,33 +49,33 @@ public class ShootScript : MonoBehaviour
         // Else fire with the programmed behaviour
         switch (inputWeapon.behaviour)
         {
-            case BehaviourTypes.SingleShot:
+            case WeaponTypes.Pistol:
                 SingleShotBehaviour(inputWeapon);
                 break;
-            case BehaviourTypes.TripleOffset:
+            case WeaponTypes.Buckshot:
                 TripleOffsetBehaviour(inputWeapon);
                 break;
-            case BehaviourTypes.FanShot:
+            case WeaponTypes.Birdshot:
                 FanShotBehaviour(inputWeapon);
                 break;
-            case BehaviourTypes.Gatling:
+            case WeaponTypes.Gatling:
                 // TODO: Implement here (?)
                 break;
             default:
-                Debug.LogError("ERROR! Weapon Behaviour Instruction undefined/not implemented, thrown in ShootScript.cs");
+                Debug.LogError("ERROR! Weapon Behaviour Instruction undefined/not implemented, thrown in ShootComponent.cs");
                 break;
         }
 
         //Start cooldown between shoots of current weapon
-        StartCoroutine(ShootingCooldown(inputWeapon.shootCooldown));
+        StartCoroutine(ShootingCooldown(inputWeapon));
         return true;
     }
 
-    private IEnumerator ShootingCooldown(float time)
+    private IEnumerator ShootingCooldown(Weapon input)
     {
-        onShootingCooldown = true;
-        yield return new WaitForSeconds(time);
-        onShootingCooldown = false;
+        input.isOnCooldown = true;
+        yield return new WaitForSeconds(input.shootCooldownTime);
+        input.isOnCooldown = false;
     }
 
 
@@ -94,6 +94,8 @@ public class ShootScript : MonoBehaviour
     {
         //Create the Projectile
         DefaultSpawn(weapon);
+        // Play its sound
+        SoundManager.instance.PlaySound(weapon.sound);
     }
 
     /// <summary> spawns the bullet in a fan style shot -> \ | / </summary>
@@ -103,6 +105,8 @@ public class ShootScript : MonoBehaviour
         AddedAngleSpawn(weapon, 30f);
         AddedAngleSpawn(weapon, -30f);
         OffsetSpawn(weapon, 0, 1);
+        // Play its sound
+        SoundManager.instance.PlaySound(weapon.sound);
     }
 
     /// <summary> TripleOffsetBehaviour: 3 separated but same direction shots </summary>
@@ -112,6 +116,8 @@ public class ShootScript : MonoBehaviour
         OffsetSpawn(weapon, 0, 1);
         OffsetSpawn(weapon, 2, -2);
         OffsetSpawn(weapon, -2, -2);
+        // Play its sound
+        SoundManager.instance.PlaySound(weapon.sound);
     }
 
     #endregion

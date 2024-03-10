@@ -8,7 +8,7 @@ using UnityEngine;
 public class WeaponArsenalEditor : Editor
 {
     //Change this bool if you want to enable/disable the custom editor for the loadout object
-    bool EnableCustomEditor = true;
+    private bool EnableCustomEditor = true;
 
     //SerializedProperties
     SerializedProperty maxWeaponCount;
@@ -23,10 +23,10 @@ public class WeaponArsenalEditor : Editor
     SerializedProperty PlayerBuckshot;
 
     // Foldouts
-    bool DebuggingGroup = true;
-    bool WeaponArsenalGroup = true;
-    bool AllScriptedWeapons = false;
-    bool warningMsgGroup = false;
+    private bool DebuggingGroup = true;
+    private bool WeaponArsenalGroup = true;
+    private bool AllScriptedWeapons = false;
+    private bool warningMsgGroup = false;
 
     private void OnEnable()
     {

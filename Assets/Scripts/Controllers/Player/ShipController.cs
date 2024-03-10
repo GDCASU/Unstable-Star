@@ -31,14 +31,25 @@ public class ShipController : MonoBehaviour
     {
         // Input Events
         PlayerInput.OnSwitchToNextWeapon += DoSwitchToNextWeapon;
-        PlayerInput.OnSwitchToPreviousWeapon += DoSwitchToPreviousWeapon;
+        PlayerInput.OnSwitchToNextAbility += DoSwitchToNextAbility;
         PlayerInput.OnRotateAim += RotateAim;
         PlayerInput.OnShootWeapon += ShootPlayerWeapon;
+        PlayerInput.OnUseAbility += UsePlayerAbility;
 
         // Get the boundary limits of the play space
         // FIXME: Is this the best way to do this?
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height,
             Camera.main.transform.position.z));
+    }
+
+    // Remove Input Events if object is destroyed
+    private void OnDestroy()
+    {
+        PlayerInput.OnSwitchToNextWeapon -= DoSwitchToNextWeapon;
+        PlayerInput.OnSwitchToNextAbility -= DoSwitchToNextAbility;
+        PlayerInput.OnRotateAim -= RotateAim;
+        PlayerInput.OnShootWeapon -= ShootPlayerWeapon;
+        PlayerInput.OnUseAbility -= UsePlayerAbility;
     }
 
     private void Start()
@@ -163,13 +174,18 @@ public class ShipController : MonoBehaviour
         playerScript.ShootWeapon();
     }
 
+    private void UsePlayerAbility()
+    {
+        playerScript.UseAbility();
+    }
+
     private void DoSwitchToNextWeapon()
     {
         playerScript.SwitchToNextWeapon();
     }
 
-    private void DoSwitchToPreviousWeapon()
+    private void DoSwitchToNextAbility()
     {
-        playerScript.SwitchToPreviousWeapon();
+        playerScript.SwitchToNextAbility();
     }
 }

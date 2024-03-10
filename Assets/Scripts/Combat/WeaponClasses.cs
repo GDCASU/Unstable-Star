@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Enum declared for all classes to identify their weapon types
-public enum BehaviourTypes
+// Enum declared for all weapon classes to identify their weapon types
+public enum WeaponTypes
 {
-    SingleShot,
-    FanShot,
-    TripleOffset,
-    Gatling // (?)
+    NULL,
+    Pistol,
+    Birdshot,
+    Buckshot,
+    Gatling,
+    Laser
 }
 
 /// <summary> Abstract class of all weapon types </summary>
@@ -18,10 +20,11 @@ public abstract class Weapon
 {
     public GameObject prefab;
     public string sName;
-    public BehaviourTypes behaviour;
+    public WeaponTypes behaviour;
     public SoundTag sound;
     public float speed;
-    public float shootCooldown;
+    public float shootCooldownTime;
+    public bool isOnCooldown;
     public int damage;
 }
 
@@ -33,15 +36,22 @@ public abstract class Weapon
 public class GeneralWeapon : Weapon
 {
     /// <summary> Default Constructor </summary>
-    public GeneralWeapon(GameObject prefab, SoundTag sound, BehaviourTypes behaviour, float speed, int damage, string name, float timeBetweenShots)
+    public GeneralWeapon(GameObject prefab, SoundTag sound, WeaponTypes behaviour, float speed, int damage, string name, float timeBetweenShots)
     {
         this.prefab = prefab;
         this.sound = sound;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
-        this.shootCooldown = timeBetweenShots;
+        this.shootCooldownTime = timeBetweenShots;
         this.behaviour = behaviour;
+        this.isOnCooldown = false;
+    }
+
+    // Shortcut constructor to make a NULL weapon
+    public GeneralWeapon()
+    {
+
     }
 }
 
@@ -73,9 +83,10 @@ public class Pistol : Weapon
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
-        this.shootCooldown = timeBetweenShots;
-        this.behaviour = BehaviourTypes.SingleShot;
+        this.shootCooldownTime = timeBetweenShots;
+        this.behaviour = WeaponTypes.Pistol;
         this.sound = SoundTag.tempRayGunFire;
+        this.isOnCooldown = false;
     }
 }
 
@@ -90,9 +101,10 @@ public class Birdshot : Weapon
         this.prefab = prefab;
         this.damage = damage;
         this.sName = name;
-        this.shootCooldown = timeBetweenShots;
-        this.behaviour = BehaviourTypes.FanShot;
+        this.shootCooldownTime = timeBetweenShots;
+        this.behaviour = WeaponTypes.Birdshot;
         this.sound = SoundTag.tempRayGunFire;
+        this.isOnCooldown = false;
     }
 }
 
@@ -107,8 +119,9 @@ public class Buckshot : Weapon
         this.prefab = prefab;
         this.damage = damage;
         this.sName = name;
-        this.shootCooldown = timeBetweenShots;
-        this.behaviour = BehaviourTypes.TripleOffset;
+        this.shootCooldownTime = timeBetweenShots;
+        this.behaviour = WeaponTypes.Buckshot;
         this.sound = SoundTag.tempRayGunFire;
+        this.isOnCooldown = false;
     }
 }
