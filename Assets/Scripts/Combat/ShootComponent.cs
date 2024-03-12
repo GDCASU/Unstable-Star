@@ -258,9 +258,11 @@ public class ShootComponent : MonoBehaviour
     // Routine that will check if the fire button is still being held down
     private IEnumerator isShootingHeld(Weapon input)
     {
-        while (PlayerInput.instance.isShootHeld)
+        // Continue charging and firing gatling gun as long as the button is hold and the weapon
+        // Hasnt been switched
+        while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input)
         {
-            // check every frame if the button has been held
+            // check every frame
             yield return null;
         }
 
