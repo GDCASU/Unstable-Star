@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Windows;
 
 /// <summary> Component that allows any object to shoot projectiles </summary>
 public class ShootComponent : MonoBehaviour
@@ -13,6 +14,8 @@ public class ShootComponent : MonoBehaviour
 
     //Local Variables
     private int projectileLayer;
+    private Coroutine gatlingRoutine = null;
+    private Coroutine LaserRoutine;
 
     // Initial setup
     private void Start()
@@ -38,13 +41,10 @@ public class ShootComponent : MonoBehaviour
     public bool ShootWeapon(Weapon inputWeapon)
     {
         // Dont shoot the weapon if its a null type
-        if (inputWeapon.behaviour == WeaponTypes.NULL) return false;
-        
-        // Dont fire if weapon is on cooldown
-        if (inputWeapon.isOnCooldown) return false;
+        if (inputWeapon.weaponType == WeaponTypes.NULL) return false;
         
         // Else fire with the programmed behaviour
-        switch (inputWeapon.behaviour)
+        switch (inputWeapon.weaponType)
         {
             case WeaponTypes.Pistol:
                 SingleShotBehaviour(inputWeapon);
@@ -56,10 +56,10 @@ public class ShootComponent : MonoBehaviour
                 FanShotBehaviour(inputWeapon);
                 break;
             case WeaponTypes.Gatling:
-                // TODO: Implement here
+                GatlingBehaviour(inputWeapon);
                 break;
             case WeaponTypes.Laser:
-                // TODO: Implement here
+                LaserBehaviour(inputWeapon);
                 break;
             default:
                 Debug.LogError("ERROR! Weapon Behaviour Instruction undefined/not implemented, thrown in ShootComponent.cs");
@@ -101,6 +101,8 @@ public class ShootComponent : MonoBehaviour
     /// <summary> Only shoots 1 projectile </summary>
     private void SingleShotBehaviour(Weapon weapon)
     {
+        // Dont fire if weapon is on cooldown
+        if (weapon.isOnCooldown) return;
         //Create the Projectile
         DefaultSpawn(weapon);
         // Play its sound
@@ -112,6 +114,8 @@ public class ShootComponent : MonoBehaviour
     /// <summary> spawns the bullet in a fan style shot -> \ | / </summary>
     private void FanShotBehaviour(Weapon weapon)
     {
+        // Dont fire if weapon is on cooldown
+        if (weapon.isOnCooldown) return;
         //Create the Projectile
         AddedAngleSpawn(weapon, 30f);
         AddedAngleSpawn(weapon, -30f);
@@ -125,6 +129,8 @@ public class ShootComponent : MonoBehaviour
     /// <summary> TripleOffsetBehaviour: 3 separated but same direction shots </summary>
     private void TripleOffsetBehaviour(Weapon weapon)
     {
+        // Dont fire if weapon is on cooldown
+        if (weapon.isOnCooldown) return;
         //Create the Projectile
         OffsetSpawn(weapon, 0, 1);
         OffsetSpawn(weapon, 2, -2);
@@ -136,13 +142,87 @@ public class ShootComponent : MonoBehaviour
     }
 
     /// <summary> GatlingBehaviour: rapid fire shots that offset after each fire </summary>
-    private void GatlingBehaviour()
+    private void GatlingBehaviour(Weapon input)
     {
+        // Dont enter routine if already running
+        if (gatlingRoutine != null) return;
 
+        // Else, start the windup and check for button release
+        gatlingRoutine = StartCoroutine(GatlingRoutine(input));
+        StartCoroutine(isShootingHeld(WeaponTypes.Gatling));
+    }
+
+    // This Routine will be stopped if the button is released
+    private IEnumerator GatlingRoutine(Weapon input)
+    {
+        float timeLeft = input.warmupTime;
+        input.timeLeftInCooldown = 0f;
+
+        // Warm up timer
+        // TODO: Missing warm up sound
+        while (timeLeft > 0f)
+        {
+            timeLeft -= Time.deltaTime;
+            input.timeLeftInCooldown = timeLeft;
+            yield return null;
+        }
+        input.timeLeftInCooldown = 0f;
+
+        // Warmup finshed, start shooting until stopped
+        WaitForSeconds shotsTime = new WaitForSeconds(input.shootCooldownTime);
+        List<float> randOffsets = new List<float>();
+        randOffsets.Add(-0.5f);
+        randOffsets.Add(0.5f);
+        float previousVal = 0;
+        float currVal;
+        int index;
+        // NOTE: if we want left to right movement, the list can be turned into a queue
+        while (true)
+        {
+            // Get a random index
+            index = UnityEngine.Random.Range(0, randOffsets.Count);
+            // Get a value from a random offset and remove it from array
+            currVal = randOffsets[index];
+            randOffsets.RemoveAt(index);
+            // Spawn a bullet with this offset
+            OffsetSpawn(input, currVal, 0f);
+            // Play sound
+            SoundManager.instance.PlaySound(input.sound);
+            // Add back previous value
+            randOffsets.Add(previousVal);
+            previousVal = currVal;
+            // Wait for time between shots
+            yield return shotsTime;
+        }
+    }
+
+    // Routine that will check if the fire button is still being held down
+    private IEnumerator isShootingHeld(WeaponTypes Weptype)
+    {
+        while (PlayerInput.instance.isShootHeld)
+        {
+            // check every frame if the button has been held
+            yield return null;
+        }
+
+        // Else, it has been released
+        switch(Weptype)
+        {
+            case WeaponTypes.Gatling:
+                StopCoroutine(gatlingRoutine);
+                gatlingRoutine = null;
+                break;
+            case WeaponTypes.Laser:
+                //
+                break;
+            default:
+                //
+                break;
+        }
     }
 
     /// <summary> LaserBehaviour: TODO: FINISH DESC </summary>
-    private void LaserBehaviour()
+    private void LaserBehaviour(Weapon input)
     {
 
     }

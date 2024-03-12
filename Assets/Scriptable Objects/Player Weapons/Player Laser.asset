@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e6102f0ea67bf149870ab049107af5f, type: 3}
   m_Name: Player Laser
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Laser Gun
   bulletPrefab: {fileID: 0}
   weaponIcon: {fileID: 21300000, guid: 08416634395a74e45b558de639ecdb36, type: 3}
   sound: 0

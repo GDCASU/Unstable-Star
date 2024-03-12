@@ -14,12 +14,13 @@ public class ScriptableGatling : ScriptableWeapon
     public SoundTag sound;
 
     [Header("Stats")]
+    public float warmUpTime;
     public int damage;
     public float bulletSpeed;
     public float shotsCooldown;
 
     public override Weapon GetWeaponObject()
     {
-        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, damage, weaponName, shotsCooldown);
+        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, shotsCooldown);
     }
 }
