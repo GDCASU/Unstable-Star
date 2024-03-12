@@ -16,4 +16,4 @@ MonoBehaviour:
   shield: 5
   collisionDamage: 1
   dmgInvulnTimeSecs: 0.5
-  weapon: {fileID: 11400000, guid: 21e17ad34e7eddc42927ae780ced4dfd, type: 2}
+  weapon: {fileID: 11400000, guid: 203de00802d8047418800af8d2c0e845, type: 2}

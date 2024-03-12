@@ -33,6 +33,7 @@ public abstract class Ability
 
     // This variable should be useful for implementing UI
     public float timeLeftInCooldown;
+    public Sprite abilityIcon;
 }
 
 /// <summary>
@@ -40,6 +41,7 @@ public abstract class Ability
 /// </summary>
 public class GeneralAbility : Ability
 {
+    // General Constructor?
     public GeneralAbility(string name, AbilityTypes behaviour, float cooldownTime, float durationTime)
     {
         this.sName = name;
@@ -66,7 +68,7 @@ public class GeneralAbility : Ability
 public class PhaseShiftAbility : Ability
 {
     // Constructor
-    public PhaseShiftAbility(string name, Material phaseShiftMaterial, GameObject particleEmitter, int charges, float cooldownTime, float durationTime)
+    public PhaseShiftAbility(string name, Sprite abilityIcon, Material phaseShiftMaterial, GameObject particleEmitter, int charges, float cooldownTime, float durationTime)
     {
         this.sName = name;
         this.cooldownTime = cooldownTime;
@@ -74,6 +76,7 @@ public class PhaseShiftAbility : Ability
         this.durationTime = durationTime;
         this.PhaseShiftMaterial = phaseShiftMaterial;
         this.charges = charges;
+        this.abilityIcon = abilityIcon;
 
         // Static sets
         this.behaviour = AbilityTypes.PhaseShift;
@@ -87,7 +90,7 @@ public class PhaseShiftAbility : Ability
 public class ProximityBombAbility : Ability
 {
     // Constructor
-    public ProximityBombAbility(string name, GameObject bombPrefab, float bombRadius, float cooldownTime, int charges, int damage)
+    public ProximityBombAbility(string name, Sprite abilityIcon, GameObject bombPrefab, float bombRadius, float cooldownTime, int charges, int damage)
     {
         this.sName = name;
         this.damage = damage;
@@ -95,6 +98,7 @@ public class ProximityBombAbility : Ability
         this.cooldownTime = cooldownTime;
         this.bombRadius = bombRadius;
         this.charges = charges;
+        this.abilityIcon = abilityIcon;
 
         // Static sets
         this.behaviour = AbilityTypes.ProxiBomb;

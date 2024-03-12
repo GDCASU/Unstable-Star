@@ -9,13 +9,17 @@ public class TempWeaponReader : MonoBehaviour
     //Local Variables
     private TMP_Text WeaponReadoutText;
     private Player playerScript;
+    private string readout;
+    private Weapon playerWep;
 
     private void Start()
     {
-        GameObject PlayerObject = GameObject.Find("Player");
-
         WeaponReadoutText = GetComponent<TMP_Text>();
-        playerScript = PlayerObject.GetComponent<Player>();
+        playerScript = Player.Instance.gameObject.GetComponent<Player>();
+
+        // Default text
+        readout = "No Weapons";
+        WeaponReadoutText.text = readout;
     }
 
     //HACK: This is a pretty bad way of doing this, but it works for now until UI
@@ -23,11 +27,24 @@ public class TempWeaponReader : MonoBehaviour
     private void Update()
     {
         // If the player has no weapons, then just write "No Weapons"
-        if (playerScript.GetCurrWeapon() == null)
+        if (playerScript.GetCurrWeapon() == null) return;
+
+        // Else, get weapon name
+        playerWep = Player.Instance.GetCurrWeapon();
+        readout = playerWep.sName + "\n";
+
+        // Check for cooldown
+        if (playerWep.timeLeftInCooldown > 0)
         {
-            WeaponReadoutText.text = "No Weapons";
-            return;
+            readout += "On Cooldown\n";
+            readout += "Time left = " + playerWep.timeLeftInCooldown.ToString("F2");
         }
-        WeaponReadoutText.text = playerScript.GetCurrWeapon().sName;
+        else
+        {
+            readout += "Ready to use";
+        }
+
+        // Set Text
+        WeaponReadoutText.text = readout;
     }
 }

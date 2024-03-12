@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Abstract Parent class for scriptable weapon interpretation within the arsenal and other systems
+public abstract class ScriptableWeapon : ScriptableObject
+{
+    /// <summary> Function to build the weapon object and return it </summary>
+    public abstract Weapon GetWeaponObject();
+}
+
 /// <summary> Object that will hold the players weapon array data </summary>
 public class WeaponArsenal : MonoBehaviour
 {
@@ -14,12 +21,14 @@ public class WeaponArsenal : MonoBehaviour
     private List<Weapon> weaponArsenal = new();
 
     // Settings
-    [SerializeField] private int maxWeaponCount = 3; // Default 3
+    [SerializeField] private int maxWeaponCount;
     [SerializeField] private int currWeaponIndex = -1; // Will be -1 whenever there are no weapons
+    private readonly Weapon nullWeapon = new GeneralWeapon("No Weapons"); // Helper null reference
+
+    // Current weapon
+    private Weapon currWeapon = new GeneralWeapon("No Weapons"); // Starts as null
 
     // Debbuging
-    private Weapon currWeapon = new Pistol(null, 0, 0, "No Weapons", 0); // Starts as null
-    private readonly Pistol nullWeapon = new Pistol(null, 0, 0, "No Weapons", 0); // Helper null reference
     [SerializeField] private bool doDebugLog;
     [SerializeField] private bool loadDefaultArsenal;
 
@@ -27,6 +36,8 @@ public class WeaponArsenal : MonoBehaviour
     public ScriptableWeapon PlayerPistol;
     public ScriptableWeapon PlayerBirdshot;
     public ScriptableWeapon PlayerBuckshot;
+    public ScriptableWeapon PlayerLaserWep;
+    public ScriptableWeapon PlayerGatlingGun;
 
     private void Awake()
     {
@@ -40,9 +51,11 @@ public class WeaponArsenal : MonoBehaviour
         // Give the player the default arsenal if checked
         if (loadDefaultArsenal && weaponArsenal.Count <= 0)
         {
-            AddWeaponToArsenal( PlayerPistol.GetWeaponObject() );
-            AddWeaponToArsenal( PlayerBirdshot.GetWeaponObject() );
-            AddWeaponToArsenal( PlayerBuckshot.GetWeaponObject() );
+            AddWeaponToArsenal(PlayerPistol.GetWeaponObject());
+            AddWeaponToArsenal(PlayerBirdshot.GetWeaponObject());
+            AddWeaponToArsenal(PlayerBuckshot.GetWeaponObject());
+            AddWeaponToArsenal(PlayerLaserWep.GetWeaponObject());
+            //AddWeaponToArsenal(PlayerGatlingGun.GetWeaponObject());
         }
     }
 

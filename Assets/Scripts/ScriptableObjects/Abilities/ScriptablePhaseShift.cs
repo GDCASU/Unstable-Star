@@ -4,23 +4,20 @@ using UnityEngine;
 
 /// <summary> Scriptable Object that contains the data for a phase shift ability </summary>
 [CreateAssetMenu(fileName = "ScriptablePhaseShift", menuName = "ScriptableObjects/Abilities/Phase Shift")]
-public class ScriptablePhaseShift : ScriptableObject
+public class ScriptablePhaseShift : ScriptableAbility
 {
     // Variables
     [Header("Phase Shift Settings")]
     public string sName;
     public Material phaseShiftMaterial;
-    public GameObject particleEmitterPrefab;
+    public GameObject particlePrefab;
+    public Sprite abilityIcon;
     public int charges;
     public float cooldownTime;
     public float durationTime;
-    
 
-    /// <summary>
-    /// Helper function to construct an Ability object from stored data
-    /// </summary>
-    public Ability GetAbilityObject()
+    public override Ability GetAbilityObject()
     {
-        return new PhaseShiftAbility(sName, phaseShiftMaterial, particleEmitterPrefab, charges, cooldownTime, durationTime);
+        return new PhaseShiftAbility(sName, abilityIcon, phaseShiftMaterial, particlePrefab, charges, cooldownTime, durationTime);
     }
 }

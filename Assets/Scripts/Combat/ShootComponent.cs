@@ -40,11 +40,8 @@ public class ShootComponent : MonoBehaviour
         // Dont shoot the weapon if its a null type
         if (inputWeapon.behaviour == WeaponTypes.NULL) return false;
         
-        // Dont fire if weapon is on cooldown or its bullet prefab is null
-        if (inputWeapon.isOnCooldown || inputWeapon.prefab == null)
-        {
-            return false;
-        }
+        // Dont fire if weapon is on cooldown
+        if (inputWeapon.isOnCooldown) return false;
         
         // Else fire with the programmed behaviour
         switch (inputWeapon.behaviour)
@@ -59,23 +56,35 @@ public class ShootComponent : MonoBehaviour
                 FanShotBehaviour(inputWeapon);
                 break;
             case WeaponTypes.Gatling:
-                // TODO: Implement here (?)
+                // TODO: Implement here
+                break;
+            case WeaponTypes.Laser:
+                // TODO: Implement here
                 break;
             default:
                 Debug.LogError("ERROR! Weapon Behaviour Instruction undefined/not implemented, thrown in ShootComponent.cs");
                 break;
         }
 
-        //Start cooldown between shoots of current weapon
-        StartCoroutine(ShootingCooldown(inputWeapon));
         return true;
     }
 
+    // Weapon cooldown routine
     private IEnumerator ShootingCooldown(Weapon input)
     {
         input.isOnCooldown = true;
-        yield return new WaitForSeconds(input.shootCooldownTime);
+        float timePassed = input.shootCooldownTime;
+
+        // Cooldown timer
+        while (timePassed > 0f)
+        {
+            timePassed -= Time.deltaTime;
+            input.timeLeftInCooldown = timePassed;
+            yield return null; // Wait a frame
+        }
+
         input.isOnCooldown = false;
+        input.timeLeftInCooldown = 0f;
     }
 
 
@@ -96,6 +105,8 @@ public class ShootComponent : MonoBehaviour
         DefaultSpawn(weapon);
         // Play its sound
         SoundManager.instance.PlaySound(weapon.sound);
+        //Start cooldown
+        StartCoroutine(ShootingCooldown(weapon));
     }
 
     /// <summary> spawns the bullet in a fan style shot -> \ | / </summary>
@@ -107,6 +118,8 @@ public class ShootComponent : MonoBehaviour
         OffsetSpawn(weapon, 0, 1);
         // Play its sound
         SoundManager.instance.PlaySound(weapon.sound);
+        //Start cooldown
+        StartCoroutine(ShootingCooldown(weapon));
     }
 
     /// <summary> TripleOffsetBehaviour: 3 separated but same direction shots </summary>
@@ -118,6 +131,20 @@ public class ShootComponent : MonoBehaviour
         OffsetSpawn(weapon, -2, -2);
         // Play its sound
         SoundManager.instance.PlaySound(weapon.sound);
+        //Start cooldown
+        StartCoroutine(ShootingCooldown(weapon));
+    }
+
+    /// <summary> GatlingBehaviour: rapid fire shots that offset after each fire </summary>
+    private void GatlingBehaviour()
+    {
+
+    }
+
+    /// <summary> LaserBehaviour: TODO: FINISH DESC </summary>
+    private void LaserBehaviour()
+    {
+
     }
 
     #endregion

@@ -425,10 +425,14 @@ public class Player : CombatEntity
             yield return null;
         }
 
-        // Player can be hurt again
-        timeLeftInvulnerable = 0f;
-        isInvulnerable = false;
+        // Invulnerability time over
         isIgnoringCollisions = false;
+        timeLeftInvulnerable = 0f;
+
+        // Wait two frames to remove bullets inside the player collider
+        yield return null;
+        yield return null;
+        isInvulnerable = false;
         invulnRoutine = null;
     }
 
