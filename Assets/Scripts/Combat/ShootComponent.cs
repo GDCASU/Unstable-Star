@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -147,9 +148,16 @@ public class ShootComponent : MonoBehaviour
         // Dont enter routine if already running
         if (gatlingRoutine != null) return;
 
-        // Else, start the windup and check for button release
+        // Check if player or enemy
+        if (input.isEnemy)
+        {
+            gatlingRoutine = StartCoroutine(GatlingRoutine(input));
+            return;
+        }
+
+        // Else, Its the player, start the windup and check for button release
         gatlingRoutine = StartCoroutine(GatlingRoutine(input));
-        StartCoroutine(isShootingHeld(WeaponTypes.Gatling));
+        StartCoroutine(isShootingHeld(input));
     }
 
     // This Routine will be stopped if the button is released
@@ -176,6 +184,11 @@ public class ShootComponent : MonoBehaviour
         float previousVal = 0;
         float currVal;
         int index;
+
+        // Decide which loop to go to depending if player or enemy
+        if (input.isEnemy) { goto isEnemyShooting; }
+
+        // Else, do player routine
         // NOTE: if we want left to right movement, the list can be turned into a queue
         while (true)
         {
@@ -194,10 +207,48 @@ public class ShootComponent : MonoBehaviour
             // Wait for time between shots
             yield return shotsTime;
         }
+
+        // Label for jumping
+        isEnemyShooting:
+        timeLeft = input.shootingStayTime;
+        // FIXME: Does this do the timer correcly?
+        while (timeLeft >= 0f)
+        {
+            // Get a random index
+            index = UnityEngine.Random.Range(0, randOffsets.Count);
+            // Get a value from a random offset and remove it from array
+            currVal = randOffsets[index];
+            randOffsets.RemoveAt(index);
+            // Spawn a bullet with this offset
+            OffsetSpawn(input, currVal, 0f);
+            // Play sound
+            SoundManager.instance.PlaySound(input.sound);
+            // Add back previous value
+            randOffsets.Add(previousVal);
+            previousVal = currVal;
+            // Reduce timer
+            timeLeft -= input.shootCooldownTime;
+            // Wait for time between shots
+            yield return shotsTime;
+        }
+
+        // Shooting time finished, start warming up again
+        timeLeft = input.warmupTime;
+        input.timeLeftInCooldown = 0f;
+        while (timeLeft > 0f)
+        {
+            timeLeft -= Time.deltaTime;
+            input.timeLeftInCooldown = timeLeft;
+            yield return null;
+        }
+        input.timeLeftInCooldown = 0f;
+
+        // Start shooting again
+        goto isEnemyShooting;
     }
 
     // Routine that will check if the fire button is still being held down
-    private IEnumerator isShootingHeld(WeaponTypes Weptype)
+    private IEnumerator isShootingHeld(Weapon input)
     {
         while (PlayerInput.instance.isShootHeld)
         {
@@ -206,11 +257,12 @@ public class ShootComponent : MonoBehaviour
         }
 
         // Else, it has been released
-        switch(Weptype)
+        switch(input.weaponType)
         {
             case WeaponTypes.Gatling:
                 StopCoroutine(gatlingRoutine);
                 gatlingRoutine = null;
+                input.timeLeftInCooldown = 0f;
                 break;
             case WeaponTypes.Laser:
                 //

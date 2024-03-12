@@ -39,6 +39,7 @@ public abstract class Weapon
     // Variable to override behaviour for enemies
     // EX: Make enemies always charge laser gun to full charge before firing
     public bool isEnemy;
+    public float shootingStayTime;
 
     // This variable should be useful for UI
     public float timeLeftInCooldown;
@@ -168,7 +169,7 @@ public class LaserGun : Weapon
 public class GatlingGun : Weapon
 {
     //Default Constructor
-    public GatlingGun(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy = true)
+    public GatlingGun(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime = 0f)
     {
         this.speed = speed;
         this.prefab = prefab;
@@ -179,6 +180,9 @@ public class GatlingGun : Weapon
         this.weaponIcon = weaponIcon;
         this.warmupTime = warmupTime;
         this.isEnemy = isEnemy;
+
+        // If this is an enemy entity, then set the shooting stay time
+        if (isEnemy) this.shootingStayTime = shootingStayTime;
 
         // Static sets
         this.timeLeftInCooldown = 0f;

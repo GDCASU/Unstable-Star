@@ -17,10 +17,21 @@ public class ScriptableGatling : ScriptableWeapon
     public float warmUpTime;
     public int damage;
     public float bulletSpeed;
-    public float shotsCooldown;
+    public float timeBetweenShots;
+
+    [Header("Enemy Specific")]
+    public bool isEnemy;
+    [Tooltip("This time indicates how long the enemy will keep shooting the gatling gun before stopping")]
+    public float shootStayTime;
 
     public override Weapon GetWeaponObject()
     {
-        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, shotsCooldown);
+        // Set for an enemy
+        if (isEnemy)
+        {
+            return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime);
+        }
+        // Set for a player
+        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, timeBetweenShots, isEnemy);
     }
 }

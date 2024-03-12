@@ -9,14 +9,12 @@ public class TempWeaponReader : MonoBehaviour
 {
     //Local Variables
     private TMP_Text WeaponReadoutText;
-    private Player playerScript;
     private string readout;
     private Weapon playerWep;
 
     private void Start()
     {
         WeaponReadoutText = GetComponent<TMP_Text>();
-        playerScript = Player.Instance.gameObject.GetComponent<Player>();
 
         // Default text
         readout = "No Weapons";
@@ -27,11 +25,11 @@ public class TempWeaponReader : MonoBehaviour
     //Has a good framework set up
     private void Update()
     {
-        // If the player has no weapons, then just write "No Weapons"
-        if (playerScript.GetCurrWeapon() == null) return;
-
         //Get weapon info
-        playerWep = Player.Instance.GetCurrWeapon();
+        playerWep = WeaponArsenal.instance.GetCurrentWeapon();
+
+        // If the player has no weapons, then just write "No Weapons"
+        if (playerWep == null) return;
 
         // Figure out how to set text
         switch(playerWep.weaponType)
