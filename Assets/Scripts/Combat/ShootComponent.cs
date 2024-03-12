@@ -151,21 +151,22 @@ public class ShootComponent : MonoBehaviour
         // Check if player or enemy
         if (input.isEnemy)
         {
-            gatlingRoutine = StartCoroutine(GatlingRoutine(input));
+            gatlingRoutine = StartCoroutine(EnemyGatlingRoutine(input));
             return;
         }
 
         // Else, Its the player, start the windup and check for button release
-        gatlingRoutine = StartCoroutine(GatlingRoutine(input));
+        gatlingRoutine = StartCoroutine(PlayerGatlingRoutine(input));
         StartCoroutine(isShootingHeld(input));
     }
 
     // This Routine will be stopped if the button is released
-    private IEnumerator GatlingRoutine(Weapon input)
+    private IEnumerator PlayerGatlingRoutine(Weapon input)
     {
-        float timeLeft = input.warmupTime;
+        float timeLeft;
         // Warm up timer
         // TODO: Missing warm up sound
+        timeLeft = input.warmupTime;
         while (timeLeft > 0f)
         {
             timeLeft -= Time.deltaTime;
@@ -182,10 +183,6 @@ public class ShootComponent : MonoBehaviour
         float previousVal = 0;
         float currVal;
         int index;
-
-        // Decide which loop to go to depending if player or enemy
-        if (input.isEnemy) { goto isEnemyShooting; }
-
         // Else, do player routine
         // NOTE: if we want left to right movement, the list can be turned into a queue
         while (true)
@@ -205,11 +202,36 @@ public class ShootComponent : MonoBehaviour
             // Wait for time between shots
             yield return shotsTime;
         }
+    }
+
+    // Variant used for enemies
+    private IEnumerator EnemyGatlingRoutine(Weapon input)
+    {
+        // Data for shooting
+        float timeLeft;
+        WaitForSeconds shotsTime = new WaitForSeconds(input.shootCooldownTime);
+        List<float> randOffsets = new List<float>();
+        randOffsets.Add(-0.5f);
+        randOffsets.Add(0.5f);
+        float previousVal = 0;
+        float currVal;
+        int index;
 
         // Label for jumping
-        isEnemyShooting:
-        timeLeft = input.shootingStayTime;
+        ShootingLoop:
+
+        // Warm up
+        timeLeft = input.warmupTime;
+        while (timeLeft > 0f)
+        {
+            timeLeft -= Time.deltaTime;
+            input.timeLeftInCooldown = timeLeft;
+            yield return null;
+        }
+        input.timeLeftInCooldown = 0f;
+
         // Shoot for some time specified
+        timeLeft = input.shootingStayTime;
         while (timeLeft >= 0f)
         {
             // Get a random index
@@ -229,19 +251,8 @@ public class ShootComponent : MonoBehaviour
             // Wait for time between shots
             yield return shotsTime;
         }
-
-        // Shooting time finished, start warming up again
-        timeLeft = input.warmupTime;
-        while (timeLeft > 0f)
-        {
-            timeLeft -= Time.deltaTime;
-            input.timeLeftInCooldown = timeLeft;
-            yield return null;
-        }
-        input.timeLeftInCooldown = 0f;
-
-        // Start shooting again
-        goto isEnemyShooting;
+        // Loop
+        goto ShootingLoop;
     }
 
     // Routine that will check if the fire button is still being held down

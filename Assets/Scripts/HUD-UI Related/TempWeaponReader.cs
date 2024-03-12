@@ -78,7 +78,7 @@ public class TempWeaponReader : MonoBehaviour
             readout += "Time Left = " + input.timeLeftInCooldown.ToString("F2");
         }
         // Else, we are firing as long as button is held
-        else if (PlayerInput.instance.isShootHeld)
+        else if (PlayerInput.instance.isShootHeld && !Player.Instance.isShootingLocked)
         {
             readout += "Firing!";
         }
