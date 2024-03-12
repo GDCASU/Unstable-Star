@@ -164,8 +164,6 @@ public class ShootComponent : MonoBehaviour
     private IEnumerator GatlingRoutine(Weapon input)
     {
         float timeLeft = input.warmupTime;
-        input.timeLeftInCooldown = 0f;
-
         // Warm up timer
         // TODO: Missing warm up sound
         while (timeLeft > 0f)
@@ -211,7 +209,7 @@ public class ShootComponent : MonoBehaviour
         // Label for jumping
         isEnemyShooting:
         timeLeft = input.shootingStayTime;
-        // FIXME: Does this do the timer correcly?
+        // Shoot for some time specified
         while (timeLeft >= 0f)
         {
             // Get a random index
@@ -234,7 +232,6 @@ public class ShootComponent : MonoBehaviour
 
         // Shooting time finished, start warming up again
         timeLeft = input.warmupTime;
-        input.timeLeftInCooldown = 0f;
         while (timeLeft > 0f)
         {
             timeLeft -= Time.deltaTime;
