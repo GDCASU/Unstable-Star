@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5ae3d18327cc6b47967bb606961e70b, type: 3}
+  m_Script: {fileID: 11500000, guid: b4220d1761a33b745b1d0d7a6301780c, type: 3}
   m_Name: Player Birdshot
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 749766531753731313, guid: ef24889faf58bcf4e88dbdb156434f06, type: 3}
-  behaviour: 2
-  sound: 0
   weaponName: Birdshot
+  bulletPrefab: {fileID: 749766531753731313, guid: ef24889faf58bcf4e88dbdb156434f06, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 93efa4495c1190d44a9d1d78dca0a242, type: 3}
+  sound: 0
   damage: 1
   bulletSpeed: 30
   shotsCooldown: 0.2

@@ -141,8 +141,8 @@ MonoBehaviour:
   currAbilityIndex: -1
   doDebugLog: 0
   loadDefaultAbilities: 1
-  phaseShiftAbility: {fileID: 11400000, guid: bf6c6b4ef7f97644da0a4ffdb5ee9b1f, type: 2}
-  proxiBombAbility: {fileID: 11400000, guid: a104534e6b19a4848bfcbf7e69406589, type: 2}
+  phaseShiftAbility: {fileID: 11400000, guid: 884f821cad312ad4f8c4ef9e7ee6c6ca, type: 2}
+  proxiBombAbility: {fileID: 11400000, guid: bd2f8a7460abb3a4da0ea43373dd8070, type: 2}
 --- !u!1 &8119377807636196420
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,10 +241,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponArsenalStrings: []
-  maxWeaponCount: 3
+  maxWeaponCount: 6
   currWeaponIndex: -1
   doDebugLog: 0
   loadDefaultArsenal: 1
   PlayerPistol: {fileID: 11400000, guid: 21fda05e83f04d64595e8cec414a0f11, type: 2}
   PlayerBirdshot: {fileID: 11400000, guid: c4b8e230f150827468bf43996f942989, type: 2}
   PlayerBuckshot: {fileID: 11400000, guid: 5d3d97ba3b35c9542a6bcda837d73a18, type: 2}
+  PlayerLaserWep: {fileID: 11400000, guid: 3f690268667fd3a4a928501cf26f8f09, type: 2}
+  PlayerGatlingGun: {fileID: 11400000, guid: 712e94365918bd4439e4e0a7f876cfdd, type: 2}

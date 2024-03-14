@@ -8,22 +8,18 @@ public class TempAbilityReadout : MonoBehaviour
 {
     //Local Variables
     private TMP_Text AbilityReadoutText;
-    private Player playerScript;
     private Ability currentAbility;
 
     private void Start()
     {
-        GameObject PlayerObject = GameObject.Find("Player");
-
         AbilityReadoutText = GetComponent<TMP_Text>();
-        playerScript = PlayerObject.GetComponent<Player>();
     }
 
     //HACK: This is a pretty bad way of doing this, but it works for now until UI
     //Has a good framework set up
     private void Update()
     {
-        currentAbility = playerScript.GetCurrAbility();
+        currentAbility = AbilityInventory.instance.GetCurrentAbility();
 
         // If the player has no abilities, then just write "No Ability"
         if (currentAbility == null)

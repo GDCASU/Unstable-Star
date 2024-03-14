@@ -13,7 +13,7 @@ public class ShipController : MonoBehaviour
 
     // Player Data
     private Player playerScript;
-    private readonly float playerModelHeight = 2; // Offset used for upper screen boundary
+    private readonly float verticalOffset = 2; // Offset used for upper screen boundary
 
     // Local Variables
     private Animator animComponent;
@@ -54,7 +54,7 @@ public class ShipController : MonoBehaviour
 
     private void Start()
     {
-        // Get a reference to the player stats script
+        // Get components
         playerScript = GetComponent<Player>();
         animComponent = GetComponent<Animator>();
     }
@@ -85,7 +85,7 @@ public class ShipController : MonoBehaviour
 
         // Stop the player if at the top and bottom of the screen
         viewPos = this.transform.position;
-        float newY = Mathf.Clamp(viewPos.y, screenBounds.y + 2 * playerModelHeight, (screenBounds.y * -1) - playerModelHeight);
+        float newY = Mathf.Clamp(viewPos.y, screenBounds.y + 2 * verticalOffset, (screenBounds.y * -1) - verticalOffset);
         viewPos.y = newY;
         this.transform.position = viewPos;
 

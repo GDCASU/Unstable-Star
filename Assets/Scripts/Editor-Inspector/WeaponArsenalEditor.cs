@@ -21,6 +21,8 @@ public class WeaponArsenalEditor : Editor
     SerializedProperty PlayerPistol;
     SerializedProperty PlayerBirdshot;
     SerializedProperty PlayerBuckshot;
+    SerializedProperty PlayerLaserWep;
+    SerializedProperty PlayerGatlingGun;
 
     // Foldouts
     private bool DebuggingGroup = true;
@@ -38,7 +40,9 @@ public class WeaponArsenalEditor : Editor
         PlayerPistol = serializedObject.FindProperty("PlayerPistol");
         PlayerBirdshot = serializedObject.FindProperty("PlayerBirdshot");
         PlayerBuckshot = serializedObject.FindProperty("PlayerBuckshot");
-    }
+        PlayerLaserWep = serializedObject.FindProperty("PlayerLaserWep");
+        PlayerGatlingGun = serializedObject.FindProperty("PlayerGatlingGun");
+    } 
 
     public override void OnInspectorGUI()
     {
@@ -113,6 +117,8 @@ public class WeaponArsenalEditor : Editor
             EditorGUILayout.PropertyField(PlayerPistol);
             EditorGUILayout.PropertyField(PlayerBirdshot);
             EditorGUILayout.PropertyField(PlayerBuckshot);
+            EditorGUILayout.PropertyField(PlayerLaserWep);
+            EditorGUILayout.PropertyField(PlayerGatlingGun);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 

@@ -86,8 +86,7 @@ public class AbilityComponent : MonoBehaviour
         meshRenderer.material = inputAbility.PhaseShiftMaterial;
 
         // Create the particles
-        GameObject particleEmitter = Instantiate(inputAbility.particleEmitter);
-        particleEmitter.transform.position = this.transform.position;
+        GameObject particleEmitter = Instantiate(inputAbility.particleEmitter, this.transform.position, this.transform.rotation);
 
         // Wait until ability ends
         yield return new WaitForSeconds(inputAbility.durationTime);
@@ -105,8 +104,7 @@ public class AbilityComponent : MonoBehaviour
         meshRenderer.material = defaulMaterial;
 
         // Create the particles again once phase shift ends
-        particleEmitter = Instantiate(inputAbility.particleEmitter);
-        particleEmitter.transform.position = this.transform.position;
+        particleEmitter = Instantiate(inputAbility.particleEmitter, this.transform.position, this.transform.rotation);
 
         // Destroy the object after waiting a bit
         yield return new WaitForSeconds(2f);
@@ -124,9 +122,7 @@ public class AbilityComponent : MonoBehaviour
         GameObject bomb;
         ProximityBomb bombScript;
         // Create the proxibomb and set its data
-        bomb = Instantiate(inputAbility.bombPrefab);
-        // Set the bomb at the position of its creator
-        bomb.transform.position = this.transform.position;
+        bomb = Instantiate(inputAbility.bombPrefab, this.transform.position, this.transform.rotation);
         // Set its data
         bombScript = bomb.GetComponent<ProximityBomb>();
         bombScript.StartBomb(inputAbility, this.gameObject);
