@@ -171,10 +171,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4931939739454189391, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: statsData
-      value: 
-      objectReference: {fileID: 11400000, guid: 84bcc1c366ef7a8479df6a08937d4509, type: 2}
     - target: {fileID: 7823922204367020976, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_Name
       value: Laser Enemy

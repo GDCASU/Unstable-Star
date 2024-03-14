@@ -10,15 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_Name
-      value: Basic Enemy
+      value: Laser Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2601468425888632271, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      propertyPath: statsData
+      value: 
+      objectReference: {fileID: 11400000, guid: 84bcc1c366ef7a8479df6a08937d4509, type: 2}
     - target: {fileID: 8412255195681629295, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 21.9
       objectReference: {fileID: 0}
     - target: {fileID: 8412255195681629295, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 27.6
       objectReference: {fileID: 0}
     - target: {fileID: 8412255195681629295, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalPosition.z
