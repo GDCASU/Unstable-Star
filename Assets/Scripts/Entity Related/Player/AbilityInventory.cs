@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Abstract Parent class for scriptable abilities interpretation within the inventory and other systems
+public abstract class ScriptableAbility : ScriptableObject
+{
+    /// <summary> Helper function to construct an Ability object from stored data </summary>
+    public abstract Ability GetAbilityObject();
+}
+
 /// <summary> Object that will hold the players ability in an array </summary>
 public class AbilityInventory : MonoBehaviour
 {
@@ -14,7 +21,7 @@ public class AbilityInventory : MonoBehaviour
     private List<Ability> abilityInventory = new();
 
     // Settings
-    [SerializeField] private int maxAbilityCount = 3; // Default 3
+    [SerializeField] private int maxAbilityCount;
     [SerializeField] private int currAbilityIndex = -1; // Will be -1 whenever there are no abilities equipped
 
     // Debbuging

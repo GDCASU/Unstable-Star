@@ -42,18 +42,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchNextAbility",
+                    "name": "SwitchNextWeapon",
                     "type": "Button",
-                    "id": "51de9c18-8f1e-42b1-86d9-18c8a2f0bb2a",
+                    "id": "9ce7803f-b2e3-45fd-9369-d9361b1b7ba2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchNextWeapon",
+                    "name": "SwitchNextAbility",
                     "type": "Button",
-                    "id": "9ce7803f-b2e3-45fd-9369-d9361b1b7ba2",
+                    "id": "51de9c18-8f1e-42b1-86d9-18c8a2f0bb2a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -160,17 +160,6 @@
                 },
                 {
                     "name": "",
-                    "id": "bac9dde5-518f-455d-bb60-df89a183e604",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchNextAbility",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "bfeaa068-b340-49a8-bfab-d2e416cfbe52",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -183,11 +172,22 @@
                 {
                     "name": "",
                     "id": "48a99a04-1f59-4165-811e-ac0720633307",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "UseAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bac9dde5-518f-455d-bb60-df89a183e604",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchNextAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

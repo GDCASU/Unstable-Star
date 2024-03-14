@@ -104,10 +104,7 @@ public class Player : CombatEntity
         if (isShootingLocked) return;
         
         // Shoot weapon
-        Weapon currWeapon = WeaponArsenal.instance.GetCurrentWeapon();
-        // NOTE: Dont know if we will play a sound if shooting is disabled, so the bool is there
-        // Just in case
-        bool didShoot = shootComponent.ShootWeapon(currWeapon);
+        shootComponent.ShootWeapon(WeaponArsenal.instance.GetCurrentWeapon());
     }
 
     /// <summary> Switches to the next weapon in the arsenal </summary>
@@ -425,10 +422,14 @@ public class Player : CombatEntity
             yield return null;
         }
 
-        // Player can be hurt again
-        timeLeftInvulnerable = 0f;
-        isInvulnerable = false;
+        // Invulnerability time over
         isIgnoringCollisions = false;
+        timeLeftInvulnerable = 0f;
+
+        // Wait two frames to remove bullets inside the player collider
+        yield return null;
+        yield return null;
+        isInvulnerable = false;
         invulnRoutine = null;
     }
 
@@ -472,8 +473,6 @@ public class Player : CombatEntity
     public int GetMaxHealth() { return MAX_HEALTH; }
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
-    public Weapon GetCurrWeapon() { return WeaponArsenal.instance.GetCurrentWeapon(); }
-    public Ability GetCurrAbility() { return AbilityInventory.instance.GetCurrentAbility(); }
 
     #endregion
 }

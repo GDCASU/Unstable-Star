@@ -17,7 +17,7 @@ public class PlayerInput : MonoBehaviour
 
     // Input-Updated Values
     [HideInInspector] public Vector2 movementInput; // Vector2 for movement
-    [HideInInspector] public bool shootInput;       // A boolean that is true when shooting button is held down; false otherwise
+    [HideInInspector] public bool isShootHeld;       // A boolean that is true when shooting button is held down; false otherwise
 
     // Local Variables
     private PlayerControls playerControls;
@@ -26,11 +26,9 @@ public class PlayerInput : MonoBehaviour
     private float signAngleMult = 0;
     private bool leftBoundCheck;
     private bool rightBoundCheck;
-    bool doChangeShootingAngle;
+    private bool doChangeShootingAngle;
 
     #region STATIC INPUT EVENTS
-    // Ian: You could possibly suscribe to input events within their respective scripts
-    // But I wanted to have everything remotely related to input management here
 
     /// <summary> Player's Weapon Shooting event </summary>
     public static event System.Action OnShootWeapon; // Action List
@@ -109,18 +107,18 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-            shootInput = true; // Whenever the shooting button is pressed = true
+            isShootHeld = true; // Whenever the shooting button is pressed = true
 
             HandleShootingRoutine(buttonHeld: true);
         }
         else
         {
-            shootInput = false;     // Whenever the shooting button is released = false
+            isShootHeld = false;     // Whenever the shooting button is released = false
 
             HandleShootingRoutine(buttonHeld: false);
         }
 
-        if (debug) Debug.Log(shootInput);
+        if (debug) Debug.Log(isShootHeld);
     }
 
     private void HandleShootAngleInput(InputAction.CallbackContext context, bool isRight)
@@ -128,7 +126,6 @@ public class PlayerInput : MonoBehaviour
         if (context.performed)
         {
             // Code to be fired when the player angles the turret
-            // IAN: i modified "isRight" so now it rotates left if left click is pressed
             if (isRight)       // angle left button was pressed
             {
                 signAngleMult = -1f;
@@ -138,22 +135,18 @@ public class PlayerInput : MonoBehaviour
                 signAngleMult = 1f;
             }
 
-            // IAN: Coroutine Handling code
+            // Coroutine Handling
             HandleAngleRoutine(buttonHeld: true);
-            // END OF NEW CODE ----------------------------
         }
         else
         {
             signAngleMult = 0;
 
-            // IAN: Coroutine Handling code
+            // Coroutine Handling
             HandleAngleRoutine(buttonHeld: false);
-            // END OF NEW CODE ----------------------------
         }
 
     }
-
-    // IAN: I added these coroutines To avoid using update on the ShipController.cs ------------------------
 
     // Handles the coroutine related to shooting input
     private void HandleShootingRoutine(bool buttonHeld)
@@ -206,7 +199,7 @@ public class PlayerInput : MonoBehaviour
         // This Coroutine will be stopped by the Angle Handler
         while (true)
         {
-            // IAN: Here's the code I migrated from the update function
+            // Bound checking
             leftBoundCheck = (signAngleMult > 0) && (shootAngleInput < maxShootAngle); // False if at limit of left
             rightBoundCheck = (signAngleMult < 0) && (shootAngleInput > -maxShootAngle); // False if at limit of right
             doChangeShootingAngle = leftBoundCheck || rightBoundCheck;

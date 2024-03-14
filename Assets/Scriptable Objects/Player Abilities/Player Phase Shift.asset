@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7018cc0420d7d7140ae6d85c17087f0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cdb34e7aa5c1374089eabd5c22e01aa, type: 3}
   m_Name: Player Phase Shift
   m_EditorClassIdentifier: 
   sName: Phase Shift
-  phaseShiftMaterial: {fileID: 2100000, guid: 3b5240d8aa10d7443ba5f2c5e4668f25, type: 2}
-  particleEmitterPrefab: {fileID: 7437556055979850441, guid: b312827b1f62d254aabec894de1217d4, type: 3}
-  charges: 1
+  phaseShiftMaterial: {fileID: -876546973899608171, guid: 1618663d1f1f5b544babb2f8bfaa33f4, type: 3}
+  particlePrefab: {fileID: 7437556055979850441, guid: b312827b1f62d254aabec894de1217d4, type: 3}
+  abilityIcon: {fileID: 0}
+  charges: 3
   cooldownTime: 6
   durationTime: 4
