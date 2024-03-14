@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
+  m_IndirectSpecularColor: {r: 0.010086427, g: 0.052700892, b: 0.15289137, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -674,9 +674,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 50.000015
       objectReference: {fileID: 0}
+    - target: {fileID: 846512148739884432, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2523294005482541713, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50.000015
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4399303825714952730, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -740,19 +744,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5239532114340790320, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -100.000015
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 5959745050469382405, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1641.1852
+      value: 1640.7352
       objectReference: {fileID: 0}
     - target: {fileID: 7424609744582626789, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100.00003
+      value: -100.000015
       objectReference: {fileID: 0}
     - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1641.1852
+      value: 1640.7352
       objectReference: {fileID: 0}
     - target: {fileID: 8568430465067054235, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.x
@@ -961,10 +965,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gatling Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4282379563830195892, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
-      propertyPath: statsData
-      value: 
-      objectReference: {fileID: 11400000, guid: fa7eca8cf30c9954fbd639c9c6622790, type: 2}
     - target: {fileID: 7767022439930306324, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 2771126060896347954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.29}
+  m_LocalPosition: {x: 0, y: 2.95, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -81,7 +81,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771126060896347954}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -143,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 8650000277955619969}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 60.4, z: 0}
+  m_LocalPosition: {x: 0, y: 60, z: 0}
   m_LocalScale: {x: 0.23, y: 60, z: 0.23}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -251,12 +251,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ff4a63106fa5443a1fcfca7b8a6229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModelObject: {fileID: 128826217004271863}
+  ModelObject: {fileID: 8444158139621029406}
   health: 0
   shield: 0
   collisionDamage: 2
   timeLeftInvulnerable: 0
   dmgInvulnTime: 1
+  isShootingLocked: 0
+  isAbilityLocked: 0
   isInvulnerable: 0
   isIgnoringCollisions: 0
   MAX_HEALTH: 10
@@ -264,7 +266,6 @@ MonoBehaviour:
   shieldPerSecond: 0
   shieldRegenDelayTime: 3
   isShieldBroken: 0
-  isShootingLocked: 0
   IsDebugLogging: 0
   DamageTest: 0
   HealTest: 0

@@ -32,6 +32,6 @@ public class ScriptableGatling : ScriptableWeapon
             return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime);
         }
         // Set for a player
-        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, timeBetweenShots, isEnemy);
+        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime * 0);
     }
 }

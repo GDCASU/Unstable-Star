@@ -30,9 +30,12 @@ public abstract class Weapon
 
     // Gatling variables
     public float warmupTime;
+    public float warmupCounter;
 
     // Laser variables
+    public GameObject chargingSpherePrefab;
     public float maxChargeUpTime;
+    public float chargeTimeCounter;
     public int minDamage;
     public int maxDamage;
 
@@ -53,19 +56,6 @@ public abstract class Weapon
 [Serializable]
 public class GeneralWeapon : Weapon
 {
-    //Default Constructor
-    //public GeneralWeapon(GameObject prefab, SoundTag sound, WeaponTypes behaviour, float speed, int damage, string name, float timeBetweenShots)
-    //{
-    //    this.prefab = prefab;
-    //    this.sound = sound;
-    //    this.speed = speed;
-    //    this.damage = damage;
-    //    this.sName = name;
-    //    this.shootCooldownTime = timeBetweenShots;
-    //    this.behaviour = behaviour;
-    //    this.isOnCooldown = false;
-    //}
-
     // Shortcut constructor to make a NULL weapon
     public GeneralWeapon(string name)
     {
@@ -146,20 +136,22 @@ public class Buckshot : Weapon
 public class LaserGun : Weapon
 {
     //Default Constructor
-    public LaserGun(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, int damage, string name, float timeBetweenShots, bool isEnemy = true)
+    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, SoundTag sound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, bool isEnemy)
     {
-        this.speed = speed;
         this.prefab = prefab;
-        this.damage = damage;
+        this.chargingSpherePrefab = chargingSpherePrefab;
         this.sName = name;
-        this.shootCooldownTime = timeBetweenShots;
+        this.shootCooldownTime = cooldownTime;
         this.sound = sound;
         this.weaponIcon = weaponIcon;
         this.isEnemy = isEnemy;
+        this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
+        this.maxChargeUpTime = maxChargeUpTime;
 
         // Static sets
         this.timeLeftInCooldown = 0f;
-        this.weaponType = WeaponTypes.Buckshot;
+        this.weaponType = WeaponTypes.Laser;
         this.isOnCooldown = false;
     }
 }
@@ -169,7 +161,7 @@ public class LaserGun : Weapon
 public class GatlingGun : Weapon
 {
     //Default Constructor
-    public GatlingGun(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime = 0f)
+    public GatlingGun(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime)
     {
         this.speed = speed;
         this.prefab = prefab;
@@ -186,6 +178,7 @@ public class GatlingGun : Weapon
 
         // Static sets
         this.timeLeftInCooldown = 0f;
+        this.warmupCounter = 0f;
         this.weaponType = WeaponTypes.Gatling;
         this.isOnCooldown = false;
     }

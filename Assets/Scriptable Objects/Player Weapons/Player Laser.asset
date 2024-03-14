@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Player Laser
   m_EditorClassIdentifier: 
   weaponName: Laser Gun
-  bulletPrefab: {fileID: 0}
+  laserPrefab: {fileID: 5345990141035161666, guid: ce02a25aec1a0754eb739bc9702a3af3, type: 3}
+  chargingSpherePrefab: {fileID: 3116827553839749471, guid: a19a52199c3b0d9468169b97257516a5, type: 3}
   weaponIcon: {fileID: 21300000, guid: 08416634395a74e45b558de639ecdb36, type: 3}
   sound: 0
-  damage: 0
-  bulletSpeed: 0
-  shotsCooldown: 0
+  minDamage: 1
+  maxDamage: 10
+  laserCooldown: 1.5
+  maxChargeUpTime: 3
+  isEnemy: 0

@@ -54,7 +54,7 @@ public class WeaponArsenal : MonoBehaviour
             AddWeaponToArsenal(PlayerPistol.GetWeaponObject());
             AddWeaponToArsenal(PlayerBirdshot.GetWeaponObject());
             AddWeaponToArsenal(PlayerBuckshot.GetWeaponObject());
-            //AddWeaponToArsenal(PlayerLaserWep.GetWeaponObject());
+            AddWeaponToArsenal(PlayerLaserWep.GetWeaponObject());
             AddWeaponToArsenal(PlayerGatlingGun.GetWeaponObject());
         }
     }

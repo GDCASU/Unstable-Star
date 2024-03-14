@@ -38,7 +38,7 @@ public class TempWeaponReader : MonoBehaviour
                 UpdateForGatling(playerWep);
                 break;
             case WeaponTypes.Laser:
-                //
+                UpdateForLaser(playerWep);
                 break;
             default:
                 UpdateForSimpleWeapon(playerWep);
@@ -72,10 +72,10 @@ public class TempWeaponReader : MonoBehaviour
         readout = playerWep.sName + "\n";
 
         // Check if we are warming up
-        if (input.timeLeftInCooldown > 0f)
+        if (input.warmupCounter > 0f)
         {
             readout += "Warming Up!\n";
-            readout += "Time Left = " + input.timeLeftInCooldown.ToString("F2");
+            readout += "Time Left = " + input.warmupCounter.ToString("F2");
         }
         // Else, we are firing as long as button is held
         else if (PlayerInput.instance.isShootHeld && !Player.Instance.isShootingLocked)
@@ -83,6 +83,37 @@ public class TempWeaponReader : MonoBehaviour
             readout += "Firing!";
         }
         // Not firing
+        else
+        {
+            readout += "Ready!";
+        }
+    }
+
+    private void UpdateForLaser(Weapon input)
+    {
+        // Get weapon name
+        readout = playerWep.sName + "\n";
+
+        // Check if we are charging the laser
+        bool isInputGood = PlayerInput.instance.isShootHeld && !Player.Instance.isShootingLocked;
+        bool laserChargingCheck = isInputGood && input.chargeTimeCounter < input.maxChargeUpTime && !input.isOnCooldown;
+        if (laserChargingCheck)
+        {
+            readout += "Charging Up!\n";
+            readout += "Time Charged = " + input.chargeTimeCounter.ToString("F2");
+        }
+        // Else, we are fully charged
+        else if (isInputGood && input.chargeTimeCounter >= input.maxChargeUpTime)
+        {
+            readout += "Max Charge!";
+        }
+        // On cooldown
+        else if (input.timeLeftInCooldown > 0)
+        {
+            readout += "On Cooldown!\n";
+            readout += "Time Left = " + input.timeLeftInCooldown.ToString("F2");
+        }
+        // Not firing or locked
         else
         {
             readout += "Ready!";
