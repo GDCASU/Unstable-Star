@@ -284,7 +284,7 @@ public class ShootComponent : MonoBehaviour
 
     #region LASER BEHAVIOUR
 
-    /// <summary> LaserBehaviour: TODO: FINISH DESC </summary>
+    /// <summary> LaserBehaviour: Fires a laser from the weapon anchor to the edge of the screen </summary>
     private void LaserBehaviour(Weapon input)
     {
         // Dont enter routine if already running
@@ -304,6 +304,7 @@ public class ShootComponent : MonoBehaviour
         laserRoutine = StartCoroutine(PlayerLaserRoutine(input));
     }
 
+    // The player routine for the laser fire
     private IEnumerator PlayerLaserRoutine(Weapon input)
     {
         // CHARGING SPHERE PARAMETERS:
@@ -382,7 +383,7 @@ public class ShootComponent : MonoBehaviour
         Vector3 endPos = hitInfo.point + 2 * AnchorObject.transform.up; 
         StartCoroutine(HandleLaserLine(laser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
 
-        // FIXME: Wait a frame so the laser renders????????????
+        // Wait a frame so the laser renders
         yield return null;
 
         // Call SphereCastAll in the direction of the laser and stop at the edge collider
@@ -420,7 +421,115 @@ public class ShootComponent : MonoBehaviour
 
     private IEnumerator EnemeyLaserRoutine(Weapon input)
     {
-        yield break;
+        // CHARGING SPHERE PARAMETERS:
+        float maxSphereDiameter = 2.5f;
+        float chargeSphereKillTime = 0.2f;
+        // LASER PARAMETERS:
+        float minLaserWidth = 0.5f;
+        float maxLaserWidth = 2.5f;
+        float timeToFullWidth = 0.05f;
+        float timeToZeroWidth = 0.5f;
+
+        // Pre-declare variables before loop
+        GameObject chargeSphere;
+        float rateOfChange;
+        float currentDiameter;
+        float elapsedTime;
+        RaycastHit hitInfo;
+        RaycastHit[] raycastArray;
+        float distanceToEdge;
+        int edgeLayerMask;
+        int damageVal;
+        bool didHit;
+        float laserWidth;
+        GameObject laser;
+        Vector3 endPos;
+        WaitForSeconds cooldown = new WaitForSeconds(input.shootCooldownTime);
+
+    // Label for looping
+    LoopShooting:
+
+        // Create the chargeup prefab
+        chargeSphere = Instantiate(input.chargingSpherePrefab, AnchorObject.transform.position, AnchorObject.transform.rotation, AnchorObject.transform);
+        chargeSphere.transform.localScale = Vector3.zero;
+        // Charge up sphere data
+        rateOfChange = maxSphereDiameter / input.maxChargeUpTime;
+        elapsedTime = 0f;
+
+        // Charge up the laser
+        while (elapsedTime < input.maxChargeUpTime)
+        {
+            elapsedTime += Time.deltaTime;
+            input.chargeTimeCounter = elapsedTime;
+            currentDiameter = rateOfChange * elapsedTime;
+            chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
+            yield return null; // Wait a frame
+        }
+        // Finished charging
+        input.chargeTimeCounter = input.maxChargeUpTime;
+        currentDiameter = maxSphereDiameter;
+        chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
+
+        // Start reducing the charging sphere as we fire for a better looking animation
+        StartCoroutine(ReduceSphereTillZero(chargeSphere, chargeSphereKillTime));
+
+        // Raycast towards end of screen to find distance to edge of screen
+        edgeLayerMask = LayerMask.GetMask("Edge Collider Boxes");
+
+        // FIRST: Calculate distance to edge of gameplay area
+        didHit = Physics.Raycast(AnchorObject.transform.position, AnchorObject.transform.up, out hitInfo, 200, edgeLayerMask);
+        if (didHit) distanceToEdge = hitInfo.distance;
+        else
+        {
+            // Safeguard: This wouldnt break unless the raycast wasnt able to find the edge screen colliders
+            Debug.Log("ERROR! LASER GUN WASNT ABLE TO FIND THE EDGE SCREEN COLLIDERS IN THE SCENE! Check code at ShootComponent.cs");
+            yield break;
+        }
+
+        // Calculate the width/diameter of the laser based on charge up time
+        rateOfChange = (maxLaserWidth - minLaserWidth) / (input.maxChargeUpTime);
+        laserWidth = rateOfChange * input.chargeTimeCounter + minLaserWidth;
+
+        // Create the laser with the specified distance
+        laser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
+        // Extend the laser by a bit so the player cant see the end of the laser
+        endPos = hitInfo.point + 2 * AnchorObject.transform.up;
+        StartCoroutine(HandleLaserLine(laser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
+
+        // Wait a frame so the laser renders
+        yield return null;
+
+        // Call SphereCastAll in the direction of the laser and stop at the edge collider
+        raycastArray = Physics.SphereCastAll(AnchorObject.transform.position, laserWidth / 2, AnchorObject.transform.up, distanceToEdge);
+
+        // Calculate rateOfChange of damage depending on charge time
+        rateOfChange = (input.maxDamage - input.minDamage) / (input.maxChargeUpTime);
+
+        // Check all hits
+        foreach (RaycastHit currHit in raycastArray)
+        {
+            // Dont damage the creator
+            if (currHit.collider.gameObject.CompareTag(this.gameObject.tag)) continue;
+
+            // Else, attempt to damage if its an entity
+            if (currHit.collider.gameObject.TryGetComponent<CombatEntity>(out CombatEntity entity))
+            {
+                // if the entity is ignoring collisions, then ignore
+                if (entity.isIgnoringCollisions) continue;
+
+                // Calculate damage depending on charge time
+                damageVal = (int)(rateOfChange * input.chargeTimeCounter + input.minDamage); // Floor it
+
+                // Deal damage
+                entity.TakeDamage(damageVal, out int dmgRecieved, out Color colorSet);
+                HitpointsRenderer.Instance.PrintDamage(currHit.point, dmgRecieved, colorSet);
+            }
+        }
+        // Cooldown on this laser weapon
+        input.chargeTimeCounter = 0f;
+        yield return cooldown;
+        // Loop back to beginning
+        goto LoopShooting;
     }
 
     // Helper routine to reduce the Charging sphere while firing the laser

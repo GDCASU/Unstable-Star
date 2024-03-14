@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2202838eb1ed0ee4fb695d4e5645baaf, type: 3}
-  m_Name: BasicEnemyPistol
+  m_Name: Enemy Pistol
   m_EditorClassIdentifier: 
   weaponName: Enemy Pistol
   bulletPrefab: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}

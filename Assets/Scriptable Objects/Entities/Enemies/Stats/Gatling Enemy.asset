@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c75bcdffb4cae044cbc62c96733e4ef1, type: 3}
-  m_Name: Gatling Enemy Data
+  m_Name: Gatling Enemy
   m_EditorClassIdentifier: 
   health: 20
   shield: 0
