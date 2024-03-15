@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
+public enum EnemyType
+{
+    BASIC,
+    LASER,
+    GATLING
+}
+
 public class Enemy : CombatEntity
 {
     [Header("Movement")]
@@ -18,7 +25,7 @@ public class Enemy : CombatEntity
     [Header("Scriptable Data Object")]
     [Tooltip("If ignoreDataHolder is true, the enemy will have the data set in the inspector")]
     [SerializeField] private bool ignoreDataHolder;
-    [SerializeField] private ScriptableEnemy statsData;
+    [SerializeField] public ScriptableEnemy statsData { get; private set; }
 
     // Variables used to control state within the enemy
     protected bool canShoot = false;
