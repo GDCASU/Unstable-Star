@@ -16,7 +16,6 @@ public class Player : CombatEntity
     [SerializeField] private bool isShieldBroken;
 
     //Settings
-    [SerializeField] private GameObject WeaponAnchor;
     [SerializeField] private bool IsDebugLogging;
 
     //Testing
@@ -28,13 +27,11 @@ public class Player : CombatEntity
     [SerializeField] private float shieldFloat;
 
     //Local variables
-    private ShootScript shootComponent;
-    private List<Weapon> weaponArsenal = new List<Weapon>();
-    private Weapon currWeapon;
+    private ShootComponent shootComponent;
+    private AbilityComponent abilityComponent;
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
-    private int weaponIndex;
-    
+
     protected override void Awake()
     {
         base.Awake();
@@ -49,8 +46,8 @@ public class Player : CombatEntity
     private void Start()
     {
         //Get Components
-        shootComponent = GetComponent<ShootScript>();
-        shootComponent.InitializeData(WeaponAnchor);
+        shootComponent = GetComponent<ShootComponent>();
+        abilityComponent = GetComponent<AbilityComponent>();
 
         //Set Stats
         health = MAX_HEALTH;
@@ -63,17 +60,6 @@ public class Player : CombatEntity
         ShieldRoutine = null;
         isShieldRestoredRoutine = null;
         isShieldBroken = false;
-
-        //Add Weapons
-        Pistol pistol = new Pistol(30f, 1, "Pistol", 0.2f);
-        Birdshot birdshot = new Birdshot(30f, 1, "Birdshot", 0.2f);
-        Buckshot buckshot = new Buckshot(30f, 1, "Buckshot", 0.2f);
-
-        weaponArsenal.Add(pistol);
-        weaponArsenal.Add(birdshot);
-        weaponArsenal.Add(buckshot);
-        currWeapon = weaponArsenal[0];
-        weaponIndex = 0;
     }
 
     //Update's only purpose is debugging, everything else runs on
@@ -109,35 +95,57 @@ public class Player : CombatEntity
         }
     }
 
-    #region WEAPON UTILITIES
+    #region WEAPON SYSTEMS
 
     /// <summary> Shoots the current weapon the player has selected </summary>
     public void ShootWeapon()
     {
-        shootComponent.ShootWeapon(currWeapon);
+        // Dont shoot if disabled
+        if (isShootingLocked) return;
+        
+        // Shoot weapon
+        shootComponent.ShootWeapon(WeaponArsenal.instance.GetCurrentWeapon());
     }
 
-    /// <summary> Switches to the next weapon in the arsenal, from left to right </summary>
+    /// <summary> Switches to the next weapon in the arsenal </summary>
     public void SwitchToNextWeapon()
     {
-        //Check if we arent at the end of the list 
-        if (weaponIndex >= weaponArsenal.Count - 1)
-        {
-            //Return to start
-            currWeapon = weaponArsenal[0];
-            weaponIndex = 0;
-            return;
-        }
-
-        //Else, switch to next in list
-        ++weaponIndex;
-        currWeapon = weaponArsenal[weaponIndex];
+        WeaponArsenal.instance.SwitchToNextWeapon();
     }
 
-    /// <summary> Adds a new weapon to the player's arsenal </summary>
-    public void AddNewWeapon(Weapon newWeapon)
+    /// <summary> Switches to the previous weapon in the arsenal </summary>
+    public void SwitchToPreviousWeapon()
     {
-        weaponArsenal.Add(newWeapon);
+        WeaponArsenal.instance.SwitchToPreviousWeapon();
+    }
+
+    #endregion
+
+    #region ABILITY SYSTEMS
+
+    /// <summary> Function that will attempt to trigger the player's selected ability </summary>
+    public void UseAbility()
+    {
+        // Dont use ability if locked
+        if (isAbilityLocked) return;
+
+        // Dont use ability if out of charges
+        if (AbilityInventory.instance.GetCurrentAbility().charges <= 0) return;
+
+        // Try using ability
+        abilityComponent.TriggerAbility(AbilityInventory.instance.GetCurrentAbility());
+    }
+
+    /// <summary> Switches to the next ability in the inventory </summary>
+    public void SwitchToNextAbility()
+    {
+        AbilityInventory.instance.SwitchToNextAbility();
+    }
+
+    /// <summary> Switches to the previous ability in the inventory </summary>
+    public void SwitchToPreviousAbility()
+    {
+        AbilityInventory.instance.SwitchToPreviousAbility();
     }
 
     #endregion
@@ -314,20 +322,12 @@ public class Player : CombatEntity
     public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false)
     {
         // If input is less, return
-        if (seconds < timeLeftInvulnerable)
-        {
-            return;
-        }
+        if (seconds < timeLeftInvulnerable) return;
 
-        // Else, new invulnerability gives more time
-        if (invulnRoutine != null)
-        {
-            // Stop current invulnerabily routine if still running
-            StopCoroutine(invulnRoutine);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, false);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, false);
-        }
+        // Else, new invulnerability gives more time, Stop current invulnerabily routine if still running
+        if (invulnRoutine != null) StopCoroutine(invulnRoutine);
 
+        // Start invuln routine
         invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions));
     }
 
@@ -411,14 +411,8 @@ public class Player : CombatEntity
     protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
     {
         isInvulnerable = true;
+        isIgnoringCollisions = ignoreCollisions;
         timeLeftInvulnerable = seconds;
-
-        //Disable Entity collisions if bool "ignoreCollisions" was true
-        if (ignoreCollisions)
-        {
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, true);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, true);
-        }
 
         // Runs the iframes timer
         while (timeLeftInvulnerable > 0f)
@@ -428,15 +422,13 @@ public class Player : CombatEntity
             yield return null;
         }
 
-        //Re-enable collisions upon end
-        if (ignoreCollisions)
-        {
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.EnemyLayer, false);
-            Physics.IgnoreLayerCollision(PhysicsConfig.Get.PlayerLayer, PhysicsConfig.Get.HazardLayer, false);
-        }
-
-        // Player can be hurt again
+        // Invulnerability time over
+        isIgnoringCollisions = false;
         timeLeftInvulnerable = 0f;
+
+        // Wait two frames to remove bullets inside the player collider
+        yield return null;
+        yield return null;
         isInvulnerable = false;
         invulnRoutine = null;
     }
@@ -481,7 +473,6 @@ public class Player : CombatEntity
     public int GetMaxHealth() { return MAX_HEALTH; }
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
-    public Weapon GetCurrWeapon() { return currWeapon; }
 
     #endregion
 }

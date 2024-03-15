@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c845f4bbae9d1499532bb52544ae8d, type: 3}
+  m_Name: SoundLibraryData
+  m_EditorClassIdentifier: 
+  tempRayGunShot:
+    Guid:
+      Data1: -1179885932
+      Data2: 1250484582
+      Data3: 989007238
+      Data4: 152891200
+    Path: event:/SFX/Player/RayGunEffect
+  tempBattleMusic:
+    Guid:
+      Data1: 1967780731
+      Data2: 1104789371
+      Data3: -247545701
+      Data4: 1151283404
+    Path: event:/Music/Temp BG Music

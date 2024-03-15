@@ -1,63 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
-/// <summary> A basic Enemy. Inherits from the "CombatEntity" class </summary>
-public class BasicEnemy : CombatEntity
+public class BasicEnemy : Enemy
 {
-    //Local Variables
-    [Header("Enemy Parameters")]
-    [SerializeField] private GameObject WeaponAnchor;
-    public bool testShoot;
+    private bool moveLeft = false;
 
-    //Local variables
-    private ShootScript shootComponent;
-    private Weapon currWeapon;
-
-    private void Start()
+    /// <summary>
+    /// Inheriting states from Enemy; move and shoot state
+    /// </summary>
+    protected override void Update()
     {
-        //Remember to look into the CombatEntity class to see what variables
-        //Should be kept track of or re-set here if needed
+        base.Update();
 
-        //Initialize Component
-        shootComponent = GetComponent<ShootScript>();
-        shootComponent.InitializeData(WeaponAnchor);
-
-        //Set variables
-        health = 5;
-        shield = 5;
-        currWeapon = new Pistol(15f, 1, "Enemy Pistol", 0.2f);
-    }
-
-    //Testing
-    private void Update()
-    {
-        if (testShoot)
+        Move();
+        if (canShoot)
         {
             shootComponent.ShootWeapon(currWeapon);
-            testShoot = false;
+            StartCoroutine(ShootDelayCo());
         }
     }
 
-    //Execute instructions for when player dies
-    protected override void WhenPlayerDies()
+    /// <summary>
+    /// Moves the Basic Enemy left and right across the screen
+    /// </summary>
+    protected override void Move()
     {
-        //Stub
+        base.Move();
+
+        if (moveLeft)
+        {
+            //transform.Translate(Vector3.left * Time.deltaTime * speed);
+            transform.position = transform.position + new Vector3(-moveSpeed * Time.deltaTime, 0f, 0f);
+            moveLeft = Camera.main.WorldToViewportPoint(transform.position).x > 0f;
+        }
+        else
+        {   // Move right
+            //transform.Translate(Vector3.right * Time.deltaTime * speed);
+            transform.position = transform.position + new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
+            moveLeft = Camera.main.WorldToViewportPoint(transform.position).x > 1f;
+        }
     }
-
-    // Behaviours on death
-    protected override void TriggerDeath()
-    {
-        //TODO: DEFINE WHAT HAPPENS WHEN ENEMY DIES
-        //TODO: It should also increase the kill counter here
-
-
-
-        // -----------------------
-
-        StopAllCoroutines();
-        Destroy(this.gameObject);
-    }
-
 }

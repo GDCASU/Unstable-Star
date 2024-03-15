@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine;
+
 // This script's purpose is to improve the Player script appereance on the Editor/Inspector
 // Since it started to contain too many variables that made it difficult to work with
 // NOTE: Any new variable added to the player has to be added here for it to show on the
 // inspector and editor window
-
-using UnityEditor;
-using UnityEngine;
 
 [CustomEditor(typeof(Player))]
 public class PlayerEditor : Editor
@@ -19,12 +20,13 @@ public class PlayerEditor : Editor
     SerializedProperty shield;
     SerializedProperty shieldPerSecond;
     SerializedProperty isInvulnerable;
+    SerializedProperty isShootingLocked;
+    SerializedProperty isAbilityLocked;
     SerializedProperty timeLeftInvulnerable;
     SerializedProperty isShieldBroken;
 
     //Settings
     SerializedProperty ModelObject;
-    SerializedProperty WeaponAnchor;
     SerializedProperty MAX_HEALTH;
     SerializedProperty MAX_SHIELD;
     SerializedProperty dmgInvulnTime;
@@ -32,6 +34,7 @@ public class PlayerEditor : Editor
 
     //Collisions
     SerializedProperty collisionDamage;
+    SerializedProperty isIgnoringCollisions;
 
     //Debugging
     SerializedProperty IsDebugLogging;
@@ -49,6 +52,7 @@ public class PlayerEditor : Editor
     bool SettingsGroup = false;
     bool CollisionsGroup = false;
     bool DebuggingGroup = false;
+    bool warningMsgGroup = false;
 
     private void OnEnable()
     {
@@ -57,12 +61,13 @@ public class PlayerEditor : Editor
         shield = serializedObject.FindProperty("shield");
         shieldPerSecond = serializedObject.FindProperty("shieldPerSecond");
         isInvulnerable = serializedObject.FindProperty("isInvulnerable");
+        isShootingLocked = serializedObject.FindProperty("isShootingLocked");
+        isAbilityLocked = serializedObject.FindProperty("isAbilityLocked");
         timeLeftInvulnerable = serializedObject.FindProperty("timeLeftInvulnerable");
         isShieldBroken = serializedObject.FindProperty("isShieldBroken");
 
         //Settings
         ModelObject = serializedObject.FindProperty("ModelObject");
-        WeaponAnchor = serializedObject.FindProperty("WeaponAnchor");
         MAX_HEALTH = serializedObject.FindProperty("MAX_HEALTH");
         MAX_SHIELD = serializedObject.FindProperty("MAX_SHIELD");
         dmgInvulnTime = serializedObject.FindProperty("dmgInvulnTime");
@@ -70,6 +75,7 @@ public class PlayerEditor : Editor
 
         //Collisions
         collisionDamage = serializedObject.FindProperty("collisionDamage");
+        isIgnoringCollisions = serializedObject.FindProperty("isIgnoringCollisions");
 
         //Debugging
         IsDebugLogging = serializedObject.FindProperty("IsDebugLogging");
@@ -83,14 +89,33 @@ public class PlayerEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        //On Inspector Update
+        serializedObject.Update();
+
         if (!EnableCustomEditor)
         {
             base.OnInspectorGUI();
             return;
         }
-        
-        //On Inspector Update
-        serializedObject.Update();
+
+        // Warning message foldout
+        warningMsgGroup = EditorGUILayout.BeginFoldoutHeaderGroup(warningMsgGroup, "Inspector Warning");
+        if (warningMsgGroup)
+        {
+            // Create A box so its easier to find this script and disable it
+            EditorGUILayout.ObjectField("Editor Script", MonoScript.FromScriptableObject(this), typeof(PlayerEditor), false);
+
+            // Message in case Editor Script gets in the way of adding new entries
+            string warningMessage = "\nNote: The Above script is modifying how this insepctor window looks.\n";
+            warningMessage += "This means that if you ADD A VARIABLE for it to show on the inspector, ";
+            warningMessage += "IT WONT SHOW unless you PROGRAM IT into the editor script yourself.\n";
+            warningMessage += "Go to that script and change the \"EnableCustomEditor\" boolean to disable the custom editor.\n";
+            GUILayout.Label(warningMessage, EditorStyles.wordWrappedLabel);
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
+
+        // Add the little shortcut box to the scripts
+        EditorGUILayout.ObjectField("Player Script", MonoScript.FromMonoBehaviour((Player)target), typeof(Player), false);
 
         //Stats Foldout
         StatsGroup = EditorGUILayout.BeginFoldoutHeaderGroup(StatsGroup, "Statistics");
@@ -99,6 +124,8 @@ public class PlayerEditor : Editor
             EditorGUILayout.PropertyField(health);
             EditorGUILayout.PropertyField(shield);
             EditorGUILayout.PropertyField(shieldPerSecond);
+            EditorGUILayout.PropertyField(isShootingLocked);
+            EditorGUILayout.PropertyField(isAbilityLocked); 
             EditorGUILayout.PropertyField(isShieldBroken);
             EditorGUILayout.PropertyField(isInvulnerable);
             EditorGUILayout.PropertyField(timeLeftInvulnerable);
@@ -110,7 +137,6 @@ public class PlayerEditor : Editor
         if (SettingsGroup)
         {
             EditorGUILayout.PropertyField(ModelObject);
-            EditorGUILayout.PropertyField(WeaponAnchor);
             EditorGUILayout.PropertyField(MAX_HEALTH);
             EditorGUILayout.PropertyField(MAX_SHIELD);
             EditorGUILayout.PropertyField(dmgInvulnTime);
@@ -123,6 +149,7 @@ public class PlayerEditor : Editor
         if (CollisionsGroup)
         {
             EditorGUILayout.PropertyField(collisionDamage);
+            EditorGUILayout.PropertyField(isIgnoringCollisions); 
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 
