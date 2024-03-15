@@ -66,6 +66,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""SwitchNextWeapon"",
                     ""type"": ""Button"",
+                    ""id"": ""9ce7803f-b2e3-45fd-9369-d9361b1b7ba2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchNextAbility"",
+                    ""type"": ""Button"",
                     ""id"": ""51de9c18-8f1e-42b1-86d9-18c8a2f0bb2a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -73,9 +82,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwitchPreviousWeapon"",
+                    ""name"": ""UseAbility"",
                     ""type"": ""Button"",
-                    ""id"": ""9ce7803f-b2e3-45fd-9369-d9361b1b7ba2"",
+                    ""id"": ""a9973e8e-39c4-45b6-b889-2c9c497297da"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -173,8 +182,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bac9dde5-518f-455d-bb60-df89a183e604"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""bfeaa068-b340-49a8-bfab-d2e416cfbe52"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -184,12 +193,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bfeaa068-b340-49a8-bfab-d2e416cfbe52"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""id"": ""48a99a04-1f59-4165-811e-ac0720633307"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SwitchPreviousWeapon"",
+                    ""action"": ""UseAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bac9dde5-518f-455d-bb60-df89a183e604"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchNextAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -721,7 +741,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ShipControls_AngleLeft = m_ShipControls.FindAction("AngleLeft", throwIfNotFound: true);
         m_ShipControls_AngleRight = m_ShipControls.FindAction("AngleRight", throwIfNotFound: true);
         m_ShipControls_SwitchNextWeapon = m_ShipControls.FindAction("SwitchNextWeapon", throwIfNotFound: true);
-        m_ShipControls_SwitchPreviousWeapon = m_ShipControls.FindAction("SwitchPreviousWeapon", throwIfNotFound: true);
+        m_ShipControls_SwitchNextAbility = m_ShipControls.FindAction("SwitchNextAbility", throwIfNotFound: true);
+        m_ShipControls_UseAbility = m_ShipControls.FindAction("UseAbility", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -800,7 +821,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_ShipControls_AngleLeft;
     private readonly InputAction m_ShipControls_AngleRight;
     private readonly InputAction m_ShipControls_SwitchNextWeapon;
-    private readonly InputAction m_ShipControls_SwitchPreviousWeapon;
+    private readonly InputAction m_ShipControls_SwitchNextAbility;
+    private readonly InputAction m_ShipControls_UseAbility;
     public struct ShipControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -810,7 +832,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @AngleLeft => m_Wrapper.m_ShipControls_AngleLeft;
         public InputAction @AngleRight => m_Wrapper.m_ShipControls_AngleRight;
         public InputAction @SwitchNextWeapon => m_Wrapper.m_ShipControls_SwitchNextWeapon;
-        public InputAction @SwitchPreviousWeapon => m_Wrapper.m_ShipControls_SwitchPreviousWeapon;
+        public InputAction @SwitchNextAbility => m_Wrapper.m_ShipControls_SwitchNextAbility;
+        public InputAction @UseAbility => m_Wrapper.m_ShipControls_UseAbility;
         public InputActionMap Get() { return m_Wrapper.m_ShipControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -835,9 +858,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchNextWeapon.started += instance.OnSwitchNextWeapon;
             @SwitchNextWeapon.performed += instance.OnSwitchNextWeapon;
             @SwitchNextWeapon.canceled += instance.OnSwitchNextWeapon;
-            @SwitchPreviousWeapon.started += instance.OnSwitchPreviousWeapon;
-            @SwitchPreviousWeapon.performed += instance.OnSwitchPreviousWeapon;
-            @SwitchPreviousWeapon.canceled += instance.OnSwitchPreviousWeapon;
+            @SwitchNextAbility.started += instance.OnSwitchNextAbility;
+            @SwitchNextAbility.performed += instance.OnSwitchNextAbility;
+            @SwitchNextAbility.canceled += instance.OnSwitchNextAbility;
+            @UseAbility.started += instance.OnUseAbility;
+            @UseAbility.performed += instance.OnUseAbility;
+            @UseAbility.canceled += instance.OnUseAbility;
         }
 
         private void UnregisterCallbacks(IShipControlsActions instance)
@@ -857,9 +883,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchNextWeapon.started -= instance.OnSwitchNextWeapon;
             @SwitchNextWeapon.performed -= instance.OnSwitchNextWeapon;
             @SwitchNextWeapon.canceled -= instance.OnSwitchNextWeapon;
-            @SwitchPreviousWeapon.started -= instance.OnSwitchPreviousWeapon;
-            @SwitchPreviousWeapon.performed -= instance.OnSwitchPreviousWeapon;
-            @SwitchPreviousWeapon.canceled -= instance.OnSwitchPreviousWeapon;
+            @SwitchNextAbility.started -= instance.OnSwitchNextAbility;
+            @SwitchNextAbility.performed -= instance.OnSwitchNextAbility;
+            @SwitchNextAbility.canceled -= instance.OnSwitchNextAbility;
+            @UseAbility.started -= instance.OnUseAbility;
+            @UseAbility.performed -= instance.OnUseAbility;
+            @UseAbility.canceled -= instance.OnUseAbility;
         }
 
         public void RemoveCallbacks(IShipControlsActions instance)
@@ -1002,7 +1031,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnAngleLeft(InputAction.CallbackContext context);
         void OnAngleRight(InputAction.CallbackContext context);
         void OnSwitchNextWeapon(InputAction.CallbackContext context);
-        void OnSwitchPreviousWeapon(InputAction.CallbackContext context);
+        void OnSwitchNextAbility(InputAction.CallbackContext context);
+        void OnUseAbility(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
