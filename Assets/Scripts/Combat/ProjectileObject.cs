@@ -41,13 +41,17 @@ public class ProjectileObject : MonoBehaviour
         //TODO: Ask design if bullets should also be destroyed if colliding with enemies
 
         //For anything else, find out if object we collided against can be damaged
-        if (collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        if (collision.gameObject.TryGetComponent<CombatEntity>(out CombatEntity entity))
         {
-            damageable.TakeDamage(this.damage, out int dmgRecieved, out Color colorSet);
+            // if the entity is ignoring collisions, then continue foward
+            if (entity.isIgnoringCollisions) return;
+            
+            // Else, deal damage
+            entity.TakeDamage(this.damage, out int dmgRecieved, out Color colorSet);
             HitpointsRenderer.Instance.PrintDamage(this.transform.position, dmgRecieved, colorSet);
         }
 
-        //Destroy bullet after collision
+        //Destroy bullet after a collision
         Destroy(this.gameObject);
     }
 
