@@ -13,9 +13,10 @@ public class ShipController : MonoBehaviour
 
     // Player Data
     private Player playerScript;
-    private readonly float playerModelHeight = 2; // Offset used for upper screen boundary
+    private readonly float verticalOffset = 2; // Offset used for upper screen boundary
 
     // Local Variables
+    private Animator animComponent;
     private GameObject currentCopyPlayer;
     private Coroutine checkIfOffScreen;
     private Vector3 viewPos;
@@ -30,9 +31,10 @@ public class ShipController : MonoBehaviour
     {
         // Input Events
         PlayerInput.OnSwitchToNextWeapon += DoSwitchToNextWeapon;
-        PlayerInput.OnSwitchToPreviousWeapon += DoSwitchToPreviousWeapon;
+        PlayerInput.OnSwitchToNextAbility += DoSwitchToNextAbility;
         PlayerInput.OnRotateAim += RotateAim;
         PlayerInput.OnShootWeapon += ShootPlayerWeapon;
+        PlayerInput.OnUseAbility += UsePlayerAbility;
 
         // Get the boundary limits of the play space
         // FIXME: Is this the best way to do this?
@@ -40,10 +42,21 @@ public class ShipController : MonoBehaviour
             Camera.main.transform.position.z));
     }
 
+    // Remove Input Events if object is destroyed
+    private void OnDestroy()
+    {
+        PlayerInput.OnSwitchToNextWeapon -= DoSwitchToNextWeapon;
+        PlayerInput.OnSwitchToNextAbility -= DoSwitchToNextAbility;
+        PlayerInput.OnRotateAim -= RotateAim;
+        PlayerInput.OnShootWeapon -= ShootPlayerWeapon;
+        PlayerInput.OnUseAbility -= UsePlayerAbility;
+    }
+
     private void Start()
     {
-        // Get a reference to the player stats script
+        // Get components
         playerScript = GetComponent<Player>();
+        animComponent = GetComponent<Animator>();
     }
 
     void Update()
@@ -59,12 +72,20 @@ public class ShipController : MonoBehaviour
         translationVector = speed * Time.deltaTime * movementVector;
         transform.Translate(translationVector);
 
+        // Handle Movement animation
+        animComponent.SetFloat("moveDirection", movementVector.x);
+        if (movementVector.x != 0)
+            animComponent.SetBool("isMoving", true);
+        else
+            animComponent.SetBool("isMoving", false);
+
+
         // Copy Movement over to copy player if they exist
         if (currentCopyPlayer != null) { currentCopyPlayer.transform.Translate(translationVector); }
 
         // Stop the player if at the top and bottom of the screen
         viewPos = this.transform.position;
-        float newY = Mathf.Clamp(viewPos.y, screenBounds.y + 2 * playerModelHeight, (screenBounds.y * -1) - playerModelHeight);
+        float newY = Mathf.Clamp(viewPos.y, screenBounds.y + 2 * verticalOffset, (screenBounds.y * -1) - verticalOffset);
         viewPos.y = newY;
         this.transform.position = viewPos;
 
@@ -153,13 +174,18 @@ public class ShipController : MonoBehaviour
         playerScript.ShootWeapon();
     }
 
+    private void UsePlayerAbility()
+    {
+        playerScript.UseAbility();
+    }
+
     private void DoSwitchToNextWeapon()
     {
         playerScript.SwitchToNextWeapon();
     }
 
-    private void DoSwitchToPreviousWeapon()
+    private void DoSwitchToNextAbility()
     {
-        playerScript.SwitchToPreviousWeapon();
+        playerScript.SwitchToNextAbility();
     }
 }

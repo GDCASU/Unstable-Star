@@ -34,7 +34,7 @@ public class MenuController : MonoBehaviour
 
     public void NewGame() // loads a new game
     {
-        SceneManager.LoadScene(newLevel.text);
+        SceneManager.LoadScene("Main");
         Debug.Log("New Game");
     }
 

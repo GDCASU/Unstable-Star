@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Abstract Parent class for scriptable weapon interpretation within the arsenal and other systems
+public abstract class ScriptableWeapon : ScriptableObject
+{
+    /// <summary> Function to build the weapon object and return it </summary>
+    public abstract Weapon GetWeaponObject();
+}
+
 /// <summary> Object that will hold the players weapon array data </summary>
 public class WeaponArsenal : MonoBehaviour
 {
@@ -14,12 +21,14 @@ public class WeaponArsenal : MonoBehaviour
     private List<Weapon> weaponArsenal = new();
 
     // Settings
-    [SerializeField] private int maxWeaponCount = 3; // Default 3
+    [SerializeField] private int maxWeaponCount;
     [SerializeField] private int currWeaponIndex = -1; // Will be -1 whenever there are no weapons
+    private readonly Weapon nullWeapon = new GeneralWeapon("No Weapons"); // Helper null reference
+
+    // Current weapon
+    private Weapon currWeapon = new GeneralWeapon("No Weapons"); // Starts as null
 
     // Debbuging
-    private Weapon currWeapon = new Pistol(null, 0, 0, "No Weapons", 0); // Starts as null
-    private readonly Pistol nullWeapon = new Pistol(null, 0, 0, "No Weapons", 0); // Helper null reference
     [SerializeField] private bool doDebugLog;
     [SerializeField] private bool loadDefaultArsenal;
 
@@ -27,10 +36,11 @@ public class WeaponArsenal : MonoBehaviour
     public ScriptableWeapon PlayerPistol;
     public ScriptableWeapon PlayerBirdshot;
     public ScriptableWeapon PlayerBuckshot;
+    public ScriptableWeapon PlayerLaserWep;
+    public ScriptableWeapon PlayerGatlingGun;
 
     private void Awake()
     {
-        // Handle Singleton
         // Handle Singleton
         if (instance != null)
         {
@@ -41,9 +51,11 @@ public class WeaponArsenal : MonoBehaviour
         // Give the player the default arsenal if checked
         if (loadDefaultArsenal && weaponArsenal.Count <= 0)
         {
-            AddWeaponToArsenal( PlayerPistol.GetWeaponObject() );
-            AddWeaponToArsenal( PlayerBirdshot.GetWeaponObject() );
-            AddWeaponToArsenal( PlayerBuckshot.GetWeaponObject() );
+            AddWeaponToArsenal(PlayerPistol.GetWeaponObject());
+            AddWeaponToArsenal(PlayerBirdshot.GetWeaponObject());
+            AddWeaponToArsenal(PlayerBuckshot.GetWeaponObject());
+            AddWeaponToArsenal(PlayerLaserWep.GetWeaponObject());
+            AddWeaponToArsenal(PlayerGatlingGun.GetWeaponObject());
         }
     }
 
@@ -128,7 +140,7 @@ public class WeaponArsenal : MonoBehaviour
         if (weaponArsenal.Count >= maxWeaponCount)
         {
             // Its at is max, do not add weapon
-            if (doDebugLog) Debug.Log("<WEAPON ARSENAL ITS ALREADY AT ITS MAX!");
+            if (doDebugLog) Debug.Log("WEAPON ARSENAL ITS ALREADY AT ITS MAX!");
             return false;
         }
 
@@ -142,7 +154,7 @@ public class WeaponArsenal : MonoBehaviour
 
     #region REMOVING WEAPONS
 
-    /// <summary> Remove a weapon by Object using string comparison, returns true if successful </summary>
+    /// <summary> Remove a weapon by Object, returns true if successful </summary>
     public bool RemoveWeaponByObject(Weapon targetWeapon)
     {
         string targetName = targetWeapon.sName;
@@ -177,7 +189,7 @@ public class WeaponArsenal : MonoBehaviour
         if (index < 0 || index >= weaponArsenal.Count)
         {
             string msg = "<color=red>ERROR! INDEX PROVIDED IS OUTSIDE OF RANGE, OR ARRAY IS EMPTY!\n</color>";
-            msg += "<color=yellow>Error thrown on WeaponArsenal ScriptableObject at \"RemoveWeaponByIndex\"</color>";
+            msg += "<color=yellow>Error thrown on WeaponArsenal at \"RemoveWeaponByIndex\"</color>";
             Debug.Log(msg);
             return false;
         }
@@ -258,13 +270,6 @@ public class WeaponArsenal : MonoBehaviour
         currWeaponIndex = 0;
     }
 
-    /// <summary> Debugging Function for accessing the array </summary>
-    public void SetCurrentWeaponToIndex(int index)
-    {
-        currWeapon = weaponArsenal[index];
-        currWeaponIndex = index;
-    }
-
     /// <summary> Check if the weapon arsenal is empty, returns true if so </summary>
     public bool IsWeaponArsenalEmpty()
     {
@@ -281,12 +286,6 @@ public class WeaponArsenal : MonoBehaviour
         return currWeapon;
     }
 
-    /// <summary> Returns current weapon index </summary>
-    public int GetCurrentWeaponIndex()
-    {
-        return currWeaponIndex;
-    }
-
     /// <summary> Get array weapon by index </summary>
     public Weapon GetWeaponByIndex(int index)
     {
@@ -294,7 +293,7 @@ public class WeaponArsenal : MonoBehaviour
         if (index < 0 || index >= weaponArsenal.Count)
         {
             string msg = "<color=red>ERROR! INDEX PROVIDED IS OUTSIDE OF RANGE, OR ARRAY IS EMPTY!\n</color>";
-            msg += "<color=yellow>Error thrown on WeaponArsenal ScriptableObject at \"GetWeapon\"</color>";
+            msg += "<color=yellow>Error thrown on WeaponArsenal at \"GetWeaponByIndex\"</color>";
             Debug.Log(msg);
             return null;
         }

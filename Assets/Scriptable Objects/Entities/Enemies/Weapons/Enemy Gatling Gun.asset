@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff035bb5d687af4fa7de3945fc12718, type: 3}
+  m_Name: Enemy Gatling Gun
+  m_EditorClassIdentifier: 
+  weaponName: Enemy Gatling
+  bulletPrefab: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
+  weaponIcon: {fileID: 0}
+  sound: 0
+  warmUpTime: 4
+  damage: 1
+  bulletSpeed: 30
+  timeBetweenShots: 0.1
+  isEnemy: 1
+  shootStayTime: 4

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6102f0ea67bf149870ab049107af5f, type: 3}
+  m_Name: Player Laser
+  m_EditorClassIdentifier: 
+  weaponName: Laser Gun
+  laserPrefab: {fileID: 5345990141035161666, guid: ce02a25aec1a0754eb739bc9702a3af3, type: 3}
+  chargingSpherePrefab: {fileID: 3116827553839749471, guid: a19a52199c3b0d9468169b97257516a5, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 08416634395a74e45b558de639ecdb36, type: 3}
+  sound: 0
+  minDamage: 1
+  maxDamage: 10
+  laserCooldown: 1.5
+  maxChargeUpTime: 3
+  isEnemy: 0
