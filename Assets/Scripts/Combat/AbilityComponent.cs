@@ -145,6 +145,8 @@ public class AbilityComponent : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
             input.timeLeftInCooldown = timeLeft;
+            // Invoke the ability event for UI
+            EventData.RaiseOnAbilityCooldown(input.cooldownTime, timeLeft);
             // Wait a frame
             yield return null;
         }
