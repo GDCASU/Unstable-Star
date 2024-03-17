@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &94314296 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8444158139621029406, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
-  m_PrefabInstance: {fileID: 815128478}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &115027437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -544,8 +539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d49343faec55504da26b05c0e193226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 94314296}
+  pistolprefab: {fileID: 0}
   pistolSprite: {fileID: 1787737581, guid: 5cca4a24a9f9ad4418bde511f97bfb01, type: 3}
+  buckprefab: {fileID: 1167512799}
+  buckSprite: {fileID: 21300000, guid: 7edeb51be1e6f694c80cf659d88192c4, type: 3}
   testImage: {fileID: 1914025979}
   weaponArsenalScript: {fileID: 1990268673}
   soundTag: 0
@@ -627,6 +624,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1167512799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7641177572052181723, guid: e17e256db85c3ce4da4fa614c29836e7, type: 3}
+  m_PrefabInstance: {fileID: 1687063041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1564946063
 PrefabInstance:
   m_ObjectHideFlags: 0
