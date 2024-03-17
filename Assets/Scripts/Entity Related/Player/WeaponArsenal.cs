@@ -18,7 +18,7 @@ public class WeaponArsenal : MonoBehaviour
 
     // List that will hold the weapons of the player, and a string array for the inspector
     [SerializeField] private List<string> weaponArsenalStrings = new();
-    private List<Weapon> weaponArsenal = new();
+    public List<Weapon> weaponArsenal = new();
 
     // Settings
     [SerializeField] private int maxWeaponCount;
