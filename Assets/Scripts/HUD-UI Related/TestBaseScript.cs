@@ -16,6 +16,11 @@ public class TestBaseScript : MonoBehaviour
     void Start()
     {
         weaponArsenalScript = GameObject.Find("Weapon Arsenal").GetComponent<WeaponArsenal>();
+        Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+        weaponArsenalScript.AddWeaponToArsenal(myPistol);
+
+        //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+        testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
     }
 
 
@@ -23,13 +28,13 @@ public class TestBaseScript : MonoBehaviour
     void Update()
     {
         UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
-        if (Input.GetKeyDown(KeyCode.M))
-        { 
+        //if (Input.GetKeyDown(KeyCode.M))
+        /*{ 
             Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
             weaponArsenalScript.AddWeaponToArsenal(myPistol);
             
             //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
             testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
-        }
+        }*/
     }
 }
