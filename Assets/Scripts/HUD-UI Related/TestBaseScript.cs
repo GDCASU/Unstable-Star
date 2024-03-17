@@ -18,13 +18,13 @@ public class TestBaseScript : MonoBehaviour
     void Start()
     {
         weaponArsenalScript = GameObject.Find("Weapon Arsenal").GetComponent<WeaponArsenal>();
-        Pistol myPistol = new Pistol(pistolprefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+        /*Pistol myPistol = new Pistol(pistolprefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
         Buckshot myBuck = new Buckshot(buckprefab, buckSprite, soundTag, 3f, 2, "Buck", 3f);
         weaponArsenalScript.AddWeaponToArsenal(myPistol);
-        weaponArsenalScript.AddWeaponToArsenal(myBuck);
+        weaponArsenalScript.AddWeaponToArsenal(myBuck);*/
 
         //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-        testImage.sprite = weaponArsenalScript.weaponArsenal[1].weaponIcon;
+        testImage.sprite = weaponArsenalScript.weaponArsenal[2].weaponIcon;
     }
 
 
