@@ -47,6 +47,7 @@ public class TestBaseScript : MonoBehaviour
         {
             if (primarycanvases[i].tag==primaryName)
             {
+                primary.transform.position = new Vector3(0, 1, 0);
                 primarycanvases[i].gameObject.SetActive(true);
                 primarycanvases[i].GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
             }
@@ -55,7 +56,7 @@ public class TestBaseScript : MonoBehaviour
         {
             if (secondarycanvases[i].tag == secondaryName)
             {
-                secondary.transform.position = new Vector3(20,20,0);
+                secondary.transform.position = new Vector3(0,1,-10);
                 secondarycanvases[i].gameObject.SetActive(true);
                 secondarycanvases[i].GetComponentInChildren<Image>().sprite= weaponArsenalScript.weaponArsenal[1].weaponIcon;
             }
