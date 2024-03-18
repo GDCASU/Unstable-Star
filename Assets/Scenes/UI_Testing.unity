@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 392596856}
   - component: {fileID: 392596855}
   m_Layer: 5
-  m_Name: Other
+  m_Name: Weapon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 541774300}
   - component: {fileID: 541774299}
   m_Layer: 5
-  m_Name: Gatling
+  m_Name: Weapon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,7 +618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &730465798
@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d49343faec55504da26b05c0e193226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testImage: {fileID: 0}
+  testImage: {fileID: 2018151708}
   weaponArsenalScript: {fileID: 0}
 --- !u!1001 &815128478
 PrefabInstance:
@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 926118131}
   - component: {fileID: 926118130}
   m_Layer: 5
-  m_Name: Laser
+  m_Name: Weapon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1265,7 +1265,7 @@ GameObject:
   - component: {fileID: 1247108654}
   - component: {fileID: 1247108653}
   m_Layer: 5
-  m_Name: Laser
+  m_Name: Weapon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1416,7 +1416,7 @@ GameObject:
   - component: {fileID: 1462045471}
   - component: {fileID: 1462045470}
   m_Layer: 5
-  m_Name: Other
+  m_Name: Weapon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 2018151709}
   - component: {fileID: 2018151708}
   m_Layer: 5
-  m_Name: Gatling
+  m_Name: Weapon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
