@@ -65,7 +65,7 @@ public class Objective : MonoBehaviour
 
 	private void OnEnemyDeathSpecial(GameObject obj)
 	{
-		if(obj.GetComponentInChildren<Enemy>().statsData.enemyType != data.enemyType) return;
+		if(obj.GetComponentInChildren<Enemy>().GetStatData().enemyType != data.enemyType) return;
 
 		if(!complete)
 		{

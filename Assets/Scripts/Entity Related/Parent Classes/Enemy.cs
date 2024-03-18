@@ -25,7 +25,7 @@ public class Enemy : CombatEntity
     [Header("Scriptable Data Object")]
     [Tooltip("If ignoreDataHolder is true, the enemy will have the data set in the inspector")]
     [SerializeField] private bool ignoreDataHolder;
-    [SerializeField] public ScriptableEnemy statsData { get; private set; }
+    [SerializeField] private ScriptableEnemy statsData;
 
     // Variables used to control state within the enemy
     protected bool canShoot = false;
@@ -148,5 +148,10 @@ public class Enemy : CombatEntity
     {
         yield return new WaitUntil(() => EventData.RaiseOnEnemyDeath(gameObject));
         Destroy(this.gameObject);
+    }
+
+    public ScriptableEnemy GetStatData()
+    {
+        return statsData;
     }
 }
