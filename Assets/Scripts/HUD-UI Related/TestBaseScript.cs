@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class TestBaseScript : MonoBehaviour
 {
-    public GameObject pistolprefab;
-    public Sprite pistolSprite;
-    public GameObject buckprefab;
-    public Sprite buckSprite;
+    //public GameObject pistolprefab;
+    //public Sprite pistolSprite;
+    //public GameObject buckprefab;
+    //public Sprite buckSprite;
     public Image testImage;
     public WeaponArsenal weaponArsenalScript;
-    public SoundTag soundTag;
+  //  public SoundTag soundTag;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class TestBaseScript : MonoBehaviour
         weaponArsenalScript.AddWeaponToArsenal(myBuck);*/
 
         //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-        testImage.sprite = weaponArsenalScript.weaponArsenal[2].weaponIcon;
+        testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
     }
 
 
