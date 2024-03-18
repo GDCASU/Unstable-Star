@@ -10,8 +10,10 @@ public class TestBaseScript : MonoBehaviour
     //public Sprite pistolSprite;
     //public GameObject buckprefab;
     //public Sprite buckSprite;
-    public string primaryName;
-    public string secondaryName;
+    public GameObject primary;
+    public GameObject secondary;
+    string primaryName;
+    string secondaryName;
     public Canvas[] primarycanvases;
     public Canvas[] secondarycanvases;
     public Image testImage;
@@ -33,15 +35,39 @@ public class TestBaseScript : MonoBehaviour
         testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
         primaryName = weaponArsenalScript.weaponArsenal[0].sName;
         secondaryName = weaponArsenalScript.weaponArsenal[1].sName;
+        for(int i = 0; i<primarycanvases.Length; i++)
+        {
+            primarycanvases[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < secondarycanvases.Length; i++)
+        {
+            secondarycanvases[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < primarycanvases.Length; i++)
+        {
+            if (primarycanvases[i].tag==primaryName)
+            {
+                primarycanvases[i].gameObject.SetActive(true);
+                primarycanvases[i].GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
+            }
+        }
+        for (int i = 0; i < secondarycanvases.Length; i++)
+        {
+            if (secondarycanvases[i].tag == secondaryName)
+            {
+                secondary.transform.position = new Vector3(20,20,0);
+                secondarycanvases[i].gameObject.SetActive(true);
+                secondarycanvases[i].GetComponentInChildren<Image>().sprite= weaponArsenalScript.weaponArsenal[1].weaponIcon;
+            }
+        }
 
 
 
-
-        UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
-        UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[1].sName);
-        UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[2].sName);
-        UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[3].sName);
-        UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[4].sName);
+        /* UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
+         UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[1].sName);
+         UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[2].sName);
+         UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[3].sName);
+         UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[4].sName);*/
 
     }
 
