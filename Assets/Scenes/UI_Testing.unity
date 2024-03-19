@@ -1742,6 +1742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1440847617}
+  - component: {fileID: 1440847618}
   m_Layer: 5
   m_Name: Primary
   m_TagString: Untagged
@@ -1773,6 +1774,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1440847618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440847616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860a9313dfbf1c64babeec952819288a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animClip: {fileID: 7400000, guid: 2b4497ea04e1c57438254b177f33740e, type: 2}
 --- !u!1 &1462045468
 GameObject:
   m_ObjectHideFlags: 0
