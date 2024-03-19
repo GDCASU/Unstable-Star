@@ -43,24 +43,8 @@ public class TestBaseScript : MonoBehaviour
         {
             secondarycanvases[i].gameObject.SetActive(false);
         }
-        for (int i = 0; i < primarycanvases.Length; i++)
-        {
-            if (primarycanvases[i].tag==primaryName)
-            {
-                primary.transform.position = new Vector3(-35,-27,0);
-                primarycanvases[i].gameObject.SetActive(true);
-                primarycanvases[i].GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
-            }
-        }
-        for (int i = 0; i < secondarycanvases.Length; i++)
-        {
-            if (secondarycanvases[i].tag == secondaryName)
-            {
-                secondary.transform.position = new Vector3(-35,-27,10);
-                secondarycanvases[i].gameObject.SetActive(true);
-                secondarycanvases[i].GetComponentInChildren<Image>().sprite= weaponArsenalScript.weaponArsenal[1].weaponIcon;
-            }
-        }
+        
+        
 
 
 
@@ -76,6 +60,27 @@ public class TestBaseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            for (int i = 0; i < primarycanvases.Length; i++)
+            {
+                if (primarycanvases[i].tag == primaryName)
+                {
+                    primary.transform.position = new Vector3(-35, -27, 0);
+                    primarycanvases[i].gameObject.SetActive(true);
+                    primarycanvases[i].GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
+                }
+            }
+            for (int i = 0; i < secondarycanvases.Length; i++)
+            {
+                if (secondarycanvases[i].tag == secondaryName)
+                {
+                    secondary.transform.position = new Vector3(-35, -27, 10);
+                    secondarycanvases[i].gameObject.SetActive(true);
+                    secondarycanvases[i].GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[1].weaponIcon;
+                }
+            }
+        }
         //UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
         //if (Input.GetKeyDown(KeyCode.M))
         /*{ 
