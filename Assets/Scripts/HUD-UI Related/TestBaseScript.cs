@@ -63,12 +63,13 @@ public class TestBaseScript : MonoBehaviour
     void Update()
     {
         RectTransform rtransform = secondary.GetComponent<RectTransform>(); 
-        animator.SetFloat("Sec_Z", rtransform.localPosition.z);
-        UnityEngine.Debug.Log("Sec z: " + animator.GetFloat("Sec_Z"));
+        //animator.SetFloat("Sec_Z", rtransform.localPosition.z);
+        UnityEngine.Debug.Log("Sec z: " + animator.GetFloat("sec_z"));
         UnityEngine.Debug.Log(rtransform.localPosition.z);
         UnityEngine.Debug.Log(rtransform.position.z);
         if (Input.GetKeyDown(KeyCode.M))
         {
+            
             for (int i = 0; i < primarycanvases.Length; i++)
             {
                 if (primarycanvases[i].tag == primaryName)
@@ -88,14 +89,18 @@ public class TestBaseScript : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            animator.SetFloat("sec_z", 60f);
+        }
         //UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
         //if (Input.GetKeyDown(KeyCode.M))
-        /*{ 
-            Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-            weaponArsenalScript.AddWeaponToArsenal(myPistol);
-            
-            //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-            testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
-        }*/
+            /*{ 
+                Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+                weaponArsenalScript.AddWeaponToArsenal(myPistol);
+
+                //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+                testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
+            }*/
     }
 }
