@@ -19,12 +19,14 @@ public class TestBaseScript : MonoBehaviour
     public Canvas[] secondarycanvases;
     public Image testImage;
     public WeaponArsenal weaponArsenalScript;
+    bool happened;
 
   //  public SoundTag soundTag;
 
     // Start is called before the first frame update
     void Start()
     {
+        happened = false;
         animator = this.GetComponent<Animator>();
         weaponArsenalScript = GameObject.Find("Weapon Arsenal").GetComponent<WeaponArsenal>();
 
@@ -65,9 +67,9 @@ public class TestBaseScript : MonoBehaviour
         RectTransform rtransform = secondary.GetComponent<RectTransform>(); 
         //animator.SetFloat("Sec_Z", rtransform.localPosition.z);
         UnityEngine.Debug.Log("Sec z: " + animator.GetFloat("sec_z"));
-        UnityEngine.Debug.Log(rtransform.localPosition.z);
-        UnityEngine.Debug.Log(rtransform.position.z);
-        bool happened = false;
+        UnityEngine.Debug.Log("Local Position: " + rtransform.localPosition.z);
+        //UnityEngine.Debug.Log(rtransform.position.z);
+        
         if (Input.GetKeyDown(KeyCode.M))
         {
             happened = true;
@@ -90,8 +92,12 @@ public class TestBaseScript : MonoBehaviour
                 }
             }
         }
-        if(happened && (float)rtransform.localPosition.z>59f)
+        float epsilon = 0.01f;
+        UnityEngine.Debug.Log("happened: " + happened);
+        UnityEngine.Debug.Log("newlocalposition: " + rtransform.localPosition.z + " type: " + rtransform.localPosition.z.GetType());
+        if (happened && (rtransform.localPosition.z - 59f) > epsilon)
         {
+            
             animator.SetFloat("sec_z", 60f);
         }
         /*if (Input.GetKeyDown(KeyCode.N))
