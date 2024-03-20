@@ -10,7 +10,7 @@ public class TestBaseScript : MonoBehaviour
     //public Sprite pistolSprite;
     //public GameObject buckprefab;
     //public Sprite buckSprite;
-    public Animator animator;
+    private Animator animator;
     public GameObject primary;
     public GameObject secondary;
     string primaryName;
@@ -25,7 +25,7 @@ public class TestBaseScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = this.GetComponent<Animator>();
         weaponArsenalScript = GameObject.Find("Weapon Arsenal").GetComponent<WeaponArsenal>();
 
         /*Pistol myPistol = new Pistol(pistolprefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
@@ -62,8 +62,11 @@ public class TestBaseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("Sec_z", secondary.transform.position.z);
-        UnityEngine.Debug.Log(secondary.transform.position.z);
+        RectTransform rtransform = secondary.GetComponent<RectTransform>(); 
+        animator.SetFloat("Sec_Z", rtransform.localPosition.z);
+        UnityEngine.Debug.Log("Sec z: " + animator.GetFloat("Sec_Z"));
+        UnityEngine.Debug.Log(rtransform.localPosition.z);
+        UnityEngine.Debug.Log(rtransform.position.z);
         if (Input.GetKeyDown(KeyCode.M))
         {
             for (int i = 0; i < primarycanvases.Length; i++)
