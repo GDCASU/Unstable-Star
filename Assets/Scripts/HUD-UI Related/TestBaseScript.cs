@@ -28,6 +28,7 @@ public class TestBaseScript : MonoBehaviour
     {
         happened = false;
         animator = this.GetComponent<Animator>();
+        animator.SetBool("toSIF", false);
         weaponArsenalScript = GameObject.Find("Weapon Arsenal").GetComponent<WeaponArsenal>();
 
         /*Pistol myPistol = new Pistol(pistolprefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
@@ -64,10 +65,11 @@ public class TestBaseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RectTransform rtransform = secondary.GetComponent<RectTransform>(); 
+        RectTransform secrtransform = secondary.GetComponent<RectTransform>();
+        RectTransform primrtransform = primary.GetComponent<RectTransform>();
         //animator.SetFloat("Sec_Z", rtransform.localPosition.z);
-        UnityEngine.Debug.Log("Sec z: " + animator.GetFloat("sec_z"));
-        UnityEngine.Debug.Log("Local Position: " + rtransform.localPosition.z);
+        UnityEngine.Debug.Log("Sec z: " + animator.GetFloat("toPIF"));
+        UnityEngine.Debug.Log("Local Position: " + secrtransform.localPosition.z);
         //UnityEngine.Debug.Log(rtransform.position.z);
         
         if (Input.GetKeyDown(KeyCode.M))
@@ -94,18 +96,25 @@ public class TestBaseScript : MonoBehaviour
         }
         float epsilon = 0.01f;
         UnityEngine.Debug.Log("happened: " + happened);
-        UnityEngine.Debug.Log("newlocalposition: " + rtransform.localPosition.z + " type: " + rtransform.localPosition.z.GetType());
-        if (happened && (rtransform.localPosition.z - 59f) > epsilon)
+        UnityEngine.Debug.Log("newlocalposition: " + secrtransform.localPosition.z + " type: " + secrtransform.localPosition.z.GetType());
+        if (happened && (secrtransform.localPosition.z - 59f) > epsilon)
         {
-            
-            animator.SetFloat("sec_z", 60f);
+            animator.SetFloat("toPIF", 60f);
         }
-        /*if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            animator.SetFloat("sec_z", 60f);
-        }*/
-        //UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
-        //if (Input.GetKeyDown(KeyCode.M))
+            animator.SetFloat("toCSTF", 60f);
+        }
+        if((secrtransform.localPosition.z - 59f) > epsilon)
+        {
+            animator.SetBool("toSIF", true);
+        }
+            /*if (Input.GetKeyDown(KeyCode.N))
+            {
+                animator.SetFloat("sec_z", 60f);
+            }*/
+            //UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
+            //if (Input.GetKeyDown(KeyCode.M))
             /*{ 
                 Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
                 weaponArsenalScript.AddWeaponToArsenal(myPistol);
@@ -113,5 +122,5 @@ public class TestBaseScript : MonoBehaviour
                 //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
                 testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
             }*/
-    }
+        }
 }
