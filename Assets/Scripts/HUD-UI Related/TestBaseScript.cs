@@ -67,9 +67,10 @@ public class TestBaseScript : MonoBehaviour
         UnityEngine.Debug.Log("Sec z: " + animator.GetFloat("sec_z"));
         UnityEngine.Debug.Log(rtransform.localPosition.z);
         UnityEngine.Debug.Log(rtransform.position.z);
+        bool happened = false;
         if (Input.GetKeyDown(KeyCode.M))
         {
-            
+            happened = true;
             for (int i = 0; i < primarycanvases.Length; i++)
             {
                 if (primarycanvases[i].tag == primaryName)
@@ -89,10 +90,14 @@ public class TestBaseScript : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.N))
+        if(happened && (float)rtransform.localPosition.z>59f)
         {
             animator.SetFloat("sec_z", 60f);
         }
+        /*if (Input.GetKeyDown(KeyCode.N))
+        {
+            animator.SetFloat("sec_z", 60f);
+        }*/
         //UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
         //if (Input.GetKeyDown(KeyCode.M))
             /*{ 
