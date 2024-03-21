@@ -29,6 +29,9 @@ public class TestBaseScript : MonoBehaviour
         happened = false;
         animator = this.GetComponent<Animator>();
         animator.SetBool("toSIF", false);
+        animator.SetBool("toPIF", false);
+        animator.SetBool("toCSTF", false);
+        animator.SetBool("toCPTF", false);
         weaponArsenalScript = GameObject.Find("Weapon Arsenal").GetComponent<WeaponArsenal>();
 
         /*Pistol myPistol = new Pistol(pistolprefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
@@ -97,21 +100,21 @@ public class TestBaseScript : MonoBehaviour
         float epsilon = 0.01f;
         UnityEngine.Debug.Log("happened: " + happened);
         UnityEngine.Debug.Log("newlocalposition: " + secrtransform.localPosition.z + " type: " + secrtransform.localPosition.z.GetType());
-        if (happened && (secrtransform.localPosition.z - 59f) > epsilon)
+        if (happened && (secrtransform.localPosition.z > 59f))
         {
-            animator.SetFloat("toPIF", 60f);
+            animator.SetBool("toPIF", true);
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            animator.SetFloat("toCSTF", 60f);
+            animator.SetBool("toCSTF", true);
         }
-        if((secrtransform.localPosition.z - 59f) > epsilon)
+        if(secrtransform.localPosition.z < 1f)
         {
             animator.SetBool("toSIF", true);
         }
-        if ((secrtransform.localPosition.z - 59f) > epsilon)
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            animator.SetBool("toSIF", true);
+            animator.SetBool("toCPTF", true);
         }
         /*if (Input.GetKeyDown(KeyCode.N))
         {
