@@ -93,7 +93,7 @@ public class TestBaseScript : MonoBehaviour
                 {
                     //secondary.transform.position = new Vector3(-35, -27, 10);
                     secondarycanvases[i].gameObject.SetActive(true);
-                    secondarycanvases[i].GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[1].weaponIcon;
+                    secondarycanvases[i].transform.GetChild(0).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[1].weaponIcon;
                 }
             }
         }
