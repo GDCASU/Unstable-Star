@@ -15,6 +15,8 @@ public class TestBaseScript : MonoBehaviour
     public GameObject secondary;
     string primaryName;
     string secondaryName;
+    private Canvas currPrim;
+    private Canvas currSecondary;
     public Canvas[] primarycanvases;
     public Canvas[] secondarycanvases;
     public Image testImage;
@@ -26,6 +28,8 @@ public class TestBaseScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currPrim = null;
+        currSecondary = null;
         happened = false;
         animator = this.GetComponent<Animator>();
         animator.SetBool("toSIF", false);
@@ -84,7 +88,8 @@ public class TestBaseScript : MonoBehaviour
                 {
                     //primary.transform.position = new Vector3(-35, -27, 0);
                     primarycanvases[i].gameObject.SetActive(true);
-                    primarycanvases[i].GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
+                    currPrim = primarycanvases[i];
+                    primarycanvases[i].transform.GetChild(0).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
                 }
             }
             for (int i = 0; i < secondarycanvases.Length; i++)
@@ -93,6 +98,7 @@ public class TestBaseScript : MonoBehaviour
                 {
                     //secondary.transform.position = new Vector3(-35, -27, 10);
                     secondarycanvases[i].gameObject.SetActive(true);
+                    currSecondary = secondarycanvases[i];
                     secondarycanvases[i].transform.GetChild(0).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[1].weaponIcon;
                 }
             }
@@ -109,6 +115,11 @@ public class TestBaseScript : MonoBehaviour
         {
             animator.SetBool("toSIF", true);
             animator.SetBool("toCSTF", false);
+            if(happened)
+            {
+                currSecondary.sortingOrder = 2;
+                currPrim.sortingOrder = 1;
+            }
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
@@ -119,6 +130,12 @@ public class TestBaseScript : MonoBehaviour
         {
             animator.SetBool("toPIF", true);
             animator.SetBool("toCPTF", false);
+            if(happened)
+            {
+                currSecondary.sortingOrder = 1;
+                currPrim.sortingOrder = 2;
+            }
+            
         }
         /*if (Input.GetKeyDown(KeyCode.N))
         {
