@@ -100,10 +100,7 @@ public class TestBaseScript : MonoBehaviour
         float epsilon = 0.01f;
         UnityEngine.Debug.Log("happened: " + happened);
         UnityEngine.Debug.Log("newlocalposition: " + secrtransform.localPosition.z + " type: " + secrtransform.localPosition.z.GetType());
-        if (happened && (secrtransform.localPosition.z > 59f))
-        {
-            animator.SetBool("toPIF", true);
-        }
+        
         if (Input.GetKeyDown(KeyCode.P))
         {
             animator.SetBool("toCSTF", true);
@@ -111,10 +108,17 @@ public class TestBaseScript : MonoBehaviour
         if(secrtransform.localPosition.z < 1f)
         {
             animator.SetBool("toSIF", true);
+            animator.SetBool("toCSTF", false);
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
             animator.SetBool("toCPTF", true);
+            animator.SetBool("toSIF", false);
+        }
+        if (happened && (secrtransform.localPosition.z > 59f))
+        {
+            animator.SetBool("toPIF", true);
+            animator.SetBool("toCPTF", false);
         }
         /*if (Input.GetKeyDown(KeyCode.N))
         {
