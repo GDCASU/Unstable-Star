@@ -1,15 +1,10 @@
-using FMOD;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestBaseScript : MonoBehaviour
+public class Base1Script : MonoBehaviour
 {
-    //public GameObject pistolprefab;
-    //public Sprite pistolSprite;
-    //public GameObject buckprefab;
-    //public Sprite buckSprite;
     private Animator animator;
     public GameObject primary;
     public GameObject secondary;
@@ -20,9 +15,6 @@ public class TestBaseScript : MonoBehaviour
     public Image testImage;
     public WeaponArsenal weaponArsenalScript;
     bool happened;
-
-  //  public SoundTag soundTag;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +32,7 @@ public class TestBaseScript : MonoBehaviour
         testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
         primaryName = weaponArsenalScript.weaponArsenal[0].sName;
         secondaryName = weaponArsenalScript.weaponArsenal[1].sName;
-        for(int i = 0; i<primarycanvases.Length; i++)
+        for (int i = 0; i < primarycanvases.Length; i++)
         {
             primarycanvases[i].gameObject.SetActive(false);
         }
@@ -48,8 +40,8 @@ public class TestBaseScript : MonoBehaviour
         {
             secondarycanvases[i].gameObject.SetActive(false);
         }
-        
-        
+
+
 
 
 
@@ -58,9 +50,7 @@ public class TestBaseScript : MonoBehaviour
          UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[2].sName);
          UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[3].sName);
          UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[4].sName);*/
-
     }
-
 
     // Update is called once per frame
     void Update()
@@ -91,40 +81,36 @@ public class TestBaseScript : MonoBehaviour
                     //secondary.transform.position = new Vector3(-35, -27, 10);
                     secondarycanvases[i].gameObject.SetActive(true);
                     secondarycanvases[i].GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[1].weaponIcon;
+                 }
+             }
+         }
+         float epsilon = 0.01f;
+         UnityEngine.Debug.Log("happened: " + happened);
+         UnityEngine.Debug.Log("newlocalposition: " + secrtransform.localPosition.z + " type: " + secrtransform.localPosition.z.GetType());
+         if (happened && (secrtransform.localPosition.z - 59f) > epsilon)
+         {
+             animator.SetFloat("toPIF", 60f);
+         }
+         if (Input.GetKeyDown(KeyCode.P))
+         {
+             animator.SetFloat("toCSTF", 60f);
+         }
+         if((secrtransform.localPosition.z - 59f) > epsilon)
+         {
+             animator.SetBool("toSIF", true);
+         }
+             /*if (Input.GetKeyDown(KeyCode.N))
+             {
+                 animator.SetFloat("sec_z", 60f);
+             }*/
+                    //UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
+                    //if (Input.GetKeyDown(KeyCode.M))
+                    /*{ 
+                        Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+                        weaponArsenalScript.AddWeaponToArsenal(myPistol);
+
+                        //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+                        testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
+                    }*/
                 }
             }
-        }
-        float epsilon = 0.01f;
-        UnityEngine.Debug.Log("happened: " + happened);
-        UnityEngine.Debug.Log("newlocalposition: " + secrtransform.localPosition.z + " type: " + secrtransform.localPosition.z.GetType());
-        if (happened && (secrtransform.localPosition.z - 59f) > epsilon)
-        {
-            animator.SetFloat("toPIF", 60f);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            animator.SetFloat("toCSTF", 60f);
-        }
-        if((secrtransform.localPosition.z - 59f) > epsilon)
-        {
-            animator.SetBool("toSIF", true);
-        }
-        if ((secrtransform.localPosition.z - 59f) > epsilon)
-        {
-            animator.SetBool("toSIF", true);
-        }
-        /*if (Input.GetKeyDown(KeyCode.N))
-        {
-            animator.SetFloat("sec_z", 60f);
-        }*/
-        //UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
-        //if (Input.GetKeyDown(KeyCode.M))
-        /*{ 
-            Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-            weaponArsenalScript.AddWeaponToArsenal(myPistol);
-
-            //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-            testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
-        }*/
-    }
-}
