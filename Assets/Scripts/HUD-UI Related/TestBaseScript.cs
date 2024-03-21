@@ -107,11 +107,11 @@ public class TestBaseScript : MonoBehaviour
         UnityEngine.Debug.Log("happened: " + happened);
         UnityEngine.Debug.Log("newlocalposition: " + secrtransform.localPosition.z + " type: " + secrtransform.localPosition.z.GetType());
         
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             animator.SetBool("toCSTF", true);
         }
-        if(secrtransform.localPosition.z < 1f)
+        if(animator.GetBool("toCSTF")==true && secrtransform.localPosition.z < 1f)
         {
             animator.SetBool("toSIF", true);
             animator.SetBool("toCSTF", false);
@@ -121,7 +121,7 @@ public class TestBaseScript : MonoBehaviour
                 currPrim.sortingOrder = 1;
             }
         }
-        if (Input.GetKeyDown(KeyCode.N))
+        if (animator.GetBool("toCSTF")==false && Input.GetKeyDown(KeyCode.RightArrow))
         {
             animator.SetBool("toCPTF", true);
             animator.SetBool("toSIF", false);
