@@ -89,7 +89,7 @@ public class TestBaseScript : MonoBehaviour
                     //primary.transform.position = new Vector3(-35, -27, 0);
                     primarycanvases[i].gameObject.SetActive(true);
                     currPrim = primarycanvases[i];
-                    primarycanvases[i].transform.GetChild(0).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
+                    primarycanvases[i].transform.GetChild(1).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
                 }
             }
             for (int i = 0; i < secondarycanvases.Length; i++)
@@ -99,7 +99,7 @@ public class TestBaseScript : MonoBehaviour
                     //secondary.transform.position = new Vector3(-35, -27, 10);
                     secondarycanvases[i].gameObject.SetActive(true);
                     currSecondary = secondarycanvases[i];
-                    secondarycanvases[i].transform.GetChild(0).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[1].weaponIcon;
+                    secondarycanvases[i].transform.GetChild(1).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[1].weaponIcon;
                 }
             }
         }
