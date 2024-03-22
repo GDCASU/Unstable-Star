@@ -40,4 +40,24 @@ public class Wave : MonoBehaviour
             EventData.OnEnemyDeath -= RemoveEnemy;
         }
     }
+
+
+    public void ResetAndPopulateEnemyList()
+    {
+        enemyList.Clear();
+
+        foreach (Transform child in transform)
+        {
+            GameObject childGameObject = child.gameObject;
+            if (childGameObject != null)
+            {
+                enemyList.Add(childGameObject);
+            }
+        }
+
+        if (debug)
+        {
+            Debug.Log("Enemy list reset and populated with children.");
+        }
+    }
 }
