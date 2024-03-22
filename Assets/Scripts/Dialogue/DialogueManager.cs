@@ -10,6 +10,9 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
+using UnityEngine.Windows;
+using OpenCover.Framework.Model;
+using UnityEditor.ShaderGraph;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -19,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Image speachDialogueImage;
     [SerializeField] TMP_Text targetDialogue;
     [SerializeField] TMP_Text speakerText;
+    [SerializeField] Image emotionSprite;
 
     Coroutine crt;
     string newDialogue = "";
@@ -31,122 +35,77 @@ public class DialogueManager : MonoBehaviour
     bool start = false;
 
     [Header("Scene Essentials:")]
+    [SerializeField] DialogueOptions dialogueOptions;
+
+    string[][] currentDialogue;
+
+    string[][] actOne = new string[1000][];
+    string[][] actTwo = new string[1000][];
+    string[][] actThree = new string[1000][];
+
     int actNumber = 1;
-    int sceneNumber = 1;
-    int current;
+    int current = 0;
 
-    string[] currentDialogue;
-    string[] currentSpeakers;
-
-    [Header("Act One Scene One:")]
-    [SerializeField] string[] actOneDialogue;
-    [SerializeField] string[] actOneSpeakers;
-
-    [Header("Act One Scene Two:")]
-    [SerializeField] string[] actOne_TwoDialogue;
-    [SerializeField] string[] actOne_TwoSpeakers;
-
-    [Header("Act One Scene Three:")]
-    [SerializeField] string[] actOne_ThreeDialogue;
-    [SerializeField] string[] actOne_ThreeSpeakers;
-
-    [Header("Act Two Scene One:")]
-    [SerializeField] string[] actTwo_OneDialogue;
-    [SerializeField] string[] actTwo_OneSpeakers;
-
-    [Header("Act Two Scene Two:")]
-    [SerializeField] string[] actTwo_TwoDialogue;
-    [SerializeField] string[] actTwo_TwoSpeakers;
-
-    [Header("Act Two Scene Three:")]
-    [SerializeField] string[] actTwo_ThreeDialogue;
-    [SerializeField] string[] actTwo_ThreeSpeakers;
-
-    [Header("Act Three Scene One:")]
-    [SerializeField] string[] actThree_OneDialogue;
-    [SerializeField] string[] actThree_OneSpeakers;
-
-    [Header("Act Three Scene Two:")]
-    [SerializeField] string[] actThree_TwoDialogue;
-    [SerializeField] string[] actThree_TwoSpeakers;
-
-    [Header("Act Three Scene Three:")]
-    [SerializeField] string[] actThree_ThreeDialogue;
-    [SerializeField] string[] actThree_ThreeSpeakers;
-
-    [Header("Act Three Scene Four:")]
-    [SerializeField] string[] actThree_FourDialogue;
-    [SerializeField] string[] actThree_FourSpeakers;
-
-    [Header("Act Three Scene Five:")]
-    [SerializeField] string[] actThree_FiveDialogue;
-    [SerializeField] string[] actThree_FiveSpeakers;
-
+    
 
     private void Start()
     {
         // initializes the acts
-        InitializeActs();
+        actOne = ReadFile("Assets/Scripts/Dialogue/Act_One.txt", actOne, "One");
+        actTwo = ReadFile("Assets/Scripts/Dialogue/Act_Two.txt", actTwo, "Two");
+        actThree = ReadFile("Assets/Scripts/Dialogue/Act_Three.txt", actThree, "Three");
     }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && start) 
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Return)) 
         {
             ChangeDialogue();
         }
     }
 
+    // changes text, color, and emotion of dialogue box
     public void ChangeDialogue()
     {
-        SetCurrentScene();
+        SetCurrentAct();
 
         // Stops dialogue and starts scene
-        if (currentSpeakers[current] == "Break")
+        if (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE")
         {
+            speachDialogueImage.color = Color.clear;
             timelinePlayer.Resume();
             start = false;
             current++;
         }
+        
+        // changes act if the script has ended
+        if (currentDialogue[current][0] == "END")
+        {
+            actNumber++;
+            SetCurrentAct();
+        }
 
-        if (canChange && start) 
+        // normal behaviors
+        else if (canChange && start)
         {
             // Changes the text to the new dialogue
-            newDialogue = currentDialogue[current];
-            speakerText.text = currentSpeakers[current];
+            newDialogue = currentDialogue[current][1];
             speachDialogueImage.sprite = speachDialogue;
 
-            // Changes color based on who's speaking
+            // Changes color, text, and emotion based on who's speaking
+            Options options = dialogueOptions.CreateOptions(currentDialogue[current][0]);
+            Sprite currentEmotion = dialogueOptions.GetEmotion(options, currentDialogue[current][2]);
+            speakerText.color = options.color;
+            speakerText.text = options.name;
 
-            if (currentSpeakers[current] == "Rebekah")
+            if (!options.isDialogue) // removes speaker box if there is no speaker
             {
-                targetDialogue.color = Color.red;
-                speakerText.color = Color.red;
-            }
-            else if (currentSpeakers[current] == "Jaughn")
-            {
-                targetDialogue.color = Color.grey;
-                speakerText.color = Color.grey;
-            }
-            else if (currentSpeakers[current] == "Apollo")
-            {
-                targetDialogue.color = Color.blue;
-                speakerText.color = Color.blue;
-            }
-            else if (currentSpeakers[current] == "Ebb")
-            {
-                targetDialogue.color = Color.yellow;
-                speakerText.color = Color.yellow;
-            }
-            else if (currentSpeakers[current] == "Noise")
-            {
-                targetDialogue.color = Color.black;
                 speachDialogueImage.sprite = noSpeachDialogue;
-                speakerText.text = "";
             }
-            else
+
+            if (currentDialogue[current][2] == "???") // Creates question marks for unknown people
             {
-                targetDialogue.color = Color.black;
-                speakerText.color = Color.black;
+                speakerText.text = "???";
             }
 
             // Finishing touches
@@ -159,10 +118,12 @@ public class DialogueManager : MonoBehaviour
                 if (crt != null)
                     StopCoroutine(crt);
                 crt = StartCoroutine(setTooltipText(newDialogue));
+                //canChange = true;
             }
         }
 
-        else if (start)
+        // stops the couroutine and autofills the text
+        else if (start) 
         {
             targetDialogue.text = newDialogue;
             canChange = true;
@@ -171,72 +132,24 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void SetCurrentScene()
+    // sets the act based on what the act number is
+    public void SetCurrentAct()
     {
         switch (actNumber)
         {
-            case 1: 
-                switch(sceneNumber)
-                {
-                    case 1:
-                        currentDialogue = actOneDialogue;
-                        currentSpeakers = actOneSpeakers;
-                        break;
-                    case 2:
-                        currentDialogue = actOne_TwoDialogue;
-                        currentSpeakers = actOne_TwoSpeakers;
-                        break;
-                    case 3:
-                        currentDialogue = actOne_ThreeDialogue;
-                        currentSpeakers = actOne_ThreeSpeakers;
-                        break;
-                }
+            case 1:
+                currentDialogue = actOne;
                 break;
             case 2:
-                switch (sceneNumber)
-                {
-                    case 1:
-                        currentDialogue = actTwo_OneDialogue;
-                        currentSpeakers = actTwo_OneSpeakers;
-                        break;
-                    case 2:
-                        currentDialogue = actTwo_TwoDialogue;
-                        currentSpeakers = actTwo_TwoSpeakers;
-                        break;
-                    case 3:
-                        currentDialogue = actTwo_ThreeDialogue;
-                        currentSpeakers = actTwo_ThreeSpeakers;
-                        break;
-                }
+                currentDialogue = actTwo;
                 break;
             case 3:
-                switch (sceneNumber)
-                {
-                    case 1:
-                        currentDialogue = actThree_OneDialogue;
-                        currentSpeakers = actThree_OneSpeakers;
-                        break;
-                    case 2:
-                        currentDialogue = actThree_TwoDialogue;
-                        currentSpeakers = actThree_TwoSpeakers;
-                        break;
-                    case 3:
-                        currentDialogue = actThree_ThreeDialogue;
-                        currentSpeakers = actThree_ThreeSpeakers;
-                        break;
-                    case 4:
-                        currentDialogue = actThree_FourDialogue;
-                        currentSpeakers = actThree_FourSpeakers;
-                        break;
-                    case 5:
-                        currentDialogue = actThree_FiveDialogue;
-                        currentSpeakers = actThree_FiveSpeakers;
-                        break;
-                }
+                currentDialogue = actThree;
                 break;
         }
     }
 
+    // Creates text that appears like a typewriter
     IEnumerator setTooltipText(string str)
     {
         targetDialogue.text = "";
@@ -245,67 +158,67 @@ public class DialogueManager : MonoBehaviour
             targetDialogue.text = str.Substring(0, targetDialogue.text.Length + 1);
             yield return new WaitForSeconds(0.05f);
         }
-        canChange = true;
     }
 
-    public void PauseTimeline()
+    // Pauses timeline and makes the text clickable
+    public void StartText()
     {
+        speachDialogueImage.color = Color.white;
+        start = true;
         timelinePlayer.Pause();
     }
 
-    public void StartText()
+    // Takes information from text files and transfers into something the system can read
+    public string[][] ReadFile(string fileName, string[][] act, string number)
     {
-        start = true;
-        PauseTimeline();
-    }
-
-    public void SceneSwitch()
-    {
-        sceneNumber++;
-        switch (actNumber)
-        {
-            case 1:
-            case 2:
-                if (sceneNumber > 3)
-                {
-                    sceneNumber = 0;
-                    actNumber++;
-                }
-                break;
-            case 3:
-                if (sceneNumber > 5)
-                {
-                    sceneNumber = 0;
-                    actNumber++;
-                }
-                break;
-        }
-    }
-
-    public void InitializeActs()
-    {
-        int speakerIndex = 0;
         int dialogueIndex = 0;
-        foreach (var line in File.ReadLines("file"))
+        string currentSpeaker = "";
+        string emotion = "NORMAL";
+
+        foreach (var line in System.IO.File.ReadLines(fileName))
         {
-            if (line == "APOLLO")
+            if (line == "End of Act " + number) // Checks if the file is done
             {
-
+                act[dialogueIndex] = new string[3];
+                act[dialogueIndex][0] = "END";
+                act[dialogueIndex][1] = "END";
+                act[dialogueIndex][2] = "END";
+                return act;
             }
-            if (line == "REBEKAH")
+
+            else if (line == "Arcade Game Script") // Creates a break
             {
-
+                act[dialogueIndex] = new string[3];
+                act[dialogueIndex][0] = "BREAK";
+                act[dialogueIndex][1] = "BREAK";
+                act[dialogueIndex][2] = "BREAK";
             }
-            if (line == "EBB")
+
+            // If line is a name
+            else if (line == "APOLLO" || line == "REBEKAH" || line == "EBB" || line == "JAUGHN" 
+                || line == "SECURITY DEFENSE SYSTEM" || line == "PRISON WARDEN" || line == "JAUGHN’S SUPERVISOR"
+                || line == "PIZZA DELIVERY DRIVER" || line == "DESC: " || line == "NOISE") 
+            { 
+                currentSpeaker = line;
+            }
+
+            // if line is an emotion
+            else if (line == "HAPPY" || line == "NORMAL" || line == "ANGRY" || line == "SAD" || line == "???") 
             {
-
+                emotion = line;
             }
-            if (line == "JAUGHN")
+
+            // if line isn't blank, store dialogue
+            else if (line != "") 
             {
-
+                act[dialogueIndex] = new string[3];
+                act[dialogueIndex][0] = currentSpeaker;
+                act[dialogueIndex][1] = line;
+                act[dialogueIndex][2] = emotion;
+                dialogueIndex++;
+                Debug.Log(currentSpeaker + ": " + line);
             }
-            dialogueIndex++;
-            speakerIndex++;
         }
+        return act;
     }
 }

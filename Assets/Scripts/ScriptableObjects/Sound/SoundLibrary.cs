@@ -6,7 +6,10 @@ using UnityEngine;
 public enum SoundTag
 {
     tempRayGunFire,
-    tempBattleMusic
+    tempBattleMusic,
+    intercom,
+    explosion,
+    shipCrashing
 }
 
 /// <summary> 
@@ -26,6 +29,9 @@ public class SoundLibrary : ScriptableObject
     // All possible sounds, assign on the inspector
     [Header("Sound Effects")]
     public FMODUnity.EventReference tempRayGunShot;
+    public FMODUnity.EventReference intercom;
+    public FMODUnity.EventReference explosion;
+    public FMODUnity.EventReference shipCrashing;
 
     [Header("Music Tracks")]
     public FMODUnity.EventReference tempBattleMusic;
@@ -35,6 +41,9 @@ public class SoundLibrary : ScriptableObject
     {
         // Populate dictionary with keys, must reference all possible Sounds
         indexSound.Add(SoundTag.tempRayGunFire, tempRayGunShot);
+        indexSound.Add(SoundTag.tempRayGunFire, intercom);
+        indexSound.Add(SoundTag.tempRayGunFire, explosion);
+        indexSound.Add(SoundTag.tempRayGunFire, shipCrashing);
         indexSound.Add(SoundTag.tempBattleMusic, tempBattleMusic);
     }
 

@@ -19,6 +19,27 @@ MonoBehaviour:
       Data3: 989007238
       Data4: 152891200
     Path: event:/SFX/Player/RayGunEffect
+  intercom:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  explosion:
+    Guid:
+      Data1: -339122705
+      Data2: 1277627834
+      Data3: 956024973
+      Data4: -1388639995
+    Path: event:/SFX/Explosion
+  shipCrashing:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   tempBattleMusic:
     Guid:
       Data1: 1967780731
