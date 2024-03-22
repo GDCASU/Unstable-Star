@@ -11,6 +11,11 @@ public class Wave : MonoBehaviour
 
     [SerializeField] private bool debug = false;
 
+    private void Awake()
+    {
+        ResetAndPopulateEnemyList();
+    }
+
     private void Start()
     {
         EventData.OnEnemyDeath += RemoveEnemy;
