@@ -15,4 +15,5 @@ public class ScriptableEnemy : ScriptableObject
     public int collisionDamage;
     public float dmgInvulnTimeSecs; // in seconds
     public ScriptableWeapon weapon;
+    public EnemyType enemyType;
 }
