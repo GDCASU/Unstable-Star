@@ -1,0 +1,1 @@
+These are the assets for the boss bar. It is designed so that the white one can be overlayed over the red one as the boss takes damage.
