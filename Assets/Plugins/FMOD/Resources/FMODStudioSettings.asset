@@ -424,10 +424,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 0
-  HasPlatforms: 0
-  sourceProjectPath: 
-  sourceBankPath: Assets/FMOD Banks/Desktop
+  HasSourceProject: 1
+  HasPlatforms: 1
+  sourceProjectPath: FMOD Project/SpaceShooter2024/SpaceShooter2024.fspro
+  sourceBankPath: FMOD Project/SpaceShooter2024/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
