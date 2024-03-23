@@ -12,17 +12,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c845f4bbae9d1499532bb52544ae8d, type: 3}
   m_Name: SoundLibraryData
   m_EditorClassIdentifier: 
-  tempRayGunShot:
+  masterBus: Master
+  musicBus: Music
+  sfxBus: SFX
+  onLevelCombatPath: SFX/OnLevelCombat
+  _tempRayGunShot:
     Guid:
       Data1: -1179885932
       Data2: 1250484582
       Data3: 989007238
       Data4: 152891200
     Path: event:/TESTING/RayGunEffect
-  tempBattleMusic:
+  _tempBattleMusic:
     Guid:
       Data1: 1967780731
       Data2: 1104789371
       Data3: -247545701
       Data4: 1151283404
     Path: event:/TESTING/Temp BG Music
+  _mainMenuTrack:
+    Guid:
+      Data1: -1557407353
+      Data2: 1305285909
+      Data3: -1267006577
+      Data4: 719781303
+    Path: event:/Music/Menus/Main Menu
+  _playerShipDestroyed:
+    Guid:
+      Data1: 708082322
+      Data2: 1250716585
+      Data3: -861400440
+      Data4: 1621521794
+    Path: event:/SFX/Player/Ship Effects/Ship Destroyed
+  _phaseShiftEnter:
+    Guid:
+      Data1: -669749291
+      Data2: 1325441653
+      Data3: -1346415215
+      Data4: -835403465
+    Path: event:/SFX/Player/Ablities/Phase Shift Enter
+  _phaseShiftExit:
+    Guid:
+      Data1: 1494076354
+      Data2: 1273546538
+      Data3: -652615779
+      Data4: 358998308
+    Path: event:/SFX/Player/Ablities/Phase Shift Exit
+  _phaseShiftStay:
+    Guid:
+      Data1: 1229008256
+      Data2: 1207363048
+      Data3: 1113898136
+      Data4: 1121910074
+    Path: event:/SFX/Player/Ablities/Phase Shift Stay
+  _proxibombExplosion:
+    Guid:
+      Data1: -512462324
+      Data2: 1073941802
+      Data3: 1862177462
+      Data4: 1204546792
+    Path: event:/SFX/Player/Ablities/Proxibomb Explosion
+  _asteroidDestroyed:
+    Guid:
+      Data1: 122327720
+      Data2: 1245676132
+      Data3: -1733932671
+      Data4: -1189526554
+    Path: event:/SFX/Hazards/Asteroid Destroyed
