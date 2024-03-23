@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Workspace" id="{021bf60a-faee-4076-865a-99b503470fdf}">
-		<property name="builtBanksOutputDirectory">
-			<value>C:/Github/VGDC-2023-24-Game/Assets/FMOD Banks</value>
-		</property>
+		<property name="builtBanksOutputDirectory" />
 		<relationship name="masterEventFolder">
 			<destination>{3f6450f2-350b-4a47-928b-2ab87844aaf9}</destination>
 		</relationship>

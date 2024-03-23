@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{abca92b7-20bc-4c83-9bc7-3948a77f94df}">
 		<property name="assetPath">
-			<value>SFX/UI/crumple.mp3</value>
+			<value>SFX/HUD/crumple.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>24</value>

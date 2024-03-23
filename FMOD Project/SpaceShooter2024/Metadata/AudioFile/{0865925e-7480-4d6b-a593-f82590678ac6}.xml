@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{0865925e-7480-4d6b-a593-f82590678ac6}">
 		<property name="assetPath">
-			<value>MaleTextbox.wav</value>
+			<value>SFX/Dialogue/MaleTextbox.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

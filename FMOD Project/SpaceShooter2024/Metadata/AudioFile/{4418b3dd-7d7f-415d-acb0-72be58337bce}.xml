@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{4418b3dd-7d7f-415d-acb0-72be58337bce}">
 		<property name="assetPath">
-			<value>SFX/UI/drumsticks.mp3</value>
+			<value>SFX/HUD/drumsticks.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

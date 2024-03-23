@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{d9706aa4-8a38-4582-b7c5-aef6850c2f2b}">
 		<property name="assetPath">
-			<value>gameStartSound.wav</value>
+			<value>SFX/Flair SFX/gameStartSound.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

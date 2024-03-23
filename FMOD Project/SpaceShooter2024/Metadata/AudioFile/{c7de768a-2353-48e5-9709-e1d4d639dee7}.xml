@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{c7de768a-2353-48e5-9709-e1d4d639dee7}">
 		<property name="assetPath">
-			<value>SFX/UI/wood-block.mp3</value>
+			<value>SFX/HUD/wood-block.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>24</value>
