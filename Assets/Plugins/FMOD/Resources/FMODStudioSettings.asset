@@ -426,8 +426,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: FMOD Project/SpaceShooter2024/SpaceShooter2024.fspro
-  sourceBankPath: FMOD Project/SpaceShooter2024/Build
+  sourceProjectPath: FMOD Project/SpaceShooter2024.fspro
+  sourceBankPath: FMOD Project/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
