@@ -18,32 +18,32 @@ MonoBehaviour:
       Data2: 1250484582
       Data3: 989007238
       Data4: 152891200
-    Path: event:/SFX/Player/RayGunEffect
+    Path: event:/TESTING/RayGunEffect
   intercom:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1032394976
+      Data2: 1303930987
+      Data3: -487789667
+      Data4: 1440396013
+    Path: event:/SFX/Menus/Menu Close
   explosion:
     Guid:
-      Data1: -339122705
-      Data2: 1277627834
-      Data3: 956024973
-      Data4: -1388639995
-    Path: event:/SFX/Explosion
+      Data1: 122327720
+      Data2: 1245676132
+      Data3: -1733932671
+      Data4: -1189526554
+    Path: event:/SFX/Hazards/Asteroid Destroyed
   shipCrashing:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1179885932
+      Data2: 1250484582
+      Data3: 989007238
+      Data4: 152891200
+    Path: event:/TESTING/RayGunEffect
   tempBattleMusic:
     Guid:
       Data1: 1967780731
       Data2: 1104789371
       Data3: -247545701
       Data4: 1151283404
-    Path: event:/Music/Temp BG Music
+    Path: event:/TESTING/Temp BG Music
