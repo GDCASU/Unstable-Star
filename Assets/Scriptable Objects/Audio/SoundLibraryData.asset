@@ -18,11 +18,11 @@ MonoBehaviour:
       Data2: 1250484582
       Data3: 989007238
       Data4: 152891200
-    Path: event:/SFX/Player/RayGunEffect
+    Path: event:/TESTING/RayGunEffect
   tempBattleMusic:
     Guid:
       Data1: 1967780731
       Data2: 1104789371
       Data3: -247545701
       Data4: 1151283404
-    Path: event:/Music/Temp BG Music
+    Path: event:/TESTING/Temp BG Music
