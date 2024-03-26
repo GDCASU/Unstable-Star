@@ -2,6 +2,7 @@ using FMOD;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TestBaseScript : MonoBehaviour
@@ -71,7 +72,10 @@ public class TestBaseScript : MonoBehaviour
 
     }
 
-
+    public void Explosion(InputAction.CallbackContext context)
+    {
+        UnityEngine.Debug.Log("MyTestExplosion");
+    }
     // Update is called once per frame
     void Update()
     {
