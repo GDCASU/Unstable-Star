@@ -89,11 +89,16 @@ public class PlayerInput : MonoBehaviour
             playerControls.ShipControls.AngleRight.canceled += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is released
             
             playerControls.ShipControls.SwitchNextWeapon.performed += i => { OnSwitchToNextWeapon?.Invoke(); };
+            /*Shantanu is Testing out input system*/ playerControls.ShipControls.SwitchNextWeapon.performed += Explosion;
             playerControls.ShipControls.SwitchNextAbility.performed += i => { OnSwitchToNextAbility?.Invoke(); };
         }
 
         playerControls.Enable();
 
+    }
+    /*Shantanu is Testing out input system*/ private void Explosion(InputAction.CallbackContext context)
+    {
+        Debug.Log("Explosion");
     }
     private void HandleMovementInput(InputAction.CallbackContext context)   // Just update the movement vector everytime the player moves
     {
