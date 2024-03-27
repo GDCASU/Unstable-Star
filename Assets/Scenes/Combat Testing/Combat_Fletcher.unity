@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
+  m_IndirectSpecularColor: {r: 0.010086427, g: 0.052700892, b: 0.15289137, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -805,7 +805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5959745050469382405, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1641.1852
+      value: 1640.7352
       objectReference: {fileID: 0}
     - target: {fileID: 7424609744582626789, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -813,7 +813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1641.1852
+      value: 1640.7352
       objectReference: {fileID: 0}
     - target: {fileID: 8568430465067054235, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.x
@@ -961,6 +961,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3693904737372673455, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
+      propertyPath: ModelObject
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6317753055055756569, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1001,6 +1005,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8063448138892404998, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
+      propertyPath: ModelObject
+      value: 
+      objectReference: {fileID: 1261016250}
     - target: {fileID: 8720998934021106729, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1010,6 +1018,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
+--- !u!1 &1261016250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5954837013145227616, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
+  m_PrefabInstance: {fileID: 1261016249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1446156049
 PrefabInstance:
   m_ObjectHideFlags: 0
