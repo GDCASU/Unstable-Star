@@ -53,16 +53,40 @@ public class EventData : MonoBehaviour
     public static event System.Action<int> OnShieldBroken;
     /// <summary> Triggers all functions subscribed to OnShieldBroken </summary>
     public static void RaiseOnShieldBroken(int currShield) { OnShieldBroken?.Invoke(currShield); }
+    #endregion
+
+    #region PLAYER ABILITIES
+
+    /// <summary> Event that will constantly fire with the current ability cooldown info </summary>
+    public static System.Action<float, float> OnAbilityCooldown;
+
+    /// <summary> Event raiser for OnAbilityCooldown </summary>
+    public static void RaiseOnAbilityCooldown(float maxAbilityCooldown, float currCooldownTimer)
+    {
+        OnAbilityCooldown?.Invoke(maxAbilityCooldown, currCooldownTimer);
+    }
+
+
 
     #endregion
 
-    #region GameEvents
-
-    /// <summary> An enemy died event </summary>
-    public static event System.Action OnEnemyKilled; //Action List
-    /// <summary> Triggers all functions subscribed to OnEnemyKilled </summary>
-    public static void RaiseOnEnemyKilled() { OnEnemyKilled?.Invoke(); } //Raiser
+    #region PLAYER WEAPONS
 
     #endregion
 
+    #region ENEMY DEATH
+    // <Summary> Enemy Death Event </summary>
+    public static event System.Action<GameObject> OnEnemyDeath;
+
+    public static bool RaiseOnEnemyDeath(GameObject enemy)
+    { OnEnemyDeath?.Invoke(enemy); return true; }
+    #endregion
+
+    #region WAVES
+    // <Summary> Wave Complete Event </summary>
+    public static event System.Action OnWaveComplete;
+
+    public static void RaiseOnWaveComplete()
+    { OnWaveComplete?.Invoke();}
+    #endregion
 }

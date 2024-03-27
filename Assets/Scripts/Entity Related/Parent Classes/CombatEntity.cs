@@ -17,7 +17,10 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     [SerializeField] protected float dmgInvulnTime = 0f; // in seconds
 
     // Public Variables
+    public bool isShootingLocked;
+    public bool isAbilityLocked;
     public bool isInvulnerable = false;
+    public bool isIgnoringCollisions = false;
 
     // Protected Variables
     protected Coroutine invulnRoutine = null;
@@ -38,6 +41,30 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     // This function should help implementing sounds and effects easier
     /// <summary> To be called when the entity dies. Use to trigger sounds, SFX and more </summary>
     protected abstract void TriggerDeath();
+
+    /// <summary> Blocks the player from shooting its weapon </summary>
+    public void LockShooting()
+    {
+        isShootingLocked = true;
+    }
+
+    /// <summary> enables the player to shoot its weapon </summary>
+    public void UnlockShooting()
+    {
+        isShootingLocked = false;
+    }
+
+    /// <summary> Blocks the player from using their abilities </summary>
+    public void LockAbilities()
+    {
+        isAbilityLocked = true;
+    }
+
+    /// <summary> enables the player to use their abilities </summary>
+    public void UnlockAbilities()
+    {
+        isAbilityLocked = false;
+    }
 
     /// <summary> The TakeDamage function used by the combat system </summary>
     public virtual void TakeDamage(int damageIn, out int dmgRecieved, out Color colorSet)
@@ -89,9 +116,10 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     /// <summary> Handles Collision Damage among entities </summary>
     public virtual void TakeCollisionDamage(CombatEntity other, int damage)
     {
-        // Account for this entity being invulnerable. We dont check the other entity
+        // Account for this entity being invulnerable or any of the two entities ignoring collisions. We dont check the other entity
         // to allow immortal entities to not take damage while still being able to damage other entities
-        if (this.isInvulnerable) { return; }
+        if (this.isInvulnerable) return;
+        if (this.isIgnoringCollisions || other.isIgnoringCollisions) return;
 
         int _id = other.GetInstanceID();
 

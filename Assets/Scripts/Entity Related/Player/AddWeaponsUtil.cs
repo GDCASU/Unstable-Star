@@ -68,10 +68,6 @@ public class AddWeaponsUtil : MonoBehaviour
             SetWeaponToFirst();
             setCurrWpToFirst = false;
         }
-        if (doSwitchToIndex)
-        {
-            SetCurrWeaponToIndex(targetIndex);
-        }
     }
 
     // Adding target Weapon
@@ -96,11 +92,5 @@ public class AddWeaponsUtil : MonoBehaviour
     public void SetWeaponToFirst()
     {
         weaponLoadout.SetCurrentWeaponToFirst();
-    }
-
-    // Set current weapon to an index
-    public void SetCurrWeaponToIndex(int index)
-    {
-        weaponLoadout.SetCurrentWeaponToIndex(index);
     }
 }

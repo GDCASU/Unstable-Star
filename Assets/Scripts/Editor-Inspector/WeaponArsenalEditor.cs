@@ -8,7 +8,7 @@ using UnityEngine;
 public class WeaponArsenalEditor : Editor
 {
     //Change this bool if you want to enable/disable the custom editor for the loadout object
-    bool EnableCustomEditor = true;
+    private bool EnableCustomEditor = true;
 
     //SerializedProperties
     SerializedProperty maxWeaponCount;
@@ -21,12 +21,14 @@ public class WeaponArsenalEditor : Editor
     SerializedProperty PlayerPistol;
     SerializedProperty PlayerBirdshot;
     SerializedProperty PlayerBuckshot;
+    SerializedProperty PlayerLaserWep;
+    SerializedProperty PlayerGatlingGun;
 
     // Foldouts
-    bool DebuggingGroup = true;
-    bool WeaponArsenalGroup = true;
-    bool AllScriptedWeapons = false;
-    bool warningMsgGroup = false;
+    private bool DebuggingGroup = true;
+    private bool WeaponArsenalGroup = true;
+    private bool AllScriptedWeapons = false;
+    private bool warningMsgGroup = false;
 
     private void OnEnable()
     {
@@ -38,7 +40,9 @@ public class WeaponArsenalEditor : Editor
         PlayerPistol = serializedObject.FindProperty("PlayerPistol");
         PlayerBirdshot = serializedObject.FindProperty("PlayerBirdshot");
         PlayerBuckshot = serializedObject.FindProperty("PlayerBuckshot");
-    }
+        PlayerLaserWep = serializedObject.FindProperty("PlayerLaserWep");
+        PlayerGatlingGun = serializedObject.FindProperty("PlayerGatlingGun");
+    } 
 
     public override void OnInspectorGUI()
     {
@@ -113,6 +117,8 @@ public class WeaponArsenalEditor : Editor
             EditorGUILayout.PropertyField(PlayerPistol);
             EditorGUILayout.PropertyField(PlayerBirdshot);
             EditorGUILayout.PropertyField(PlayerBuckshot);
+            EditorGUILayout.PropertyField(PlayerLaserWep);
+            EditorGUILayout.PropertyField(PlayerGatlingGun);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 

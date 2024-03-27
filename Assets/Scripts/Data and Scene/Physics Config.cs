@@ -73,9 +73,6 @@ public class PhysicsConfig : MonoBehaviour
         // Make default projectile layer ignore all other layers
         IgnoreAllListedLayers(targetLayer: DefaultProjectileLayer);
 
-        //Make the Default Layer ignore all layers
-        IgnoreAllListedLayers(targetLayer: DefaultLayer);
-
 // Player -----------------------------------------------
 
         //Ignores collisions between player projectiles and the player itself

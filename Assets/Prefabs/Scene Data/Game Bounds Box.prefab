@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8677229181913914506}
   - component: {fileID: 5887066001311718502}
   - component: {fileID: 1575873295469402884}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: West Wall
   m_TagString: Deletion Zones
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4896023254687616127}
   - component: {fileID: 8848968918254544778}
   - component: {fileID: 4274337159957001264}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: East Wall
   m_TagString: Deletion Zones
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1587822693349114030}
   - component: {fileID: 5645941735054887892}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Game Bounds Box
   m_TagString: Deletion Zones
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 5943898054425663904}
   - component: {fileID: 6764035082228800595}
   - component: {fileID: 6182505459285201709}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: South Wall
   m_TagString: Deletion Zones
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 3838560286588497591}
   - component: {fileID: 3765144026776524898}
   - component: {fileID: 2255133627509857828}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: North Wall
   m_TagString: Deletion Zones
   m_Icon: {fileID: 0}
