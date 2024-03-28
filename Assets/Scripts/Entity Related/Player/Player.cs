@@ -88,8 +88,9 @@ public class Player : CombatEntity
             TriggerInvulnerability(10f);
             InvulnerabilityTest = false;
         }
-        if (DeathTest && this.ModelObject != null)
+        if (DeathTest)
         {
+            // FIXME: Re-work this
             TriggerDeath();
             DeathTest = false;
         }
@@ -444,10 +445,8 @@ public class Player : CombatEntity
         EventData.RaiseOnHealthLost(health); //To remove Last Health segment from UI
         EventData.RaiseOnPlayerDeath();
 
-        // TODO: Check if this is a good idea:
-        // Never destroy the Player object, it will cause errors around the game
-        // Instead, Destroy only its model (?)
-        Destroy(this.ModelObject);
+        // Destroy player object from scene
+        Destroy(gameObject);
     }
 
     //What happens to the game and the player on death

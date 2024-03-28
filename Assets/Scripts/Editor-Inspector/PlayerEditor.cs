@@ -26,7 +26,6 @@ public class PlayerEditor : Editor
     SerializedProperty isShieldBroken;
 
     //Settings
-    SerializedProperty ModelObject;
     SerializedProperty MAX_HEALTH;
     SerializedProperty MAX_SHIELD;
     SerializedProperty dmgInvulnTime;
@@ -67,7 +66,6 @@ public class PlayerEditor : Editor
         isShieldBroken = serializedObject.FindProperty("isShieldBroken");
 
         //Settings
-        ModelObject = serializedObject.FindProperty("ModelObject");
         MAX_HEALTH = serializedObject.FindProperty("MAX_HEALTH");
         MAX_SHIELD = serializedObject.FindProperty("MAX_SHIELD");
         dmgInvulnTime = serializedObject.FindProperty("dmgInvulnTime");
@@ -136,7 +134,6 @@ public class PlayerEditor : Editor
         SettingsGroup = EditorGUILayout.BeginFoldoutHeaderGroup(SettingsGroup, "Settings");
         if (SettingsGroup)
         {
-            EditorGUILayout.PropertyField(ModelObject);
             EditorGUILayout.PropertyField(MAX_HEALTH);
             EditorGUILayout.PropertyField(MAX_SHIELD);
             EditorGUILayout.PropertyField(dmgInvulnTime);

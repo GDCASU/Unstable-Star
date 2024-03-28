@@ -1,0 +1,1 @@
+These are the projectile assets. You can try the different shaped, but the art team was thinking about using the sphere for enemies and the pill-shaped for the player. They have no textures with them, but a generic emission looks pretty good.
