@@ -22,7 +22,7 @@ public abstract class Weapon
     public GameObject prefab;
     public string sName;
     public WeaponTypes weaponType;
-    public SoundTag sound;
+    public FMODUnity.EventReference mainSound;
     public float speed;
     public float shootCooldownTime;
     public bool isOnCooldown;
@@ -70,14 +70,14 @@ public class GeneralWeapon : Weapon
 public class Pistol : Weapon
 {
     //Constructor
-    public Pistol(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, int damage, string name, float shootCooldownTime)
+    public Pistol(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, int damage, string name, float shootCooldownTime)
     {
         this.prefab= prefab;
         this.speed = speed;
         this.damage = damage;
         this.sName = name;
         this.shootCooldownTime = shootCooldownTime;
-        this.sound = sound;
+        this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
 
         // Static sets
@@ -92,14 +92,14 @@ public class Pistol : Weapon
 public class Birdshot : Weapon
 {
     //Default Constructor
-    public Birdshot(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, int damage, string name, float timeBetweenShots)
+    public Birdshot(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, int damage, string name, float timeBetweenShots)
     {
         this.speed = speed;
         this.prefab = prefab;
         this.damage = damage;
         this.sName = name;
         this.shootCooldownTime = timeBetweenShots;
-        this.sound = sound;
+        this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
 
         // Static sets
@@ -114,14 +114,14 @@ public class Birdshot : Weapon
 public class Buckshot : Weapon
 {
     //Default Constructor
-    public Buckshot(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, int damage, string name, float timeBetweenShots)
+    public Buckshot(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, int damage, string name, float timeBetweenShots)
     {
         this.speed = speed;
         this.prefab = prefab;
         this.damage = damage;
         this.sName = name;
         this.shootCooldownTime = timeBetweenShots;
-        this.sound = sound;
+        this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
 
         // Static sets
@@ -136,13 +136,13 @@ public class Buckshot : Weapon
 public class LaserGun : Weapon
 {
     //Default Constructor
-    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, SoundTag sound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, bool isEnemy)
+    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, bool isEnemy)
     {
         this.prefab = prefab;
         this.chargingSpherePrefab = chargingSpherePrefab;
         this.sName = name;
         this.shootCooldownTime = cooldownTime;
-        this.sound = sound;
+        this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
         this.isEnemy = isEnemy;
         this.minDamage = minDamage;
@@ -161,14 +161,14 @@ public class LaserGun : Weapon
 public class GatlingGun : Weapon
 {
     //Default Constructor
-    public GatlingGun(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime)
+    public GatlingGun(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime)
     {
         this.speed = speed;
         this.prefab = prefab;
         this.damage = damage;
         this.sName = name;
         this.shootCooldownTime = timeBetweenShots;
-        this.sound = sound;
+        this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
         this.warmupTime = warmupTime;
         this.isEnemy = isEnemy;

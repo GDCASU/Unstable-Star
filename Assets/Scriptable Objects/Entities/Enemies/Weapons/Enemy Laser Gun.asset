@@ -16,7 +16,13 @@ MonoBehaviour:
   laserPrefab: {fileID: 6775928351072881989, guid: f2721c27f108b7e4cbc7ca3f4a7d9bb0, type: 3}
   chargingSpherePrefab: {fileID: 6819432801012968178, guid: 54ecf47a17c6ce24ab88a93a0e9ece6e, type: 3}
   weaponIcon: {fileID: 0}
-  sound: 0
+  sound:
+    Guid:
+      Data1: -1179885932
+      Data2: 1250484582
+      Data3: 989007238
+      Data4: 152891200
+    Path: event:/TESTING/RayGunEffect
   minDamage: 1
   maxDamage: 4
   laserCooldown: 2

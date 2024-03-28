@@ -16,7 +16,7 @@ public abstract class Ability
     // Common Variables
     public string sName;
     public AbilityTypes behaviour;
-    public SoundTag sound;
+    public FMODUnity.EventReference mainSound;
     public float cooldownTime;
     public float durationTime;
     public bool isOnCooldown;
