@@ -54,7 +54,26 @@ public class EventData : MonoBehaviour
     /// <summary> Triggers all functions subscribed to OnShieldBroken </summary>
     public static void RaiseOnShieldBroken(int currShield) { OnShieldBroken?.Invoke(currShield); }
     #endregion
-    
+
+    #region PLAYER ABILITIES
+
+    /// <summary> Event that will constantly fire with the current ability cooldown info </summary>
+    public static System.Action<float, float> OnAbilityCooldown;
+
+    /// <summary> Event raiser for OnAbilityCooldown </summary>
+    public static void RaiseOnAbilityCooldown(float maxAbilityCooldown, float currCooldownTimer)
+    {
+        OnAbilityCooldown?.Invoke(maxAbilityCooldown, currCooldownTimer);
+    }
+
+
+
+    #endregion
+
+    #region PLAYER WEAPONS
+
+    #endregion
+
     #region ENEMY DEATH
     // <Summary> Enemy Death Event </summary>
     public static event System.Action<GameObject> OnEnemyDeath;

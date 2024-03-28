@@ -111,7 +111,7 @@ public class ShootComponent : MonoBehaviour
         //Create the Projectile
         DefaultSpawn(weapon);
         // Play its sound
-        SoundManager.instance.PlaySound(weapon.sound);
+        SoundManager.instance.PlaySound(weapon.mainSound);
         //Start cooldown
         StartCoroutine(ShootingCooldown(weapon));
     }
@@ -126,7 +126,7 @@ public class ShootComponent : MonoBehaviour
         AddedAngleSpawn(weapon, -30f);
         OffsetSpawn(weapon, 0, 1);
         // Play its sound
-        SoundManager.instance.PlaySound(weapon.sound);
+        SoundManager.instance.PlaySound(weapon.mainSound);
         //Start cooldown
         StartCoroutine(ShootingCooldown(weapon));
     }
@@ -141,7 +141,7 @@ public class ShootComponent : MonoBehaviour
         OffsetSpawn(weapon, 2, -2);
         OffsetSpawn(weapon, -2, -2);
         // Play its sound
-        SoundManager.instance.PlaySound(weapon.sound);
+        SoundManager.instance.PlaySound(weapon.mainSound);
         //Start cooldown
         StartCoroutine(ShootingCooldown(weapon));
     }
@@ -203,7 +203,7 @@ public class ShootComponent : MonoBehaviour
             // Spawn a bullet with this offset
             OffsetSpawn(input, currVal, 0f);
             // Play sound
-            SoundManager.instance.PlaySound(input.sound);
+            SoundManager.instance.PlaySound(input.mainSound);
             // Add back previous value
             randOffsets.Add(previousVal);
             previousVal = currVal;
@@ -250,7 +250,7 @@ public class ShootComponent : MonoBehaviour
             // Spawn a bullet with this offset
             OffsetSpawn(input, currVal, 0f);
             // Play sound
-            SoundManager.instance.PlaySound(input.sound);
+            SoundManager.instance.PlaySound(input.mainSound);
             // Add back previous value
             randOffsets.Add(previousVal);
             previousVal = currVal;
