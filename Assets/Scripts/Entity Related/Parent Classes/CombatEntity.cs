@@ -9,7 +9,6 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     protected static readonly float collisionCooldownTime = 1f;
 
     // Serialized Variables
-    [SerializeField] protected GameObject ModelObject;
     [SerializeField] protected int health = 0;
     [SerializeField] protected int shield = 0;
     [SerializeField] protected int collisionDamage = 0;
