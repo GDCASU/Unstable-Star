@@ -11,48 +11,45 @@ public class ShipMaterialHandler : MonoBehaviour
     [SerializeField] private GameObject[] subModelsWithMeshes;
 
     // Local variables
-    private List<MaterialList> meshRendererObjects;
+    private List<MaterialList> meshRendererObjects = new();
 
     // Material List Class for handling mesh renderers with multiple mats
     private class MaterialList
     {
         private MeshRenderer meshRenderer;
-        private readonly List<Material> defaultMaterials;
-        private List<Material> inputMatNonAlloc = new List<Material>();
+        private readonly Material[] defaultMaterials;
         
         public MaterialList(MeshRenderer meshRenderer)
         {
             this.meshRenderer = meshRenderer;
 
             // Populate default materials list
-            meshRenderer.GetMaterials(defaultMaterials);
-
-            // HACK: TESTING
-            string msg = "Default Material List for = " + meshRenderer.gameObject.name + "\n";
-            msg += "Default Mat List = " + defaultMaterials;
-            Debug.Log(msg);
+            defaultMaterials = new Material[meshRenderer.materials.Length];
+            for (int i = 0; i < meshRenderer.materials.Length; i++)
+            {
+                defaultMaterials[i] = new Material(meshRenderer.materials[i]);
+            }
         }
 
-        // Method to set materials to default
+        /// <summary> Set materials to default </summary>
         public void SetMatDefault()
         {
-            meshRenderer.SetMaterials(defaultMaterials);
-            // HACK: TESTING
-            string msg = "SetMatDefault called for = " + meshRenderer.gameObject.name + "\n";
-            msg += "Mat List = " + meshRenderer.materials;
-            Debug.Log(msg);
+            // Remove existing materials
+            meshRenderer.materials = new Material[0];
+
+            // Set it to default
+            meshRenderer.materials = defaultMaterials;
         }
 
-        // Method to set materials to target
+        /// <summary> Set materials to target </summary>
         public void SetMatTarget(Material input)
         {
-            // Method only takes an array, so we place it into one
-            inputMatNonAlloc[0] = input;
-            meshRenderer.SetMaterials(inputMatNonAlloc);
-            // HACK: TESTING
-            string msg = "SetMatTarget called for = " + meshRenderer.gameObject.name + "\n";
-            msg += "Mat List = " + meshRenderer.materials;
-            Debug.Log(msg);
+            // Remove existing materials
+            meshRenderer.materials = new Material[0];
+
+            // Set it to the input only
+            Material[] inputMat = new Material[] { input };
+            meshRenderer.materials = inputMat;
         }
     }
     
