@@ -670,6 +670,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1452690078182816695, guid: 2a3f6abdb5bcc9d45abc642ca264d57a, type: 3}
       propertyPath: masterSlider
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516085622955597004, guid: 2a3f6abdb5bcc9d45abc642ca264d57a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3751050799302581275, guid: 2a3f6abdb5bcc9d45abc642ca264d57a, type: 3}
