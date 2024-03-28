@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
+  m_IndirectSpecularColor: {r: 0.010086427, g: 0.052700892, b: 0.15289137, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -805,7 +805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5959745050469382405, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1641.1852
+      value: 1640.7352
       objectReference: {fileID: 0}
     - target: {fileID: 7424609744582626789, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -813,7 +813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1641.1852
+      value: 1640.7352
       objectReference: {fileID: 0}
     - target: {fileID: 8568430465067054235, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.x
@@ -1004,6 +1004,10 @@ PrefabInstance:
     - target: {fileID: 8720998934021106729, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9126882411157780980, guid: 43021d9201b02544a88e8e6ab641add7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1448,7 +1452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1612ed003342334790d7ed9b1488a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModelObject: {fileID: 0}
   health: 200
   shield: 0
   collisionDamage: 2
