@@ -73,7 +73,7 @@ public class FinalBoss : CombatEntity
             {
                 if(j != gap) FireWeapon(_bulletWeapon.GetWeaponObject(), _anchorObject.transform.position, j * 10f + offset);
             }
-            SoundManager.instance.PlaySound(_bulletWeapon.GetWeaponObject().sound);
+            SoundManager.instance.PlaySound(_bulletWeapon.GetWeaponObject().mainSound);
             yield return new WaitForSeconds(_currentPhase == 4 ? 0.5f : 0.75f);
         }
         if(_currentPhase == 4) _moveState = MoveState.HORIZONTALFANCY;
@@ -92,7 +92,7 @@ public class FinalBoss : CombatEntity
             for(int j = 0; j < repeat; j++)
             {
                 FireWeapon(_bulletWeapon.GetWeaponObject(), _anchorObject.transform.position, 0f);
-                SoundManager.instance.PlaySound(_bulletWeapon.GetWeaponObject().sound);
+                SoundManager.instance.PlaySound(_bulletWeapon.GetWeaponObject().mainSound);
                 yield return new WaitForSeconds(0.05f);
             }
             _moveState = MoveState.HORIZONTALFANCY;
@@ -110,7 +110,7 @@ public class FinalBoss : CombatEntity
 		{
             Vector3 target = Player.Instance.transform.position + new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
             GameObject firework = FireWeapon(_fireworkWeapon.GetWeaponObject(), _anchorObject.transform.position, target);
-            SoundManager.instance.PlaySound(_fireworkWeapon.GetWeaponObject().sound);
+            SoundManager.instance.PlaySound(_fireworkWeapon.GetWeaponObject().mainSound);
             StartCoroutine(FireworkExplosion(firework, target));
             yield return new WaitForSeconds(0.5f);
         }
@@ -136,7 +136,7 @@ public class FinalBoss : CombatEntity
             FireWeapon(_bulletWeapon.GetWeaponObject(), lastPosition, i * 22.5f);
         }
         Destroy(firework);
-        SoundManager.instance.PlaySound(_bulletWeapon.GetWeaponObject().sound);
+        SoundManager.instance.PlaySound(_bulletWeapon.GetWeaponObject().mainSound);
     }
 
     private GameObject FireWeapon(Weapon weapon, Vector3 origin, float degreeOffset)
