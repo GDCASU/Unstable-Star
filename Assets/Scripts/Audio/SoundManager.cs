@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
     // Singleton
     public static SoundManager instance;
 
-    // FMOD VCA Buses
+    // FMOD VCAs
     private FMOD.Studio.VCA masterVCA;
     private FMOD.Studio.VCA musicVCA;
     private FMOD.Studio.VCA sfxVCA;
@@ -31,13 +31,8 @@ public class SoundManager : MonoBehaviour
     // Debugging
     [Header("Debugging")]
     [SerializeField] private bool disableSliders;
+    [SerializeField] private bool fadeStopCombatSounds;
 
-    // The string must contain the name assigned to the bus on the FMOD Mixer
-    // this is useful if someone decides to change how they are named without re-scripting anything
-    [Header("VCA Bus Names")]
-    public string masterBus;
-    public string musicBus;
-    public string sfxBus;
 
     // Sound Inspector Slider
     [Header("Sound Sliders")]
@@ -53,20 +48,17 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         // Handle Singleton
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
+        if (instance != null) Destroy(gameObject);
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-    }
 
-    private void Start()
-    {
+        // Initialize SoundLibrary Singleton
+        soundLibrary.InitializeLibrary();
+
         // Fecth the matching VCAs
-        masterVCA = FMODUnity.RuntimeManager.GetVCA("vca:/" + masterBus);
-        musicVCA = FMODUnity.RuntimeManager.GetVCA("vca:/" + musicBus);
-        sfxVCA = FMODUnity.RuntimeManager.GetVCA("vca:/" + sfxBus);
+        masterVCA = FMODUnity.RuntimeManager.GetVCA("vca:/" + soundLibrary.masterBus);
+        musicVCA = FMODUnity.RuntimeManager.GetVCA("vca:/" + soundLibrary.musicBus);
+        sfxVCA = FMODUnity.RuntimeManager.GetVCA("vca:/" + soundLibrary.sfxBus);
 
         // Populate Dictionary
         VCADictionary.Add(SoundControllers.Master, masterVCA);
@@ -80,15 +72,16 @@ public class SoundManager : MonoBehaviour
         previousMasterVolume = masterVolumeVal;
         previousMusicVolume = musicVolumeVal;
         previousSFXVolume = sfxVolumeVal;
-
-        // Initialize the data on the Sound library attached
-        soundLibrary.InitializeData();
     }
 
-    // Debugging 
+    // Debugging
     private void Update()
     {
-        
+        if (fadeStopCombatSounds)
+        {
+            FadeStopCombatSounds();
+            fadeStopCombatSounds = false;
+        }
     }
 
     // Loop for inspector sliders, can be removed once UI can manage this
@@ -184,48 +177,67 @@ public class SoundManager : MonoBehaviour
         obtainedVCA.setVolume(scaledVolume);
     }
 
-    /// <summary> Play Sound no matter the state </summary>
-    public void PlaySound(SoundTag targetSound)
-    {
-        // FIXME: Should still be tracked for muting?
-        if ( soundLibrary.TryGetSound(targetSound, out FMODUnity.EventReference sound) )
-        {
-            FMOD.Studio.EventInstance playedSound = FMODUnity.RuntimeManager.CreateInstance(sound);
-            playedSound.start();
-        }
-    }
+    /// <summary> 
+    /// <para> Play Sound no matter the state </para> 
+    /// Use SoundLibrary.get.[Sound] in the argument to play a specific sound
+    /// </summary>
+    public void PlaySound(FMODUnity.EventReference soundEvent) => FMODUnity.RuntimeManager.PlayOneShot(soundEvent);
+
+    /// <summary>
+    /// Pauses ALL sounds in the game, use carefully and sparingly
+    /// </summary>
+    public void PauseAllSounds() => FMODUnity.RuntimeManager.PauseAllEvents(true);
+
+    /// <summary>
+    /// Resume's all events that are paused
+    /// </summary>
+    public void ResumeAllSounds() => FMODUnity.RuntimeManager.PauseAllEvents(false);
+
+
+    /// <summary>
+    /// Stops all the combat sounds currently firing in the game using a fade out effect
+    /// </summary>
+    public void FadeStopCombatSounds() => soundLibrary.onLevelCombatBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+
+    // TODO: Implement bank loading/de-loading for better memory?
+    public void LoadBank() { throw new System.NotImplementedException(); }
+    public void UnloadBank() { throw new System.NotImplementedException(); }
+
+
+    // NOT IMPLEMENTED YET ******************************
 
     /// <summary> Play only if not already playing </summary>
-    public void PlaySoundIfNotPlaying(SoundTag targetSound)
+    public void PlaySoundIfNotPlaying()
     {
-
+        throw new System.NotImplementedException();
     }
 
     /// <summary> Interrupt if specified sound is playing, then play again </summary>
-    public void InterruptSoundAndReplay(SoundTag targetSound)
+    public void InterruptSoundAndReplay()
     {
-
+        throw new System.NotImplementedException();
     }
 
     /// <summary> Play on loop. Wont play if specified sound is already playing</summary>
-    public void PlayOnLoop(SoundTag targetSound)
+    public void PlayOnLoop()
     {
-
+        throw new System.NotImplementedException();
     }
 
     /// <summary> 
     /// <para> Stop specific sound if playing </para> 
     /// <para> Will stop all sounds associated with the target </para> 
     /// </summary>
-    public void StopAllSoundsMatchingTarget(SoundTag targetSound)
+    public void StopAllSoundsMatchingTarget()
     {
-
+        throw new System.NotImplementedException();
     }
 
     /// <summary> Stop all sounds playing </summary>
     public void StopAllSounds()
     {
-
+        throw new System.NotImplementedException();
     }
 
 }
