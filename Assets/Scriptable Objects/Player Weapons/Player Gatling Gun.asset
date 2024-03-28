@@ -15,7 +15,13 @@ MonoBehaviour:
   weaponName: Gatling Gun
   bulletPrefab: {fileID: 2855044700726246926, guid: ba1eda2307081ad48bec80e79c27f582, type: 3}
   weaponIcon: {fileID: 21300000, guid: 5812f799a00da1745a19c38f2199f3ff, type: 3}
-  sound: 0
+  sound:
+    Guid:
+      Data1: -209210385
+      Data2: 1332772824
+      Data3: 658300835
+      Data4: 440627577
+    Path: event:/SFX/Weapons/Player/Gatling Fire
   warmUpTime: 3
   damage: 1
   bulletSpeed: 40
