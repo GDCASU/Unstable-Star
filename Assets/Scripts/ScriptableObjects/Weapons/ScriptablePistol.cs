@@ -11,7 +11,7 @@ public class ScriptablePistol : ScriptableWeapon
     public string weaponName;
     public GameObject bulletPrefab;
     public Sprite weaponIcon;
-    public SoundTag sound;
+    public FMODUnity.EventReference sound;
 
     [Header("Stats")]
     public int damage;

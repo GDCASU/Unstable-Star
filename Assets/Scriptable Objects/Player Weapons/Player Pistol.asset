@@ -15,7 +15,13 @@ MonoBehaviour:
   weaponName: Pistol
   bulletPrefab: {fileID: 6787963419104351376, guid: 93b01e4df0c8eb24d806e8c90df82608, type: 3}
   weaponIcon: {fileID: 21300000, guid: a0faf7f250bbf2f4088221d25b4d69fe, type: 3}
-  sound: 0
+  sound:
+    Guid:
+      Data1: 1604539224
+      Data2: 1129400234
+      Data3: 988600198
+      Data4: -565483187
+    Path: event:/SFX/Weapons/Player/Pistol Fire
   damage: 1
   bulletSpeed: 30
   shotsCooldown: 0.2
