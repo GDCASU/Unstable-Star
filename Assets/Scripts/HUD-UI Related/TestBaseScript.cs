@@ -163,7 +163,8 @@ public class TestBaseScript : MonoBehaviour
             }
             
         }
-        if (animator.GetBool("toPIF")==true&& Input.GetKeyDown(KeyCode.LeftArrow))
+        
+        /*if (animator.GetBool("toPIF")==true&& Input.GetKeyDown(KeyCode.LeftArrow))
         {
             animator.SetBool("toCPTB", true);
             animator.SetBool("toPIF", false);
@@ -172,14 +173,14 @@ public class TestBaseScript : MonoBehaviour
                 currSecondary.sortingOrder = 2;
                 currPrim.sortingOrder = 1;
             }
-        }
-        if(animator.GetBool("toCPTB")==true && (secrtransform.localPosition.z < 0.1f))
+        }*/
+        /*if(animator.GetBool("toCPTB")==true && (secrtransform.localPosition.z < 0.1f))
         {
             //animator.SetBool("toSIFCounter", true);
             animator.SetBool("toSIF", true);
             animator.SetBool("toCPTB", false);
-        }
-        if (/*animator.GetBool("toCSTF")==false*/animator.GetBool("toSIF") == true && Input.GetKeyDown(KeyCode.LeftArrow))
+        }*/
+        /*if (animator.GetBool("toSIF") == true && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             animator.SetBool("toCSTB", true);
             animator.SetBool("toSIF", false);
@@ -193,7 +194,7 @@ public class TestBaseScript : MonoBehaviour
         {
             animator.SetBool("toPIF", true);
             animator.SetBool("toCSTB", false);
-        }
+        }*/
 
         /*if (Input.GetKeyDown(KeyCode.N))
         {
