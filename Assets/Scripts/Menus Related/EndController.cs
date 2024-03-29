@@ -8,6 +8,7 @@ public class EndController : MonoBehaviour
     [Header("Menu Controller")]
     public bool isEnd;
     [SerializeField] private GameObject endObject;
+    [SerializeField] Player player;
 
     [Header("Physics Variables")]
     private float acceleration = 0.01f;
@@ -33,6 +34,11 @@ public class EndController : MonoBehaviour
         {
             endObject.SetActive(false); 
             Time.timeScale = 1f;
+        }
+
+        if (player.GetHealth() <= 0)
+        {
+            isEnd = true;
         }
 
     }
