@@ -27,10 +27,19 @@ public class TestBaseScript : MonoBehaviour
     public WeaponArsenal weaponArsenalScript;
     bool happened;
 
-  //  public SoundTag soundTag;
+    //  public SoundTag soundTag;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
+    {
+        // Handle Singleton
+        if (myInstance != null)
+        {
+            Destroy(gameObject);
+        }
+        myInstance = this;
+    }
+        void Start()
     {
         currPrim = null;
         currSecondary = null;
