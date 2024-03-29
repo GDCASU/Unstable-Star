@@ -10,28 +10,23 @@ public class AbilityComponent : MonoBehaviour
     // NOTE: The way I set this up, abilites have their own cooldowns
     // meaning that if the player triggers one, they can still trigger the others
 
-    // FIXME: Some abilites shouldnt be able to stack, like phase and proxibomb, but if 
-    // the system is expanded to more abilities, a look up table would be better
-    //private bool abilityLock; 
+    // NOTE: If an enemy wants to use the ability component, they will need a 
+    // ShipMaterialHandler attached to their model, reference player prefab for this
 
     // Settings
     [Header("Settings")]
     [SerializeField] private GameObject ModelObject;
 
     // Local Variables
-    private MeshRenderer meshRenderer;
-    private Material defaulMaterial;
+    private ShipMaterialHandler matHandler;
     private CombatEntity entityComponent;
 
     // Set up
     public void Start()
     {
         // Get components
-        meshRenderer = ModelObject.GetComponent<MeshRenderer>();
         entityComponent = GetComponent<CombatEntity>();
-
-        // Set variables
-        defaulMaterial = meshRenderer.material;
+        matHandler = ModelObject.GetComponent<ShipMaterialHandler>();
     }
 
     // Triggers the ability passed to it
@@ -83,7 +78,7 @@ public class AbilityComponent : MonoBehaviour
         entityComponent.LockAbilities();
 
         // Change the material of the model and create the particles
-        meshRenderer.material = inputAbility.PhaseShiftMaterial;
+        matHandler.SetMaterialsTo(inputAbility.PhaseShiftMaterial);
 
         // Create the particles
         GameObject particleEmitter = Instantiate(inputAbility.particleEmitter, this.transform.position, this.transform.rotation);
@@ -101,7 +96,7 @@ public class AbilityComponent : MonoBehaviour
         entityComponent.UnlockAbilities();
 
         // Reset the material to default
-        meshRenderer.material = defaulMaterial;
+        matHandler.SetDefaultMaterials();
 
         // Create the particles again once phase shift ends
         particleEmitter = Instantiate(inputAbility.particleEmitter, this.transform.position, this.transform.rotation);
@@ -145,13 +140,18 @@ public class AbilityComponent : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
             input.timeLeftInCooldown = timeLeft;
+            // Invoke the ability event for UI
+            EventData.RaiseOnAbilityCooldown(input.cooldownTime, timeLeft);
             // Wait a frame
             yield return null;
         }
-
         // Cooldown ended
         input.timeLeftInCooldown = 0f;
+        timeLeft = 0f;
         input.isOnCooldown = false;
+
+        // Raise event one more time to indicate its finished
+        EventData.RaiseOnAbilityCooldown(input.cooldownTime, timeLeft);
     }
 
 

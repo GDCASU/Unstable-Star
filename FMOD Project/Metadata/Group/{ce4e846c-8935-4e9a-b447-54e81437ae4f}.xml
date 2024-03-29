@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{ce4e846c-8935-4e9a-b447-54e81437ae4f}">
+		<property name="note">
+			<value>Master Group where all combat sounds are nested, should allow for stopping all combat sounds when entering the pause menu</value>
+		</property>
+		<property name="color">
+			<value>Red</value>
+		</property>
+		<property name="name">
+			<value>OnLevelCombat</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{068a3c3a-eb21-4255-baea-99ff02a3b1ea}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{c198c3d9-e3f5-4346-a707-080df29bfcd4}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{884beffb-0488-4c09-a487-94047c7009cf}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{068a3c3a-eb21-4255-baea-99ff02a3b1ea}">
+		<relationship name="effects">
+			<destination>{27e9e57a-fefa-443b-aec5-f2426fccba77}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{c198c3d9-e3f5-4346-a707-080df29bfcd4}" />
+	<object class="MixerBusFader" id="{27e9e57a-fefa-443b-aec5-f2426fccba77}" />
+</objects>
