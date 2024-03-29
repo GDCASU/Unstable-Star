@@ -11,7 +11,12 @@ public class ScriptablePistol : ScriptableWeapon
     public string weaponName;
     public GameObject bulletPrefab;
     public Sprite weaponIcon;
+<<<<<<< Updated upstream
     public FMODUnity.EventReference sound;
+=======
+    public SoundTag sound;
+    public string description;
+>>>>>>> Stashed changes
 
     [Header("Stats")]
     public int damage;
@@ -20,6 +25,6 @@ public class ScriptablePistol : ScriptableWeapon
 
     public override Weapon GetWeaponObject()
     {
-        return new Pistol(bulletPrefab, weaponIcon, sound, bulletSpeed, damage, weaponName, shotsCooldown);
+        return new Pistol(bulletPrefab, weaponIcon, sound, bulletSpeed, damage, weaponName, shotsCooldown, description);
     }
 }

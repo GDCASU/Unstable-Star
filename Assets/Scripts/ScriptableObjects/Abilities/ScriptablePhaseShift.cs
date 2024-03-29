@@ -15,9 +15,9 @@ public class ScriptablePhaseShift : ScriptableAbility
     public int charges;
     public float cooldownTime;
     public float durationTime;
-
+    public string description;
     public override Ability GetAbilityObject()
     {
-        return new PhaseShiftAbility(sName, abilityIcon, phaseShiftMaterial, particlePrefab, charges, cooldownTime, durationTime);
+        return new PhaseShiftAbility(sName, abilityIcon, phaseShiftMaterial, particlePrefab, charges, cooldownTime, durationTime, description);
     }
 }

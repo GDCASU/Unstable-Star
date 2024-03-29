@@ -44,6 +44,18 @@ public class WeaponSelectUI : MonoBehaviour
         arsenal.RemoveWeaponByObject(wep);
     }
 
+    public GameObject scanforhover()
+    {
+        foreach(GameObject gun in weapons)
+        {
+            if(gun.GetComponent<HoverAndLerp>().IsMouseOver())
+            {
+                return gun;
+            }
+        }
+        return null;
+    }
+
 
 
 }

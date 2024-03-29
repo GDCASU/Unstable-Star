@@ -21,6 +21,7 @@ public abstract class Ability
     public float durationTime;
     public bool isOnCooldown;
     public int charges;
+    public string description;
 
     // Proximity Bomb Variables
     public GameObject bombPrefab;
@@ -68,7 +69,7 @@ public class GeneralAbility : Ability
 public class PhaseShiftAbility : Ability
 {
     // Constructor
-    public PhaseShiftAbility(string name, Sprite abilityIcon, Material phaseShiftMaterial, GameObject particleEmitter, int charges, float cooldownTime, float durationTime)
+    public PhaseShiftAbility(string name, Sprite abilityIcon, Material phaseShiftMaterial, GameObject particleEmitter, int charges, float cooldownTime, float durationTime, string description)
     {
         this.sName = name;
         this.cooldownTime = cooldownTime;
@@ -77,7 +78,7 @@ public class PhaseShiftAbility : Ability
         this.PhaseShiftMaterial = phaseShiftMaterial;
         this.charges = charges;
         this.abilityIcon = abilityIcon;
-
+        this.description = description;
         // Static sets
         this.behaviour = AbilityTypes.PhaseShift;
         this.isOnCooldown = false;
@@ -90,7 +91,7 @@ public class PhaseShiftAbility : Ability
 public class ProximityBombAbility : Ability
 {
     // Constructor
-    public ProximityBombAbility(string name, Sprite abilityIcon, GameObject bombPrefab, float bombRadius, float cooldownTime, int charges, int damage)
+    public ProximityBombAbility(string name, Sprite abilityIcon, GameObject bombPrefab, float bombRadius, float cooldownTime, int charges, int damage, string description)
     {
         this.sName = name;
         this.damage = damage;
@@ -99,7 +100,7 @@ public class ProximityBombAbility : Ability
         this.bombRadius = bombRadius;
         this.charges = charges;
         this.abilityIcon = abilityIcon;
-
+        this.description= description;
         // Static sets
         this.behaviour = AbilityTypes.ProxiBomb;
         this.isOnCooldown = false;

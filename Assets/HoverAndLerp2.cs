@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-public class HoverAndLerp : MonoBehaviour
+public class HoverAndLerp2 : MonoBehaviour
 {
     public float hoverHeight = 1f;
     public float lerpSpeed = 5f;
@@ -12,15 +12,15 @@ public class HoverAndLerp : MonoBehaviour
     private Material initMAT;
     public bool selected = false;
     public bool unlocked = true;
-    private WeaponSelectUI WSUI;
+    private AbilitySelectUI WSUI;
     private Material initDiskMat;
-    [SerializeField] private ScriptableWeapon weapon = null;
+    [SerializeField] private ScriptableAbility weapon = null;
     void Start()
     {
-        WSUI = GetComponentInParent<WeaponSelectUI>();
+        WSUI = GetComponentInParent<AbilitySelectUI>();
         originalPosition = transform.position;
         initMAT = transform.GetChild(0).gameObject.GetComponent<Renderer>().material;
-        if(!unlocked)
+        if (!unlocked)
         {
             initDiskMat = gameObject.GetComponent<Material>();
             gameObject.GetComponent<Renderer>().material = transDisk;
@@ -36,11 +36,11 @@ public class HoverAndLerp : MonoBehaviour
                 isHovered = true;
                 StartCoroutine(LerpObject(transform.position, new Vector3(transform.position.x, hoverHeight, transform.position.z)));
             }
-            if(isHovered)
+            if (isHovered)
             {
-                if(unlocked)
+                if (unlocked)
                 {
-                    if(Input.GetKeyDown(KeyCode.Mouse0))
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
 
                         WSUI.CheckWeaponEquipLoad(this);
@@ -67,13 +67,13 @@ public class HoverAndLerp : MonoBehaviour
         {
             transform.GetChild(0).gameObject.GetComponent<Renderer>().material = blackout;
             WSUI.Equipped++;
-            WSUI.setArseWeapon(weapon.GetWeaponObject());
+            WSUI.setArseWeapon(weapon.GetAbilityObject());
         }
         else
         {
             transform.GetChild(0).gameObject.GetComponent<Renderer>().material = initMAT;
             WSUI.Equipped--;
-            WSUI.removeArseWeapon(weapon.GetWeaponObject());
+            WSUI.removeArseWeapon(weapon.GetAbilityObject());
         }
         selected = !selected;
 
@@ -97,7 +97,7 @@ public class HoverAndLerp : MonoBehaviour
         }
     }
 
-    public ScriptableWeapon GetScriptableWeapon()
+    public ScriptableAbility GetScriptableWeapon()
     {
         return weapon;
     }
