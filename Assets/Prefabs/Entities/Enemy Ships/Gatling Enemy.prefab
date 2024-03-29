@@ -18,15 +18,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fa7eca8cf30c9954fbd639c9c6622790, type: 2}
     - target: {fileID: 8412255195681629295, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.0875463
       objectReference: {fileID: 0}
     - target: {fileID: 8412255195681629295, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8412255195681629295, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.42931652
       objectReference: {fileID: 0}
     - target: {fileID: 8412255195681629295, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56,8 +56,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2601468425888632271, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 7292986925393482168}
   m_SourcePrefab: {fileID: 100100000, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+--- !u!1 &1408486779537291851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+  m_PrefabInstance: {fileID: 2266529173105359739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7292986925393482168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408486779537291851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdbc1a595bcd5b488d60ae40f6e900d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  shield: 0
+  collisionDamage: 0
+  timeLeftInvulnerable: 0
+  dmgInvulnTime: 0
+  isShootingLocked: 0
+  isAbilityLocked: 0
+  isInvulnerable: 0
+  isIgnoringCollisions: 0
+  lockOn: {fileID: 0}
+  player: {fileID: 0}
+  lockOnVelocity: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  endPos: {x: 0, y: 0, z: 0}
+  gatGun: {fileID: 0}
