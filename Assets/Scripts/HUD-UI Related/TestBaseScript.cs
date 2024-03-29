@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class TestBaseScript : MonoBehaviour
 {
-    public static TestBaseScript myInstance;
+    public bool PIsInFront;
     //public GameObject pistolprefab;
     //public Sprite pistolSprite;
     //public GameObject buckprefab;
@@ -30,17 +30,9 @@ public class TestBaseScript : MonoBehaviour
     //  public SoundTag soundTag;
 
     // Start is called before the first frame update
-    private void Awake()
-    {
-        // Handle Singleton
-        if (myInstance != null)
-        {
-            Destroy(gameObject);
-        }
-        myInstance = this;
-    }
         void Start()
     {
+        PlayerInput.OnSwitchToNextWeapon += swapPanes;
         currPrim = null;
         currSecondary = null;
         happened = false;
@@ -71,120 +63,95 @@ public class TestBaseScript : MonoBehaviour
         {
             secondarycanvases[i].gameObject.SetActive(false);
         }
-        
-        
+       
 
-
-
-        /* UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
-         UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[1].sName);
-         UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[2].sName);
-         UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[3].sName);
-         UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[4].sName);*/
-
+        for (int i = 0; i < primarycanvases.Length; i++)
+        {
+            if (primarycanvases[i].tag == primaryName)
+            {
+                //primary.transform.position = new Vector3(-35, -27, 0);
+                primarycanvases[i].gameObject.SetActive(true);
+                currPrim = primarycanvases[i];
+                primarycanvases[i].transform.GetChild(1).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[i].weaponIcon;
+            }
+        }
+        for (int i = 0; i < secondarycanvases.Length; i++)
+        {
+            if (secondarycanvases[i].tag == secondaryName)
+            {
+                //secondary.transform.position = new Vector3(-35, -27, 10);
+                secondarycanvases[i].gameObject.SetActive(true);
+                currSecondary = secondarycanvases[i];
+                secondarycanvases[i].transform.GetChild(1).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[i].weaponIcon;
+            }
+        }
+        currSecondary.sortingOrder = 1;
+        currPrim.sortingOrder = 2;
+        UnityEngine.Debug.Log("currprim: " + currPrim.name);
+        UnityEngine.Debug.Log("currsecondary: " + currSecondary.name);
+        animator.SetBool("toPIF", true);
+        PIsInFront = true;
     }
-
-    /*public void Explosion(InputAction.CallbackContext context)
-    {
-        UnityEngine.Debug.Log("MyTestExplosion");
-    }*/
-
-    public void Explosion()
-    {
-        UnityEngine.Debug.Log("MyTestExplosion");
-    }
-    // Update is called once per frame
-
 
     void Update()
     {
-        numUpdates++;
+        
+    }
+    public void swapPanes()
+    {
+        if(PIsInFront)
+        {
+            animator.SetBool("toPIF", true);
+            animator.SetBool("toCPTF", false);
+        }
+        else if(!(PIsInFront))
+        {
+            animator.SetBool("toSIF", true);
+            animator.SetBool("toCSTF", false);
+        }
         RectTransform secrtransform = secondary.GetComponent<RectTransform>();
         RectTransform primrtransform = primary.GetComponent<RectTransform>();
-        //animator.SetFloat("Sec_Z", rtransform.localPosition.z);
-        //UnityEngine.Debug.Log("Sec z: " + animator.GetFloat("toPIF"));
-        //UnityEngine.Debug.Log("Local Position: " + secrtransform.localPosition.z);
-        //UnityEngine.Debug.Log(rtransform.position.z);
-        if(secrtransform.localPosition.z>59.9f)
-        {
-            UnityEngine.Debug.Log("IT HAPPENED");
-        }
-        //if (Input.GetKeyDown(KeyCode.M))
-        //{
-        //happened = true;
-        if (numUpdates == 1)
-        {
-            for (int i = 0; i < primarycanvases.Length; i++)
-            {
-                if (primarycanvases[i].tag == primaryName)
-                {
-                    //primary.transform.position = new Vector3(-35, -27, 0);
-                    primarycanvases[i].gameObject.SetActive(true);
-                    currPrim = primarycanvases[i];
-                    primarycanvases[i].transform.GetChild(1).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[i].weaponIcon;
-                }
-            }
-            for (int i = 0; i < secondarycanvases.Length; i++)
-            {
-                if (secondarycanvases[i].tag == secondaryName)
-                {
-                    //secondary.transform.position = new Vector3(-35, -27, 10);
-                    secondarycanvases[i].gameObject.SetActive(true);
-                    currSecondary = secondarycanvases[i];
-                    secondarycanvases[i].transform.GetChild(1).GetComponentInChildren<Image>().sprite = weaponArsenalScript.weaponArsenal[i].weaponIcon;
-                }
-            }
-            currSecondary.sortingOrder = 1;
-            currPrim.sortingOrder = 2;
-            UnityEngine.Debug.Log("currprim: " + currPrim.name);
-            UnityEngine.Debug.Log("currsecondary: " + currSecondary.name);
-            animator.SetBool("toPIF", true);
-        }
-        //}
-        float epsilon = 0.01f;
-        UnityEngine.Debug.Log("happened: " + happened);
-        UnityEngine.Debug.Log("newlocalposition: " + secrtransform.localPosition.z + " type: " + secrtransform.localPosition.z.GetType());
-        
-        if (animator.GetBool("toPIF") == true && Input.GetKeyDown(KeyCode.RightArrow))
+        if (animator.GetBool("toPIF") == true)
         {
             animator.SetBool("toCSTF", true);
             animator.SetBool("toPIF", false);
             //if (happened)
             //{
-                currSecondary.sortingOrder = 2;
-                currPrim.sortingOrder = 1;
+            currSecondary.sortingOrder = 2;
+            currPrim.sortingOrder = 1;
             //}
         }
-        if(animator.GetBool("toCSTF")==true && secrtransform.localPosition.z < 1f)
+        if (animator.GetBool("toCSTF") == true && secrtransform.localPosition.z < 1f)
         {
             animator.SetBool("toSIF", true);
             animator.SetBool("toCSTF", false);
+            PIsInFront = false;
             //if(happened)
             //{
-                currSecondary.sortingOrder = 2;
-                currPrim.sortingOrder = 1;
-           // }
+            currSecondary.sortingOrder = 2;
+            currPrim.sortingOrder = 1;
+            // }
         }
-        if (animator.GetBool("toSIF") == true && Input.GetKeyDown(KeyCode.RightArrow))
+        if (animator.GetBool("toSIF") == true)
         {
             animator.SetBool("toCPTF", true);
             animator.SetBool("toSIF", false);
             // if (happened)
             //{
             currSecondary.sortingOrder = 1;
-                currPrim.sortingOrder = 2;
+            currPrim.sortingOrder = 2;
             //}
         }
-        if (animator.GetBool("toCPTF")==true && (secrtransform.localPosition.z > 59f))
+        if (animator.GetBool("toCPTF") == true && (secrtransform.localPosition.z > 59f))
         {
             animator.SetBool("toPIF", true);
             animator.SetBool("toCPTF", false);
+            PIsInFront = true;
             //if(happened)
             //{
             currSecondary.sortingOrder = 1;
-                currPrim.sortingOrder = 2;
+            currPrim.sortingOrder = 2;
             // }
-
         }
         /*if (animator.GetBool("toPIF")==true&& Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -232,7 +199,6 @@ public class TestBaseScript : MonoBehaviour
             testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
         }*/
     }
-
 
 
 #if false
