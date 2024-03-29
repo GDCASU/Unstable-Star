@@ -1,13 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
-
-// Enum used to get specific sounds to play
-public enum SoundTag
-{
-    tempRayGunFire,
-    tempBattleMusic
-}
 
 /// <summary> 
 /// <para> Scriptable Object that contains the references to all sounds in game </para> 
@@ -17,42 +11,86 @@ public enum SoundTag
 [CreateAssetMenu(fileName = "ScriptableSoundLibrary", menuName = "ScriptableObjects/SoundLibrary")]
 public class SoundLibrary : ScriptableObject
 {
-    // Dictionary with keys
-    private Dictionary<SoundTag, FMODUnity.EventReference> indexSound = new();
+    // TODO: Maybe create a custom editor script for all this
 
-    // A null key for use in dictionary indexing
-    private readonly FMODUnity.EventReference nullReference = new();
+    // VCAs:
+    // The string must contain the name assigned to the bus on the FMOD Mixer
+    // this is useful if someone decides to change how they are named without re-scripting everything
+    [Header("VCA Bus Names")]
+    public string masterBus;
+    public string musicBus;
+    public string sfxBus;
 
-    // All possible sounds, assign on the inspector
-    [Header("Sound Effects")]
-    public FMODUnity.EventReference tempRayGunShot;
+    // Bus Groups allows us to do apply changes to a group of sound effects if playing
+    [Header("Group Bus Names")]
+    [SerializeField] private string onLevelCombatPath;
+
+    // Bus variables
+    public FMOD.Studio.Bus onLevelCombatBus { get; private set; }
+
+
+    // FMOD Sound References: assign these on the inspector
+    [Header("TESTING EFFECTS")]
+    [SerializeField] private FMODUnity.EventReference _tempRayGunShot;
+    public FMODUnity.EventReference TempRayGunShot { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _tempBattleMusic;
+    public static FMODUnity.EventReference TempBattleMusic { get; private set; }
+
 
     [Header("Music Tracks")]
-    public FMODUnity.EventReference tempBattleMusic;
+    [SerializeField] private FMODUnity.EventReference _mainMenuTrack;
+    public static FMODUnity.EventReference MainMenuTrack { get; private set; }
 
-    // Must be called by the SoundManager
-    public void InitializeData()
+
+    [Header("Player")]
+    [SerializeField] private FMODUnity.EventReference _playerShipDestroyed;
+    public static FMODUnity.EventReference PlayerShipDestroyed { get; private set; }
+
+
+    [Header("Player Abilities")]
+    [SerializeField] private FMODUnity.EventReference _phaseShiftEnter;
+    public static FMODUnity.EventReference PhaseShiftEnter { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _phaseShiftExit;
+    public static FMODUnity.EventReference PhaseShiftExit { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _phaseShiftStay;
+    public static FMODUnity.EventReference PhaseShiftStay { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _proxibombExplosion;
+    public static FMODUnity.EventReference ProxibombExplosion { get; private set; }
+
+
+    [Header("Hazards")]
+    [SerializeField] private FMODUnity.EventReference _asteroidDestroyed;
+    public static FMODUnity.EventReference AsteroidDestroyed { get; private set; }
+
+    // Function to initialize data, must be called by the sound manager
+    public void InitializeLibrary()
     {
-        // Populate dictionary with keys, must reference all possible Sounds
-        indexSound.Add(SoundTag.tempRayGunFire, tempRayGunShot);
-        indexSound.Add(SoundTag.tempBattleMusic, tempBattleMusic);
+        // Fetch Group Buses
+        onLevelCombatBus = FMODUnity.RuntimeManager.GetBus("bus:/" + onLevelCombatPath);
+
+        // TESTING EFFECTS
+        TempRayGunShot = _tempRayGunShot;
+        TempBattleMusic = _tempBattleMusic;
+
+        // Music Tracks
+        MainMenuTrack = _mainMenuTrack;
+
+        // Player
+        PlayerShipDestroyed = _playerShipDestroyed;
+
+        // Player Abilities
+        PhaseShiftEnter = _phaseShiftEnter;
+        PhaseShiftExit = _phaseShiftExit;
+        PhaseShiftStay = _phaseShiftStay;
+        ProxibombExplosion = _proxibombExplosion;
+
+        // Hazards
+        AsteroidDestroyed = _asteroidDestroyed;
+
+        // FIXME: Most of these are stored on their scriptable objects, is it necessary to place them here?
+
     }
 
-    // Function to index a sound, returns false if it fails to find it
-    public bool TryGetSound(SoundTag targetSound, out FMODUnity.EventReference soundEvent)
-    {
-        // Set soundEvent to null in case its not found in dictionary
-        soundEvent = nullReference;
-
-        // Check if sound is within the dictionary
-        if (indexSound.TryGetValue(targetSound, out FMODUnity.EventReference soundObtained))
-        {
-            // We did find it, return it
-            soundEvent = soundObtained;
-            return true;
-            
-        }
-        // We did not find it
-        return false;
-    }
 }
+
+
