@@ -112,7 +112,7 @@ public class Player : CombatEntity
     public void SwitchToNextWeapon()
     {
         WeaponArsenal.instance.SwitchToNextWeapon();
-        TestBaseScript.myInstance.testMethodForShantanu();
+        //TestBaseScript.myInstance.testMethodForShantanu();
     }
 
     /// <summary> Switches to the previous weapon in the arsenal </summary>

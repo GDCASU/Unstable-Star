@@ -95,7 +95,7 @@ public class TestBaseScript : MonoBehaviour
     }
     // Update is called once per frame
 
-#if false
+
     void Update()
     {
         numUpdates++;
@@ -232,9 +232,10 @@ public class TestBaseScript : MonoBehaviour
             testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
         }*/
     }
-#endif
 
 
+
+#if false
     public void testMethodForShantanu()
     {
         numUpdates++;
@@ -280,6 +281,7 @@ public class TestBaseScript : MonoBehaviour
             animator.SetBool("toPIF", true);
         }
     }
+#endif
 
 #if false
     public void myAnimPlay()
@@ -373,5 +375,5 @@ public class TestBaseScript : MonoBehaviour
 
         }
     }
-    #endif
+#endif
 }
