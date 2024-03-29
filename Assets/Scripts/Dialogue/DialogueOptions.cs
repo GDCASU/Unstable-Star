@@ -63,6 +63,7 @@ public class DialogueOptions : MonoBehaviour
                     isDialogue = false,
                 };
                 return description;
+            case "BREAK":
             case "NOISE":
                 Options noise = new Options
                 {

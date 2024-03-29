@@ -13,6 +13,7 @@ using UnityEngine.UI;
 using UnityEngine.Windows;
 using OpenCover.Framework.Model;
 using UnityEditor.ShaderGraph;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -34,8 +35,10 @@ public class DialogueManager : MonoBehaviour
     bool canChange = false;
     bool start = false;
 
-    [Header("Scene Essentials:")]
+
+    [Header("Act Essentials:")]
     [SerializeField] DialogueOptions dialogueOptions;
+    [SerializeField] GameObject dialogueObject;
 
     string[][] currentDialogue;
 
@@ -45,8 +48,6 @@ public class DialogueManager : MonoBehaviour
 
     int actNumber = 1;
     int current = 0;
-
-    
 
     private void Start()
     {
@@ -58,6 +59,8 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
+        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(timelinePlayer);
         if (UnityEngine.Input.GetKeyDown(KeyCode.Return)) 
         {
             ChangeDialogue();
@@ -69,17 +72,19 @@ public class DialogueManager : MonoBehaviour
     {
         SetCurrentAct();
 
-        // Stops dialogue and starts scene
-        if (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE")
+        // Stops dialogue and starts timeline
+        if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE"))
         {
-            speachDialogueImage.color = Color.clear;
+            dialogueObject.SetActive(false);
+            speakerText.text = "";
+            targetDialogue.text = "";
             timelinePlayer.Resume();
             start = false;
             current++;
         }
-        
+
         // changes act if the script has ended
-        if (currentDialogue[current][0] == "END")
+        else if (currentDialogue[current][0] == "END")
         {
             actNumber++;
             SetCurrentAct();
@@ -97,10 +102,13 @@ public class DialogueManager : MonoBehaviour
             Sprite currentEmotion = dialogueOptions.GetEmotion(options, currentDialogue[current][2]);
             speakerText.color = options.color;
             speakerText.text = options.name;
+            emotionSprite.sprite = currentEmotion;
+            emotionSprite.color = Color.white;
 
             if (!options.isDialogue) // removes speaker box if there is no speaker
             {
                 speachDialogueImage.sprite = noSpeachDialogue;
+                emotionSprite.color = new Color(0, 0, 0, 0);
             }
 
             if (currentDialogue[current][2] == "???") // Creates question marks for unknown people
@@ -163,7 +171,7 @@ public class DialogueManager : MonoBehaviour
     // Pauses timeline and makes the text clickable
     public void StartText()
     {
-        speachDialogueImage.color = Color.white;
+        dialogueObject.SetActive(true);
         start = true;
         timelinePlayer.Pause();
     }
@@ -216,9 +224,15 @@ public class DialogueManager : MonoBehaviour
                 act[dialogueIndex][1] = line;
                 act[dialogueIndex][2] = emotion;
                 dialogueIndex++;
-                Debug.Log(currentSpeaker + ": " + line);
+                // Debug.Log(currentSpeaker + ": " + line);
             }
         }
         return act;
+    }
+
+    // Changes to the next scene
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }
