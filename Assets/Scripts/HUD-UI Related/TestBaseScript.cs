@@ -37,13 +37,13 @@ public class TestBaseScript : MonoBehaviour
         currSecondary = null;
         happened = false;
         animator = this.GetComponent<Animator>();
-        animator.SetBool("toSIF", false);
-        animator.SetBool("toPIF", false);
+        //animator.SetBool("toSIF", false);
+       // animator.SetBool("toPIF", false);
         animator.SetBool("toCSTF", false);
-        animator.SetBool("toCSTB", false);
+       // animator.SetBool("toCSTB", false);
         animator.SetBool("toCPTF", false);
-        animator.SetBool("toCPTB", false);
-        animator.SetBool("toSIFCounter", false);
+       // animator.SetBool("toCPTB", false);
+        //animator.SetBool("toSIFCounter", false);
         weaponArsenalScript = GameObject.Find("Weapon Arsenal").GetComponent<WeaponArsenal>();
 
         /*Pistol myPistol = new Pistol(pistolprefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
@@ -89,7 +89,7 @@ public class TestBaseScript : MonoBehaviour
         currPrim.sortingOrder = 2;
         UnityEngine.Debug.Log("currprim: " + currPrim.name);
         UnityEngine.Debug.Log("currsecondary: " + currSecondary.name);
-        animator.SetBool("toPIF", true);
+        //animator.SetBool("toPIF", true);
         PIsInFront = true;
     }
 
@@ -99,19 +99,32 @@ public class TestBaseScript : MonoBehaviour
     }
     public void swapPanes()
     {
-        if(PIsInFront)
+        RectTransform secrtransform = secondary.GetComponent<RectTransform>();
+        RectTransform primrtransform = primary.GetComponent<RectTransform>();
+        if (PIsInFront)
         {
-            animator.SetBool("toPIF", true);
+            currSecondary.sortingOrder = 2;
+            currPrim.sortingOrder = 1;
+            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
+            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
+            animator.SetBool("toCSTF", true);
             animator.SetBool("toCPTF", false);
+            PIsInFront = false;
         }
         else if(!(PIsInFront))
         {
-            animator.SetBool("toSIF", true);
+            currSecondary.sortingOrder = 1;
+            currPrim.sortingOrder = 2;
+            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
+            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
+            animator.SetBool("toCPTF", true);
             animator.SetBool("toCSTF", false);
+            PIsInFront = true;
         }
-        RectTransform secrtransform = secondary.GetComponent<RectTransform>();
-        RectTransform primrtransform = primary.GetComponent<RectTransform>();
-        if (animator.GetBool("toPIF") == true)
+        UnityEngine.Debug.Log("currSecondary.sortingOrder: "+ currSecondary.sortingOrder);
+        UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
+
+       /* if (animator.GetBool("toPIF") == true)
         {
             animator.SetBool("toCSTF", true);
             animator.SetBool("toPIF", false);
@@ -152,7 +165,9 @@ public class TestBaseScript : MonoBehaviour
             currSecondary.sortingOrder = 1;
             currPrim.sortingOrder = 2;
             // }
-        }
+        }*/
+
+
         /*if (animator.GetBool("toPIF")==true&& Input.GetKeyDown(KeyCode.LeftArrow))
         {
             animator.SetBool("toCPTB", true);
