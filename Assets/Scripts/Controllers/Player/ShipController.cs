@@ -6,6 +6,8 @@ public class ShipController : MonoBehaviour
 {
     [Header("Player Specific")]
     [SerializeField] private float speed = 60.0f;
+    [SerializeField] private float normalSpeed = 60.0f;
+    [SerializeField] private float focusSpeed = 20.0f;
     [SerializeField] private GameObject playerCopyPrefab;
 
     [Header("Anchor Point")]
@@ -67,6 +69,16 @@ public class ShipController : MonoBehaviour
 
     void movePlayer()
     {
+        //check if focus mode is activated
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = focusSpeed;
+        }
+        else
+        {
+            speed = normalSpeed;
+        }
+
         // Move player according to input
         movementVector = PlayerInput.instance.movementInput;
         translationVector = speed * Time.deltaTime * movementVector;
