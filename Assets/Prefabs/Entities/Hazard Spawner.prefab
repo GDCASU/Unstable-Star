@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 375971511585250652}
   - component: {fileID: 5046824152713779755}
   m_Layer: 0
-  m_Name: Asteriod Spawner
+  m_Name: Hazard Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
