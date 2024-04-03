@@ -103,19 +103,13 @@ public class MenuController : MonoBehaviour
     // Game Controller Settings //
     public void NewGame() // loads a new game
     {
-        // TODO: start new save file
+        // TODO: start new save file; refresh all unlocked levels; maybe do an "Are you sure" popup
         ScenesManager.instance.LoadNextScene(); // Loads the scene after Menu which is the first cutscene
     }
 
     public void LoadGame() // loads an old save file
     {
-        if (PlayerPrefs.HasKey("SavedLevel"))
-        {
-            levelToLoad = PlayerPrefs.GetString("SavedLevel");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(levelToLoad);
-        }
-
-        else { noSaveFile.SetActive(true); } // displays error text
+        ScenesManager.instance.LoadLevel(ScenesManager.currentLevel);
     }
 
     public void ExitGame() // exits application
@@ -123,7 +117,7 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
-    #region Settings
+    #region Options
     // Volume Control Settings //
     public void SetMasterVolume(float volume) // changes the volume
     {
