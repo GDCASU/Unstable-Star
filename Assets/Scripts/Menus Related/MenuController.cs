@@ -103,10 +103,8 @@ public class MenuController : MonoBehaviour
     // Game Controller Settings //
     public void NewGame() // loads a new game
     {
-        //SceneManager.LoadScene(newLevel.text);
-        //SceneManager.LoadScene("Level 1l");
-        Scene_Switch.instance.scene_changer("Level 1");
-        Debug.Log("New Game");
+        // TODO: start new save file
+        ScenesManager.instance.LoadNextScene(); // Loads the scene after Menu which is the first cutscene
     }
 
     public void LoadGame() // loads an old save file
@@ -114,7 +112,7 @@ public class MenuController : MonoBehaviour
         if (PlayerPrefs.HasKey("SavedLevel"))
         {
             levelToLoad = PlayerPrefs.GetString("SavedLevel");
-            SceneManager.LoadScene(levelToLoad);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(levelToLoad);
         }
 
         else { noSaveFile.SetActive(true); } // displays error text

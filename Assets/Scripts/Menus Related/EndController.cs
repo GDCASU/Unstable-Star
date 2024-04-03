@@ -46,13 +46,13 @@ public class EndController : MonoBehaviour
     public void LoadMenu()
     {
         isEnd = false;
-        SceneManager.LoadScene("Menu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 
     public void RestartScene()
     {
         isEnd = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 
     }
 
