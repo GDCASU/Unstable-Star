@@ -33,12 +33,14 @@ public class Enemy : CombatEntity
     // References
     protected ShootComponent shootComponent;
     protected Weapon currWeapon;
-
+    private float yOffSet;
     protected virtual void Start()
     {
         //Remember to look into the CombatEntity class to see what variables
         //Should be kept track of or re-set here if needed
 
+        //AssignYlocation for final location of the enemy.
+      //  AssignYlocation();
         //Initialize Component
         shootComponent = GetComponent<ShootComponent>();
 
@@ -53,6 +55,8 @@ public class Enemy : CombatEntity
         // The weapon must be loaded from data however
         currWeapon = statsData.weapon.GetWeaponObject();
     }
+
+
 
     /// <summary>
     /// Update function that handles the entering and exiting state of the enemy; is designed to be overriden
@@ -90,11 +94,25 @@ public class Enemy : CombatEntity
     /// </summary>
     protected virtual void EnterScreenSpace()
     {
-        transform.Translate(Vector3.down * Time.deltaTime * enterSpeed);                                    // Move Down
-        moveDown = Camera.main.WorldToViewportPoint(transform.position).y > arrivalPercentUpScreen;      // Check if should move down again.
+        transform.Translate(Vector3.down * Time.deltaTime * enterSpeed);
+        // Move Down
+        moveDown = Camera.main.WorldToViewportPoint(transform.position).y > (arrivalPercentUpScreen);      // Check if should move down again.
 
         // TODO: Toggle enemy invulnerability here so that the enemy doesn't take damage during decent
     }
+
+    protected virtual void AssignYlocation() {
+
+        yOffSet = transform.localPosition.y;
+    }
+
+    public virtual void setArrivalPercentUpScreen(float value)
+    {
+
+        arrivalPercentUpScreen = value;
+    }
+
+
 
     /// <summary>
     /// Moves the enemy off screen and destoys it afterwards
