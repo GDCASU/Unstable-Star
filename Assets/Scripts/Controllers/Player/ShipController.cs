@@ -198,6 +198,8 @@ public class ShipController : MonoBehaviour
 
     private void DoSwitchToNextWeapon()
     {
+        // Wait for animation to finish before allowing passthrough
+        
         playerScript.SwitchToNextWeapon();
     }
 

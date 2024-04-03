@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    public TestBaseScript testbasescript;
     public static PlayerInput instance;     // Singleton Instance
 
     [Header("Input Settings")]
@@ -19,6 +18,7 @@ public class PlayerInput : MonoBehaviour
     // Input-Updated Values
     [HideInInspector] public Vector2 movementInput; // Vector2 for movement
     [HideInInspector] public bool isShootHeld;       // A boolean that is true when shooting button is held down; false otherwise
+    public bool isWeaponSwitching; // Boolean that denotes that the weapon switch animation hasnt finished yet
 
     // Local Variables
     /* Shantanu messing arund*/
@@ -93,24 +93,21 @@ public class PlayerInput : MonoBehaviour
             playerControls.ShipControls.AngleRight.performed += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is pressed
             playerControls.ShipControls.AngleLeft.canceled += i => HandleShootAngleInput(i, false);     // perfomed event fires when the button is released
             playerControls.ShipControls.AngleRight.canceled += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is released
-            
-            playerControls.ShipControls.SwitchNextWeapon.performed += i => { OnSwitchToNextWeapon?.Invoke(); };
-        
-            playerControls.ShipControls.SwitchNextAbility.performed += i => { OnSwitchToNextAbility?.Invoke(); };
 
-            playerControls.ShipControls.UseAbility.performed += i => { OnUseAbility?.Invoke(); };
+            playerControls.ShipControls.SwitchNextWeapon.performed += i => HandleOnWeaponSwitch();
 
-            playerControls.ShipControls.FocusSpeed.performed += i => { OnFocusSpeedHeld?.Invoke(true); };
-            playerControls.ShipControls.FocusSpeed.canceled += i => { OnFocusSpeedHeld?.Invoke(false); };
+            playerControls.ShipControls.SwitchNextAbility.performed += i => OnSwitchToNextAbility?.Invoke();
+
+            playerControls.ShipControls.UseAbility.performed += i => OnUseAbility?.Invoke();
+
+            playerControls.ShipControls.FocusSpeed.performed += i => OnFocusSpeedHeld?.Invoke(true);
+            playerControls.ShipControls.FocusSpeed.canceled += i => OnFocusSpeedHeld?.Invoke(false);
         }
 
         playerControls.Enable();
 
     }
-    /*Shantanu is Testing out input system*/ private void Explosion(InputAction.CallbackContext context)
-    {
-        Debug.Log("Explosion");
-    }
+
     private void HandleMovementInput(InputAction.CallbackContext context)   // Just update the movement vector everytime the player moves
     {
         movementInput = context.ReadValue<Vector2>();
@@ -206,6 +203,16 @@ public class PlayerInput : MonoBehaviour
                 modifyAngleOfAimRoutine = null;
             }
         }
+    }
+
+    // Handles the weapon switching of the player, does not go through if animation is playing
+    private void HandleOnWeaponSwitch()
+    {
+        // Ignore if weapon switch animation is still running
+        if (isWeaponSwitching) return;
+
+        // Else, do raise event
+        OnSwitchToNextWeapon?.Invoke();
     }
 
     // Coroutines that modifies the angle of shooting while key is pressed

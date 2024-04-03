@@ -11,18 +11,14 @@ public class WeaponArsenalEditor : Editor
     private bool EnableCustomEditor = true;
 
     //SerializedProperties
-    SerializedProperty maxWeaponCount;
     SerializedProperty doDebugLog;
     SerializedProperty weaponArsenalStrings;
     SerializedProperty currWeaponIndex;
-    SerializedProperty loadDefaultArsenal;
+    SerializedProperty loadInspectorWeapons;
 
     //Serialized Weapons
-    SerializedProperty PlayerPistol;
-    SerializedProperty PlayerBirdshot;
-    SerializedProperty PlayerBuckshot;
-    SerializedProperty PlayerLaserWep;
-    SerializedProperty PlayerGatlingGun;
+    SerializedProperty primary;
+    SerializedProperty secondary;
 
     // Foldouts
     private bool DebuggingGroup = true;
@@ -32,16 +28,12 @@ public class WeaponArsenalEditor : Editor
 
     private void OnEnable()
     {
-        maxWeaponCount = serializedObject.FindProperty("maxWeaponCount");
         doDebugLog = serializedObject.FindProperty("doDebugLog");
         weaponArsenalStrings = serializedObject.FindProperty("weaponArsenalStrings");
         currWeaponIndex = serializedObject.FindProperty("currWeaponIndex");
-        loadDefaultArsenal = serializedObject.FindProperty("loadDefaultArsenal");
-        PlayerPistol = serializedObject.FindProperty("PlayerPistol");
-        PlayerBirdshot = serializedObject.FindProperty("PlayerBirdshot");
-        PlayerBuckshot = serializedObject.FindProperty("PlayerBuckshot");
-        PlayerLaserWep = serializedObject.FindProperty("PlayerLaserWep");
-        PlayerGatlingGun = serializedObject.FindProperty("PlayerGatlingGun");
+        loadInspectorWeapons = serializedObject.FindProperty("loadInspectorWeapons");
+        primary = serializedObject.FindProperty("primary");
+        secondary = serializedObject.FindProperty("secondary");
     } 
 
     public override void OnInspectorGUI()
@@ -79,9 +71,8 @@ public class WeaponArsenalEditor : Editor
         DebuggingGroup = EditorGUILayout.BeginFoldoutHeaderGroup(DebuggingGroup, "Settings/Debugging");
         if (DebuggingGroup)
         {
-            EditorGUILayout.PropertyField(maxWeaponCount);
             EditorGUILayout.PropertyField(doDebugLog);
-            EditorGUILayout.PropertyField(loadDefaultArsenal);
+            EditorGUILayout.PropertyField(loadInspectorWeapons);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 
@@ -111,14 +102,11 @@ public class WeaponArsenalEditor : Editor
         EditorGUILayout.EndFoldoutHeaderGroup();
 
         // All the scripted weapons
-        AllScriptedWeapons = EditorGUILayout.BeginFoldoutHeaderGroup(AllScriptedWeapons, "All Weapons");
+        AllScriptedWeapons = EditorGUILayout.BeginFoldoutHeaderGroup(AllScriptedWeapons, "Presets");
         if (AllScriptedWeapons) 
         {
-            EditorGUILayout.PropertyField(PlayerPistol);
-            EditorGUILayout.PropertyField(PlayerBirdshot);
-            EditorGUILayout.PropertyField(PlayerBuckshot);
-            EditorGUILayout.PropertyField(PlayerLaserWep);
-            EditorGUILayout.PropertyField(PlayerGatlingGun);
+            EditorGUILayout.PropertyField(primary);
+            EditorGUILayout.PropertyField(secondary);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 

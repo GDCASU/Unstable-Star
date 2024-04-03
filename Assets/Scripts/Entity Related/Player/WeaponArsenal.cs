@@ -18,10 +18,10 @@ public class WeaponArsenal : MonoBehaviour
 
     // List that will hold the weapons of the player, and a string array for the inspector
     [SerializeField] private List<string> weaponArsenalStrings = new();
-    public List<Weapon> weaponArsenal = new();
+    private List<Weapon> weaponArsenal = new();
 
     // Settings
-    [SerializeField] private int maxWeaponCount;
+    private readonly int maxWeaponCount = 2; // Limited by UI
     [SerializeField] private int currWeaponIndex = -1; // Will be -1 whenever there are no weapons
     private readonly Weapon nullWeapon = new GeneralWeapon("No Weapons"); // Helper null reference
 
@@ -30,14 +30,11 @@ public class WeaponArsenal : MonoBehaviour
 
     // Debbuging
     [SerializeField] private bool doDebugLog;
-    [SerializeField] private bool loadDefaultArsenal;
+    [SerializeField] private bool loadInspectorWeapons;
 
-    // All Scripted Weapons that have been designed so far
-    public ScriptableWeapon PlayerPistol;
-    public ScriptableWeapon PlayerBirdshot;
-    public ScriptableWeapon PlayerBuckshot;
-    public ScriptableWeapon PlayerLaserWep;
-    public ScriptableWeapon PlayerGatlingGun;
+    // Desired Scripted Weapons to add to inventory through the inspector
+    public ScriptableWeapon primary;
+    public ScriptableWeapon secondary;
 
     private void Awake()
     {
@@ -49,13 +46,11 @@ public class WeaponArsenal : MonoBehaviour
         instance = this;
 
         // Give the player the default arsenal if checked
-        if (loadDefaultArsenal && weaponArsenal.Count <= 0)
+        if (loadInspectorWeapons)
         {
-            AddWeaponToArsenal(PlayerPistol.GetWeaponObject());
-            AddWeaponToArsenal(PlayerBirdshot.GetWeaponObject());
-            AddWeaponToArsenal(PlayerBuckshot.GetWeaponObject());
-            AddWeaponToArsenal(PlayerLaserWep.GetWeaponObject());
-            AddWeaponToArsenal(PlayerGatlingGun.GetWeaponObject());
+            ClearWeaponArsenal();
+            AddWeaponToArsenal(primary.GetWeaponObject());
+            AddWeaponToArsenal(secondary.GetWeaponObject());
         }
     }
 
