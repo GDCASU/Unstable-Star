@@ -1060,10 +1060,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1984945879}
+      addedObject: {fileID: 1984945880}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1984945880}
+      addedObject: {fileID: 1984945879}
   m_SourcePrefab: {fileID: 100100000, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
 --- !u!4 &126739767 stripped
 Transform:
@@ -5253,6 +5253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef44308f58c9f324999e574653f2a624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   transition: {fileID: 0}
 --- !u!4 &976517004
 Transform:
@@ -7414,12 +7415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee86feb501be14f41a9409f78edf05fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNames:
-  - Level 1
-  - Level 2
-  - Level 3
   maxLevel: 3
-  newCurrentLevel: 0
 --- !u!114 &1529099941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7440,7 +7436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main
+  m_text: Act 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 890a0fddd607e2c4bb85a5ee03b24da4, type: 2}
   m_sharedMaterial: {fileID: 1097056676036964704, guid: 890a0fddd607e2c4bb85a5ee03b24da4, type: 2}

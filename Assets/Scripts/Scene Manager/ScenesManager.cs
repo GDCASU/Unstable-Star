@@ -22,8 +22,11 @@ public class ScenesManager : MonoBehaviour
 {
     public static ScenesManager instance = null;     // Singleton instance
 
-    private static int currentScene = 0;
-    private Dictionary<string, Scenes> scenesDict;
+    [SerializeField] private bool debug = false;
+
+    public static int currentScene { get; private set; }
+    public static int currentLevel = 1;
+    private Dictionary<Scenes, bool> unlockedScenes;
 
     public Animator transition;
 
@@ -45,42 +48,102 @@ public class ScenesManager : MonoBehaviour
 
     private void InitializeDict()
     {
-        scenesDict = new Dictionary<string, Scenes>();
+        unlockedScenes = new Dictionary<Scenes, bool>();
 
-        scenesDict.Add("MainMenu", Scenes.MainMenu);
-        scenesDict.Add("Cutscene_1", Scenes.CutScene_1);
-        scenesDict.Add("Cutscene_2", Scenes.CutScene_2);
-        scenesDict.Add("Cutscene_3", Scenes.CutScene_3);
-        scenesDict.Add("Cutscene_4", Scenes.CutScene_4);
-        scenesDict.Add("Cutscene_5", Scenes.CutScene_5);
-        scenesDict.Add("Cutscene_6", Scenes.CutScene_6);
-        scenesDict.Add("Level_1", Scenes.Level_1);
-        scenesDict.Add("Level_2", Scenes.Level_2);
-        scenesDict.Add("Level_3", Scenes.Level_3);
-        scenesDict.Add("GameOver", Scenes.GameOver);
+        unlockedScenes.Add(Scenes.MainMenu, true);
+        unlockedScenes.Add(Scenes.CutScene_1, true);
+        unlockedScenes.Add(Scenes.CutScene_2, true);
+        unlockedScenes.Add(Scenes.CutScene_3, true);
+        unlockedScenes.Add(Scenes.CutScene_4, false);
+        unlockedScenes.Add(Scenes.CutScene_5, false);
+        unlockedScenes.Add(Scenes.CutScene_6, false);
+        unlockedScenes.Add(Scenes.Level_1, true);
+        unlockedScenes.Add(Scenes.Level_2, true);
+        unlockedScenes.Add(Scenes.Level_3, false);
+        unlockedScenes.Add(Scenes.GameOver, false);
+    }
+
+    public bool CheckScene(Scenes scene)
+    {
+        if (!unlockedScenes.ContainsKey(scene))
+        {
+            Debug.LogError("Scene does not exist");
+            return false;
+        }
+
+        if (unlockedScenes[scene])
+        {
+            if (debug) Debug.Log("Player has access to scene.");
+            return true;
+        }
+        else
+        {
+            if (debug) Debug.Log("Player does not have access to this scene yet.");
+            return false;
+        }
     }
 
     // Gets the name of the scene and loads it 
     public void LoadScene(Scenes scene)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene((int)scene);
-    }
-
-    public void LoadScene(string scene)
-    {
-        if (scenesDict.TryGetValue(scene, out Scenes value))
+        if (!unlockedScenes.ContainsKey(scene))
         {
-            currentScene = (int)value;
-            UnityEngine.SceneManagement.SceneManager.LoadScene((int)value);
-        }
-        else
             Debug.LogError("Scene does not exist");
+            return;
+        }
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene((int)scene);
     }
 
     public void LoadNextScene()
     {
         currentScene++;
         UnityEngine.SceneManagement.SceneManager.LoadScene(currentScene);
+    }
+
+    public void UnlockScene(Scenes scene)
+    {
+        if (!unlockedScenes.ContainsKey(scene))
+        {
+            Debug.LogError("Error: Scene does not exist");
+            return;
+        }
+
+        unlockedScenes[scene] = true;
+    }
+
+    public void LoadLevel(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                ScenesManager.instance.LoadScene(Scenes.CutScene_1);
+                break;
+            case 2:
+                ScenesManager.instance.LoadScene(Scenes.CutScene_3);
+                break;
+            case 3:
+                ScenesManager.instance.LoadScene(Scenes.CutScene_4);
+                break;
+            default:
+                Debug.LogError("Error: Level does not exist");
+                break;
+        }
+    }
+
+    public bool CheckLevel(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                return CheckScene(Scenes.CutScene_1);
+            case 2:
+                return CheckScene(Scenes.CutScene_3);
+            case 3:
+                return CheckScene(Scenes.CutScene_4);
+            default:
+                return false;
+        }
     }
 
     IEnumerator WaitForlvl1(string scene_name)

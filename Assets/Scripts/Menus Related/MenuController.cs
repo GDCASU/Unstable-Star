@@ -123,7 +123,7 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
-
+    #region Settings
     // Volume Control Settings //
     public void SetMasterVolume(float volume) // changes the volume
     {
@@ -197,4 +197,5 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("masterInvert", inversion ? 1 : 0);
         // doesn't do anything for right now, need to figure it out based on character movement
     }
+    #endregion
 }
