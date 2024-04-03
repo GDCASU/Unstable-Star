@@ -145,10 +145,13 @@ public class AbilityComponent : MonoBehaviour
             // Wait a frame
             yield return null;
         }
-
         // Cooldown ended
         input.timeLeftInCooldown = 0f;
+        timeLeft = 0f;
         input.isOnCooldown = false;
+
+        // Raise event one more time to indicate its finished
+        EventData.RaiseOnAbilityCooldown(input.cooldownTime, timeLeft);
     }
 
 

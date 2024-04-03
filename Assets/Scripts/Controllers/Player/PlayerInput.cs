@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+    public TestBaseScript testbasescript;
     public static PlayerInput instance;     // Singleton Instance
 
     [Header("Input Settings")]
@@ -20,6 +21,8 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool isShootHeld;       // A boolean that is true when shooting button is held down; false otherwise
 
     // Local Variables
+    /* Shantanu messing arund*/
+    private InputAction.CallbackContext cxt;
     private PlayerControls playerControls;
     private Coroutine modifyAngleOfAimRoutine;
     private Coroutine playerShootingRoutine;
@@ -92,6 +95,7 @@ public class PlayerInput : MonoBehaviour
             playerControls.ShipControls.AngleRight.canceled += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is released
             
             playerControls.ShipControls.SwitchNextWeapon.performed += i => { OnSwitchToNextWeapon?.Invoke(); };
+        
             playerControls.ShipControls.SwitchNextAbility.performed += i => { OnSwitchToNextAbility?.Invoke(); };
 
             playerControls.ShipControls.UseAbility.performed += i => { OnUseAbility?.Invoke(); };
@@ -102,6 +106,10 @@ public class PlayerInput : MonoBehaviour
 
         playerControls.Enable();
 
+    }
+    /*Shantanu is Testing out input system*/ private void Explosion(InputAction.CallbackContext context)
+    {
+        Debug.Log("Explosion");
     }
     private void HandleMovementInput(InputAction.CallbackContext context)   // Just update the movement vector everytime the player moves
     {

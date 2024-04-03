@@ -10,6 +10,11 @@ TagManager:
   - Asteroid
   - Deletion Zones
   - Screen Bounds
+  - Pistol
+  - Birdshot
+  - Buckshot
+  - Laser Gun
+  - Gatling Gun
   layers:
   - Default
   - TransparentFX
