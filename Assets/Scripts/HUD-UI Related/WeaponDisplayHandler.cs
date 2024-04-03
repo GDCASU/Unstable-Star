@@ -61,7 +61,7 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Get next icon
         secondaryImageComp.sprite = WeaponArsenal.instance.GetCurrentWeapon().weaponIcon;
         // Return to primary
-        WeaponArsenal.instance.SwitchToNextWeapon();
+        WeaponArsenal.instance.SetCurrentWeaponToFirst();
 
         /*
         primaryName = weaponArsenalScript.weaponArsenal[3].sName;
