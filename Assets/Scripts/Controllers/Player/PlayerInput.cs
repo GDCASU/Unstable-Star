@@ -45,6 +45,9 @@ public class PlayerInput : MonoBehaviour
     /// <summary> Player's Rotate Aim Event </summary>
     public static event System.Action OnRotateAim; // Action List
 
+    /// <summary> Player's Hold Focus Speed </summary>
+    public static event System.Action<bool> OnFocusSpeedHeld; // Action List
+
     #endregion
 
     private void Awake()    
@@ -72,6 +75,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
+        // Control handling
         if (playerControls == null)
         {
             playerControls = new PlayerControls();
@@ -81,7 +85,6 @@ public class PlayerInput : MonoBehaviour
 
             playerControls.ShipControls.Shoot.performed += i => HandleShootingInput(i);     // perfomed event fires when the button is pressed
             playerControls.ShipControls.Shoot.canceled += i => HandleShootingInput(i);      // canceled event fires when the button is released
-            playerControls.ShipControls.UseAbility.performed += i => { OnUseAbility?.Invoke(); };
 
             playerControls.ShipControls.AngleLeft.performed += i => HandleShootAngleInput(i, false);   // perfomed event fires when the button is pressed 
             playerControls.ShipControls.AngleRight.performed += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is pressed
@@ -90,6 +93,11 @@ public class PlayerInput : MonoBehaviour
             
             playerControls.ShipControls.SwitchNextWeapon.performed += i => { OnSwitchToNextWeapon?.Invoke(); };
             playerControls.ShipControls.SwitchNextAbility.performed += i => { OnSwitchToNextAbility?.Invoke(); };
+
+            playerControls.ShipControls.UseAbility.performed += i => { OnUseAbility?.Invoke(); };
+
+            playerControls.ShipControls.FocusSpeed.performed += i => { OnFocusSpeedHeld?.Invoke(true); };
+            playerControls.ShipControls.FocusSpeed.canceled += i => { OnFocusSpeedHeld?.Invoke(false); };
         }
 
         playerControls.Enable();
@@ -191,7 +199,6 @@ public class PlayerInput : MonoBehaviour
             }
         }
     }
-
 
     // Coroutines that modifies the angle of shooting while key is pressed
     private IEnumerator ModifyAngleOfAim()
