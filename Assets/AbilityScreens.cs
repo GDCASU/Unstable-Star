@@ -35,8 +35,12 @@ public class AbilityScreens: MonoBehaviour
         abilselected = WSUI.scanforhover();
         if (abilselected != null && abilityselected == null)
         {
+
             abilityselected = abilselected.GetComponent<HoverAndLerp2>().GetScriptableWeapon().GetAbilityObject();
             SetFields(abilityselected);
+            Color temp = fieldImg.GetComponent<Image>().color;
+            temp.a = 1;
+            fieldImg.GetComponent<Image>().color = temp; 
         }
         if (abilselected == null)
         {
@@ -67,6 +71,8 @@ public class AbilityScreens: MonoBehaviour
     {
         fieldName.text = string.Empty;
         fieldDesc.text = string.Empty;
-        fieldImg.GetComponent<Image>().sprite = null;
+        Color temp = Color.white;
+        temp.a = 0;
+        fieldImg.GetComponent<Image>().color = temp;
     }
 }

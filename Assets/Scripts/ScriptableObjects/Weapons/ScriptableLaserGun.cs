@@ -13,12 +13,8 @@ public class ScriptableLaserGun : ScriptableWeapon
     public GameObject laserPrefab;
     public GameObject chargingSpherePrefab;
     public Sprite weaponIcon;
-<<<<<<< Updated upstream
     public FMODUnity.EventReference sound;
-=======
-    public SoundTag sound;
     public string description;
->>>>>>> Stashed changes
 
     [Header("Settings")]
     public int minDamage;

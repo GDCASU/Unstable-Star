@@ -15,7 +15,6 @@ MonoBehaviour:
   weaponName: Buckshot
   bulletPrefab: {fileID: 2012244134953392331, guid: 16d6fcc442bb2254a9c669c693ccdb3c, type: 3}
   weaponIcon: {fileID: 21300000, guid: 073db202935045c44bc1b58e1ae655d1, type: 3}
-<<<<<<< Updated upstream
   sound:
     Guid:
       Data1: -1179885932
@@ -23,10 +22,8 @@ MonoBehaviour:
       Data3: 989007238
       Data4: 152891200
     Path: event:/TESTING/RayGunEffect
-=======
   sound: 0
   description: A Shotgun that shoots big bullets
->>>>>>> Stashed changes
   damage: 1
   bulletSpeed: 30
   shotsCooldown: 0.2

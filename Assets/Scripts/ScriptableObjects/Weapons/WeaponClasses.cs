@@ -71,11 +71,8 @@ public class GeneralWeapon : Weapon
 public class Pistol : Weapon
 {
     //Constructor
-<<<<<<< Updated upstream
-    public Pistol(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, int damage, string name, float shootCooldownTime)
-=======
-    public Pistol(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, int damage, string name, float shootCooldownTime, string description)
->>>>>>> Stashed changes
+    public Pistol(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, int damage, string name, float shootCooldownTime, string description)
+
     {
         this.prefab= prefab;
         this.speed = speed;
@@ -97,11 +94,8 @@ public class Pistol : Weapon
 public class Birdshot : Weapon
 {
     //Default Constructor
-<<<<<<< Updated upstream
-    public Birdshot(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, int damage, string name, float timeBetweenShots)
-=======
-    public Birdshot(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, int damage, string name, float timeBetweenShots, string description)
->>>>>>> Stashed changes
+
+    public Birdshot(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, int damage, string name, float timeBetweenShots, string description)
     {
         this.speed = speed;
         this.prefab = prefab;
@@ -124,11 +118,7 @@ public class Birdshot : Weapon
 public class Buckshot : Weapon
 {
     //Default Constructor
-<<<<<<< Updated upstream
-    public Buckshot(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, int damage, string name, float timeBetweenShots)
-=======
-    public Buckshot(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, int damage, string name, float timeBetweenShots, string description)
->>>>>>> Stashed changes
+    public Buckshot(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, int damage, string name, float timeBetweenShots, string description)
     {
         this.speed = speed;
         this.prefab = prefab;
@@ -151,11 +141,7 @@ public class Buckshot : Weapon
 public class LaserGun : Weapon
 {
     //Default Constructor
-<<<<<<< Updated upstream
-    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, bool isEnemy)
-=======
-    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, SoundTag sound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, bool isEnemy, string description)
->>>>>>> Stashed changes
+    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, bool isEnemy, string description)
     {
         this.prefab = prefab;
         this.chargingSpherePrefab = chargingSpherePrefab;
@@ -181,11 +167,7 @@ public class LaserGun : Weapon
 public class GatlingGun : Weapon
 {
     //Default Constructor
-<<<<<<< Updated upstream
-    public GatlingGun(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime)
-=======
-    public GatlingGun(GameObject prefab, Sprite weaponIcon, SoundTag sound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime, string description)
->>>>>>> Stashed changes
+    public GatlingGun(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime, string description)
     {
         this.speed = speed;
         this.prefab = prefab;

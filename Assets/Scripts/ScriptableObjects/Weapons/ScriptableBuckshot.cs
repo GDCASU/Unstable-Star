@@ -11,12 +11,8 @@ public class ScriptableBuckshot : ScriptableWeapon
     public string weaponName;
     public GameObject bulletPrefab;
     public Sprite weaponIcon;
-<<<<<<< Updated upstream
     public FMODUnity.EventReference sound;
-=======
-    public SoundTag sound;
     public string description;
->>>>>>> Stashed changes
 
     [Header("Stats")]
     public int damage;
