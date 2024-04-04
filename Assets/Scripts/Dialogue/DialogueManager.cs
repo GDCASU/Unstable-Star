@@ -18,9 +18,7 @@ using UnityEngine.SceneManagement;
 public class DialogueManager : MonoBehaviour
 {
     [Header("Essentials:")]
-    [SerializeField] Sprite noSpeachDialogue;
-    [SerializeField] Sprite speachDialogue;
-    [SerializeField] Image speachDialogueImage;
+    [SerializeField] GameObject speachDialogue;
     [SerializeField] TMP_Text targetDialogue;
     [SerializeField] TMP_Text speakerText;
     [SerializeField] Image emotionSprite;
@@ -39,22 +37,17 @@ public class DialogueManager : MonoBehaviour
     [Header("Act Essentials:")]
     [SerializeField] DialogueOptions dialogueOptions;
     [SerializeField] GameObject dialogueObject;
+    [SerializeField] string currentSceneFile;
 
-    string[][] currentDialogue;
+    static string[][] currentDialogue;
 
-    string[][] actOne = new string[1000][];
-    string[][] actTwo = new string[1000][];
-    string[][] actThree = new string[1000][];
-
-    int actNumber = 1;
     int current = 0;
 
     private void Start()
     {
-        // initializes the acts
-        actOne = ReadFile("Assets/Scripts/Dialogue/Act_One.txt", actOne, "One");
-        actTwo = ReadFile("Assets/Scripts/Dialogue/Act_Two.txt", actTwo, "Two");
-        actThree = ReadFile("Assets/Scripts/Dialogue/Act_Three.txt", actThree, "Three");
+        // initializes the current act
+        currentDialogue = new string[1000][];
+        currentDialogue = ReadFile(currentSceneFile, currentDialogue);
     }
 
     void Update()
@@ -70,8 +63,6 @@ public class DialogueManager : MonoBehaviour
     // changes text, color, and emotion of dialogue box
     public void ChangeDialogue()
     {
-        SetCurrentAct();
-
         // Stops dialogue and starts timeline
         if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE"))
         {
@@ -83,19 +74,12 @@ public class DialogueManager : MonoBehaviour
             current++;
         }
 
-        // changes act if the script has ended
-        else if (currentDialogue[current][0] == "END")
-        {
-            actNumber++;
-            SetCurrentAct();
-        }
-
         // normal behaviors
         else if (canChange && start)
         {
             // Changes the text to the new dialogue
             newDialogue = currentDialogue[current][1];
-            speachDialogueImage.sprite = speachDialogue;
+            speachDialogue.SetActive(true);
 
             // Changes color, text, and emotion based on who's speaking
             Options options = dialogueOptions.CreateOptions(currentDialogue[current][0]);
@@ -107,7 +91,7 @@ public class DialogueManager : MonoBehaviour
 
             if (!options.isDialogue) // removes speaker box if there is no speaker
             {
-                speachDialogueImage.sprite = noSpeachDialogue;
+                speachDialogue.SetActive(false);
                 emotionSprite.color = new Color(0, 0, 0, 0);
             }
 
@@ -140,23 +124,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // sets the act based on what the act number is
-    public void SetCurrentAct()
-    {
-        switch (actNumber)
-        {
-            case 1:
-                currentDialogue = actOne;
-                break;
-            case 2:
-                currentDialogue = actTwo;
-                break;
-            case 3:
-                currentDialogue = actThree;
-                break;
-        }
-    }
-
     // Creates text that appears like a typewriter
     IEnumerator setTooltipText(string str)
     {
@@ -177,7 +144,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Takes information from text files and transfers into something the system can read
-    public string[][] ReadFile(string fileName, string[][] act, string number)
+    public string[][] ReadFile(string fileName, string[][] act)
     {
         int dialogueIndex = 0;
         string currentSpeaker = "";
@@ -185,7 +152,7 @@ public class DialogueManager : MonoBehaviour
 
         foreach (var line in System.IO.File.ReadLines(fileName))
         {
-            if (line == "End of Act " + number) // Checks if the file is done
+            if (line == "END") // Checks if the file is done
             {
                 act[dialogueIndex] = new string[3];
                 act[dialogueIndex][0] = "END";
@@ -204,7 +171,9 @@ public class DialogueManager : MonoBehaviour
 
             // If line is a name
             else if (line == "APOLLO" || line == "REBEKAH" || line == "EBB" || line == "JAUGHN" 
-                || line == "SECURITY DEFENSE SYSTEM" || line == "PRISON WARDEN" || line == "JAUGHN’S SUPERVISOR"
+                || line == "SECURITY DEFENSE SYSTEM" || line == "PRISON WARDEN" || line == "Radio Station DJ" 
+                || line == "JOHN" || line == "DJ Treble Make-R" || line == "SHADOWY FIGURE"
+                || line == "JAUGHN’S SUPERVISOR" || line == "Random Civilian" || line == "Mathematically Predictable Civilian"
                 || line == "PIZZA DELIVERY DRIVER" || line == "DESC: " || line == "NOISE") 
             { 
                 currentSpeaker = line;

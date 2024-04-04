@@ -1,0 +1,246 @@
+﻿Act Three Scene 4 - The Final Battle (The Johnening)
+DESC: 
+The Rebellion crew, with the civilian fighters in tow, have cleared their way to the hypergiant star in the center of the system. A giant, vacuum-like mechanical ship can be seen orbiting around it, sucking in plasma from the star.
+
+
+JAUGHN
+What in blazars IS that thing??
+
+
+APOLLO
+
+
+It’s… sucking the energy out of the star like some kind of giant vacuum!
+
+
+EBB
+The star is incredibly unstable. An implosion… followed by a B I G BOOM is imminent. 
+
+
+REBEKAH
+We need to figure out a way to destroy it now or it will be too late!
+
+
+DESC: 
+The fighters cautiously but urgently approach the giant ship. Their comms are suddenly interrupted by a strangely familiar voice…
+JOHN
+Intruders, you are hereby ordered to surrender or be destroyed. You have caused untold damage to the Coalition. I won’t ask again.
+
+
+APOLLO
+Wait… that voice. I know that voice.
+
+
+REBEKAH
+What the f- JOHN? 
+
+
+JAUGHN
+Me?
+
+
+REBEKAH
+No!
+
+
+EBB
+The previous Captain? He’s still alive?
+
+
+JOHN
+Oh yes. Did you think I would be killed so easily?
+
+
+APOLLO
+
+
+Yeah, we thought you were dead! What are you doing working for the Coalition??
+
+
+JAUGHN
+Wait, who is this? I’m the Captain now, identify yourself!
+
+
+JOHN
+Oh you poor fools, you didn’t tell him? I’m John, the REAL Captain, and you bought my act hook, line, and sinker. 
+I was simply undercover in your little club, so deep undercover in fact that I pretended to get arrested! 
+Your path here was entirely staged by me. I arranged for Jaughn to be put in my cell. 
+It was by my hand that you rescued this… faker instead of me.
+
+
+JAUGHN
+Faker?? Wait a minute, I think you’re the fake Jaughn here!
+
+
+JOHN
+And now you’ve brought the entire rebellion here. You’ve fallen right into my trap. 
+Our weapon here has absorbed enough solar plasma to kill you all in one blast. 
+And once you’re gone, peace will be restored to the galaxy.
+
+
+APOLLO
+
+Peace?? You call this peace??
+
+
+JOHN
+Yes, order leads to peace. You have done nothing but undermine our order, which has led to chaos. 
+Don’t you realize the coalition maintains our fragile relationship with our neighboring galaxy?
+
+
+JAUGHN
+I once believed in that lie, but you’re all just a bunch of greedy hacks who will stop at nothing to keep your sham of a relationship going. 
+What good is “order” when you’re killing innocent civilians??
+
+
+JOHN
+I guess you’re too short-sighted to realize that the ends justify the means. The Coalition has led to the betterment of mankind, and our benefactors desperately need this star’s plasma. 
+We are simply here to provide.
+
+
+REBEKAH
+But by harvesting the plasma, you’re going to blow up the star! You’re going to cause countless deaths throughout the galaxy! 
+The needs of the few don’t outweigh the needs of the many!
+
+
+JOHN
+Very well, I guess I’ll just have to MAKE you see our side of things! Engage the Star Harvester’s Weapons Platform!
+
+
+JAUGHN
+This is it! Get ready everyone!
+
+
+Gameplay (Final Boss: Phase 1)
+
+
+JOHN
+Grr… there’s more of you flies to swat than I thought. 
+
+
+JAUGHN
+It’s over, fake Jaughn! 
+
+
+JOHN
+Over? It’s not over until all of you are dead! Even if I fall here, the star’s implosion will take care of the entire rebellion at once!
+
+
+EBB
+We don’t have much time. He’s right. Let’s FINISH this!
+
+
+Gameplay (Final Boss: Phase 2)
+
+
+JAUGHN
+You still have time to surrender, don’t make this worse on yourself!
+
+
+JOHN
+I have no plans to surrender to the likes of you. Our plans are bigger than either of us, and I’ll make sure I see it through!
+
+BREAK
+Final Boss is Defeated
+JOHN
+Urgh… I may fall here, but the Coalition’s work will continue. You can kill the man but not the idea… one day you’ll see! Augh…
+JAUGHN
+Phew… the fight’s over. But, the star is still in danger of an implosion.
+EBB
+We have but a few precious minutes to reverse the process. If we return the harvested plasma to the star, its mass may stabilize.
+
+APOLLO
+Is there a reverse switch on this hunk of junk?
+
+
+EBB
+No… but we can make one. It will result in the destruction of the star harvester…
+REBEKAH
+Oh, good-
+
+
+EBB
+…and likely us, but countless lives will be saved.
+
+REBEKAH
+Oh.
+EBB
+There is, however, a slim chance of 5.453E-5% that we can escape in time. No pressure.
+JAUGHN
+If it avoids this star blowing up countless systems, then it’s worth the risk. Otherwise… It has been an honor to meet all of you.
+APOLLO
+Ah man… I guess that’s our best shot huh? We’ll have to take those odds.
+
+REBEKAH
+I’ll plot the fastest course out of here. Ebb, start the reversal process once you receive the coordinates.
+EBB
+Coordinates received. Beginning the reversal process now. 
+
+JAUGHN
+Everyone! Punch it, now!
+DESC: The Rebellion crew begins their heroic escape sequence. In the process, the star harvester begins buckling and shaking under the pressure of the plasma being sent back into the star. Within sheer moments, it starts exploding and falling apart.
+APOLLO
+
+We’re not going to make it! It was nice knowing you all!
+JAUGHN
+We have to make it! We have to!
+NOISE
+[PIZZA JINGLE PLAYS]
+PIZZA DELIVERY DRIVER
+Quick!! No time to explain! We set up a hyperspace slingshot to help you!
+REBEKAH
+Wait, what?? HOW’D YOU GET THIS THING???
+PIZZA DELIVERY DRIVER
+How do you think I get across the galaxy so quickly? Now move!
+JAUGHN
+There’s no time! All ships! Into the slingshot, now!
+DESC: 
+Over the course of a few seconds, the rebels all pilot their ships through the slingshot, sending them through hyperspace safely out of the explosion’s path, narrowly avoiding destruction.
+
+
+JAUGHN
+My heart is pounding… we did it, everyone!
+NOISE
+[Everyone cheers]
+EBB
+We made it… but I didn’t get to watch the B O O M…
+APOLLO
+Ah geez, just be grateful you’re alive, bucket-head!
+
+
+REBEKAH
+We accomplished an amazing feat today. Good work everyone!
+
+DESC: 
+Act Three Scene 5 - Peace at Last
+
+
+DESC: 
+With the galaxy now saved from the threat of annihilation, the rebels celebrate their heroic victory back at their base. Talk of what to do next emerges, after the celebrations conclude.
+REBEKAH
+With John dead, there’s still splinter groups of the Coalition to take care of. We could use your help still. What do you say, Captain?
+JAUGHN
+Listen, I appreciate the offer. But I think after the whole “narrowly avoid dying to save the galaxy” situation I need a break. I also think my cat misses me. I’m going home.
+APOLLO
+I hate to see ya go buddy… you’ll be back though, right?
+
+
+JAUGHN
+If the galaxy’s threatened again, you guys can count on me. I’ll see you around.
+
+
+EBB
+Sniff Oh… I think I’m feeling something called “emotions.” I don’t like it.
+
+
+REBEKAH
+Goodbye Jaughn! You were the best Captain we ever had.
+NOISE
+[The rebels give Jaughn a round of applause]
+DESC: 
+Jaughn takes one last look at his new friends, then hops in his ship to leave. 
+He waves everyone off, including the new members of the rebellion who joined for the last battle. 
+He knew the galaxy was in good hands, and he could return to his home to enjoy some peace… for now.
+
+BREAK
+END

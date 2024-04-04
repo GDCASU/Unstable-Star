@@ -1,0 +1,89 @@
+﻿
+Gameplay*( Lvl 1: the crew clears the route to Proximus 3)
+
+
+After Gameplay
+
+
+DESC: 
+Meanwhile, the large, shadowy figure from before is seen boarding a ship for the Apex-12 System. 
+
+
+SHADOWY FIGURE
+So, that’s their plan then. They’ll all be gathered in one place… taking care of them will be easy. Nothing will threaten the Coalition’s plans.
+
+
+Act Three Scene 3- The Path Ahead
+DESC: 
+With the Coalition’s security force out of the way, the area around Proximus 3’s orbit is now clear. The crew sat patrolling around the moon, waiting for anyone who might have heard their message…
+
+
+APOLLO
+
+
+So this is it, huh? Doesn’t look like anyone’s showing up.
+
+
+REBEKAH
+Patience isn’t your strong suit, Apollo. They’ll get here. I’m sure of it…
+
+
+JAUGHN
+If even just a few people show up, we’ll be all the better for it.
+
+
+DESC: 
+A few moments pass. Suddenly, the crew hear the beeping of their radar.
+NOISE
+*BEEP* *BEEP*
+EBB
+
+
+I’m picking up several signals approaching us. They’re… not Coalition signals. Opening comms. 
+
+
+
+
+DESC: 
+One by one, random civilian crafts start warping into the sector. Doctors, farmers, chefs, politicians, people from all walks of life are here. Even… [Pizza delivery theme] pizza delivery drivers…
+BREAK
+
+PIZZA DELIVERY DRIVER
+Hey guys! Are we late? I hope not, I don’t want to lose my tip.
+
+
+JAUGHN
+YOU?! What are you doing here?! You got me arrested!!
+
+
+PIZZA DELIVERY DRIVER
+Wait, really? Sorry about that, my friend. I just saw a fight comin’ on, and since the Coalition keeps taking my tip money, I decided to help out. Let me make it up to you! Anyone order a side of GUNS?
+DESC: 
+The delivery sign on the roof of his ship transforms into a gun. The other ships prepare their weapons, as well. 
+
+
+Random Civilian
+We’re here to fight too!
+
+
+Mathematically Predictable Civilian
+Got your message!
+
+
+JAUGHN
+Thank you, everyone! With your help, we can win this!
+
+
+EBB
+I’m picking up the Coalition’s signal near the hypergiant star. The ship they have there is… massive. Damage to the star is ongoing.
+
+
+REBEKAH
+I’m navigating us there now. Everyone, follow us and prepare to fight!
+
+
+Gameplay ( lvl 2: the Rebellion and crew have to fight their way to the giant Coalition ship)
+
+
+BREAK
+END

@@ -13,11 +13,15 @@ public class DialogueOptions : MonoBehaviour
     [SerializeField] Sprite[] boss1Emotions;
     [SerializeField] Sprite[] boss2Emotions;
     [SerializeField] Sprite[] boss3Emotions;
+    [SerializeField] Sprite[] pizzaGuyEmotions;
+    [SerializeField] Sprite[] shadowEmotions;
+
 
     public Options CreateOptions(string optionType)
     {
         switch (optionType)
         {
+            // The leaders
             case "JAUGHN":
                 Options jaughn = new Options
                 {
@@ -54,6 +58,58 @@ public class DialogueOptions : MonoBehaviour
                     isDialogue = true,
                 };
                 return ebb;
+
+            // The Bosses
+            case "PRISON WARDEN":
+                Options prisonWarden = new Options
+                {
+                    name = "PRISON WARDEN",
+                    color = Color.black,
+                    emotions = boss1Emotions,
+                    isDialogue = true,
+                };
+                return prisonWarden;
+            case "DJ Treble Make-R":
+            case "Radio Station DJ":
+                Options djTreble = new Options
+                {
+                    name = "DJ Treble Make-R",
+                    color = Color.black,
+                    emotions = boss2Emotions,
+                    isDialogue = true,
+                };
+                return djTreble;
+            case "JOHN":
+                Options john = new Options
+                {
+                    name = "JOHN",
+                    color = Color.black,
+                    emotions = boss3Emotions,
+                    isDialogue = true,
+                };
+                return john;
+            case "SHADOWY FIGURE":
+                Options shadow = new Options
+                {
+                    name = "SHADOWY FIGURE",
+                    color = Color.black,
+                    emotions = shadowEmotions,
+                    isDialogue = true,
+                };
+                return shadow;
+
+            // Random Civilians
+            case "PIZZA DELIVERY DRIVER":
+                Options pizzaGuy = new Options
+                {
+                    name = "PIZZA DELIVERY DRIVER",
+                    color = Color.black,
+                    emotions = pizzaGuyEmotions,
+                    isDialogue = true,
+                };
+                return pizzaGuy;
+
+            // Others
             case "DESC: ":
                 Options description = new Options
                 {
