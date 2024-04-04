@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour
     // Input-Updated Values
     [HideInInspector] public Vector2 movementInput; // Vector2 for movement
     [HideInInspector] public bool isShootHeld;       // A boolean that is true when shooting button is held down; false otherwise
-    public bool isWeaponSwitching; // Boolean that denotes that the weapon switch animation hasnt finished yet
+    [HideInInspector] public bool isWeaponSwitching; // Boolean that denotes that the weapon switch animation hasnt finished yet
 
     // Local Variables
     /* Shantanu messing arund*/

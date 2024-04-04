@@ -198,8 +198,6 @@ public class ShipController : MonoBehaviour
 
     private void DoSwitchToNextWeapon()
     {
-        // Wait for animation to finish before allowing passthrough
-        
         playerScript.SwitchToNextWeapon();
     }
 
@@ -210,13 +208,7 @@ public class ShipController : MonoBehaviour
 
     private void SetSpeedToFocus(bool doSet)
     {
-        if (doSet) 
-        { 
-            currSpeed = focusSpeed;
-        }
-        else
-        {
-            currSpeed = normalSpeed;
-        }
+        if (doSet) {currSpeed = focusSpeed;}
+        else {currSpeed = normalSpeed;}
     }
 }
