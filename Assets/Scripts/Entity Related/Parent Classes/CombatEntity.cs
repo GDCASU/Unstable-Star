@@ -9,11 +9,12 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     protected static readonly float collisionCooldownTime = 1f;
 
     // Serialized Variables
-    [SerializeField] protected int health = 0;
-    [SerializeField] protected int shield = 0;
-    [SerializeField] protected int collisionDamage = 0;
-    [SerializeField] protected float timeLeftInvulnerable = 0f;
-    [SerializeField] protected float dmgInvulnTime = 0f; // in seconds
+    [SerializeField] protected GameObject deathEffectPrefab;
+    [SerializeField] protected int health;
+    [SerializeField] protected int shield;
+    [SerializeField] protected int collisionDamage;
+    [SerializeField] protected float timeLeftInvulnerable;
+    [SerializeField] protected float dmgInvulnTime; // in seconds
 
     // Public Variables
     public bool isShootingLocked;
@@ -32,6 +33,12 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
         // Add WhenPlayerDies action to the event OnPlayerDeath, with this,
         // All entities listen to the event OnPlayerDeath by default
         EventData.OnPlayerDeath += WhenPlayerDies;
+    }
+
+    // Unsubscribe from events on destroy
+    protected virtual void OnDestroy()
+    {
+        EventData.OnPlayerDeath -= WhenPlayerDies;
     }
 
     /// <summary> Function called when player dies </summary>
