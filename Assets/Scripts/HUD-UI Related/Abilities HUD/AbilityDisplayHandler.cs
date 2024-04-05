@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Manager of the Ability HUD on gameplay, for now only works with only one ability equipped
@@ -11,15 +12,21 @@ public class AbilityDisplayHandler : MonoBehaviour
     [Header("Ability HUD Settings")]
     [SerializeField] private Image activeAbilityObj;
     [SerializeField] private Image inactiveAbilityObj;
+    [SerializeField] private TextMeshProUGUI chargeCounter;
+    
+
+    // Local Variables
+    private Ability abilityRef;
 
     void Start()
     {
         // Get the equipped ability
-        Ability currAbility = AbilityInventory.instance.GetCurrentAbility();
+        abilityRef = AbilityInventory.instance.GetCurrentAbility();
 
-        // Set the images
-        activeAbilityObj.sprite = currAbility.abilityIconActive;
-        inactiveAbilityObj.sprite = currAbility.abilityIconInactive;
+        // Set the images and charges
+        activeAbilityObj.sprite = abilityRef.abilityIconActive;
+        inactiveAbilityObj.sprite = abilityRef.abilityIconInactive;
+        chargeCounter.text = abilityRef.charges.ToString();
 
         // Suscribe to input events
         EventData.OnAbilityCooldown += RadialCooldown;
@@ -42,6 +49,9 @@ public class AbilityDisplayHandler : MonoBehaviour
     // Function that will be called from within the Ability Component when an ability is used
     private void RadialCooldown(float maxCooldown, float currentCooldown)
     {
+        chargeCounter.text = abilityRef.charges.ToString();
         activeAbilityObj.fillAmount = (maxCooldown - currentCooldown) / maxCooldown;
+        // If the charges are 0, just grey out the ability Icon
+        if (abilityRef.charges <= 0) { activeAbilityObj.fillAmount = 0f; }
     }
 }
