@@ -286,7 +286,7 @@ public class ShootComponent : MonoBehaviour
         gatlingRoutine = null;
         input.warmupCounter = 0f;
         // Update UI once shooting stops
-        input.RaiseModifyMeterCharge(input.warmupTime, input.warmupCounter);
+        input.RaiseModifyMeterCharge(input.warmupTime, input.warmupTime);
     }
 
     #endregion
@@ -332,7 +332,7 @@ public class ShootComponent : MonoBehaviour
         // Charge up sphere data
         float rateOfChange = maxSphereDiameter / input.maxChargeUpTime;
         float currentDiameter;
-        input.chargeTimeCounter = 0f;
+        input.chargeTimeCounter = input.maxChargeUpTime;
 
         // Charge up the laser while held, not switched and shooting not locked
         while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input && !entityScript.isShootingLocked)
@@ -340,15 +340,15 @@ public class ShootComponent : MonoBehaviour
             // Update UI
             input.RaiseModifyMeterCharge(input.maxChargeUpTime, input.chargeTimeCounter);
             // Check if charging is finished
-            if (input.chargeTimeCounter < input.maxChargeUpTime)
+            if (input.chargeTimeCounter > 0f)
             {
-                input.chargeTimeCounter += Time.deltaTime;
-                currentDiameter = rateOfChange * input.chargeTimeCounter;
+                input.chargeTimeCounter -= Time.deltaTime;
+                currentDiameter = rateOfChange * (input.maxChargeUpTime - input.chargeTimeCounter);
                 chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
             }
             else
             {
-                input.chargeTimeCounter = input.maxChargeUpTime;
+                input.chargeTimeCounter = 0f;
                 currentDiameter = maxSphereDiameter;
                 chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
             }
@@ -386,7 +386,7 @@ public class ShootComponent : MonoBehaviour
 
         // Calculate the width/diameter of the laser based on charge up time
         rateOfChange = (maxLaserWidth - minLaserWidth) / (input.maxChargeUpTime);
-        float laserWidth = rateOfChange * input.chargeTimeCounter + minLaserWidth;
+        float laserWidth = rateOfChange * (input.maxChargeUpTime - input.chargeTimeCounter) + minLaserWidth;
 
         // Create the laser with the specified distance
         GameObject laser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
@@ -416,7 +416,7 @@ public class ShootComponent : MonoBehaviour
                 if (entity.isIgnoringCollisions) continue;
 
                 // Calculate damage depending on charge time
-                int damage = (int)(rateOfChange * input.chargeTimeCounter + input.minDamage); // Floor it
+                int damage = (int)(rateOfChange * (input.maxChargeUpTime - input.chargeTimeCounter) + input.minDamage); // Floor it
 
                 // Deal damage
                 entity.TakeDamage(damage, out int dmgRecieved, out Color colorSet);
