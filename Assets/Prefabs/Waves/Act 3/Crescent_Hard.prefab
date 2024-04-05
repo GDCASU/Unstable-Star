@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8035897760632847848}
   - component: {fileID: 2128820288414428982}
   m_Layer: 0
-  m_Name: Crescent_Medium 1
+  m_Name: Crescent_Hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

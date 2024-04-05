@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba38ea183db6e14a9404b16cbb35b59, type: 3}
+  m_Name: level3_pool
+  m_EditorClassIdentifier: 
+  waves:
+  - {fileID: 4404498686940099912, guid: 8d66a521b84847c4fa4697319b307266, type: 3}
+  - {fileID: 4404498686940099912, guid: 1a5c7754874ecba4789d521c52c6c56e, type: 3}
+  - {fileID: 4404498686940099912, guid: 4caeb8365c3759c4e8dc042cadbdf7fb, type: 3}
+  - {fileID: 4404498686940099912, guid: 4dbd53c566382d344aaed9ad0a4dfbb5, type: 3}
+  - {fileID: 4404498686940099912, guid: 926eedc1f79ff3843b1025bb118bd90f, type: 3}
+  enemyBoundsCenter: 0.75
+  enemyBoundsSize: 0.15
+  overrideWaveBounds: 1
