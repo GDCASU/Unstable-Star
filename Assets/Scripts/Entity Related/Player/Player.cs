@@ -445,9 +445,6 @@ public class Player : CombatEntity
         //Stub
         EventData.RaiseOnHealthLost(health); //To remove Last Health segment from UI
         EventData.RaiseOnPlayerDeath();
-
-        // Destroy player object from scene
-        Destroy(gameObject);
     }
 
     //What happens to the game and the player on death
@@ -460,6 +457,9 @@ public class Player : CombatEntity
         //TODO: Add here events that happens when player dies ---------------
 
         //-----------------------------------------------------------------------
+
+        // Destroy player object from scene
+        Destroy(gameObject);
     }
 
     #endregion

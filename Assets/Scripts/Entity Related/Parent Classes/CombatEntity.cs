@@ -34,6 +34,12 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
         EventData.OnPlayerDeath += WhenPlayerDies;
     }
 
+    // Unsubscribe from events on destroy
+    protected virtual void OnDestroy()
+    {
+        EventData.OnPlayerDeath -= WhenPlayerDies;
+    }
+
     /// <summary> Function called when player dies </summary>
     protected abstract void WhenPlayerDies();
 

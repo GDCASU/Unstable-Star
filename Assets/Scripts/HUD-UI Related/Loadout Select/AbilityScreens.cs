@@ -55,8 +55,8 @@ public class AbilityScreens: MonoBehaviour
     {
         abilityName = ("Name: " + wep.sName);
         abilityDesc = ("\"" + wep.description + "\"");
-        abilityImg = wep.abilityIcon;
-        if (wep.abilityIcon == null) print("NULL ICON");
+        abilityImg = wep.abilityIconActive;
+        if (wep.abilityIconActive == null) print("NULL ICON");
         writeFields();
 
     }

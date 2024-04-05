@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manager for the weapons HUD on gameplay
+/// </summary>
 public class WeaponDisplayHandler : MonoBehaviour
 {
     //public GameObject pistolprefab;
