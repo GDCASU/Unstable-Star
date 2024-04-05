@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
+public enum EnemyType
+{
+    BASIC,
+    LASER,
+    GATLING
+}
+
 public class Enemy : CombatEntity
 {
     [Header("Movement")]
@@ -138,7 +145,11 @@ public class Enemy : CombatEntity
         EventData.RaiseOnEnemyDeath(gameObject);
 
         StopAllCoroutines();
-        //StartCoroutine(DestroyEnemyAfterCallCo());
+
+        // Explosion Effect
+        Instantiate(deathEffectPrefab, this.transform.position, Quaternion.identity);
+
+        // Destroy Enemy Object
         Destroy(gameObject);
     }
 
@@ -159,5 +170,10 @@ public class Enemy : CombatEntity
     {
         yield return new WaitUntil(() => EventData.RaiseOnEnemyDeath(gameObject));
         Destroy(this.gameObject);
+    }
+
+    public ScriptableEnemy GetStatData()
+    {
+        return statsData;
     }
 }

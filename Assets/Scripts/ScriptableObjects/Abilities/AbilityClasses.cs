@@ -21,6 +21,7 @@ public abstract class Ability
     public float durationTime;
     public bool isOnCooldown;
     public int charges;
+    public string description;
 
     // Proximity Bomb Variables
     public GameObject bombPrefab;
@@ -33,7 +34,8 @@ public abstract class Ability
 
     // This variable should be useful for implementing UI
     public float timeLeftInCooldown;
-    public Sprite abilityIcon;
+    public Sprite abilityIconActive;
+    public Sprite abilityIconInactive;
 }
 
 /// <summary>
@@ -68,7 +70,7 @@ public class GeneralAbility : Ability
 public class PhaseShiftAbility : Ability
 {
     // Constructor
-    public PhaseShiftAbility(string name, Sprite abilityIcon, Material phaseShiftMaterial, GameObject particleEmitter, int charges, float cooldownTime, float durationTime)
+    public PhaseShiftAbility(string name, Sprite abilityIconActive, Sprite abilityIconInactive, Material phaseShiftMaterial, GameObject particleEmitter, int charges, float cooldownTime, float durationTime, string description)
     {
         this.sName = name;
         this.cooldownTime = cooldownTime;
@@ -76,8 +78,9 @@ public class PhaseShiftAbility : Ability
         this.durationTime = durationTime;
         this.PhaseShiftMaterial = phaseShiftMaterial;
         this.charges = charges;
-        this.abilityIcon = abilityIcon;
-
+        this.abilityIconActive = abilityIconActive;
+        this.abilityIconInactive = abilityIconInactive;
+        this.description = description;
         // Static sets
         this.behaviour = AbilityTypes.PhaseShift;
         this.isOnCooldown = false;
@@ -90,7 +93,7 @@ public class PhaseShiftAbility : Ability
 public class ProximityBombAbility : Ability
 {
     // Constructor
-    public ProximityBombAbility(string name, Sprite abilityIcon, GameObject bombPrefab, float bombRadius, float cooldownTime, int charges, int damage)
+    public ProximityBombAbility(string name, Sprite abilityIconActive, Sprite abilityIconInactive, GameObject bombPrefab, float bombRadius, float cooldownTime, int charges, int damage, string description)
     {
         this.sName = name;
         this.damage = damage;
@@ -98,8 +101,9 @@ public class ProximityBombAbility : Ability
         this.cooldownTime = cooldownTime;
         this.bombRadius = bombRadius;
         this.charges = charges;
-        this.abilityIcon = abilityIcon;
-
+        this.abilityIconActive = abilityIconActive;
+        this.abilityIconInactive = abilityIconInactive;
+        this.description= description;
         // Static sets
         this.behaviour = AbilityTypes.ProxiBomb;
         this.isOnCooldown = false;
