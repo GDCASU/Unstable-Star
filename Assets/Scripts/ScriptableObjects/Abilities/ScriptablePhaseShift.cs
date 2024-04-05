@@ -15,6 +15,7 @@ public class ScriptablePhaseShift : ScriptableAbility
     public int charges;
     public float cooldownTime;
     public float durationTime;
+    [TextAreaAttribute]
     public string description;
     public override Ability GetAbilityObject()
     {

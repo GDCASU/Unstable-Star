@@ -14,6 +14,7 @@ public class ScriptableLaserGun : ScriptableWeapon
     public GameObject chargingSpherePrefab;
     public Sprite weaponIcon;
     public FMODUnity.EventReference sound;
+    [TextAreaAttribute]
     public string description;
 
     [Header("Settings")]

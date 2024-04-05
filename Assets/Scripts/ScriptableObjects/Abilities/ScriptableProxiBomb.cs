@@ -15,6 +15,7 @@ public class ScriptableProxiBomb : ScriptableAbility
     public float cooldownTime;
     public float bombRadius;
     public int damage;
+    [TextAreaAttribute]
     public string description;
 
     public override Ability GetAbilityObject()

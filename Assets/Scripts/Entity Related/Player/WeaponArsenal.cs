@@ -33,8 +33,8 @@ public class WeaponArsenal : MonoBehaviour
     [SerializeField] private bool loadInspectorWeapons;
 
     // Desired Scripted Weapons to add to inventory through the inspector
-    public ScriptableWeapon primary;
-    public ScriptableWeapon secondary;
+    [SerializeField] private ScriptableWeapon primary;
+    [SerializeField] private ScriptableWeapon secondary;
 
     private void Awake()
     {
