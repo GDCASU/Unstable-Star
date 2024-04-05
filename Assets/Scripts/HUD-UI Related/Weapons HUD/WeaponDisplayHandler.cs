@@ -19,10 +19,18 @@ public class WeaponDisplayHandler : MonoBehaviour
     //bool happened;
     private bool PIsInFront = true;
     private Animator animator;
-    [SerializeField] private GameObject primaryIconObj;
-    [SerializeField] private GameObject secondaryIconObj;
+
+    [Header("Canvas Objects")]
     [SerializeField] private GameObject primaryCanvasObj;
     [SerializeField] private GameObject secondaryCanvasObj;
+
+    [Header("Icon Objects")]
+    [SerializeField] private GameObject primaryIconObj;
+    [SerializeField] private GameObject secondaryIconObj;
+
+    [Header("Meter Objects")]
+    [SerializeField] private GameObject primaryMeterObj;
+    [SerializeField] private GameObject secondaryMeterObj;
 
     // IAN ADDED VARIABLES
 
@@ -30,6 +38,10 @@ public class WeaponDisplayHandler : MonoBehaviour
     private Canvas secondaryCanvas;
     private Image primaryImageComp;
     private Image secondaryImageComp;
+
+    // References
+    private Weapon primaryWep;
+    private Weapon secondaryWep;
 
     // END OF NEW VARS
 
@@ -58,11 +70,13 @@ public class WeaponDisplayHandler : MonoBehaviour
         secondaryCanvas = secondaryCanvasObj.GetComponent<Canvas>();
 
         // Set the images of the HUD (This assumes there can only be two weapons equipped)
-        primaryImageComp.sprite = WeaponArsenal.instance.GetCurrentWeapon().weaponIcon;
+        primaryWep = WeaponArsenal.instance.GetCurrentWeapon();
+        primaryImageComp.sprite = primaryWep.weaponIcon;
         // Cycle to next
         WeaponArsenal.instance.SwitchToNextWeapon();
         // Get next icon
-        secondaryImageComp.sprite = WeaponArsenal.instance.GetCurrentWeapon().weaponIcon;
+        secondaryWep = WeaponArsenal.instance.GetCurrentWeapon();
+        secondaryImageComp.sprite = secondaryWep.weaponIcon;
         // Return to primary
         WeaponArsenal.instance.SetCurrentWeaponToFirst();
 

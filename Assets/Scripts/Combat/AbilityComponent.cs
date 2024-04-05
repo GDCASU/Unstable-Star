@@ -132,26 +132,25 @@ public class AbilityComponent : MonoBehaviour
     // Cooldown routine
     private IEnumerator CooldownRoutine(Ability input)
     {
-        float timeLeft = input.cooldownTime;
         input.isOnCooldown = true;
+        input.timeLeftInCooldown = input.cooldownTime;
 
         // Update time variable
-        while (timeLeft > 0)
+        while (input.timeLeftInCooldown > 0f)
         {
-            timeLeft -= Time.deltaTime;
-            input.timeLeftInCooldown = timeLeft;
             // Invoke the ability event for UI
-            EventData.RaiseOnAbilityCooldown(input.cooldownTime, timeLeft);
+            EventData.RaiseOnAbilityCooldown(input.cooldownTime, input.timeLeftInCooldown);
+            // Compute time
+            input.timeLeftInCooldown -= Time.deltaTime;
             // Wait a frame
             yield return null;
         }
         // Cooldown ended
         input.timeLeftInCooldown = 0f;
-        timeLeft = 0f;
         input.isOnCooldown = false;
 
         // Raise event one more time to indicate its finished
-        EventData.RaiseOnAbilityCooldown(input.cooldownTime, timeLeft);
+        EventData.RaiseOnAbilityCooldown(input.cooldownTime, input.timeLeftInCooldown);
     }
 
 

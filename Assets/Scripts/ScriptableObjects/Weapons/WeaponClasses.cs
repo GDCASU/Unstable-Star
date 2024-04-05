@@ -44,10 +44,16 @@ public abstract class Weapon
     public bool isEnemy;
     public float shootingStayTime;
 
-    // This variable should be useful for UI
+    // These variables should be useful for UI
     public float timeLeftInCooldown;
     public Sprite weaponIcon;
     public string description;
+
+    // Event and function used by the Weapon HUD
+    public event System.Action<float, float> ModifyMeterCooldown;
+    public void RaiseModifyMeterCooldown(float maxVal, float currVal) { ModifyMeterCooldown?.Invoke(maxVal, currVal); }
+    public event System.Action<float, float> ModifyMeterCharge;
+    public void RaiseModifyMeterCharge(float maxVal, float currVal) { ModifyMeterCharge?.Invoke(maxVal, currVal); }
 }
 
 /// <summary>

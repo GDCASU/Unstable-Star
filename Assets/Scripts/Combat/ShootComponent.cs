@@ -78,18 +78,21 @@ public class ShootComponent : MonoBehaviour
     private IEnumerator ShootingCooldown(Weapon input)
     {
         input.isOnCooldown = true;
-        float timePassed = input.shootCooldownTime;
+        input.timeLeftInCooldown = input.shootCooldownTime;
 
         // Cooldown timer
-        while (timePassed > 0f)
+        while (input.timeLeftInCooldown > 0f)
         {
-            timePassed -= Time.deltaTime;
-            input.timeLeftInCooldown = timePassed;
+            // Invoke the UI event for the weapon
+            input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.timeLeftInCooldown);
+            input.timeLeftInCooldown -= Time.deltaTime; // Compute time
             yield return null; // Wait a frame
         }
-
         input.isOnCooldown = false;
         input.timeLeftInCooldown = 0f;
+
+        // Raise cooldown event one last time
+        input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.timeLeftInCooldown);
     }
 
 
@@ -171,17 +174,21 @@ public class ShootComponent : MonoBehaviour
     // This Routine will be stopped if the button is released
     private IEnumerator PlayerGatlingRoutine(Weapon input)
     {
-        float timeLeft;
         // Warm up timer
         // TODO: Missing warm up sound
-        timeLeft = input.warmupTime;
-        while (timeLeft > 0f)
+        input.warmupCounter = input.warmupTime;
+        while (input.warmupCounter > 0f)
         {
-            timeLeft -= Time.deltaTime;
-            input.warmupCounter = timeLeft;
+            // Raise UI event
+            input.RaiseModifyMeterCharge(input.warmupTime, input.warmupCounter);
+            // Compute time
+            input.warmupCounter -= Time.deltaTime;
             yield return null;
         }
         input.warmupCounter = 0f;
+
+        // Raise Weapon UI event once more
+        input.RaiseModifyMeterCharge(input.warmupTime, input.warmupCounter);
 
         // Warmup finshed, start shooting until stopped
         WaitForSeconds shotsTime = new WaitForSeconds(input.shootCooldownTime);
@@ -278,6 +285,8 @@ public class ShootComponent : MonoBehaviour
         StopCoroutine(gatlingRoutine);
         gatlingRoutine = null;
         input.warmupCounter = 0f;
+        // Update UI once shooting stops
+        input.RaiseModifyMeterCharge(input.warmupTime, input.warmupCounter);
     }
 
     #endregion
@@ -323,22 +332,23 @@ public class ShootComponent : MonoBehaviour
         // Charge up sphere data
         float rateOfChange = maxSphereDiameter / input.maxChargeUpTime;
         float currentDiameter;
-        float elapsedTime = 0f;
+        input.chargeTimeCounter = 0f;
 
         // Charge up the laser while held, not switched and shooting not locked
         while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input && !entityScript.isShootingLocked)
         {
-            if (elapsedTime < input.maxChargeUpTime)
+            // Update UI
+            input.RaiseModifyMeterCharge(input.maxChargeUpTime, input.chargeTimeCounter);
+            // Check if charging is finished
+            if (input.chargeTimeCounter < input.maxChargeUpTime)
             {
-                elapsedTime += Time.deltaTime;
-                input.chargeTimeCounter = elapsedTime;
-                currentDiameter = rateOfChange * elapsedTime;
+                input.chargeTimeCounter += Time.deltaTime;
+                currentDiameter = rateOfChange * input.chargeTimeCounter;
                 chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
             }
             else
             {
                 input.chargeTimeCounter = input.maxChargeUpTime;
-                elapsedTime = input.maxChargeUpTime;
                 currentDiameter = maxSphereDiameter;
                 chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
             }
@@ -350,8 +360,9 @@ public class ShootComponent : MonoBehaviour
         if (WeaponArsenal.instance.GetCurrentWeapon() != input || entityScript.isShootingLocked)
         {
             laserRoutine = null;
-            input.chargeTimeCounter = 0;
+            input.chargeTimeCounter = 0f;
             StartCoroutine(ReduceSphereTillZero(chargeSphere, chargeSphereKillTimeIfCancelled));
+            input.RaiseModifyMeterCharge(input.maxChargeUpTime, input.chargeTimeCounter); // Update UI
             yield break;
         }
 
@@ -413,10 +424,10 @@ public class ShootComponent : MonoBehaviour
             }
         }
         // Call cooldown on this laser weapon
+        input.chargeTimeCounter = 0f;
         StartCoroutine(ShootingCooldown(input));
         // Laser fire finished
         laserRoutine = null;
-        input.chargeTimeCounter = 0f;
     }
 
     private IEnumerator EnemeyLaserRoutine(Weapon input)
