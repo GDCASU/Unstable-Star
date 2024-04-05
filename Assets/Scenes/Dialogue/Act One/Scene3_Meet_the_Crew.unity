@@ -2255,6 +2255,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 452984694364928637, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1298547736}
+    - targetCorrespondingSourceObject: {fileID: 6818730843877375949, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 988137797}
     - targetCorrespondingSourceObject: {fileID: 5865956868245611544, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1391681384}
@@ -2347,6 +2350,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &988137796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6818730843877375949, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+  m_PrefabInstance: {fileID: 736055851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &988137797
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988137796}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1004949506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,7 +2672,11 @@ PrefabInstance:
     - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: m_SceneBindings.Array.data[9].key
       value: 
-      objectReference: {fileID: -1654371673427109550, guid: ede80ec92f1519a4db7488469e9f05bd, type: 2}
+      objectReference: {fileID: -659411817292095174, guid: ede80ec92f1519a4db7488469e9f05bd, type: 2}
+    - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: m_SceneBindings.Array.data[10].key
+      value: 
+      objectReference: {fileID: -659411817292095174, guid: ede80ec92f1519a4db7488469e9f05bd, type: 2}
     - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
@@ -2662,6 +2695,30 @@ PrefabInstance:
       objectReference: {fileID: 2026969195}
     - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: m_SceneBindings.Array.data[4].value
+      value: 
+      objectReference: {fileID: 2026969197}
+    - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: m_SceneBindings.Array.data[5].value
+      value: 
+      objectReference: {fileID: 1923888603}
+    - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: m_SceneBindings.Array.data[6].value
+      value: 
+      objectReference: {fileID: 277932419}
+    - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: m_SceneBindings.Array.data[7].value
+      value: 
+      objectReference: {fileID: 1391681384}
+    - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: m_SceneBindings.Array.data[8].value
+      value: 
+      objectReference: {fileID: 2026969195}
+    - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: m_SceneBindings.Array.data[9].value
+      value: 
+      objectReference: {fileID: 2026969197}
+    - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: m_SceneBindings.Array.data[10].value
       value: 
       objectReference: {fileID: 2026969197}
     - target: {fileID: 3069556765877585204, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
@@ -2726,7 +2783,7 @@ PrefabInstance:
       objectReference: {fileID: 430897644}
     - target: {fileID: 6320924069648261947, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: currentSceneFile
-      value: Act1_Sc3
+      value: Assets/Scripts/Dialogue/Act1_Sc3.txt
       objectReference: {fileID: 0}
     - target: {fileID: 6320924069648261947, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: noSpeachDialogue

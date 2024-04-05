@@ -2693,6 +2693,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 430897644}
     - target: {fileID: 6320924069648261947, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: currentSceneFile
+      value: Assets/Scripts/Dialogue/Act2_Sc2.txt
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320924069648261947, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: noSpeachDialogue
       value: 
       objectReference: {fileID: 21300000, guid: d5256e9537cb38545a2b3b688cc68d98, type: 3}

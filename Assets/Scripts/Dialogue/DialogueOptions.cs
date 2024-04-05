@@ -135,7 +135,7 @@ public class DialogueOptions : MonoBehaviour
                 {
                     name = optionType,
                     color = Color.black,
-                    emotions = jaughnEmotions,
+                    emotions = blankEmotions,
                     isDialogue = true,
                 };
                 return baseOptions;

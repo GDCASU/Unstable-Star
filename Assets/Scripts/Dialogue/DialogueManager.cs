@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] PlayableDirector timelinePlayer;
 
     bool canChange = false;
-    bool start = false;
+    public bool start = false;
 
 
     [Header("Act Essentials:")]
@@ -52,8 +52,6 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(timelinePlayer);
         if (UnityEngine.Input.GetKeyDown(KeyCode.Return)) 
         {
             ChangeDialogue();
@@ -161,31 +159,23 @@ public class DialogueManager : MonoBehaviour
                 return act;
             }
 
-            else if (line == "Arcade Game Script") // Creates a break
-            {
-                act[dialogueIndex] = new string[3];
-                act[dialogueIndex][0] = "BREAK";
-                act[dialogueIndex][1] = "BREAK";
-                act[dialogueIndex][2] = "BREAK";
-            }
-
             // If line is a name
             else if (line == "APOLLO" || line == "REBEKAH" || line == "EBB" || line == "JAUGHN" 
                 || line == "SECURITY DEFENSE SYSTEM" || line == "PRISON WARDEN" || line == "Radio Station DJ" 
                 || line == "JOHN" || line == "DJ Treble Make-R" || line == "SHADOWY FIGURE"
                 || line == "JAUGHN’S SUPERVISOR" || line == "Random Civilian" || line == "Mathematically Predictable Civilian"
-                || line == "PIZZA DELIVERY DRIVER" || line == "DESC: " || line == "NOISE") 
+                || line == "PIZZA DELIVERY DRIVER" || line == "DESC: " || line == "NOISE" || line == "BREAK") 
             { 
                 currentSpeaker = line;
             }
 
-            // if line is an emotion
+            // If line is an emotion
             else if (line == "HAPPY" || line == "NORMAL" || line == "ANGRY" || line == "SAD" || line == "???") 
             {
                 emotion = line;
             }
 
-            // if line isn't blank, store dialogue
+            // If line isn't blank, store dialogue
             else if (line != "") 
             {
                 act[dialogueIndex] = new string[3];
@@ -193,7 +183,7 @@ public class DialogueManager : MonoBehaviour
                 act[dialogueIndex][1] = line;
                 act[dialogueIndex][2] = emotion;
                 dialogueIndex++;
-                // Debug.Log(currentSpeaker + ": " + line);
+                Debug.Log(currentSpeaker + ": " + line);
             }
         }
         return act;

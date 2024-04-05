@@ -1,4 +1,5 @@
-﻿Arcade Game Prologue Script
+﻿DESC: 
+Arcade Game Prologue Script
 Act one Scene 1 - Prologue
 
 
