@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FocusSpeed",
+                    "type": "Button",
+                    "id": "062652ce-d76a-414d-b67e-45f35e294822",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -182,8 +191,19 @@
                 },
                 {
                     "name": "",
-                    "id": "bac9dde5-518f-455d-bb60-df89a183e604",
+                    "id": "ec0cd8b4-042d-499d-84ac-f02123bb2d2e",
                     "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FocusSpeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f325684-6f48-4f1f-94db-72188b358bd2",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

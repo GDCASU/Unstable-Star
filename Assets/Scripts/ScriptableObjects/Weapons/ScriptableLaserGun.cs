@@ -14,6 +14,8 @@ public class ScriptableLaserGun : ScriptableWeapon
     public GameObject chargingSpherePrefab;
     public Sprite weaponIcon;
     public FMODUnity.EventReference sound;
+    [TextAreaAttribute]
+    public string description;
 
     [Header("Settings")]
     public int minDamage;
@@ -27,6 +29,6 @@ public class ScriptableLaserGun : ScriptableWeapon
 
     public override Weapon GetWeaponObject()
     {
-        return new LaserGun(weaponName, laserPrefab, chargingSpherePrefab, weaponIcon, sound, minDamage, maxDamage, laserCooldown, maxChargeUpTime, isEnemy);
+        return new LaserGun(weaponName, laserPrefab, chargingSpherePrefab, weaponIcon, sound, minDamage, maxDamage, laserCooldown, maxChargeUpTime, isEnemy, description);
     }
 }

@@ -7,6 +7,7 @@ public class ObjectivePanel : MonoBehaviour
     [SerializeField] private GameObject objectivePrefab;
     [SerializeField] private Transform objectiveContainer;
     private ObjectiveData[] objectiveData;
+    private Objective[] objectives;
 
     void Start()
     {
@@ -16,18 +17,23 @@ public class ObjectivePanel : MonoBehaviour
         {
             new ObjectiveData()
             {
-                title = "Objective 1",
+                title = "Kill enemies",
                 type = ObjectiveType.KILLS,
-                minValue = 0,
-                maxValue = 25
-			},
+                kills = 25
+            },
             new ObjectiveData()
             {
-                title = "Objective 2",
-                type = ObjectiveType.KILLS,
-                minValue = 0,
-                maxValue = 10
-            }
+                title = "Kill basic enemies",
+                type = ObjectiveType.KILLS_SPECIAL,
+                enemyType = EnemyType.BASIC,
+                kills = 10
+            },
+            new ObjectiveData()
+            {
+                title = "Survive the onslaught",
+                type = ObjectiveType.SURVIVE,
+                time = 30
+			}
         };
         CreateObjectives();
     }
@@ -41,21 +47,26 @@ public class ObjectivePanel : MonoBehaviour
         for(int i = 0; i < objectiveData.Length; i++)
 		{
             GameObject objectiveGO = Instantiate(objectivePrefab, objectiveContainer);
+            objectiveGO.SetActive(false);
             objectiveGO.transform.localPosition = new Vector3(0f, -60f * i, 0f);
-            objectiveGO.GetComponent<Objective>().SetupData(objectiveData[i]);
+            objectiveGO.AddComponent<Objective>().data = objectiveData[i];
+            objectiveGO.SetActive(true);
 		}
 	}
 }
 
 public enum ObjectiveType
 {
-    KILLS
+    KILLS,
+    KILLS_SPECIAL,
+    SURVIVE
 }
 
 public struct ObjectiveData
 {
     public string title;
     public ObjectiveType type;
-    public int minValue;
-    public int maxValue;
+    public EnemyType enemyType; // Only used for the Kills Special objective type
+    public int kills; // Only used for the Kills/Kills Special objective types
+    public int time; // Only used for the Survive objective type
 }

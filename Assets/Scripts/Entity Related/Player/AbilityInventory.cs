@@ -21,7 +21,7 @@ public class AbilityInventory : MonoBehaviour
     private List<Ability> abilityInventory = new();
 
     // Settings
-    [SerializeField] private int maxAbilityCount;
+    private readonly int maxAbilityCount = 1; // Limited by UI
     [SerializeField] private int currAbilityIndex = -1; // Will be -1 whenever there are no abilities equipped
 
     // Debbuging
@@ -29,12 +29,10 @@ public class AbilityInventory : MonoBehaviour
     private Ability currAbility = new GeneralAbility("No Ability"); // Starts as null
     
     [SerializeField] private bool doDebugLog;
-    [SerializeField] private bool loadDefaultAbilities;
+    [SerializeField] private bool loadInspectorAbility;
 
-    // All Scripted Abilities that have been designed so far
-    // placed here for debugging since we have a handler now in the menu
-    public ScriptablePhaseShift phaseShiftAbility;
-    public ScriptableProxiBomb proxiBombAbility;
+    // Target ability to use in gameplay, set in the inspector window for debugging specific abilities
+    [SerializeField] private ScriptableAbility inputAbility;
 
     private void Awake()
     {
@@ -45,11 +43,11 @@ public class AbilityInventory : MonoBehaviour
         }
         instance = this;
 
-        // Give the player the default abilities if checked
-        if (loadDefaultAbilities && abilityInventory.Count <= 0)
+        // Give the player the ability set in the inspector
+        if (loadInspectorAbility && abilityInventory.Count <= 0)
         {
-            AddAbilityToInventory(phaseShiftAbility.GetAbilityObject());
-            AddAbilityToInventory(proxiBombAbility.GetAbilityObject());
+            ClearAbilityInventory();
+            AddAbilityToInventory(inputAbility.GetAbilityObject());
         }
     }
 

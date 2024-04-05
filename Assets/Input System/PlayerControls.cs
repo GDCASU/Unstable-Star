@@ -89,6 +89,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FocusSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""062652ce-d76a-414d-b67e-45f35e294822"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -204,8 +213,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bac9dde5-518f-455d-bb60-df89a183e604"",
+                    ""id"": ""ec0cd8b4-042d-499d-84ac-f02123bb2d2e"",
                     ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FocusSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f325684-6f48-4f1f-94db-72188b358bd2"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -743,6 +763,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ShipControls_SwitchNextWeapon = m_ShipControls.FindAction("SwitchNextWeapon", throwIfNotFound: true);
         m_ShipControls_SwitchNextAbility = m_ShipControls.FindAction("SwitchNextAbility", throwIfNotFound: true);
         m_ShipControls_UseAbility = m_ShipControls.FindAction("UseAbility", throwIfNotFound: true);
+        m_ShipControls_FocusSpeed = m_ShipControls.FindAction("FocusSpeed", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -823,6 +844,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_ShipControls_SwitchNextWeapon;
     private readonly InputAction m_ShipControls_SwitchNextAbility;
     private readonly InputAction m_ShipControls_UseAbility;
+    private readonly InputAction m_ShipControls_FocusSpeed;
     public struct ShipControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -834,6 +856,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SwitchNextWeapon => m_Wrapper.m_ShipControls_SwitchNextWeapon;
         public InputAction @SwitchNextAbility => m_Wrapper.m_ShipControls_SwitchNextAbility;
         public InputAction @UseAbility => m_Wrapper.m_ShipControls_UseAbility;
+        public InputAction @FocusSpeed => m_Wrapper.m_ShipControls_FocusSpeed;
         public InputActionMap Get() { return m_Wrapper.m_ShipControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -864,6 +887,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @UseAbility.started += instance.OnUseAbility;
             @UseAbility.performed += instance.OnUseAbility;
             @UseAbility.canceled += instance.OnUseAbility;
+            @FocusSpeed.started += instance.OnFocusSpeed;
+            @FocusSpeed.performed += instance.OnFocusSpeed;
+            @FocusSpeed.canceled += instance.OnFocusSpeed;
         }
 
         private void UnregisterCallbacks(IShipControlsActions instance)
@@ -889,6 +915,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @UseAbility.started -= instance.OnUseAbility;
             @UseAbility.performed -= instance.OnUseAbility;
             @UseAbility.canceled -= instance.OnUseAbility;
+            @FocusSpeed.started -= instance.OnFocusSpeed;
+            @FocusSpeed.performed -= instance.OnFocusSpeed;
+            @FocusSpeed.canceled -= instance.OnFocusSpeed;
         }
 
         public void RemoveCallbacks(IShipControlsActions instance)
@@ -1033,6 +1062,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSwitchNextWeapon(InputAction.CallbackContext context);
         void OnSwitchNextAbility(InputAction.CallbackContext context);
         void OnUseAbility(InputAction.CallbackContext context);
+        void OnFocusSpeed(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

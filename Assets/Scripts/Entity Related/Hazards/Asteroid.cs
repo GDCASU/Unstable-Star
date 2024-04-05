@@ -54,7 +54,8 @@ public class Asteroid : CombatEntity
     {
         //TODO: DEFINE WHAT HAPPENS WHEN THE ASTEROID IS DESTROYED
 
-
+        // Explosion Effect
+        Instantiate(deathEffectPrefab, this.transform.position, Quaternion.identity);
 
         // -----------------------
 

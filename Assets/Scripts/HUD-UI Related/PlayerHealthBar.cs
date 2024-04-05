@@ -33,6 +33,16 @@ public class PlayerHealthBar : MonoBehaviour
         SetupStatBars();
     }
 
+    // Unsubscribe from events on destroy
+    private void OnDestroy()
+    {
+        EventData.OnHealthGained -= OnHealthGained;
+        EventData.OnHealthLost -= OnHealthLost;
+        EventData.OnShieldGained -= OnShieldGained;
+        EventData.OnShieldDamaged -= OnShieldDamaged;
+        EventData.OnShieldBroken -= OnShieldDamaged;
+    }
+
     // Setup the UI Stat Bars
     // TODO: Maybe if Max Health or Max Shield can be upgraded down the line
     // This code could be modified to account for that
