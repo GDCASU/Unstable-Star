@@ -15,6 +15,7 @@ public class ShootComponent : MonoBehaviour
 
     //Local Variables
     private int projectileLayer;
+    private GameObject firedLaser;
     private CombatEntity entityScript;
     private Coroutine gatlingRoutine = null;
     private Coroutine laserRoutine;
@@ -40,6 +41,16 @@ public class ShootComponent : MonoBehaviour
                 Debug.Log("ERORR!!! AN OBJECT THAT IS SHOOTING IS UNTAGGED AND/OR UNDEFINED IN SHOOTSCRIPT.CS");
                 break;
         }
+    }
+
+    // OnDestroy Cleanup
+    private void OnDestroy()
+    {
+        // Stop routines
+        StopAllCoroutines();
+        // Since the laser is created to live independent of the creator,
+        // it has to be removed manually In case of death while firing
+        Destroy(firedLaser);
     }
 
     /// <summary> Makes the object shoot its current weapon, returns true if successful </summary>
@@ -78,18 +89,21 @@ public class ShootComponent : MonoBehaviour
     private IEnumerator ShootingCooldown(Weapon input)
     {
         input.isOnCooldown = true;
-        float timePassed = input.shootCooldownTime;
+        input.timeLeftInCooldown = input.shootCooldownTime;
 
         // Cooldown timer
-        while (timePassed > 0f)
+        while (input.timeLeftInCooldown > 0f)
         {
-            timePassed -= Time.deltaTime;
-            input.timeLeftInCooldown = timePassed;
+            // Invoke the UI event for the weapon
+            input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.timeLeftInCooldown);
+            input.timeLeftInCooldown -= Time.deltaTime; // Compute time
             yield return null; // Wait a frame
         }
-
         input.isOnCooldown = false;
         input.timeLeftInCooldown = 0f;
+
+        // Raise cooldown event one last time
+        input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.timeLeftInCooldown);
     }
 
 
@@ -171,17 +185,21 @@ public class ShootComponent : MonoBehaviour
     // This Routine will be stopped if the button is released
     private IEnumerator PlayerGatlingRoutine(Weapon input)
     {
-        float timeLeft;
         // Warm up timer
         // TODO: Missing warm up sound
-        timeLeft = input.warmupTime;
-        while (timeLeft > 0f)
+        input.warmupCounter = input.warmupTime;
+        while (input.warmupCounter > 0f)
         {
-            timeLeft -= Time.deltaTime;
-            input.warmupCounter = timeLeft;
+            // Raise UI event
+            input.RaiseModifyMeterCharge(input.warmupTime, input.warmupCounter);
+            // Compute time
+            input.warmupCounter -= Time.deltaTime;
             yield return null;
         }
         input.warmupCounter = 0f;
+
+        // Raise Weapon UI event once more
+        input.RaiseModifyMeterCharge(input.warmupTime, input.warmupCounter);
 
         // Warmup finshed, start shooting until stopped
         WaitForSeconds shotsTime = new WaitForSeconds(input.shootCooldownTime);
@@ -278,6 +296,8 @@ public class ShootComponent : MonoBehaviour
         StopCoroutine(gatlingRoutine);
         gatlingRoutine = null;
         input.warmupCounter = 0f;
+        // Update UI once shooting stops
+        input.RaiseModifyMeterCharge(input.warmupTime, input.warmupTime);
     }
 
     #endregion
@@ -323,22 +343,23 @@ public class ShootComponent : MonoBehaviour
         // Charge up sphere data
         float rateOfChange = maxSphereDiameter / input.maxChargeUpTime;
         float currentDiameter;
-        float elapsedTime = 0f;
+        input.chargeTimeCounter = input.maxChargeUpTime;
 
         // Charge up the laser while held, not switched and shooting not locked
         while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input && !entityScript.isShootingLocked)
         {
-            if (elapsedTime < input.maxChargeUpTime)
+            // Update UI
+            input.RaiseModifyMeterCharge(input.maxChargeUpTime, input.chargeTimeCounter);
+            // Check if charging is finished
+            if (input.chargeTimeCounter > 0f)
             {
-                elapsedTime += Time.deltaTime;
-                input.chargeTimeCounter = elapsedTime;
-                currentDiameter = rateOfChange * elapsedTime;
+                input.chargeTimeCounter -= Time.deltaTime;
+                currentDiameter = rateOfChange * (input.maxChargeUpTime - input.chargeTimeCounter);
                 chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
             }
             else
             {
-                input.chargeTimeCounter = input.maxChargeUpTime;
-                elapsedTime = input.maxChargeUpTime;
+                input.chargeTimeCounter = 0f;
                 currentDiameter = maxSphereDiameter;
                 chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
             }
@@ -350,8 +371,9 @@ public class ShootComponent : MonoBehaviour
         if (WeaponArsenal.instance.GetCurrentWeapon() != input || entityScript.isShootingLocked)
         {
             laserRoutine = null;
-            input.chargeTimeCounter = 0;
+            input.chargeTimeCounter = 0f;
             StartCoroutine(ReduceSphereTillZero(chargeSphere, chargeSphereKillTimeIfCancelled));
+            input.RaiseModifyMeterCharge(input.maxChargeUpTime, input.chargeTimeCounter); // Update UI
             yield break;
         }
 
@@ -375,13 +397,13 @@ public class ShootComponent : MonoBehaviour
 
         // Calculate the width/diameter of the laser based on charge up time
         rateOfChange = (maxLaserWidth - minLaserWidth) / (input.maxChargeUpTime);
-        float laserWidth = rateOfChange * input.chargeTimeCounter + minLaserWidth;
+        float laserWidth = rateOfChange * (input.maxChargeUpTime - input.chargeTimeCounter) + minLaserWidth;
 
         // Create the laser with the specified distance
-        GameObject laser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
+        firedLaser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
         // Extend the laser by a bit so the player cant see the end of the laser
         Vector3 endPos = hitInfo.point + 2 * AnchorObject.transform.up; 
-        StartCoroutine(HandleLaserLine(laser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
+        StartCoroutine(HandleLaserLine(firedLaser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
 
         // Wait a frame so the laser renders
         yield return null;
@@ -405,7 +427,7 @@ public class ShootComponent : MonoBehaviour
                 if (entity.isIgnoringCollisions) continue;
 
                 // Calculate damage depending on charge time
-                int damage = (int)(rateOfChange * input.chargeTimeCounter + input.minDamage); // Floor it
+                int damage = (int)(rateOfChange * (input.maxChargeUpTime - input.chargeTimeCounter) + input.minDamage); // Floor it
 
                 // Deal damage
                 entity.TakeDamage(damage, out int dmgRecieved, out Color colorSet);
@@ -413,10 +435,10 @@ public class ShootComponent : MonoBehaviour
             }
         }
         // Call cooldown on this laser weapon
+        input.chargeTimeCounter = 0f;
         StartCoroutine(ShootingCooldown(input));
         // Laser fire finished
         laserRoutine = null;
-        input.chargeTimeCounter = 0f;
     }
 
     private IEnumerator EnemeyLaserRoutine(Weapon input)
@@ -442,94 +464,92 @@ public class ShootComponent : MonoBehaviour
         int damageVal;
         bool didHit;
         float laserWidth;
-        GameObject laser;
         Vector3 endPos;
         WaitForSeconds cooldown = new WaitForSeconds(input.shootCooldownTime);
 
-    // Label for looping
-    LoopShooting:
-
-        // Create the chargeup prefab
-        chargeSphere = Instantiate(input.chargingSpherePrefab, AnchorObject.transform.position, AnchorObject.transform.rotation, AnchorObject.transform);
-        chargeSphere.transform.localScale = Vector3.zero;
-        // Charge up sphere data
-        rateOfChange = maxSphereDiameter / input.maxChargeUpTime;
-        elapsedTime = 0f;
-
-        // Charge up the laser
-        while (elapsedTime < input.maxChargeUpTime)
+        // Laser Looping
+        while (true)
         {
-            elapsedTime += Time.deltaTime;
-            input.chargeTimeCounter = elapsedTime;
-            currentDiameter = rateOfChange * elapsedTime;
-            chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
-            yield return null; // Wait a frame
-        }
-        // Finished charging
-        input.chargeTimeCounter = input.maxChargeUpTime;
-        currentDiameter = maxSphereDiameter;
-        chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
+            // Create the chargeup prefab
+            chargeSphere = Instantiate(input.chargingSpherePrefab, AnchorObject.transform.position, AnchorObject.transform.rotation, AnchorObject.transform);
+            chargeSphere.transform.localScale = Vector3.zero;
+            // Charge up sphere data
+            rateOfChange = maxSphereDiameter / input.maxChargeUpTime;
+            elapsedTime = 0f;
 
-        // Start reducing the charging sphere as we fire for a better looking animation
-        StartCoroutine(ReduceSphereTillZero(chargeSphere, chargeSphereKillTime));
-
-        // Raycast towards end of screen to find distance to edge of screen
-        edgeLayerMask = LayerMask.GetMask("Edge Collider Boxes");
-
-        // FIRST: Calculate distance to edge of gameplay area
-        didHit = Physics.Raycast(AnchorObject.transform.position, AnchorObject.transform.up, out hitInfo, 200, edgeLayerMask);
-        if (didHit) distanceToEdge = hitInfo.distance;
-        else
-        {
-            // Safeguard: This wouldnt break unless the raycast wasnt able to find the edge screen colliders
-            Debug.Log("ERROR! LASER GUN WASNT ABLE TO FIND THE EDGE SCREEN COLLIDERS IN THE SCENE! Check code at ShootComponent.cs");
-            yield break;
-        }
-
-        // Calculate the width/diameter of the laser based on charge up time
-        rateOfChange = (maxLaserWidth - minLaserWidth) / (input.maxChargeUpTime);
-        laserWidth = rateOfChange * input.chargeTimeCounter + minLaserWidth;
-
-        // Create the laser with the specified distance
-        laser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
-        // Extend the laser by a bit so the player cant see the end of the laser
-        endPos = hitInfo.point + 2 * AnchorObject.transform.up;
-        StartCoroutine(HandleLaserLine(laser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
-
-        // Wait a frame so the laser renders
-        yield return null;
-
-        // Call SphereCastAll in the direction of the laser and stop at the edge collider
-        raycastArray = Physics.SphereCastAll(AnchorObject.transform.position, laserWidth / 2, AnchorObject.transform.up, distanceToEdge);
-
-        // Calculate rateOfChange of damage depending on charge time
-        rateOfChange = (input.maxDamage - input.minDamage) / (input.maxChargeUpTime);
-
-        // Check all hits
-        foreach (RaycastHit currHit in raycastArray)
-        {
-            // Dont damage the creator
-            if (currHit.collider.gameObject.CompareTag(this.gameObject.tag)) continue;
-
-            // Else, attempt to damage if its an entity
-            if (currHit.collider.gameObject.TryGetComponent<CombatEntity>(out CombatEntity entity))
+            // Charge up the laser
+            while (elapsedTime < input.maxChargeUpTime)
             {
-                // if the entity is ignoring collisions, then ignore
-                if (entity.isIgnoringCollisions) continue;
-
-                // Calculate damage depending on charge time
-                damageVal = (int)(rateOfChange * input.chargeTimeCounter + input.minDamage); // Floor it
-
-                // Deal damage
-                entity.TakeDamage(damageVal, out int dmgRecieved, out Color colorSet);
-                HitpointsRenderer.Instance.PrintDamage(currHit.point, dmgRecieved, colorSet);
+                elapsedTime += Time.deltaTime;
+                input.chargeTimeCounter = elapsedTime;
+                currentDiameter = rateOfChange * elapsedTime;
+                chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
+                yield return null; // Wait a frame
             }
+            // Finished charging
+            input.chargeTimeCounter = input.maxChargeUpTime;
+            currentDiameter = maxSphereDiameter;
+            chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
+
+            // Start reducing the charging sphere as we fire for a better looking animation
+            StartCoroutine(ReduceSphereTillZero(chargeSphere, chargeSphereKillTime));
+
+            // Raycast towards end of screen to find distance to edge of screen
+            edgeLayerMask = LayerMask.GetMask("Edge Collider Boxes");
+
+            // FIRST: Calculate distance to edge of gameplay area
+            didHit = Physics.Raycast(AnchorObject.transform.position, AnchorObject.transform.up, out hitInfo, 200, edgeLayerMask);
+            if (didHit) distanceToEdge = hitInfo.distance;
+            else
+            {
+                // Safeguard: This wouldnt break unless the raycast wasnt able to find the edge screen colliders
+                Debug.Log("ERROR! LASER GUN WASNT ABLE TO FIND THE EDGE SCREEN COLLIDERS IN THE SCENE! Check code at ShootComponent.cs");
+                yield break;
+            }
+
+            // Calculate the width/diameter of the laser based on charge up time
+            rateOfChange = (maxLaserWidth - minLaserWidth) / (input.maxChargeUpTime);
+            laserWidth = rateOfChange * input.chargeTimeCounter + minLaserWidth;
+
+            // Create the laser with the specified distance
+            firedLaser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
+            // Extend the laser by a bit so the player cant see the end of the laser
+            endPos = hitInfo.point + 2 * AnchorObject.transform.up;
+            StartCoroutine(HandleLaserLine(firedLaser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
+
+            // Wait a frame so the laser renders
+            yield return null;
+
+            // Call SphereCastAll in the direction of the laser and stop at the edge collider
+            raycastArray = Physics.SphereCastAll(AnchorObject.transform.position, laserWidth / 2, AnchorObject.transform.up, distanceToEdge);
+
+            // Calculate rateOfChange of damage depending on charge time
+            rateOfChange = (input.maxDamage - input.minDamage) / (input.maxChargeUpTime);
+
+            // Check all hits
+            foreach (RaycastHit currHit in raycastArray)
+            {
+                // Dont damage the creator
+                if (currHit.collider.gameObject.CompareTag(this.gameObject.tag)) continue;
+
+                // Else, attempt to damage if its an entity
+                if (currHit.collider.gameObject.TryGetComponent<CombatEntity>(out CombatEntity entity))
+                {
+                    // if the entity is ignoring collisions, then ignore
+                    if (entity.isIgnoringCollisions) continue;
+
+                    // Calculate damage depending on charge time
+                    damageVal = (int)(rateOfChange * input.chargeTimeCounter + input.minDamage); // Floor it
+
+                    // Deal damage
+                    entity.TakeDamage(damageVal, out int dmgRecieved, out Color colorSet);
+                    HitpointsRenderer.Instance.PrintDamage(currHit.point, dmgRecieved, colorSet);
+                }
+            }
+            // Cooldown on this laser weapon
+            input.chargeTimeCounter = 0f;
+            yield return cooldown;
         }
-        // Cooldown on this laser weapon
-        input.chargeTimeCounter = 0f;
-        yield return cooldown;
-        // Loop back to beginning
-        goto LoopShooting;
     }
 
     // Helper routine to reduce the Charging sphere while firing the laser

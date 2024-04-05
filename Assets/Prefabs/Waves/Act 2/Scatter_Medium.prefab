@@ -59,7 +59,8 @@ MonoBehaviour:
   - {fileID: 7809660931541534662}
   - {fileID: 1468181359236149306}
   - {fileID: 8001604191615881946}
-  debug: 0
+  enemyBoundsCenter: 0.75
+  enemyBoundsSize: 0.15
 --- !u!1001 &261014528007663978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -246,48 +247,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3114796476864968346, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
-    - {fileID: 4674963737278699074, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 6016491640745736020}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
 --- !u!1 &3581413979750009611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
   m_PrefabInstance: {fileID: 4416933987641477691}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6016491640745736020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3581413979750009611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f034b8de3e1ced48a2103d5d9663c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  shield: 2
-  collisionDamage: 1
-  timeLeftInvulnerable: 0
-  dmgInvulnTime: 0
-  isShootingLocked: 0
-  isAbilityLocked: 0
-  isInvulnerable: 0
-  isIgnoringCollisions: 0
-  moveSpeed: 5
-  enterSpeed: 20
-  arrivalPercentUpScreen: 0.8
-  shootDelay: 1
-  ignoreDataHolder: 0
-  statsData: {fileID: 11400000, guid: e8f372be573bc164bb82d1ce5cebefe9, type: 2}
 --- !u!4 &5328408757270605396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8412255195681629295, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
@@ -345,15 +314,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3114796476864968346, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
-    - {fileID: 4674963737278699074, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 3940822069626735176}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
 --- !u!4 &3858518196621380393 stripped
 Transform:
@@ -365,33 +329,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
   m_PrefabInstance: {fileID: 4697923311944216390}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3940822069626735176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5606356299556089462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f034b8de3e1ced48a2103d5d9663c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  shield: 2
-  collisionDamage: 1
-  timeLeftInvulnerable: 0
-  dmgInvulnTime: 0
-  isShootingLocked: 0
-  isAbilityLocked: 0
-  isInvulnerable: 0
-  isIgnoringCollisions: 0
-  moveSpeed: 5
-  enterSpeed: 20
-  arrivalPercentUpScreen: 0.8
-  shootDelay: 1
-  ignoreDataHolder: 0
-  statsData: {fileID: 11400000, guid: e8f372be573bc164bb82d1ce5cebefe9, type: 2}
 --- !u!1001 &7905495296160560985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,15 +448,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3114796476864968346, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
-    - {fileID: 4674963737278699074, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 7620847198708887792}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
 --- !u!4 &1894899066678796568 stripped
 Transform:
@@ -531,33 +463,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
   m_PrefabInstance: {fileID: 7994554743103047031}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7620847198708887792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7065578456648778823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f034b8de3e1ced48a2103d5d9663c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  shield: 2
-  collisionDamage: 1
-  timeLeftInvulnerable: 0
-  dmgInvulnTime: 0
-  isShootingLocked: 0
-  isAbilityLocked: 0
-  isInvulnerable: 0
-  isIgnoringCollisions: 0
-  moveSpeed: 5
-  enterSpeed: 20
-  arrivalPercentUpScreen: 0.8
-  shootDelay: 1
-  ignoreDataHolder: 0
-  statsData: {fileID: 11400000, guid: e8f372be573bc164bb82d1ce5cebefe9, type: 2}
 --- !u!1001 &9217336259685449101
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &39788687 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7693945140872468101, guid: 3333bc9f9e6a40c4b8983454bfb39937, type: 3}
-  m_PrefabInstance: {fileID: 1451127885}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,11 +327,6 @@ Transform:
   - {fileID: 705507995}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &952814133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9133110064788226632, guid: 3333bc9f9e6a40c4b8983454bfb39937, type: 3}
-  m_PrefabInstance: {fileID: 1451127885}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1002645810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -451,30 +435,6 @@ PrefabInstance:
     - target: {fileID: 4888234640289285784, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5624538941662455968, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: pauseObject
-      value: 
-      objectReference: {fileID: 952814133}
-    - target: {fileID: 5624538941662455968, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: pauseList.Array.data[0]
-      value: 
-      objectReference: {fileID: 1814742109}
-    - target: {fileID: 5624538941662455968, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: pauseList.Array.data[1]
-      value: 
-      objectReference: {fileID: 39788687}
-    - target: {fileID: 5624538941662455968, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: pauseList.Array.data[2]
-      value: 
-      objectReference: {fileID: 1815162932}
-    - target: {fileID: 5959745050469382405, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_Size.y
-      value: 1640.7352
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_Size.y
-      value: 1640.7352
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -591,7 +551,8 @@ MonoBehaviour:
   debug: 0
   shootAngleInput: 0
   movementInput: {x: 0, y: 0}
-  shootInput: 0
+  isShootHeld: 0
+  isWeaponSwitching: 0
 --- !u!1001 &1224548422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -868,28 +829,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e67606263f6b6478293ed0c9c17173, type: 3}
---- !u!114 &1814742109 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8578425257680249765, guid: 3333bc9f9e6a40c4b8983454bfb39937, type: 3}
-  m_PrefabInstance: {fileID: 1451127885}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1815162932 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7158245376276311438, guid: 3333bc9f9e6a40c4b8983454bfb39937, type: 3}
-  m_PrefabInstance: {fileID: 1451127885}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1919905818459323913
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -31,6 +31,11 @@ public class EventData : MonoBehaviour
     public static void RaiseOnHealthAdded(int currHealth)
     { OnHealthGained?.Invoke(currHealth); }
 
+    /// <summary> Event that will fire on entering or exiting iFrames </summary>
+    public static System.Action<bool> OnInvulnerabilityToggled;
+    /// <summary> Event raiser for OnInvulnerabilityToggled </summary>
+    public static void RaiseOnInvulnerabilityToggled(bool isEntering) => OnInvulnerabilityToggled?.Invoke(isEntering);
+
     #endregion
 
     #region PLAYER SHIELD
@@ -65,8 +70,6 @@ public class EventData : MonoBehaviour
     {
         OnAbilityCooldown?.Invoke(maxAbilityCooldown, currCooldownTimer);
     }
-
-
 
     #endregion
 
