@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityInventoryStrings: []
-  maxAbilityCount: 3
+  maxAbilityCount: 1
   currAbilityIndex: -1
   doDebugLog: 0
   loadDefaultAbilities: 1

@@ -12,6 +12,7 @@ public class ScriptablePistol : ScriptableWeapon
     public GameObject bulletPrefab;
     public Sprite weaponIcon;
     public FMODUnity.EventReference sound;
+    public string description;
 
     [Header("Stats")]
     public int damage;
@@ -20,6 +21,6 @@ public class ScriptablePistol : ScriptableWeapon
 
     public override Weapon GetWeaponObject()
     {
-        return new Pistol(bulletPrefab, weaponIcon, sound, bulletSpeed, damage, weaponName, shotsCooldown);
+        return new Pistol(bulletPrefab, weaponIcon, sound, bulletSpeed, damage, weaponName, shotsCooldown, description);
     }
 }

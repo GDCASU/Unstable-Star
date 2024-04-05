@@ -15,9 +15,10 @@ public class ScriptableProxiBomb : ScriptableAbility
     public float cooldownTime;
     public float bombRadius;
     public int damage;
+    public string description;
 
     public override Ability GetAbilityObject()
     {
-        return new ProximityBombAbility(sName, abilityIcon, bombPrefab, bombRadius, cooldownTime, charges, damage);
+        return new ProximityBombAbility(sName, abilityIcon, bombPrefab, bombRadius, cooldownTime, charges, damage, description);
     }
 }

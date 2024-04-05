@@ -13,6 +13,8 @@ public class ScriptableBirdshot : ScriptableWeapon
     public Sprite weaponIcon;
     public FMODUnity.EventReference sound;
 
+    public string description;
+
     [Header("Stats")]
     public int damage;
     public float bulletSpeed;
@@ -20,6 +22,6 @@ public class ScriptableBirdshot : ScriptableWeapon
 
     public override Weapon GetWeaponObject()
     {
-        return new Birdshot(bulletPrefab, weaponIcon, sound, bulletSpeed, damage, weaponName, shotsCooldown);
+        return new Birdshot(bulletPrefab, weaponIcon, sound, bulletSpeed, damage, weaponName, shotsCooldown, description);
     }
 }
