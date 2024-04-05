@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public static bool pausedGame;
     public GameObject pauseObject;
     public UnityEngine.UI.Button[] pauseList;
+    public ScenesManager sChange;
 
     int arrayNumber;
 
@@ -64,7 +65,8 @@ public class PauseMenu : MonoBehaviour
     {
         pausedGame = false;
         ChangeMenu();
-        SceneManager.LoadScene("Menu");
+        ScenesManager.instance.LoadScene(Scenes.MainMenu);
     }
+
 
 }
