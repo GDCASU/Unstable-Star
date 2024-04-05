@@ -55,9 +55,6 @@ public class WeaponDisplayHandler : MonoBehaviour
 
     private void Awake()
     {
-        // Subscribe to input events
-        PlayerInput.OnSwitchToNextWeapon += swapPanes;
-
         // Get Weapon Icon components
         primaryIcon = primaryIconObj.GetComponent<Image>();
         secondaryIcon = secondaryIconObj.GetComponent<Image>();
@@ -70,10 +67,21 @@ public class WeaponDisplayHandler : MonoBehaviour
 
         // Get values for meter modifying
         maxMeterHeight = primaryMeterRect.offsetMax.y * -1;
+
+        // Subscribe to input events
+        PlayerInput.OnSwitchToNextWeapon += swapPanes;
+        EventData.OnPlayerDeath += UnsubscribeFromEvents;
     }
 
     // Unsubscribe to input events on destroy
     private void OnDestroy()
+    {
+        UnsubscribeFromEvents();
+        EventData.OnPlayerDeath -= UnsubscribeFromEvents;
+    }
+
+    // In a separate function so it can also be stopped if the player dies
+    private void UnsubscribeFromEvents()
     {
         PlayerInput.OnSwitchToNextWeapon -= swapPanes;
         primaryWep.ModifyMeterCharge -= UpdateChargeMeterPrimary;

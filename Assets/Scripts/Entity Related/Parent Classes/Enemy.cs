@@ -145,7 +145,11 @@ public class Enemy : CombatEntity
         EventData.RaiseOnEnemyDeath(gameObject);
 
         StopAllCoroutines();
-        //StartCoroutine(DestroyEnemyAfterCallCo());
+
+        // Explosion Effect
+        Instantiate(deathEffectPrefab, this.transform.position, Quaternion.identity);
+
+        // Destroy Enemy Object
         Destroy(gameObject);
     }
 

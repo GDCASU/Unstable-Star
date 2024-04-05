@@ -14,19 +14,27 @@ public class AbilityDisplayHandler : MonoBehaviour
 
     void Start()
     {
-        // Suscribe to input events
-        EventData.OnAbilityCooldown += RadialCooldown;
-
         // Get the equipped ability
         Ability currAbility = AbilityInventory.instance.GetCurrentAbility();
 
         // Set the images
         activeAbilityObj.sprite = currAbility.abilityIconActive;
         inactiveAbilityObj.sprite = currAbility.abilityIconInactive;
+
+        // Suscribe to input events
+        EventData.OnAbilityCooldown += RadialCooldown;
+        EventData.OnPlayerDeath += UnsubscribeFromEvents;
     }
 
     // Unsuscribe from input events on destroy
     private void OnDestroy()
+    {
+        UnsubscribeFromEvents();
+        EventData.OnPlayerDeath -= UnsubscribeFromEvents;
+    }
+
+    // In a separate function so it can also be stopped if the player dies
+    private void UnsubscribeFromEvents()
     {
         EventData.OnAbilityCooldown -= RadialCooldown;
     }

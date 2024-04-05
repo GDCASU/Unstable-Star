@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8318568940257166349}
   - component: {fileID: 107016054224028910}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: Player Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4915,11 +4915,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 388389212
-      Data2: 1209689145
-      Data3: 1712815531
-      Data4: 2104837577
-    Path: event:/SFX/Enemies/Ship Destroyed
+      Data1: 708082322
+      Data2: 1250716585
+      Data3: -861400440
+      Data4: 1621521794
+    Path: event:/SFX/Player/Ship Effects/Ship Destroyed
   Event: 
   PlayEvent: 1
   StopEvent: 2

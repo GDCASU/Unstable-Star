@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eec92cd34863924aa13d1b2936fc540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEffectPrefab: {fileID: 2887401111048430277, guid: 86fafbd8ba5234d459aeebb47e8c5c17, type: 3}
   health: 5
   shield: 2
   collisionDamage: 1
