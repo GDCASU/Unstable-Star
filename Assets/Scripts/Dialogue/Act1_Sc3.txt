@@ -1,0 +1,336 @@
+﻿Arcade Game Script
+Act One Scene 3 - Meet the Crew
+
+DESC: 
+INT. REBELLION’S SPACE STATION
+
+REBEKAH
+NORMAL
+I can’t believe we made it out of there in one piece…
+
+
+APOLLO
+
+So what’s your story, new guy? How’d you end up locked up in there?
+
+
+DESC: 
+Jaughn begins to think back on how he got here…
+JAUGHN
+(inner monologue)
+Hmm… Well, it all started when…
+
+NOISE
+BEGIN FLASHBACK
+
+
+INT. GALAXY BORDER SECURITY BOOTH
+DESC: 
+We open on a small futuristic border security booth that floats through the vast depths of space… 
+The security booth is connected to a series of satellites spread across the galaxy’s border, each one projecting an EMP field between them.
+Inside, a young adult human is manning the toll booth lazily, reclined in his chair.
+JAUGHN
+(Inner monologue)
+Ugh, this is the most boring job in the world. I can’t believe the Intragalactic Coalition made me a border guard. 
+No one ever comes through here, ever since they signed the “Peace” Accords. 
+Some peace; both galaxies are too terrified of each other to cross the border anyway.
+
+
+DESC: 
+Jaughn looked out the window at the neighboring swirling galaxy and flashing stars in the distance. 
+Normally a beautiful sight, but it’s stayed the same for long enough that it’s started to lose its luster. 
+He looked over at his control panel which was developing a thin layer of dust. 
+
+
+JAUGHN
+(Inner monologue)
+The ventilation system must not be working as well anymore
+
+
+NOISE
+(over intercom)
+JAUGHN’S SUPERVISOR
+Get back to work Jaughn! We don’t pay you to laze around all day!
+
+
+JAUGHN
+Work? What work? No one’s been through here in the last 3 system cycles!
+
+
+JAUGHN’S SUPERVISOR
+Watch your tone! We need to stay vigilant to maintain this alliance! 
+This peace you’re complaining about is all thanks to the Coalition, and any slips through the cracks can destroy it! 
+We are part of something larger, something that you don’t yet understand. 
+Now be on your guard! We have an Unknown Ship making its way here right now!
+NOISE
+*Beep* *Beep* 
+DESC: 
+Jaughn looked at his radar. Sure enough, there was a green blip on it making its way towards him. 
+He looked out the window and saw the unknown ship.
+NOISE
+[pizza music plays] 
+
+JAUGHN
+(inner monologue)
+It’s… a pizza delivery ship? 
+DESC: 
+Jaughn pressed a few buttons on his control panel to talk to the incoming craft.
+JAUGHN
+(hailing the approaching ship)
+Uh, hey there. This is the Intragalactic Border Crossing Station #23, state your purpose for crossing and send me your travel visa. 
+Uh, I mean, please.
+
+NOISE
+(over the communicator)
+
+PIZZA DELIVERY DRIVER
+Uhhh hey man, could you let me through without the formal crap? I gotta get through the border right now. 
+If I don’t deliver these pizzas to Omicron 12 in the next 30 minutes, they take it out of my pay.
+
+
+JAUGHN
+Sorry, no-can-do, friend. Protocol says you need to send me your credentials before I can permit anything. 
+Standard bureaucratic stuff, you know?
+
+
+
+NOISE
+(over the communicator)
+PIZZA DELIVERY DRIVER
+Come on, help a brother out! Don’t you know how crazy it is to make it across the galaxy in less than 30 minutes?? 
+I can tell just by looking at you that we’re both minimum-wage employees dreaming of something better. 
+Victims of the establishment. I mean, who cares about the Coalition’s protocol when they don’t help the little guys like us? 
+Can’t you just let me through?
+
+
+JAUGHN
+…
+
+
+JAUGHN
+(inner monologue)
+Hmm… he seems to be in the same boat as me. He hates his job and just wants to get on with his day. 
+I don’t care about the Coalition’s ridiculous red tape. Why would they care about a pizza delivery guy?
+…
+I’ll turn off my supervisor’s camera. He doesn’t know that I figured out the manual override… he won’t notice. 
+And then… let’s just disable the EMP field here… and…
+DESC: 
+With a series of button presses, the EMP field protecting the border around his security booth flickered off. 
+NOISE
+[SFX: Security screen turning off]
+[SFX: EMP field powering down]
+
+
+JAUGHN
+(over the communicator)
+Head on through, and be quick about it.
+
+
+NOISE
+(over the communicator)
+PIZZA DELIVERY DRIVER
+Thanks, brother!
+
+
+DESC: 
+The pizza delivery ship revved its engines and quickly sped through. Just as quickly, Jaughn flipped the EMP field back on and turned his surveillance camera back on. 
+NOISE
+[SFX: Spaceship rocketing through]
+[SFX: EMP field powering back up]
+
+
+NOISE
+(over the communicator)
+JAUGHN’S SUPERVISOR
+JAUGHN?! JAUGHN?! What the bloody hell just happened?! Was this another so-called “power outage?” 
+
+
+JAUGHN
+Yes sir, and not to worry, I sent the driver back. He wouldn’t supply his credentials.
+
+JAUGHN’S SUPERVISOR
+Don’t lie to me! You might have figured out how to turn off my main camera but you forgot about the backup camera! I saw the whole thing! 
+
+
+JAUGHN
+(inner monologue) !-
+Wait, how? I turned off the— 
+There’s… another camera under the desk?! 
+!@$$! I couldn’t see it among all the blinking lights in this place!
+
+(audible) Uhh, I don’t know what you’re talking about, sir, I—
+
+
+JAUGHN’S SUPERVISOR
+I’m hereby placing you under arrest, until you can be court-martialed. Violating border protocol is a class 3 offense. 
+Don’t even think about trying to run! You’ll be surrounded within the next 3 minutes! 
+Time to learn some respect for the Coalition!
+JAUGHN
+(inner monologue)
+So, this is it. A lifetime of trying to make something of my life, and it all ends over a stupid protocol violation…
+
+NOISE
+END FLASHBACK
+
+DESC: 
+INT. REBELLION’S SPACE STATION 
+JAUGHN
+…They took me to the nearest asteroid base where I was court-martialed. I tried to come up with an excuse but I couldn’t. 
+They slapped me with a sentence of half my lifespan at Sentinel Max Security for that…
+
+
+APOLLO
+
+Damn.
+
+
+REBEKAH
+That’s real tough, dude.
+
+
+EBB
+
+How unfortunate.
+
+
+JAUGHN
+Thank you for getting me out of there. I really appreciate it.
+
+
+REBEKAH
+Well, we were looking for our Captain, but I guess we got the wrong information and found you instead. 
+
+
+
+
+APOLLO
+
+Well, it is what it is… The entire jail’s freaking space dust now! Our Captain probably didn’t survive that, sadly. 
+What we got now is this guy. Maybe we can make him a new recruit?
+
+
+JAUGHN
+Me? A new recruit? Listen, you guys are rebels, right? I’m in too deep with the Coalition as it is. I don’t know if I-
+
+
+REBEKAH
+Looks like he’s scared. What good is he to us?
+
+
+EBB
+
+
+As a former Coalition Border Guard, he may be privy to secret Coalition intel, which will aid in our continued effort to blow their heads off their shoulders. 
+I mean, save the galaxy.
+
+
+APOLLO
+
+
+Ooh, secret intel. What do you have for us, Jaughn? I’m ex-Coalition myself, but my intel dried up after I was discharged 7 Earth years ago.
+
+
+JAUGHN
+Uh, well, the Border Unit doesn’t exactly have high security clearance. They wouldn’t even tell me where the bathroom was on my first day…
+
+
+APOLLO
+
+…
+
+
+EBB
+
+…
+
+
+REBEKAH
+…
+
+
+JAUGHN
+But, um, I have other great skills too! I went through basic training, and I spent all my downtime reverse-engineering Coalition tech. 
+That’s how I knew how to disable my supervisor’s camera.
+
+
+
+REBEKAH
+
+Okay, well that’s a start. Not a “Captain” start but a start… and our other captain might as well be space dust, so we need somebody.
+
+
+APOLLO
+
+
+You did show some skill flying out of that prison back there. And the way you blew up the Prison Warden? 
+That was beau-tee-ful! Definitely new recruit material. Just keep that up and you’ll win over the peanut gallery here.
+
+
+EBB
+
+According to Section 14, Article 5, Subsection 27 of the Anti-Coalition Rebellion Code, new recruits must have proven themselves through an act of heroism. 
+Jaughn has sufficiently proven himself. However, Jaughn must formally pledge himself to the cause.
+
+
+JAUGHN
+(inner monologue)
+Hmm… my whole life I’ve felt like a joke and always dreamed of something better. Is this that moment? 
+I don’t want to become an outlaw, but given what already happened, I’m already a fugitive. 
+My path has already been altered forever, and there’s no turning back now.
+
+
+DESC: 
+He turned back to the three leaders standing in front of him. 
+
+
+JAUGHN
+Alright, I accept. I’ll join you guys.
+
+
+REBEKAH
+Wow. Didn’t expect that.
+
+
+APOLLO
+
+Hell yeah!
+
+
+JAUGHN
+And I actually remembered some intel that could help you guys.
+
+
+EBB
+
+We’re listening.
+
+
+JAUGHN
+The only radio station we were allowed to listen to in our booths was K-COAL: the Coalition’s main broadcast channel. 
+Way out on the edge of the galaxy, the civilian signal doesn’t reach that well, so we were given the coordinates of each satellite to manually connect to them. 
+It may not seem like much, but those signals reach most major systems.
+
+
+APOLLO
+You mean the channel that’s nothing but propaganda? Hmm… Coalition satellites… if we could rewire those…
+
+
+REBEKAH
+…we could send out our own recruitment message!
+
+
+EBB
+
+Understood. In the absence of the Captain, it seems our next mission has been decided.
+
+
+APOLLO
+Welcome aboard, Jaughn! By the way, the bathroom is down that way to the left.
+
+
+JAUGHN
+Oh… right.
+
+
+BREAK
+END

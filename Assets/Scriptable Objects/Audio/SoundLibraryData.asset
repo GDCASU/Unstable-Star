@@ -79,3 +79,73 @@ MonoBehaviour:
       Data3: -1733932671
       Data4: -1189526554
     Path: event:/SFX/Hazards/Asteroid Destroyed
+  _spaceshipDoorClose:
+    Guid:
+      Data1: -1400442850
+      Data2: 1204334069
+      Data3: 1303961507
+      Data4: 2094338392
+    Path: event:/SFX/Dialogue/SpaceshipDoorClose
+  _spaceshipStartup:
+    Guid:
+      Data1: -359532871
+      Data2: 1306766219
+      Data3: 126566314
+      Data4: 546344333
+    Path: event:/SFX/Dialogue/SpaceshipStartup
+  _airEscaping:
+    Guid:
+      Data1: 1674994239
+      Data2: 1183496605
+      Data3: -1569948505
+      Data4: -247621018
+    Path: event:/SFX/Dialogue/AirEscaping
+  _applause:
+    Guid:
+      Data1: -33309073
+      Data2: 1162594589
+      Data3: 2007262903
+      Data4: -45492567
+    Path: event:/SFX/Dialogue/Applause
+  _explosion:
+    Guid:
+      Data1: 1611473283
+      Data2: 1324712686
+      Data3: 1761707931
+      Data4: 1819695527
+    Path: event:/SFX/Dialogue/Explosion
+  _intercomTurnOn:
+    Guid:
+      Data1: -1927517772
+      Data2: 1304589767
+      Data3: -389461575
+      Data4: 1770546023
+    Path: event:/SFX/Dialogue/IntercomTurnOn
+  _intercomBuzz:
+    Guid:
+      Data1: 831016673
+      Data2: 1308399488
+      Data3: 874076342
+      Data4: -865714838
+    Path: event:/SFX/Dialogue/IntercomBuzz
+  _powerDownField:
+    Guid:
+      Data1: 1659342498
+      Data2: 1208212183
+      Data3: -769733445
+      Data4: 881009406
+    Path: event:/SFX/Dialogue/PowerDownField
+  _proximityAlert:
+    Guid:
+      Data1: 58558759
+      Data2: 1155560623
+      Data3: -322836601
+      Data4: -613541042
+    Path: event:/SFX/Dialogue/ProximityAlert
+  _shipCrashing:
+    Guid:
+      Data1: 183029349
+      Data2: 1223121407
+      Data3: -720661862
+      Data4: -186955646
+    Path: event:/SFX/Dialogue/ShipCrashing

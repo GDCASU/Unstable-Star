@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b871c623-cb20-4cf2-b089-07c0ef48307d}">
+		<property name="assetPath">
+			<value>power_down_field.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>12.192729166666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{11d4c43a-adb1-4f3d-92cb-93372a152139}</destination>
+		</relationship>
+	</object>
+</objects>
