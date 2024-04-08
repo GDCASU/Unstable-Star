@@ -98,6 +98,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""c27e99b1-dc2a-4026-8457-f6d3fb943a68"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -230,6 +239,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SwitchNextAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e85eadbb-2933-47bd-81b1-bf701aee8356"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -764,6 +784,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ShipControls_SwitchNextAbility = m_ShipControls.FindAction("SwitchNextAbility", throwIfNotFound: true);
         m_ShipControls_UseAbility = m_ShipControls.FindAction("UseAbility", throwIfNotFound: true);
         m_ShipControls_FocusSpeed = m_ShipControls.FindAction("FocusSpeed", throwIfNotFound: true);
+        m_ShipControls_Aim = m_ShipControls.FindAction("Aim", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -845,6 +866,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_ShipControls_SwitchNextAbility;
     private readonly InputAction m_ShipControls_UseAbility;
     private readonly InputAction m_ShipControls_FocusSpeed;
+    private readonly InputAction m_ShipControls_Aim;
     public struct ShipControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -857,6 +879,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SwitchNextAbility => m_Wrapper.m_ShipControls_SwitchNextAbility;
         public InputAction @UseAbility => m_Wrapper.m_ShipControls_UseAbility;
         public InputAction @FocusSpeed => m_Wrapper.m_ShipControls_FocusSpeed;
+        public InputAction @Aim => m_Wrapper.m_ShipControls_Aim;
         public InputActionMap Get() { return m_Wrapper.m_ShipControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -890,6 +913,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @FocusSpeed.started += instance.OnFocusSpeed;
             @FocusSpeed.performed += instance.OnFocusSpeed;
             @FocusSpeed.canceled += instance.OnFocusSpeed;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
         }
 
         private void UnregisterCallbacks(IShipControlsActions instance)
@@ -918,6 +944,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @FocusSpeed.started -= instance.OnFocusSpeed;
             @FocusSpeed.performed -= instance.OnFocusSpeed;
             @FocusSpeed.canceled -= instance.OnFocusSpeed;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
         }
 
         public void RemoveCallbacks(IShipControlsActions instance)
@@ -1063,6 +1092,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSwitchNextAbility(InputAction.CallbackContext context);
         void OnUseAbility(InputAction.CallbackContext context);
         void OnFocusSpeed(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
