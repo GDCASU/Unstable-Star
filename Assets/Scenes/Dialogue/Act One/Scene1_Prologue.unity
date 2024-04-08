@@ -656,6 +656,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3134575789607906092, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3840436168660125924, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Maskable
       value: 1
