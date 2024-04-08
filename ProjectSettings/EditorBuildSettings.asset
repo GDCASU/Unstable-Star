@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Dialogue/Act One/Scene1_Prologue.unity
+    path: Assets/Scenes/Dialogue/Act One/CutScene_1.unity
     guid: 5e84de4daa9c1f04bac73ae0059f8a0d
   - enabled: 1
-    path: Assets/Scenes/Dialogue/Act One/Scene3_Meet_the_Crew.unity
+    path: Assets/Scenes/Dialogue/Act One/CutScene_2.unity
     guid: 9c1b0b09b1fabb54a90d5f67e20a57ec
   m_configObjects: {}

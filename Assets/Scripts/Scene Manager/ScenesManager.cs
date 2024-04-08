@@ -13,8 +13,9 @@ public enum Scenes
     Level_2,
     CutScene_4,
     CutScene_5,
-    Level_3,
     CutScene_6,
+    Level_3,
+    CutScene_7,
     GameOver
 }
 

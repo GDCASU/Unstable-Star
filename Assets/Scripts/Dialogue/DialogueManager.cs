@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] DialogueOptions dialogueOptions;
     [SerializeField] GameObject dialogueObject;
     [SerializeField] string currentSceneFile;
+    [SerializeField] ScenesManager sceneSwitcher;
 
     static string[][] currentDialogue;
 
@@ -192,6 +193,7 @@ public class DialogueManager : MonoBehaviour
     // Changes to the next scene
     public void ChangeScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        sceneSwitcher.LoadNextScene();
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }
