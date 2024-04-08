@@ -17,7 +17,11 @@ public class levelButton : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            lvlText.newCurrentLevel += 1 * iterationDir;
+            if (!ScenesManager.instance.CheckLevel(ScenesManager.currentLevel + iterationDir))
+                return;
+
+            ScenesManager.currentLevel += iterationDir;
+            lvlText.UpdateText(ScenesManager.currentLevel);
         }
     }
 }

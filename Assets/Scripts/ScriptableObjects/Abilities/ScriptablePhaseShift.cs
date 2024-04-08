@@ -11,13 +11,15 @@ public class ScriptablePhaseShift : ScriptableAbility
     public string sName;
     public Material phaseShiftMaterial;
     public GameObject particlePrefab;
-    public Sprite abilityIcon;
+    public Sprite abilityIconActive;
+    public Sprite abilityIconInactive;
     public int charges;
     public float cooldownTime;
     public float durationTime;
-
+    [TextAreaAttribute]
+    public string description;
     public override Ability GetAbilityObject()
     {
-        return new PhaseShiftAbility(sName, abilityIcon, phaseShiftMaterial, particlePrefab, charges, cooldownTime, durationTime);
+        return new PhaseShiftAbility(sName, abilityIconActive, abilityIconInactive, phaseShiftMaterial, particlePrefab, charges, cooldownTime, durationTime, description);
     }
 }

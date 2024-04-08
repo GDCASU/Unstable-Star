@@ -5,32 +5,22 @@ using TMPro;
 
 public class levelText : MonoBehaviour
 {
-    public List<string> levelNames;
     public int maxLevel;
-    public int newCurrentLevel;
-    private int currentLevel;
+
     private TMP_Text tmpText;
 
     // Start is called before the first frame update
     void Start()
     {
         tmpText = gameObject.GetComponent<TMP_Text>();
-        currentLevel = -1;
-        newCurrentLevel = 0;
+        UpdateText(ScenesManager.currentLevel);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateText(int level)
     {
-        if (newCurrentLevel != currentLevel)
-        {
-            if (newCurrentLevel >= 0 && newCurrentLevel <= maxLevel && newCurrentLevel < levelNames.Count)
-            {
-                currentLevel = newCurrentLevel;
-                tmpText.text = levelNames[currentLevel];
-            }
-            else
-                newCurrentLevel = currentLevel;
-        }
+        if (level <= maxLevel && level > 0)
+            tmpText.text = "Act " + level;
+        else
+            Debug.LogError("Error: Level does not exist.");
     }
 }

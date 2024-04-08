@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010086236, g: 0.052700967, b: 0.15289032, a: 1}
+  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -142,6 +142,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2236945867347826101, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
+      propertyPath: primary
+      value: 
+      objectReference: {fileID: 11400000, guid: 712e94365918bd4439e4e0a7f876cfdd, type: 2}
+    - target: {fileID: 2236945867347826101, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
+      propertyPath: secondary
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f690268667fd3a4a928501cf26f8f09, type: 2}
     - target: {fileID: 2457199636198138481, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.0268755
@@ -757,11 +765,11 @@ PrefabInstance:
       objectReference: {fileID: 1815162932}
     - target: {fileID: 5959745050469382405, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1639.4053
+      value: 861.9548
       objectReference: {fileID: 0}
     - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1639.4053
+      value: 861.9548
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -799,7 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWave: {fileID: 0}
   wavePools:
-  - {fileID: 11400000, guid: 5dc5005ac19d6004caddfb90f89769f9, type: 2}
+  - {fileID: 11400000, guid: e6b6db132b7ae4f4fafe016f5b045b9a, type: 2}
   onWaveStart:
     m_PersistentCalls:
       m_Calls: []

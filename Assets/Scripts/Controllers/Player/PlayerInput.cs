@@ -18,8 +18,11 @@ public class PlayerInput : MonoBehaviour
     // Input-Updated Values
     [HideInInspector] public Vector2 movementInput; // Vector2 for movement
     [HideInInspector] public bool isShootHeld;       // A boolean that is true when shooting button is held down; false otherwise
+    [HideInInspector] public bool isWeaponSwitching; // Boolean that denotes that the weapon switch animation hasnt finished yet
 
     // Local Variables
+    /* Shantanu messing arund*/
+    private InputAction.CallbackContext cxt;
     private PlayerControls playerControls;
     private Coroutine modifyAngleOfAimRoutine;
     private Coroutine playerShootingRoutine;
@@ -44,6 +47,9 @@ public class PlayerInput : MonoBehaviour
 
     /// <summary> Player's Rotate Aim Event </summary>
     public static event System.Action OnRotateAim; // Action List
+
+    /// <summary> Player's Hold Focus Speed </summary>
+    public static event System.Action<bool> OnFocusSpeedHeld; // Action List
 
     #endregion
 
@@ -72,6 +78,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
+        // Control handling
         if (playerControls == null)
         {
             playerControls = new PlayerControls();
@@ -81,20 +88,26 @@ public class PlayerInput : MonoBehaviour
 
             playerControls.ShipControls.Shoot.performed += i => HandleShootingInput(i);     // perfomed event fires when the button is pressed
             playerControls.ShipControls.Shoot.canceled += i => HandleShootingInput(i);      // canceled event fires when the button is released
-            playerControls.ShipControls.UseAbility.performed += i => { OnUseAbility?.Invoke(); };
 
             playerControls.ShipControls.AngleLeft.performed += i => HandleShootAngleInput(i, false);   // perfomed event fires when the button is pressed 
             playerControls.ShipControls.AngleRight.performed += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is pressed
             playerControls.ShipControls.AngleLeft.canceled += i => HandleShootAngleInput(i, false);     // perfomed event fires when the button is released
             playerControls.ShipControls.AngleRight.canceled += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is released
-            
-            playerControls.ShipControls.SwitchNextWeapon.performed += i => { OnSwitchToNextWeapon?.Invoke(); };
-            playerControls.ShipControls.SwitchNextAbility.performed += i => { OnSwitchToNextAbility?.Invoke(); };
+
+            playerControls.ShipControls.SwitchNextWeapon.performed += i => HandleOnWeaponSwitch();
+
+            playerControls.ShipControls.SwitchNextAbility.performed += i => OnSwitchToNextAbility?.Invoke();
+
+            playerControls.ShipControls.UseAbility.performed += i => OnUseAbility?.Invoke();
+
+            playerControls.ShipControls.FocusSpeed.performed += i => OnFocusSpeedHeld?.Invoke(true);
+            playerControls.ShipControls.FocusSpeed.canceled += i => OnFocusSpeedHeld?.Invoke(false);
         }
 
         playerControls.Enable();
 
     }
+
     private void HandleMovementInput(InputAction.CallbackContext context)   // Just update the movement vector everytime the player moves
     {
         movementInput = context.ReadValue<Vector2>();
@@ -192,6 +205,15 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    // Handles the weapon switching of the player, does not go through if animation is playing
+    private void HandleOnWeaponSwitch()
+    {
+        // Ignore if weapon switch animation is still running
+        if (isWeaponSwitching) return;
+
+        // Else, do raise event
+        OnSwitchToNextWeapon?.Invoke();
+    }
 
     // Coroutines that modifies the angle of shooting while key is pressed
     private IEnumerator ModifyAngleOfAim()
