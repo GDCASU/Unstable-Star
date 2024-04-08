@@ -52,7 +52,8 @@ Yeah, no need to be modest about it, my guy. We’ve got the biggest battle yet 
 EBB
 
 
-Section 15, Article 2, Subsection 12 of the Anti-Coalition Rebellion Code says that we have the right to nominate a new Captain in the event the old Captain is unable to perform their duties. All in favor of nominating Jaughn as the new Captain?
+Section 15, Article 2, Subsection 12 of the Anti-Coalition Rebellion Code says that we have the right to nominate a new Captain in the event the old Captain is unable to perform their duties. 
+All in favor of nominating Jaughn as the new Captain?
 
 
 [All in Unison]
@@ -68,7 +69,8 @@ And there we have it. Jaughn is our new Captain moving forward!
 
 
 DESC: 
-The three leaders and the rest of the Rebellion gave Jaughn a round of applause. Jaughn looked around and suddenly felt a level of respect emanating from everyone looking at him.
+The three leaders and the rest of the Rebellion gave Jaughn a round of applause. 
+Jaughn looked around and suddenly felt a level of respect emanating from everyone looking at him.
 NOISE
 *applause* 
 JAUGHN

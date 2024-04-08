@@ -1,8 +1,6 @@
-﻿
+﻿DESC: 
 Gameplay*( Lvl 1: the crew clears the route to Proximus 3)
 
-
-After Gameplay
 
 
 DESC: 
@@ -12,6 +10,7 @@ Meanwhile, the large, shadowy figure from before is seen boarding a ship for the
 SHADOWY FIGURE
 So, that’s their plan then. They’ll all be gathered in one place… taking care of them will be easy. Nothing will threaten the Coalition’s plans.
 
+BREAK
 
 Act Three Scene 3- The Path Ahead
 DESC: 
@@ -43,10 +42,14 @@ I’m picking up several signals approaching us. They’re… not Coalition sign
 
 
 
-
-DESC: 
-One by one, random civilian crafts start warping into the sector. Doctors, farmers, chefs, politicians, people from all walks of life are here. Even… [Pizza delivery theme] pizza delivery drivers…
 BREAK
+DESC: 
+One by one, random civilian crafts start warping into the sector. 
+Doctors, farmers, chefs, politicians, people from all walks of life are here. 
+Even… pizza delivery drivers…
+
+NOISE
+pizza theme
 
 PIZZA DELIVERY DRIVER
 Hey guys! Are we late? I hope not, I don’t want to lose my tip.
@@ -81,9 +84,8 @@ I’m picking up the Coalition’s signal near the hypergiant star. The ship the
 REBEKAH
 I’m navigating us there now. Everyone, follow us and prepare to fight!
 
-
+BREAK
 Gameplay ( lvl 2: the Rebellion and crew have to fight their way to the giant Coalition ship)
 
 
-BREAK
 END

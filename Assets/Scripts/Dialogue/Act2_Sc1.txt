@@ -74,7 +74,7 @@ Everyone, to your ships!
 
 
 
-
+BREAK
 DESC: 
 After traveling for a while, the crew reaches the outskirts of the K-COAL network’s first broadcasting station. It was orbiting around a planet that’s been converted into a massive Coalition factory. The civilians that had lived here were forced out several Earth years ago. Out here, there are just old floating billboard stations and space debris.  
 
