@@ -3,63 +3,66 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Cutscene : MonoBehaviour
 {
     Animator animator;
+    [SerializeField] PlayableDirector director;
+    [SerializeField] DialogueManager dialogueManager;
 
-    public List<GameObject> dialogue = new List<GameObject>();
-    int currentDia = -1;
-
-    bool inDialogue = false;
+    [SerializeField] bool playOnAwake = false;
     public bool debug = false;
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
-        foreach(var dia in dialogue) dia.SetActive(false);
+
+        animator.enabled = playOnAwake;
+        director.Play();
+        director.Pause();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) ProgressDialogue();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (debug) Debug.Log("Space pressed.");
+        }
+
+        if(director.state == PlayState.Playing)
+        {
+            if (debug) Debug.Log("Director is playing");
+
+            StopDialogue();
+        }
     }
 
-    /// <summary>
-    /// Starts dialogue, allowing the player to click the attack button to progress.
-    /// </summary>
+    public void StartAnimation()
+    {
+        animator.enabled = true;
+    }
+
     public void StartDialogue()
     {
         if (debug) Debug.Log("Cutscene::StartDialogue");
-        inDialogue = true;
-        ProgressDialogue();
+
+        dialogueManager.StartText();
+        ChangeDialogue();
     }
 
-    public void ProgressDialogue()
+    public void ChangeDialogue()
     {
-        if (debug) Debug.Log("Cutscene::ProgressDialogue");
-        if (!inDialogue) return;
+        if (debug) Debug.Log("Cutscene::ChangeDialogue");
 
-        if(++currentDia >=  dialogue.Count)
-        {
-            EndDialogue();
-            return;
-        }
-
-        if (currentDia > 0) dialogue[currentDia - 1].SetActive(false);
-        dialogue[currentDia].SetActive(true);
+        dialogueManager.ChangeDialogue();
     }
 
-    /// <summary>
-    /// Ends the current dialogue and allows the animator to progress.
-    /// </summary>
-    public void EndDialogue()
+    public void StopDialogue()
     {
-        if (debug) Debug.Log("Cutscene::EndDialogue");
+        if (debug) Debug.Log("Cutscene::StopDialogue");
 
-        inDialogue = false;
-        foreach (var dia in dialogue) dia.SetActive(false);
-        currentDia = -1;
+        director.Pause();
         animator.SetTrigger("DialogueDone");
     }
 }
