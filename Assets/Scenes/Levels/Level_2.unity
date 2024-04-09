@@ -3509,6 +3509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   director: {fileID: 1683389119}
   dialogueManager: {fileID: 1683389117}
+  dialogueBox: {fileID: 866038012}
   playOnAwake: 1
   debug: 1
 --- !u!95 &2140016680

@@ -10,6 +10,7 @@ public class Cutscene : MonoBehaviour
     Animator animator;
     [SerializeField] PlayableDirector director;
     [SerializeField] DialogueManager dialogueManager;
+    [SerializeField] GameObject dialogueBox;
 
     [SerializeField] bool playOnAwake = false;
     public bool debug = false;
@@ -21,6 +22,7 @@ public class Cutscene : MonoBehaviour
         animator.enabled = playOnAwake;
         director.Play();
         director.Pause();
+        dialogueBox.SetActive(false);
     }
 
     private void Update()
@@ -47,6 +49,7 @@ public class Cutscene : MonoBehaviour
     {
         if (debug) Debug.Log("Cutscene::StartDialogue");
 
+        dialogueBox.SetActive(true);
         dialogueManager.StartText();
         ChangeDialogue();
     }
@@ -62,6 +65,7 @@ public class Cutscene : MonoBehaviour
     {
         if (debug) Debug.Log("Cutscene::StopDialogue");
 
+        dialogueBox.SetActive(false);
         director.Pause();
         animator.SetTrigger("DialogueDone");
     }
