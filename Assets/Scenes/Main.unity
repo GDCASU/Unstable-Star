@@ -707,6 +707,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 7.699951
       objectReference: {fileID: 0}
+    - target: {fileID: 2523294005482541713, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50.000244
+      objectReference: {fileID: 0}
     - target: {fileID: 4646734826145380836, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.x
       value: 1925
@@ -787,7 +791,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2007893423886500340, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 1560372154}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
@@ -1080,7 +1084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1560372154
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1088,7 +1092,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560372153}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1449,7 +1453,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 713670646837117297, guid: 0bfcfe442b2607148b58940abd7010cb, type: 3}
       propertyPath: hideCursor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 713670646837117297, guid: 0bfcfe442b2607148b58940abd7010cb, type: 3}
+      propertyPath: lockCursor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 713670646837117297, guid: 0bfcfe442b2607148b58940abd7010cb, type: 3}
+      propertyPath: capFrameRate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 713670646837117297, guid: 0bfcfe442b2607148b58940abd7010cb, type: 3}
+      propertyPath: confineCursor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1016259747734962094, guid: 0bfcfe442b2607148b58940abd7010cb, type: 3}
       propertyPath: m_Name

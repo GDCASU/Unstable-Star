@@ -141,9 +141,10 @@ public class PlayerInput : MonoBehaviour
     private void HandleAimInput(InputAction.CallbackContext context)
     {
         cursorAimScreenPoint = context.ReadValue<Vector2>();
-        Vector3 transPoint = new Vector3(cursorAimScreenPoint.x, cursorAimScreenPoint.y, 0);
+        Vector3 transPoint = new Vector3(cursorAimScreenPoint.x, cursorAimScreenPoint.y, 50);
         cursorAimWorldPoint = Camera.main.ScreenToWorldPoint(transPoint);
         Debug.Log("Screen position: " + cursorAimScreenPoint);
+        Debug.Log("Screen point: " + Input.mousePosition);
         Debug.Log("World position: " + cursorAimWorldPoint);
     }
 
@@ -153,13 +154,9 @@ public class PlayerInput : MonoBehaviour
         {
             // Code to be fired when the player angles the turret
             if (isRight)       // angle left button was pressed
-            {
                 signAngleMult = -1f;
-            }
             else                // angle right button was pressed
-            {
                 signAngleMult = 1f;
-            }
 
             // Coroutine Handling
             HandleAngleRoutine(buttonHeld: true);

@@ -7,8 +7,10 @@ public class GameSettings : MonoBehaviour
 {
     public static GameSettings instance;        // Singleton reference
 
-    [Header("Gameplay")]
+    [Header("Cursor Settings")]
     [SerializeField] private bool hideCursor;
+    [SerializeField] private bool lockCursor;
+    [SerializeField] private bool confineCursor;
 
     [Header("Frame Rate")]
     [SerializeField] private bool capFrameRate;
@@ -31,28 +33,42 @@ public class GameSettings : MonoBehaviour
             SetFrameRate(targetFrameRate);
 
         if (hideCursor)
-            HideCursor();
-        else
-            ShowCursorand();
+            HideCursor(hideCursor);
 
+        if (lockCursor)
+            LockCursor(lockCursor);
+
+        if (confineCursor)
+            ConfineCursor(confineCursor);
     }
 
     /// <summary>
     /// Sets the target frame rate that the game will run at.
     /// </summary>
     /// <param name="frameRate"> Target frame rate </param>
-    private void SetFrameRate(int frameRate)
+    public void SetFrameRate(int frameRate)
     {
         Application.targetFrameRate = frameRate;
     }
 
-    private void HideCursor()
+    public void HideCursor(bool toggle)
     {
-        Cursor.visible = false;
+        Cursor.visible = !toggle;
     }
 
-    private void ShowCursorand()
+    public void LockCursor(bool toggle)
     {
-        Cursor.visible = true;
+        if (toggle)
+            Cursor.lockState = CursorLockMode.Locked;
+        else
+            Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ConfineCursor(bool toggle)
+    {
+        if (toggle)
+            Cursor.lockState = CursorLockMode.Confined;
+        else
+            Cursor.lockState = CursorLockMode.None;
     }
 }

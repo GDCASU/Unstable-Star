@@ -33,15 +33,22 @@ public class WaveManager : MonoBehaviour
     {
         EventData.OnWaveComplete += SpawnWave;
 
-        // CHECK IF WAVE SELECTED IS NULL TO PREVENT NULL REF EXC
+        // CHECK IF WAVE SELECTED IS NULL TO PREVENT NULL REF EXC <- ???
         waveParent = GameObject.Find(WAVE_PARENT_NAME);
 
         currentWavePool = wavePools[0];     // Start currentWavePool at first wave in list
-        SpawnWave();                        // Spawn the first wave
+
+       SpawnWave();                        // Spawn the first wave
     }
 
     public void SpawnWave()
     {
+        if (currentWavePool == null)
+        {
+            Debug.LogError("Error: No wave pool selected");
+            return;
+        }
+
         // Event for UI
         onWaveStart?.Invoke(waveCounter);
         // Spawn wave using RandomWaveSelect()
@@ -51,7 +58,7 @@ public class WaveManager : MonoBehaviour
         if (!wave)
         {
             // handle errors with no waves existing in a wavepool
-            Debug.Log("Error: Could not spawn wave");
+            Debug.LogError("Error: Could not spawn wave");
         }
     }
 
