@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class startbuttonenabled : MonoBehaviour
 {
@@ -14,8 +15,11 @@ public class startbuttonenabled : MonoBehaviour
     public TextMeshProUGUI textObject;
     public float fadeDuration = 2f;
     public float elapsedTime;
+    ScenesManager sm;
     void Start()
     {
+       sm = ScenesManager.instance;
+     
         textObject.alpha = 0f;
 
         arsenal = GameObject.Find("Weapon Arsenal").GetComponent<WeaponArsenal>();
@@ -50,6 +54,7 @@ public class startbuttonenabled : MonoBehaviour
         {
             //SCENE MANAGER CHANGE SCENE
             print("SWITCH SCENE");
+            sm.LoadNextScene();
         }
         else
         {
