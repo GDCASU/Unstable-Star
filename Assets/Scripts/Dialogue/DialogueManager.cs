@@ -63,7 +63,7 @@ public class DialogueManager : MonoBehaviour
     public void ChangeDialogue()
     {
         // Stops dialogue and starts timeline
-        if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE"))
+        if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
         {
             dialogueObject.SetActive(false);
             speakerText.text = "";

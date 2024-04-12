@@ -259,10 +259,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: ProximityAlert
   - m_Version: 1
-    m_Start: 23.083333333333332
+    m_Start: 23.5
     m_ClipIn: 0
     m_Asset: {fileID: 9197995524493900278}
-    m_Duration: 5.316666666666666
+    m_Duration: 4.899999999999999
     m_TimeScale: 1
     m_ParentTrack: {fileID: -7838374011842859633}
     m_EaseInDuration: 0
@@ -671,22 +671,6 @@ MonoBehaviour:
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
   m_Time: 9.816666666666666
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: e0dbd304d1f291e478a6881ca3bb9ad1, type: 2}
---- !u!114 &-5501557075654495646
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
-  m_Name: Signal Emitter
-  m_EditorClassIdentifier: 
-  m_Time: 28.4
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: e0dbd304d1f291e478a6881ca3bb9ad1, type: 2}
@@ -1796,6 +1780,22 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: e0dbd304d1f291e478a6881ca3bb9ad1, type: 2}
+--- !u!114 &3911604413785153408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 28.4
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: e0dbd304d1f291e478a6881ca3bb9ad1, type: 2}
 --- !u!114 &4429160402560057002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2141,13 +2141,13 @@ MonoBehaviour:
     - {fileID: -4905899607518020962}
     - {fileID: 1540238684017893618}
     - {fileID: -8075366830133908412}
-    - {fileID: -5501557075654495646}
     - {fileID: 7099267251997403562}
     - {fileID: -8109219812926784306}
     - {fileID: 3832149483466178593}
     - {fileID: 4429160402560057002}
     - {fileID: 5634382522229665965}
     - {fileID: 299939929676102104}
+    - {fileID: 3911604413785153408}
 --- !u!114 &5634382522229665965
 MonoBehaviour:
   m_ObjectHideFlags: 1
