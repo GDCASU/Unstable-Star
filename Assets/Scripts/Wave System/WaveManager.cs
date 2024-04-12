@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class WaveManager : MonoBehaviour
     private GameObject waveParent;
     private WavePool currentWavePool = null;
     private int waveCounter = 1;
+    private bool waveSpawnStopped = true;
 
     private void Awake()        // Handle Singleton
     {
@@ -37,11 +39,15 @@ public class WaveManager : MonoBehaviour
         waveParent = GameObject.Find(WAVE_PARENT_NAME);
 
         currentWavePool = wavePools[0];     // Start currentWavePool at first wave in list
-        SpawnWave();                        // Spawn the first wave
     }
+
+
 
     public void SpawnWave()
     {
+        if (waveSpawnStopped)
+            return; 
+
         // Event for UI
         onWaveStart?.Invoke(waveCounter);
         // Spawn wave using RandomWaveSelect()
@@ -58,5 +64,16 @@ public class WaveManager : MonoBehaviour
     public void UpdateWaveCounter()         // Update waveCounter and check if we need to raise the difficulty
     {
         waveCounter++;
+    }
+
+    public void StartWaveSpawn()
+    {
+        SpawnWave();                        // Spawn the first wave
+        waveSpawnStopped = false;
+    }
+
+    public void StopWaveSpawn()
+    {
+        waveSpawnStopped = true;
     }
 }
