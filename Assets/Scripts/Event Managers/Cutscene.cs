@@ -27,11 +27,6 @@ public class Cutscene : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (debug) Debug.Log("Space pressed.");
-        }
-
         if(director.state == PlayState.Playing)
         {
             if (debug) Debug.Log("Director is playing");
@@ -43,6 +38,11 @@ public class Cutscene : MonoBehaviour
     public void StartAnimation()
     {
         animator.enabled = true;
+    }
+
+    public void StopAnimation()
+    {
+        animator.enabled = false;
     }
 
     public void StartDialogue()

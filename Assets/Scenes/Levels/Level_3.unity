@@ -714,6 +714,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 1639.9999
       objectReference: {fileID: 0}
+    - target: {fileID: 6377357175804851676, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: currentSceneFile
+      value: Assets/Scripts/Dialogue/Act3_Sc3.txt
+      objectReference: {fileID: 0}
     - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
       value: 1639.9999
