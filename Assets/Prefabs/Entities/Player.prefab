@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bef06b99e0291f4f852365f8f6e789f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 60
+  normalSpeed: 45
   focusSpeed: 20
   playerCopyPrefab: {fileID: 7396476796073729095, guid: d44a161c12495f34cb93b23f5fe8a1db, type: 3}
   LaserSightAnchor: {fileID: 2771126060896347954}
