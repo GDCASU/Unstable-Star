@@ -1,7 +1,6 @@
-﻿Act Three Scene 2 - Dark Clouds Swirl
-
-DESC: 
-EXT. THE ABANDONED COALITION FACTORY - AWAY SYSTEM
+﻿DESC: 
+Act Three Scene 2 - Dark Clouds Swirl
+THE ABANDONED COALITION FACTORY - AWAY SYSTEM
 The ships warp into the Away System one by one, translating into an open sector near the abandoned factory Ebb discovered. 
 Heaps of debris of destroyed homes and civilian ships litter the area surrounding the factory. 
 It floats there in the cold stillness of space. The crew is stunned and silent. 
@@ -32,7 +31,8 @@ EBB
 
 
 REBEKAH
-The Coalition must’ve silenced all opposition to build this factory here. And now it’s just left abandoned to litter this sector anyway. What a waste.
+The Coalition must’ve silenced all opposition to build this factory here. 
+And now it’s just left abandoned to litter this sector anyway. What a waste.
 
 
 JAUGHN
@@ -48,7 +48,8 @@ JAUGHN
 DESC: 
 Jaughn stops to think. He summons his courage and clears his throat…
 JAUGHN
-Our next battle is quickly approaching, everyone. The Coalition has taken from people their homes, their families, their livelihoods. If we don’t stop them, countless lives will continue to be lost. If the Coalition is out for blood, we need to do whatever we can to stop them and avenge these deaths. 
+Our next battle is quickly approaching, everyone. The Coalition has taken from people their homes, their families, their livelihoods. 
+If we don’t stop them, countless lives will continue to be lost. If the Coalition is out for blood, we need to do whatever we can to stop them and avenge these deaths. 
 
 
 APOLLO

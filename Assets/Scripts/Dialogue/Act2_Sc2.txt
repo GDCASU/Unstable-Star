@@ -1,4 +1,4 @@
-﻿Arcade Game 
+﻿DESC:  
 Act Two Scene 2 - Gameplay
 
 Gameplay starts (start of lvl 1)Textbox:
@@ -24,7 +24,6 @@ JAUGHN
 I’ll… I’ll do my best.
 
 BREAK
-
 
 Gameplay (after they clear the first satellite (lvl 1)) Textbox:
 JAUGHN
@@ -92,7 +91,8 @@ Gameplay (after they clear the second satellite (lvl 2) )Textbox:
 
 
 EBB
-The second satellite is now under our control. I’m seeing Coalition signals light up across the board. The next battle might get a little crazy. E X C E L L E N T.
+The second satellite is now under our control. I’m seeing Coalition signals light up across the board. 
+The next battle might get a little crazy. E X C E L L E N T.
 
 
 REBEKAH
@@ -136,7 +136,12 @@ EXT. OUTSIDE THE THIRD K-COAL RADIO STATION
 
 
 DESC: 
-We see the crew approaching the third radio station. The space around the radio station is incredibly busy with enemy ships. They’ve clearly upped their security. In the center is one massive ship piloted by… a DJ? (cue music)[b]
+We see the crew approaching the third radio station. The space around the radio station is incredibly busy with enemy ships. 
+They’ve clearly upped their security. In the center is one massive ship piloted by… a DJ?
+
+NOISE
+DJ music 
+
 EBB
 We’re approaching the third station… I’m detecting a massive security force. 
 
@@ -158,9 +163,9 @@ Oh man, is that Treble Make-R in the Morning? I used to listen to his show all t
 
 
 DJ Treble Make-R
-Don’t think we haven’t noticed you bogarting our turf. You have exactly one commercial break to lay down your weapons before I drop the beat![c]
+Don’t think we haven’t noticed you bogarting our turf. You have exactly one commercial break to lay down your weapons before I drop the beat!
 REBEKAH
-Uh… well this is not what I was expecting. …Where’s that music coming from? (music gets louder)[d]
+Uh… well this is not what I was expecting. …Where’s that music coming from?
 EBB
 It’s coming from the DJ’s ship in the center of the fleet. Let’s turn this boombox into a B O O M box!
 
@@ -172,4 +177,6 @@ He’s coming right at us! Strap in, guys!
 DJ Treble Make-R
 Let’s rock!!
 
+BREAK
+haha
 END

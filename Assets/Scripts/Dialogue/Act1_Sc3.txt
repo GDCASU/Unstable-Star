@@ -1,8 +1,7 @@
-﻿Arcade Game Script
+﻿DESC: 
 Act One Scene 3 - Meet the Crew
 
-DESC: 
-INT. REBELLION’S SPACE STATION
+REBELLION’S SPACE STATION
 
 REBEKAH
 NORMAL
@@ -17,21 +16,20 @@ So what’s your story, new guy? How’d you end up locked up in there?
 DESC: 
 Jaughn begins to think back on how he got here…
 JAUGHN
-(inner monologue)
-Hmm… Well, it all started when…
+(inner monologue) Hmm… Well, it all started when…
 
 NOISE
 BEGIN FLASHBACK
 
-
-INT. GALAXY BORDER SECURITY BOOTH
 DESC: 
+GALAXY BORDER SECURITY BOOTH
+
 We open on a small futuristic border security booth that floats through the vast depths of space… 
 The security booth is connected to a series of satellites spread across the galaxy’s border, each one projecting an EMP field between them.
 Inside, a young adult human is manning the toll booth lazily, reclined in his chair.
 JAUGHN
-(Inner monologue)
-Ugh, this is the most boring job in the world. I can’t believe the Intragalactic Coalition made me a border guard. 
+(Inner monologue) Ugh, this is the most boring job in the world. 
+I can’t believe the Intragalactic Coalition made me a border guard. 
 No one ever comes through here, ever since they signed the “Peace” Accords. 
 Some peace; both galaxies are too terrified of each other to cross the border anyway.
 
@@ -43,8 +41,7 @@ He looked over at his control panel which was developing a thin layer of dust.
 
 
 JAUGHN
-(Inner monologue)
-The ventilation system must not be working as well anymore
+(Inner monologue) The ventilation system must not be working as well anymore
 
 
 NOISE
@@ -71,12 +68,10 @@ NOISE
 [pizza music plays] 
 
 JAUGHN
-(inner monologue)
-It’s… a pizza delivery ship? 
+(inner monologue) It’s… a pizza delivery ship? 
 DESC: 
 Jaughn pressed a few buttons on his control panel to talk to the incoming craft.
 JAUGHN
-(hailing the approaching ship)
 Uh, hey there. This is the Intragalactic Border Crossing Station #23, state your purpose for crossing and send me your travel visa. 
 Uh, I mean, please.
 
@@ -108,8 +103,7 @@ JAUGHN
 
 
 JAUGHN
-(inner monologue)
-Hmm… he seems to be in the same boat as me. He hates his job and just wants to get on with his day. 
+(inner monologue) Hmm… he seems to be in the same boat as me. He hates his job and just wants to get on with his day. 
 I don’t care about the Coalition’s ridiculous red tape. Why would they care about a pizza delivery guy?
 …
 I’ll turn off my supervisor’s camera. He doesn’t know that I figured out the manual override… he won’t notice. 
@@ -273,8 +267,7 @@ Jaughn has sufficiently proven himself. However, Jaughn must formally pledge him
 
 
 JAUGHN
-(inner monologue)
-Hmm… my whole life I’ve felt like a joke and always dreamed of something better. Is this that moment? 
+(inner monologue) Hmm… my whole life I’ve felt like a joke and always dreamed of something better. Is this that moment? 
 I don’t want to become an outlaw, but given what already happened, I’m already a fugitive. 
 My path has already been altered forever, and there’s no turning back now.
 
@@ -333,4 +326,5 @@ Oh… right.
 
 
 BREAK
+hha
 END

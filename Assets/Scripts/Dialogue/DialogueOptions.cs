@@ -26,7 +26,7 @@ public class DialogueOptions : MonoBehaviour
                 Options jaughn = new Options
                 {
                     name = "JAUGHN",
-                    color = new Color32(80, 80, 80, 255),
+                    color = Color.black,
                     emotions = jaughnEmotions,
                     isDialogue = true,
                 };
@@ -35,7 +35,7 @@ public class DialogueOptions : MonoBehaviour
                 Options rebekah = new Options
                 {
                     name = "REBEKAH",
-                    color = new Color32(255, 0, 0, 255),
+                    color = Color.black,
                     emotions = rebekahEmotions,
                     isDialogue = true,
                 };
@@ -44,7 +44,7 @@ public class DialogueOptions : MonoBehaviour
                 Options apollo = new Options
                 {
                     name = "APOLLO",
-                    color = new Color32(0, 75, 255, 255),
+                    color = Color.black,
                     emotions = apolloEmotions,
                     isDialogue = true,
                 };
@@ -53,7 +53,7 @@ public class DialogueOptions : MonoBehaviour
                 Options ebb = new Options
                 {
                     name = "EBB",
-                    color = new Color32(180, 110, 0, 255),
+                    color = Color.black,
                     emotions = ebbEmotions,
                     isDialogue = true,
                 };

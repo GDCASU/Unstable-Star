@@ -1,9 +1,7 @@
-﻿Arcade Game 
+﻿DESC: 
 Act Three Scene 1 - Things are getting serious…
 
-
-INT. REBELLION’S SPACE STATION
-DESC: 
+REBELLION’S SPACE STATION
 We open with our crew returning to their space station, preparing for what lays ahead of them. 
 JAUGHN
 I’m still in disbelief that we survived that.
@@ -75,7 +73,8 @@ NOISE
 *applause* 
 JAUGHN
 (Inner monologue)
-Wow, looking around, I can feel everyone’s admiration. Me? Captain? I’m not used to feeling this important… Perhaps I could be more than a lowly Border Guard after all…
+Wow, looking around, I can feel everyone’s admiration. Me? Captain? I’m not used to feeling this important… 
+Perhaps I could be more than a lowly Border Guard after all…
 
 
 DESC: 
@@ -102,7 +101,8 @@ And they’re going to be looking for us, after we sent out that message.
 
 
 JAUGHN
-We need to figure out a blind spot in the Coalition’s defenses. Somewhere they’re not watching in that system. Ebb, do we still have the satellites’ data?
+We need to figure out a blind spot in the Coalition’s defenses. Somewhere they’re not watching in that system. 
+Ebb, do we still have the satellites’ data?
 
 
 EBB
@@ -116,7 +116,8 @@ I’m remembering something from my training… Skip ahead to anything mentionin
 
 
 EBB
-Got it. Here’s something interesting. “Abandonment of the Delta X5 Munitions Factory.” It seems an engine core failure caused the permanent shutdown of that factory. All Coalition presence pulled out afterwards. It’s on the outskirts of the system.
+Got it. Here’s something interesting. “Abandonment of the Delta X5 Munitions Factory.” It seems an engine core failure caused the permanent shutdown of that factory. 
+All Coalition presence pulled out afterwards. It’s on the outskirts of the system.
 
 
 REBEKAH

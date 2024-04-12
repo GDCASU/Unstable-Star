@@ -2,8 +2,6 @@
 Gameplay*( Lvl 1: the crew clears the route to Proximus 3)
 
 
-
-DESC: 
 Meanwhile, the large, shadowy figure from before is seen boarding a ship for the Apex-12 System. 
 
 
@@ -14,7 +12,8 @@ BREAK
 
 Act Three Scene 3- The Path Ahead
 DESC: 
-With the Coalition’s security force out of the way, the area around Proximus 3’s orbit is now clear. The crew sat patrolling around the moon, waiting for anyone who might have heard their message…
+With the Coalition’s security force out of the way, the area around Proximus 3’s orbit is now clear. 
+The crew sat patrolling around the moon, waiting for anyone who might have heard their message…
 
 
 APOLLO
@@ -60,7 +59,8 @@ YOU?! What are you doing here?! You got me arrested!!
 
 
 PIZZA DELIVERY DRIVER
-Wait, really? Sorry about that, my friend. I just saw a fight comin’ on, and since the Coalition keeps taking my tip money, I decided to help out. Let me make it up to you! Anyone order a side of GUNS?
+Wait, really? Sorry about that, my friend. I just saw a fight comin’ on, and since the Coalition keeps taking my tip money, I decided to help out. 
+Let me make it up to you! Anyone order a side of GUNS?
 DESC: 
 The delivery sign on the roof of his ship transforms into a gun. The other ships prepare their weapons, as well. 
 
@@ -89,7 +89,8 @@ Gameplay ( lvl 2: the Rebellion and crew have to fight their way to the giant Co
 
 Act Three Scene 4 - The Final Battle (The Johnening)
 DESC: 
-The Rebellion crew, with the civilian fighters in tow, have cleared their way to the hypergiant star in the center of the system. A giant, vacuum-like mechanical ship can be seen orbiting around it, sucking in plasma from the star.
+The Rebellion crew, with the civilian fighters in tow, have cleared their way to the hypergiant star in the center of the system. 
+A giant, vacuum-like mechanical ship can be seen orbiting around it, sucking in plasma from the star.
 
 
 JAUGHN

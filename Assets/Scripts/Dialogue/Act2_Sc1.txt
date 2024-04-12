@@ -1,7 +1,6 @@
-﻿Arcade Game 
+﻿DESC: 
 Act Two Scene 1 - Here’s the plan
-INT. REBELLION’S SPACE STATION
-DESC:
+REBELLION’S SPACE STATION
 We start inside the Rebellion’s Base. Jaughn, having formally joined the Rebellion, is touring the base with the three leaders. 
 
 
@@ -27,20 +26,24 @@ Well… if you haven’t noticed the Coalition has stepped way out of line.
 APOLLO
 
 
-After first contact with the Triangulum Galaxy, they established this “Peace Accord” with my home to link the two galaxies. That’s when I joined the Coalition… before I knew those corrupt brutes were destroying planets to keep it going.
+After first contact with the Triangulum Galaxy, they established this “Peace Accord” with my home to link the two galaxies. 
+That’s when I joined the Coalition… before I knew those corrupt brutes were destroying planets to keep it going.
 
 
 REBEKAH
-It’s a classic case of corruption. The Coalition is getting advanced tech and science from the Triangulum aliens, while the aliens are getting our natural resources. Neither side wants that relationship to fail, so they’ll do it at any cost. 
+It’s a classic case of corruption. The Coalition is getting advanced tech and science from the Triangulum aliens, while the aliens are getting our natural resources. 
+Neither side wants that relationship to fail, so they’ll do it at any cost. 
 APOLLO
 
 
-My home galaxy was a barren wasteland, before the Accord got started. But… they’re destroying the Milky Way galaxy in the process. Before long, this galaxy will look like mine did. There’s gotta be a better way.
+My home galaxy was a barren wasteland, before the Accord got started. But… they’re destroying the Milky Way galaxy in the process. 
+Before long, this galaxy will look like mine did. There’s gotta be a better way.
  
 JAUGHN
 I had no idea. I thought they were crazy for sending me to jail over letting a pizza guy through, but I didn’t know it was this bad.
 APOLLO
-They’re damn good at maintaining their “good guy” public image and covering up anything that could expose what they’re doing. Keep the catchy tunes on the radio, while the voices in need of hearing go unheard. 
+They’re damn good at maintaining their “good guy” public image and covering up anything that could expose what they’re doing. 
+Keep the catchy tunes on the radio, while the voices in need of hearing go unheard. 
 
 
 EBB
@@ -48,11 +51,13 @@ Which is exactly why we need to make our move before they act again. Can you ela
 
 
 JAUGHN
-Okay, so here’s the deal: the Coalition’s signal is split between three major satellite stations. They’re set up to rely on each other as a failsafe. If one goes down, the others won’t cooperate. In short, we need to control all three to control the signal.
+Okay, so here’s the deal: the Coalition’s signal is split between three major satellite stations. They’re set up to rely on each other as a failsafe. 
+If one goes down, the others won’t cooperate. In short, we need to control all three to control the signal.
 
 
 REBEKAH
-I’m plotting a course to the first satellite. It looks like the Coalition is keeping a heavy security presence around it. Are these things more important than you’re letting on?
+I’m plotting a course to the first satellite. It looks like the Coalition is keeping a heavy security presence around it. 
+Are these things more important than you’re letting on?
 
 
 EBB
@@ -66,7 +71,8 @@ No problem, we’ll just blast our way through!
 
 
 REBEKAH
-Once we reach the first satellite, Ebb will hack into the main systems. We’ll have a limited amount of time to make it to the other satellites before the Coalition realizes what we’re doing.
+Once we reach the first satellite, Ebb will hack into the main systems. 
+We’ll have a limited amount of time to make it to the other satellites before the Coalition realizes what we’re doing.
 APOLLO
 
 
@@ -76,7 +82,9 @@ Everyone, to your ships!
 
 BREAK
 DESC: 
-After traveling for a while, the crew reaches the outskirts of the K-COAL network’s first broadcasting station. It was orbiting around a planet that’s been converted into a massive Coalition factory. The civilians that had lived here were forced out several Earth years ago. Out here, there are just old floating billboard stations and space debris.  
+After traveling for a while, the crew reaches the outskirts of the K-COAL network’s first broadcasting station. 
+It was orbiting around a planet that’s been converted into a massive Coalition factory. 
+The civilians that had lived here were forced out several Earth years ago. Out here, there are just old floating billboard stations and space debris.  
 
 
 
@@ -107,4 +115,5 @@ JAUGHN
 Damn…
 
 BREAK
+hahha
 END

@@ -1,10 +1,10 @@
-﻿Arcade Game Prologue Script
+﻿DESC: 
 Act one Scene 2 - Gameplay
 
 APOLLO
 Hey, fresh meat, can you hear us? 
 I’m Apollo! You know how to fly that hunk of junk? 
-Use (WASD) to fly around. 
+Use (Left Joystick) to fly around. 
 We have Rebekah, our map girl and-
 
 
@@ -19,7 +19,7 @@ If things are getting tough, try dodging enemy attacks!
 
 EBB
 Standard protocol indicates that I should introduce myself.
-I am Ebb. I love a good prison riot. Press the (shoot button) to progress the riot. 
+I am Ebb. I love a good prison riot. Move the cursor with (Right Joystick) and press (RT) to progress the riot. 
 MORE DESTRUCTION! MORE!
 
 
@@ -74,10 +74,10 @@ Wuh-oh.
 
 
 DESC: 
-The security box the Warden was sitting in suddenly transforms into a big robotic machine. Boss introduction. *Aaron Huggins MAKE CAMERA GO WHOOOP!*
+The security box the Warden was sitting in suddenly transforms into a big robotic machine. Boss introduction.
 
 BREAK
-*GAMEPLAY*will likely be textboxes
+*GAMEPLAY* will likely be textboxes
 
 
 EBB
@@ -111,4 +111,5 @@ DESC:
 The Rebellion ship and Jaughn narrowly escape the explosion!
 
 BREAK
+hahah
 END

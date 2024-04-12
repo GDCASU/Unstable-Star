@@ -1,17 +1,15 @@
 ﻿DESC: 
-Arcade Game Prologue Script
 Act one Scene 1 - Prologue
 
 
-INT. JAUGHN’S JAIL CELL 
+JAUGHN’S JAIL CELL 
 
 
 DESC: 
 We open in a white and sterile jail cell. Everything is clean and well kept. Everything is perfect. We see a solemn young man is slumped over in his cell. Sitting on the edge of his bed, he ponders how he got here.
 JAUGHN
 NORMAL
-(Inner monologue)
-How long has it been? The Coalition… it feels like it's been ages since they arrested me.
+(Inner monologue) How long has it been? The Coalition… it feels like it's been ages since they arrested me.
 ……
 Sure, maybe I shouldn’t have let that pizza driver cross the border… But come on! I get half a lifetime in jail for that?
 
@@ -104,7 +102,8 @@ DETONATE!
 NOISE
 *BOOM* *BOOM* *BOOM*  [Insert Explosion SFX] 
 DESC: 
-An explosion punches into the hull of the prison, blasting off the cell door and leaving a visible dent in the nearby wall. As the entire structure shakes [camera shake], pieces of the building crumble from above. 
+An explosion punches into the hull of the prison, blasting off the cell door and leaving a visible dent in the nearby wall. 
+As the entire structure shakes, pieces of the building crumble from above. 
 
 
 JAUGHN
@@ -118,8 +117,7 @@ WHOA!! I can’t stand-
 DESC: 
 Jaughn’s footing becomes noticeably unsteady, struggling to keep his feet on the ground.
 JAUGHN
-(Inner monologue)
-What’s that sound? It’s getting closer… is that a ship?
+(Inner monologue) What’s that sound? It’s getting closer… is that a ship?
 NOISE
 [Spaceship	crashing SFX]
 
@@ -228,7 +226,8 @@ Temporary pilot located. Man your stations now.
 
 
 DESC: 
-Steeling himself, Jaughn runs into the spaceship, emerging in the cockpit. After fiddling with the controls for a bit, Jaughn closes the entry door to the ship and takes off.
+Steeling himself, Jaughn runs into the spaceship, emerging in the cockpit. 
+After fiddling with the controls for a bit, Jaughn closes the entry door to the ship and takes off.
 NOISE
 [SFX: Spaceship door closing, spaceship powering up - vrRRRRRRR]
 
