@@ -1,8 +1,6 @@
-﻿
+﻿DESC: 
 Gameplay*( Lvl 1: the crew clears the route to Proximus 3)
 
-
-After Gameplay
 
 
 DESC: 
@@ -12,6 +10,7 @@ Meanwhile, the large, shadowy figure from before is seen boarding a ship for the
 SHADOWY FIGURE
 So, that’s their plan then. They’ll all be gathered in one place… taking care of them will be easy. Nothing will threaten the Coalition’s plans.
 
+BREAK
 
 Act Three Scene 3- The Path Ahead
 DESC: 
@@ -43,10 +42,14 @@ I’m picking up several signals approaching us. They’re… not Coalition sign
 
 
 
-
-DESC: 
-One by one, random civilian crafts start warping into the sector. Doctors, farmers, chefs, politicians, people from all walks of life are here. Even… [Pizza delivery theme] pizza delivery drivers…
 BREAK
+DESC: 
+One by one, random civilian crafts start warping into the sector. 
+Doctors, farmers, chefs, politicians, people from all walks of life are here. 
+Even… pizza delivery drivers…
+
+NOISE
+pizza theme
 
 PIZZA DELIVERY DRIVER
 Hey guys! Are we late? I hope not, I don’t want to lose my tip.
@@ -81,9 +84,150 @@ I’m picking up the Coalition’s signal near the hypergiant star. The ship the
 REBEKAH
 I’m navigating us there now. Everyone, follow us and prepare to fight!
 
-
+BREAK
 Gameplay ( lvl 2: the Rebellion and crew have to fight their way to the giant Coalition ship)
 
+Act Three Scene 4 - The Final Battle (The Johnening)
+DESC: 
+The Rebellion crew, with the civilian fighters in tow, have cleared their way to the hypergiant star in the center of the system. A giant, vacuum-like mechanical ship can be seen orbiting around it, sucking in plasma from the star.
+
+
+JAUGHN
+What in blazars IS that thing??
+
+
+APOLLO
+
+
+It’s… sucking the energy out of the star like some kind of giant vacuum!
+
+
+EBB
+The star is incredibly unstable. An implosion… followed by a B I G BOOM is imminent. 
+
+
+REBEKAH
+We need to figure out a way to destroy it now or it will be too late!
+
+
+DESC: 
+The fighters cautiously but urgently approach the giant ship. Their comms are suddenly interrupted by a strangely familiar voice…
+JOHN
+Intruders, you are hereby ordered to surrender or be destroyed. You have caused untold damage to the Coalition. I won’t ask again.
+
+
+APOLLO
+Wait… that voice. I know that voice.
+
+
+REBEKAH
+What the f- JOHN? 
+
+
+JAUGHN
+Me?
+
+
+REBEKAH
+No!
+
+
+EBB
+The previous Captain? He’s still alive?
+
+
+JOHN
+Oh yes. Did you think I would be killed so easily?
+
+
+APOLLO
+
+
+Yeah, we thought you were dead! What are you doing working for the Coalition??
+
+
+JAUGHN
+Wait, who is this? I’m the Captain now, identify yourself!
+
+
+JOHN
+Oh you poor fools, you didn’t tell him? I’m John, the REAL Captain, and you bought my act hook, line, and sinker. 
+I was simply undercover in your little club, so deep undercover in fact that I pretended to get arrested! 
+Your path here was entirely staged by me. I arranged for Jaughn to be put in my cell. 
+It was by my hand that you rescued this… faker instead of me.
+
+
+JAUGHN
+Faker?? Wait a minute, I think you’re the fake Jaughn here!
+
+
+JOHN
+And now you’ve brought the entire rebellion here. You’ve fallen right into my trap. 
+Our weapon here has absorbed enough solar plasma to kill you all in one blast. 
+And once you’re gone, peace will be restored to the galaxy.
+
+
+APOLLO
+
+Peace?? You call this peace??
+
+
+JOHN
+Yes, order leads to peace. You have done nothing but undermine our order, which has led to chaos. 
+Don’t you realize the coalition maintains our fragile relationship with our neighboring galaxy?
+
+
+JAUGHN
+I once believed in that lie, but you’re all just a bunch of greedy hacks who will stop at nothing to keep your sham of a relationship going. 
+What good is “order” when you’re killing innocent civilians??
+
+
+JOHN
+I guess you’re too short-sighted to realize that the ends justify the means. The Coalition has led to the betterment of mankind, and our benefactors desperately need this star’s plasma. 
+We are simply here to provide.
+
+
+REBEKAH
+But by harvesting the plasma, you’re going to blow up the star! You’re going to cause countless deaths throughout the galaxy! 
+The needs of the few don’t outweigh the needs of the many!
+
+
+JOHN
+Very well, I guess I’ll just have to MAKE you see our side of things! Engage the Star Harvester’s Weapons Platform!
+
+
+JAUGHN
+This is it! Get ready everyone!
+
+
+Gameplay (Final Boss: Phase 1)
+
+
+JOHN
+Grr… there’s more of you flies to swat than I thought. 
+
+
+JAUGHN
+It’s over, fake Jaughn! 
+
+
+JOHN
+Over? It’s not over until all of you are dead! Even if I fall here, the star’s implosion will take care of the entire rebellion at once!
+
+
+EBB
+We don’t have much time. He’s right. Let’s FINISH this!
+
+
+Gameplay (Final Boss: Phase 2)
+
+
+JAUGHN
+You still have time to surrender, don’t make this worse on yourself!
+
+
+JOHN
+I have no plans to surrender to the likes of you. Our plans are bigger than either of us, and I’ll make sure I see it through!
 
 BREAK
 END

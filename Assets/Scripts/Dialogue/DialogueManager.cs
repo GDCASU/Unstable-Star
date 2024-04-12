@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] DialogueOptions dialogueOptions;
     [SerializeField] GameObject dialogueObject;
     [SerializeField] string currentSceneFile;
+    [SerializeField] ScenesManager sceneSwitcher;
 
     static string[][] currentDialogue;
 
@@ -62,7 +63,7 @@ public class DialogueManager : MonoBehaviour
     public void ChangeDialogue()
     {
         // Stops dialogue and starts timeline
-        if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE"))
+        if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
         {
             dialogueObject.SetActive(false);
             speakerText.text = "";
@@ -192,6 +193,7 @@ public class DialogueManager : MonoBehaviour
     // Changes to the next scene
     public void ChangeScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        sceneSwitcher.LoadNextScene();
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }

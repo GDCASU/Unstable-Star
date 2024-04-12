@@ -67,8 +67,10 @@ MonoBehaviour:
   speakerText: {fileID: 0}
   emotionSprite: {fileID: 4339295446803832019}
   timelinePlayer: {fileID: 2194012226675323863}
+  start: 0
   dialogueOptions: {fileID: 9188354417665188697}
   dialogueObject: {fileID: 0}
+  currentSceneFile: 
 --- !u!320 &2194012226675323863
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -93,6 +95,8 @@ PlayableDirector:
   - key: {fileID: 2013544368332434240, guid: 6a769df3ed425ad45a5a1c1e4d185795, type: 2}
     value: {fileID: 0}
   - key: {fileID: -1654371673427109550, guid: 6a769df3ed425ad45a5a1c1e4d185795, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 9138099715750775789, guid: 6a769df3ed425ad45a5a1c1e4d185795, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References:
@@ -149,6 +153,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  pizzaGuyEmotions: []
+  shadowEmotions: []
 --- !u!114 &2610264310585351380
 MonoBehaviour:
   m_ObjectHideFlags: 0
