@@ -8,14 +8,15 @@ public class ObjectivePanel : MonoBehaviour
 {
     [SerializeField] private ObjectivePrefabContainer[] objectivePrefabs;
     [SerializeField] private Transform objectiveContainer;
+    [SerializeField] private ObjectiveData[] objectiveData;
 
-    private ObjectiveData[] objectiveData;
     private RectTransform rectTransform;
     private List<Objective> objectives;
 
     public event System.Action OnAllObjectivesComplete;
     public void RaiseAllObjectivesComplete()
     {
+        Debug.Log("All objectives complete");
         OnAllObjectivesComplete?.Invoke();
     }
 
@@ -23,13 +24,13 @@ public class ObjectivePanel : MonoBehaviour
     {
         // Test code
         // In the future, pull objective data from the level data
-        objectiveData = new ObjectiveData[]
-        {
+   //     objectiveData = new ObjectiveData[]
+   //     {
 			//new ObjectiveData()
 			//{
 			//	title = "Kill enemies",
 			//	type = ObjectiveType.KILLS,
-			//	kills = 25
+			//	kills = 15
 			//},
 			//new ObjectiveData()
 			//{
@@ -44,17 +45,18 @@ public class ObjectivePanel : MonoBehaviour
 			//	type = ObjectiveType.SURVIVE,
 			//	time = 30
 			//},
-			new ObjectiveData()
-            {
-                title = "Kill enemies in 30 seconds",
-                type = ObjectiveType.KILLS_TIMED,
-                kills = 10,
-                time = 30
-			}
-        };
+			//new ObjectiveData()
+   //         {
+   //             title = "Kill enemies in 30 seconds",
+   //             type = ObjectiveType.KILLS_TIMED,
+   //             kills = 10,
+   //             time = 30
+			//}
+   //     };
         rectTransform = GetComponent<RectTransform>();
 
         CreateObjectives();
+        if(movePanelCoro != null) StopCoroutine(movePanelCoro);
         movePanelCoro = StartCoroutine(MovePanel(true, delay: 3f));
     }
 
@@ -111,29 +113,29 @@ public class ObjectivePanel : MonoBehaviour
 	{
         float currentY = rectTransform.anchoredPosition.y;
         float percentY = (currentY + 10f) / 190f;
+        if(!up) percentY = 1f - percentY;
         float t = percentY * time;
-        yield return new WaitForSeconds(delay);
+        Debug.Log("t is " + t);
+        yield return new WaitForSecondsRealtime(delay);
 
 		while(t < 1f)
         {
             rectTransform.anchoredPosition = Vector3.Lerp(up ? lowPos : highPos, up ? highPos : lowPos, t / time);
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
             yield return null;
         }
     }
 
-	//public void OnPointerEnter(PointerEventData eventData)
-	//{
- //       Debug.Log("pointer enter");
- //       if(movePanelCoro != null) StopCoroutine(movePanelCoro);
- //       movePanelCoro = StartCoroutine(MovePanel(false));
- //   }
-
-	//public void OnPointerExit(PointerEventData eventData)
-	//{
- //       if(movePanelCoro != null) StopCoroutine(movePanelCoro);
- //       movePanelCoro = StartCoroutine(MovePanel(true));
- //   }
+    private bool prevPausedGame;
+    private void Update()
+	{
+        if(PauseMenu.pausedGame != prevPausedGame)
+		{
+            if(movePanelCoro != null) StopCoroutine(movePanelCoro);
+            movePanelCoro = StartCoroutine(MovePanel(!PauseMenu.pausedGame, 0.2f));
+            prevPausedGame = PauseMenu.pausedGame;
+		}
+	}
 }
 
 public enum ObjectiveType
@@ -144,6 +146,7 @@ public enum ObjectiveType
     SURVIVE
 }
 
+[Serializable]
 public struct ObjectiveData
 {
     public string title;

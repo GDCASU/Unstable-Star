@@ -655,8 +655,68 @@ PrefabInstance:
       value: Gameplay Camera
       objectReference: {fileID: 0}
     - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: objectivePrefabs.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[0].type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[1].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[2].time
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[2].type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[3].time
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[3].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[0].kills
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[0].title
+      value: Kill 10 enemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[1].kills
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[1].title
+      value: Kill 10 basic enemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[2].kills
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[2].title
+      value: Survive for 30 seconds
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[3].kills
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: objectiveData.Array.data[3].title
+      value: Kill 5 enemies in 20 seconds
       objectReference: {fileID: 0}
     - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: objectivePrefabs.Array.data[1].type
@@ -685,10 +745,14 @@ PrefabInstance:
     - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: objectivePrefabs.Array.data[3].prefab
       value: 
-      objectReference: {fileID: 3392200465046579903, guid: 12c65e3953a2bc4488340aa64585ac5c, type: 3}
+      objectReference: {fileID: 3392200465046579903, guid: ba7babf5051ece349a45c856f40f010b, type: 3}
     - target: {fileID: 845721585523932955, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50.000015
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374852137877099930, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2291735944726686200, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -792,7 +856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7424609744582626789, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100.000015
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
@@ -1362,8 +1426,8 @@ SceneRoots:
   - {fileID: 778717891}
   - {fileID: 1584903791}
   - {fileID: 1106683913}
-  - {fileID: 3060813491215135449}
   - {fileID: 1451127885}
+  - {fileID: 3060813491215135449}
   - {fileID: 872289785}
   - {fileID: 1261016249}
   - {fileID: 1224548422}
