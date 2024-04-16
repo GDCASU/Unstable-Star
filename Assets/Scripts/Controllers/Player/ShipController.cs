@@ -69,6 +69,7 @@ public class ShipController : MonoBehaviour
     {
         // Move player according to input
         movementVector = PlayerInput.instance.movementInput;
+        Debug.Log(PlayerInput.instance.movementInput);
         translationVector = speed * Time.deltaTime * movementVector;
         transform.Translate(translationVector);
 
