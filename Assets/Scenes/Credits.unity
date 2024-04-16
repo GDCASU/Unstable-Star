@@ -432,7 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soText: {fileID: 11400000, guid: 13d07f955fc7a7e46a6ee01405509348, type: 2}
   mytext: {fileID: 1508500258}
-  myButton: {fileID: 0}
+  myButton: {fileID: 75210320}
 --- !u!114 &924584176
 MonoBehaviour:
   m_ObjectHideFlags: 0
