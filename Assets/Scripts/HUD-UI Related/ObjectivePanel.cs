@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class ObjectivePanel : MonoBehaviour
 {
+    public static ObjectivePanel Instance;
+
     [SerializeField] private ObjectivePrefabContainer[] objectivePrefabs;
     [SerializeField] private Transform objectiveContainer;
     [SerializeField] private ObjectiveData[] objectiveData;
@@ -20,8 +22,20 @@ public class ObjectivePanel : MonoBehaviour
         OnAllObjectivesComplete?.Invoke();
     }
 
-    void Start()
+    private void Awake()
     {
+        if (Instance != null)
+            Destroy(gameObject);
+        else
+            Instance = this;
+    }
+
+    /// <summary>
+    /// Trigger to start the objectives in the level
+    /// </summary>
+    public void StartLevelObjecives()
+    {
+        /*
         // Test code
         // In the future, pull objective data from the level data
    //     objectiveData = new ObjectiveData[]
@@ -53,6 +67,7 @@ public class ObjectivePanel : MonoBehaviour
    //             time = 30
 			//}
    //     };
+        */
         rectTransform = GetComponent<RectTransform>();
 
         CreateObjectives();
