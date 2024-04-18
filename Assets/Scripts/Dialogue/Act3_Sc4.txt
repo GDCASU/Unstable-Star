@@ -34,6 +34,7 @@ Coordinates received. Beginning the reversal process now.
 
 JAUGHN
 Everyone! Punch it, now!
+BREAK
 DESC: 
 The Rebellion crew begins their heroic escape sequence. 
 In the process, the star harvester begins buckling and shaking under the pressure of the plasma being sent back into the star. 
@@ -53,6 +54,8 @@ PIZZA DELIVERY DRIVER
 How do you think I get across the galaxy so quickly? Now move!
 JAUGHN
 There’s no time! All ships! Into the slingshot, now!
+
+BREAK
 DESC: 
 Over the course of a few seconds, the rebels all pilot their ships through the slingshot, sending them through hyperspace safely out of the explosion’s path, narrowly avoiding destruction.
 
@@ -73,7 +76,7 @@ We accomplished an amazing feat today. Good work everyone!
 DESC: 
 Act Three Scene 5 - Peace at Last
 
-
+BREAK
 DESC: 
 With the galaxy now saved from the threat of annihilation, the rebels celebrate their heroic victory back at their base. Talk of what to do next emerges, after the celebrations conclude.
 REBEKAH

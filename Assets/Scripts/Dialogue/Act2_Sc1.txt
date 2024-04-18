@@ -9,17 +9,19 @@ APOLLO
 
 
 JAUGHN
+ANGRY
 Wait, are those Coalition guns? Where’d those come from? 
 EBB
-
-
+NORMAL
 Ooh, we got those from our last Coalition Raid. That was a fun battle! We stopped those leeches before they could take over another planet.
  
 JAUGHN
+ANGRY
 Take over another planet? Wait, why would the Coalition do that?
 
 
 REBEKAH
+NORMAL
 Well… if you haven’t noticed the Coalition has stepped way out of line. 
 
 
@@ -40,6 +42,7 @@ My home galaxy was a barren wasteland, before the Accord got started. But… the
 Before long, this galaxy will look like mine did. There’s gotta be a better way.
  
 JAUGHN
+SAD
 I had no idea. I thought they were crazy for sending me to jail over letting a pizza guy through, but I didn’t know it was this bad.
 APOLLO
 They’re damn good at maintaining their “good guy” public image and covering up anything that could expose what they’re doing. 
@@ -47,6 +50,7 @@ Keep the catchy tunes on the radio, while the voices in need of hearing go unhea
 
 
 EBB
+NORMAL
 Which is exactly why we need to make our move before they act again. Can you elaborate on the Coalition’s satellites?
 
 
@@ -65,12 +69,12 @@ Since these satellites reach most of the galaxy, it could double as their centra
 
 
 APOLLO
-
-
+HAPPY
 No problem, we’ll just blast our way through!
 
 
 REBEKAH
+NORMAL
 Once we reach the first satellite, Ebb will hack into the main systems. 
 We’ll have a limited amount of time to make it to the other satellites before the Coalition realizes what we’re doing.
 APOLLO
@@ -81,6 +85,8 @@ Everyone, to your ships!
 
 
 BREAK
+asdf
+
 DESC: 
 After traveling for a while, the crew reaches the outskirts of the K-COAL network’s first broadcasting station. 
 It was orbiting around a planet that’s been converted into a massive Coalition factory. 
@@ -96,14 +102,14 @@ We’ve arrived at the first broadcasting station.
 
 
 JAUGHN
+ANGRY
 Whoa! It looks like no one’s touched this in a billion years….
 
 
 
 
 EBB
-
-
+NORMAL
 Actually, if it had been a billion years, this system’s star would have expanded and swallowed this place.
 
 
@@ -112,6 +118,7 @@ There were people living here… but they were forced out in favor of setting up
 
 
 JAUGHN
+SAD
 Damn…
 
 BREAK
