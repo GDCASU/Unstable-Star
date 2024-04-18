@@ -83,6 +83,8 @@ public class SoundLibrary : ScriptableObject
     public static FMODUnity.EventReference ProximityAlert { get; private set; }
     [SerializeField] private FMODUnity.EventReference _shipCrashing;
     public static FMODUnity.EventReference ShipCrashing { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _pizzaTheme;
+    public static FMODUnity.EventReference PizzaTheme { get; private set; }
 
     // Function to initialize data, must be called by the sound manager
     public void InitializeLibrary()
@@ -120,6 +122,7 @@ public class SoundLibrary : ScriptableObject
         PowerDownField = _powerDownField;
         ProximityAlert = _proximityAlert;
         ShipCrashing = _shipCrashing;
+        PizzaTheme = _pizzaTheme;
 
     // FIXME: Most of these are stored on their scriptable objects, is it necessary to place them here?
 

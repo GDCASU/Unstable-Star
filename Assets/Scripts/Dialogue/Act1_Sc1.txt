@@ -8,7 +8,7 @@ JAUGHN’S JAIL CELL
 DESC: 
 We open in a white and sterile jail cell. Everything is clean and well kept. Everything is perfect. We see a solemn young man is slumped over in his cell. Sitting on the edge of his bed, he ponders how he got here.
 JAUGHN
-NORMAL
+SAD
 (Inner monologue) How long has it been? The Coalition… it feels like it's been ages since they arrested me.
 ……
 Sure, maybe I shouldn’t have let that pizza driver cross the border… But come on! I get half a lifetime in jail for that?
@@ -19,6 +19,7 @@ But…
 
 NOISE
 *The intercom buzzes.*
+ANGRY
 JAUGHN
 …
 …?!
@@ -33,18 +34,20 @@ What is that noise?
 
 REBEKAH
 ???
+NORMAL
 …
 Ca… tain…
 
 
 JAUGHN
-NORMAL
+ANGRY
 Is that coming from…
 The broadcasting system?
 
 
 REBEKAH
 ???
+NORMAL
 He… llo?
 Hello? Can you hear me?
 Apollo, is the frequency tuned? Are we broadcasting yet?
@@ -56,7 +59,6 @@ Yup! The whole prison can hear us, Rebekah!
 
 
 REBEKAH
-
 Captain!
 Don’t worry, Captain! We’re coming to get you!
 
@@ -107,6 +109,7 @@ As the entire structure shakes, pieces of the building crumble from above.
 
 
 JAUGHN
+ANGRY
 Augh! What was that? What’s happening!?
 NOISE
 *RUMBLE**RUMBLE**RUMBLE*
@@ -123,13 +126,13 @@ NOISE
 
 
 REBEKAH
+NORMAL
 Wait, who is this? This isn’t the Captain!! Apollo, I thought you said B3?!
 
 
 
 
 APOLLO
-
 
 It WAS B3! We were told cell B3! I blew up CELL B3!
 

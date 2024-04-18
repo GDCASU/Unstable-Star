@@ -24,7 +24,7 @@ public class CameraShake : MonoBehaviour
 
     public void CameraShaker()
     {
-        transform.position = originalPosition + Random.insideUnitSphere * Time.deltaTime *shakeFrequency;
+        transform.position = originalPosition + Random.insideUnitSphere * Time.deltaTime * shakeFrequency;
     }
 
     public void SetShake()

@@ -65,9 +65,15 @@ public class DialogueManager : MonoBehaviour
         // Stops dialogue and starts timeline
         if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
         {
+            // removes the emotion sprite
+            speachDialogue.SetActive(false);
+            emotionSprite.color = new Color(0, 0, 0, 0);
+
             dialogueObject.SetActive(false);
             speakerText.text = "";
             targetDialogue.text = "";
+
+            // pauses the dialogue and runs the animations
             timelinePlayer.Resume();
             start = false;
             current++;
