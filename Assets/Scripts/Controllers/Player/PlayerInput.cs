@@ -143,9 +143,6 @@ public class PlayerInput : MonoBehaviour
         cursorAimScreenPoint = context.ReadValue<Vector2>();
         Vector3 transPoint = new Vector3(cursorAimScreenPoint.x, cursorAimScreenPoint.y, 50);
         cursorAimWorldPoint = Camera.main.ScreenToWorldPoint(transPoint);
-        Debug.Log("Screen position: " + cursorAimScreenPoint);
-        Debug.Log("Screen point: " + Input.mousePosition);
-        Debug.Log("World position: " + cursorAimWorldPoint);
     }
 
     private void HandleShootAngleInput(InputAction.CallbackContext context, bool isRight)
