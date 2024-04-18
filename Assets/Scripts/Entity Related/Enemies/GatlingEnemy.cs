@@ -7,6 +7,7 @@ public class GatlingEnemy : Enemy
 {
     [SerializeField] private GatlingCrosshair crosshair;
     [SerializeField] private Transform weaponAnchor;
+    [SerializeField] private GameObject gatlingParent;
 
     private bool moveLeft = false;
 
@@ -59,5 +60,18 @@ public class GatlingEnemy : Enemy
         Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
 
         weaponAnchor.rotation = rotation;        
+    }
+
+    protected override void TriggerDeath()
+    {
+        EventData.RaiseOnEnemyDeath(gatlingParent);
+
+        StopAllCoroutines();
+
+        // Explosion Effect
+        Instantiate(deathEffectPrefab, this.transform.position, Quaternion.identity);
+
+        // Destroy Enemy Object
+        Destroy(gatlingParent);
     }
 }
