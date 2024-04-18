@@ -7,7 +7,8 @@ public class GatlingEnemy : Enemy
 {
     [SerializeField] private GatlingCrosshair crosshair;
     [SerializeField] private Transform weaponAnchor;
-    [SerializeField] private Vector3 worldUp = Vector3.up;
+
+    private bool moveLeft = false;
 
     protected override void Start()
     {
@@ -18,12 +19,16 @@ public class GatlingEnemy : Enemy
     {
         base.Update();
 
-        Move();
-        MoveGun();
         if (canShoot)
         {
             shootComponent.ShootWeapon(currWeapon);
             StartCoroutine(ShootDelayCo());
+        }
+
+        if (crosshair.followPlayer)
+        {
+            Move();
+            MoveGun();
         }
     }
 
@@ -34,7 +39,18 @@ public class GatlingEnemy : Enemy
     {
         base.Move();
 
-        
+        if (moveLeft)
+        {
+            //transform.Translate(Vector3.left * Time.deltaTime * speed);
+            transform.position = transform.position + new Vector3(-moveSpeed * Time.deltaTime, 0f, 0f);
+            moveLeft = Camera.main.WorldToViewportPoint(transform.position).x > 0f;
+        }
+        else
+        {   // Move right
+            //transform.Translate(Vector3.right * Time.deltaTime * speed);
+            transform.position = transform.position + new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
+            moveLeft = Camera.main.WorldToViewportPoint(transform.position).x > 1f;
+        }
     }
 
     private void MoveGun()

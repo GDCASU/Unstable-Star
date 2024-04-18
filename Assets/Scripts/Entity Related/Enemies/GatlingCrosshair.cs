@@ -9,31 +9,19 @@ public class GatlingCrosshair : MonoBehaviour
     [SerializeField] private float speed;
 
     private Vector3 playerPos;
-    private bool isFollowingPlayer;
+    [HideInInspector] public bool followPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         playerPos = Player.Instance.gameObject.transform.position;
-    }
-
-    private void OnEnable()
-    {
-        // jump to player
         transform.position = playerPos;
-        // follow the player
-        isFollowingPlayer = true;
-    }
-
-    private void OnDisable()
-    {
-        // stop following player
-        isFollowingPlayer = false;
+        followPlayer = true;
     }
 
     private void Update()
     {
-        if (isFollowingPlayer)
+        if (followPlayer)
             FollowPlayer();
     }
 

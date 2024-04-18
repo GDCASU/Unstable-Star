@@ -21,6 +21,9 @@ public class ShootComponent : MonoBehaviour
     private Coroutine laserRoutine;
     private float lastBarHeight;
 
+    // For changing a boolean flag to stop the crosshair from moving
+    public GatlingCrosshair gatlingCrosshair;
+
     // Initial setup
     private void Start()
     {
@@ -265,6 +268,7 @@ public class ShootComponent : MonoBehaviour
         timeLeft = input.shootingStayTime;
         while (timeLeft >= 0f)
         {
+            gatlingCrosshair.followPlayer = false;
             // Get a random index
             index = UnityEngine.Random.Range(0, randOffsets.Count);
             // Get a value from a random offset and remove it from array
@@ -281,6 +285,7 @@ public class ShootComponent : MonoBehaviour
             timeLeft -= input.shootCooldownTime;
             // Wait for time between shots
             yield return shotsTime;
+            gatlingCrosshair.followPlayer = true;
         }
         // Loop
         goto ShootingLoop;
