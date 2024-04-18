@@ -72,10 +72,10 @@ public class TempWeaponReader : MonoBehaviour
         readout = playerWep.sName + "\n";
 
         // Check if we are warming up
-        if (input.warmupCounter > 0f)
+        if (input.HeatUpCounter > 0f)
         {
             readout += "Warming Up!\n";
-            readout += "Time Left = " + input.warmupCounter.ToString("F2");
+            readout += "Time Left = " + input.HeatUpCounter.ToString("F2");
         }
         // Else, we are firing as long as button is held
         else if (PlayerInput.instance.isShootHeld && !Player.Instance.isShootingLocked)
