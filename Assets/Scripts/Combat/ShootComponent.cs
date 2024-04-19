@@ -114,20 +114,23 @@ public class ShootComponent : MonoBehaviour
     private IEnumerator LaserCooldown(Weapon input)
     {
         input.isOnCooldown = true;
+        input.chargeTimeCounter = input.maxChargeUpTime - input.chargeTimeCounter;
+        float counterOnEnter = input.chargeTimeCounter;
 
         // Cooldown timer
         while (input.chargeTimeCounter > 0f)
         {
             // Invoke the UI event for the weapon
-            input.RaiseModifyMeterCooldown(input.maxChargeUpTime, input.chargeTimeCounter);
+            input.RaiseModifyMeterCooldown(counterOnEnter, input.chargeTimeCounter);
             input.chargeTimeCounter -= Time.deltaTime; // Compute time
             yield return null; // Wait a frame
         }
         input.isOnCooldown = false;
         input.chargeTimeCounter = 0f;
 
-        // Raise cooldown event one last time and reset
-        input.RaiseModifyMeterCooldown(input.maxChargeUpTime, input.chargeTimeCounter);
+        // Raise cooldown event one last time and reset routine
+        input.RaiseModifyMeterCooldown(counterOnEnter, input.chargeTimeCounter);
+        laserRoutine = null;
     }
 
     #region PROJECTILE BEHAVIOURS
@@ -462,10 +465,7 @@ public class ShootComponent : MonoBehaviour
             }
         }
         // Call cooldown on this laser weapon
-        input.chargeTimeCounter = 0f;
         StartCoroutine(LaserCooldown(input));
-        // Laser fire finished
-        laserRoutine = null;
     }
 
     private IEnumerator EnemeyLaserRoutine(Weapon input)

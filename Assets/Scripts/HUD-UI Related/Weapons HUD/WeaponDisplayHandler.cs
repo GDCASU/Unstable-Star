@@ -139,11 +139,12 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Set the color to Cooldown
         primaryMeter.color = cooldownColor;
         // Compute height of the meter
-        float rateOfChange = lastMeterHeightPrimary / maxVal;
-        float computedHeight = rateOfChange * (maxVal - currVal);
+        float rateOfChange = (maxMeterHeight - lastMeterHeightPrimary) / (0 - currVal);
+        float computedHeight = rateOfChange * (currVal - maxVal);
+        Debug.Log("MAX METER VAL = " + maxMeterHeight + "\nLAST METER VAL = " + lastMeterHeightPrimary);
         // Set the height of the meter
         primaryMeterRect.offsetMax = new Vector2 (primaryMeterRect.offsetMax.x, computedHeight * -1);
-        if (computedHeight <= 0) lastMeterHeightPrimary = 0; 
+        //if (computedHeight <= 0) lastMeterHeightPrimary = 0; 
     }
 
     private void UpdateChargeMeterPrimary(float maxVal, float currVal)
@@ -156,7 +157,7 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Set the height of the meter
         primaryMeterRect.offsetMax = new Vector2(primaryMeterRect.offsetMax.x, computedHeight * -1);
         // Update latest computed height for UI
-        lastMeterHeightPrimary = computedHeight;
+        lastMeterHeightPrimary = maxMeterHeight - computedHeight;
         // If the charge is at full, Update it to the full charge color
         if (currVal == 0f) { primaryMeter.color = fullChargeColor; }
     }
