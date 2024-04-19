@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class DJBoss : Boss
 {
     [SerializeField] private GameObject _shieldPrefab;
+    [SerializeField] private GameObject _shieldModel;
     [SerializeField] private GameObject[] _enemyPool;
 
     private const int MAX_HEALTH = 75;
@@ -24,10 +25,16 @@ public class DJBoss : Boss
     private int _vulnerablePhaseCount = 0;
     private Coroutine _spawnEnemiesCoro;
 
+    private void Start()
+    {
+        _shieldModel.SetActive(false);
+    }
+
     public override void BeginFight()
     {
         health = MAX_HEALTH;
 		EventData.OnEnemyDeath += OnEnemyDeath;
+        _shieldModel.SetActive(true);
 
         StartCoroutine(ShieldPhases());
     }
@@ -40,6 +47,7 @@ public class DJBoss : Boss
         while(health > 0)
         {
             Log("Invulnerable phase");
+            _shieldModel.SetActive(true);
             isInvulnerable = true;
 
             // Number shields generators starts at 2 then increases by 1 for each vulnerable phase reached, up to a max of 5
@@ -64,6 +72,7 @@ public class DJBoss : Boss
             yield return new WaitUntil(() => _shieldList.Count == 0);
 
             Log("Vulnerable phase");
+            _shieldModel.SetActive(true);
             _vulnerablePhaseCount++;
             isInvulnerable = false;
             if(_spawnEnemiesCoro != null) StopCoroutine(_spawnEnemiesCoro);
