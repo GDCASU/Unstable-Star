@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -46,11 +47,13 @@ public class PauseMenu : MonoBehaviour
         {
             pauseObject.SetActive(true);
             Time.timeScale = 0f;
+            PlayerInput.instance.ToggleControls(false); // Disable player input
         }
         else // unpauses
         {
             pauseObject.SetActive(false);
             Time.timeScale = 1.0f;
+            PlayerInput.instance.ToggleControls(true); // Disable player input
         }
     }
 

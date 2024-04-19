@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
+  m_IndirectSpecularColor: {r: 0.010086236, g: 0.052700967, b: 0.15289032, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -707,6 +707,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 333833997868747527, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: bb6350f1cbda37d4a95c35a30dcd63af, type: 2}
+    - target: {fileID: 333833997868747527, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7487821219168578916, guid: bb6350f1cbda37d4a95c35a30dcd63af, type: 2}
+    - target: {fileID: 333833997868747527, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 452984694364928637, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Name
       value: Gameplay Camera
@@ -759,6 +771,18 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 1925
       objectReference: {fileID: 0}
+    - target: {fileID: 5559038813808955538, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: bb6350f1cbda37d4a95c35a30dcd63af, type: 2}
+    - target: {fileID: 5559038813808955538, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7487821219168578916, guid: bb6350f1cbda37d4a95c35a30dcd63af, type: 2}
+    - target: {fileID: 5559038813808955538, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5624538941662455968, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: pauseObject
       value: 
@@ -777,11 +801,11 @@ PrefabInstance:
       objectReference: {fileID: 1815162932}
     - target: {fileID: 5959745050469382405, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1175.3777
+      value: 1639.4464
       objectReference: {fileID: 0}
     - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1175.3777
+      value: 1639.4464
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -823,6 +847,8 @@ MonoBehaviour:
   onWaveStart:
     m_PersistentCalls:
       m_Calls: []
+  testWavesOnStart: 0
+  waveSpawnStopped: 1
 --- !u!4 &1185152982
 Transform:
   m_ObjectHideFlags: 0
