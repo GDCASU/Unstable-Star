@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046923ffbfbab6240b88e5b27f3dab22, type: 3}
   m_Name: New Cred Text 4
   m_EditorClassIdentifier: 
-  title: Sound Officer
-  text: Edrick Fajardo,Oliver!Padegimas
+  title: Sound Officers
+  text: Edrick Fajardo,Oliver! Padegimas
