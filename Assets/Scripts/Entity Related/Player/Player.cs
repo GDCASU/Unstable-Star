@@ -14,6 +14,7 @@ public class Player : CombatEntity
     [SerializeField] private float shieldPerSecond;
     [SerializeField] private float shieldRegenDelayTime = 3f; // in seconds, does not stack with invulnerable time
     [SerializeField] private bool isShieldBroken;
+    [SerializeField] private FMODUnity.EventReference deathSFX;
 
     //Settings
     [SerializeField] private bool IsDebugLogging;
