@@ -141,7 +141,7 @@ public class Cutscene : MonoBehaviour
     {
         if (debug) Debug.Log("Cutscene::ActivateBoss");
         boss.gameObject.SetActive(true);
-        // boss.Activate
+        boss.BeginFight();
     }
 
     void ActivateNextScene()
