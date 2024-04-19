@@ -4,15 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using TMPro;
-using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 using UnityEngine.Windows;
-using OpenCover.Framework.Model;
-using UnityEditor.ShaderGraph;
 using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
