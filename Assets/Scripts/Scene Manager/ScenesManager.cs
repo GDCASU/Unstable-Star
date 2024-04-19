@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -105,6 +106,7 @@ public class ScenesManager : MonoBehaviour
     /// <param name="scene"></param>
     public void LoadScene(Scenes scene)
     {
+        currentScene = (int)scene;
         if (!unlockedScenes.ContainsKey(scene))
         {
             Debug.LogError("Scene does not exist");
