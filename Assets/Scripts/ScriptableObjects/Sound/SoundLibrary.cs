@@ -35,11 +35,15 @@ public class SoundLibrary : ScriptableObject
     public FMODUnity.EventReference TempRayGunShot { get; private set; }
     [SerializeField] private FMODUnity.EventReference _tempBattleMusic;
     public static FMODUnity.EventReference TempBattleMusic { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _levelEndJingle;
+    public static FMODUnity.EventReference LevelEndJingle { get; private set; }
 
 
     [Header("Music Tracks")]
     [SerializeField] private FMODUnity.EventReference _mainMenuTrack;
     public static FMODUnity.EventReference MainMenuTrack { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _creditsTrack;
+    public static FMODUnity.EventReference CreditsTrack { get; private set; }
 
 
     [Header("Player")]
@@ -95,9 +99,11 @@ public class SoundLibrary : ScriptableObject
         // TESTING EFFECTS
         TempRayGunShot = _tempRayGunShot;
         TempBattleMusic = _tempBattleMusic;
+        LevelEndJingle = _levelEndJingle;
 
         // Music Tracks
         MainMenuTrack = _mainMenuTrack;
+        CreditsTrack = _creditsTrack;
 
         // Player
         PlayerShipDestroyed = _playerShipDestroyed;
