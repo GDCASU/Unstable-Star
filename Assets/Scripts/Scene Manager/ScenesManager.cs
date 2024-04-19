@@ -13,8 +13,8 @@ public enum Scenes
     Level_2,
     CutScene_4,
     CutScene_5,
-    CutScene_6,
     Level_3,
+    CutScene_6,
     CutScene_7,
     GameOver
 }
@@ -28,8 +28,6 @@ public class ScenesManager : MonoBehaviour
     public static int currentScene { get; private set; }
     public static int currentLevel = 1;
     private Dictionary<Scenes, bool> unlockedScenes;
-
-    public Animator transition;
 
     private void Awake()
     {
@@ -93,7 +91,7 @@ public class ScenesManager : MonoBehaviour
             Debug.LogError("Scene does not exist");
             return;
         }
-        
+
         SceneManager.LoadScene((int)scene);
     }
 
@@ -146,13 +144,5 @@ public class ScenesManager : MonoBehaviour
             default:
                 return false;
         }
-    }
-
-    IEnumerator WaitForlvl1(string scene_name)
-    {
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(1);
-        Debug.Log("Waited!");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(scene_name);
     }
 }
