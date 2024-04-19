@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: level2_pool
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 4404498686940099912, guid: 9b96c815796f84d4589e8d94e7ac0f65, type: 3}
-  - {fileID: 4404498686940099912, guid: 62cd224dd2cf9a64d954e2f2339604d0, type: 3}
-  - {fileID: 4404498686940099912, guid: 2d9848240852a9a4ea5471cd7f928f05, type: 3}
-  - {fileID: 4404498686940099912, guid: 488fb7c535df99a40bfc17ea4a30dcc0, type: 3}
-  - {fileID: 4404498686940099912, guid: 9e86017f7919cc443be0ab26d680ef89, type: 3}
-  enemyBoundsCenter: 0.75
-  enemyBoundsSize: 0.15
+  - {fileID: 4404498686940099912, guid: 73bf46743c2fed94db448852680c77a7, type: 3}
+  - {fileID: 4404498686940099912, guid: d596bd566fd4f5d42aa91b759a148623, type: 3}
+  - {fileID: 4404498686940099912, guid: 8542519535df9a64687c6efbadd7a949, type: 3}
+  - {fileID: 4404498686940099912, guid: 5f74d89155cb1fb4889a9e9a8a24106a, type: 3}
+  - {fileID: 4404498686940099912, guid: 8545324d2d51e0d44ab79a02173f8c8f, type: 3}
+  enemyBoundsCenter: 0.7
+  enemyBoundsSize: 0.25
   overrideWaveBounds: 1

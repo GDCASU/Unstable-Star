@@ -18,6 +18,9 @@ public class WaveManager : MonoBehaviour
     [Header("Events")]
     [SerializeField] public UnityEvent<int> onWaveStart;
 
+    [Header("Debug")]
+    [SerializeField] bool testWavesOnStart = false;
+
     private GameObject waveParent;
     private WavePool currentWavePool = null;
     private int waveCounter = 1;
@@ -39,6 +42,9 @@ public class WaveManager : MonoBehaviour
         waveParent = GameObject.Find(WAVE_PARENT_NAME);
 
         currentWavePool = wavePools[0];     // Start currentWavePool at first wave in list
+
+        if (testWavesOnStart)   // FOR DEBUGGING; DO NOT ENABLE IN FINAL GAME
+            StartWaveSpawn();
     }
 
 
@@ -68,8 +74,8 @@ public class WaveManager : MonoBehaviour
 
     public void StartWaveSpawn()
     {
-        SpawnWave();                        // Spawn the first wave
         waveSpawnStopped = false;
+        SpawnWave();                        // Spawn the first wave
     }
 
     public void StopWaveSpawn()

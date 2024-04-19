@@ -17,7 +17,7 @@ public class WeaponScreens : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fieldName;
     [SerializeField] private TextMeshProUGUI fieldDesc;
     [SerializeField] private TextMeshProUGUI fieldDam;
-    [SerializeField] private Image fieldImg;
+    [SerializeField] private RawImage fieldImg;
 
     [Header("Current Data")]
     [SerializeField] string wepName;
@@ -25,6 +25,8 @@ public class WeaponScreens : MonoBehaviour
     [SerializeField] string wepDam;
     [SerializeField] Sprite wepImg;
 
+
+    public RawImage nothing;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +37,7 @@ public class WeaponScreens : MonoBehaviour
     void Update()
     {
         gunselected = WSUI.scanforhover();
-        if(gunselected != null && weaponselected == null) {
+        if(gunselected != null) {
             weaponselected = gunselected.GetComponent<HoverAndLerp>().GetScriptableWeapon().GetWeaponObject();
             SetFields(weaponselected);
         }
@@ -75,13 +77,11 @@ public class WeaponScreens : MonoBehaviour
         fieldName.text = wepName;
         fieldDesc.text = wepDesc;
         fieldDam.text = wepDam;
-        fieldImg.GetComponent<Image>().sprite = wepImg;
             }
     private void clearFields()
     {
         fieldName.text = string.Empty;
         fieldDesc.text = string.Empty;
         fieldDam.text = string.Empty;
-        fieldImg.GetComponent<Image>().sprite = null;
     }
 }
