@@ -23,7 +23,7 @@ public class WeaponArsenalEditor : Editor
     // Foldouts
     private bool DebuggingGroup = true;
     private bool WeaponArsenalGroup = true;
-    private bool AllScriptedWeapons = false;
+    private bool InputScriptedWeapons = false;
     private bool warningMsgGroup = false;
 
     private void OnEnable()
@@ -101,9 +101,9 @@ public class WeaponArsenalEditor : Editor
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 
-        // All the scripted weapons
-        AllScriptedWeapons = EditorGUILayout.BeginFoldoutHeaderGroup(AllScriptedWeapons, "Presets");
-        if (AllScriptedWeapons) 
+        // The desired input weapons
+        InputScriptedWeapons = EditorGUILayout.BeginFoldoutHeaderGroup(InputScriptedWeapons, "Input Weapons");
+        if (InputScriptedWeapons) 
         {
             EditorGUILayout.PropertyField(primary);
             EditorGUILayout.PropertyField(secondary);

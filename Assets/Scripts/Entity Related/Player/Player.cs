@@ -53,13 +53,20 @@ public class Player : CombatEntity
         health = MAX_HEALTH;
         shield = MAX_SHIELD;
         shieldFloat = shield;
-        shieldPerSecond = 1f; //1 shield per second
-        dmgInvulnTime = 1f;
 
         //Set Variables
         ShieldRoutine = null;
         isShieldRestoredRoutine = null;
         isShieldBroken = false;
+
+        // Subscribe to events
+        EventData.OnPlayerDeath += WhenPlayerDies;
+    }
+
+    // Unsubscribe from events on destroy
+    protected override void OnDestroy()
+    {
+        EventData.OnPlayerDeath -= WhenPlayerDies;
     }
 
     //Update's only purpose is debugging, everything else runs on
@@ -415,6 +422,8 @@ public class Player : CombatEntity
         isInvulnerable = true;
         isIgnoringCollisions = ignoreCollisions;
         timeLeftInvulnerable = seconds;
+        // Raise event for flashing effect on ship
+        EventData.RaiseOnInvulnerabilityToggled(isEntering: true);
 
         // Runs the iframes timer
         while (timeLeftInvulnerable > 0f)
@@ -433,6 +442,8 @@ public class Player : CombatEntity
         yield return null;
         isInvulnerable = false;
         invulnRoutine = null;
+        // Raise event to stop flashing effect on ship
+        EventData.RaiseOnInvulnerabilityToggled(isEntering: false);
     }
 
     #endregion
@@ -445,9 +456,6 @@ public class Player : CombatEntity
         //Stub
         EventData.RaiseOnHealthLost(health); //To remove Last Health segment from UI
         EventData.RaiseOnPlayerDeath();
-
-        // Destroy player object from scene
-        Destroy(gameObject);
     }
 
     //What happens to the game and the player on death
@@ -459,7 +467,13 @@ public class Player : CombatEntity
 
         //TODO: Add here events that happens when player dies ---------------
 
+        // Explosion Effect
+        Instantiate(deathEffectPrefab, this.transform.position, Quaternion.identity); 
+
         //-----------------------------------------------------------------------
+
+        // Destroy player object from scene
+        Destroy(gameObject);
     }
 
     #endregion

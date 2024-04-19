@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8f12d865-4f3d-40d8-b912-1f265b8a1bba}">
+		<property name="assetPath">
+			<value>intercom_turn_on.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>22.758616780045351</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{11d4c43a-adb1-4f3d-92cb-93372a152139}</destination>
+		</relationship>
+	</object>
+</objects>

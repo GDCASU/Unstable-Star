@@ -39,16 +39,27 @@ public class AbilityComponent : MonoBehaviour
         switch(inputAbility.behaviour)
         {
             case AbilityTypes.PhaseShift:
+                // Phase Shift should be blocked while on iFrames
+                if (entityComponent.isInvulnerable) return;
                 PerformPhaseShift(inputAbility);
                 break;
+
             case AbilityTypes.ProxiBomb:
                 PerformProximityBomb(inputAbility);
                 break;
+
             default:
                 // Ability not recognized or not implemented
                 Debug.Log("WARNING! ABILITY ENUM NOT DEFINED IN ABILITY COMPONENT!");
                 break;
         }
+    }
+
+    // OnDestroy Cleanup
+    private void OnDestroy()
+    {
+        // Stop routines
+        StopAllCoroutines();
     }
 
     #region PHASE SHIFT
@@ -132,26 +143,25 @@ public class AbilityComponent : MonoBehaviour
     // Cooldown routine
     private IEnumerator CooldownRoutine(Ability input)
     {
-        float timeLeft = input.cooldownTime;
         input.isOnCooldown = true;
+        input.timeLeftInCooldown = input.cooldownTime;
 
         // Update time variable
-        while (timeLeft > 0)
+        while (input.timeLeftInCooldown > 0f)
         {
-            timeLeft -= Time.deltaTime;
-            input.timeLeftInCooldown = timeLeft;
             // Invoke the ability event for UI
-            EventData.RaiseOnAbilityCooldown(input.cooldownTime, timeLeft);
+            EventData.RaiseOnAbilityCooldown(input.cooldownTime, input.timeLeftInCooldown);
+            // Compute time
+            input.timeLeftInCooldown -= Time.deltaTime;
             // Wait a frame
             yield return null;
         }
         // Cooldown ended
         input.timeLeftInCooldown = 0f;
-        timeLeft = 0f;
         input.isOnCooldown = false;
 
         // Raise event one more time to indicate its finished
-        EventData.RaiseOnAbilityCooldown(input.cooldownTime, timeLeft);
+        EventData.RaiseOnAbilityCooldown(input.cooldownTime, input.timeLeftInCooldown);
     }
 
 

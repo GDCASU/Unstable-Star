@@ -22,6 +22,8 @@ MonoBehaviour:
       Data3: 989007238
       Data4: 152891200
     Path: event:/TESTING/RayGunEffect
+  sound: 0
+  description: A Shotgun that shoots big bullets
   damage: 1
   bulletSpeed: 30
   shotsCooldown: 0.2

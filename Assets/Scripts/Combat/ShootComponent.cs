@@ -15,9 +15,14 @@ public class ShootComponent : MonoBehaviour
 
     //Local Variables
     private int projectileLayer;
+    private GameObject firedLaser;
     private CombatEntity entityScript;
     private Coroutine gatlingRoutine = null;
     private Coroutine laserRoutine;
+    private float lastBarHeight;
+
+    // For changing a boolean flag to stop the crosshair from moving
+    public GatlingCrosshair gatlingCrosshair;
 
     // Initial setup
     private void Start()
@@ -40,6 +45,16 @@ public class ShootComponent : MonoBehaviour
                 Debug.Log("ERORR!!! AN OBJECT THAT IS SHOOTING IS UNTAGGED AND/OR UNDEFINED IN SHOOTSCRIPT.CS");
                 break;
         }
+    }
+
+    // OnDestroy Cleanup
+    private void OnDestroy()
+    {
+        // Stop routines
+        StopAllCoroutines();
+        // Since the laser is created to live independent of the creator,
+        // it has to be removed manually In case of death while firing
+        Destroy(firedLaser);
     }
 
     /// <summary> Makes the object shoot its current weapon, returns true if successful </summary>
@@ -78,20 +93,42 @@ public class ShootComponent : MonoBehaviour
     private IEnumerator ShootingCooldown(Weapon input)
     {
         input.isOnCooldown = true;
-        float timePassed = input.shootCooldownTime;
+        input.timeLeftInCooldown = input.shootCooldownTime;
 
         // Cooldown timer
-        while (timePassed > 0f)
+        while (input.timeLeftInCooldown > 0f)
         {
-            timePassed -= Time.deltaTime;
-            input.timeLeftInCooldown = timePassed;
+            // Invoke the UI event for the weapon
+            input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.timeLeftInCooldown);
+            input.timeLeftInCooldown -= Time.deltaTime; // Compute time
             yield return null; // Wait a frame
         }
-
         input.isOnCooldown = false;
         input.timeLeftInCooldown = 0f;
+
+        // Raise cooldown event one last time and reset
+        input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.timeLeftInCooldown);
     }
 
+    // Laser cooldown routine
+    private IEnumerator LaserCooldown(Weapon input)
+    {
+        input.isOnCooldown = true;
+
+        // Cooldown timer
+        while (input.chargeTimeCounter > 0f)
+        {
+            // Invoke the UI event for the weapon
+            input.RaiseModifyMeterCooldown(input.maxChargeUpTime, input.chargeTimeCounter);
+            input.chargeTimeCounter -= Time.deltaTime; // Compute time
+            yield return null; // Wait a frame
+        }
+        input.isOnCooldown = false;
+        input.chargeTimeCounter = 0f;
+
+        // Raise cooldown event one last time and reset
+        input.RaiseModifyMeterCooldown(input.maxChargeUpTime, input.chargeTimeCounter);
+    }
 
     #region PROJECTILE BEHAVIOURS
 
@@ -163,27 +200,16 @@ public class ShootComponent : MonoBehaviour
             return;
         }
 
-        // Else, Its the player, start the windup and check for button release
+        // Else, Its the player, start the windup and check for max heat reached
         gatlingRoutine = StartCoroutine(PlayerGatlingRoutine(input));
-        StartCoroutine(isShootingHeld(input));
+        StartCoroutine(isGatlingOnMaxHeat(input));
     }
 
     // This Routine will be stopped if the button is released
     private IEnumerator PlayerGatlingRoutine(Weapon input)
     {
-        float timeLeft;
-        // Warm up timer
-        // TODO: Missing warm up sound
-        timeLeft = input.warmupTime;
-        while (timeLeft > 0f)
-        {
-            timeLeft -= Time.deltaTime;
-            input.warmupCounter = timeLeft;
-            yield return null;
-        }
-        input.warmupCounter = 0f;
-
-        // Warmup finshed, start shooting until stopped
+        // Start shooting and warm up weapon
+        // NOTE: if we want left to right movement, the list can be turned into a queue
         WaitForSeconds shotsTime = new WaitForSeconds(input.shootCooldownTime);
         List<float> randOffsets = new List<float>();
         randOffsets.Add(-0.5f);
@@ -191,9 +217,9 @@ public class ShootComponent : MonoBehaviour
         float previousVal = 0;
         float currVal;
         int index;
-        // Else, do player routine
-        // NOTE: if we want left to right movement, the list can be turned into a queue
-        while (true)
+        // Start shooting as long as max heat is not reached
+        input.HeatUpCounter = 0f;
+        while (input.HeatUpCounter < input.heatUpTimeMax)
         {
             // Get a random index
             index = UnityEngine.Random.Range(0, randOffsets.Count);
@@ -229,19 +255,20 @@ public class ShootComponent : MonoBehaviour
         ShootingLoop:
 
         // Warm up
-        timeLeft = input.warmupTime;
+        timeLeft = input.heatUpTimeMax;
         while (timeLeft > 0f)
         {
             timeLeft -= Time.deltaTime;
-            input.warmupCounter = timeLeft;
+            input.HeatUpCounter = timeLeft;
             yield return null;
         }
-        input.warmupCounter = 0f;
+        input.HeatUpCounter = 0f;
 
         // Shoot for some time specified
         timeLeft = input.shootingStayTime;
         while (timeLeft >= 0f)
         {
+            gatlingCrosshair.followPlayer = false;
             // Get a random index
             index = UnityEngine.Random.Range(0, randOffsets.Count);
             // Get a value from a random offset and remove it from array
@@ -258,26 +285,46 @@ public class ShootComponent : MonoBehaviour
             timeLeft -= input.shootCooldownTime;
             // Wait for time between shots
             yield return shotsTime;
+            gatlingCrosshair.followPlayer = true;
         }
         // Loop
         goto ShootingLoop;
     }
 
     // Routine that will check if the fire button is still being held down for the gatling
-    private IEnumerator isShootingHeld(Weapon input)
+    private IEnumerator isGatlingOnMaxHeat(Weapon input)
     {
         // Continue charging and firing gatling gun as long as the button is hold and the weapon
         // Hasnt been switched or locked
-        while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input && !entityScript.isShootingLocked)
+        while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input && !entityScript.isShootingLocked && input.HeatUpCounter < input.heatUpTimeMax)
         {
+            // Increase time
+            input.HeatUpCounter += Time.deltaTime;
+            // Update UI
+            input.RaiseModifyMeterCharge(input.heatUpTimeMax, input.HeatUpCounter);
             // check every frame for firing conditions
             yield return null;
         }
 
-        // Else, it has been released
+        // Else, it has been released or reached max heat
         StopCoroutine(gatlingRoutine);
         gatlingRoutine = null;
-        input.warmupCounter = 0f;
+        input.HeatUpCounter = 0f;
+        
+        // Start cooling down
+        input.isOnCooldown = true;
+        while (input.chargeTimeCounter > 0f)
+        {
+            // Invoke the UI event for the weapon
+            input.RaiseModifyMeterCooldown(input.heatUpTimeMax, input.HeatUpCounter);
+            input.chargeTimeCounter -= Time.deltaTime; // Compute time
+            yield return null; // Wait a frame
+        }
+        input.isOnCooldown = false;
+        input.HeatUpCounter = 0f;
+
+        // Raise cooldown event one last time and reset
+        input.RaiseModifyMeterCooldown(input.heatUpTimeMax, input.HeatUpCounter);
     }
 
     #endregion
@@ -323,22 +370,23 @@ public class ShootComponent : MonoBehaviour
         // Charge up sphere data
         float rateOfChange = maxSphereDiameter / input.maxChargeUpTime;
         float currentDiameter;
-        float elapsedTime = 0f;
+        input.chargeTimeCounter = input.maxChargeUpTime;
 
         // Charge up the laser while held, not switched and shooting not locked
         while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input && !entityScript.isShootingLocked)
         {
-            if (elapsedTime < input.maxChargeUpTime)
+            // Update UI
+            input.RaiseModifyMeterCharge(input.maxChargeUpTime, input.chargeTimeCounter);
+            // Check if charging is finished
+            if (input.chargeTimeCounter > 0f)
             {
-                elapsedTime += Time.deltaTime;
-                input.chargeTimeCounter = elapsedTime;
-                currentDiameter = rateOfChange * elapsedTime;
+                input.chargeTimeCounter -= Time.deltaTime;
+                currentDiameter = rateOfChange * (input.maxChargeUpTime - input.chargeTimeCounter);
                 chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
             }
             else
             {
-                input.chargeTimeCounter = input.maxChargeUpTime;
-                elapsedTime = input.maxChargeUpTime;
+                input.chargeTimeCounter = 0f;
                 currentDiameter = maxSphereDiameter;
                 chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
             }
@@ -350,8 +398,9 @@ public class ShootComponent : MonoBehaviour
         if (WeaponArsenal.instance.GetCurrentWeapon() != input || entityScript.isShootingLocked)
         {
             laserRoutine = null;
-            input.chargeTimeCounter = 0;
+            input.chargeTimeCounter = 0f;
             StartCoroutine(ReduceSphereTillZero(chargeSphere, chargeSphereKillTimeIfCancelled));
+            input.RaiseModifyMeterCharge(input.maxChargeUpTime, input.chargeTimeCounter); // Update UI
             yield break;
         }
 
@@ -375,13 +424,13 @@ public class ShootComponent : MonoBehaviour
 
         // Calculate the width/diameter of the laser based on charge up time
         rateOfChange = (maxLaserWidth - minLaserWidth) / (input.maxChargeUpTime);
-        float laserWidth = rateOfChange * input.chargeTimeCounter + minLaserWidth;
+        float laserWidth = rateOfChange * (input.maxChargeUpTime - input.chargeTimeCounter) + minLaserWidth;
 
         // Create the laser with the specified distance
-        GameObject laser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
+        firedLaser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
         // Extend the laser by a bit so the player cant see the end of the laser
         Vector3 endPos = hitInfo.point + 2 * AnchorObject.transform.up; 
-        StartCoroutine(HandleLaserLine(laser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
+        StartCoroutine(HandleLaserLine(firedLaser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
 
         // Wait a frame so the laser renders
         yield return null;
@@ -405,7 +454,7 @@ public class ShootComponent : MonoBehaviour
                 if (entity.isIgnoringCollisions) continue;
 
                 // Calculate damage depending on charge time
-                int damage = (int)(rateOfChange * input.chargeTimeCounter + input.minDamage); // Floor it
+                int damage = (int)(rateOfChange * (input.maxChargeUpTime - input.chargeTimeCounter) + input.minDamage); // Floor it
 
                 // Deal damage
                 entity.TakeDamage(damage, out int dmgRecieved, out Color colorSet);
@@ -413,10 +462,10 @@ public class ShootComponent : MonoBehaviour
             }
         }
         // Call cooldown on this laser weapon
-        StartCoroutine(ShootingCooldown(input));
+        input.chargeTimeCounter = 0f;
+        StartCoroutine(LaserCooldown(input));
         // Laser fire finished
         laserRoutine = null;
-        input.chargeTimeCounter = 0f;
     }
 
     private IEnumerator EnemeyLaserRoutine(Weapon input)
@@ -431,6 +480,7 @@ public class ShootComponent : MonoBehaviour
         float timeToZeroWidth = 0.5f;
 
         // Pre-declare variables before loop
+        input.isEnemyShooting = true;
         GameObject chargeSphere;
         float rateOfChange;
         float currentDiameter;
@@ -442,13 +492,10 @@ public class ShootComponent : MonoBehaviour
         int damageVal;
         bool didHit;
         float laserWidth;
-        GameObject laser;
         Vector3 endPos;
         WaitForSeconds cooldown = new WaitForSeconds(input.shootCooldownTime);
 
-    // Label for looping
-    LoopShooting:
-
+        // Laser Fire. Only Once
         // Create the chargeup prefab
         chargeSphere = Instantiate(input.chargingSpherePrefab, AnchorObject.transform.position, AnchorObject.transform.rotation, AnchorObject.transform);
         chargeSphere.transform.localScale = Vector3.zero;
@@ -491,10 +538,10 @@ public class ShootComponent : MonoBehaviour
         laserWidth = rateOfChange * input.chargeTimeCounter + minLaserWidth;
 
         // Create the laser with the specified distance
-        laser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
+        firedLaser = Instantiate(input.prefab, AnchorObject.transform.position, AnchorObject.transform.rotation);
         // Extend the laser by a bit so the player cant see the end of the laser
         endPos = hitInfo.point + 2 * AnchorObject.transform.up;
-        StartCoroutine(HandleLaserLine(laser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
+        StartCoroutine(HandleLaserLine(firedLaser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
 
         // Wait a frame so the laser renders
         yield return null;
@@ -528,8 +575,8 @@ public class ShootComponent : MonoBehaviour
         // Cooldown on this laser weapon
         input.chargeTimeCounter = 0f;
         yield return cooldown;
-        // Loop back to beginning
-        goto LoopShooting;
+        // Set bool for enemy behaviour
+        input.isEnemyShooting = false;
     }
 
     // Helper routine to reduce the Charging sphere while firing the laser

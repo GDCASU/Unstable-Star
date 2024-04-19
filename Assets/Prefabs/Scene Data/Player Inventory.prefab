@@ -91,12 +91,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityInventoryStrings: []
-  maxAbilityCount: 3
   currAbilityIndex: -1
   doDebugLog: 0
-  loadDefaultAbilities: 1
-  phaseShiftAbility: {fileID: 11400000, guid: 884f821cad312ad4f8c4ef9e7ee6c6ca, type: 2}
-  proxiBombAbility: {fileID: 11400000, guid: bd2f8a7460abb3a4da0ea43373dd8070, type: 2}
+  loadInspectorAbility: 1
+  inputAbility: {fileID: 11400000, guid: bd2f8a7460abb3a4da0ea43373dd8070, type: 2}
 --- !u!1 &8504405926243348112
 GameObject:
   m_ObjectHideFlags: 0
