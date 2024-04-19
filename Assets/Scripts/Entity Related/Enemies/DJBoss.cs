@@ -24,7 +24,7 @@ public class DJBoss : CombatEntity
     private int _vulnerablePhaseCount = 0;
     private Coroutine _spawnEnemiesCoro;
 
-    private void Start()
+    public void BeginFight()
     {
         health = MAX_HEALTH;
 		EventData.OnEnemyDeath += OnEnemyDeath;
@@ -35,7 +35,7 @@ public class DJBoss : CombatEntity
     private IEnumerator ShieldPhases()
     {
         // TODO: remove
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.I));
+        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.I));
 
         while(health > 0)
         {

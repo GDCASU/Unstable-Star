@@ -30,11 +30,11 @@ public class UICred : MonoBehaviour
     }
     void Update()
     {
-        txt_Target.transform.Translate(moving*speed*Time.deltaTime);
-        /*if(this.gameObject.transform.position.y>0)
+        txt_Target.rectTransform.Translate(moving*speed*Time.deltaTime);
+        if (txt_Target.transform.localPosition.y > txt_Target.rectTransform.rect.height)
         {
             ScenesManager.instance.LoadScene(Scenes.MainMenu);
-        }*/
+        }
     }
     public void HandleButtonClick()
     {
