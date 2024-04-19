@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,6 +200,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40594990}
   m_CullTransparentMesh: 1
+--- !u!1 &84161246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 84161248}
+  - component: {fileID: 84161247}
+  m_Layer: 0
+  m_Name: Inventory Clearer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &84161247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84161246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7890bfe3db138854daf2799a2643d003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &84161248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84161246}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.65943074, y: 2.035784, z: 7.108025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &93773890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,15 +1125,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6659238401945396548, guid: 69db2f79f4a71f245ad430deea27e78b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.981394
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6659238401945396548, guid: 69db2f79f4a71f245ad430deea27e78b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2716749
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6659238401945396548, guid: 69db2f79f4a71f245ad430deea27e78b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9939122
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6659238401945396548, guid: 69db2f79f4a71f245ad430deea27e78b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1137,7 +1181,15 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2236945867347826101, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
+      propertyPath: doDebugLog
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236945867347826101, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
       propertyPath: loadInspectorWeapons
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375659726404869264, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
+      propertyPath: loadInspectorAbility
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2457199636198138481, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
@@ -2353,18 +2405,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: startbuttonenabled, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &914332080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2736,50 +2776,6 @@ MonoBehaviour:
   moving: 0
   ButtontoAbilities: {fileID: 836894663}
   ButtontoWeapons: {fileID: 1004266208}
---- !u!1 &1160070424
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1160070426}
-  - component: {fileID: 1160070425}
-  m_Layer: 0
-  m_Name: Inventory Clearer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1160070425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160070424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7890bfe3db138854daf2799a2643d003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1160070426
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160070424}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.65943074, y: 2.035784, z: 7.108025}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1172783643
 GameObject:
   m_ObjectHideFlags: 0
@@ -3223,7 +3219,7 @@ MonoBehaviour:
   blackout: {fileID: 4362962105363994262, guid: 1f90852975858d24d8d1ed07d423f7cc, type: 3}
   transDisk: {fileID: 2100000, guid: c51d9a56ae39aa341b7f464bcc49d94a, type: 2}
   selected: 0
-  unlocked: 0
+  unlocked: 1
   weapon: {fileID: 11400000, guid: 3f690268667fd3a4a928501cf26f8f09, type: 2}
 --- !u!1 &1290051872 stripped
 GameObject:
@@ -3252,7 +3248,7 @@ MonoBehaviour:
   blackout: {fileID: 4362962105363994262, guid: 1f90852975858d24d8d1ed07d423f7cc, type: 3}
   transDisk: {fileID: 2100000, guid: c51d9a56ae39aa341b7f464bcc49d94a, type: 2}
   selected: 0
-  unlocked: 0
+  unlocked: 1
   weapon: {fileID: 11400000, guid: bd2f8a7460abb3a4da0ea43373dd8070, type: 2}
 --- !u!64 &1290051875
 MeshCollider:
@@ -5644,4 +5640,4 @@ SceneRoots:
   - {fileID: 1410098785}
   - {fileID: 290534869}
   - {fileID: 427046031}
-  - {fileID: 1160070426}
+  - {fileID: 84161248}

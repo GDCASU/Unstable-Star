@@ -15,8 +15,7 @@ public class AbilitySelectUI : MonoBehaviour
 
     private void Start()
     {
-        inventoryParent = GameObject.Find("Player Inventory");
-        arsenal = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
+        arsenal = AbilityInventory.instance;
         MaxNum = arsenal.GetMaxAbilityCount();
         hoverAndLerps = new HoverAndLerp2[abilities.Length];
         for (int i = 0; i < abilities.Length; i++)
@@ -25,7 +24,7 @@ public class AbilitySelectUI : MonoBehaviour
             hoverAndLerps[i] = abilities[i].GetComponent<HoverAndLerp2>();
         }
     }
-    public void CheckWeaponEquipLoad(HoverAndLerp2 hav)
+    public void CheckAbilityEquipLoad(HoverAndLerp2 hav)
     {
         if (Equipped < MaxNum || (hav.selected))
         {
@@ -34,12 +33,12 @@ public class AbilitySelectUI : MonoBehaviour
         else { }//play sound or notify player too many weapons equipped
         //else notify user that too many equipped
     }
-    public void setArseWeapon(Ability wep)
+    public void setArseAbility(Ability wep)
     {
         arsenal.AddAbilityToInventory(wep);
     }
 
-    public void removeArseWeapon(Ability wep)
+    public void removeArseAbility(Ability wep)
     {
         arsenal.RemoveAbilityByObject(wep);
     }
