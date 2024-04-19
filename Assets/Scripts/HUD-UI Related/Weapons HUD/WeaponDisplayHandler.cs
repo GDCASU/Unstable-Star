@@ -139,12 +139,10 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Set the color to Cooldown
         primaryMeter.color = cooldownColor;
         // Compute height of the meter
-        float rateOfChange = (maxMeterHeight - lastMeterHeightPrimary) / (0 - currVal);
-        float computedHeight = rateOfChange * (currVal - maxVal);
-        Debug.Log("MAX METER VAL = " + maxMeterHeight + "\nLAST METER VAL = " + lastMeterHeightPrimary);
+        float rateOfChange = (maxMeterHeight - lastMeterHeightPrimary) / maxVal;
+        float computedHeight = rateOfChange * currVal + lastMeterHeightPrimary;
         // Set the height of the meter
         primaryMeterRect.offsetMax = new Vector2 (primaryMeterRect.offsetMax.x, computedHeight * -1);
-        //if (computedHeight <= 0) lastMeterHeightPrimary = 0; 
     }
 
     private void UpdateChargeMeterPrimary(float maxVal, float currVal)
@@ -157,7 +155,7 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Set the height of the meter
         primaryMeterRect.offsetMax = new Vector2(primaryMeterRect.offsetMax.x, computedHeight * -1);
         // Update latest computed height for UI
-        lastMeterHeightPrimary = maxMeterHeight - computedHeight;
+        lastMeterHeightPrimary = computedHeight;
         // If the charge is at full, Update it to the full charge color
         if (currVal == 0f) { primaryMeter.color = fullChargeColor; }
     }
@@ -167,11 +165,10 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Set the color to Cooldown
         secondaryMeter.color = cooldownColor;
         // Compute height of the meter
-        float rateOfChange = lastMeterHeightSecondary / maxVal;
-        float computedHeight = rateOfChange * (maxVal - currVal);
+        float rateOfChange = (maxMeterHeight - lastMeterHeightSecondary) / maxVal;
+        float computedHeight = rateOfChange * currVal + lastMeterHeightSecondary;
         // Set the height of the meter
         secondaryMeterRect.offsetMax = new Vector2(secondaryMeterRect.offsetMax.x, computedHeight * -1);
-        if (computedHeight <= 0) lastMeterHeightSecondary = 0;
     }
 
     private void UpdateChargeMeterSecondary(float maxVal, float currVal)

@@ -16,7 +16,7 @@ public class ScriptableGatling : ScriptableWeapon
     public string description;
 
     [Header("Stats")]
-    public float warmUpTime;
+    public float heatUpTime;
     public int damage;
     public float bulletSpeed;
     public float timeBetweenShots;
@@ -31,9 +31,9 @@ public class ScriptableGatling : ScriptableWeapon
         // Set for an enemy
         if (isEnemy)
         {
-            return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime, description);
+            return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, heatUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime, description);
         }
         // Set for a player
-        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime * 0, description);
+        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, heatUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime * 0, description);
     }
 }
