@@ -362,6 +362,13 @@ MonoBehaviour:
   shieldPerSecond: 0
   shieldRegenDelayTime: 3
   isShieldBroken: 0
+  deathSFX:
+    Guid:
+      Data1: 708082322
+      Data2: 1250716585
+      Data3: -861400440
+      Data4: 1621521794
+    Path: event:/SFX/Player/Ship Effects/Ship Destroyed
   IsDebugLogging: 0
   DamageTest: 0
   HealTest: 0
@@ -398,6 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnchorObject: {fileID: 2771126060896347954}
+  gatlingCrosshair: {fileID: 0}
 --- !u!114 &8063448138892404998
 MonoBehaviour:
   m_ObjectHideFlags: 0

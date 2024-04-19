@@ -434,6 +434,8 @@ public class ShootComponent : MonoBehaviour
         // Extend the laser by a bit so the player cant see the end of the laser
         Vector3 endPos = hitInfo.point + 2 * AnchorObject.transform.up; 
         StartCoroutine(HandleLaserLine(firedLaser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
+        // Play laser sound
+        FMODUnity.RuntimeManager.PlayOneShot(input.mainSound);
 
         // Wait a frame so the laser renders
         yield return null;
@@ -542,6 +544,8 @@ public class ShootComponent : MonoBehaviour
         // Extend the laser by a bit so the player cant see the end of the laser
         endPos = hitInfo.point + 2 * AnchorObject.transform.up;
         StartCoroutine(HandleLaserLine(firedLaser, laserWidth, timeToFullWidth, timeToZeroWidth, AnchorObject.transform.position, endPos));
+        // Play laser sound
+        FMODUnity.RuntimeManager.PlayOneShot(input.mainSound);
 
         // Wait a frame so the laser renders
         yield return null;
