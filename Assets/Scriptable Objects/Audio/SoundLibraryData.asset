@@ -30,6 +30,13 @@ MonoBehaviour:
       Data3: -247545701
       Data4: 1151283404
     Path: event:/TESTING/Temp BG Music
+  _levelEndJingle:
+    Guid:
+      Data1: -1831236265
+      Data2: 1278090402
+      Data3: -1924939381
+      Data4: -1348198527
+    Path: event:/SFX/HUD/LevelEndJingle
   _mainMenuTrack:
     Guid:
       Data1: -1557407353
@@ -37,6 +44,13 @@ MonoBehaviour:
       Data3: -1267006577
       Data4: 719781303
     Path: event:/Music/Menus/Main Menu
+  _creditsTrack:
+    Guid:
+      Data1: 2052603627
+      Data2: 1181178969
+      Data3: 1624709809
+      Data4: -1363662251
+    Path: event:/Music/Menus/CreditsTheme
   _playerShipDestroyed:
     Guid:
       Data1: 708082322
