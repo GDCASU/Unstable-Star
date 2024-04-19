@@ -33,7 +33,7 @@ public class AbilityScreens: MonoBehaviour
     void Update()
     {
         abilselected = WSUI.scanforhover();
-        if (abilselected != null && abilityselected == null)
+        if (abilselected != null)
         {
 
             abilityselected = abilselected.GetComponent<HoverAndLerp2>().GetScriptableWeapon().GetAbilityObject();
