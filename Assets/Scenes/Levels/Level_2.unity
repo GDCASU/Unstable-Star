@@ -1528,7 +1528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2890868740057410522, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100.000015
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 3210391712021857464, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -1640,7 +1640,7 @@ PrefabInstance:
       objectReference: {fileID: 1278761150}
     - target: {fileID: 6644509152745091325, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: currentSceneFile
-      value: Assets/Scripts/Dialogue/Act2_Sc2.txt
+      value: Act2_Sc2.txt
       objectReference: {fileID: 0}
     - target: {fileID: 7020894527863033518, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Color.b

@@ -47,7 +47,7 @@ public class DialogueManager : MonoBehaviour
     {
         // initializes the current act
         currentDialogue = new string[1000][];
-        currentDialogue = ReadFile(currentSceneFile, currentDialogue);
+        currentDialogue = ReadFile(System.IO.Path.Combine(Application.streamingAssetsPath, currentSceneFile), currentDialogue);
 
         PlayerInput.OnChangeDialogue += ChangeDialogue; // Change dialogue inputs from the input system
         PlayerInput.OnSkipDialogue += ChangeScene;  // Change Scene inputs
