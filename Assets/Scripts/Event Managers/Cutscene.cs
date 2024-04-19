@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting.FullSerializer;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -139,6 +138,11 @@ public class Cutscene : MonoBehaviour
     void ActivateBoss()
     {
         if (debug) Debug.Log("Cutscene::ActivateBoss");
+        if(boss == null)
+        {
+            StartDialogue();
+            return;
+        }
         boss.gameObject.SetActive(true);
         boss.BeginFight();
     }
@@ -163,6 +167,7 @@ public class Cutscene : MonoBehaviour
         hud.SetActive(false);
         dialogueBox.SetActive(true);
         dialogueManager.StartText();
+        PlayerInput.instance.ToggleControls(false);
         ChangeDialogue();
     }
 
@@ -180,6 +185,7 @@ public class Cutscene : MonoBehaviour
         hud.SetActive(true);
         dialogueBox.SetActive(false);
         director.Pause();
+        PlayerInput.instance.ToggleControls(true);
         animator.SetTrigger("DialogueDone");
     }
 

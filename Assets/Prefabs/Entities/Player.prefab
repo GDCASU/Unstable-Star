@@ -359,7 +359,7 @@ MonoBehaviour:
   isIgnoringCollisions: 0
   MAX_HEALTH: 10
   MAX_SHIELD: 5
-  shieldPerSecond: 0
+  shieldPerSecond: 1
   shieldRegenDelayTime: 3
   isShieldBroken: 0
   deathSFX:
@@ -369,7 +369,7 @@ MonoBehaviour:
       Data3: -861400440
       Data4: 1621521794
     Path: event:/SFX/Player/Ship Effects/Ship Destroyed
-  IsDebugLogging: 0
+  IsDebugLogging: 1
   DamageTest: 0
   HealTest: 0
   GainShieldTest: 0

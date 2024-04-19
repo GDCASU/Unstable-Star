@@ -47,7 +47,7 @@ public class DialogueManager : MonoBehaviour
     {
         // initializes the current act
         currentDialogue = new string[1000][];
-        currentDialogue = ReadFile(currentSceneFile, currentDialogue);
+        currentDialogue = ReadFile(System.IO.Path.Combine(Application.streamingAssetsPath, currentSceneFile), currentDialogue);
 
         PlayerInput.OnChangeDialogue += ChangeDialogue; // Change dialogue inputs from the input system
         PlayerInput.OnSkipDialogue += ChangeScene;  // Change Scene inputs
@@ -194,7 +194,13 @@ public class DialogueManager : MonoBehaviour
     // Changes to the next scene
     public void ChangeScene()
     {
-        ScenesManager.instance.LoadNextScene();
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        for (int i=1; i< 8; i++)
+        {
+            if (SceneManager.GetActiveScene().name == "CutScene_" + i.ToString())
+            {
+                ScenesManager.instance.LoadNextScene();
+                // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            }
+        }
     }
 }
