@@ -31,7 +31,7 @@ public class NextSceneLevel : MonoBehaviour
     }
 
     public void callNextScene() {
-        if (ScenesManager.currentLevel == 1) {
+        /*if (ScenesManager.currentLevel == 1) {
             ScenesManager.instance.LoadLevel(ScenesManager.currentLevel);
             ScenesManager.currentLevel += 1;
         }
@@ -40,7 +40,7 @@ public class NextSceneLevel : MonoBehaviour
             return;
 
         ScenesManager.instance.LoadLevel(ScenesManager.currentLevel);
-        ScenesManager.currentLevel += 1;
+        ScenesManager.currentLevel += 1;*/
 
         ObjectivePanel.Instance.StartLevelObjecives();
 
