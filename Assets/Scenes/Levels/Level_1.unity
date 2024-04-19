@@ -910,15 +910,15 @@ PrefabInstance:
       objectReference: {fileID: 7482667652216324306, guid: 6c9aaa32e65929a49b9a70b84547fb1e, type: 3}
     - target: {fileID: 3348660154666444945, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Color.b
-      value: 0.7047034
+      value: 0.5999667
       objectReference: {fileID: 0}
     - target: {fileID: 3348660154666444945, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Color.g
-      value: 0.9150943
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3348660154666444945, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Color.r
-      value: 0.4178355
+      value: 0.2688679
       objectReference: {fileID: 0}
     - target: {fileID: 3348660154666444945, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Maskable
