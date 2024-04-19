@@ -8,7 +8,7 @@ public class AsteroidSpawner : MonoBehaviour
     public static AsteroidSpawner Instance;
 
     [SerializeField] float playerViewWidth = 50f; //Serialize
-    bool spawnAsteroid = true;
+    public bool spawnAsteroid = true;
     [SerializeField] GameObject[] asteroids;
     [SerializeField] MeshRenderer generalAsteriodMesh;
     float maxXPos;

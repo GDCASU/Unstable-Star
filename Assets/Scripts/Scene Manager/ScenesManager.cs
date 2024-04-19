@@ -6,22 +6,27 @@ using UnityEngine.SceneManagement;
 public enum Scenes
 {
     MainMenu,
+    Weapon_Select_1,
     CutScene_1,
     Level_1,
     CutScene_2,
+    Weapon_Select_2,
     CutScene_3,
     Level_2,
     CutScene_4,
+    Weapon_Select_3,
     CutScene_5,
     Level_3,
     CutScene_6,
     CutScene_7,
-    GameOver
+    GameOver,
+    Credits
 }
 
 public class ScenesManager : MonoBehaviour
 {
-    public static ScenesManager instance = null;     // Singleton instance
+    // Singleton instance
+    public static ScenesManager instance = null;
 
     [SerializeField] private bool debug = false;
 
@@ -36,6 +41,8 @@ public class ScenesManager : MonoBehaviour
             Destroy(this);
         else
             instance = this;
+
+        DontDestroyOnLoad(this);
     }
 
     private void Start()
@@ -56,13 +63,22 @@ public class ScenesManager : MonoBehaviour
             { Scenes.CutScene_4, false },
             { Scenes.CutScene_5, false },
             { Scenes.CutScene_6, false },
+            { Scenes.Weapon_Select_1, true },
+            { Scenes.Weapon_Select_2, false },
+            { Scenes.Weapon_Select_3, false },
             { Scenes.Level_1, true },
             { Scenes.Level_2, true },
             { Scenes.Level_3, false },
-            { Scenes.GameOver, false }
+            { Scenes.GameOver, true },
+            { Scenes.Credits, true }
         };
     }
 
+    /// <summary>
+    /// Check if the scene is unlicked if not returns false; otherwise true
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <returns></returns>
     public bool CheckScene(Scenes scene)
     {
         if (!unlockedScenes.ContainsKey(scene))
@@ -83,7 +99,10 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
-    // Gets the name of the scene and loads it 
+    /// <summary>
+    /// Pass in the name of the scene and loads it 
+    /// </summary>
+    /// <param name="scene"></param>
     public void LoadScene(Scenes scene)
     {
         if (!unlockedScenes.ContainsKey(scene))
@@ -117,13 +136,13 @@ public class ScenesManager : MonoBehaviour
         switch (level)
         {
             case 1:
-                LoadScene(Scenes.CutScene_1);
+                LoadScene(Scenes.Weapon_Select_1);
                 break;
             case 2:
-                LoadScene(Scenes.CutScene_3);
+                LoadScene(Scenes.Weapon_Select_2);
                 break;
             case 3:
-                LoadScene(Scenes.CutScene_4);
+                LoadScene(Scenes.Weapon_Select_3);
                 break;
             default:
                 Debug.LogError("Error: Level does not exist");

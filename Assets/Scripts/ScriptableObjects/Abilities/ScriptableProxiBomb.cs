@@ -12,6 +12,7 @@ public class ScriptableProxiBomb : ScriptableAbility
     public GameObject bombPrefab;
     public Sprite abilityIconActive;
     public Sprite abilityIconInactive;
+    public FMODUnity.EventReference bombExplosion;
     public int charges;
     public float cooldownTime;
     public float bombRadius;
@@ -21,6 +22,6 @@ public class ScriptableProxiBomb : ScriptableAbility
 
     public override Ability GetAbilityObject()
     {
-        return new ProximityBombAbility(sName, abilityIconActive, abilityIconInactive, bombPrefab, bombRadius, cooldownTime, charges, damage, description);
+        return new ProximityBombAbility(sName, abilityIconActive, bombExplosion, abilityIconInactive, bombPrefab, bombRadius, cooldownTime, charges, damage, description);
     }
 }

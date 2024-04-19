@@ -31,6 +31,7 @@ public class PlayerEditor : Editor
     SerializedProperty MAX_SHIELD;
     SerializedProperty dmgInvulnTime;
     SerializedProperty shieldRegenDelayTime;
+    SerializedProperty deathSFX;
 
     //Collisions
     SerializedProperty collisionDamage;
@@ -72,6 +73,7 @@ public class PlayerEditor : Editor
         MAX_SHIELD = serializedObject.FindProperty("MAX_SHIELD");
         dmgInvulnTime = serializedObject.FindProperty("dmgInvulnTime");
         shieldRegenDelayTime = serializedObject.FindProperty("shieldRegenDelayTime");
+        deathSFX = serializedObject.FindProperty("deathSFX");
 
         //Collisions
         collisionDamage = serializedObject.FindProperty("collisionDamage");
@@ -140,7 +142,8 @@ public class PlayerEditor : Editor
             EditorGUILayout.PropertyField(MAX_HEALTH);
             EditorGUILayout.PropertyField(MAX_SHIELD);
             EditorGUILayout.PropertyField(dmgInvulnTime);
-            EditorGUILayout.PropertyField(shieldRegenDelayTime); 
+            EditorGUILayout.PropertyField(shieldRegenDelayTime);
+            EditorGUILayout.PropertyField(deathSFX);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 

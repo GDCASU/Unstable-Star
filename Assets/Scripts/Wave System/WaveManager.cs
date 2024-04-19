@@ -24,7 +24,7 @@ public class WaveManager : MonoBehaviour
     private GameObject waveParent;
     private WavePool currentWavePool = null;
     private int waveCounter = 1;
-    private bool waveSpawnStopped = true;
+    public bool waveSpawnStopped = true;
 
     private void Awake()        // Handle Singleton
     {

@@ -11,6 +11,8 @@ public class ScriptablePhaseShift : ScriptableAbility
     public string sName;
     public Material phaseShiftMaterial;
     public GameObject particlePrefab;
+    public FMODUnity.EventReference phaseShiftEnter;
+    public FMODUnity.EventReference phaseShiftExit;
     public Sprite abilityIconActive;
     public Sprite abilityIconInactive;
     public int charges;
@@ -20,6 +22,6 @@ public class ScriptablePhaseShift : ScriptableAbility
     public string description;
     public override Ability GetAbilityObject()
     {
-        return new PhaseShiftAbility(sName, abilityIconActive, abilityIconInactive, phaseShiftMaterial, particlePrefab, charges, cooldownTime, durationTime, description);
+        return new PhaseShiftAbility(sName, abilityIconActive, phaseShiftEnter, phaseShiftExit, abilityIconInactive, phaseShiftMaterial, particlePrefab, charges, cooldownTime, durationTime, description);
     }
 }

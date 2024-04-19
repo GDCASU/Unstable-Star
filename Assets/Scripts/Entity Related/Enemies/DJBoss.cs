@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class DJBoss : CombatEntity
+public class DJBoss : Boss
 {
     [SerializeField] private GameObject _shieldPrefab;
     [SerializeField] private GameObject[] _enemyPool;
@@ -24,7 +24,7 @@ public class DJBoss : CombatEntity
     private int _vulnerablePhaseCount = 0;
     private Coroutine _spawnEnemiesCoro;
 
-    private void Start()
+    public override void BeginFight()
     {
         health = MAX_HEALTH;
 		EventData.OnEnemyDeath += OnEnemyDeath;
@@ -35,7 +35,7 @@ public class DJBoss : CombatEntity
     private IEnumerator ShieldPhases()
     {
         // TODO: remove
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.I));
+        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.I));
 
         while(health > 0)
         {
@@ -115,7 +115,10 @@ public class DJBoss : CombatEntity
         if(_enemyList.Contains(obj)) _enemyList.Remove(obj);
     }
 
-    protected override void WhenPlayerDies() => throw new System.NotImplementedException();
+    protected override void WhenPlayerDies()
+    {
+        this.enabled = false;
+    }
 
     protected override void TriggerDeath()
     {

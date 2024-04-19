@@ -314,6 +314,10 @@ PrefabInstance:
       value: Assets/Scripts/Dialogue/Act3_Sc3.txt
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 128082649}
+    - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: debug
       value: 0
       objectReference: {fileID: 0}
@@ -323,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 128082647}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: numPreBossBreaks
@@ -409,6 +413,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8412255195681629295, guid: ce1b3e46f6b00d04ea8cc30b68a2b8ff, type: 3}
   m_PrefabInstance: {fileID: 128082646}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &128082649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7975599669608062494, guid: ce1b3e46f6b00d04ea8cc30b68a2b8ff, type: 3}
+  m_PrefabInstance: {fileID: 128082646}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128082647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a01b87cf009be4faa3bf4fa8a9f1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &146187028
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +466,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 146187029}
     m_Modifications:
+    - target: {fileID: 2236945867347826101, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
+      propertyPath: loadInspectorWeapons
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375659726404869264, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
+      propertyPath: loadInspectorAbility
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2457199636198138481, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.0268755
@@ -1233,6 +1256,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1452690078182816695, guid: 2a3f6abdb5bcc9d45abc642ca264d57a, type: 3}
+      propertyPath: musicSlider
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3751050799302581275, guid: 2a3f6abdb5bcc9d45abc642ca264d57a, type: 3}
       propertyPath: m_Name
       value: Sound Manager
@@ -1337,6 +1364,69 @@ Transform:
   - {fileID: 6994586057775332023}
   - {fileID: 1063802005}
   - {fileID: 3060813491215135450}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2108702435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2108702437}
+  - component: {fileID: 2108702436}
+  m_Layer: 0
+  m_Name: Level Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2108702436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108702435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 376218844
+      Data2: 1150376306
+      Data3: 229876653
+      Data4: 555867491
+    Path: event:/Music/Level 3/Level 3 Theme
+  Event: 
+  PlayEvent: 11
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!4 &2108702437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108702435}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3060813491215135449
@@ -1478,3 +1568,4 @@ SceneRoots:
   - {fileID: 146187029}
   - {fileID: 773049858}
   - {fileID: 220448838}
+  - {fileID: 2108702437}

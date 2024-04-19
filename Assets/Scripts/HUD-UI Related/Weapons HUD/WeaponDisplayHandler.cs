@@ -71,7 +71,6 @@ public class WeaponDisplayHandler : MonoBehaviour
         maxMeterHeight = primaryMeterRect.offsetMax.y * -1;
 
         // Subscribe to input events
-        PlayerInput.OnSwitchToNextWeapon += swapPanes;
         EventData.OnPlayerDeath += UnsubscribeFromEvents;
 
         // Set variables
@@ -115,6 +114,12 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Return to primary
         WeaponArsenal.instance.SetCurrentWeaponToFirst();
 
+        // Subscribe to input events
+        if (WeaponArsenal.instance.GetWeaponListCount() >= 2)
+            PlayerInput.OnSwitchToNextWeapon += swapPanes;
+        else
+            secondaryCanvasObj.SetActive(false);
+
         // Attach the weapons to their UI events
         primaryWep.ModifyMeterCharge += UpdateChargeMeterPrimary;
         primaryWep.ModifyMeterCooldown += UpdateCooldownMeterPrimary;
@@ -139,11 +144,10 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Set the color to Cooldown
         primaryMeter.color = cooldownColor;
         // Compute height of the meter
-        float rateOfChange = lastMeterHeightPrimary / maxVal;
-        float computedHeight = rateOfChange * (maxVal - currVal);
+        float rateOfChange = (maxMeterHeight - lastMeterHeightPrimary) / maxVal;
+        float computedHeight = rateOfChange * currVal + lastMeterHeightPrimary;
         // Set the height of the meter
         primaryMeterRect.offsetMax = new Vector2 (primaryMeterRect.offsetMax.x, computedHeight * -1);
-        if (computedHeight <= 0) lastMeterHeightPrimary = 0; 
     }
 
     private void UpdateChargeMeterPrimary(float maxVal, float currVal)
@@ -166,11 +170,10 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Set the color to Cooldown
         secondaryMeter.color = cooldownColor;
         // Compute height of the meter
-        float rateOfChange = lastMeterHeightSecondary / maxVal;
-        float computedHeight = rateOfChange * (maxVal - currVal);
+        float rateOfChange = (maxMeterHeight - lastMeterHeightSecondary) / maxVal;
+        float computedHeight = rateOfChange * currVal + lastMeterHeightSecondary;
         // Set the height of the meter
         secondaryMeterRect.offsetMax = new Vector2(secondaryMeterRect.offsetMax.x, computedHeight * -1);
-        if (computedHeight <= 0) lastMeterHeightSecondary = 0;
     }
 
     private void UpdateChargeMeterSecondary(float maxVal, float currVal)
