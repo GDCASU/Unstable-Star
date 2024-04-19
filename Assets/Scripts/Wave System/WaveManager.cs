@@ -74,8 +74,8 @@ public class WaveManager : MonoBehaviour
 
     public void StartWaveSpawn()
     {
-        SpawnWave();                        // Spawn the first wave
         waveSpawnStopped = false;
+        SpawnWave();                        // Spawn the first wave
     }
 
     public void StopWaveSpawn()
