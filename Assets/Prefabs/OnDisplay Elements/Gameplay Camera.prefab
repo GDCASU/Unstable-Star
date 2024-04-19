@@ -2900,11 +2900,11 @@ RectTransform:
   - {fileID: 7199529603812095259}
   m_Father: {fileID: 6905187325256187821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10, y: 10}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -10, y: -10}
   m_SizeDelta: {x: 300, y: 120}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &330562008470285968
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2955,8 +2955,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a90c208b46160499fbbbb4f884cc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectivePrefab: {fileID: 3392200465046579903, guid: 31a01ca7741a6f44aa4c5f998c20b921, type: 3}
+  objectivePrefabs:
+  - type: 0
+    prefab: {fileID: 3392200465046579903, guid: 31a01ca7741a6f44aa4c5f998c20b921, type: 3}
+  - type: 1
+    prefab: {fileID: 3392200465046579903, guid: 20463c675fbf7104cb03046f84d160b4, type: 3}
+  - type: 2
+    prefab: {fileID: 3392200465046579903, guid: 2dadddb11d305ce43b594127be783139, type: 3}
+  - type: 3
+    prefab: {fileID: 3392200465046579903, guid: ba7babf5051ece349a45c856f40f010b, type: 3}
   objectiveContainer: {fileID: 7199529603812095259}
+  objectiveData:
+  - title: Kill 10 enemies
+    type: 0
+    enemyType: 0
+    kills: 10
+    time: 0
+  - title: Kill 10 basic enemies
+    type: 1
+    enemyType: 0
+    kills: 10
+    time: 0
+  - title: Survive for 30 seconds
+    type: 3
+    enemyType: 0
+    kills: 0
+    time: 30
+  - title: Kill 5 enemies in 20 seconds
+    type: 2
+    enemyType: 0
+    kills: 5
+    time: 20
 --- !u!1 &5235862836903613878
 GameObject:
   m_ObjectHideFlags: 0
