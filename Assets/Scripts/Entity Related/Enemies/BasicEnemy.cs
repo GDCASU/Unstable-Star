@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BasicEnemy : Enemy
 {
     private bool moveLeft = false;
@@ -41,4 +42,6 @@ public class BasicEnemy : Enemy
             moveLeft = Camera.main.WorldToViewportPoint(transform.position).x > 1f;
         }
     }
+
+
 }

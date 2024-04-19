@@ -15,6 +15,7 @@ public enum Scenes
     CutScene_5,
     Level_3,
     CutScene_6,
+    CutScene_7,
     GameOver
 }
 
@@ -27,8 +28,6 @@ public class ScenesManager : MonoBehaviour
     public static int currentScene { get; private set; }
     public static int currentLevel = 1;
     private Dictionary<Scenes, bool> unlockedScenes;
-
-    public Animator transition;
 
     private void Awake()
     {
@@ -48,19 +47,20 @@ public class ScenesManager : MonoBehaviour
 
     private void InitializeDict()
     {
-        unlockedScenes = new Dictionary<Scenes, bool>();
-
-        unlockedScenes.Add(Scenes.MainMenu, true);
-        unlockedScenes.Add(Scenes.CutScene_1, true);
-        unlockedScenes.Add(Scenes.CutScene_2, true);
-        unlockedScenes.Add(Scenes.CutScene_3, true);
-        unlockedScenes.Add(Scenes.CutScene_4, false);
-        unlockedScenes.Add(Scenes.CutScene_5, false);
-        unlockedScenes.Add(Scenes.CutScene_6, false);
-        unlockedScenes.Add(Scenes.Level_1, true);
-        unlockedScenes.Add(Scenes.Level_2, true);
-        unlockedScenes.Add(Scenes.Level_3, false);
-        unlockedScenes.Add(Scenes.GameOver, false);
+        unlockedScenes = new Dictionary<Scenes, bool>
+        {
+            { Scenes.MainMenu, true },
+            { Scenes.CutScene_1, true },
+            { Scenes.CutScene_2, true },
+            { Scenes.CutScene_3, true },
+            { Scenes.CutScene_4, false },
+            { Scenes.CutScene_5, false },
+            { Scenes.CutScene_6, false },
+            { Scenes.Level_1, true },
+            { Scenes.Level_2, true },
+            { Scenes.Level_3, false },
+            { Scenes.GameOver, false }
+        };
     }
 
     public bool CheckScene(Scenes scene)
@@ -91,14 +91,14 @@ public class ScenesManager : MonoBehaviour
             Debug.LogError("Scene does not exist");
             return;
         }
-        
-        UnityEngine.SceneManagement.SceneManager.LoadScene((int)scene);
+
+        SceneManager.LoadScene((int)scene);
     }
 
     public void LoadNextScene()
     {
         currentScene++;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(currentScene);
+        SceneManager.LoadScene(currentScene);
     }
 
     public void UnlockScene(Scenes scene)
@@ -117,13 +117,13 @@ public class ScenesManager : MonoBehaviour
         switch (level)
         {
             case 1:
-                ScenesManager.instance.LoadScene(Scenes.CutScene_1);
+                LoadScene(Scenes.CutScene_1);
                 break;
             case 2:
-                ScenesManager.instance.LoadScene(Scenes.CutScene_3);
+                LoadScene(Scenes.CutScene_3);
                 break;
             case 3:
-                ScenesManager.instance.LoadScene(Scenes.CutScene_4);
+                LoadScene(Scenes.CutScene_4);
                 break;
             default:
                 Debug.LogError("Error: Level does not exist");
@@ -144,13 +144,5 @@ public class ScenesManager : MonoBehaviour
             default:
                 return false;
         }
-    }
-
-    IEnumerator WaitForlvl1(string scene_name)
-    {
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(1);
-        Debug.Log("Waited!");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(scene_name);
     }
 }

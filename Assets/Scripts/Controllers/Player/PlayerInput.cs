@@ -17,6 +17,8 @@ public class PlayerInput : MonoBehaviour
 
     // Input-Updated Values
     [HideInInspector] public Vector2 movementInput; // Vector2 for movement
+    [HideInInspector] public Vector2 cursorAimScreenPoint;     // Vector2 for cursor point on screen
+    [HideInInspector] public Vector3 cursorAimWorldPoint;      // Vector2 for cursor point in world
     [HideInInspector] public bool isShootHeld;       // A boolean that is true when shooting button is held down; false otherwise
     [HideInInspector] public bool isWeaponSwitching; // Boolean that denotes that the weapon switch animation hasnt finished yet
 
@@ -26,6 +28,7 @@ public class PlayerInput : MonoBehaviour
     private PlayerControls playerControls;
     private Coroutine modifyAngleOfAimRoutine;
     private Coroutine playerShootingRoutine;
+
     private float signAngleMult = 0;
     private bool leftBoundCheck;
     private bool rightBoundCheck;
@@ -88,6 +91,7 @@ public class PlayerInput : MonoBehaviour
 
             playerControls.ShipControls.Shoot.performed += i => HandleShootingInput(i);     // perfomed event fires when the button is pressed
             playerControls.ShipControls.Shoot.canceled += i => HandleShootingInput(i);      // canceled event fires when the button is released
+            playerControls.ShipControls.Aim.performed += i => HandleAimInput(i);          // perfomed event fires when the button is pressed
 
             playerControls.ShipControls.AngleLeft.performed += i => HandleShootAngleInput(i, false);   // perfomed event fires when the button is pressed 
             playerControls.ShipControls.AngleRight.performed += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is pressed
@@ -134,19 +138,22 @@ public class PlayerInput : MonoBehaviour
         if (debug) Debug.Log(isShootHeld);
     }
 
+    private void HandleAimInput(InputAction.CallbackContext context)
+    {
+        cursorAimScreenPoint = context.ReadValue<Vector2>();
+        Vector3 transPoint = new Vector3(cursorAimScreenPoint.x, cursorAimScreenPoint.y, 50);
+        cursorAimWorldPoint = Camera.main.ScreenToWorldPoint(transPoint);
+    }
+
     private void HandleShootAngleInput(InputAction.CallbackContext context, bool isRight)
     {
         if (context.performed)
         {
             // Code to be fired when the player angles the turret
             if (isRight)       // angle left button was pressed
-            {
                 signAngleMult = -1f;
-            }
             else                // angle right button was pressed
-            {
                 signAngleMult = 1f;
-            }
 
             // Coroutine Handling
             HandleAngleRoutine(buttonHeld: true);

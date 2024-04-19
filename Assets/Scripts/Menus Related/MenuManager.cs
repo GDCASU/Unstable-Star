@@ -6,7 +6,7 @@ using System;
 public class MenuManager : MonoBehaviour // Changes camera position based on mouse movement
 {
 
-    public static bool enabled = true;
+    //public static bool enabled = true;
     public static Vector3 defaultCameraRotation;
     public static Vector3 defaultCameraPosition;
 

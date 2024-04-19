@@ -29,8 +29,8 @@ public abstract class Weapon
     public int damage;
 
     // Gatling variables
-    public float warmupTime;
-    public float warmupCounter;
+    public float heatUpTimeMax;
+    public float HeatUpCounter;
 
     // Laser variables
     public GameObject chargingSpherePrefab;
@@ -48,6 +48,9 @@ public abstract class Weapon
     public float timeLeftInCooldown;
     public Sprite weaponIcon;
     public string description;
+
+    // Variables used by enemies for easier implementation
+    public bool isEnemyShooting;
 
     // Event and function used by the Weapon HUD
     public event System.Action<float, float> ModifyMeterCooldown;
@@ -182,7 +185,7 @@ public class GatlingGun : Weapon
         this.shootCooldownTime = timeBetweenShots;
         this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
-        this.warmupTime = warmupTime;
+        this.heatUpTimeMax = warmupTime;
         this.isEnemy = isEnemy;
         this.description = description;
 
@@ -191,7 +194,7 @@ public class GatlingGun : Weapon
 
         // Static sets
         this.timeLeftInCooldown = 0f;
-        this.warmupCounter = 0f;
+        this.HeatUpCounter = 0f;
         this.weaponType = WeaponTypes.Gatling;
         this.isOnCooldown = false;
     }
