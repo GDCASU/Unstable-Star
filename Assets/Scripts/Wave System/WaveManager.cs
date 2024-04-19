@@ -39,6 +39,8 @@ public class WaveManager : MonoBehaviour
         waveParent = GameObject.Find(WAVE_PARENT_NAME);
 
         currentWavePool = wavePools[0];     // Start currentWavePool at first wave in list
+
+        StartWaveSpawn();
     }
 
 
@@ -68,8 +70,8 @@ public class WaveManager : MonoBehaviour
 
     public void StartWaveSpawn()
     {
-        SpawnWave();                        // Spawn the first wave
         waveSpawnStopped = false;
+        SpawnWave();                        // Spawn the first wave
     }
 
     public void StopWaveSpawn()

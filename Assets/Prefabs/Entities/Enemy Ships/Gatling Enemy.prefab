@@ -237,6 +237,7 @@ MonoBehaviour:
   statsData: {fileID: 11400000, guid: fa7eca8cf30c9954fbd639c9c6622790, type: 2}
   crosshair: {fileID: 3955634871772203768}
   weaponAnchor: {fileID: 1411470630983726883}
+  gatlingParent: {fileID: 8446906546400985490}
 --- !u!1 &5201623343957613734
 GameObject:
   m_ObjectHideFlags: 0
