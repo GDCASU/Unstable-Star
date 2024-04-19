@@ -12,6 +12,12 @@ public class NextSceneLevel : MonoBehaviour
     private void Start()
     {
         ObjectivePanel.Instance.OnAllObjectivesComplete += afterObjectiveComplete;
+
+        if(instance != null) {
+            Destroy(this);
+            return;
+        }
+        instance = this;
     }
 
     public void BeginningDialogue() {
