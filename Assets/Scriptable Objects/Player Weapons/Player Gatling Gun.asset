@@ -22,7 +22,8 @@ MonoBehaviour:
       Data3: 658300835
       Data4: 440627577
     Path: event:/SFX/Weapons/Player/Gatling Fire
-  warmUpTime: 3
+  description: 
+  heatUpTime: 3
   damage: 1
   bulletSpeed: 40
   timeBetweenShots: 0.1
