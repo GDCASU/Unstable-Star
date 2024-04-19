@@ -139,35 +139,35 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3e48b12ac342cf541a1d95b62ba7681c, type: 3}
   - {fileID: 21300000, guid: d747bd55e04cb1d40b6699203efd0fe8, type: 3}
   blankEmotions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
   boss1Emotions:
   - {fileID: 21300000, guid: fa889b6ef040e6a4a872a9787e747884, type: 3}
   - {fileID: 21300000, guid: 2ffa229aba3d51744b27fe4d25353e4b, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
   boss2Emotions:
   - {fileID: 21300000, guid: d057e7325bea06d4d8726f3d4a9b8e11, type: 3}
   - {fileID: 21300000, guid: cd0e736ce72fa434da015a1c52f0b85f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
   boss3Emotions:
   - {fileID: 21300000, guid: 20216ef4fb892f24682e130a011475af, type: 3}
   - {fileID: 21300000, guid: e9b9ec5bf1d033f4e8d5359794585a7d, type: 3}
   - {fileID: 21300000, guid: 5ecaf5f136773964b9cf876b85c8f947, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
   pizzaGuyEmotions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
   shadowEmotions:
   - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
 --- !u!114 &2610264310585351380
 MonoBehaviour:
   m_ObjectHideFlags: 0

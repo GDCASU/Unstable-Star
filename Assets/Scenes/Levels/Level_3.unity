@@ -211,7 +211,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6ef72dcc5d41fa64284e88c2d89000e5, type: 2}
     - target: {fileID: 859234438590665206, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1925.0001
+      value: 1924.9999
       objectReference: {fileID: 0}
     - target: {fileID: 919175732328177831, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -255,23 +255,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111098559265218523, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1925.0001
+      value: 1924.9999
       objectReference: {fileID: 0}
     - target: {fileID: 2135456609453334330, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1640.7091
+      value: 1639.9999
       objectReference: {fileID: 0}
     - target: {fileID: 2890868740057410522, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100.000015
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210391712021857464, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 124875590}
+    - target: {fileID: 3210391712021857464, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095487491025848979, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 124875590}
+    - target: {fileID: 4095487491025848979, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4558337194482000867, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1640.7091
+      value: 1639.9999
       objectReference: {fileID: 0}
     - target: {fileID: 4948178056762087716, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50.000015
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5255974818783229705, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: testOnStart
@@ -381,7 +397,8 @@ PrefabInstance:
       propertyPath: numPreLevelBreaks
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1633957157125825826, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -389,6 +406,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 725032130}
   m_SourcePrefab: {fileID: 100100000, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+--- !u!114 &124875590 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 79251332632088223, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+  m_PrefabInstance: {fileID: 124875589}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3a5933c257fab42a19d161bb794b45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &128082646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,10 +569,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 146187029}
     m_Modifications:
-    - target: {fileID: 2236945867347826101, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
-      propertyPath: loadInspectorWeapons
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2375659726404869264, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
       propertyPath: loadInspectorAbility
       value: 0

@@ -24,6 +24,8 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (Input.GetKeyDown(KeyCode.Escape)) // toggles pause menu
         {
             pausedGame = !pausedGame;
@@ -44,16 +46,17 @@ public class PauseMenu : MonoBehaviour
 
     void ChangeMenuController()
     {
-        pausedGame = !pausedGame;
-        if (pausedGame) // pauses
+        if (!pausedGame) // pauses
         {
             pauseObject.SetActive(true);
             Time.timeScale = 0f;
+            pausedGame = true;
         }
         else // unpauses
         {
             pauseObject.SetActive(false);
             Time.timeScale = 1.0f;
+            pausedGame = false;
         }
     }
 
@@ -63,13 +66,13 @@ public class PauseMenu : MonoBehaviour
         {
             pauseObject.SetActive(true);
             Time.timeScale = 0f;
-            PlayerInput.instance.ToggleControls(false); // Disable player input
+            //PlayerInput.instance.ToggleControls(false); // Disable player input
         }
         else // unpauses
         {
             pauseObject.SetActive(false);
             Time.timeScale = 1.0f;
-            PlayerInput.instance.ToggleControls(true); // Disable player input
+            //PlayerInput.instance.ToggleControls(true); // Disable player input
         }
     }
 
