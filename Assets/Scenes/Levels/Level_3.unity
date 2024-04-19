@@ -195,7 +195,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 859234438590665206, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1924.9999
+      value: 1925.0001
       objectReference: {fileID: 0}
     - target: {fileID: 919175732328177831, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -239,11 +239,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111098559265218523, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1924.9999
+      value: 1925.0001
       objectReference: {fileID: 0}
     - target: {fileID: 2135456609453334330, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.9999
+      value: 1640.7091
       objectReference: {fileID: 0}
     - target: {fileID: 2890868740057410522, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -251,7 +251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4558337194482000867, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.9999
+      value: 1640.7091
       objectReference: {fileID: 0}
     - target: {fileID: 4948178056762087716, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -314,6 +314,10 @@ PrefabInstance:
       value: Assets/Scripts/Dialogue/Act3_Sc3.txt
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 128082649}
+    - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: debug
       value: 0
       objectReference: {fileID: 0}
@@ -323,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 128082647}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: numPreBossBreaks
@@ -409,6 +413,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8412255195681629295, guid: ce1b3e46f6b00d04ea8cc30b68a2b8ff, type: 3}
   m_PrefabInstance: {fileID: 128082646}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &128082649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7975599669608062494, guid: ce1b3e46f6b00d04ea8cc30b68a2b8ff, type: 3}
+  m_PrefabInstance: {fileID: 128082646}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128082647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a01b87cf009be4faa3bf4fa8a9f1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &146187028
 GameObject:
   m_ObjectHideFlags: 0
