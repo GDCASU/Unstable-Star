@@ -5,7 +5,7 @@
 			<value>Proxibomb Explosion</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{c748ba02-012a-439c-b0b4-a151ab9e2296}</destination>
@@ -38,6 +38,9 @@
 		</relationship>
 	</object>
 	<object class="MasterTrack" id="{034cccb8-68da-4c4a-a116-43b6e5d4a0d7}">
+		<relationship name="modules">
+			<destination>{48605bce-7de0-49fc-ab5b-a0fc2f692991}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{637f8d04-0f16-44b1-a755-04f49f65e816}</destination>
 		</relationship>
@@ -55,7 +58,11 @@
 	</object>
 	<object class="EventAutomatableProperties" id="{ff616ebb-8e7a-4884-93e4-97b5c7fbb5d0}" />
 	<object class="MarkerTrack" id="{128ccc5c-8484-4525-847a-2f44271329b9}" />
-	<object class="Timeline" id="{0cd536cb-c7dc-4579-b5b3-1f10e6686f93}" />
+	<object class="Timeline" id="{0cd536cb-c7dc-4579-b5b3-1f10e6686f93}">
+		<relationship name="modules">
+			<destination>{48605bce-7de0-49fc-ab5b-a0fc2f692991}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerMaster" id="{637f8d04-0f16-44b1-a755-04f49f65e816}">
 		<relationship name="effectChain">
 			<destination>{c12030fe-146c-4e5b-932c-00a55a34885a}</destination>
@@ -65,6 +72,17 @@
 		</relationship>
 		<relationship name="mixer">
 			<destination>{cfc409af-88d6-4089-8cb8-949207e99ff0}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{48605bce-7de0-49fc-ab5b-a0fc2f692991}">
+		<property name="length">
+			<value>0.875</value>
+		</property>
+		<property name="pitch">
+			<value>-5</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{bedca6b0-f46a-4830-b3c4-1025a4e69744}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{0ac22873-d2d8-4547-913e-cf54ad9ac4d9}">

@@ -5,7 +5,7 @@
 			<value>Level 1 Theme</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{48d7eda1-5287-423a-acd3-99a95a896dcc}</destination>
@@ -24,6 +24,9 @@
 		</relationship>
 		<relationship name="markerTracks">
 			<destination>{aefc5868-ecbc-4d59-a4bb-821a31510153}</destination>
+		</relationship>
+		<relationship name="groupTracks">
+			<destination>{92bba99a-a550-4f7d-8527-52e56ecedbe1}</destination>
 		</relationship>
 		<relationship name="timeline">
 			<destination>{54d881dc-3e6a-460d-9894-2b397a97a117}</destination>
@@ -55,7 +58,22 @@
 	</object>
 	<object class="EventAutomatableProperties" id="{565d573f-5872-4d32-9421-76f71829527d}" />
 	<object class="MarkerTrack" id="{aefc5868-ecbc-4d59-a4bb-821a31510153}" />
-	<object class="Timeline" id="{54d881dc-3e6a-460d-9894-2b397a97a117}" />
+	<object class="GroupTrack" id="{92bba99a-a550-4f7d-8527-52e56ecedbe1}">
+		<relationship name="modules">
+			<destination>{7746cb38-c0b9-4cf0-8c4a-1590af184747}</destination>
+		</relationship>
+		<relationship name="mixerGroup">
+			<destination>{9768eb0d-a369-4e60-9dc9-28fba161d796}</destination>
+		</relationship>
+	</object>
+	<object class="Timeline" id="{54d881dc-3e6a-460d-9894-2b397a97a117}">
+		<relationship name="modules">
+			<destination>{7746cb38-c0b9-4cf0-8c4a-1590af184747}</destination>
+		</relationship>
+		<relationship name="markers">
+			<destination>{2d4b7481-52e4-4fa0-bf7e-a7bb48828f44}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerMaster" id="{f5ad5d81-ea6a-49f2-af07-9ef3c7614ea7}">
 		<relationship name="effectChain">
 			<destination>{2f7e44e7-43c0-436a-9e8c-62914203df0f}</destination>
@@ -73,6 +91,45 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{73e8f435-3241-480a-9098-3294de60a2f0}" />
+	<object class="SingleSound" id="{7746cb38-c0b9-4cf0-8c4a-1590af184747}">
+		<property name="length">
+			<value>122.46204081632654</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{4b9af958-38c0-4015-bac6-2a25aba0746a}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixerGroup" id="{9768eb0d-a369-4e60-9dc9-28fba161d796}">
+		<property name="volume">
+			<value>-19.5</value>
+		</property>
+		<property name="name">
+			<value>Audio 1</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{b29b8f6e-4925-4273-b563-99a168e7de56}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{b952e384-0768-4f15-a352-925603b6c427}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{f5ad5d81-ea6a-49f2-af07-9ef3c7614ea7}</destination>
+		</relationship>
+	</object>
+	<object class="LoopRegion" id="{2d4b7481-52e4-4fa0-bf7e-a7bb48828f44}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="length">
+			<value>122.46204081632654</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{54d881dc-3e6a-460d-9894-2b397a97a117}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{aefc5868-ecbc-4d59-a4bb-821a31510153}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{2f7e44e7-43c0-436a-9e8c-62914203df0f}">
 		<relationship name="effects">
 			<destination>{8b76781d-8d27-4dd9-88df-ae01b575eff3}</destination>
@@ -80,5 +137,12 @@
 	</object>
 	<object class="MixerBusPanner" id="{4e64a0f9-1f2e-4e0d-9ddf-e39a856b96c1}" />
 	<object class="MixerBusFader" id="{3222d2c3-4120-4869-8b68-50f1943607ca}" />
+	<object class="MixerBusEffectChain" id="{b29b8f6e-4925-4273-b563-99a168e7de56}">
+		<relationship name="effects">
+			<destination>{8a95ac26-9b0c-4dae-8ddc-06b7b01cb894}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{b952e384-0768-4f15-a352-925603b6c427}" />
 	<object class="MixerBusFader" id="{8b76781d-8d27-4dd9-88df-ae01b575eff3}" />
+	<object class="MixerBusFader" id="{8a95ac26-9b0c-4dae-8ddc-06b7b01cb894}" />
 </objects>

@@ -15,6 +15,20 @@ MonoBehaviour:
   sName: Phase Shift
   phaseShiftMaterial: {fileID: -876546973899608171, guid: 1618663d1f1f5b544babb2f8bfaa33f4, type: 3}
   particlePrefab: {fileID: 7437556055979850441, guid: b312827b1f62d254aabec894de1217d4, type: 3}
+  phaseShiftEnter:
+    Guid:
+      Data1: -669749291
+      Data2: 1325441653
+      Data3: -1346415215
+      Data4: -835403465
+    Path: event:/SFX/Player/Ablities/Phase Shift Enter
+  phaseShiftExit:
+    Guid:
+      Data1: 1494076354
+      Data2: 1273546538
+      Data3: -652615779
+      Data4: 358998308
+    Path: event:/SFX/Player/Ablities/Phase Shift Exit
   abilityIconActive: {fileID: 21300000, guid: 41957bf15377c0f42af5eabaf3be3730, type: 3}
   abilityIconInactive: {fileID: 21300000, guid: 7edeb51be1e6f694c80cf659d88192c4, type: 3}
   charges: 5

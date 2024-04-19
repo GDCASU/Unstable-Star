@@ -16,7 +16,6 @@ public abstract class Ability
     // Common Variables
     public string sName;
     public AbilityTypes behaviour;
-    public FMODUnity.EventReference mainSound;
     public float cooldownTime;
     public float durationTime;
     public bool isOnCooldown;
@@ -24,11 +23,14 @@ public abstract class Ability
     public string description;
 
     // Proximity Bomb Variables
+    public FMODUnity.EventReference bombExplosion;
     public GameObject bombPrefab;
     public float bombRadius;
     public int damage;
 
     // Phase Shift Variables
+    public FMODUnity.EventReference phaseShiftEnter;
+    public FMODUnity.EventReference phaseShiftExit;
     public Material PhaseShiftMaterial;
     public GameObject particleEmitter;
 
@@ -70,7 +72,7 @@ public class GeneralAbility : Ability
 public class PhaseShiftAbility : Ability
 {
     // Constructor
-    public PhaseShiftAbility(string name, Sprite abilityIconActive, Sprite abilityIconInactive, Material phaseShiftMaterial, GameObject particleEmitter, int charges, float cooldownTime, float durationTime, string description)
+    public PhaseShiftAbility(string name, Sprite abilityIconActive, FMODUnity.EventReference phaseShiftEnter, FMODUnity.EventReference phaseShiftExit, Sprite abilityIconInactive, Material phaseShiftMaterial, GameObject particleEmitter, int charges, float cooldownTime, float durationTime, string description)
     {
         this.sName = name;
         this.cooldownTime = cooldownTime;
@@ -81,6 +83,8 @@ public class PhaseShiftAbility : Ability
         this.abilityIconActive = abilityIconActive;
         this.abilityIconInactive = abilityIconInactive;
         this.description = description;
+        this.phaseShiftEnter = phaseShiftEnter;
+        this.phaseShiftExit = phaseShiftExit;
         // Static sets
         this.behaviour = AbilityTypes.PhaseShift;
         this.isOnCooldown = false;
@@ -93,7 +97,7 @@ public class PhaseShiftAbility : Ability
 public class ProximityBombAbility : Ability
 {
     // Constructor
-    public ProximityBombAbility(string name, Sprite abilityIconActive, Sprite abilityIconInactive, GameObject bombPrefab, float bombRadius, float cooldownTime, int charges, int damage, string description)
+    public ProximityBombAbility(string name, Sprite abilityIconActive, FMODUnity.EventReference bombExplosion, Sprite abilityIconInactive, GameObject bombPrefab, float bombRadius, float cooldownTime, int charges, int damage, string description)
     {
         this.sName = name;
         this.damage = damage;
@@ -104,6 +108,7 @@ public class ProximityBombAbility : Ability
         this.abilityIconActive = abilityIconActive;
         this.abilityIconInactive = abilityIconInactive;
         this.description= description;
+        this.bombExplosion = bombExplosion;
         // Static sets
         this.behaviour = AbilityTypes.ProxiBomb;
         this.isOnCooldown = false;
