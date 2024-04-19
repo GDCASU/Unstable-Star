@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
+  m_IndirectSpecularColor: {r: 0.0100803, g: 0.05267761, b: 0.15283674, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1513,7 +1513,7 @@ PrefabInstance:
       objectReference: {fileID: 1297130009}
     - target: {fileID: 2135456609453334330, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1640.7091
+      value: 1640.0001
       objectReference: {fileID: 0}
     - target: {fileID: 2890868740057410522, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1529,7 +1529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4558337194482000867, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1640.7091
+      value: 1640.0001
       objectReference: {fileID: 0}
     - target: {fileID: 4948178056762087716, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1631,6 +1631,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -10.6
       objectReference: {fileID: 0}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: blankEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: shadowEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: shadowEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: shadowEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
     - target: {fileID: 8556707417053157049, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_IsActive
       value: 1

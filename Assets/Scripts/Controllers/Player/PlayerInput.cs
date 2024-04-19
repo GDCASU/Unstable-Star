@@ -86,7 +86,6 @@ public class PlayerInput : MonoBehaviour
 
             playerControls.ShipControls.Shoot.performed += i => HandleShootingInput(i);     // perfomed event fires when the button is pressed
             playerControls.ShipControls.Shoot.canceled += i => HandleShootingInput(i);      // canceled event fires when the button is released
-            playerControls.ShipControls.Aim.performed += i => HandleAimInput(i);          // perfomed event fires when the button is pressed
 
             playerControls.ShipControls.AngleLeft.performed += i => HandleShootAngleInput(i, false);   // perfomed event fires when the button is pressed 
             playerControls.ShipControls.AngleRight.performed += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is pressed
@@ -146,13 +145,6 @@ public class PlayerInput : MonoBehaviour
         }
 
         if (debug) Debug.Log(isShootHeld);
-    }
-
-    private void HandleAimInput(InputAction.CallbackContext context)
-    {
-        cursorAimScreenPoint = context.ReadValue<Vector2>();
-        Vector3 transPoint = new Vector3(cursorAimScreenPoint.x, cursorAimScreenPoint.y, 50);
-        cursorAimWorldPoint = Camera.main.ScreenToWorldPoint(transPoint);
     }
 
     private void HandleShootAngleInput(InputAction.CallbackContext context, bool isRight)
