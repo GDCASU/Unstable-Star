@@ -4,63 +4,66 @@ Act Three Scene 1 - Things are getting serious…
 REBELLION’S SPACE STATION
 We open with our crew returning to their space station, preparing for what lays ahead of them. 
 JAUGHN
+NORMAL
 I’m still in disbelief that we survived that.
 
 
 APOLLO
-
-
+HAPPY
 That was amazing Jaughn! We took over those tin cans like it was nothin’!
 
 
 
 
 REBEKAH
+HAPPY
 I must admit, that went better than I thought it would.
 
 
 JAUGHN
+HAPPY
 Oh, well, it was all thanks to you guys. I just came up with the plan.
 
 
 EBB
+HAPPY
 …And blew up that annoying Radio host. Don’t forget the way you made him EXPLODE. B O O M!
 
 
 
 
 APOLLO
+HAPPY
 It wasn’t just planning! You showed some real leadership skills if you ask me. Right, guys?
 
 
 REBEKAH
+NORMAL
 Ah, heck. Might as well admit it. We’re still in need of a Captain, and we’ve been doing well so far with you. 
 
 
 JAUGHN
+ANGRY
 …Captain? Me?
 
 
 APOLLO
-
-
+NORMAL
 Yeah, no need to be modest about it, my guy. We’ve got the biggest battle yet ahead of us, and we need someone to lead us.
 
 
 EBB
-
-
+NORMAL
 Section 15, Article 2, Subsection 12 of the Anti-Coalition Rebellion Code says that we have the right to nominate a new Captain in the event the old Captain is unable to perform their duties. 
 All in favor of nominating Jaughn as the new Captain?
 
-
+DESC: 
 [All in Unison]
 Aye!
 
 
 EBB
-
-
+NORMAL
 And there we have it. Jaughn is our new Captain moving forward!
 
 
@@ -72,6 +75,7 @@ Jaughn looked around and suddenly felt a level of respect emanating from everyon
 NOISE
 *applause* 
 JAUGHN
+HAPPY
 (Inner monologue)
 Wow, looking around, I can feel everyone’s admiration. Me? Captain? I’m not used to feeling this important… 
 Perhaps I could be more than a lowly Border Guard after all…
@@ -82,32 +86,32 @@ Jaughn felt his confidence rise, until he decided to speak:
 
 
 JAUGHN
+HAPPY
 Thank you everyone for placing your trust in me as your Captain! I won’t let you down.
  
 APOLLO
-
-
+HAPPY
 I’m sure you won’t, Captain!
 
 
 REBEKAH
+NORMAL
 Now we need to figure out a plan to make it to the Apex-12 System. That entire System is under Coalition control.
 
 
 EBB
-
-
+NORMAL
 And they’re going to be looking for us, after we sent out that message.
 
 
 JAUGHN
+NORMAL
 We need to figure out a blind spot in the Coalition’s defenses. Somewhere they’re not watching in that system. 
 Ebb, do we still have the satellites’ data?
 
 
 EBB
-
-
+NORMAL
 Yes. I will begin scanning the 5 yottabytes of retrieved satellite data for clues. This will take a while.
 
 
@@ -129,6 +133,7 @@ APOLLO
 
 
 JAUGHN
+HAPPY
 Alright, we have a plan. Let’s move everyone!
 
 
