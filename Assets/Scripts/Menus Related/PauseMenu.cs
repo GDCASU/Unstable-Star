@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
+        PlayerInput.OnPauseGame += ChangeMenuController;
         arrayNumber = pauseList.Length;
     }
 
@@ -32,12 +33,27 @@ public class PauseMenu : MonoBehaviour
         if (pausedGame)
         {
             // scrolls through buttons
-            if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.DownArrow)) { arrayNumber++; }
+            if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Joystick1Button6)) { arrayNumber++; }
             if (Input.GetKeyDown(KeyCode.UpArrow)) { arrayNumber--; }
 
             // selects and highlights buttons
             pauseList[arrayNumber% pauseList.Length].OnSelect(null);
             pauseList[arrayNumber% pauseList.Length].Select();
+        }
+    }
+
+    void ChangeMenuController()
+    {
+        pausedGame = !pausedGame;
+        if (pausedGame) // pauses
+        {
+            pauseObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else // unpauses
+        {
+            pauseObject.SetActive(false);
+            Time.timeScale = 1.0f;
         }
     }
 
