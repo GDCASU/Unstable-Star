@@ -52,6 +52,7 @@ The scene transitions to the Coalition Headquarters. A grunt approaches a large,
 
 
 COALITION GRUNT
+NORMAL
 Sir, uh, we’ve detected a problem. One of our communication satellites in the Gamma-K3 Sector has been compromised.
 
 
@@ -119,10 +120,12 @@ The scene transitions to the Coalition Headquarters. The large, shadowy figure f
 
 
 SHADOWY FIGURE
+NORMAL
 You have failed to prevent them from taking the second satellite. I’m assigning you to deal with the rebels personally. 
 
 
 Radio Station DJ
+NORMAL
 But sir… I’m just a radio host.
 
 
@@ -170,6 +173,7 @@ Oh man, is that Treble Make-R in the Morning? I used to listen to his show all t
 
 
 DJ Treble Make-R
+NORMAL
 Don’t think we haven’t noticed you bogarting our turf. You have exactly one commercial break to lay down your weapons before I drop the beat!
 REBEKAH
 Uh… well this is not what I was expecting. …Where’s that music coming from?
@@ -182,6 +186,7 @@ He’s coming right at us! Strap in, guys!
 
 
 DJ Treble Make-R
+NORMAL
 Let’s rock!!
 
 BREAK
