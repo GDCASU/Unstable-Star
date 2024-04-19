@@ -81,5 +81,6 @@ public class WaveManager : MonoBehaviour
     public void StopWaveSpawn()
     {
         waveSpawnStopped = true;
+        currentWave.ClearWave();
     }
 }

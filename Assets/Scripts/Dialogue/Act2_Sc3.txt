@@ -3,38 +3,47 @@ OUTSIDE THE THIRD K-COAL RADIO STATION
 
 
 DJ Treble Make-R
+HAPPY
 Urgh… I’ve been taken off the air…
 
 
 EBB
+HAPPY
 With that obnoxious yuppie out of the way, we now have control over all three satellites.
 
 
 REBEKAH
+HAPPY
 We did it, everyone!
 
 
 JAUGHN
+HAPPY
 I can’t believe we survived that! 
 
 
 APOLLO
+HAPPY
 Hell yeah!! Ya did good keeping up with us out there!
 
 
 JAUGHN
+HAPPY
 Oh shucks. I just tried to stay alive!
 
 
 REBEKAH
+NORMAL
 Now we can broadcast our message-
 
 
 EBB
+NORMAL
 Hold on. I’m still getting some Coalition communications attempting to pass through this network. Let’s eavesdrop, shall we?
 
 NOISE
 *CRRSSHH*
+DESC: 
 [Network Transmission]
 *CRRSSHH* Everything is going according to plan. Our Star Harvester will begin harvesting the hypergiant star in the Apex-12 System. 
 Our benefactors will be very pleased!
@@ -42,30 +51,37 @@ Our benefactors will be very pleased!
 
 
 REBEKAH
+SAD
 …Hypergiant star?? Those are incredibly unstable! Don’t they realize that harvesting the plasma could cause a hypernova??
 
 
 APOLLO
+SAD
 These maniacs are going to blow up the star! That would take out most of the galaxy!!
 
 
 EBB
+NORMAL
 As much as I would enjoy the V E R Y  B I G  B O O M, it would seem our next objective is set.
 
 
 JAUGHN
+SAD
 I can’t believe this… so many people live in that system. Do they not care at all?
 
 
 REBEKAH
+SAD
 Now you understand what’s at stake. The Coalition stopped caring about the consequences of their actions a long time ago.
 
 
 JAUGHN
+NORMAL
 We have to stop them! Let’s get a message out across the galaxy!
 
 
 EBB
+NORMAL
 Initializing broadcast…
 
 
@@ -78,8 +94,8 @@ If you’re brave enough to fight for your freedom, join the Rebellion!
 All capable fighters, meet us at Proximus-3 in the Apex-12 System!
 
 JAUGHN
-(inner monologue)
-Now we just hope our message didn’t fall on deaf ears… this next battle could be our last.
+NORMAL
+(inner monologue) Now we just hope our message didn’t fall on deaf ears… this next battle could be our last.
 DESC: 
 The message rang loud and clear across communications devices everywhere in the galaxy. 
 The crew of the Rebellion hoped their message wouldn’t fall on deaf ears. 

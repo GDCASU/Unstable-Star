@@ -39,12 +39,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Dialogue/Act Three/CutScene_5.unity
     guid: fd0b8c747a27796409892aea8d36d8e5
   - enabled: 1
-    path: Assets/Scenes/Levels/Level_3.unity
-    guid: 34951de3936d835439bb1ccd56106c53
-  - enabled: 1
     path: Assets/Scenes/Dialogue/Act Three/CutScene_6.unity
     guid: 417713894668e604eba449d22b723986
   - enabled: 1
+    path: Assets/Scenes/Levels/Level_3.unity
+    guid: 34951de3936d835439bb1ccd56106c53
+  - enabled: 1
     path: Assets/Scenes/Dialogue/Act Three/CutScene_7.unity
     guid: e995f5a8ff84fff49bb70ec18cbbe290
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 9dcd2000c8278344988881106a8aedde
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 413933e8e8b82424293ebc1a4ab27a42
   m_configObjects: {}

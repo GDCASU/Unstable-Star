@@ -5,22 +5,22 @@ Gameplay starts (start of lvl 1)Textbox:
 
 
 APOLLO
-
-
+HAPPY
 You ready, new guy? Here comes the first wave of security drones! 
 
 
 REBEKAH
+HAPPY
 Just remember how to fly the ship we gave you and you’ll be fine!
 
 
 EBB
-
-
+HAPPY
 I will be watching for the B O O M S. Don’t disappoint me. 
 
 
 JAUGHN
+NORMAL
 I’ll… I’ll do my best.
 
 BREAK
@@ -31,14 +31,17 @@ Phew, that got a little hairy.
 
 
 APOLLO
+NORMAL
 Ebb, you got that satellite up and running?
 
 
 EBB
+HAPPY
 Affirmative. That satellite is now as useless to the Coalition as a wet sack of gunpowder. 
 
 
 REBEKAH
+NORMAL
 I’m plotting our course to the next satellite. It won’t take long for the Coalition to respond to us.
 
 
@@ -68,16 +71,20 @@ BREAK
 
 Gameplay (start of lvl 2)Textbox:
 REBEKAH
+HAPPY
 We’re in range of the second satellite!
 APOLLO
+NORMAL
 Ah great, they got more goons here. Well, time to get blastin’!
 
 
 EBB
+HAPPY
 H e h e h e. I can’t wait to try out my new Protokol Laser Mk. 3 on them. 
 
 
 JAUGHN
+SAD
 Ah great… here we go again!
 
 

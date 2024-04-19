@@ -9,13 +9,14 @@ I can’t believe we made it out of there in one piece…
 
 
 APOLLO
-
+NORMAL
 So what’s your story, new guy? How’d you end up locked up in there?
 
 
 DESC: 
 Jaughn begins to think back on how he got here…
 JAUGHN
+NORMAL
 (inner monologue) Hmm… Well, it all started when…
 
 NOISE
@@ -178,20 +179,22 @@ They slapped me with a sentence of half my lifespan at Sentinel Max Security for
 
 
 APOLLO
-
+NORMAL
 Damn.
 
 
 REBEKAH
+NORMAL
 That’s real tough, dude.
 
 
 EBB
-
+NORMAL
 How unfortunate.
 
 
 JAUGHN
+NORMAL
 Thank you for getting me out of there. I really appreciate it.
 
 
@@ -208,10 +211,12 @@ What we got now is this guy. Maybe we can make him a new recruit?
 
 
 JAUGHN
+ANGRY
 Me? A new recruit? Listen, you guys are rebels, right? I’m in too deep with the Coalition as it is. I don’t know if I-
 
 
 REBEKAH
+NORMAL
 Looks like he’s scared. What good is he to us?
 
 
@@ -233,7 +238,7 @@ Uh, well, the Border Unit doesn’t exactly have high security clearance. They w
 
 
 APOLLO
-
+NORMAL
 …
 
 
@@ -247,30 +252,31 @@ REBEKAH
 
 
 JAUGHN
+HAPPY
 But, um, I have other great skills too! I went through basic training, and I spent all my downtime reverse-engineering Coalition tech. 
 That’s how I knew how to disable my supervisor’s camera.
 
 
 
 REBEKAH
-
+HAPPY
 Okay, well that’s a start. Not a “Captain” start but a start… and our other captain might as well be space dust, so we need somebody.
 
 
 APOLLO
-
-
+HAPPY
 You did show some skill flying out of that prison back there. And the way you blew up the Prison Warden? 
 That was beau-tee-ful! Definitely new recruit material. Just keep that up and you’ll win over the peanut gallery here.
 
 
 EBB
-
+HAPPY
 According to Section 14, Article 5, Subsection 27 of the Anti-Coalition Rebellion Code, new recruits must have proven themselves through an act of heroism. 
 Jaughn has sufficiently proven himself. However, Jaughn must formally pledge himself to the cause.
 
 
 JAUGHN
+NORMAL
 (inner monologue) Hmm… my whole life I’ve felt like a joke and always dreamed of something better. Is this that moment? 
 I don’t want to become an outlaw, but given what already happened, I’m already a fugitive. 
 My path has already been altered forever, and there’s no turning back now.
@@ -281,10 +287,12 @@ He turned back to the three leaders standing in front of him.
 
 
 JAUGHN
+HAPPY
 Alright, I accept. I’ll join you guys.
 
 
 REBEKAH
+ANGRY
 Wow. Didn’t expect that.
 
 
@@ -294,6 +302,7 @@ Hell yeah!
 
 
 JAUGHN
+HAPPY
 And I actually remembered some intel that could help you guys.
 
 
@@ -303,29 +312,34 @@ We’re listening.
 
 
 JAUGHN
+NORMAL
 The only radio station we were allowed to listen to in our booths was K-COAL: the Coalition’s main broadcast channel. 
 Way out on the edge of the galaxy, the civilian signal doesn’t reach that well, so we were given the coordinates of each satellite to manually connect to them. 
 It may not seem like much, but those signals reach most major systems.
 
 
 APOLLO
+NORMAL
 You mean the channel that’s nothing but propaganda? Hmm… Coalition satellites… if we could rewire those…
 
 
 REBEKAH
+HAPPY
 …we could send out our own recruitment message!
 
 
 EBB
-
+NORMAL
 Understood. In the absence of the Captain, it seems our next mission has been decided.
 
 
 APOLLO
+HAPPY
 Welcome aboard, Jaughn! By the way, the bathroom is down that way to the left.
 
 
 JAUGHN
+NORMAL
 Oh… right.
 
 

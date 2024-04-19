@@ -383,6 +383,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3890480846306876715, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890480846306876715, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890480846306876715, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890480846306876715, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 463
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890480846306876715, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4872919747926837205, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_margin.w
       value: -2.0937054
@@ -406,6 +426,14 @@ PrefabInstance:
     - target: {fileID: 4927081630111596971, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_LocalPosition.z
       value: -61
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007033891525260922, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007033891525260922, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6123450676510060976, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1173,6 +1201,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: ebbEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 46d0665caa74cf04bb5c7fe1770cf8f7, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: ebbEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: c7dee2a3b766ce741bbfd830fc742a52, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: ebbEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e48b12ac342cf541a1d95b62ba7681c, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: ebbEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: d747bd55e04cb1d40b6699203efd0fe8, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: blankEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: apolloEmotions.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: 040d49d7d9adaad448256adbb17c0420, type: 3}
@@ -1205,9 +1253,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: dcfcc70fdd0b07543b71463e6ef98504, type: 3}
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: shadowEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: rebekahEmotions.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: c03c9957aeda4f141929d34e314217cb, type: 3}
+      objectReference: {fileID: 21300000, guid: b32d004ff309e3e48a199d5a695362da, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: rebekahEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3b285a330de66fc4dafb89fe5f71743c, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: rebekahEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 31f5782fe91fc7a4faba5ac1c4d1e3d2, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: rebekahEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f99ec5324e525a43928e57abb3ed550, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3952871861753321593, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}

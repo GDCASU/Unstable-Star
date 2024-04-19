@@ -68,6 +68,7 @@ public class Player : CombatEntity
     protected override void OnDestroy()
     {
         EventData.OnPlayerDeath -= WhenPlayerDies;
+        ScenesManager.instance.LoadScene(Scenes.GameOver);
     }
 
     //Update's only purpose is debugging, everything else runs on
