@@ -196,7 +196,7 @@ public class DialogueManager : MonoBehaviour
     {
         for (int i=1; i< 8; i++)
         {
-            if (SceneManager.GetActiveScene().name == "Cutscene_" + i.ToString())
+            if (SceneManager.GetActiveScene().name == "CutScene_" + i.ToString())
             {
                 ScenesManager.instance.LoadNextScene();
                 // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
