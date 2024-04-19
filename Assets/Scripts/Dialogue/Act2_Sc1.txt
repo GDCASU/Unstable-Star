@@ -14,7 +14,7 @@ Wait, are those Coalition guns? Where’d those come from?
 EBB
 NORMAL
 Ooh, we got those from our last Coalition Raid. That was a fun battle! We stopped those leeches before they could take over another planet.
- 
+
 JAUGHN
 ANGRY
 Take over another planet? Wait, why would the Coalition do that?
@@ -40,7 +40,7 @@ APOLLO
 
 My home galaxy was a barren wasteland, before the Accord got started. But… they’re destroying the Milky Way galaxy in the process. 
 Before long, this galaxy will look like mine did. There’s gotta be a better way.
- 
+
 JAUGHN
 SAD
 I had no idea. I thought they were crazy for sending me to jail over letting a pizza guy through, but I didn’t know it was this bad.

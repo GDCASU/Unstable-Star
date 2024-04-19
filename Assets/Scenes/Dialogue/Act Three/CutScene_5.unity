@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 277932419}
 --- !u!1001 &711653171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1172,6 +1172,42 @@ PrefabInstance:
       propertyPath: speachDialogueImage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: apolloEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 040d49d7d9adaad448256adbb17c0420, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: apolloEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0179ea800b8e26340a6ef8cebf7383b5, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: apolloEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9bc1a03cf3240c14b952076101a30949, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: apolloEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 33cef287389209a4eac066c4867a3501, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: jaughnEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 974bd968ba278134284048ab6e552ae0, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: jaughnEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: a443b862a13849e4ea373b9c1f7b58ee, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: jaughnEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: f0840a5d50680494a84d89771ae7450a, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: jaughnEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: dcfcc70fdd0b07543b71463e6ef98504, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: rebekahEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: c03c9957aeda4f141929d34e314217cb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3952871861753321593, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
