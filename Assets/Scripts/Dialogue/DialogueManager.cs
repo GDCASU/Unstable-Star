@@ -194,7 +194,13 @@ public class DialogueManager : MonoBehaviour
     // Changes to the next scene
     public void ChangeScene()
     {
-        ScenesManager.instance.LoadNextScene();
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        for (int i=1; i< 8; i++)
+        {
+            if (SceneManager.GetActiveScene().name == "Cutscene_" + i.ToString())
+            {
+                ScenesManager.instance.LoadNextScene();
+                // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            }
+        }
     }
 }
