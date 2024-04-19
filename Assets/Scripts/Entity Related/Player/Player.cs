@@ -9,10 +9,10 @@ public class Player : CombatEntity
     public static Player Instance;
 
     //Player Related
-    [SerializeField] private int MAX_HEALTH = 10;
-    [SerializeField] private int MAX_SHIELD = 5;
+    [SerializeField] private int MAX_HEALTH;
+    [SerializeField] private int MAX_SHIELD;
     [SerializeField] private float shieldPerSecond;
-    [SerializeField] private float shieldRegenDelayTime = 3f; // in seconds, does not stack with invulnerable time
+    [SerializeField] private float shieldRegenDelayTime; // in seconds, does not stack with invulnerable time
     [SerializeField] private bool isShieldBroken;
     [SerializeField] private FMODUnity.EventReference deathSFX;
 
