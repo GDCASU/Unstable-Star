@@ -775,7 +775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: testOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: objectiveData.Array.size
