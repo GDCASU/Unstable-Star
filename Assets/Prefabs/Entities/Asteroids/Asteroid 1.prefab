@@ -186,13 +186,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1612ed003342334790d7ed9b1488a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModelObject: {fileID: 2372571173406969705}
+  deathEffectPrefab: {fileID: 2887401111048430277, guid: 86fafbd8ba5234d459aeebb47e8c5c17, type: 3}
   health: 10
   shield: 0
   collisionDamage: 2
   timeLeftInvulnerable: 0
   dmgInvulnTime: 1
+  isShootingLocked: 0
+  isAbilityLocked: 0
   isInvulnerable: 0
+  isIgnoringCollisions: 0
   ignoreDataHolder: 0
   statsData: {fileID: 11400000, guid: b93180171407c7749bbcda2196583c42, type: 2}
   movementSpeed: 7

@@ -12,9 +12,11 @@ public class ScriptableGatling : ScriptableWeapon
     public GameObject bulletPrefab;
     public Sprite weaponIcon;
     public FMODUnity.EventReference sound;
+    [TextAreaAttribute]
+    public string description;
 
     [Header("Stats")]
-    public float warmUpTime;
+    public float heatUpTime;
     public int damage;
     public float bulletSpeed;
     public float timeBetweenShots;
@@ -29,9 +31,9 @@ public class ScriptableGatling : ScriptableWeapon
         // Set for an enemy
         if (isEnemy)
         {
-            return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime);
+            return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, heatUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime, description);
         }
         // Set for a player
-        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, warmUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime * 0);
+        return new GatlingGun(bulletPrefab, weaponIcon, sound, bulletSpeed, heatUpTime, damage, weaponName, timeBetweenShots, isEnemy, shootStayTime * 0, description);
     }
 }

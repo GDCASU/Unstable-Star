@@ -12,31 +12,27 @@ public class AbilityInventoryEditor : Editor
     private bool EnableCustomEditor = true;
 
     //SerializedProperties
-    SerializedProperty maxAbilityCount;
     SerializedProperty doDebugLog;
     SerializedProperty abilityInventoryStrings;
     SerializedProperty currAbilityIndex;
-    SerializedProperty loadDefaultAbilities;
+    SerializedProperty loadInspectorAbility;
 
-    //Serialized Abilities
-    SerializedProperty phaseShiftAbility;
-    SerializedProperty proxiBombAbility;
+    //Serialized Ability
+    SerializedProperty inputAbility;
 
     // Foldouts
     private bool DebuggingGroup = true;
     private bool AbilityInventoryGroup = true;
-    private bool AllScriptedAbilities = false;
+    private bool InputAbility = false;
     private bool warningMsgGroup = false;
 
     private void OnEnable()
     {
-        maxAbilityCount = serializedObject.FindProperty("maxAbilityCount");
         doDebugLog = serializedObject.FindProperty("doDebugLog");
         abilityInventoryStrings = serializedObject.FindProperty("abilityInventoryStrings");
         currAbilityIndex = serializedObject.FindProperty("currAbilityIndex");
-        loadDefaultAbilities = serializedObject.FindProperty("loadDefaultAbilities");
-        phaseShiftAbility = serializedObject.FindProperty("phaseShiftAbility");
-        proxiBombAbility = serializedObject.FindProperty("proxiBombAbility");
+        loadInspectorAbility = serializedObject.FindProperty("loadInspectorAbility");
+        inputAbility = serializedObject.FindProperty("inputAbility");
     }
 
     public override void OnInspectorGUI()
@@ -74,9 +70,8 @@ public class AbilityInventoryEditor : Editor
         DebuggingGroup = EditorGUILayout.BeginFoldoutHeaderGroup(DebuggingGroup, "Settings/Debugging");
         if (DebuggingGroup)
         {
-            EditorGUILayout.PropertyField(maxAbilityCount);
             EditorGUILayout.PropertyField(doDebugLog);
-            EditorGUILayout.PropertyField(loadDefaultAbilities);
+            EditorGUILayout.PropertyField(loadInspectorAbility);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 
@@ -105,12 +100,11 @@ public class AbilityInventoryEditor : Editor
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 
-        // All the scripted abilities
-        AllScriptedAbilities = EditorGUILayout.BeginFoldoutHeaderGroup(AllScriptedAbilities, "All Abilities");
-        if (AllScriptedAbilities)
+        // Input abilities
+        InputAbility = EditorGUILayout.BeginFoldoutHeaderGroup(InputAbility, "Input Ability");
+        if (InputAbility)
         {
-            EditorGUILayout.PropertyField(phaseShiftAbility);
-            EditorGUILayout.PropertyField(proxiBombAbility); 
+            EditorGUILayout.PropertyField(inputAbility);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 

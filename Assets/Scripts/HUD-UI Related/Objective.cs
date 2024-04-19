@@ -3,36 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
-public class Objective : MonoBehaviour
+public abstract class Objective : MonoBehaviour
 {
-	[SerializeField] private TMP_Text title;
-	[SerializeField] private TMP_Text counter;
-	[SerializeField] private Slider slider;
+	// Objects in the prefab this script gets attached to
+	protected TMP_Text title;
+	protected TMP_Text counter;
 
-	public void SetupData(ObjectiveData objectiveData)
+	// Set by ObjectivePanel when this script gets attached to the prefab
+	public ObjectiveData data;
+	protected bool complete;
+
+	public event System.Action<Objective> OnObjectiveComplete;
+	public void RaiseObjectiveComplete()
 	{
-		title.text = objectiveData.title;
-		slider.minValue = objectiveData.minValue;
-		slider.maxValue = objectiveData.maxValue;
-		counter.text = string.Format("{0}/{1}", (int)slider.value, (int)slider.maxValue);
-
-		// Right now, the only objective is a kill x enemies objective
-		// To add more objective types, add a new objective type to the enum in ObjectivePanel and then add functionality here
-		switch(objectiveData.type)
-		{
-			case ObjectiveType.KILLS:
-				EventData.OnEnemyDeath += OnEnemyKilled;
-				break;
-		}
+		OnObjectiveComplete?.Invoke(this);
 	}
 
-	private void OnEnemyKilled(GameObject nop)
+	protected virtual void Start()
 	{
-		if(slider.value < slider.maxValue)
-		{
-			slider.value++;
-			counter.text = string.Format("{0}/{1}", (int)slider.value, (int)slider.maxValue);
-		}
+		complete = false;
+		title = transform.Find("Objective Text").GetComponent<TMP_Text>();
+		counter = transform.Find("Objective Counter").GetComponent<TMP_Text>();
+		title.text = data.title;
 	}
 }

@@ -23,6 +23,7 @@ MonoBehaviour:
       Data3: -2030938228
       Data4: 1812777049
     Path: event:/SFX/Weapons/Player/Laser Fire
+  description: 
   minDamage: 1
   maxDamage: 10
   laserCooldown: 1.5

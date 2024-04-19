@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: testing_pool
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 4404498686940099912, guid: 35a2470e24c1d954dbbb6b461fc60360, type: 3}
+  - {fileID: 4404498686940099912, guid: 8d66a521b84847c4fa4697319b307266, type: 3}
+  enemyBoundsCenter: 0.7
+  enemyBoundsSize: 0.25
+  overrideWaveBounds: 1
