@@ -74,6 +74,14 @@ public class Wave : MonoBehaviour
         return false;
     }
 
+    public void ClearWave()
+    {
+        while (enemyList.Count > 0)
+        {
+            enemyList[0].GetComponentInChildren<Enemy>().TakeDamage(100, out _, out _);
+        }
+    }
+
     private void RemoveEnemy(GameObject enemy)
     {
         if (enemyList.Contains(enemy))

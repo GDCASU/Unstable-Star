@@ -16,8 +16,6 @@ public class AsteroidSpawner : MonoBehaviour
 
     [SerializeField] bool testSpawnOnStart = false;
 
-    bool spawn = false;
-
     private void Awake()
     {
         if (Instance != null)
@@ -38,11 +36,13 @@ public class AsteroidSpawner : MonoBehaviour
 
     public void StartSpawn()
     {
+        spawnAsteroid = true;
         StartCoroutine(Spawner());
     }
 
     public void StopSpawn()
     {
+        spawnAsteroid = false;
         StopCoroutine(Spawner());
     }
 

@@ -72,7 +72,7 @@ public class DJBoss : Boss
             yield return new WaitUntil(() => _shieldList.Count == 0);
 
             Log("Vulnerable phase");
-            _shieldModel.SetActive(true);
+            _shieldModel.SetActive(false);
             _vulnerablePhaseCount++;
             isInvulnerable = false;
             if(_spawnEnemiesCoro != null) StopCoroutine(_spawnEnemiesCoro);
@@ -87,6 +87,7 @@ public class DJBoss : Boss
         GameObject shield = Instantiate(_shieldPrefab, position, Quaternion.identity);
         shield.GetComponent<DJShield>().OnShieldDestroyed += OnShieldDestroyed;
         _shieldList.Add(shield);
+        if (!_shieldModel.activeInHierarchy) _shieldModel.SetActive(true);
     }
 
 	private void OnShieldDestroyed(GameObject obj)
