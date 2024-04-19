@@ -191,67 +191,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
---- !u!1001 &685705450
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 21.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 27.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931939739454189391, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: shootDelay
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7823922204367020976, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
-      propertyPath: m_Name
-      value: Laser Enemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,7 +835,7 @@ MonoBehaviour:
   onWaveStart:
     m_PersistentCalls:
       m_Calls: []
-  testWavesOnStart: 0
+  testWavesOnStart: 1
   waveSpawnStopped: 1
 --- !u!4 &1185152982
 Transform:
@@ -1451,4 +1390,3 @@ SceneRoots:
   - {fileID: 1261016249}
   - {fileID: 172595328}
   - {fileID: 773049858}
-  - {fileID: 685705450}
