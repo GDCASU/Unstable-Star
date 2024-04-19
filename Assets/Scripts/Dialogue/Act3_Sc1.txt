@@ -1,0 +1,139 @@
+﻿DESC: 
+Act Three Scene 1 - Things are getting serious…
+
+REBELLION’S SPACE STATION
+We open with our crew returning to their space station, preparing for what lays ahead of them. 
+JAUGHN
+I’m still in disbelief that we survived that.
+
+
+APOLLO
+
+
+That was amazing Jaughn! We took over those tin cans like it was nothin’!
+
+
+
+
+REBEKAH
+I must admit, that went better than I thought it would.
+
+
+JAUGHN
+Oh, well, it was all thanks to you guys. I just came up with the plan.
+
+
+EBB
+…And blew up that annoying Radio host. Don’t forget the way you made him EXPLODE. B O O M!
+
+
+
+
+APOLLO
+It wasn’t just planning! You showed some real leadership skills if you ask me. Right, guys?
+
+
+REBEKAH
+Ah, heck. Might as well admit it. We’re still in need of a Captain, and we’ve been doing well so far with you. 
+
+
+JAUGHN
+…Captain? Me?
+
+
+APOLLO
+
+
+Yeah, no need to be modest about it, my guy. We’ve got the biggest battle yet ahead of us, and we need someone to lead us.
+
+
+EBB
+
+
+Section 15, Article 2, Subsection 12 of the Anti-Coalition Rebellion Code says that we have the right to nominate a new Captain in the event the old Captain is unable to perform their duties. 
+All in favor of nominating Jaughn as the new Captain?
+
+
+[All in Unison]
+Aye!
+
+
+EBB
+
+
+And there we have it. Jaughn is our new Captain moving forward!
+
+
+
+
+DESC: 
+The three leaders and the rest of the Rebellion gave Jaughn a round of applause. 
+Jaughn looked around and suddenly felt a level of respect emanating from everyone looking at him.
+NOISE
+*applause* 
+JAUGHN
+(Inner monologue)
+Wow, looking around, I can feel everyone’s admiration. Me? Captain? I’m not used to feeling this important… 
+Perhaps I could be more than a lowly Border Guard after all…
+
+
+DESC: 
+Jaughn felt his confidence rise, until he decided to speak:
+
+
+JAUGHN
+Thank you everyone for placing your trust in me as your Captain! I won’t let you down.
+ 
+APOLLO
+
+
+I’m sure you won’t, Captain!
+
+
+REBEKAH
+Now we need to figure out a plan to make it to the Apex-12 System. That entire System is under Coalition control.
+
+
+EBB
+
+
+And they’re going to be looking for us, after we sent out that message.
+
+
+JAUGHN
+We need to figure out a blind spot in the Coalition’s defenses. Somewhere they’re not watching in that system. 
+Ebb, do we still have the satellites’ data?
+
+
+EBB
+
+
+Yes. I will begin scanning the 5 yottabytes of retrieved satellite data for clues. This will take a while.
+
+
+JAUGHN
+I’m remembering something from my training… Skip ahead to anything mentioning the Delta-X5 Sector. That was our codename for the Apex-12 System.
+
+
+EBB
+Got it. Here’s something interesting. “Abandonment of the Delta X5 Munitions Factory.” It seems an engine core failure caused the permanent shutdown of that factory. 
+All Coalition presence pulled out afterwards. It’s on the outskirts of the system.
+
+
+REBEKAH
+I’m plotting a course now. That could give us a way in without being noticed.
+
+
+APOLLO
+…and then we can clear a path to Proximus-3 for the other fighters!
+
+
+JAUGHN
+Alright, we have a plan. Let’s move everyone!
+
+
+DESC: 
+The Rebellion’s ships are quickly scrambled and everyone prepares to warp to the Apex-12 System.
+
+BREAK
+END

@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEditor.Experimental.SceneManagement;
 
 
-
 public class Wave : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemyList;

@@ -1,0 +1,90 @@
+﻿DESC: 
+OUTSIDE THE THIRD K-COAL RADIO STATION
+
+
+DJ Treble Make-R
+Urgh… I’ve been taken off the air…
+
+
+EBB
+With that obnoxious yuppie out of the way, we now have control over all three satellites.
+
+
+REBEKAH
+We did it, everyone!
+
+
+JAUGHN
+I can’t believe we survived that! 
+
+
+APOLLO
+Hell yeah!! Ya did good keeping up with us out there!
+
+
+JAUGHN
+Oh shucks. I just tried to stay alive!
+
+
+REBEKAH
+Now we can broadcast our message-
+
+
+EBB
+Hold on. I’m still getting some Coalition communications attempting to pass through this network. Let’s eavesdrop, shall we?
+
+NOISE
+*CRRSSHH*
+[Network Transmission]
+*CRRSSHH* Everything is going according to plan. Our Star Harvester will begin harvesting the hypergiant star in the Apex-12 System. 
+Our benefactors will be very pleased!
+
+
+
+REBEKAH
+…Hypergiant star?? Those are incredibly unstable! Don’t they realize that harvesting the plasma could cause a hypernova??
+
+
+APOLLO
+These maniacs are going to blow up the star! That would take out most of the galaxy!!
+
+
+EBB
+As much as I would enjoy the V E R Y  B I G  B O O M, it would seem our next objective is set.
+
+
+JAUGHN
+I can’t believe this… so many people live in that system. Do they not care at all?
+
+
+REBEKAH
+Now you understand what’s at stake. The Coalition stopped caring about the consequences of their actions a long time ago.
+
+
+JAUGHN
+We have to stop them! Let’s get a message out across the galaxy!
+
+
+EBB
+Initializing broadcast…
+
+
+DESC: 
+Attention all Milky Way citizens! Your Intragalactic Coalition has failed you! 
+They’re planning on harvesting the plasma from the hypergiant star in the Apex-12 System! 
+This would threaten the entire system and have untold consequences for the whole galaxy! 
+Their unending quest for natural resources will result in YOUR death! 
+If you’re brave enough to fight for your freedom, join the Rebellion! 
+All capable fighters, meet us at Proximus-3 in the Apex-12 System!
+
+JAUGHN
+(inner monologue)
+Now we just hope our message didn’t fall on deaf ears… this next battle could be our last.
+DESC: 
+The message rang loud and clear across communications devices everywhere in the galaxy. 
+The crew of the Rebellion hoped their message wouldn’t fall on deaf ears. 
+They knew the next battle could very well be their last…
+
+BREAK
+hahah
+END

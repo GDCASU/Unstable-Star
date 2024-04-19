@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010086236, g: 0.052700967, b: 0.15289032, a: 1}
+  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -654,9 +654,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gameplay Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: testOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 845721585523932955, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50.00003
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374852137877099930, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291735944726686200, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.699951
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851991676444188923, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4646734826145380836, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.x
@@ -728,7 +744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7424609744582626789, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100.00003
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
@@ -1298,8 +1314,8 @@ SceneRoots:
   - {fileID: 778717891}
   - {fileID: 1584903791}
   - {fileID: 1106683913}
-  - {fileID: 3060813491215135449}
   - {fileID: 1451127885}
+  - {fileID: 3060813491215135449}
   - {fileID: 872289785}
   - {fileID: 1261016249}
   - {fileID: 1224548422}

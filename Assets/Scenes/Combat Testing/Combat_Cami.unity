@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 0
     m_WrapAround: 1
-    m_SelectOnUp: {fileID: 1039062874}
+    m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 2083256908}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -661,7 +661,7 @@ MonoBehaviour:
   pauseObject: {fileID: 1607869612}
   pauseList:
   - {fileID: 2083256908}
-  - {fileID: 1039062874}
+  - {fileID: 0}
   - {fileID: 614422445}
   sChange: {fileID: 0}
 --- !u!1 &766834368
@@ -1505,7 +1505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5959745050469382405, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1638.8088
+      value: 1642.9814
       objectReference: {fileID: 0}
     - target: {fileID: 7424609744582626789, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1529,7 +1529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
-      value: 1638.8088
+      value: 1642.9814
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5624538941662455968, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
@@ -1653,9 +1653,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1607869612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e516f3260e94c409a8d07980759014, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e3a5933c257fab42a19d161bb794b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseObject: {fileID: 1607869612}
+  pauseList:
+  - {fileID: 2083256908}
+  - {fileID: 614422445}
+  sChange: {fileID: 0}
 --- !u!1001 &1610663184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2266,7 +2271,7 @@ MonoBehaviour:
     m_Mode: 0
     m_WrapAround: 1
     m_SelectOnUp: {fileID: 614422445}
-    m_SelectOnDown: {fileID: 1039062874}
+    m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
