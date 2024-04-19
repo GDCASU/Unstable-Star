@@ -6,19 +6,25 @@ using UnityEngine.EventSystems;
 
 public class ObjectivePanel : MonoBehaviour
 {
+    // Singleton
     public static ObjectivePanel Instance;
+    // Events
+    public event System.Action OnAllObjectivesComplete;
 
+    // Serialized Variables
     [SerializeField] private ObjectivePrefabContainer[] objectivePrefabs;
     [SerializeField] private Transform objectiveContainer;
     [SerializeField] private ObjectiveData[] objectiveData;
+    [SerializeField] private bool testOnStart = false;
+    [SerializeField] private bool debug = false;
 
+    // Private Variables
     private RectTransform rectTransform;
     private List<Objective> objectives;
 
-    public event System.Action OnAllObjectivesComplete;
     public void RaiseAllObjectivesComplete()
     {
-        Debug.Log("All objectives complete");
+        if (debug) Debug.Log("All objectives complete");
         OnAllObjectivesComplete?.Invoke();
     }
 
@@ -28,6 +34,12 @@ public class ObjectivePanel : MonoBehaviour
             Destroy(gameObject);
         else
             Instance = this;
+    }
+
+    private void Start()
+    {
+        if (testOnStart) 
+            StartLevelObjecives(); // TESTING CALL; DELETE IN FINAL GAME
     }
 
     /// <summary>
@@ -130,7 +142,7 @@ public class ObjectivePanel : MonoBehaviour
         float percentY = (currentY + 10f) / 190f;
         if(!up) percentY = 1f - percentY;
         float t = percentY * time;
-        Debug.Log("t is " + t);
+        if (debug) Debug.Log("t is " + t);
         yield return new WaitForSecondsRealtime(delay);
 
 		while(t < 1f)
