@@ -658,7 +658,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 42.033333
-        value: {x: 327.3505, y: 362.572, z: 338.057}
+        value: {x: 342.7958, y: 348.3449, z: 393.0574}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -684,7 +684,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 42.033333
-        value: {x: 10.306686, y: -31.238743, z: 14.212473}
+        value: {x: 19.368662, y: -27.213888, z: 12.946876}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -785,7 +785,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 42.033333
-        value: 10.306686
+        value: 19.368662
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -815,7 +815,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 42.033333
-        value: -31.238743
+        value: -27.213888
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -845,7 +845,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 42.033333
-        value: 14.212473
+        value: 12.946876
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -875,7 +875,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 42.033333
-        value: 327.3505
+        value: 342.7958
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -905,7 +905,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 42.033333
-        value: 362.572
+        value: 348.3449
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -935,7 +935,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 42.033333
-        value: 338.057
+        value: 393.0574
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2442,7 +2442,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0fc6f5187a81dc47999eefade6f0935, type: 3}
-  m_Name: Act Three
+  m_Name: Dialogue
   m_EditorClassIdentifier: 
   m_Version: 3
   m_AnimClip: {fileID: 0}
