@@ -114,20 +114,23 @@ public class ShootComponent : MonoBehaviour
     private IEnumerator LaserCooldown(Weapon input)
     {
         input.isOnCooldown = true;
-
+        float maxCounterOnEnter = input.maxChargeUpTime - input.chargeTimeCounter;
+        input.chargeTimeCounter = 0;
+        
         // Cooldown timer
-        while (input.chargeTimeCounter > 0f)
+        while (input.chargeTimeCounter < maxCounterOnEnter)
         {
             // Invoke the UI event for the weapon
-            input.RaiseModifyMeterCooldown(input.maxChargeUpTime, input.chargeTimeCounter);
-            input.chargeTimeCounter -= Time.deltaTime; // Compute time
+            input.RaiseModifyMeterCooldown(maxCounterOnEnter, input.chargeTimeCounter);
+            input.chargeTimeCounter += Time.deltaTime; // Compute time
             yield return null; // Wait a frame
         }
         input.isOnCooldown = false;
-        input.chargeTimeCounter = 0f;
+        input.chargeTimeCounter = maxCounterOnEnter;
 
-        // Raise cooldown event one last time and reset
-        input.RaiseModifyMeterCooldown(input.maxChargeUpTime, input.chargeTimeCounter);
+        // Raise cooldown event one last time and reset routine
+        input.RaiseModifyMeterCooldown(maxCounterOnEnter, input.chargeTimeCounter);
+        laserRoutine = null;
     }
 
     #region PROJECTILE BEHAVIOURS
@@ -201,8 +204,8 @@ public class ShootComponent : MonoBehaviour
         }
 
         // Else, Its the player, start the windup and check for max heat reached
-        gatlingRoutine = StartCoroutine(PlayerGatlingRoutine(input));
-        StartCoroutine(isGatlingOnMaxHeat(input));
+        gatlingRoutine = StartCoroutine(isGatlingOnMaxHeat(input));
+        StartCoroutine(PlayerGatlingRoutine(input));
     }
 
     // This Routine will be stopped if the button is released
@@ -217,9 +220,8 @@ public class ShootComponent : MonoBehaviour
         float previousVal = 0;
         float currVal;
         int index;
-        // Start shooting as long as max heat is not reached
-        input.HeatUpCounter = 0f;
-        while (input.HeatUpCounter < input.heatUpTimeMax)
+        // Start shooting as long as max heat is not reached, controlled by isGatlingOnMaxHeat
+        while (!input.isOnCooldown)
         {
             // Get a random index
             index = UnityEngine.Random.Range(0, randOffsets.Count);
@@ -294,37 +296,38 @@ public class ShootComponent : MonoBehaviour
     // Routine that will check if the fire button is still being held down for the gatling
     private IEnumerator isGatlingOnMaxHeat(Weapon input)
     {
+        input.HeatUpCounter = input.heatUpTimeMax;
         // Continue charging and firing gatling gun as long as the button is hold and the weapon
         // Hasnt been switched or locked
-        while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input && !entityScript.isShootingLocked && input.HeatUpCounter < input.heatUpTimeMax)
+        while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input && !entityScript.isShootingLocked && input.HeatUpCounter > 0)
         {
-            // Increase time
-            input.HeatUpCounter += Time.deltaTime;
+            // Decrease time
+            input.HeatUpCounter -= Time.deltaTime;
             // Update UI
             input.RaiseModifyMeterCharge(input.heatUpTimeMax, input.HeatUpCounter);
             // check every frame for firing conditions
             yield return null;
         }
 
-        // Else, it has been released or reached max heat
-        StopCoroutine(gatlingRoutine);
-        gatlingRoutine = null;
-        input.HeatUpCounter = 0f;
-        
         // Start cooling down
         input.isOnCooldown = true;
-        while (input.chargeTimeCounter > 0f)
+        float maxCounterOnEnter = input.heatUpTimeMax - input.HeatUpCounter;
+        input.HeatUpCounter = 0;
+
+        // Cooldown timer
+        while (input.HeatUpCounter < maxCounterOnEnter)
         {
             // Invoke the UI event for the weapon
-            input.RaiseModifyMeterCooldown(input.heatUpTimeMax, input.HeatUpCounter);
-            input.chargeTimeCounter -= Time.deltaTime; // Compute time
+            input.RaiseModifyMeterCooldown(maxCounterOnEnter, input.HeatUpCounter);
+            input.HeatUpCounter += Time.deltaTime; // Compute time
             yield return null; // Wait a frame
         }
         input.isOnCooldown = false;
-        input.HeatUpCounter = 0f;
+        input.HeatUpCounter = maxCounterOnEnter;
 
-        // Raise cooldown event one last time and reset
-        input.RaiseModifyMeterCooldown(input.heatUpTimeMax, input.HeatUpCounter);
+        // Raise cooldown event one last time and reset routine
+        input.RaiseModifyMeterCooldown(maxCounterOnEnter, input.HeatUpCounter);
+        gatlingRoutine = null;
     }
 
     #endregion
@@ -400,7 +403,7 @@ public class ShootComponent : MonoBehaviour
             laserRoutine = null;
             input.chargeTimeCounter = 0f;
             StartCoroutine(ReduceSphereTillZero(chargeSphere, chargeSphereKillTimeIfCancelled));
-            input.RaiseModifyMeterCharge(input.maxChargeUpTime, input.chargeTimeCounter); // Update UI
+            input.RaiseModifyMeterCharge(input.maxChargeUpTime, input.maxChargeUpTime); // Update UI
             yield break;
         }
 
@@ -462,10 +465,7 @@ public class ShootComponent : MonoBehaviour
             }
         }
         // Call cooldown on this laser weapon
-        input.chargeTimeCounter = 0f;
         StartCoroutine(LaserCooldown(input));
-        // Laser fire finished
-        laserRoutine = null;
     }
 
     private IEnumerator EnemeyLaserRoutine(Weapon input)
