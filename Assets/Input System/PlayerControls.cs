@@ -107,6 +107,42 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ChangeDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3e65801-d785-455d-8ac0-6833cb52957f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""348b69c6-77aa-4e4a-aaf9-f5f6f6597e49"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipD"",
+                    ""type"": ""Button"",
+                    ""id"": ""4a489cc0-bafb-43e2-8d37-f255a25291aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""5cb0f32c-20cd-4426-93ff-0a2b0651af05"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -327,6 +363,83 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4aadb7a4-9c5a-42cd-b3cd-62432e0e7c09"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9d6fd76-28c4-497b-80d1-2be415f0bf95"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18bd5985-424a-407c-bbc9-b8c1906969cc"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab588863-1d98-454e-85fd-bff49c73ed08"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad25b24c-a59d-4338-9b6c-b67940fa2ef4"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""889d4e97-d6ac-41d6-888a-0d2998a9f53c"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62bb4fcd-ba01-4212-8a7b-b7af9aa29ceb"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -862,6 +975,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ShipControls_UseAbility = m_ShipControls.FindAction("UseAbility", throwIfNotFound: true);
         m_ShipControls_FocusSpeed = m_ShipControls.FindAction("FocusSpeed", throwIfNotFound: true);
         m_ShipControls_Aim = m_ShipControls.FindAction("Aim", throwIfNotFound: true);
+        m_ShipControls_ChangeDialogue = m_ShipControls.FindAction("ChangeDialogue", throwIfNotFound: true);
+        m_ShipControls_SkipDialogue = m_ShipControls.FindAction("SkipDialogue", throwIfNotFound: true);
+        m_ShipControls_SkipD = m_ShipControls.FindAction("SkipD", throwIfNotFound: true);
+        m_ShipControls_PauseGame = m_ShipControls.FindAction("PauseGame", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -944,6 +1061,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_ShipControls_UseAbility;
     private readonly InputAction m_ShipControls_FocusSpeed;
     private readonly InputAction m_ShipControls_Aim;
+    private readonly InputAction m_ShipControls_ChangeDialogue;
+    private readonly InputAction m_ShipControls_SkipDialogue;
+    private readonly InputAction m_ShipControls_SkipD;
+    private readonly InputAction m_ShipControls_PauseGame;
     public struct ShipControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -957,6 +1078,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @UseAbility => m_Wrapper.m_ShipControls_UseAbility;
         public InputAction @FocusSpeed => m_Wrapper.m_ShipControls_FocusSpeed;
         public InputAction @Aim => m_Wrapper.m_ShipControls_Aim;
+        public InputAction @ChangeDialogue => m_Wrapper.m_ShipControls_ChangeDialogue;
+        public InputAction @SkipDialogue => m_Wrapper.m_ShipControls_SkipDialogue;
+        public InputAction @SkipD => m_Wrapper.m_ShipControls_SkipD;
+        public InputAction @PauseGame => m_Wrapper.m_ShipControls_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_ShipControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -993,6 +1118,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
+            @ChangeDialogue.started += instance.OnChangeDialogue;
+            @ChangeDialogue.performed += instance.OnChangeDialogue;
+            @ChangeDialogue.canceled += instance.OnChangeDialogue;
+            @SkipDialogue.started += instance.OnSkipDialogue;
+            @SkipDialogue.performed += instance.OnSkipDialogue;
+            @SkipDialogue.canceled += instance.OnSkipDialogue;
+            @SkipD.started += instance.OnSkipD;
+            @SkipD.performed += instance.OnSkipD;
+            @SkipD.canceled += instance.OnSkipD;
+            @PauseGame.started += instance.OnPauseGame;
+            @PauseGame.performed += instance.OnPauseGame;
+            @PauseGame.canceled += instance.OnPauseGame;
         }
 
         private void UnregisterCallbacks(IShipControlsActions instance)
@@ -1024,6 +1161,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
+            @ChangeDialogue.started -= instance.OnChangeDialogue;
+            @ChangeDialogue.performed -= instance.OnChangeDialogue;
+            @ChangeDialogue.canceled -= instance.OnChangeDialogue;
+            @SkipDialogue.started -= instance.OnSkipDialogue;
+            @SkipDialogue.performed -= instance.OnSkipDialogue;
+            @SkipDialogue.canceled -= instance.OnSkipDialogue;
+            @SkipD.started -= instance.OnSkipD;
+            @SkipD.performed -= instance.OnSkipD;
+            @SkipD.canceled -= instance.OnSkipD;
+            @PauseGame.started -= instance.OnPauseGame;
+            @PauseGame.performed -= instance.OnPauseGame;
+            @PauseGame.canceled -= instance.OnPauseGame;
         }
 
         public void RemoveCallbacks(IShipControlsActions instance)
@@ -1170,6 +1319,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnUseAbility(InputAction.CallbackContext context);
         void OnFocusSpeed(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnChangeDialogue(InputAction.CallbackContext context);
+        void OnSkipDialogue(InputAction.CallbackContext context);
+        void OnSkipD(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

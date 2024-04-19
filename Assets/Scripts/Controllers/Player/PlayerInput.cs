@@ -54,9 +54,18 @@ public class PlayerInput : MonoBehaviour
     /// <summary> Player's Hold Focus Speed </summary>
     public static event System.Action<bool> OnFocusSpeedHeld; // Action List
 
+    /// <summary> Change the Dialogue to next </summary>
+    public static event System.Action OnChangeDialogue;
+
+    /// <summary> Skip the entire dialogue </summary>
+    public static event System.Action OnSkipDialogue;
+
+    /// <summary> Pause the game </summary>
+    public static event System.Action OnPauseGame;
+
     #endregion
 
-    private void Awake()    
+    private void Awake()
     {
         // Handle Singleton
         if (instance == null)
@@ -66,21 +75,7 @@ public class PlayerInput : MonoBehaviour
         }
         else
             Destroy(gameObject);
-    }
 
-    public void ToggleControls(bool toggle)     // Toggle the player controls with this method from any script
-    {
-        if (playerControls == null) 
-            return;
-
-        if (toggle)
-            playerControls.Enable();
-        else
-            playerControls.Disable();
-    }
-
-    private void Start()
-    {
         // Control handling
         if (playerControls == null)
         {
@@ -106,10 +101,25 @@ public class PlayerInput : MonoBehaviour
 
             playerControls.ShipControls.FocusSpeed.performed += i => OnFocusSpeedHeld?.Invoke(true);
             playerControls.ShipControls.FocusSpeed.canceled += i => OnFocusSpeedHeld?.Invoke(false);
-        }
 
+            playerControls.ShipControls.ChangeDialogue.performed += i => OnChangeDialogue?.Invoke();
+            playerControls.ShipControls.SkipDialogue.performed += i => OnSkipDialogue?.Invoke();
+
+            playerControls.ShipControls.PauseGame.performed += i => OnPauseGame?.Invoke();
+        }
         playerControls.Enable();
 
+    }
+
+    public void ToggleControls(bool toggle)     // Toggle the player controls with this method from any script
+    {
+        if (playerControls == null) 
+            return;
+
+        if (toggle)
+            playerControls.Enable();
+        else
+            playerControls.Disable();
     }
 
     private void HandleMovementInput(InputAction.CallbackContext context)   // Just update the movement vector everytime the player moves
