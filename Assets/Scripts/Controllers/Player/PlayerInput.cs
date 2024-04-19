@@ -102,7 +102,7 @@ public class PlayerInput : MonoBehaviour
             playerControls.ShipControls.FocusSpeed.canceled += i => OnFocusSpeedHeld?.Invoke(false);
 
             playerControls.ShipControls.ChangeDialogue.performed += i => OnChangeDialogue?.Invoke();
-            playerControls.ShipControls.SkipDialogue.performed += i => OnSkipDialogue?.Invoke();
+            //playerControls.ShipControls.SkipDialogue.performed += i => OnSkipDialogue?.Invoke();
 
             playerControls.ShipControls.PauseGame.performed += i => OnPauseGame?.Invoke();
         }
@@ -120,6 +120,8 @@ public class PlayerInput : MonoBehaviour
         else
             playerControls.Disable();
     }
+
+
 
     private void HandleMovementInput(InputAction.CallbackContext context)   // Just update the movement vector everytime the player moves
     {

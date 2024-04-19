@@ -6,19 +6,19 @@ using UnityEngine.SceneManagement;
 
 public enum Scenes
 {
-    MainMenu,
-    Weapon_Select_1,
-    CutScene_1,
-    Level_1,
-    CutScene_2,
-    Weapon_Select_2,
+    MainMenu,           // 0
+    Weapon_Select_1,    // 1
+    CutScene_1,         // 2
+    Level_1,            // 3
+    CutScene_2,         // 4
+    Weapon_Select_2,    
     CutScene_3,
     Level_2,
     CutScene_4,
     Weapon_Select_3,
     CutScene_5,
-    Level_3,
     CutScene_6,
+    Level_3,
     CutScene_7,
     GameOver,
     Credits
