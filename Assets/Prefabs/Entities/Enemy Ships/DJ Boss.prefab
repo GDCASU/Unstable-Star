@@ -65,7 +65,7 @@ MonoBehaviour:
   _shieldModel: {fileID: 4242000427896190162}
   _enemyPool:
   - {fileID: 936650888660271408, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
-  - {fileID: 1408486779537291851, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+  - {fileID: 8446906546400985490, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
   - {fileID: 7823922204367020976, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
 --- !u!136 &2852541011737675917
 CapsuleCollider:

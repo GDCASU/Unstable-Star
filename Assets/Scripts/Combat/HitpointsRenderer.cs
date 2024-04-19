@@ -77,7 +77,7 @@ public class HitpointsRenderer : MonoBehaviour
         hitpointMesh.color = colorIn;
 
         // Animation coroutine
-        StartCoroutine(AnimateHitpoint(hitpoint));
+        if(gameObject.activeInHierarchy) StartCoroutine(AnimateHitpoint(hitpoint));
     }
 
     //Animation Coroutine
