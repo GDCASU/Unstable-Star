@@ -23,8 +23,9 @@ MonoBehaviour:
       Data3: 989007238
       Data4: 152891200
     Path: event:/TESTING/RayGunEffect
+  description: 
   minDamage: 1
-  maxDamage: 4
+  maxDamage: 7
   laserCooldown: 2
   maxChargeUpTime: 4
   isEnemy: 1

@@ -18,6 +18,6 @@ MonoBehaviour:
   - {fileID: 4404498686940099912, guid: 4caeb8365c3759c4e8dc042cadbdf7fb, type: 3}
   - {fileID: 4404498686940099912, guid: 4dbd53c566382d344aaed9ad0a4dfbb5, type: 3}
   - {fileID: 4404498686940099912, guid: 926eedc1f79ff3843b1025bb118bd90f, type: 3}
-  enemyBoundsCenter: 0.75
-  enemyBoundsSize: 0.15
+  enemyBoundsCenter: 0.7
+  enemyBoundsSize: 0.25
   overrideWaveBounds: 1

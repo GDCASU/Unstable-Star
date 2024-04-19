@@ -33,9 +33,9 @@ Transform:
   - {fileID: 4418385988196852805}
   - {fileID: 2969930286441990565}
   - {fileID: 7573931469030956523}
-  - {fileID: 1794796464951408224}
-  - {fileID: 4990596533053352788}
-  - {fileID: 4522001045208074573}
+  - {fileID: 8850011605123021739}
+  - {fileID: 2845081244726716063}
+  - {fileID: 6699303145957065862}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2128820288414428982
@@ -54,10 +54,11 @@ MonoBehaviour:
   - {fileID: 4976671269939740954}
   - {fileID: 5870087378712095994}
   - {fileID: 1251420190492719284}
-  - {fileID: 6965264748722115391}
-  - {fileID: 4396599113607482891}
-  - {fileID: 5080251142630108178}
-  debug: 0
+  - {fileID: 439968348590156006}
+  - {fileID: 6607159000819529170}
+  - {fileID: 2319968418288965579}
+  enemyBoundsCenter: 0.7
+  enemyBoundsSize: 0.25
 --- !u!1001 &2991683099683775146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68,11 +69,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.3
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.6
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -133,6 +134,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8035897760632847848}
     m_Modifications:
+    - target: {fileID: 717174650592269023, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 717174650592269023, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1408486779537291851, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
       propertyPath: m_Name
       value: Gatling Enemy (3)
@@ -182,14 +191,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
---- !u!1 &4396599113607482891 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1408486779537291851, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+--- !u!4 &2845081244726716063 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 717174650592269023, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
   m_PrefabInstance: {fileID: 3352974843497182272}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4990596533053352788 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7767022439930306324, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+--- !u!1 &6607159000819529170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8446906546400985490, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
   m_PrefabInstance: {fileID: 3352974843497182272}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4459296541717630794
@@ -202,11 +211,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.6
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -267,6 +276,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8035897760632847848}
     m_Modifications:
+    - target: {fileID: 717174650592269023, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 717174650592269023, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1408486779537291851, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
       propertyPath: m_Name
       value: Gatling Enemy (2)
@@ -316,14 +333,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
---- !u!4 &4522001045208074573 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7767022439930306324, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+--- !u!1 &2319968418288965579 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8446906546400985490, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
   m_PrefabInstance: {fileID: 6128095329810781785}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5080251142630108178 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1408486779537291851, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+--- !u!4 &6699303145957065862 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 717174650592269023, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
   m_PrefabInstance: {fileID: 6128095329810781785}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8296303560208329076
@@ -383,14 +400,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
---- !u!4 &1794796464951408224 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7767022439930306324, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+--- !u!1 &439968348590156006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8446906546400985490, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
   m_PrefabInstance: {fileID: 8296303560208329076}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6965264748722115391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1408486779537291851, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
+--- !u!4 &8850011605123021739 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 717174650592269023, guid: 620d54f8af55f2c4c8a1a25553e1f6e8, type: 3}
   m_PrefabInstance: {fileID: 8296303560208329076}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9064012956815563524
@@ -403,11 +420,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.6
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1501340557056247535, guid: 6d149371f5c517b498c43bd8b14d5a6d, type: 3}
       propertyPath: m_LocalPosition.z
