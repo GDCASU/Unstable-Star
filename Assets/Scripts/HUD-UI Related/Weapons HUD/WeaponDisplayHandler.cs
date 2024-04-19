@@ -209,124 +209,40 @@ public class WeaponDisplayHandler : MonoBehaviour
             PIsInFront = true;
         }
 
-        /*
-        RectTransform secrtransform = secondary.GetComponent<RectTransform>();
-        RectTransform primrtransform = primary.GetComponent<RectTransform>();
-        if (PIsInFront)
-        {
-            currSecondary.sortingOrder = 2;
-            currPrim.sortingOrder = 1;
-            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
-            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
-            animator.SetBool("toCSTF", true);
-            animator.SetBool("toCPTF", false);
-            PIsInFront = false;
-        }
-        else if (!PIsInFront)
-        {
-            currSecondary.sortingOrder = 1;
-            currPrim.sortingOrder = 2;
-            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
-            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
-            animator.SetBool("toCPTF", true);
-            animator.SetBool("toCSTF", false);
-            PIsInFront = true;
-        }
-        UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
-        UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
-        */
-
-        /* if (animator.GetBool("toPIF") == true)
-         {
-             animator.SetBool("toCSTF", true);
-             animator.SetBool("toPIF", false);
-             //if (happened)
-             //{
-             currSecondary.sortingOrder = 2;
-             currPrim.sortingOrder = 1;
-             //}
-         }
-         if (animator.GetBool("toCSTF") == true && secrtransform.localPosition.z < 1f)
-         {
-             animator.SetBool("toSIF", true);
-             animator.SetBool("toCSTF", false);
-             PIsInFront = false;
-             //if(happened)
-             //{
-             currSecondary.sortingOrder = 2;
-             currPrim.sortingOrder = 1;
-             // }
-         }
-         if (animator.GetBool("toSIF") == true)
-         {
-             animator.SetBool("toCPTF", true);
-             animator.SetBool("toSIF", false);
-             // if (happened)
-             //{
-             currSecondary.sortingOrder = 1;
-             currPrim.sortingOrder = 2;
-             //}
-         }
-         if (animator.GetBool("toCPTF") == true && (secrtransform.localPosition.z > 59f))
-         {
-             animator.SetBool("toPIF", true);
-             animator.SetBool("toCPTF", false);
-             PIsInFront = true;
-             //if(happened)
-             //{
-             currSecondary.sortingOrder = 1;
-             currPrim.sortingOrder = 2;
-             // }
-         }*/
-
-
-        /*if (animator.GetBool("toPIF")==true&& Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            animator.SetBool("toCPTB", true);
-            animator.SetBool("toPIF", false);
-            if (happened)
-            {
-                currSecondary.sortingOrder = 2;
-                currPrim.sortingOrder = 1;
-            }
-        }*/
-        /*if(animator.GetBool("toCPTB")==true && (secrtransform.localPosition.z < 0.1f))
-        {
-            //animator.SetBool("toSIFCounter", true);
-            animator.SetBool("toSIF", true);
-            animator.SetBool("toCPTB", false);
-        }*/
-        /*if (animator.GetBool("toSIF") == true && Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            animator.SetBool("toCSTB", true);
-            animator.SetBool("toSIF", false);
-            if (happened)
-            {
-                currSecondary.sortingOrder = 1;
-                currPrim.sortingOrder = 2;
-            }
-        }
-        if(animator.GetBool("toCSTB")==true && secrtransform.localPosition.z > 55f)
-        {
-            animator.SetBool("toPIF", true);
-            animator.SetBool("toCSTB", false);
-        }*/
-
-        /*if (Input.GetKeyDown(KeyCode.N))
-        {
-            animator.SetFloat("sec_z", 60f);
-        }*/
-        //UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
-        //if (Input.GetKeyDown(KeyCode.M))
-        /*{ 
-            Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-            weaponArsenalScript.AddWeaponToArsenal(myPistol);
-
-            //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-            testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
-        }*/
+        
     }
 
+    private void OnDisable()
+    {
+        // Set canvas order of front one to 1
+        if (secondaryCanvasObj.transform.position.z < 1)
+        {
+            secondaryCanvas.sortingOrder = 0;
+            primaryCanvas.sortingOrder = 1;
+        }
+        else
+        {
+            secondaryCanvas.sortingOrder = 1;
+            primaryCanvas.sortingOrder = 0;
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        // Set canvas order of front one to 1
+        if (secondaryCanvasObj.transform.position.z < 1)
+        {
+            secondaryCanvas.sortingOrder = 0;
+            primaryCanvas.sortingOrder = 1;
+        }
+        else
+        {
+            secondaryCanvas.sortingOrder = 1;
+            primaryCanvas.sortingOrder = 0;
+        }
+    }
+}
 
 #if false
     public void testMethodForShantanu()
@@ -469,4 +385,120 @@ public class WeaponDisplayHandler : MonoBehaviour
         }
     }
 #endif
+
+/*
+        RectTransform secrtransform = secondary.GetComponent<RectTransform>();
+        RectTransform primrtransform = primary.GetComponent<RectTransform>();
+        if (PIsInFront)
+        {
+            currSecondary.sortingOrder = 2;
+            currPrim.sortingOrder = 1;
+            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
+            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
+            animator.SetBool("toCSTF", true);
+            animator.SetBool("toCPTF", false);
+            PIsInFront = false;
+        }
+        else if (!PIsInFront)
+        {
+            currSecondary.sortingOrder = 1;
+            currPrim.sortingOrder = 2;
+            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
+            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
+            animator.SetBool("toCPTF", true);
+            animator.SetBool("toCSTF", false);
+            PIsInFront = true;
+        }
+        UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
+        UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
+        */
+
+/* if (animator.GetBool("toPIF") == true)
+ {
+     animator.SetBool("toCSTF", true);
+     animator.SetBool("toPIF", false);
+     //if (happened)
+     //{
+     currSecondary.sortingOrder = 2;
+     currPrim.sortingOrder = 1;
+     //}
+ }
+ if (animator.GetBool("toCSTF") == true && secrtransform.localPosition.z < 1f)
+ {
+     animator.SetBool("toSIF", true);
+     animator.SetBool("toCSTF", false);
+     PIsInFront = false;
+     //if(happened)
+     //{
+     currSecondary.sortingOrder = 2;
+     currPrim.sortingOrder = 1;
+     // }
+ }
+ if (animator.GetBool("toSIF") == true)
+ {
+     animator.SetBool("toCPTF", true);
+     animator.SetBool("toSIF", false);
+     // if (happened)
+     //{
+     currSecondary.sortingOrder = 1;
+     currPrim.sortingOrder = 2;
+     //}
+ }
+ if (animator.GetBool("toCPTF") == true && (secrtransform.localPosition.z > 59f))
+ {
+     animator.SetBool("toPIF", true);
+     animator.SetBool("toCPTF", false);
+     PIsInFront = true;
+     //if(happened)
+     //{
+     currSecondary.sortingOrder = 1;
+     currPrim.sortingOrder = 2;
+     // }
+ }*/
+
+
+/*if (animator.GetBool("toPIF")==true&& Input.GetKeyDown(KeyCode.LeftArrow))
+{
+    animator.SetBool("toCPTB", true);
+    animator.SetBool("toPIF", false);
+    if (happened)
+    {
+        currSecondary.sortingOrder = 2;
+        currPrim.sortingOrder = 1;
+    }
+}*/
+/*if(animator.GetBool("toCPTB")==true && (secrtransform.localPosition.z < 0.1f))
+{
+    //animator.SetBool("toSIFCounter", true);
+    animator.SetBool("toSIF", true);
+    animator.SetBool("toCPTB", false);
+}*/
+/*if (animator.GetBool("toSIF") == true && Input.GetKeyDown(KeyCode.LeftArrow))
+{
+    animator.SetBool("toCSTB", true);
+    animator.SetBool("toSIF", false);
+    if (happened)
+    {
+        currSecondary.sortingOrder = 1;
+        currPrim.sortingOrder = 2;
+    }
 }
+if(animator.GetBool("toCSTB")==true && secrtransform.localPosition.z > 55f)
+{
+    animator.SetBool("toPIF", true);
+    animator.SetBool("toCSTB", false);
+}*/
+
+/*if (Input.GetKeyDown(KeyCode.N))
+{
+    animator.SetFloat("sec_z", 60f);
+}*/
+//UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
+//if (Input.GetKeyDown(KeyCode.M))
+/*{ 
+    Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+    weaponArsenalScript.AddWeaponToArsenal(myPistol);
+
+    //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+    testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
+}*/
