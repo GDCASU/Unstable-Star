@@ -22,6 +22,11 @@ public class AbilityDisplayHandler : MonoBehaviour
     {
         // Get the equipped ability
         abilityRef = AbilityInventory.instance.GetCurrentAbility();
+        if (abilityRef.sName == "No Ability")
+        {
+            gameObject.SetActive(false);
+            return;
+        }
 
         // Set the images and charges
         activeAbilityObj.sprite = abilityRef.abilityIconActive;

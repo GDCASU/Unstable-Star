@@ -71,7 +71,6 @@ public class WeaponDisplayHandler : MonoBehaviour
         maxMeterHeight = primaryMeterRect.offsetMax.y * -1;
 
         // Subscribe to input events
-        PlayerInput.OnSwitchToNextWeapon += swapPanes;
         EventData.OnPlayerDeath += UnsubscribeFromEvents;
 
         // Set variables
@@ -114,6 +113,12 @@ public class WeaponDisplayHandler : MonoBehaviour
         secondaryIcon.sprite = secondaryWep.weaponIcon;
         // Return to primary
         WeaponArsenal.instance.SetCurrentWeaponToFirst();
+
+        // Subscribe to input events
+        if (WeaponArsenal.instance.GetWeaponListCount() >= 2)
+            PlayerInput.OnSwitchToNextWeapon += swapPanes;
+        else
+            secondaryCanvasObj.SetActive(false);
 
         // Attach the weapons to their UI events
         primaryWep.ModifyMeterCharge += UpdateChargeMeterPrimary;

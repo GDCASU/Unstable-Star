@@ -869,6 +869,10 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3723506231853113852, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4574575312779832171, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_SortingLayerID
       value: 66370825
