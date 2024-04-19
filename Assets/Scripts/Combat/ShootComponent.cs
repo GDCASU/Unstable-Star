@@ -577,6 +577,7 @@ public class ShootComponent : MonoBehaviour
         yield return cooldown;
         // Set bool for enemy behaviour
         input.isEnemyShooting = false;
+        laserRoutine = null;
     }
 
     // Helper routine to reduce the Charging sphere while firing the laser
