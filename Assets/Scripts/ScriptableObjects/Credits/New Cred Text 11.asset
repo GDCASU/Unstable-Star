@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: New Cred Text 11
   m_EditorClassIdentifier: 
   title: 'Sound Team '
-  text: 'Gundry Furedy,Israel Almodovar,Oliver! Padegimas,Zemira Glais Dill '
+  text: Gundry Furedy, Israel Almodovar, Oliver! Padegimas, Zemira Glais Dill, Ellie,
+    Jonathan Wheeler
