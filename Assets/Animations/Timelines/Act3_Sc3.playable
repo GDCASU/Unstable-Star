@@ -60,11 +60,11 @@ MonoBehaviour:
   eventName: 
   EventReference:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -325780695
+      Data2: 1226713194
+      Data3: 1447115922
+      Data4: -1898798918
+    Path: event:/SFX/Dialogue/new
   StopType: 0
   Parameters: []
 --- !u!114 &-7838374011842859633
@@ -92,7 +92,7 @@ MonoBehaviour:
     m_Start: 4.183333333333334
     m_ClipIn: 0
     m_Asset: {fileID: -8649060726516707336}
-    m_Duration: 1
+    m_Duration: 3.916666666666666
     m_TimeScale: 1
     m_ParentTrack: {fileID: -7838374011842859633}
     m_EaseInDuration: 0
@@ -156,9 +156,9 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: FMODEventPlayable
+    m_DisplayName: new
   - m_Version: 1
-    m_Start: 6.316666666666666
+    m_Start: 9.166666666666666
     m_ClipIn: 0
     m_Asset: {fileID: -1088041390500143875}
     m_Duration: 2.5333333333333337
@@ -227,7 +227,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: Applause
   - m_Version: 1
-    m_Start: 9.983333333333333
+    m_Start: 12.83333333333333
     m_ClipIn: 0
     m_Asset: {fileID: -4988570754303287068}
     m_Duration: 2.5333333333333337
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 8.85
+    m_Start: 11.699999999999998
     m_ClipIn: 0
     m_Asset: {fileID: 9066692096100615349}
     m_Duration: 3.666666666666668
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 6.316666666666666
+  m_Time: 9.166666666666666
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: e0dbd304d1f291e478a6881ca3bb9ad1, type: 2}
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 8.85
+  m_Time: 11.699999999999998
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: e0dbd304d1f291e478a6881ca3bb9ad1, type: 2}
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 9.983333333333333
+  m_Time: 12.83333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: e0dbd304d1f291e478a6881ca3bb9ad1, type: 2}
@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 12.516666666666666
+  m_Time: 15.366666666666665
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: e0dbd304d1f291e478a6881ca3bb9ad1, type: 2}
@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 12.7
+  m_Time: 15.549999999999999
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 6416fb92f627ed44daa436a97cc75734, type: 2}
@@ -1266,7 +1266,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: Active
   - m_Version: 1
-    m_Start: 5.25
+    m_Start: 8.1
     m_ClipIn: 0
     m_Asset: {fileID: -2383400446148514979}
     m_Duration: 1.0666666666666664
@@ -1723,7 +1723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 5.183333333333334
+  m_Time: 8.033333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: e0dbd304d1f291e478a6881ca3bb9ad1, type: 2}

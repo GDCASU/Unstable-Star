@@ -405,7 +405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3890480846306876715, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -167
+      value: -27
       objectReference: {fileID: 0}
     - target: {fileID: 4872919747926837205, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_margin.w
@@ -542,6 +542,14 @@ PrefabInstance:
     - target: {fileID: 8464367396605807595, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_Name
       value: Dialogue Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043536884415476800, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1670785428}
+    - target: {fileID: 9043536884415476800, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
       objectReference: {fileID: 0}
     - target: {fileID: 9053833677967778530, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -795,7 +803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34af3e7fc2203d742881be0b2f19c1fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.0265
+      value: 50.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34af3e7fc2203d742881be0b2f19c1fd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1209,7 +1217,7 @@ PrefabInstance:
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: ebbEmotions.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: aa36890055560134dbe677f8578d7c18, type: 3}
+      objectReference: {fileID: 21300000, guid: b4ece3b5f1788d1489edfc5590cb3446, type: 3}
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: shadowEmotions.Array.size
       value: 4
@@ -1253,23 +1261,23 @@ PrefabInstance:
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: jaughnEmotions.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 76d359f77bfae5b4e9e5b6bbf6671ffd, type: 3}
+      objectReference: {fileID: 21300000, guid: 974bd968ba278134284048ab6e552ae0, type: 3}
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: jaughnEmotions.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 709c32b015b2ec743b1c3bae1bb2a263, type: 3}
+      objectReference: {fileID: 21300000, guid: a443b862a13849e4ea373b9c1f7b58ee, type: 3}
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: jaughnEmotions.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 7ff35c3f3287f2944bd03a1c255c169f, type: 3}
+      objectReference: {fileID: 21300000, guid: f0840a5d50680494a84d89771ae7450a, type: 3}
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: jaughnEmotions.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 13c5d26eca288cc4aaa1f0ef7e914b33, type: 3}
+      objectReference: {fileID: 21300000, guid: dcfcc70fdd0b07543b71463e6ef98504, type: 3}
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: rebekahEmotions.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 2959711f822dd7f4d90ee8b5b511d26b, type: 3}
+      objectReference: {fileID: 21300000, guid: c03c9957aeda4f141929d34e314217cb, type: 3}
     m_RemovedComponents:
     - {fileID: 8624068510671605050, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
     m_RemovedGameObjects:
@@ -1285,6 +1293,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3604167900427707985, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
   m_PrefabInstance: {fileID: 1670785426}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1670785428 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6320924069648261947, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+  m_PrefabInstance: {fileID: 1670785426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb82f6b917e73449aa122fbec6f1b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1849640653
 GameObject:
   m_ObjectHideFlags: 0
