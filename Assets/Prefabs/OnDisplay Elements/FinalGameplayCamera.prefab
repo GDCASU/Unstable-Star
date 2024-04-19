@@ -1225,8 +1225,14 @@ MonoBehaviour:
   numPostBossBreaks: 0
   playOnAwake: 1
   debug: 1
+  hud: {fileID: 8556707417053157049}
   objectivesObject: {fileID: 0}
-  bossObject: {fileID: 0}
+  boss: {fileID: 0}
+--- !u!1 &8556707417053157049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4154683887605264518, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+  m_PrefabInstance: {fileID: 5699286588465833535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6593597590417106717
 PrefabInstance:
   m_ObjectHideFlags: 0

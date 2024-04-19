@@ -15,6 +15,7 @@ public enum CutsceneState
 
 public class Cutscene : MonoBehaviour
 {
+    public static Cutscene instance;
     Animator animator;
 
     [Header("Dialogue References")]
@@ -34,11 +35,13 @@ public class Cutscene : MonoBehaviour
     public bool debug = false;
 
     [Header("Actor References")]
+    [SerializeField] GameObject hud;
     [SerializeField] GameObject objectivesObject;
-    [SerializeField] GameObject bossObject;
+    [SerializeField] Boss boss;
 
     private void Awake()
     {
+        EnsureSingleton();
         animator = GetComponent<Animator>();
 
         animator.enabled = false;
@@ -51,6 +54,17 @@ public class Cutscene : MonoBehaviour
     private void Start()
     {
         if (playOnAwake) StartDialogue();
+    }
+
+    void EnsureSingleton()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+
+        instance = this;
     }
 
     private void Update()
@@ -126,7 +140,8 @@ public class Cutscene : MonoBehaviour
     void ActivateBoss()
     {
         if (debug) Debug.Log("Cutscene::ActivateBoss");
-        bossObject.SetActive(true);
+        boss.gameObject.SetActive(true);
+        // boss.Activate
     }
 
     void ActivateNextScene()
@@ -146,6 +161,7 @@ public class Cutscene : MonoBehaviour
     {
         if (debug) Debug.Log("Cutscene::StartDialogue");
 
+        hud.SetActive(false);
         dialogueBox.SetActive(true);
         dialogueManager.StartText();
         ChangeDialogue();
@@ -162,6 +178,7 @@ public class Cutscene : MonoBehaviour
     {
         if (debug) Debug.Log("Cutscene::StopDialogue");
 
+        hud.SetActive(true);
         dialogueBox.SetActive(false);
         director.Pause();
         animator.SetTrigger("DialogueDone");
