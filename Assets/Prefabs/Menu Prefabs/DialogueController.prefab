@@ -98,6 +98,12 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 9138099715750775789, guid: 6a769df3ed425ad45a5a1c1e4d185795, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 3505403089474909631, guid: 6a769df3ed425ad45a5a1c1e4d185795, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1528756271903552587, guid: 6a769df3ed425ad45a5a1c1e4d185795, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -640492056367801869, guid: 6a769df3ed425ad45a5a1c1e4d185795, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - d515257c6403efc45b41629781760a1c: {fileID: 0}
@@ -114,22 +120,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rebekahEmotions:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 2959711f822dd7f4d90ee8b5b511d26b, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   jaughnEmotions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 76d359f77bfae5b4e9e5b6bbf6671ffd, type: 3}
+  - {fileID: 21300000, guid: 709c32b015b2ec743b1c3bae1bb2a263, type: 3}
+  - {fileID: 21300000, guid: 7ff35c3f3287f2944bd03a1c255c169f, type: 3}
+  - {fileID: 21300000, guid: 13c5d26eca288cc4aaa1f0ef7e914b33, type: 3}
   apolloEmotions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 040d49d7d9adaad448256adbb17c0420, type: 3}
+  - {fileID: 21300000, guid: 0179ea800b8e26340a6ef8cebf7383b5, type: 3}
+  - {fileID: 21300000, guid: 9bc1a03cf3240c14b952076101a30949, type: 3}
+  - {fileID: 21300000, guid: 33cef287389209a4eac066c4867a3501, type: 3}
   ebbEmotions:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: aa36890055560134dbe677f8578d7c18, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -139,13 +145,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   boss1Emotions:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: fa889b6ef040e6a4a872a9787e747884, type: 3}
+  - {fileID: 21300000, guid: 2ffa229aba3d51744b27fe4d25353e4b, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   boss2Emotions:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: d057e7325bea06d4d8726f3d4a9b8e11, type: 3}
+  - {fileID: 21300000, guid: cd0e736ce72fa434da015a1c52f0b85f, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   boss3Emotions:
@@ -153,8 +159,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  pizzaGuyEmotions: []
-  shadowEmotions: []
+  pizzaGuyEmotions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  shadowEmotions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2610264310585351380
 MonoBehaviour:
   m_ObjectHideFlags: 0
