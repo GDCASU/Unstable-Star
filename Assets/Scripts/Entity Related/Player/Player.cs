@@ -68,7 +68,6 @@ public class Player : CombatEntity
     protected override void OnDestroy()
     {
         EventData.OnPlayerDeath -= WhenPlayerDies;
-        ScenesManager.instance.LoadScene(Scenes.GameOver);
     }
 
     //Update's only purpose is debugging, everything else runs on
@@ -458,6 +457,7 @@ public class Player : CombatEntity
         //Stub
         EventData.RaiseOnHealthLost(health); //To remove Last Health segment from UI
         EventData.RaiseOnPlayerDeath();
+        ScenesManager.instance.LoadScene(Scenes.GameOver);
     }
 
     //What happens to the game and the player on death
