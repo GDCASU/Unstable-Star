@@ -48,19 +48,20 @@ public class ScenesManager : MonoBehaviour
 
     private void InitializeDict()
     {
-        unlockedScenes = new Dictionary<Scenes, bool>();
-
-        unlockedScenes.Add(Scenes.MainMenu, true);
-        unlockedScenes.Add(Scenes.CutScene_1, true);
-        unlockedScenes.Add(Scenes.CutScene_2, true);
-        unlockedScenes.Add(Scenes.CutScene_3, true);
-        unlockedScenes.Add(Scenes.CutScene_4, false);
-        unlockedScenes.Add(Scenes.CutScene_5, false);
-        unlockedScenes.Add(Scenes.CutScene_6, false);
-        unlockedScenes.Add(Scenes.Level_1, true);
-        unlockedScenes.Add(Scenes.Level_2, true);
-        unlockedScenes.Add(Scenes.Level_3, false);
-        unlockedScenes.Add(Scenes.GameOver, false);
+        unlockedScenes = new Dictionary<Scenes, bool>
+        {
+            { Scenes.MainMenu, true },
+            { Scenes.CutScene_1, true },
+            { Scenes.CutScene_2, true },
+            { Scenes.CutScene_3, true },
+            { Scenes.CutScene_4, false },
+            { Scenes.CutScene_5, false },
+            { Scenes.CutScene_6, false },
+            { Scenes.Level_1, true },
+            { Scenes.Level_2, true },
+            { Scenes.Level_3, false },
+            { Scenes.GameOver, false }
+        };
     }
 
     public bool CheckScene(Scenes scene)
@@ -92,13 +93,13 @@ public class ScenesManager : MonoBehaviour
             return;
         }
         
-        UnityEngine.SceneManagement.SceneManager.LoadScene((int)scene);
+        SceneManager.LoadScene((int)scene);
     }
 
     public void LoadNextScene()
     {
         currentScene++;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(currentScene);
+        SceneManager.LoadScene(currentScene);
     }
 
     public void UnlockScene(Scenes scene)
@@ -117,13 +118,13 @@ public class ScenesManager : MonoBehaviour
         switch (level)
         {
             case 1:
-                ScenesManager.instance.LoadScene(Scenes.CutScene_1);
+                LoadScene(Scenes.CutScene_1);
                 break;
             case 2:
-                ScenesManager.instance.LoadScene(Scenes.CutScene_3);
+                LoadScene(Scenes.CutScene_3);
                 break;
             case 3:
-                ScenesManager.instance.LoadScene(Scenes.CutScene_4);
+                LoadScene(Scenes.CutScene_4);
                 break;
             default:
                 Debug.LogError("Error: Level does not exist");

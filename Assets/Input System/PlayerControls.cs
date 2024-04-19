@@ -89,6 +89,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FocusSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""062652ce-d76a-414d-b67e-45f35e294822"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""c27e99b1-dc2a-4026-8457-f6d3fb943a68"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -149,8 +167,30 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d7023c11-d466-40e7-8bb3-2a03ba8058a7"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f8fab429-c28f-424f-83fa-10839f8ad40a"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0125222b-db32-4e3f-b50a-a34395061140"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -171,8 +211,30 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""667dc0f1-d0b6-4739-bee5-46faa0825d81"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5e20d482-b860-4a10-a271-b5ee976c5683"",
                     ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e96fcc40-9931-4c70-b2ac-4b8a5a20440f"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -193,6 +255,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""60678463-bff7-4629-b9df-c636eb886a10"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchNextWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""48a99a04-1f59-4165-811e-ac0720633307"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -204,12 +277,56 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bac9dde5-518f-455d-bb60-df89a183e604"",
+                    ""id"": ""1d0bedea-82bd-48cf-8a45-8e47947d0e05"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec0cd8b4-042d-499d-84ac-f02123bb2d2e"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""FocusSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e06860f-d142-42ac-876f-a6c4d11d42d1"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FocusSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f325684-6f48-4f1f-94db-72188b358bd2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""SwitchNextAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e85eadbb-2933-47bd-81b1-bf701aee8356"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -743,6 +860,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ShipControls_SwitchNextWeapon = m_ShipControls.FindAction("SwitchNextWeapon", throwIfNotFound: true);
         m_ShipControls_SwitchNextAbility = m_ShipControls.FindAction("SwitchNextAbility", throwIfNotFound: true);
         m_ShipControls_UseAbility = m_ShipControls.FindAction("UseAbility", throwIfNotFound: true);
+        m_ShipControls_FocusSpeed = m_ShipControls.FindAction("FocusSpeed", throwIfNotFound: true);
+        m_ShipControls_Aim = m_ShipControls.FindAction("Aim", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -823,6 +942,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_ShipControls_SwitchNextWeapon;
     private readonly InputAction m_ShipControls_SwitchNextAbility;
     private readonly InputAction m_ShipControls_UseAbility;
+    private readonly InputAction m_ShipControls_FocusSpeed;
+    private readonly InputAction m_ShipControls_Aim;
     public struct ShipControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -834,6 +955,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SwitchNextWeapon => m_Wrapper.m_ShipControls_SwitchNextWeapon;
         public InputAction @SwitchNextAbility => m_Wrapper.m_ShipControls_SwitchNextAbility;
         public InputAction @UseAbility => m_Wrapper.m_ShipControls_UseAbility;
+        public InputAction @FocusSpeed => m_Wrapper.m_ShipControls_FocusSpeed;
+        public InputAction @Aim => m_Wrapper.m_ShipControls_Aim;
         public InputActionMap Get() { return m_Wrapper.m_ShipControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -864,6 +987,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @UseAbility.started += instance.OnUseAbility;
             @UseAbility.performed += instance.OnUseAbility;
             @UseAbility.canceled += instance.OnUseAbility;
+            @FocusSpeed.started += instance.OnFocusSpeed;
+            @FocusSpeed.performed += instance.OnFocusSpeed;
+            @FocusSpeed.canceled += instance.OnFocusSpeed;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
         }
 
         private void UnregisterCallbacks(IShipControlsActions instance)
@@ -889,6 +1018,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @UseAbility.started -= instance.OnUseAbility;
             @UseAbility.performed -= instance.OnUseAbility;
             @UseAbility.canceled -= instance.OnUseAbility;
+            @FocusSpeed.started -= instance.OnFocusSpeed;
+            @FocusSpeed.performed -= instance.OnFocusSpeed;
+            @FocusSpeed.canceled -= instance.OnFocusSpeed;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
         }
 
         public void RemoveCallbacks(IShipControlsActions instance)
@@ -1033,6 +1168,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSwitchNextWeapon(InputAction.CallbackContext context);
         void OnSwitchNextAbility(InputAction.CallbackContext context);
         void OnUseAbility(InputAction.CallbackContext context);
+        void OnFocusSpeed(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

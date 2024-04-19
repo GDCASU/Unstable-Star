@@ -5,8 +5,11 @@ using UnityEngine;
 public class ShipController : MonoBehaviour
 {
     [Header("Player Specific")]
-    [SerializeField] private float speed = 60.0f;
+    [SerializeField] private float normalSpeed = 60.0f;
+    [SerializeField] private float focusSpeed = 20.0f;
     [SerializeField] private GameObject playerCopyPrefab;
+    private float currSpeed;
+    
 
     [Header("Anchor Point")]
     [SerializeField] private GameObject LaserSightAnchor;
@@ -35,11 +38,14 @@ public class ShipController : MonoBehaviour
         PlayerInput.OnRotateAim += RotateAim;
         PlayerInput.OnShootWeapon += ShootPlayerWeapon;
         PlayerInput.OnUseAbility += UsePlayerAbility;
+        PlayerInput.OnFocusSpeedHeld += SetSpeedToFocus;
 
         // Get the boundary limits of the play space
-        // FIXME: Is this the best way to do this?
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height,
             Camera.main.transform.position.z));
+
+        // Assign starting speed
+        currSpeed = normalSpeed;
     }
 
     // Remove Input Events if object is destroyed
@@ -50,6 +56,7 @@ public class ShipController : MonoBehaviour
         PlayerInput.OnRotateAim -= RotateAim;
         PlayerInput.OnShootWeapon -= ShootPlayerWeapon;
         PlayerInput.OnUseAbility -= UsePlayerAbility;
+        PlayerInput.OnFocusSpeedHeld -= SetSpeedToFocus;
     }
 
     private void Start()
@@ -67,10 +74,19 @@ public class ShipController : MonoBehaviour
 
     void movePlayer()
     {
+        //check if focus mode is activated
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currSpeed = focusSpeed;
+        }
+        else
+        {
+            currSpeed = normalSpeed;
+        }
+
         // Move player according to input
         movementVector = PlayerInput.instance.movementInput;
-        Debug.Log(PlayerInput.instance.movementInput);
-        translationVector = speed * Time.deltaTime * movementVector;
+        translationVector = currSpeed * Time.deltaTime * movementVector;
         transform.Translate(translationVector);
 
         // Handle Movement animation
@@ -188,5 +204,11 @@ public class ShipController : MonoBehaviour
     private void DoSwitchToNextAbility()
     {
         playerScript.SwitchToNextAbility();
+    }
+
+    private void SetSpeedToFocus(bool doSet)
+    {
+        if (doSet) {currSpeed = focusSpeed;}
+        else {currSpeed = normalSpeed;}
     }
 }
