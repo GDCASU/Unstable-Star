@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010086236, g: 0.052700967, b: 0.15289032, a: 1}
+  m_IndirectSpecularColor: {r: 0.0100803, g: 0.05267761, b: 0.15283674, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1461,7 +1461,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6ef72dcc5d41fa64284e88c2d89000e5, type: 2}
     - target: {fileID: 859234438590665206, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1925
+      value: 1925.0001
       objectReference: {fileID: 0}
     - target: {fileID: 919175732328177831, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1505,7 +1505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111098559265218523, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1925
+      value: 1925.0001
       objectReference: {fileID: 0}
     - target: {fileID: 1584375724481093649, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_SceneBindings.Array.data[1].value
@@ -1513,7 +1513,7 @@ PrefabInstance:
       objectReference: {fileID: 1297130009}
     - target: {fileID: 2135456609453334330, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.4464
+      value: 1640.0001
       objectReference: {fileID: 0}
     - target: {fileID: 2890868740057410522, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1529,7 +1529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4558337194482000867, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.4464
+      value: 1640.0001
       objectReference: {fileID: 0}
     - target: {fileID: 4948178056762087716, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1631,6 +1631,66 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -10.6
       objectReference: {fileID: 0}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: ebbEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 46d0665caa74cf04bb5c7fe1770cf8f7, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: ebbEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: c7dee2a3b766ce741bbfd830fc742a52, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: ebbEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e48b12ac342cf541a1d95b62ba7681c, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: ebbEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: d747bd55e04cb1d40b6699203efd0fe8, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: blankEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: jaughnEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 974bd968ba278134284048ab6e552ae0, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: jaughnEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: a443b862a13849e4ea373b9c1f7b58ee, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: jaughnEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: f0840a5d50680494a84d89771ae7450a, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: jaughnEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: dcfcc70fdd0b07543b71463e6ef98504, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: shadowEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: rebekahEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: b32d004ff309e3e48a199d5a695362da, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: rebekahEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3b285a330de66fc4dafb89fe5f71743c, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: rebekahEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 31f5782fe91fc7a4faba5ac1c4d1e3d2, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: rebekahEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f99ec5324e525a43928e57abb3ed550, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
     - target: {fileID: 8556707417053157049, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_IsActive
       value: 1

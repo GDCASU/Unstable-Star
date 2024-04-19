@@ -102,6 +102,7 @@ public class DialogueManager : MonoBehaviour
             if (currentDialogue[current][2] == "???") // Creates question marks for unknown people
             {
                 speakerText.text = "???";
+                emotionSprite.color = new Color(0, 0, 0, 0);
             }
 
             // Finishing touches
@@ -189,7 +190,7 @@ public class DialogueManager : MonoBehaviour
                 act[dialogueIndex][1] = line;
                 act[dialogueIndex][2] = emotion;
                 dialogueIndex++;
-                Debug.Log(currentSpeaker + ": " + line);
+                //Debug.Log(currentSpeaker + ": " + line);
             }
         }
         return act;
