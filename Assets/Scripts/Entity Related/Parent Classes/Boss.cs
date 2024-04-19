@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : CombatEntity
+public abstract class Boss : CombatEntity
 {
+    public abstract void BeginFight();
+
     protected override void TriggerDeath()
     {
         throw new System.NotImplementedException();

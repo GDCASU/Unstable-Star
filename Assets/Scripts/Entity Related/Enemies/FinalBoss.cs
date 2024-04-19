@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FinalBoss : CombatEntity
+public class FinalBoss : Boss
 {
     public enum MoveState
 	{
@@ -37,7 +37,7 @@ public class FinalBoss : CombatEntity
     private float yTimer = 0f;
     private float tOffset = 0f;
 
-    private void Start()
+    public override void BeginFight()
 	{
         health = MAX_HEALTH;
         StartCoroutine(AttackSelection());
@@ -46,7 +46,7 @@ public class FinalBoss : CombatEntity
     private IEnumerator AttackSelection()
 	{
         // TODO: remove
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.I));
+        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.I));
 
         Func<IEnumerator>[] attacks = new Func<IEnumerator>[] { SpreadAttack, WaveAttack, FireworkAttack };
         while(health > 0)
@@ -125,7 +125,7 @@ public class FinalBoss : CombatEntity
         yield return new WaitUntil(() =>
         {
             timer += Time.deltaTime;
-            lastPosition = firework.transform.position;
+            if(firework != null) lastPosition = firework.transform.position;
             return firework == null || Vector3.Distance(firework.transform.position, target) < 3f;
         });
         if(timer > 5f) yield break;
@@ -219,7 +219,7 @@ public class FinalBoss : CombatEntity
 
 	protected override void WhenPlayerDies()
 	{
-		throw new System.NotImplementedException();
+        this.enabled = false;
 	}
 
     protected override void TriggerDeath()
@@ -230,6 +230,7 @@ public class FinalBoss : CombatEntity
         _moveState = MoveState.IDLE;
         xMoveSpeed = DEFAULT_X_MOVE_SPEED;
         yFancyPeriod = DEFAULT_Y_FANCY_PERIOD;
+        Destroy(gameObject);
     }
 
     private void Log(object o) => Debug.Log("[Final Boss] " + o);

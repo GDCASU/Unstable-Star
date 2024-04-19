@@ -43,7 +43,7 @@ public class HoverAndLerp2 : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
 
-                        WSUI.CheckWeaponEquipLoad(this);
+                        WSUI.CheckAbilityEquipLoad(this);
 
                     }
                 }
@@ -67,13 +67,13 @@ public class HoverAndLerp2 : MonoBehaviour
         {
             transform.GetChild(0).gameObject.GetComponent<Renderer>().material = blackout;
             WSUI.Equipped++;
-            WSUI.setArseWeapon(weapon.GetAbilityObject());
+            WSUI.setArseAbility(weapon.GetAbilityObject());
         }
         else
         {
             transform.GetChild(0).gameObject.GetComponent<Renderer>().material = initMAT;
             WSUI.Equipped--;
-            WSUI.removeArseWeapon(weapon.GetAbilityObject());
+            WSUI.removeArseAbility(weapon.GetAbilityObject());
         }
         selected = !selected;
 

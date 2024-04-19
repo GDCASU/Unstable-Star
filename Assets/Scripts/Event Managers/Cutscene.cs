@@ -36,7 +36,6 @@ public class Cutscene : MonoBehaviour
 
     [Header("Actor References")]
     [SerializeField] GameObject hud;
-    [SerializeField] GameObject objectivesObject;
     [SerializeField] Boss boss;
 
     private void Awake()
@@ -134,14 +133,14 @@ public class Cutscene : MonoBehaviour
     void ActivateObjectives()
     {
         if (debug) Debug.Log("Cutscene::ActivateObjectives");
-        //objectivesObject.GetComponent<NextSceneLevel>().callNextScene();
+        NextSceneLevel.instance.callNextScene();
     }
 
     void ActivateBoss()
     {
         if (debug) Debug.Log("Cutscene::ActivateBoss");
         boss.gameObject.SetActive(true);
-        // boss.Activate
+        boss.BeginFight();
     }
 
     void ActivateNextScene()
