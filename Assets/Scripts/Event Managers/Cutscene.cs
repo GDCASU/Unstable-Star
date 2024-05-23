@@ -168,7 +168,7 @@ public class Cutscene : MonoBehaviour
         dialogueBox.SetActive(true);
         dialogueManager.StartText();
         PlayerInput.instance.ToggleControls(false);
-        ChangeDialogue();
+        //ChangeDialogue();
     }
 
     public void ChangeDialogue()

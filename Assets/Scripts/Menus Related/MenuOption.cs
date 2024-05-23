@@ -62,6 +62,12 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if(optionName == "Credits")
+            {
+                MenuController.instance.LoadCredits();
+                return;
+            }
+
             if (moveCoroutine != null)
                 StopCoroutine(moveCoroutine);
             moveCoroutine = StartCoroutine(MoveCamera(cameraPos, cameraRotation, true));
