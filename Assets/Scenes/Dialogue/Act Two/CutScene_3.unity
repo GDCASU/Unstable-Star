@@ -1140,7 +1140,19 @@ PrefabInstance:
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: blankEmotions.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+      objectReference: {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: blankEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: blankEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: blankEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
     - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: boss1Emotions.Array.data[0]
       value: 
@@ -1205,6 +1217,22 @@ PrefabInstance:
       propertyPath: rebekahEmotions.Array.data[3]
       value: 
       objectReference: {fileID: 21300000, guid: 9f99ec5324e525a43928e57abb3ed550, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
+    - target: {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
     m_RemovedComponents:
     - {fileID: 8624068510671605050, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
     m_RemovedGameObjects:

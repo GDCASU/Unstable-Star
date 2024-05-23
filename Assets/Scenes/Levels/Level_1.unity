@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
+  m_IndirectSpecularColor: {r: 0.0100803, g: 0.05267761, b: 0.15283674, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -880,7 +880,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 859234438590665206, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1924.9999
+      value: 1925
       objectReference: {fileID: 0}
     - target: {fileID: 919175732328177831, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -924,11 +924,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111098559265218523, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1924.9999
+      value: 1925
       objectReference: {fileID: 0}
     - target: {fileID: 2135456609453334330, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.9999
+      value: 1638.8088
       objectReference: {fileID: 0}
     - target: {fileID: 2890868740057410522, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -936,7 +936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4558337194482000867, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.9999
+      value: 1638.8088
       objectReference: {fileID: 0}
     - target: {fileID: 4948178056762087716, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1022,6 +1022,54 @@ PrefabInstance:
       propertyPath: currentSceneFile
       value: Act1_Sc2.txt
       objectReference: {fileID: 0}
+    - target: {fileID: 8352074502334298674, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9994884
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352074502334298674, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.03198242
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352074502334298674, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352074502334298674, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 3.666
+      objectReference: {fileID: 0}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: blankEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: blankEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: blankEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: blankEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
+    - target: {fileID: 8362604534919934111, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: pizzaGuyEmotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: numPostBossBreaks
       value: 1
