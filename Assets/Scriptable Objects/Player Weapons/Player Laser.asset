@@ -23,7 +23,7 @@ MonoBehaviour:
       Data3: 989007238
       Data4: 152891200
     Path: event:/TESTING/RayGunEffect
-  description: 
+  description: A laser cannon that can be charged up for a powerful blast.
   minDamage: 1
   maxDamage: 10
   laserCooldown: 1.5

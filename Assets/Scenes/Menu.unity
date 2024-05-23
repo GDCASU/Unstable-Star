@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.2227684, g: 0.37095705, b: 0.69003814, a: 1}
+  m_IndirectSpecularColor: {r: 0.22276777, g: 0.37095666, b: 0.6900379, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Master Volume
+  m_text: Master
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5d37e37fcf18744bb9f8ec7f28cc740, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 9578275ce66ee5e45b1212fbb326e7d3, type: 2}
@@ -2701,7 +2701,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music Volume
+  m_text: Music
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5d37e37fcf18744bb9f8ec7f28cc740, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 9578275ce66ee5e45b1212fbb326e7d3, type: 2}
@@ -4748,8 +4748,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.04969406, z: 0.8565581}
-  m_Center: {x: 0, y: 0, z: 0.00000011920929}
+  m_Size: {x: 1, y: 0.17638348, z: 0.85656}
+  m_Center: {x: 9.439097e-10, y: 0.06334471, z: 0.000000117321484}
 --- !u!1 &854451753
 GameObject:
   m_ObjectHideFlags: 0
@@ -10361,7 +10361,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SFX Volume
+  m_text: SFX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5d37e37fcf18744bb9f8ec7f28cc740, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 9578275ce66ee5e45b1212fbb326e7d3, type: 2}
