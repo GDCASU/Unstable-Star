@@ -230,6 +230,9 @@ public class WeaponDisplayHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        primaryCanvas ??= primaryCanvasObj.GetComponent<Canvas>();
+        secondaryCanvas ??= secondaryCanvasObj.GetComponent<Canvas>();
+
         // Set canvas order of front one to 1
         if (secondaryCanvasObj.transform.position.z < 1)
         {
