@@ -19,8 +19,6 @@ public class TempCheatManager : MonoBehaviour
     private TextMeshProUGUI lethalPistolText;
     private TextMeshProUGUI unlockAllText;
     private bool areCheatsRendered;
-    private int defaultMaxHealth;
-    private int defaultMaxShield;
 
     // Cheat activated bools
     private bool clickedUnlockAll;
@@ -35,10 +33,6 @@ public class TempCheatManager : MonoBehaviour
         health100Text = health100Option.GetComponent<TextMeshProUGUI>();
         lethalPistolText = lethalPistolOption.GetComponent<TextMeshProUGUI>();
         unlockAllText = unlockAllOption.GetComponent<TextMeshProUGUI>();
-
-        // Get default stats
-        defaultMaxHealth = playerData.maxHealth;
-        defaultMaxShield = playerData.maxShield;
     }
 
     /// <summary>
@@ -84,7 +78,7 @@ public class TempCheatManager : MonoBehaviour
         if (isHealth100)
         {
             // Set it back to default
-            playerData.maxHealth = defaultMaxHealth;
+            playerData.maxHealth = 10;
             health100Text.color = Color.white;
             isHealth100 = false;
         }
