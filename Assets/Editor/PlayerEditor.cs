@@ -15,10 +15,12 @@ public class PlayerEditor : Editor
 
     #region SerializedProperties
 
+    // Data Holder
+    SerializedProperty playerStatsData;
+
     //Stats
     SerializedProperty health;
     SerializedProperty shield;
-    SerializedProperty shieldPerSecond;
     SerializedProperty isInvulnerable;
     SerializedProperty isShootingLocked;
     SerializedProperty isAbilityLocked;
@@ -27,14 +29,9 @@ public class PlayerEditor : Editor
 
     //Settings
     SerializedProperty deathEffectPrefab;
-    SerializedProperty MAX_HEALTH;
-    SerializedProperty MAX_SHIELD;
-    SerializedProperty dmgInvulnTime;
-    SerializedProperty shieldRegenDelayTime;
     SerializedProperty deathSFX;
 
     //Collisions
-    SerializedProperty collisionDamage;
     SerializedProperty isIgnoringCollisions;
 
     //Debugging
@@ -57,10 +54,12 @@ public class PlayerEditor : Editor
 
     private void OnEnable()
     {
+        // Data
+        playerStatsData = serializedObject.FindProperty("playerStatsData");
+
         //Stats
         health = serializedObject.FindProperty("health");
         shield = serializedObject.FindProperty("shield");
-        shieldPerSecond = serializedObject.FindProperty("shieldPerSecond");
         isInvulnerable = serializedObject.FindProperty("isInvulnerable");
         isShootingLocked = serializedObject.FindProperty("isShootingLocked");
         isAbilityLocked = serializedObject.FindProperty("isAbilityLocked");
@@ -69,14 +68,9 @@ public class PlayerEditor : Editor
 
         //Settings
         deathEffectPrefab = serializedObject.FindProperty("deathEffectPrefab");
-        MAX_HEALTH = serializedObject.FindProperty("MAX_HEALTH");
-        MAX_SHIELD = serializedObject.FindProperty("MAX_SHIELD");
-        dmgInvulnTime = serializedObject.FindProperty("dmgInvulnTime");
-        shieldRegenDelayTime = serializedObject.FindProperty("shieldRegenDelayTime");
         deathSFX = serializedObject.FindProperty("deathSFX");
 
         //Collisions
-        collisionDamage = serializedObject.FindProperty("collisionDamage");
         isIgnoringCollisions = serializedObject.FindProperty("isIgnoringCollisions");
 
         //Debugging
@@ -116,8 +110,9 @@ public class PlayerEditor : Editor
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 
-        // Add the little shortcut box to the scripts
+        // Add the little shortcut box to the scripts and the data object
         EditorGUILayout.ObjectField("Player Script", MonoScript.FromMonoBehaviour((Player)target), typeof(Player), false);
+        EditorGUILayout.PropertyField(playerStatsData);
 
         //Stats Foldout
         StatsGroup = EditorGUILayout.BeginFoldoutHeaderGroup(StatsGroup, "Statistics");
@@ -125,7 +120,6 @@ public class PlayerEditor : Editor
         {
             EditorGUILayout.PropertyField(health);
             EditorGUILayout.PropertyField(shield);
-            EditorGUILayout.PropertyField(shieldPerSecond);
             EditorGUILayout.PropertyField(isShootingLocked);
             EditorGUILayout.PropertyField(isAbilityLocked); 
             EditorGUILayout.PropertyField(isShieldBroken);
@@ -139,10 +133,6 @@ public class PlayerEditor : Editor
         if (SettingsGroup)
         {
             EditorGUILayout.PropertyField(deathEffectPrefab);
-            EditorGUILayout.PropertyField(MAX_HEALTH);
-            EditorGUILayout.PropertyField(MAX_SHIELD);
-            EditorGUILayout.PropertyField(dmgInvulnTime);
-            EditorGUILayout.PropertyField(shieldRegenDelayTime);
             EditorGUILayout.PropertyField(deathSFX);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
@@ -151,7 +141,6 @@ public class PlayerEditor : Editor
         CollisionsGroup = EditorGUILayout.BeginFoldoutHeaderGroup(CollisionsGroup, "Collisions");
         if (CollisionsGroup)
         {
-            EditorGUILayout.PropertyField(collisionDamage);
             EditorGUILayout.PropertyField(isIgnoringCollisions); 
         }
         EditorGUILayout.EndFoldoutHeaderGroup();

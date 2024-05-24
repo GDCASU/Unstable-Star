@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffectPrefab: {fileID: 2887401111048430277, guid: eab787005ac2b33488bda6ca2e17bed5, type: 3}
-  health: 0
-  shield: 0
+  health: -1
+  shield: -1
   collisionDamage: 2
   timeLeftInvulnerable: 0
   dmgInvulnTime: 1.5
@@ -357,10 +357,7 @@ MonoBehaviour:
   isAbilityLocked: 0
   isInvulnerable: 0
   isIgnoringCollisions: 0
-  MAX_HEALTH: 10
-  MAX_SHIELD: 5
-  shieldPerSecond: 1
-  shieldRegenDelayTime: 3
+  playerStatsData: {fileID: 11400000, guid: b8ffb57bfca87674b919c22d1b1de960, type: 2}
   isShieldBroken: 0
   deathSFX:
     Guid:
