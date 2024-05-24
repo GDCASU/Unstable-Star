@@ -131,6 +131,11 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
+    public void RenderCheats()
+    {
+
+    }
+
     #region Options
     // Volume Control Settings //
     public void SetMasterVolume(float volume) // changes the volume
