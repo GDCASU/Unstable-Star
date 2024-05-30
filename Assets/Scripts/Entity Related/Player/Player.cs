@@ -9,10 +9,7 @@ public class Player : CombatEntity
     public static Player Instance;
 
     //Player Related
-    [SerializeField] private int MAX_HEALTH;
-    [SerializeField] private int MAX_SHIELD;
-    [SerializeField] private float shieldPerSecond;
-    [SerializeField] private float shieldRegenDelayTime; // in seconds, does not stack with invulnerable time
+    [SerializeField] private ScriptablePlayer playerStatsData;
     [SerializeField] private bool isShieldBroken;
     [SerializeField] private FMODUnity.EventReference deathSFX;
 
@@ -51,9 +48,10 @@ public class Player : CombatEntity
         abilityComponent = GetComponent<AbilityComponent>();
 
         //Set Stats
-        health = MAX_HEALTH;
-        shield = MAX_SHIELD;
+        health = playerStatsData.maxHealth;
+        shield = playerStatsData.maxShield;
         shieldFloat = shield;
+        collisionDamage = playerStatsData.collisionDamage;
 
         //Set Variables
         ShieldRoutine = null;
@@ -166,7 +164,7 @@ public class Player : CombatEntity
     public bool TryAddHealth(int amount)
     {
         //Dont do anything in case we already had max health
-        if (health >= MAX_HEALTH)
+        if (health >= playerStatsData.maxHealth)
         {
             return false;
         }
@@ -175,9 +173,9 @@ public class Player : CombatEntity
 
         //Else, gain health
         health += amount;
-        if (health > MAX_HEALTH)
+        if (health > playerStatsData.maxHealth)
         {
-            health = MAX_HEALTH;
+            health = playerStatsData.maxHealth;
         }
 
         //Invoke the event signaling a change of health
@@ -194,7 +192,7 @@ public class Player : CombatEntity
     public bool TryAddShield(int amount)
     {
         //Dont do anything in case we already had max shield
-        if (shield >= MAX_SHIELD)
+        if (shield >= playerStatsData.maxShield)
         {
             return false;
         }
@@ -203,9 +201,9 @@ public class Player : CombatEntity
 
         //Else, gain shield
         shield += amount;
-        if (shield > MAX_SHIELD)
+        if (shield > playerStatsData.maxShield)
         {
-            shield = MAX_SHIELD;
+            shield = playerStatsData.maxShield;
         }
 
         //Invoke the event signaling a shield gain
@@ -222,8 +220,8 @@ public class Player : CombatEntity
     /// <summary> Changes the amount of shield per second regenerated </summary>
     public void SetShieldRegen(float shieldPerSec)
     {
-        shieldPerSecond = shieldPerSec;
-        if (IsDebugLogging) { Debug.Log("CHANGED SHIELD REGEN AMOUNT TO " + shieldPerSecond); }
+        playerStatsData.shieldPerSecond = shieldPerSec;
+        if (IsDebugLogging) { Debug.Log("CHANGED SHIELD REGEN AMOUNT TO " + playerStatsData.shieldPerSecond); }
     }
 
     #endregion
@@ -359,15 +357,15 @@ public class Player : CombatEntity
     private IEnumerator ShieldRegenBehaviour()
     {
         //First, wait for shield regen delay
-        yield return new WaitForSeconds(shieldRegenDelayTime);
+        yield return new WaitForSeconds(playerStatsData.shieldRegenDelayTime);
 
         if (IsDebugLogging) { Debug.Log("STARTED REGEN SHIELD BEHAVIOUR"); }
         int shieldBefore = shield;
 
         //Start Regen of the shield
-        while (shieldFloat < MAX_SHIELD)
+        while (shieldFloat < playerStatsData.maxShield)
         {
-            shieldFloat += shieldPerSecond * Time.deltaTime;
+            shieldFloat += playerStatsData.shieldPerSecond * Time.deltaTime;
             //Assign the float value to player's shiled, typecasted
             shield = (int)shieldFloat;
             
@@ -384,7 +382,7 @@ public class Player : CombatEntity
         }
         
         //We finished regening the shield, assign it MAX_SHIELD in case we went over before
-        shield = MAX_SHIELD;
+        shield = playerStatsData.maxShield;
         shieldFloat = (float)shield;
         ShieldRoutine = null;
 
@@ -485,8 +483,8 @@ public class Player : CombatEntity
     //Getters
     public int GetHealth() { return health; }
     public int GetShield() { return shield; }
-    public int GetMaxShield() { return MAX_SHIELD; }
-    public int GetMaxHealth() { return MAX_HEALTH; }
+    public int GetMaxShield() { return playerStatsData.maxShield; }
+    public int GetMaxHealth() { return playerStatsData.maxHealth; }
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
 

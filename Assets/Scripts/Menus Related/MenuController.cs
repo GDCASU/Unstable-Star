@@ -10,6 +10,8 @@ using System;
 
 public class MenuController : MonoBehaviour
 {
+    public static MenuController instance;
+
     [Header("Levels to Load")]
     public TMPro.TextMeshPro newLevel;
     public string levelToLoad;
@@ -42,6 +44,13 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        if (instance == null) instance = this;
+        else
+        {
+            Destroy(this);
+            return;
+        }
+
         arrayNumber = menuList.Length;
         arrayList = menuList;
     }
@@ -112,9 +121,19 @@ public class MenuController : MonoBehaviour
         ScenesManager.instance.LoadLevel(ScenesManager.currentLevel);
     }
 
+    public void LoadCredits()
+    {
+        ScenesManager.instance.LoadScene(Scenes.Credits);
+    }
+
     public void ExitGame() // exits application
     {
         Application.Quit();
+    }
+
+    public void RenderCheats()
+    {
+
     }
 
     #region Options

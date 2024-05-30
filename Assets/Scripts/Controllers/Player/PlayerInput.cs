@@ -110,6 +110,11 @@ public class PlayerInput : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
     public void ToggleControls(bool toggle)     // Toggle the player controls with this method from any script
     {
         if (playerControls == null) 
@@ -175,6 +180,8 @@ public class PlayerInput : MonoBehaviour
     // Handles the coroutine related to shooting input
     private void HandleShootingRoutine(bool buttonHeld)
     {
+        if (this == null) return;
+
         if (buttonHeld)
         {
             // Start shooting while the button is held
@@ -197,6 +204,8 @@ public class PlayerInput : MonoBehaviour
     // Handles the coroutine related to changing the shooting angle
     private void HandleAngleRoutine(bool buttonHeld)
     {
+        if (this == null) return;
+
         if (buttonHeld)
         {
             // Start changing the angle of aim while the button is held
