@@ -34,4 +34,5 @@ MonoBehaviour:
   charges: 5
   cooldownTime: 6
   durationTime: 4
-  description: PHASE SHIFT PLACEHOLDER
+  description: Hyper High Tech thingy with a button. "Borrowed." It makes you invincible
+    for 1 second, but you can also not shoot.

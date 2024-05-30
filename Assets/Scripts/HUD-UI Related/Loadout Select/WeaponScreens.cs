@@ -53,7 +53,7 @@ public class WeaponScreens : MonoBehaviour
     private void SetFields(Weapon wep)
     {
         wepName = ("Name: " + wep.sName);
-        wepDesc = ("\"" + wep.description + "\"");
+        wepDesc = (wep.description);
         wepDam = ("Damage: " + getDam(wep));
         wepImg = wep.weaponIcon;
         if (wep.weaponIcon == null) print("NULL ICON");

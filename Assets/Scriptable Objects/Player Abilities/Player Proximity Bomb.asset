@@ -27,4 +27,5 @@ MonoBehaviour:
   cooldownTime: 5
   bombRadius: 15
   damage: 10
-  description: PROXIMITY BOMB PLACEHOLDER
+  description: A big ol' bomb that you throw out of the cockpit, too heavy to launch.
+    Obliterates all Enemies in a small area.
