@@ -94,9 +94,6 @@ public class MenuController : MonoBehaviour
             case 3:
                 arrayList = graphicsList;
                 return;
-            case 4:
-                arrayList = gameplayList;
-                return;
             default:
                 return;
 
