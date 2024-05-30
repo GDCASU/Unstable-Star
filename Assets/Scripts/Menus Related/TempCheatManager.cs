@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class TempCheatManager : MonoBehaviour
@@ -22,8 +23,8 @@ public class TempCheatManager : MonoBehaviour
 
     // Cheat activated bools
     private bool clickedUnlockAll;
-    private bool isPistolLethal;
-    private bool isHealth100;
+    public static bool isPistolLethal;
+    public static bool isHealth100;
 
 
     // Start is called before the first frame update
@@ -102,5 +103,10 @@ public class TempCheatManager : MonoBehaviour
 
             clickedUnlockAll = true;
         }
+    }
+
+    private void OnDestroy()
+    {
+        AssetDatabase.Refresh();
     }
 }

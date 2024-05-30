@@ -124,6 +124,9 @@ public class PlayerInput : MonoBehaviour
             playerControls.Enable();
         else
             playerControls.Disable();
+
+        // Reset movement vector to 0
+        movementInput = Vector2.zero;
     }
 
 
