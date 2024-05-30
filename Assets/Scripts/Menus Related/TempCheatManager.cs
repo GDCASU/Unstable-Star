@@ -104,9 +104,4 @@ public class TempCheatManager : MonoBehaviour
             clickedUnlockAll = true;
         }
     }
-
-    private void OnDestroy()
-    {
-        AssetDatabase.Refresh();
-    }
 }
