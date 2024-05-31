@@ -1,6 +1,4 @@
-﻿DESC: 
-Act one Scene 1 - Prologue
-
+﻿DESC:
 JAUGHN’S JAIL CELL 
 
 DESC: 

@@ -2,7 +2,7 @@
 NORMAL
 Hey, fresh meat, can you hear us? 
 I’m Apollo! You know how to fly that hunk of junk? 
-Use (Left Joystick) to fly around. 
+Use (WASD) to fly around. 
 We have Rebekah, our map girl and-
 
 
@@ -20,7 +20,7 @@ If things are getting tough, try dodging enemy attacks!
 EBB
 HAPPY
 Standard protocol indicates that I should introduce myself.
-I am Ebb. I love a good prison riot. Move the cursor with (Right Joystick) and press (RT) to progress the riot. 
+I am Ebb. I love a good prison riot. Move the cursor with (LEFT CLICK) and (RIGHT CLICK) and press (ENTER) to progress the riot. 
 MORE DESTRUCTION! MORE!
 
 

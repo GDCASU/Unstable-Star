@@ -11,6 +11,8 @@ using UnityEngine.Timeline;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.XInput;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -43,6 +45,8 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         // initializes the current act
+        currentSceneFile = InputChecker();
+        print(currentSceneFile);
         currentDialogue = new string[1000][];
         currentDialogue = ReadFile(System.IO.Path.Combine(Application.streamingAssetsPath, currentSceneFile), currentDialogue);
 
@@ -207,5 +211,36 @@ public class DialogueManager : MonoBehaviour
                 // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
             }
         }
+    }
+
+    // Checks to see what the current input is
+    private string InputChecker() {
+        Gamepad gamepad = Gamepad.current;
+        Keyboard keyboard = Keyboard.current;
+
+        if (gamepad != null)
+        {
+            if (gamepad is XInputController)
+            {
+                // Player is using an XBOX controller
+                // Updates the tutorial
+                if (currentSceneFile == "Act1_Sc2.txt")
+                {
+                    return "Act1_Sc2 Controller.txt";
+                }
+            }
+        }
+        else if (keyboard != null)
+        {
+            // Player is using a keyboard
+            // Updates the tutorial
+            if (currentSceneFile == "Act1_Sc2.txt")
+            {
+                print("Keyboard");
+                return "Act1_Sc2 Keyboard.txt";
+            }
+        }
+
+        return currentSceneFile;
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2194012226675323863}
   - component: {fileID: 9188354417665188697}
   - component: {fileID: 2610264310585351380}
+  - component: {fileID: 6869645852488239694}
   m_Layer: 0
   m_Name: DialogueController
   m_TagString: Untagged
@@ -66,7 +67,6 @@ MonoBehaviour:
   speakerText: {fileID: 0}
   emotionSprite: {fileID: 0}
   timelinePlayer: {fileID: 2194012226675323863}
-  start: 0
   dialogueOptions: {fileID: 9188354417665188697}
   dialogueObject: {fileID: 0}
   currentSceneFile: 
@@ -213,6 +213,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6869645852488239694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3069556765877585204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172969d6bd0ef514ca9ad0733724b211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3952871861753321593
 GameObject:
   m_ObjectHideFlags: 0

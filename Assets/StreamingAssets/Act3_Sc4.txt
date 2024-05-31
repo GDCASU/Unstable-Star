@@ -85,9 +85,6 @@ REBEKAH
 HAPPY
 We accomplished an amazing feat today. Good work everyone!
 
-DESC: 
-Act Three Scene 5 - Peace at Last
-
 BREAK
 DESC: 
 With the galaxy now saved from the threat of annihilation, the rebels celebrate their heroic victory back at their base. Talk of what to do next emerges, after the celebrations conclude.
