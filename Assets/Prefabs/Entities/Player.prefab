@@ -614,6 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iFramesTransparency: 0.05
   flashingInterval: 0.2
+  flashingMat: {fileID: 2100000, guid: 9d5ef72ecafafc64fb5d1e3fb4f18843, type: 2}
   subModelsWithMeshes:
   - {fileID: 4147008258176485037}
   - {fileID: 6711057458898814480}
