@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2194012226675323863}
   - component: {fileID: 9188354417665188697}
   - component: {fileID: 2610264310585351380}
+  - component: {fileID: 6869645852488239694}
   m_Layer: 0
   m_Name: DialogueController
   m_TagString: Untagged
@@ -66,7 +67,6 @@ MonoBehaviour:
   speakerText: {fileID: 0}
   emotionSprite: {fileID: 0}
   timelinePlayer: {fileID: 2194012226675323863}
-  start: 0
   dialogueOptions: {fileID: 9188354417665188697}
   dialogueObject: {fileID: 0}
   currentSceneFile: 
@@ -139,10 +139,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3e48b12ac342cf541a1d95b62ba7681c, type: 3}
   - {fileID: 21300000, guid: d747bd55e04cb1d40b6699203efd0fe8, type: 3}
   blankEmotions:
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+  - {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+  - {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
+  - {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
   boss1Emotions:
   - {fileID: 21300000, guid: fa889b6ef040e6a4a872a9787e747884, type: 3}
   - {fileID: 21300000, guid: 2ffa229aba3d51744b27fe4d25353e4b, type: 3}
@@ -159,14 +159,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5ecaf5f136773964b9cf876b85c8f947, type: 3}
   - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
   pizzaGuyEmotions:
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
+  - {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
+  - {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
+  - {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
   shadowEmotions:
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 20216ef4fb892f24682e130a011475af, type: 3}
+  - {fileID: 21300000, guid: 5ecaf5f136773964b9cf876b85c8f947, type: 3}
+  - {fileID: 21300000, guid: e9b9ec5bf1d033f4e8d5359794585a7d, type: 3}
   - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
 --- !u!114 &2610264310585351380
 MonoBehaviour:
@@ -213,6 +213,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6869645852488239694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3069556765877585204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172969d6bd0ef514ca9ad0733724b211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3952871861753321593
 GameObject:
   m_ObjectHideFlags: 0

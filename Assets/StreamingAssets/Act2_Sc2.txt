@@ -1,10 +1,4 @@
-﻿DESC:  
-Act Two Scene 2 - Gameplay
-
-Gameplay starts (start of lvl 1)Textbox:
-
-
-APOLLO
+﻿APOLLO
 HAPPY
 You ready, new guy? Here comes the first wave of security drones! 
 
@@ -137,12 +131,6 @@ Radio Station DJ
 Ah… yes sir. It’s time to rock.
 
 BREAK
-
-Arcade Game 
-Act Two Scene 3 - Guerilla Radio (lvl 3)
-
-
-EXT. OUTSIDE THE THIRD K-COAL RADIO STATION
 
 
 DESC: 

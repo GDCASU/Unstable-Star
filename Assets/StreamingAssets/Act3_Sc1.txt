@@ -1,7 +1,4 @@
-﻿DESC: 
-Act Three Scene 1 - Things are getting serious…
-
-REBELLION’S SPACE STATION
+﻿DESC:
 We open with our crew returning to their space station, preparing for what lays ahead of them. 
 JAUGHN
 NORMAL

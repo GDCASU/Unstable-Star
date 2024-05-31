@@ -1,6 +1,4 @@
-﻿DESC: 
-Act One Scene 3 - Meet the Crew
-
+﻿DESC:
 REBELLION’S SPACE STATION
 
 REBEKAH
