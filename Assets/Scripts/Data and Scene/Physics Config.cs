@@ -67,6 +67,9 @@ public class PhysicsConfig : MonoBehaviour
 
         /***************  END LISTS SETTINGS  *******************/
 
+// Make bullets not collide with each other -------------
+
+        Physics.IgnoreLayerCollision(ProjectilesPlayer, ProjectilesEnemies);
 
 //Default -----------------------------------------------
 

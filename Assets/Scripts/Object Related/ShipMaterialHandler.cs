@@ -10,6 +10,7 @@ public class ShipMaterialHandler : MonoBehaviour
     [Header("Settings")]
     [SerializeField] [Range(0f, 1f)] private float iFramesTransparency;
     [SerializeField] private float flashingInterval;
+    [SerializeField] private Material flashingMat;
 
     [Header("Mesh Renderers")]
     [SerializeField] private GameObject[] subModelsWithMeshes;
@@ -22,11 +23,11 @@ public class ShipMaterialHandler : MonoBehaviour
     private class MaterialList
     {
         private MeshRenderer meshRenderer;
+        private Material flashingMat;
         private readonly Material[] defaultMaterials;
-        private readonly Material[] defaultMatsSemiTransparent;
         private readonly Material[] emptyList = new Material[0];
 
-        public MaterialList(MeshRenderer meshRenderer, float transparencyVal)
+        public MaterialList(MeshRenderer meshRenderer, Material flashMat)
         {
             this.meshRenderer = meshRenderer;
 
@@ -37,15 +38,8 @@ public class ShipMaterialHandler : MonoBehaviour
                 defaultMaterials[i] = new Material(meshRenderer.materials[i]);
             }
 
-            // Populate semi-transparent materials for the iFrames Effect
-            defaultMatsSemiTransparent = new Material[meshRenderer.materials.Length];
-            Color albedo;
-            for (int i = 0; i < meshRenderer.materials.Length; i++)
-            {
-                defaultMatsSemiTransparent[i] = new Material(meshRenderer.materials[i]);
-                albedo = defaultMatsSemiTransparent[i].color;
-                defaultMatsSemiTransparent[i].color = new Color(albedo.r, albedo.g, albedo.b, transparencyVal);
-            }
+            // Set the flashing mat
+            flashingMat = flashMat;
         }
 
         /// <summary> Set materials to default </summary>
@@ -76,7 +70,7 @@ public class ShipMaterialHandler : MonoBehaviour
             meshRenderer.materials = emptyList;
 
             // Set it to default
-            meshRenderer.materials = defaultMatsSemiTransparent;
+            meshRenderer.material = flashingMat;
         }
     }
     
@@ -87,7 +81,7 @@ public class ShipMaterialHandler : MonoBehaviour
         for (int i = 0; i < subModelsWithMeshes.Length; i++)
         {
             MeshRenderer meshRendComp = subModelsWithMeshes[i].GetComponent<MeshRenderer>();
-            MaterialList materialObj = new MaterialList(meshRendComp, iFramesTransparency);
+            MaterialList materialObj = new MaterialList(meshRendComp, flashingMat);
             meshRendererObjects.Add(materialObj);
         }
 
