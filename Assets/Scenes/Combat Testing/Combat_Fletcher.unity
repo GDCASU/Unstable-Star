@@ -762,6 +762,10 @@ PrefabInstance:
       propertyPath: primary
       value: 
       objectReference: {fileID: 11400000, guid: 3f690268667fd3a4a928501cf26f8f09, type: 2}
+    - target: {fileID: 2236945867347826101, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
+      propertyPath: loadInspectorWeapons
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2375659726404869264, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
       propertyPath: inputAbility
       value: 
@@ -809,6 +813,10 @@ PrefabInstance:
     - target: {fileID: 3568200221517203151, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
       propertyPath: m_Name
       value: Player Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240857504056240447, guid: 58c5279478c382b4bb7eb06cc32391af, type: 3}
+      propertyPath: loadInspectorWeapons
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -16,15 +16,11 @@ public class GameSettings : MonoBehaviour
     [SerializeField] private bool capFrameRate;
     [SerializeField] private int targetFrameRate = 60;
 
-    private void Awake()            // Handle Singleton
+    private void Awake()            
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else
-            Destroy(gameObject);
+        // Handle Singleton
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
     }
 
     private void Start()

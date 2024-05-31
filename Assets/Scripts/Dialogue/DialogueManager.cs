@@ -38,6 +38,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject dialogueObject;
     [SerializeField] string currentSceneFile;
 
+    [Header("Debugging:")]
+    [SerializeField] private bool doDebugLog;
+
     static string[][] currentDialogue;
 
     int current = 0;
@@ -60,7 +63,7 @@ public class DialogueManager : MonoBehaviour
         // Stops dialogue and starts timeline
         if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
         {
-            Debug.Log("DialogueManager::ChangeDialogue::End");
+            if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue::End");
             // removes the emotion sprite
             speachDialogue.SetActive(false);
             emotionSprite.color = new Color(0, 0, 0, 0);
@@ -78,7 +81,7 @@ public class DialogueManager : MonoBehaviour
         // normal behaviors
         else if (canChange && start)
         {
-            Debug.Log("DialogueManager::ChangeDialogue::ChangeAndStart");
+            if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue::ChangeAndStart");
 
             // Changes the text to the new dialogue
             newDialogue = currentDialogue[current][1];
@@ -121,14 +124,14 @@ public class DialogueManager : MonoBehaviour
         // stops the couroutine and autofills the text
         else if (start) 
         {
-            Debug.Log("DialogueManager::ChangeDialogue::Start");
+            if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue::Start");
             targetDialogue.text = newDialogue;
             canChange = true;
             if (crt != null)
                 StopCoroutine(crt);
         }
 
-        Debug.Log("DialogueManager::ChangeDialogue");
+        if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue");
     }
 
     // Creates text that appears like a typewriter

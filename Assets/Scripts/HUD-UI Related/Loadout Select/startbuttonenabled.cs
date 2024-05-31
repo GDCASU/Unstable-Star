@@ -6,30 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class startbuttonenabled : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    private WeaponArsenal arsenal;
     public GameObject button;
-
 
     public TextMeshProUGUI textObject;
     public float fadeDuration = 2f;
     public float elapsedTime;
     ScenesManager sm;
+
     void Start()
     {
        sm = ScenesManager.instance;
-     
         textObject.alpha = 0f;
-
-        arsenal = GameObject.Find("Weapon Arsenal").GetComponent<WeaponArsenal>();
     }
-
-
-
-    // Update is called once per frame
-
-
 
     private IEnumerator FadeOutText()
     {
@@ -50,7 +38,7 @@ public class startbuttonenabled : MonoBehaviour
 
     public void selectbutton()
     {
-        if (!arsenal.IsWeaponArsenalEmpty())
+        if (!WeaponArsenal.instance.IsWeaponArsenalEmpty())
         {
             //SCENE MANAGER CHANGE SCENE
             print("SWITCH SCENE");

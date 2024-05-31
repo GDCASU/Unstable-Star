@@ -37,10 +37,8 @@ public class AbilityInventory : MonoBehaviour
     private void Awake()
     {
         // Handle Singleton
-        if (instance == null)
-        {
-            instance = this;
-        }
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
 
         // Give the player the ability set in the inspector
         if (loadInspectorAbility && abilityInventory.Count <= 0)

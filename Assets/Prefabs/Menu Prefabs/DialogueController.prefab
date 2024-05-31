@@ -9,12 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3604167900427707985}
-  - component: {fileID: 8624068510671605050}
   - component: {fileID: 6320924069648261947}
   - component: {fileID: 2194012226675323863}
   - component: {fileID: 9188354417665188697}
   - component: {fileID: 2610264310585351380}
-  - component: {fileID: 6869645852488239694}
   m_Layer: 0
   m_Name: DialogueController
   m_TagString: Untagged
@@ -38,18 +36,6 @@ Transform:
   - {fileID: 4831452667940219072}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8624068510671605050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069556765877585204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d988d7e959f37144eb7b33b5ce3a24c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6320924069648261947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,18 +199,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &6869645852488239694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069556765877585204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172969d6bd0ef514ca9ad0733724b211, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3952871861753321593
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,11 +38,9 @@ public class ScenesManager : MonoBehaviour
     {
         // Singleton: Checks if a scene object is currently in use and destroys it if true
         if (instance != null && instance != this)
-            Destroy(this);
+            Destroy(gameObject);
         else
             instance = this;
-
-        DontDestroyOnLoad(this);
     }
 
     private void Start()

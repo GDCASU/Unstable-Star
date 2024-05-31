@@ -20,6 +20,18 @@ PrefabInstance:
       propertyPath: shootDelay
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2852541011737675917, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      propertyPath: m_Height
+      value: 7.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852541011737675917, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      propertyPath: m_Center.y
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852541011737675917, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6220606477133568811, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.09

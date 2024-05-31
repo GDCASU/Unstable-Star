@@ -48,9 +48,8 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         // Handle Singleton
-        if (instance != null) Destroy(gameObject);
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
 
         // Initialize SoundLibrary Singleton
         soundLibrary.InitializeLibrary();
