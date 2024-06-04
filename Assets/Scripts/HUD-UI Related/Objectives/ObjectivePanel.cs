@@ -31,7 +31,10 @@ public class ObjectivePanel : MonoBehaviour
     private void Awake()
     {
         if (Instance != null)
+        {
             Destroy(gameObject);
+            return;
+        }
         else
             Instance = this;
     }
@@ -47,39 +50,6 @@ public class ObjectivePanel : MonoBehaviour
     /// </summary>
     public void StartLevelObjecives()
     {
-        /*
-        // Test code
-        // In the future, pull objective data from the level data
-   //     objectiveData = new ObjectiveData[]
-   //     {
-			//new ObjectiveData()
-			//{
-			//	title = "Kill enemies",
-			//	type = ObjectiveType.KILLS,
-			//	kills = 15
-			//},
-			//new ObjectiveData()
-			//{
-			//	title = "Kill basic enemies",
-			//	type = ObjectiveType.KILLS_SPECIAL,
-			//	enemyType = EnemyType.BASIC,
-			//	kills = 10
-			//},
-			//new ObjectiveData()
-			//{
-			//	title = "Survive the onslaught",
-			//	type = ObjectiveType.SURVIVE,
-			//	time = 30
-			//},
-			//new ObjectiveData()
-   //         {
-   //             title = "Kill enemies in 30 seconds",
-   //             type = ObjectiveType.KILLS_TIMED,
-   //             kills = 10,
-   //             time = 30
-			//}
-   //     };
-        */
         rectTransform = GetComponent<RectTransform>();
 
         CreateObjectives();
@@ -133,13 +103,14 @@ public class ObjectivePanel : MonoBehaviour
 	}
 
     private Vector3 lowPos = new Vector3(-10f, -10f);
-    private Vector3 highPos = new Vector3(-10f, 180f);
+    private Vector3 highPos = new Vector3(-10f, 170f);
+    float posOffset = 10f;
     private Coroutine movePanelCoro;
 
     private IEnumerator MovePanel(bool up, float time = 0.5f, float delay = 0f)
 	{
         float currentY = rectTransform.anchoredPosition.y;
-        float percentY = (currentY + 10f) / 190f;
+        float percentY = (currentY + posOffset) / (highPos.y + posOffset);
         if(!up) percentY = 1f - percentY;
         float t = percentY * time;
         if (debug) Debug.Log("t is " + t);

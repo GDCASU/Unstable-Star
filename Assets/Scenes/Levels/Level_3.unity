@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010086427, g: 0.052700892, b: 0.15289137, a: 1}
+  m_IndirectSpecularColor: {r: 0.010082613, g: 0.05268088, b: 0.15283874, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -191,11 +191,19 @@ PrefabInstance:
     - target: {fileID: 158262251450955437, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: bb6350f1cbda37d4a95c35a30dcd63af, type: 2}
+      objectReference: {fileID: 11400000, guid: a5d37e37fcf18744bb9f8ec7f28cc740, type: 2}
+    - target: {fileID: 158262251450955437, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 158262251450955437, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 7487821219168578916, guid: bb6350f1cbda37d4a95c35a30dcd63af, type: 2}
+      objectReference: {fileID: -5341996107792142911, guid: a5d37e37fcf18744bb9f8ec7f28cc740, type: 2}
+    - target: {fileID: 158262251450955437, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 158262251450955437, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -206,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6ef72dcc5d41fa64284e88c2d89000e5, type: 2}
     - target: {fileID: 859234438590665206, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1924.9999
+      value: 1925
       objectReference: {fileID: 0}
     - target: {fileID: 919175732328177831, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -250,11 +258,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111098559265218523, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1924.9999
+      value: 1925
       objectReference: {fileID: 0}
     - target: {fileID: 2135456609453334330, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.9999
+      value: 1640
       objectReference: {fileID: 0}
     - target: {fileID: 2890868740057410522, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -278,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4558337194482000867, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.9999
+      value: 1640
       objectReference: {fileID: 0}
     - target: {fileID: 4948178056762087716, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -353,6 +361,14 @@ PrefabInstance:
       value: Act3_Sc3.txt
       objectReference: {fileID: 0}
     - target: {fileID: 7020894527863033518, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020894527863033518, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 7020894527863033518, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Color.b
       value: 0.6
       objectReference: {fileID: 0}
@@ -363,6 +379,10 @@ PrefabInstance:
     - target: {fileID: 8352074502334298674, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -10.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863861874348926192, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: boss

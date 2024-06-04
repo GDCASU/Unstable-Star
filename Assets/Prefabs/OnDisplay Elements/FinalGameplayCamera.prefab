@@ -1064,6 +1064,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 2247707359278039326, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4154683887605264518, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Name
       value: HudCanvas
@@ -1139,6 +1143,14 @@ PrefabInstance:
     - target: {fileID: 5959745050469382405, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_Size.y
       value: 1639.9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7199529603812095259, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7199529603812095259, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 7424609744582626789, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.y
