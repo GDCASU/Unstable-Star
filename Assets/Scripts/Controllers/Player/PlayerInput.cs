@@ -69,7 +69,11 @@ public class PlayerInput : MonoBehaviour
     {
         // Handle Singleton
         if (instance == null) instance = this;
-        else Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         // Control handling
         if (playerControls == null)
@@ -87,9 +91,9 @@ public class PlayerInput : MonoBehaviour
             playerControls.ShipControls.AngleLeft.canceled += i => HandleShootAngleInput(i, false);     // perfomed event fires when the button is released
             playerControls.ShipControls.AngleRight.canceled += i => HandleShootAngleInput(i, true);   // perfomed event fires when the button is released
 
-            playerControls.ShipControls.SwitchNextWeapon.performed += i => HandleOnWeaponSwitch();
+            playerControls.ShipControls.SwitchNextWeapon.started += i => HandleOnWeaponSwitch();
 
-            playerControls.ShipControls.SwitchNextAbility.performed += i => OnSwitchToNextAbility?.Invoke();
+            playerControls.ShipControls.SwitchNextAbility.started += i => OnSwitchToNextAbility?.Invoke();
 
             playerControls.ShipControls.UseAbility.performed += i => OnUseAbility?.Invoke();
 
