@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour
     public void ChangeDialogue()
     {
         // Stops dialogue and starts timeline
-        if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
+        if (canChange && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
         {
             if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue::End");
             // removes the emotion sprite
@@ -117,7 +117,6 @@ public class DialogueManager : MonoBehaviour
                 if (crt != null)
                     StopCoroutine(crt);
                 crt = StartCoroutine(setTooltipText(newDialogue));
-                //canChange = true;
             }
         }
 
