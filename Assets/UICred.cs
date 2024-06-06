@@ -18,7 +18,7 @@ public class UICred : MonoBehaviour
         txt_Target.text = "";
         foreach (var creditsText in creditsTextList)
         {
-            txt_Target.text += creditsText.title + "\n\n" +
+            txt_Target.text += creditsText.title + "\n--------------------\n" +
                 creditsText.text.Replace(',', '\n') + "\n\n\n";
         }
         if(myButton!=null)
