@@ -52,20 +52,22 @@ public class ScenesManager : MonoBehaviour
 
     private void InitializeDict()
     {
+        // Only possible scenes that can be loaded directly in the game are the main menu, weapon select scenes, game over, and credits
+        // All other scenes are locked by default unless unlocked for debugging purposes
         unlockedScenes = new Dictionary<Scenes, bool>
         {
             { Scenes.MainMenu, true },
             { Scenes.CutScene_1, true },
-            { Scenes.CutScene_2, true },
-            { Scenes.CutScene_3, true },
+            { Scenes.CutScene_2, false },
+            { Scenes.CutScene_3, false },
             { Scenes.CutScene_4, false },
             { Scenes.CutScene_5, false },
             { Scenes.CutScene_6, false },
             { Scenes.Weapon_Select_1, true },
             { Scenes.Weapon_Select_2, false },
             { Scenes.Weapon_Select_3, false },
-            { Scenes.Level_1, true },
-            { Scenes.Level_2, true },
+            { Scenes.Level_1, false },
+            { Scenes.Level_2, false },
             { Scenes.Level_3, false },
             { Scenes.GameOver, true },
             { Scenes.Credits, true }
@@ -98,7 +100,7 @@ public class ScenesManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Pass in the name of the scene and loads it 
+    /// Pass in the name of the scene and loads it; for use in game please use CheckScene() first before loading the scene
     /// </summary>
     /// <param name="scene"></param>
     public void LoadScene(Scenes scene)
@@ -132,7 +134,7 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadLevel(int level)
     {
-        switch (level)
+        switch (level)      // Weapon select scenes are always the start of the level
         {
             case 1:
                 LoadScene(Scenes.Weapon_Select_1);
