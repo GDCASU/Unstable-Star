@@ -743,6 +743,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gameplay Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 2497728317859681293, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 1524422378}
     - target: {fileID: 2523294005482541713, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 49.999985
@@ -830,6 +834,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4154683887605264518, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
   m_PrefabInstance: {fileID: 1106683913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1524422378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2737914670675678338, guid: 5b099a1ee9381094e8d0ca57dc2f3d77, type: 3}
+  m_PrefabInstance: {fileID: 238556277}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1584903791
 PrefabInstance:
