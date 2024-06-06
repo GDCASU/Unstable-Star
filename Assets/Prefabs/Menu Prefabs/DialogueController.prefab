@@ -56,6 +56,7 @@ MonoBehaviour:
   dialogueOptions: {fileID: 9188354417665188697}
   dialogueObject: {fileID: 0}
   currentSceneFile: 
+  doDebugLog: 0
 --- !u!320 &2194012226675323863
 PlayableDirector:
   m_ObjectHideFlags: 0
