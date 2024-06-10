@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 // VCA Enums, necessary if we want outsider scripts modifying the VCA volumes
 public enum SoundControllers
@@ -11,7 +12,7 @@ public enum SoundControllers
     SFX
 }
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour, IDataPersistance
 {
     // Singleton
     public static SoundManager instance;
@@ -33,12 +34,16 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private bool disableSliders;
     [SerializeField] private bool fadeStopCombatSounds;
 
-
     // Sound Inspector Slider
     [Header("Sound Sliders")]
     [Range(0f, 1f)] [SerializeField] private float masterSlider;
     [Range(0f, 1f)] [SerializeField] private float musicSlider;
     [Range(0f, 1f)] [SerializeField] private float sfxSlider;
+
+    // Variables that will be saved to file
+    private float currentMasterVolumeVal;
+    private float currentSFXVolumeValue;
+    private float currentMusicVolumeValue;
 
     // Local variables
     private float previousMasterVolume;
@@ -48,8 +53,15 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         // Handle Singleton
-        if (instance == null) instance = this;
-        else Destroy(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         // Initialize SoundLibrary Singleton
         soundLibrary.InitializeLibrary();
@@ -71,6 +83,10 @@ public class SoundManager : MonoBehaviour
         previousMasterVolume = masterVolumeVal;
         previousMusicVolume = musicVolumeVal;
         previousSFXVolume = sfxVolumeVal;
+
+        // Subscribe to loading and saving events
+        SerializedDataManager.LoadingFinished += LoadData;
+        SerializedDataManager.StartSavingEvent += SaveData;
     }
 
     // Debugging
@@ -81,6 +97,33 @@ public class SoundManager : MonoBehaviour
             FadeStopCombatSounds();
             fadeStopCombatSounds = false;
         }
+    }
+
+    public void LoadData()
+    {
+        // Loading finished, unsubscribe from event
+        SerializedDataManager.LoadingFinished -= LoadData;
+
+        // Load volume data from save file
+        currentMasterVolumeVal = SerializedDataManager.instance.configData.masterVolumeValue;
+        currentSFXVolumeValue = SerializedDataManager.instance.configData.sfxVolumeValue;
+        currentMusicVolumeValue = SerializedDataManager.instance.configData.musicVolumeValue;
+
+        // set the volume values to them to it
+        SetVolume(SoundControllers.Master, currentMasterVolumeVal, 100f);
+        SetVolume(SoundControllers.SFX, currentSFXVolumeValue, 100f);
+        SetVolume(SoundControllers.Music, currentMusicVolumeValue, 100f);
+    }
+
+    public void SaveData()
+    {
+        // Unsubscribe from events
+        SerializedDataManager.StartSavingEvent -= SaveData;
+        
+        // Save to file
+        SerializedDataManager.instance.configData.masterVolumeValue = (int)currentMasterVolumeVal;
+        SerializedDataManager.instance.configData.musicVolumeValue = (int)currentMusicVolumeValue;
+        SerializedDataManager.instance.configData.sfxVolumeValue = (int)currentSFXVolumeValue;
     }
 
     // Loop for inspector sliders, can be removed once UI can manage this
@@ -172,7 +215,21 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        // Else, set the volume of the specified bus
+        // VCA Found, set the value of current volume for serialization
+        switch (targetVCA)
+        {
+            case SoundControllers.Music:
+                currentMusicVolumeValue = volume;
+                break;
+            case SoundControllers.SFX:
+                currentSFXVolumeValue = volume;
+                break;
+            case SoundControllers.Master:
+                currentMasterVolumeVal = volume;
+                break;
+        }
+
+        // Set the volume of the specified bus
         obtainedVCA.setVolume(scaledVolume);
     }
 

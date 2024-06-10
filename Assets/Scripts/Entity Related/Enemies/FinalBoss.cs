@@ -108,7 +108,7 @@ public class FinalBoss : Boss
         if(_currentPhase != 4) _moveState = MoveState.IDLE;
         for(int i = 0; i < (_currentPhase == 4 ? 2 : 3); i++)
 		{
-            Vector3 target = Player.Instance.transform.position + new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
+            Vector3 target = Player.instance.transform.position + new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
             GameObject firework = FireWeapon(_fireworkWeapon.GetWeaponObject(), _anchorObject.transform.position, target);
             SoundManager.instance.PlaySound(_fireworkWeapon.GetWeaponObject().mainSound);
             StartCoroutine(FireworkExplosion(firework, target));

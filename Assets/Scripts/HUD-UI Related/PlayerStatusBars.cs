@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthBar : MonoBehaviour
+public class PlayerStatusBars : MonoBehaviour
 {
     [Header("Health Bar Objects")]
     [SerializeField] private Transform healthBarBlackedOut;
@@ -27,8 +27,8 @@ public class PlayerHealthBar : MonoBehaviour
         EventData.OnShieldBroken += OnShieldDamaged;
 
         // Set Vars
-        healthBefore = Player.Instance.GetMaxHealth();
-        shieldBefore = Player.Instance.GetMaxShield();
+        healthBefore = Player.instance.GetMaxHealth();
+        shieldBefore = Player.instance.GetMaxShield();
 
         SetupStatBars();
     }
@@ -49,8 +49,8 @@ public class PlayerHealthBar : MonoBehaviour
     private void SetupStatBars()
     {
         //Readability Vars
-        int playerMaxHealth = Player.Instance.GetMaxHealth();
-        int playerMaxShield = Player.Instance.GetMaxShield();
+        int playerMaxHealth = Player.instance.GetMaxHealth();
+        int playerMaxShield = Player.instance.GetMaxShield();
 
         // Scale the UI segments in respect to the player's Max Health
         if (playerMaxHealth > 1)

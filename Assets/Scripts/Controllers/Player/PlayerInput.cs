@@ -68,7 +68,10 @@ public class PlayerInput : MonoBehaviour
     private void Awake()
     {
         // Handle Singleton
-        if (instance == null) instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
         else
         {
             Destroy(gameObject);
