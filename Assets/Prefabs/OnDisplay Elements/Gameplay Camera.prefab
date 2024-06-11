@@ -487,7 +487,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4888234640289285784}
   - component: {fileID: 7903599266432297714}
-  - component: {fileID: 5624538941662455968}
   - component: {fileID: 2497728317859681293}
   m_Layer: 0
   m_Name: Gameplay Camera
@@ -564,23 +563,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &5624538941662455968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452984694364928637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3a5933c257fab42a19d161bb794b45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseObject: {fileID: 0}
-  pauseList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &2497728317859681293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,7 +1076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 49.999985}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: -2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &4646734826145380836
@@ -1245,7 +1227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -99.999985}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 0, y: 1}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!65 &4970694018038888393
@@ -2986,6 +2968,8 @@ MonoBehaviour:
     enemyType: 0
     kills: 5
     time: 20
+  testOnStart: 0
+  debug: 0
 --- !u!1 &5235862836903613878
 GameObject:
   m_ObjectHideFlags: 0
