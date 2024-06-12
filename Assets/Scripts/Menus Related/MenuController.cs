@@ -1,3 +1,8 @@
+/*
+ * Note from Aaron
+ *      I had to stop 
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -5,11 +10,50 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+enum CurrentMenu
+{
+    ObjectsSelection,
+    PrimaryOptions,
+    Settings,
+    Audio,
+    Gameplay,
+    Graphics
+}
 
 public class MenuManager : MonoBehaviour
 {
     [Header("Menu Look Effect")]
     [SerializeField] [Range(0f,10f)] private float lookAroundFreedom;
+
+    [Header("Object Selection References")]
+    [SerializeField] MenuOption[] menuOptions;  // Credits paper stack and menu chair
+    int menuOptionIndex = 0;                    // Holds current selected index of menuOptions
+
+    [Header("Screen Navigation References")]
+    [SerializeField] GameObject primaryOptionsContainer;
+    [SerializeField] Selectable[] primaryOptions;
+    [SerializeField] GameObject settingsOptionsContainer;
+    [SerializeField] Selectable[] settingsOptions;
+    [SerializeField] GameObject audioOptionsContainer;
+    [SerializeField] Selectable[] audioOptions;
+    [SerializeField] GameObject gameplayOptionsContainer;
+    [SerializeField] Selectable[] gameplayOptions;
+    [SerializeField] GameObject graphicsOptionsContainer;
+    [SerializeField] Selectable[] graphicsOptions;
+
+    // Stores the number of options in 
+    Dictionary<CurrentMenu, int> numOptions = new Dictionary<CurrentMenu, int>()
+    {
+        {CurrentMenu.ObjectsSelection, 2 },
+        {CurrentMenu.PrimaryOptions, 3 },
+        {CurrentMenu.Settings, 4 },
+        {CurrentMenu.Audio, 4 },
+        {CurrentMenu.Gameplay, 4 },
+        {CurrentMenu.Graphics, 3 }
+    };
+
+    CurrentMenu currentMenu = CurrentMenu.ObjectsSelection; // Current menu
+    int optionsIndex = 0;   // Current menu selection.
 
     [Header("Console Objects")]
     [SerializeField] private TMP_Text consoleActText;
@@ -167,6 +211,81 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    #region Main Menu Navigation
+
+    /// <summary>
+    /// Handles the navigation of the main menu while still in the Object
+    /// Selection phase.
+    /// </summary>
+    /// <param name="dir">Direction to navigate towards.</param>
+    void NavigateObjectsSelection(Vector2 dir)
+    {
+        // Swap selection to the next object selection. (since there's only 2 options this can be easy or proper)
+        // Ensure that the player knows where they're navigating to.
+    }
+
+    /// <summary>
+    /// Handles the navigation of the main menu while not in the Object
+    /// Selection phase.
+    /// </summary>
+    /// <param name="dir">Direction to navigate towards.</param>
+    void NavigateOptions(Vector2 dir)
+    {
+        // Navigate up
+        if (dir.y > 0)
+        {
+            // Increment by 1, then modulo by numOptions plus number of act selectors
+            optionsIndex = (optionsIndex + 1) % (numOptions[currentMenu] + 2);
+        }
+        // Navigate down
+        else if (dir.y < 0)
+        {
+            optionsIndex--; // Decrement index
+
+            // Set to highest (add act selectors!!)
+            if (optionsIndex < 0) optionsIndex = numOptions[currentMenu] + 1;
+        }
+
+        // Select new option
+        if(optionsIndex < numOptions[currentMenu])
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// Utility function that just ensures that the proper UI
+    /// option is highlighted.
+    /// </summary>
+    void SelectOption()
+    {
+        switch(currentMenu)
+        {
+            case CurrentMenu.ObjectsSelection:
+                
+                break;
+            case CurrentMenu.PrimaryOptions:
+
+                break;
+            case CurrentMenu.Settings:
+
+                break;
+            case CurrentMenu.Audio:
+
+                break;
+            case CurrentMenu.Gameplay:
+
+                break;
+            case CurrentMenu.Graphics:
+
+                break;
+        }
+    }
+
+    #endregion
+
+    #region Scene navigation
+
     public void ResetProgress() // loads a new game
     {
         // Reset file progress
@@ -203,6 +322,8 @@ public class MenuManager : MonoBehaviour
     {
         ScenesManager.instance.LoadScene(Scenes.MainMenu);
     }
+
+    #endregion
 
     #region Console Act Text
 

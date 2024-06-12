@@ -12,7 +12,9 @@ public class PauseMenu : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject graphicsContainer;  // Contains the graphics that show up when the game is paused.
     [SerializeField] UnityEngine.UI.Button[] menuButtons;
-    
+
+    [Header("Values")]
+    [SerializeField] bool openOnStart = false;
     int curButtonIndex = 0;
 
     [Header("Debugging")]
@@ -31,6 +33,8 @@ public class PauseMenu : MonoBehaviour
         PlayerInput.OnCancel += ClosePauseMenu;
 
         PlayerInput.OnMenuNavigate += NavigateMenu;
+
+        if (openOnStart) OpenPauseMenu();
     }
 
     private void OnDestroy()
