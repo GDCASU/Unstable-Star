@@ -256,29 +256,51 @@ public class MenuManager : MonoBehaviour
     /// <summary>
     /// Utility function that just ensures that the proper UI
     /// option is highlighted.
+    /// 
+    /// optionsIndex MUST be in range [0, numOptions[currentMenu] + 1].
     /// </summary>
     void SelectOption()
     {
-        switch(currentMenu)
+        // Regular option
+        if (optionsIndex < numOptions[currentMenu])
         {
-            case CurrentMenu.ObjectsSelection:
-                
-                break;
-            case CurrentMenu.PrimaryOptions:
+            switch (currentMenu)
+            {
+                case CurrentMenu.ObjectsSelection:
+                    // TODO: Make menu option glow green
+                    break;
+                case CurrentMenu.PrimaryOptions:
+                    primaryOptions[optionsIndex].Select();
+                    break;
+                case CurrentMenu.Settings:
 
-                break;
-            case CurrentMenu.Settings:
+                    break;
+                case CurrentMenu.Audio:
 
-                break;
-            case CurrentMenu.Audio:
+                    break;
+                case CurrentMenu.Gameplay:
 
-                break;
-            case CurrentMenu.Gameplay:
+                    break;
+                case CurrentMenu.Graphics:
 
-                break;
-            case CurrentMenu.Graphics:
+                    break;
+            }
+        }
+        // Act selection
+        else
+        {
+            int whichActArrow = (optionsIndex - numOptions[currentMenu]) % 2;     // will be either 0 or 1.
 
-                break;
+            // Up arrow
+            if(whichActArrow == 0)
+            {
+                // Make up arrow glow green
+            }
+            // Down arrow
+            else
+            {
+                // Make down arrow glow green
+            }
         }
     }
 
