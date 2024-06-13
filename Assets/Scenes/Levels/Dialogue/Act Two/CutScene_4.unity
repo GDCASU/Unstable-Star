@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -725,6 +725,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b099a1ee9381094e8d0ca57dc2f3d77, type: 3}
+--- !u!1 &810133452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2737914670675678338, guid: 5b099a1ee9381094e8d0ca57dc2f3d77, type: 3}
+  m_PrefabInstance: {fileID: 810133451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1107160452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,7 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 810133452}
 --- !u!1001 &1670785426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -801,7 +806,7 @@ PrefabInstance:
     - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: m_SceneBindings.Array.data[6].value
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 810133452}
     - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: m_SceneBindings.Array.data[7].value
       value: 
@@ -1016,6 +1021,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3604167900427707985, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
   m_PrefabInstance: {fileID: 1670785426}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1670785428 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6320924069648261947, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+  m_PrefabInstance: {fileID: 1670785426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb82f6b917e73449aa122fbec6f1b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1970027101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1031,6 +1047,10 @@ PrefabInstance:
     - target: {fileID: 3151857150118079477, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1670785428}
+    - target: {fileID: 3151857150118079477, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeDialogue
       objectReference: {fileID: 0}
     - target: {fileID: 3890480846306876715, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_LocalScale.x
