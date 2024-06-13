@@ -14,7 +14,7 @@ public class GatlingCrosshair : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerPos = Player.Instance.gameObject.transform.position;
+        playerPos = Player.instance.gameObject.transform.position;
         transform.position = playerPos;
         followPlayer = true;
     }
@@ -27,7 +27,7 @@ public class GatlingCrosshair : MonoBehaviour
 
     private void FollowPlayer()
     {
-        playerPos = Player.Instance.gameObject.transform.position;
+        playerPos = Player.instance.gameObject.transform.position;
         // Normalized vector between the crosshair and the player
         Vector2 direction = Vector3.Normalize(playerPos - transform.position);
         // move along that normalized vector

@@ -98,7 +98,7 @@ Material:
     - _SrcBlend: 1
     - _Transparency: 0.5
     - _UVSec: 0
-    - _UnscaledTime: 1467.6583
+    - _UnscaledTime: 7.4453955
     - _ZWrite: 1
     m_Colors:
     - _Base_Color: {r: 0.002714496, g: 0.5485184, b: 0.5754717, a: 0}

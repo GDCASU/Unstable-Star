@@ -6,51 +6,54 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/Levels/Intro Loading Scene.unity
+    guid: b071008fc309a0540b16a4ff612b3e96
+  - enabled: 1
+    path: Assets/Scenes/Levels/Main Menu.unity
     guid: b7bd3fee91070684eaa600fa842aa55c
   - enabled: 1
-    path: Assets/Scenes/Weapon Select/WeaponSelect1.unity
+    path: Assets/Scenes/Levels/Weapon Select/WeaponSelect1.unity
     guid: 98acc68fe62ad834db2c16896d4c5aee
   - enabled: 1
-    path: Assets/Scenes/Dialogue/Act One/CutScene_1.unity
+    path: Assets/Scenes/Levels/Dialogue/Act One/CutScene_1.unity
     guid: 5e84de4daa9c1f04bac73ae0059f8a0d
   - enabled: 1
     path: Assets/Scenes/Levels/Level_1.unity
     guid: f9792e1f6a8267645b1b81fa434d51a7
   - enabled: 1
-    path: Assets/Scenes/Dialogue/Act One/CutScene_2.unity
+    path: Assets/Scenes/Levels/Dialogue/Act One/CutScene_2.unity
     guid: 9c1b0b09b1fabb54a90d5f67e20a57ec
   - enabled: 1
-    path: Assets/Scenes/Weapon Select/WeaponSelect2.unity
+    path: Assets/Scenes/Levels/Weapon Select/WeaponSelect2.unity
     guid: 7e421a6152a5dd04f938656972f7a1e5
   - enabled: 1
-    path: Assets/Scenes/Dialogue/Act Two/CutScene_3.unity
+    path: Assets/Scenes/Levels/Dialogue/Act Two/CutScene_3.unity
     guid: 483559fa3e6ad46498175314a0d34b21
   - enabled: 1
     path: Assets/Scenes/Levels/Level_2.unity
     guid: 82537f99a6a9965489dd0d96ff3dd30d
   - enabled: 1
-    path: Assets/Scenes/Dialogue/Act Two/CutScene_4.unity
+    path: Assets/Scenes/Levels/Dialogue/Act Two/CutScene_4.unity
     guid: 3919080a5eae7d64f977d517b133707c
   - enabled: 1
-    path: Assets/Scenes/Weapon Select/WeaponSelect3.unity
+    path: Assets/Scenes/Levels/Weapon Select/WeaponSelect3.unity
     guid: 8fe58d4f24b8dd7458aa996109f233fd
   - enabled: 1
-    path: Assets/Scenes/Dialogue/Act Three/CutScene_5.unity
+    path: Assets/Scenes/Levels/Dialogue/Act Three/CutScene_5.unity
     guid: fd0b8c747a27796409892aea8d36d8e5
   - enabled: 1
-    path: Assets/Scenes/Dialogue/Act Three/CutScene_6.unity
+    path: Assets/Scenes/Levels/Dialogue/Act Three/CutScene_6.unity
     guid: 417713894668e604eba449d22b723986
   - enabled: 1
     path: Assets/Scenes/Levels/Level_3.unity
     guid: 34951de3936d835439bb1ccd56106c53
   - enabled: 1
-    path: Assets/Scenes/Dialogue/Act Three/CutScene_7.unity
+    path: Assets/Scenes/Levels/Dialogue/Act Three/CutScene_7.unity
     guid: e995f5a8ff84fff49bb70ec18cbbe290
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
+    path: Assets/Scenes/Levels/GameOver.unity
     guid: 9dcd2000c8278344988881106a8aedde
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
+    path: Assets/Scenes/Levels/Credits.unity
     guid: 413933e8e8b82424293ebc1a4ab27a42
   m_configObjects: {}

@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public enum Scenes
 {
-    MainMenu,           // 0
-    Weapon_Select_1,    // 1
-    CutScene_1,         // 2
-    Level_1,            // 3
-    CutScene_2,         // 4
+    IntroLoadingScreen, // 0
+    MainMenu,           // 1
+    Weapon_Select_1,    // 2
+    CutScene_1,         // 3
+    Level_1,            // 4
+    CutScene_2,         
     Weapon_Select_2,    
     CutScene_3,
     Level_2,
@@ -36,13 +37,16 @@ public class ScenesManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton: Checks if a scene object is currently in use and destroys it if true
-        if (instance != null && instance != this)
-            Destroy(this);
-        else
+        // Handle Singleton
+        if (instance == null)
+        {
             instance = this;
-
-        DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     private void Start()
@@ -56,6 +60,7 @@ public class ScenesManager : MonoBehaviour
     {
         unlockedScenes = new Dictionary<Scenes, bool>
         {
+            { Scenes.IntroLoadingScreen, true},
             { Scenes.MainMenu, true },
             { Scenes.CutScene_1, true },
             { Scenes.CutScene_2, true },

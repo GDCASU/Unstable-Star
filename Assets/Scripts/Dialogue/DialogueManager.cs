@@ -11,6 +11,8 @@ using UnityEngine.Timeline;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.XInput;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -36,6 +38,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject dialogueObject;
     [SerializeField] string currentSceneFile;
 
+    [Header("Debugging:")]
+    [SerializeField] private bool doDebugLog;
+
     static string[][] currentDialogue;
 
     int current = 0;
@@ -43,6 +48,8 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         // initializes the current act
+        currentSceneFile = InputChecker();
+        print(currentSceneFile);
         currentDialogue = new string[1000][];
         currentDialogue = ReadFile(System.IO.Path.Combine(Application.streamingAssetsPath, currentSceneFile), currentDialogue);
 
@@ -54,27 +61,17 @@ public class DialogueManager : MonoBehaviour
     public void ChangeDialogue()
     {
         // Stops dialogue and starts timeline
-        if (targetDialogue.text == newDialogue && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
+        if (canChange && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
         {
-            Debug.Log("DialogueManager::ChangeDialogue::End");
-            // removes the emotion sprite
-            speachDialogue.SetActive(false);
-            emotionSprite.color = new Color(0, 0, 0, 0);
+            if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue::End");
 
-            dialogueObject.SetActive(false);
-            speakerText.text = "";
-            targetDialogue.text = "";
-
-            // pauses the dialogue and runs the animations
-            timelinePlayer.Resume();
-            start = false;
-            current++;
-        }
+            StopText();
+        }   
 
         // normal behaviors
         else if (canChange && start)
         {
-            Debug.Log("DialogueManager::ChangeDialogue::ChangeAndStart");
+            if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue::ChangeAndStart");
 
             // Changes the text to the new dialogue
             newDialogue = currentDialogue[current][1];
@@ -110,21 +107,20 @@ public class DialogueManager : MonoBehaviour
                 if (crt != null)
                     StopCoroutine(crt);
                 crt = StartCoroutine(setTooltipText(newDialogue));
-                //canChange = true;
             }
         }
 
         // stops the couroutine and autofills the text
         else if (start) 
         {
-            Debug.Log("DialogueManager::ChangeDialogue::Start");
+            if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue::Start");
             targetDialogue.text = newDialogue;
             canChange = true;
             if (crt != null)
                 StopCoroutine(crt);
         }
 
-        Debug.Log("DialogueManager::ChangeDialogue");
+        if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue");
     }
 
     // Creates text that appears like a typewriter
@@ -136,6 +132,7 @@ public class DialogueManager : MonoBehaviour
             targetDialogue.text = str.Substring(0, targetDialogue.text.Length + 1);
             yield return new WaitForSeconds(0.05f);
         }
+        canChange = true;
     }
 
     // Pauses timeline and makes the text clickable
@@ -146,6 +143,23 @@ public class DialogueManager : MonoBehaviour
         timelinePlayer.Pause();
         ChangeDialogue();
         ChangeDialogue();
+    }
+
+    // Starts timeline and makes the text stop
+    public void StopText()
+    {
+        // removes the emotion sprite
+        speachDialogue.SetActive(false);
+        emotionSprite.color = new Color(0, 0, 0, 0);
+
+        dialogueObject.SetActive(false);
+        speakerText.text = "";
+        targetDialogue.text = "";
+
+        // pauses the dialogue and runs the animations
+        timelinePlayer.Resume();
+        start = false;
+        current++;
     }
 
     // Takes information from text files and transfers into something the system can read
@@ -207,5 +221,36 @@ public class DialogueManager : MonoBehaviour
                 // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
             }
         }
+    }
+
+    // Checks to see what the current input is
+    private string InputChecker() {
+        Gamepad gamepad = Gamepad.current;
+        Keyboard keyboard = Keyboard.current;
+
+        if (gamepad != null)
+        {
+            if (gamepad is XInputController)
+            {
+                // Player is using an XBOX controller
+                // Updates the tutorial
+                if (currentSceneFile == "Act1_Sc2.txt")
+                {
+                    return "Act1_Sc2 Controller.txt";
+                }
+            }
+        }
+        else if (keyboard != null)
+        {
+            // Player is using a keyboard
+            // Updates the tutorial
+            if (currentSceneFile == "Act1_Sc2.txt")
+            {
+                print("Keyboard");
+                return "Act1_Sc2 Keyboard.txt";
+            }
+        }
+
+        return currentSceneFile;
     }
 }

@@ -41,7 +41,6 @@ public abstract class Weapon
 
     // Variable to override behaviour for enemies
     // EX: Make enemies always charge laser gun to full charge before firing
-    public bool isEnemy;
     public float shootingStayTime;
 
     // These variables should be useful for UI
@@ -150,7 +149,7 @@ public class Buckshot : Weapon
 public class LaserGun : Weapon
 {
     //Default Constructor
-    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, bool isEnemy, string description)
+    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, string description)
     {
         this.prefab = prefab;
         this.chargingSpherePrefab = chargingSpherePrefab;
@@ -158,7 +157,6 @@ public class LaserGun : Weapon
         this.shootCooldownTime = cooldownTime;
         this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
-        this.isEnemy = isEnemy;
         this.minDamage = minDamage;
         this.maxDamage = maxDamage;
         this.maxChargeUpTime = maxChargeUpTime;
@@ -176,7 +174,7 @@ public class LaserGun : Weapon
 public class GatlingGun : Weapon
 {
     //Default Constructor
-    public GatlingGun(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime, string description)
+    public GatlingGun(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, float shootingStayTime, string description)
     {
         this.speed = speed;
         this.prefab = prefab;
@@ -186,12 +184,8 @@ public class GatlingGun : Weapon
         this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
         this.heatUpTimeMax = warmupTime;
-        this.isEnemy = isEnemy;
         this.description = description;
-
-        // If this is an enemy entity, then set the shooting stay time
-        if (isEnemy) this.shootingStayTime = shootingStayTime;
-
+        this.shootingStayTime = shootingStayTime;
         // Static sets
         this.timeLeftInCooldown = 0f;
         this.HeatUpCounter = 0f;

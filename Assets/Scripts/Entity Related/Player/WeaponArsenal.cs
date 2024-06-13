@@ -43,6 +43,11 @@ public class WeaponArsenal : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         // Give the player the default arsenal if checked
         if (loadInspectorWeapons)
@@ -61,6 +66,8 @@ public class WeaponArsenal : MonoBehaviour
 
     public void SwitchToNextWeapon()
     {
+        if (doDebugLog) Debug.Log("WeaponArsenal::SwitchToNextWeapon");
+
         // If the player has no weapons, then dont attempt a switch
         if (weaponArsenal.Count <= 0)
         {
@@ -87,6 +94,8 @@ public class WeaponArsenal : MonoBehaviour
     /// <summary> Switches to the previous weapon in the arsenal </summary>
     public void SwitchToPreviousWeapon()
     {
+        if (doDebugLog) Debug.Log("WeaponArsenal::SwitchToPreviousWeapon");
+
         // If the player has no weapons, then dont attempt a switch
         if (weaponArsenal.Count <= 0)
         {
@@ -119,6 +128,9 @@ public class WeaponArsenal : MonoBehaviour
     /// <summary> Add a Weapon, returns true if successful </summary>
     public bool AddWeaponToArsenal(Weapon inputWeapon)
     {
+        if (doDebugLog) Debug.Log("WeaponArsenal::AddWeaponToArsenal\n"
+            + inputWeapon.sName);
+
         // Check if the arsenal was empty
         if (weaponArsenal.Count <= 0)
         {

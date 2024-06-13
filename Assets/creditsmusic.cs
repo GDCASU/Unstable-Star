@@ -10,4 +10,9 @@ public class CreditsMusic : MonoBehaviour
         SoundManager.instance.PlaySound(SoundLibrary.CreditsTrack);
     }
 
+    public void StopMusic() 
+    {
+        SoundManager.instance.PauseAllSounds();
+    }
+
 }

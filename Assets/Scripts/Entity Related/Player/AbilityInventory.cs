@@ -41,6 +41,11 @@ public class AbilityInventory : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         // Give the player the ability set in the inspector
         if (loadInspectorAbility && abilityInventory.Count <= 0)

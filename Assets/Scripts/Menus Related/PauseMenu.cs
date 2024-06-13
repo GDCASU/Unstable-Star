@@ -9,88 +9,98 @@ using UnityEngine.UIElements;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool pausedGame;
-    public GameObject pauseObject;
-    public UnityEngine.UI.Button[] pauseList;
+    [Header("References")]
+    [SerializeField] GameObject graphicsContainer;  // Contains the graphics that show up when the game is paused.
+    [SerializeField] UnityEngine.UI.Button[] menuButtons;
 
-    int arrayNumber;
+    [Header("Values")]
+    [SerializeField] bool openOnStart = false;
+    int curButtonIndex = 0;
 
-    private void Start()
+    [Header("Debugging")]
+    [SerializeField] bool printDebugs = false;
+
+    [HideInInspector] public static bool pausedGame = false;  // Signal if the game is paused or not.
+
+    #region Unity Events
+
+    private void Awake()
     {
-        PlayerInput.OnPauseGame += ChangeMenuController;
-        arrayNumber = pauseList.Length;
+        if (printDebugs) Debug.Log("PauseMenu::Awake");
+
+        // Bind relevant events
+        PlayerInput.OnPauseGame += OpenPauseMenu;
+        PlayerInput.OnCancel += ClosePauseMenu;
+
+        PlayerInput.OnMenuNavigate += NavigateMenu;
+
+        if (openOnStart) OpenPauseMenu();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        // Clean up attached events
+        PlayerInput.OnPauseGame -= OpenPauseMenu;
+        PlayerInput.OnCancel -= ClosePauseMenu;
 
-        if (Input.GetKeyDown(KeyCode.Escape)) // toggles pause menu
-        {
-            pausedGame = !pausedGame;
-            ChangeMenu();
-        }
-
-        if (pausedGame)
-        {
-            // scrolls through buttons
-            if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Joystick1Button6)) { arrayNumber++; }
-            if (Input.GetKeyDown(KeyCode.UpArrow)) { arrayNumber--; }
-
-            // selects and highlights buttons
-            pauseList[arrayNumber% pauseList.Length].OnSelect(null);
-            pauseList[arrayNumber% pauseList.Length].Select();
-        }
+        PlayerInput.OnMenuNavigate -= NavigateMenu;
     }
 
-    void ChangeMenuController()
+    #endregion
+
+    #region Menu Navigation
+
+    public void OpenPauseMenu()
     {
-        if (!pausedGame) // pauses
-        {
-            pauseObject.SetActive(true);
-            Time.timeScale = 0f;
-            pausedGame = true;
-        }
-        else // unpauses
-        {
-            pauseObject.SetActive(false);
-            Time.timeScale = 1.0f;
-            pausedGame = false;
-        }
+        if (printDebugs) Debug.Log("PauseMenu::OpenPauseMenu");
+
+        pausedGame = true;
+        graphicsContainer.SetActive(true);
+        Time.timeScale = 0f;
+        PlayerInput.instance.ActivateUiControls();
+
+        // Ensure menu is properly loaded
+        menuButtons[curButtonIndex].Select();
     }
 
-    void ChangeMenu()
+    public void ClosePauseMenu()
     {
-        if (pausedGame) // pauses
-        {
-            pauseObject.SetActive(true);
-            Time.timeScale = 0f;
-            //PlayerInput.instance.ToggleControls(false); // Disable player input
-        }
-        else // unpauses
-        {
-            pauseObject.SetActive(false);
-            Time.timeScale = 1.0f;
-            //PlayerInput.instance.ToggleControls(true); // Disable player input
-        }
-    }
+        if (printDebugs) Debug.Log("PauseMenu::ClosePauseMenu");
 
-    public void SetPause()
-    {
         pausedGame = false;
-        ChangeMenu();
+        graphicsContainer.SetActive(false);
+        Time.timeScale = 1.0f;
+        PlayerInput.instance.ActivateShipControls();
     }
 
-    public void LoadMenu()
+    /// <summary>
+    /// Moves the menu selection up or down.
+    /// </summary>
+    /// <param name="dir">Which way to move the menu selection.</param>
+    void NavigateMenu(Vector2 dir)
     {
-        pausedGame = false;
-        ChangeMenu();
-        ScenesManager.instance.LoadScene(Scenes.MainMenu);
+        if (printDebugs) Debug.Log("PauseMenu::NavigateMenu");
+
+        // Up
+        if (dir.x + dir.y > 0) curButtonIndex = (curButtonIndex + 1) % menuButtons.Length;
+        else if(dir.x + dir.y < 0)
+        {
+            curButtonIndex--;
+            if(curButtonIndex < 0) curButtonIndex = menuButtons.Length - 1;
+        }
+
+        menuButtons[curButtonIndex].Select();
     }
+
+    #endregion
+
+    #region Button Handlers
 
     public void LoadMainMenu()
     {
+        ClosePauseMenu();
         ScenesManager.instance.LoadScene(Scenes.MainMenu);
     }
+
+    #endregion
 }

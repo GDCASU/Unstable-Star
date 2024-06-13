@@ -230,6 +230,7 @@ public class WeaponDisplayHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        // Lines added by aaron, Ian: What does this do?
         primaryCanvas ??= primaryCanvasObj.GetComponent<Canvas>();
         secondaryCanvas ??= secondaryCanvasObj.GetComponent<Canvas>();
 

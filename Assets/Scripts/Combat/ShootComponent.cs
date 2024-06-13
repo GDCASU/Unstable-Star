@@ -8,7 +8,14 @@ using UnityEngine.Windows;
 
 /// <summary> Component that allows any object to shoot projectiles </summary>
 public class ShootComponent : MonoBehaviour
-{
+{   
+    // Enum created to avoid unnecessary string comparisons
+    private enum EntityType
+    {
+        Player,
+        Enemy
+    }
+    
     // Settings
     [Header("Settings")]
     [SerializeField] private GameObject AnchorObject;
@@ -17,6 +24,7 @@ public class ShootComponent : MonoBehaviour
     private int projectileLayer;
     private GameObject firedLaser;
     private CombatEntity entityScript;
+    private EntityType entityType;
     private Coroutine gatlingRoutine = null;
     private Coroutine laserRoutine;
     private float lastBarHeight;
@@ -35,10 +43,12 @@ public class ShootComponent : MonoBehaviour
         {
             case "Player":
                 //The player is shooting
+                entityType = EntityType.Player;
                 projectileLayer = PhysicsConfig.Get.ProjectilesPlayer;
                 break;
             case "Enemy":
                 //The Enemy is shooting
+                entityType = EntityType.Enemy;
                 projectileLayer = PhysicsConfig.Get.ProjectilesEnemies;
                 break;
             default:
@@ -114,22 +124,21 @@ public class ShootComponent : MonoBehaviour
     private IEnumerator LaserCooldown(Weapon input)
     {
         input.isOnCooldown = true;
-        float maxCounterOnEnter = input.maxChargeUpTime - input.chargeTimeCounter;
         input.chargeTimeCounter = 0;
         
         // Cooldown timer
-        while (input.chargeTimeCounter < maxCounterOnEnter)
+        while (input.chargeTimeCounter < input.shootCooldownTime)
         {
             // Invoke the UI event for the weapon
-            input.RaiseModifyMeterCooldown(maxCounterOnEnter, input.chargeTimeCounter);
+            input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.chargeTimeCounter);
             input.chargeTimeCounter += Time.deltaTime; // Compute time
             yield return null; // Wait a frame
         }
         input.isOnCooldown = false;
-        input.chargeTimeCounter = maxCounterOnEnter;
+        input.chargeTimeCounter = input.shootCooldownTime;
 
         // Raise cooldown event one last time and reset routine
-        input.RaiseModifyMeterCooldown(maxCounterOnEnter, input.chargeTimeCounter);
+        input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.chargeTimeCounter);
         laserRoutine = null;
     }
 
@@ -146,6 +155,9 @@ public class ShootComponent : MonoBehaviour
     /// <summary> Only shoots 1 projectile </summary>
     private void SingleShotBehaviour(Weapon weapon)
     {
+        // Pistol cheat, since scriptable objects are not meant to be changed at runtime
+        if (entityType == EntityType.Player && GameSettings.instance.isPistolLethal) weapon.damage = 99;
+        
         // Dont fire if weapon is on cooldown
         if (weapon.isOnCooldown) return;
         //Create the Projectile
@@ -197,7 +209,7 @@ public class ShootComponent : MonoBehaviour
         if (gatlingRoutine != null) return;
 
         // Check if player or enemy
-        if (input.isEnemy)
+        if (entityType == EntityType.Enemy)
         {
             gatlingRoutine = StartCoroutine(EnemyGatlingRoutine(input));
             return;
@@ -344,7 +356,7 @@ public class ShootComponent : MonoBehaviour
         if (input.isOnCooldown) return;
 
         // Check if player or enemy
-        if (input.isEnemy)
+        if (entityType == EntityType.Enemy)
         {
             laserRoutine = StartCoroutine(EnemeyLaserRoutine(input));
             return;

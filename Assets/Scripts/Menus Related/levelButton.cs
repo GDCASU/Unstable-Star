@@ -2,26 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class placed on the console red arrows to switch the act selected
+/// </summary>
 public class levelButton : MonoBehaviour
 {
-    public int iterationDir;
-    private levelText lvlText;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        lvlText = GameObject.Find("levelText").GetComponent<levelText>();
-    }
-
+    public event System.Action ButtonPressed;
+    
     void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (!ScenesManager.instance.CheckLevel(ScenesManager.currentLevel + iterationDir))
-                return;
-
-            ScenesManager.currentLevel += iterationDir;
-            lvlText.UpdateText(ScenesManager.currentLevel);
+            // Invoke event on button pressed
+            ButtonPressed?.Invoke();
         }
     }
 }

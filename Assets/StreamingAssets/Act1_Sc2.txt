@@ -1,7 +1,4 @@
-﻿DESC: 
-Act one Scene 2 - Gameplay
-
-APOLLO
+﻿APOLLO
 NORMAL
 Hey, fresh meat, can you hear us? 
 I’m Apollo! You know how to fly that hunk of junk? 
@@ -40,11 +37,6 @@ GUNS?
 B o o m!   B o o m!   B o o m!
 P l e a s e   p r e s s   b o o m   b u t t o n.
 
-
-
-
-Arcade Game Script
-Act one Scene 2 - Before the prison warden Boss (Sparrows in the Rain)
 
 
 SECURITY DEFENSE SYSTEM

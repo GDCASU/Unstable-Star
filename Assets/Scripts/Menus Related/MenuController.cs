@@ -1,121 +1,332 @@
-using System.Collections;
+/*
+ * Note from Aaron
+ *      I had to stop 
+ */
+
+using System;
 using System.Collections.Generic;
+using System.Xml;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.Rendering;
-using TMPro;
-using System;
 
-
-public class MenuController : MonoBehaviour
+enum CurrentMenu
 {
-    public static MenuController instance;
+    ObjectsSelection,
+    PrimaryOptions,
+    Settings,
+    Audio,
+    Gameplay,
+    Graphics
+}
 
-    [Header("Levels to Load")]
-    public TMPro.TextMeshPro newLevel;
-    public string levelToLoad;
-    [SerializeField] private GameObject noSaveFile = null;
+public class MenuManager : MonoBehaviour
+{
+    [Header("Menu Look Effect")]
+    [SerializeField] [Range(0f,10f)] private float lookAroundFreedom;
 
-    [Header("Select Modifiers")]
-    public Button[] menuList;
-    public Button[] settingsList;
-    public Button[] audioList;
-    public Button[] graphicsList;
-    public Button[] gameplayList;
-    private Button[] arrayList;
-    public GameObject[] menuOptions;
-    int arrayNumber;
-    int type;
-    bool isMenu = true;
+    [Header("Object Selection References")]
+    [SerializeField] MenuOption[] menuOptions;  // Credits paper stack and menu chair
+    int menuOptionIndex = 0;                    // Holds current selected index of menuOptions
+
+    [Header("Screen Navigation References")]
+    [SerializeField] GameObject primaryOptionsContainer;
+    [SerializeField] Selectable[] primaryOptions;
+    [SerializeField] GameObject settingsOptionsContainer;
+    [SerializeField] Selectable[] settingsOptions;
+    [SerializeField] GameObject audioOptionsContainer;
+    [SerializeField] Selectable[] audioOptions;
+    [SerializeField] GameObject gameplayOptionsContainer;
+    [SerializeField] Selectable[] gameplayOptions;
+    [SerializeField] GameObject graphicsOptionsContainer;
+    [SerializeField] Selectable[] graphicsOptions;
+
+    // Stores the number of options in 
+    Dictionary<CurrentMenu, int> numOptions = new Dictionary<CurrentMenu, int>()
+    {
+        {CurrentMenu.ObjectsSelection, 2 },
+        {CurrentMenu.PrimaryOptions, 3 },
+        {CurrentMenu.Settings, 4 },
+        {CurrentMenu.Audio, 4 },
+        {CurrentMenu.Gameplay, 4 },
+        {CurrentMenu.Graphics, 3 }
+    };
+
+    CurrentMenu currentMenu = CurrentMenu.ObjectsSelection; // Current menu
+    int optionsIndex = 0;   // Current menu selection.
+
+    [Header("Console Objects")]
+    [SerializeField] private TMP_Text consoleActText;
+    [SerializeField] private levelButton upConsoleButton;
+    [SerializeField] private levelButton downConsoleButton;
 
     [Header("Audio Options")]
-    [SerializeField] SoundManager soundManager;
-    [SerializeField] TMP_Text masterText;
-    [SerializeField] TMP_Text musicText;
-    [SerializeField] TMP_Text sfxText;
-
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private TMP_Text masterSliderValue;
+    [SerializeField] private TMP_Text musicSliderValue;
+    [SerializeField] private TMP_Text sfxSliderValue;
+    
     [Header("Graphics Options")]
-    [SerializeField] TMP_Text brightnessText;
-    [SerializeField] TMP_Text qualityText;
+    [SerializeField] private Toggle fullscreenToggle;
+    [SerializeField] private Slider brightnessSlider;
+    [SerializeField] private Slider qualitySlider;
+    [SerializeField] TMP_Text brightnessValue;
+    [SerializeField] TMP_Text qualityValue;
 
     [Header("Gameplay Options")]
-    [SerializeField] TMP_Text sensitivityText;
+    [SerializeField] private Slider sensitivitySlider;
+    [SerializeField] TMP_Text sensitivityValue;
+    [SerializeField] private Toggle invertYToggle;
+
+    [Header("Cheats")]
+    [SerializeField] private GameObject CheatMenuOption;
+
+    // Local variables
+    private List<GameAct> ActList = new List<GameAct>();
+    private int currentActIndex;
+    private Vector3 defaultCameraRotation;
+    private Vector3 defaultCameraPosition;
+
+    // Class to help load acts
+    private class GameAct
+    {
+        public string actName;
+        public bool isUnlocked;
+        public bool isCompleted;
+        public Scenes sceneEnumValue;
+        public Color textColor;
+
+        public GameAct(string actName, bool isUnlocked, bool isCompleted, Scenes sceneEnumValue)
+        {
+            this.actName = actName;
+            this.isUnlocked = isUnlocked;
+            this.isCompleted = isCompleted;
+            this.sceneEnumValue = sceneEnumValue;
+
+            // Color logic for console window
+            if (isCompleted)
+            {
+                // Level is complete, make text green
+                textColor = Color.green;
+            }
+            else if (isUnlocked)
+            {
+                // Level was not complete but unlocked, make text yellow
+                textColor = Color.yellow;
+            }
+            else
+            {
+                // Level was locked, make text red
+                textColor = Color.red;
+            }
+        }
+    }
 
     private void Start()
     {
-        if (instance == null) instance = this;
+        // Get camera rotation and position
+        defaultCameraRotation = Camera.main.transform.eulerAngles;
+        defaultCameraPosition = Camera.main.transform.position;
+
+        // Populate List of acts
+
+        // IAN HACK: I should really be serializing this into the save instead of by bits
+        // but this is faster for now. On the other side, enums dont serialize well, and the scenes enum would
+        // be a problem
+
+        // ACT 1
+        bool isAct1Completed = SerializedDataManager.instance.gameData.isAct1Complete;
+        GameAct act1 = new GameAct("ACT 1", true, isAct1Completed, Scenes.Weapon_Select_1);
+
+        // ACT 2
+        bool isAct2Unlocked = SerializedDataManager.instance.gameData.isAct2Unlocked;
+        bool isAct2Completed = SerializedDataManager.instance.gameData.isAct2Complete;
+        GameAct act2 = new GameAct("ACT 2", isAct2Unlocked, isAct2Completed, Scenes.Weapon_Select_2);
+
+        // ACT 3
+        bool isAct3Unlocked = SerializedDataManager.instance.gameData.isAct3Unlocked;
+        bool isAct3Completed = SerializedDataManager.instance.gameData.isAct3Complete;
+        GameAct act3 = new GameAct("ACT 3", isAct3Unlocked, isAct3Completed, Scenes.Weapon_Select_3);
+
+        // Add them to the list
+        ActList.Add(act1);
+        ActList.Add(act2);
+        ActList.Add(act3);
+
+        // Set the console text to the first act and set the color
+        consoleActText.text = act1.actName;
+        consoleActText.color = act1.textColor;
+        currentActIndex = 0;
+
+        // Set the slider and toggle values from the ones loaded from data
+
+        // Audio
+        masterSlider.value = SerializedDataManager.instance.configData.masterVolumeValue;
+        sfxSlider.value = SerializedDataManager.instance.configData.sfxVolumeValue;
+        musicSlider.value = SerializedDataManager.instance.configData.musicVolumeValue;
+
+        // Gameplay
+        sensitivitySlider.value = SerializedDataManager.instance.configData.sensitivity;
+        invertYToggle.isOn = SerializedDataManager.instance.configData.invertYAxis;
+
+        // Graphics
+        fullscreenToggle.isOn = SerializedDataManager.instance.configData.fullscreen;
+        brightnessSlider.value = SerializedDataManager.instance.configData.brightness;
+        qualitySlider.value = SerializedDataManager.instance.configData.quality;
+
+        // Cheats
+        if (GameSettings.instance.areCheatsUnlocked)
+        {
+            CheatMenuOption.SetActive(true);
+        }
         else
         {
-            Destroy(this);
-            return;
+            CheatMenuOption.SetActive(false);
         }
 
-        arrayNumber = menuList.Length;
-        arrayList = menuList;
+        // Subscribe buttons to switch events
+        upConsoleButton.ButtonPressed += NextActConsoleOption;
+        downConsoleButton.ButtonPressed += PreviousActConsoleOption;
     }
 
     private void Update()
     {
-        // scrolls through buttons
-        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.DownArrow)) { arrayNumber++; }
-        if (Input.GetKeyDown(KeyCode.UpArrow)) { arrayNumber--; }
+        // IAN: Update camera position for the look around effect
+        if (Camera.main.transform.position == defaultCameraPosition)
+        {
+            Camera.main.transform.eulerAngles = GetTargetRotation();
+        }
 
-        // selects and highlights buttons
-        arrayList[arrayNumber % arrayList.Length].OnSelect(null);
-        arrayList[arrayNumber % arrayList.Length].Select();
-
-        // Changes the things to be selected
-        ChangeMenuArray();
-        
+        // IAN HACK: This code is also here so the cheats can be rendered on the main menu without having to
+        // reload the scene
+        if (GameSettings.instance.areCheatsUnlocked)
+        {
+            CheatMenuOption.SetActive(true);
+        }
+        else
+        {
+            CheatMenuOption.SetActive(false);
+        }
     }
 
-    public void ChangeMenuArray() // Changes to next selection menu
+    #region Main Menu Navigation
+
+    /// <summary>
+    /// Handles the navigation of the main menu while still in the Object
+    /// Selection phase.
+    /// </summary>
+    /// <param name="dir">Direction to navigate towards.</param>
+    void NavigateObjectsSelection(Vector2 dir)
     {
-        int caseNumber = 0;
-        for (int i=0; i< menuOptions.Length; i++)
+        // Swap selection to the next object selection. (since there's only 2 options this can be easy or proper)
+        // Ensure that the player knows where they're navigating to.
+    }
+
+    /// <summary>
+    /// Handles the navigation of the main menu while not in the Object
+    /// Selection phase.
+    /// </summary>
+    /// <param name="dir">Direction to navigate towards.</param>
+    void NavigateOptions(Vector2 dir)
+    {
+        // Navigate up
+        if (dir.y > 0)
         {
-            if (menuOptions[i].activeSelf)
+            // Increment by 1, then modulo by numOptions plus number of act selectors
+            optionsIndex = (optionsIndex + 1) % (numOptions[currentMenu] + 2);
+        }
+        // Navigate down
+        else if (dir.y < 0)
+        {
+            optionsIndex--; // Decrement index
+
+            // Set to highest (add act selectors!!)
+            if (optionsIndex < 0) optionsIndex = numOptions[currentMenu] + 1;
+        }
+
+        // Select new option
+        if(optionsIndex < numOptions[currentMenu])
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// Utility function that just ensures that the proper UI
+    /// option is highlighted.
+    /// 
+    /// optionsIndex MUST be in range [0, numOptions[currentMenu] + 1].
+    /// </summary>
+    void SelectOption()
+    {
+        // Regular option
+        if (optionsIndex < numOptions[currentMenu])
+        {
+            switch (currentMenu)
             {
-                caseNumber = i;
+                case CurrentMenu.ObjectsSelection:
+                    // TODO: Make menu option glow green
+                    break;
+                case CurrentMenu.PrimaryOptions:
+                    primaryOptions[optionsIndex].Select();
+                    break;
+                case CurrentMenu.Settings:
+
+                    break;
+                case CurrentMenu.Audio:
+
+                    break;
+                case CurrentMenu.Gameplay:
+
+                    break;
+                case CurrentMenu.Graphics:
+
+                    break;
             }
         }
-        switch (caseNumber)
+        // Act selection
+        else
         {
-            case 0:
-                arrayList = menuList;
-                return;
-            case 1:
-                arrayList = settingsList;
-                return;
-            case 2:
-                arrayList = audioList;
-                return;
-            case 3:
-                arrayList = graphicsList;
-                return;
-            default:
-                return;
+            int whichActArrow = (optionsIndex - numOptions[currentMenu]) % 2;     // will be either 0 or 1.
 
+            // Up arrow
+            if(whichActArrow == 0)
+            {
+                // Make up arrow glow green
+            }
+            // Down arrow
+            else
+            {
+                // Make down arrow glow green
+            }
         }
     }
 
-    public void ChangeMenu() // changes the menu selection
+    #endregion
+
+    #region Scene navigation
+
+    public void ResetProgress() // loads a new game
     {
-        isMenu = !isMenu;
+        // Reset file progress
+        SerializedDataManager.instance.NewGame();
+        // Go back to the loading screen
+        ScenesManager.instance.LoadScene(Scenes.IntroLoadingScreen);
     }
 
-
-    // Game Controller Settings //
-    public void NewGame() // loads a new game
+    public void StartAct() // Loads the scene of the selected act in the console
     {
-        // TODO: start new save file; refresh all unlocked levels; maybe do an "Are you sure" popup
-        ScenesManager.instance.LoadNextScene(); // Loads the scene after Menu which is the first cutscene
-    }
-
-    public void LoadGame() // loads an old save file
-    {
-        ScenesManager.instance.LoadLevel(ScenesManager.currentLevel);
+        // Only load the act if unlocked, made it " == false " to make it more readable
+        if (ActList[currentActIndex].isUnlocked == false)
+        {
+            // TODO: Make an error beep sound or something
+            return;
+        }
+        // Else, load the scene
+        Scenes selectedScene = ActList[currentActIndex].sceneEnumValue;
+        ScenesManager.instance.LoadScene(selectedScene);
     }
 
     public void LoadCredits()
@@ -128,84 +339,188 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
-    public void RenderCheats()
+    // Function needed to use UnlockAll Properly
+    public void ReloadMainMenu()
     {
-
+        ScenesManager.instance.LoadScene(Scenes.MainMenu);
     }
 
-    #region Options
+    #endregion
+
+    #region Console Act Text
+
+    /// <summary>
+    /// Function that will be triggered by the console buttons, cycling the act selection foward
+    /// </summary>
+    public void NextActConsoleOption()
+    {
+        currentActIndex++;
+        // Check for array out of bounds
+        if (ActList.Count - 1 < currentActIndex)
+        {
+            currentActIndex = 0;
+            SetConsoleText(ActList[currentActIndex].actName, ActList[currentActIndex].textColor);
+            return;
+        }
+        SetConsoleText(ActList[currentActIndex].actName, ActList[currentActIndex].textColor);
+    }
+
+    /// <summary>
+    /// Function that will be triggered by the console buttons, cycling the act selection backwards
+    /// </summary>
+    public void PreviousActConsoleOption()
+    {
+        currentActIndex--;
+        // Check for array out of bounds
+        if (currentActIndex < 0)
+        {
+            currentActIndex = ActList.Count - 1;
+            SetConsoleText(ActList[currentActIndex].actName, ActList[currentActIndex].textColor);
+            return;
+        }
+        SetConsoleText(ActList[currentActIndex].actName, ActList[currentActIndex].textColor);
+    }
+
+    /// <summary>
+    /// Helper function to set the text of the console act display
+    /// </summary>
+    public void SetConsoleText(string text, Color color)
+    {
+        consoleActText.text = text;
+        consoleActText.color = color;
+    }
+
+    #endregion
+
+    #region Audio Options
+
     // Volume Control Settings //
-    public void SetMasterVolume(float volume) // changes the volume
-    {
-        AudioListener.volume = volume;
-        PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
-        soundManager.SetVolume(SoundControllers.Master, volume, 1f);
 
+    public void SetMasterVolume(float volume)
+    {
+        int integerVolume = (int)volume;
+        SoundManager.instance.SetVolume(SoundControllers.Master, integerVolume, 100f);
         // Changes text next to the volume to the right value
-        masterText.SetText(Math.Round(volume, 1).ToString());
+        masterSliderValue.SetText(integerVolume.ToString());
     }
 
-    public void SetSFXVolume(float volume) // changes the volume
+    public void SetSFXVolume(float volume)
     {
-        AudioListener.volume = volume;
-        PlayerPrefs.SetFloat("sfxVolume", AudioListener.volume);
-        soundManager.SetVolume(SoundControllers.SFX, volume, 1f);
-
+        int integerVolume = (int)volume;
+        SoundManager.instance.SetVolume(SoundControllers.SFX, integerVolume, 100f);
         // Changes text next to the volume to the right value
-        sfxText.SetText(Math.Round(volume, 1).ToString());
+        sfxSliderValue.SetText(Mathf.Round(volume).ToString());
     }
 
-    public void SetMusicVolume(float volume) // changes the volume
+    public void SetMusicVolume(float volume)
     {
-        AudioListener.volume = volume;
-        PlayerPrefs.SetFloat("musicVolume", AudioListener.volume);
-        soundManager.SetVolume(SoundControllers.Music, volume, 1f);
-
+        int integerVolume = (int)volume;
+        SoundManager.instance.SetVolume(SoundControllers.Music, integerVolume, 100f);
         // Changes text next to the volume to the right value
-        musicText.SetText(Math.Round(volume, 1).ToString());
+        musicSliderValue.SetText(integerVolume.ToString());
     }
 
+    #endregion
+
+    #region Graphic Options
 
     // Graphics Control Settings //
     public void SetBrightness(float brightness) // changes the brightness
     {
-        PlayerPrefs.SetFloat("masterBrightness", brightness);
-        Screen.brightness = brightness;
+        int integerBrightness = (int)brightness;
+        SerializedDataManager.instance.configData.brightness = integerBrightness;
+        Screen.brightness = integerBrightness;
 
         // Changes text next to the brightness to the right value
-        brightnessText.SetText(Math.Round(brightness, 1).ToString());
+        brightnessValue.SetText(integerBrightness.ToString());
     }
 
     public void SetQuality(float quality) // changes quality marked as resolution
     {
-        PlayerPrefs.SetInt("masterQuality", (int)Math.Round(quality));
-        QualitySettings.SetQualityLevel((int)Math.Round(quality));
+        int integerQuality = (int)quality;
+        SerializedDataManager.instance.configData.quality = integerQuality;
+        QualitySettings.SetQualityLevel(integerQuality);
 
         // Changes text next to the quality to the right value
-        qualityText.SetText(((int)Math.Round(quality)).ToString());
+        qualityValue.SetText(integerQuality.ToString());
     }
 
     public void SetFullScreen(bool fullscreen) // switches fullscreen
     {
-        PlayerPrefs.SetInt("masterFullscreen", (fullscreen ? 1 : 0));
+        SerializedDataManager.instance.configData.fullscreen = fullscreen;
         Screen.fullScreen = fullscreen;
     }
 
+    #endregion
+
+    #region Gameplay Options
 
     // Gameplay Control Settings (may be discarded) //
     public void SetSensitivity(float sensitivity) // changes sensitivity
     {
-        PlayerPrefs.SetFloat("masterSen", sensitivity);
+        int integerSensitivity = (int)sensitivity;
+        SerializedDataManager.instance.configData.sensitivity = integerSensitivity;
+        
         // doesn't do anything for right now, need to figure it out based on character movement
 
         // Changes text next to the brightness to the right value
-        sensitivityText.SetText(Math.Round(sensitivity, 1).ToString());
+        sensitivityValue.SetText(integerSensitivity.ToString());
     }
 
     public void SetInversion(bool inversion) // changes inversion on Y axis
     {
-        PlayerPrefs.SetInt("masterInvert", inversion ? 1 : 0);
+        SerializedDataManager.instance.configData.invertYAxis = inversion;
         // doesn't do anything for right now, need to figure it out based on character movement
     }
+
     #endregion
+
+    #region CHEATS
+
+    /// <summary>
+    /// Function that will toggle the damage of the pistol from 3 to 99
+    /// </summary>
+    public void ToggleLethalPistol(bool toggle)
+    {
+        GameSettings.instance.isPistolLethal = toggle;
+    }
+
+    /// <summary>
+    /// Function that will set the health of the player to 100
+    /// </summary>
+    public void Toggle100HealthMode(bool toggle)
+    {
+        GameSettings.instance.isHealth100 = toggle;
+    }
+
+    /// <summary>
+    /// Option that will unlock all
+    /// </summary>
+    public void unlockAll()
+    {
+        // Ian: Unlocks all, this assumes cheats are already unlocked, which means everything is unlocked, so idk
+        // how to use this besides playtesting xd
+        SerializedDataManager.instance.gameData.isAct1Complete = true;
+        SerializedDataManager.instance.gameData.isAct2Unlocked = true;
+        SerializedDataManager.instance.gameData.isAct2Complete = true;
+        SerializedDataManager.instance.gameData.isAct3Unlocked = true;
+        SerializedDataManager.instance.gameData.isAct3Complete = true;
+        SerializedDataManager.instance.gameData.isGatlingUnlocked = true;
+        SerializedDataManager.instance.gameData.isLaserUnlocked = true;
+        SerializedDataManager.instance.gameData.isProxiBombUnlocked = true;
+        SerializedDataManager.instance.gameData.isPhaseShiftUnlocked = true;
+    }
+
+    #endregion
+
+    // Function used to make the camera move with the look around effect
+    public Vector3 GetTargetRotation()
+    {
+        // Get the mouse position
+        float maxX = Screen.width;
+        float midX = maxX / 2;
+        float mouseX = Mathf.Max(Mathf.Min(Input.mousePosition.x, maxX), 0);
+        float rotation = lookAroundFreedom * Mathf.Sign(mouseX - midX) * Mathf.Pow(Mathf.Abs(((mouseX - midX) / midX)), 2);
+        return defaultCameraRotation + new Vector3(0f, rotation, 0f);
+    }
 }

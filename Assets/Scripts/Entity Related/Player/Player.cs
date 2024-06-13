@@ -6,12 +6,14 @@ using UnityEngine;
 public class Player : CombatEntity
 {
     //Singleton
-    public static Player Instance;
+    public static Player instance;
 
     //Player Related
     [SerializeField] private ScriptablePlayer playerStatsData;
     [SerializeField] private bool isShieldBroken;
     [SerializeField] private FMODUnity.EventReference deathSFX;
+    private int MAX_HEALTH; // Not serialized, since they are meant to be editted through the scriptable object
+    private int MAX_SHIELD;
 
     //Settings
     [SerializeField] private bool IsDebugLogging;
@@ -35,10 +37,15 @@ public class Player : CombatEntity
         base.Awake();
 
         // Handle Singleton
-        if (Instance != null)
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
             Destroy(gameObject);
-
-        Instance = this;
+            return;
+        }
     }
 
     private void Start()
@@ -48,8 +55,20 @@ public class Player : CombatEntity
         abilityComponent = GetComponent<AbilityComponent>();
 
         //Set Stats
-        health = playerStatsData.maxHealth;
-        shield = playerStatsData.maxShield;
+        if (GameSettings.instance.isHealth100)
+        {
+            // Health 100 cheat is active
+            MAX_HEALTH = 100;
+            health = MAX_HEALTH;
+        }
+        else
+        {
+            MAX_HEALTH = playerStatsData.maxHealth;
+            health = MAX_HEALTH;
+        }
+
+        MAX_SHIELD = playerStatsData.maxShield;
+        shield = MAX_SHIELD;
         shieldFloat = shield;
         collisionDamage = playerStatsData.collisionDamage;
 
@@ -118,7 +137,6 @@ public class Player : CombatEntity
     public void SwitchToNextWeapon()
     {
         WeaponArsenal.instance.SwitchToNextWeapon();
-        //TestBaseScript.myInstance.testMethodForShantanu();
     }
 
     /// <summary> Switches to the previous weapon in the arsenal </summary>
@@ -164,7 +182,7 @@ public class Player : CombatEntity
     public bool TryAddHealth(int amount)
     {
         //Dont do anything in case we already had max health
-        if (health >= playerStatsData.maxHealth)
+        if (health >= MAX_HEALTH)
         {
             return false;
         }
@@ -173,9 +191,9 @@ public class Player : CombatEntity
 
         //Else, gain health
         health += amount;
-        if (health > playerStatsData.maxHealth)
+        if (health > MAX_HEALTH)
         {
-            health = playerStatsData.maxHealth;
+            health = MAX_HEALTH;
         }
 
         //Invoke the event signaling a change of health
@@ -192,7 +210,7 @@ public class Player : CombatEntity
     public bool TryAddShield(int amount)
     {
         //Dont do anything in case we already had max shield
-        if (shield >= playerStatsData.maxShield)
+        if (shield >= MAX_SHIELD)
         {
             return false;
         }
@@ -201,9 +219,9 @@ public class Player : CombatEntity
 
         //Else, gain shield
         shield += amount;
-        if (shield > playerStatsData.maxShield)
+        if (shield > MAX_SHIELD)
         {
-            shield = playerStatsData.maxShield;
+            shield = MAX_SHIELD;
         }
 
         //Invoke the event signaling a shield gain
@@ -363,7 +381,7 @@ public class Player : CombatEntity
         int shieldBefore = shield;
 
         //Start Regen of the shield
-        while (shieldFloat < playerStatsData.maxShield)
+        while (shieldFloat < MAX_SHIELD)
         {
             shieldFloat += playerStatsData.shieldPerSecond * Time.deltaTime;
             //Assign the float value to player's shiled, typecasted
@@ -382,7 +400,7 @@ public class Player : CombatEntity
         }
         
         //We finished regening the shield, assign it MAX_SHIELD in case we went over before
-        shield = playerStatsData.maxShield;
+        shield = MAX_SHIELD;
         shieldFloat = (float)shield;
         ShieldRoutine = null;
 
@@ -483,8 +501,18 @@ public class Player : CombatEntity
     //Getters
     public int GetHealth() { return health; }
     public int GetShield() { return shield; }
-    public int GetMaxShield() { return playerStatsData.maxShield; }
-    public int GetMaxHealth() { return playerStatsData.maxHealth; }
+    public int GetMaxShield() { return playerStatsData.maxHealth; }
+    public int GetMaxHealth() 
+    { 
+        if (GameSettings.instance.isHealth100)
+        {
+            return 100;
+        }
+        else
+        {
+            return playerStatsData.maxHealth;
+        }
+    }
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
 

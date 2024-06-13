@@ -24,11 +24,8 @@ public class ScriptableLaserGun : ScriptableWeapon
     public float laserCooldown;
     public float maxChargeUpTime;
 
-    [Header("Enemy Specific")]
-    public bool isEnemy;
-
     public override Weapon GetWeaponObject()
     {
-        return new LaserGun(weaponName, laserPrefab, chargingSpherePrefab, weaponIcon, sound, minDamage, maxDamage, laserCooldown, maxChargeUpTime, isEnemy, description);
+        return new LaserGun(weaponName, laserPrefab, chargingSpherePrefab, weaponIcon, sound, minDamage, maxDamage, laserCooldown, maxChargeUpTime, description);
     }
 }
