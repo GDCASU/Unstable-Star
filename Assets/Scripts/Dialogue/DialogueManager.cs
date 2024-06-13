@@ -66,7 +66,7 @@ public class DialogueManager : MonoBehaviour
             if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue::End");
 
             StopText();
-        }
+        }   
 
         // normal behaviors
         else if (canChange && start)
@@ -132,6 +132,7 @@ public class DialogueManager : MonoBehaviour
             targetDialogue.text = str.Substring(0, targetDialogue.text.Length + 1);
             yield return new WaitForSeconds(0.05f);
         }
+        canChange = true;
     }
 
     // Pauses timeline and makes the text clickable
