@@ -1061,10 +1061,6 @@ PrefabInstance:
       value: FinalGameplayCamera
       objectReference: {fileID: 0}
     - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: debug
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 569449943360573750, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: objectiveData.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1447,10 +1443,6 @@ PrefabInstance:
     - target: {fileID: 9133110064788226632, guid: 3333bc9f9e6a40c4b8983454bfb39937, type: 3}
       propertyPath: m_Name
       value: Pause Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 9133110064788226632, guid: 3333bc9f9e6a40c4b8983454bfb39937, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
