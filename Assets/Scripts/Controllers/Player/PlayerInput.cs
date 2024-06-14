@@ -110,6 +110,7 @@ public class PlayerInput : MonoBehaviour
         playerControls.UI.Navigate.performed += i => OnMenuNavigate?.Invoke(i.ReadValue<Vector2>());
 
         playerControls.UI.Cancel.started += i => OnCancel?.Invoke();
+        playerControls.UI.Submit.started += i => OnSubmit?.Invoke();
     }
 
     #endregion

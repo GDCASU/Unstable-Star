@@ -8,9 +8,10 @@ using System.Collections.Generic;
 using System.Xml;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-enum CurrentMenu
+public enum CurrentMenu
 {
     ObjectsSelection,
     PrimaryOptions,
@@ -22,14 +23,12 @@ enum CurrentMenu
 
 public class MenuManager : MonoBehaviour
 {
-    [Header("Menu Look Effect")]
+    [Header("Miscelaneous")]
     [SerializeField] [Range(0f,10f)] private float lookAroundFreedom;
-
-    [Header("Object Selection References")]
-    [SerializeField] MenuOption[] menuOptions;  // Credits paper stack and menu chair
-    int menuOptionIndex = 0;                    // Holds current selected index of menuOptions
+    [SerializeField] float sliderIncrements = 10;
 
     [Header("Screen Navigation References")]
+    [SerializeField] MenuOption[] menuOptions;  // Credits paper stack and menu chair
     [SerializeField] GameObject primaryOptionsContainer;
     [SerializeField] Selectable[] primaryOptions;
     [SerializeField] GameObject settingsOptionsContainer;
@@ -49,7 +48,7 @@ public class MenuManager : MonoBehaviour
         {CurrentMenu.Settings, 4 },
         {CurrentMenu.Audio, 4 },
         {CurrentMenu.Gameplay, 4 },
-        {CurrentMenu.Graphics, 3 }
+        {CurrentMenu.Graphics, 4 }
     };
 
     CurrentMenu currentMenu = CurrentMenu.ObjectsSelection; // Current menu
@@ -59,6 +58,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TMP_Text consoleActText;
     [SerializeField] private levelButton upConsoleButton;
     [SerializeField] private levelButton downConsoleButton;
+    [SerializeField] Light upConsoleBtnLight;
+    [SerializeField] Light downConsoleBtnLight;
+    [SerializeField] Color highlightedLightColor = new Color(0, 1, 0, 1);
+    Color originalLightColor;
 
     [Header("Audio Options")]
     [SerializeField] private Slider masterSlider;
@@ -82,6 +85,9 @@ public class MenuManager : MonoBehaviour
 
     [Header("Cheats")]
     [SerializeField] private GameObject CheatMenuOption;
+
+    [Header("Debugging")]
+    [SerializeField] bool printDebugs = false;
 
     // Local variables
     private List<GameAct> ActList = new List<GameAct>();
@@ -123,6 +129,8 @@ public class MenuManager : MonoBehaviour
             }
         }
     }
+
+    #region Unity Events
 
     private void Start()
     {
@@ -189,6 +197,17 @@ public class MenuManager : MonoBehaviour
         // Subscribe buttons to switch events
         upConsoleButton.ButtonPressed += NextActConsoleOption;
         downConsoleButton.ButtonPressed += PreviousActConsoleOption;
+
+        // Record original light color
+        originalLightColor = upConsoleBtnLight.color;
+
+        // Subscribe to input system.
+        PlayerInput.OnMenuNavigate += NavigateOptions;
+        PlayerInput.OnSubmit += SelectItem;
+        PlayerInput.OnCancel += LoadPreviousMenu;
+        PlayerInput.instance.ActivateUiControls();
+
+        HighlightSelection();   // First selection should be highlighted.
     }
 
     private void Update()
@@ -211,77 +230,136 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        // Clean up events and reset input system to default.
+        PlayerInput.OnMenuNavigate -= NavigateOptions;
+        PlayerInput.OnSubmit -= SelectItem;
+        PlayerInput.OnCancel -= LoadPreviousMenu;
+        PlayerInput.instance.ActivateShipControls();
+    }
+
+    #endregion
+
     #region Main Menu Navigation
 
     /// <summary>
-    /// Handles the navigation of the main menu while still in the Object
-    /// Selection phase.
+    /// Navigates backwards through the pages.
     /// </summary>
-    /// <param name="dir">Direction to navigate towards.</param>
-    void NavigateObjectsSelection(Vector2 dir)
+    public void LoadPreviousMenu()
     {
-        // Swap selection to the next object selection. (since there's only 2 options this can be easy or proper)
-        // Ensure that the player knows where they're navigating to.
+        if (printDebugs) Debug.Log("MenuController::GoBack");
+
+        UnhighlightSelection(); // Almost every back scenario highlights a new item.
+
+        switch (currentMenu)
+        {
+            case CurrentMenu.ObjectsSelection:
+                // Can't go back from objects selection
+                break;
+            case CurrentMenu.PrimaryOptions:    // Load Objects Selection
+                menuOptions[0].ResetCamera();
+
+                currentMenu = CurrentMenu.ObjectsSelection;
+                break;
+            case CurrentMenu.Settings:  // Load primary
+                settingsOptionsContainer.SetActive(false);
+                primaryOptionsContainer.SetActive(true);
+                
+                currentMenu = CurrentMenu.PrimaryOptions;
+                break;
+            case CurrentMenu.Audio:     // Load settings
+                audioOptionsContainer.SetActive(false);
+                settingsOptionsContainer.SetActive(true);
+
+                currentMenu= CurrentMenu.Settings;
+                break;
+            case CurrentMenu.Gameplay:  // Load settings
+                gameplayOptionsContainer.SetActive(false);
+                settingsOptionsContainer.SetActive(true);
+
+                currentMenu = CurrentMenu.Settings;
+                break;
+            case CurrentMenu.Graphics:  // Load settings
+                graphicsOptionsContainer.SetActive(false);
+                settingsOptionsContainer.SetActive(true);
+
+                currentMenu = CurrentMenu.Settings;
+                break;
+        }
+        optionsIndex = 0;
+
+        HighlightSelection();   // Ensure newly selected item is highlighted.
+    }
+
+    void SelectItem()
+    {
+        SelectItem(0);
     }
 
     /// <summary>
-    /// Handles the navigation of the main menu while not in the Object
-    /// Selection phase.
+    /// Performs an action appropriate for whatever the currently
+    /// selected item is.
     /// </summary>
-    /// <param name="dir">Direction to navigate towards.</param>
-    void NavigateOptions(Vector2 dir)
+    void SelectItem(float sliderDir = 0)
     {
-        // Navigate up
-        if (dir.y > 0)
-        {
-            // Increment by 1, then modulo by numOptions plus number of act selectors
-            optionsIndex = (optionsIndex + 1) % (numOptions[currentMenu] + 2);
-        }
-        // Navigate down
-        else if (dir.y < 0)
-        {
-            optionsIndex--; // Decrement index
+        if (printDebugs) Debug.Log("MenuController::SelectItem" +
+            "\nCurrent Menu: " + currentMenu +
+            "\nOptions Index: " + optionsIndex);
 
-            // Set to highest (add act selectors!!)
-            if (optionsIndex < 0) optionsIndex = numOptions[currentMenu] + 1;
-        }
+        UnhighlightSelection(); // Some actions change the selected item.
 
-        // Select new option
-        if(optionsIndex < numOptions[currentMenu])
-        {
-
-        }
-    }
-
-    /// <summary>
-    /// Utility function that just ensures that the proper UI
-    /// option is highlighted.
-    /// 
-    /// optionsIndex MUST be in range [0, numOptions[currentMenu] + 1].
-    /// </summary>
-    void SelectOption()
-    {
         // Regular option
         if (optionsIndex < numOptions[currentMenu])
         {
+            Button currentButton;
+            Toggle currentToggle;
+            Slider currentSlider;
+
             switch (currentMenu)
             {
                 case CurrentMenu.ObjectsSelection:
-                    // TODO: Make menu option glow green
+                    menuOptions[optionsIndex].SelectOption();
                     break;
                 case CurrentMenu.PrimaryOptions:
-                    primaryOptions[optionsIndex].Select();
+                    currentButton = primaryOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    currentButton.onClick.Invoke();
                     break;
                 case CurrentMenu.Settings:
-
+                    currentButton = settingsOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    currentButton.onClick.Invoke();
                     break;
                 case CurrentMenu.Audio:
+                    currentButton = audioOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    if(currentButton != null) currentButton.onClick.Invoke();
+
+                    currentToggle = audioOptions[optionsIndex].gameObject.GetComponent<Toggle>();
+                    if(currentToggle != null) currentToggle.isOn = !currentToggle.isOn;
+
+                    currentSlider = audioOptions[optionsIndex].gameObject.GetComponent<Slider>();
+                    if (currentSlider != null) currentSlider.value += sliderDir * ((currentSlider.maxValue - currentSlider.minValue) / sliderIncrements);
 
                     break;
                 case CurrentMenu.Gameplay:
+                    currentButton = gameplayOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    if (currentButton != null) currentButton.onClick.Invoke();
+
+                    currentToggle = gameplayOptions[optionsIndex].gameObject.GetComponent<Toggle>();
+                    if (currentToggle != null) currentToggle.isOn = !currentToggle.isOn;
+
+                    currentSlider = gameplayOptions[optionsIndex].gameObject.GetComponent<Slider>();
+                    if (currentSlider != null) currentSlider.value += sliderDir * ((currentSlider.maxValue - currentSlider.minValue) / sliderIncrements);
 
                     break;
                 case CurrentMenu.Graphics:
+                    currentButton = graphicsOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    if (currentButton != null) currentButton.onClick.Invoke();
+
+                    currentToggle = graphicsOptions[optionsIndex].gameObject.GetComponent<Toggle>();
+                    if (currentToggle != null) currentToggle.isOn = !currentToggle.isOn;
+
+                    currentSlider = graphicsOptions[optionsIndex].gameObject.GetComponent<Slider>();
+                    if (currentSlider != null) currentSlider.value += sliderDir * ((currentSlider.maxValue - currentSlider.minValue) / sliderIncrements);
 
                     break;
             }
@@ -291,15 +369,167 @@ public class MenuManager : MonoBehaviour
         {
             int whichActArrow = (optionsIndex - numOptions[currentMenu]) % 2;     // will be either 0 or 1.
 
-            // Up arrow
-            if(whichActArrow == 0)
+            if (whichActArrow == 0) upConsoleButton.ClickButton();  // Up arrow
+            else downConsoleButton.ClickButton();  // Down arrow
+        }
+
+        HighlightSelection();   // Ensure newly selected item is highlighted.
+    }
+
+    /// <summary>
+    /// Handles the navigation of the main menu while not in the Object
+    /// Selection phase.
+    /// </summary>
+    /// <param name="dir">Direction to navigate towards.</param>
+    void NavigateOptions(Vector2 dir)
+    {
+        if (printDebugs) Debug.Log("MenuController::NavigateOptions");
+
+        UnhighlightSelection(); // Can't have 2 items selected!
+
+        // Navigate up
+        if (dir.y > 0)
+        {
+            optionsIndex--; // Decrement index
+
+            // Set to highest (add act selectors!!)
+            if (optionsIndex < 0) optionsIndex = numOptions[currentMenu] + 1;
+        }
+        // Navigate down
+        else if (dir.y < 0)
+        {
+            // Increment by 1, then modulo by numOptions plus number of act selectors
+            optionsIndex = (optionsIndex + 1) % (numOptions[currentMenu] + 2);
+        }
+
+        if(dir.x != 0) SelectItem(dir.x);
+
+        HighlightSelection();   // Don't forget to have your item selected!
+    }
+
+    /// <summary>
+    /// Sets what the currently referenced menu is. Useful
+    /// when navigating forward through the branching menus.
+    /// 
+    /// Note: not comprehensive, please don't use unless you know other values will be properly aligned.
+    /// </summary>
+    /// <param name="currentMenu">Menu to set reference to.</param>
+    public void SetCurrentMenu(CurrentMenu currentMenu)
+    {
+        UnhighlightSelection();
+
+        this.currentMenu = currentMenu;
+        optionsIndex = 0;
+
+        HighlightSelection();
+    }
+
+    /// <summary>
+    /// Sets what the currently referenced menu is. Useful
+    /// when navigating forward through the branching menus.
+    /// 
+    /// Note: not comprehensive, please don't use unless you know other values will be properly aligned.
+    /// </summary>
+    /// <param name="currentMenu">Menu to set reference to.</param>
+    public void SetCurrentMenu(int currentMenu)
+    {
+        SetCurrentMenu((CurrentMenu)currentMenu);
+    }
+
+    /// <summary>
+    /// Utility function that ensures the previous option is not 
+    /// highlighted.
+    /// 
+    /// optionsIndex MUST be in range [0, numOptions[currentMenu] + 1].
+    /// </summary>
+    void UnhighlightSelection()
+    {
+        if (printDebugs) Debug.Log("MenuController::UnhighlightSelection");
+
+        // Regular option
+        if (optionsIndex < numOptions[currentMenu])
+        {
+            switch (currentMenu)
             {
-                // Make up arrow glow green
+                case CurrentMenu.ObjectsSelection:
+                    menuOptions[optionsIndex].gameObject.GetComponent<GlowingItem>().StopGlowing();
+                    break;
+                default:
+                    EventSystem.current.SetSelectedGameObject(null);    // Deselects whatever UI is selected
+                    break;
+            }
+        }
+        // Act selection - make the arrow stop glowing.
+        else
+        {
+            int whichActArrow = (optionsIndex - numOptions[currentMenu]) % 2;     // will be either 0 or 1.
+
+            // Up arrow
+            if (whichActArrow == 0)
+            {
+                upConsoleButton.gameObject.GetComponent<GlowingItem>().StopGlowing();
+                upConsoleBtnLight.color = originalLightColor;
             }
             // Down arrow
             else
             {
-                // Make down arrow glow green
+                downConsoleButton.gameObject.GetComponent<GlowingItem>().StopGlowing();
+                downConsoleBtnLight.color = originalLightColor;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Utility function that just ensures that the proper UI
+    /// option is highlighted.
+    /// 
+    /// optionsIndex MUST be in range [0, numOptions[currentMenu] + 1].
+    /// </summary>
+    void HighlightSelection()
+    {
+        if (printDebugs) Debug.Log("MenuController::HighlightSelection" +
+            "\nCurrent Menu: " + currentMenu +
+            "\nOptions Index: " + optionsIndex);
+
+        // Regular option
+        if (optionsIndex < numOptions[currentMenu])
+        {
+            switch (currentMenu)
+            {
+                case CurrentMenu.ObjectsSelection:
+                    menuOptions[optionsIndex].gameObject.AddComponent<GlowingItem>();
+                    break;
+                case CurrentMenu.PrimaryOptions:
+                    primaryOptions[optionsIndex].Select();
+                    break;
+                case CurrentMenu.Settings:
+                    settingsOptions[optionsIndex].Select();
+                    break;
+                case CurrentMenu.Audio:
+                    audioOptions[optionsIndex].Select();
+                    break;
+                case CurrentMenu.Gameplay:
+                    gameplayOptions[optionsIndex].Select();
+                    break;
+                case CurrentMenu.Graphics:
+                    graphicsOptions[optionsIndex].Select();
+                    break;
+            }
+        }
+        // Act selection - make the arrow start glowing.
+        else
+        {
+            int whichActArrow = (optionsIndex - numOptions[currentMenu]) % 2;     // will be either 0 or 1.
+
+            if (whichActArrow == 0)
+            {
+                upConsoleButton.gameObject.AddComponent<GlowingItem>();  // Up arrow
+                upConsoleBtnLight.color = highlightedLightColor;
+            }
+            else
+            {
+                downConsoleButton.gameObject.AddComponent<GlowingItem>();  // Down arrow
+                downConsoleBtnLight.color = highlightedLightColor;
             }
         }
     }
@@ -447,6 +677,8 @@ public class MenuManager : MonoBehaviour
 
     public void SetFullScreen(bool fullscreen) // switches fullscreen
     {
+        if (printDebugs) Debug.Log("MenuController::SetFullScreen");
+
         SerializedDataManager.instance.configData.fullscreen = fullscreen;
         Screen.fullScreen = fullscreen;
     }
