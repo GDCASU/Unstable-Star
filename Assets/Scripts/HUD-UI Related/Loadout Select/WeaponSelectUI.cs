@@ -17,7 +17,6 @@ public class WeaponSelectUI : MonoBehaviour
         hoverAndLerps = new HoverAndLerp[weapons.Length];
         for (int i = 0; i < weapons.Length; i++)
         {
-            print(weapons[i].name);
             hoverAndLerps[i] = weapons[i].GetComponent<HoverAndLerp>();
         }
     }
@@ -44,7 +43,7 @@ public class WeaponSelectUI : MonoBehaviour
     {
         foreach(GameObject gun in weapons)
         {
-            if(gun.GetComponent<HoverAndLerp>().IsMouseOver())
+            if(gun.GetComponent<HoverAndLerp>().isHovered)
             {
                 return gun;
             }

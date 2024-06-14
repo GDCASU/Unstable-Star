@@ -3,9 +3,9 @@ using System.Collections;
 public class HoverAndLerp2 : MonoBehaviour
 {
     public float hoverHeight = 1f;
-    public float lerpSpeed = 5f;
+    public float lerpTime = 1f;
 
-    private bool isHovered = false;
+    public bool isHovered = false;
     private Vector3 originalPosition;
     [SerializeField] private Material blackout;
     public Material transDisk;
@@ -15,11 +15,27 @@ public class HoverAndLerp2 : MonoBehaviour
     private AbilitySelectUI WSUI;
     private Material initDiskMat;
     [SerializeField] private ScriptableAbility weapon = null;
+
+    private Coroutine lerpCoroutine;
+
     void Start()
     {
         WSUI = GetComponentInParent<AbilitySelectUI>();
         originalPosition = transform.position;
         initMAT = transform.GetChild(0).gameObject.GetComponent<Renderer>().material;
+        string disksAbilityName = weapon.name;
+        switch(disksAbilityName)
+        {
+            case "Player Phase Shift":
+                unlocked = SerializedDataManager.instance.gameData.isPhaseShiftUnlocked;
+                break;
+            case "Player Proximity Bomb":
+                unlocked = SerializedDataManager.instance.gameData.isProxiBombUnlocked;
+                break;
+            default:
+                print("Error with name of ability");
+                break;
+        }
         if (!unlocked)
         {
             initDiskMat = gameObject.GetComponent<Material>();
@@ -29,32 +45,12 @@ public class HoverAndLerp2 : MonoBehaviour
 
     void Update()
     {
-        if (IsMouseOver())
+        if (isHovered && unlocked)
         {
-            if (!isHovered)
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                isHovered = true;
-                StartCoroutine(LerpObject(transform.position, new Vector3(transform.position.x, hoverHeight, transform.position.z)));
-            }
-            if (isHovered)
-            {
-                if (unlocked)
-                {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
-                    {
 
-                        WSUI.CheckAbilityEquipLoad(this);
-
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (isHovered)
-            {
-                isHovered = false;
-                StartCoroutine(LerpObject(transform.position, originalPosition));
+                WSUI.CheckAbilityEquipLoad(this);
 
             }
         }
@@ -78,23 +74,32 @@ public class HoverAndLerp2 : MonoBehaviour
         selected = !selected;
 
     }
-    public bool IsMouseOver()
+
+    private void OnMouseEnter()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        return Physics.Raycast(ray, out hit) && hit.collider.gameObject == gameObject;
+        isHovered = true;
+        if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
+        lerpCoroutine = StartCoroutine(LerpObject(transform.position, new Vector3(originalPosition.x, hoverHeight, transform.position.z)));
+    }
+
+    private void OnMouseExit()
+    {
+        isHovered = false;
+        if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
+        lerpCoroutine = StartCoroutine(LerpObject(transform.position, originalPosition));
     }
 
     IEnumerator LerpObject(Vector3 start, Vector3 end)
     {
         float elapsedTime = 0f;
 
-        while (elapsedTime < 1f)
+        while (elapsedTime < lerpTime)
         {
-            transform.position = Vector3.Lerp(start, end, elapsedTime);
-            elapsedTime += Time.deltaTime * lerpSpeed;
+            transform.position = Vector3.Lerp(start, end, elapsedTime / lerpTime);
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
+        lerpCoroutine = null;
     }
 
     public ScriptableAbility GetScriptableWeapon()

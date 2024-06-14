@@ -1928,10 +1928,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1793519763}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 17.579956, y: 0}
+  m_SizeDelta: {x: -926, y: -668}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &836894665
 MonoBehaviour:
@@ -2089,7 +2089,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverHeight: 2.3
-  lerpSpeed: 6
+  lerpTime: 0.2
+  isHovered: 0
   blackout: {fileID: 4362962105363994262, guid: 1f90852975858d24d8d1ed07d423f7cc, type: 3}
   transDisk: {fileID: 2100000, guid: c51d9a56ae39aa341b7f464bcc49d94a, type: 2}
   selected: 0
@@ -2363,11 +2364,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1793519763}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -477.7, y: 0}
+  m_SizeDelta: {x: -924, y: -668}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1004266210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2693,7 +2694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1160070425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3160,7 +3161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverHeight: 2.15
-  lerpSpeed: 6
+  lerpTime: 0.2
+  isHovered: 0
   blackout: {fileID: 4362962105363994262, guid: 1f90852975858d24d8d1ed07d423f7cc, type: 3}
   transDisk: {fileID: 2100000, guid: c51d9a56ae39aa341b7f464bcc49d94a, type: 2}
   selected: 0
@@ -3189,7 +3191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverHeight: 2
-  lerpSpeed: 5
+  lerpTime: 0.2
+  isHovered: 0
   blackout: {fileID: 4362962105363994262, guid: 1f90852975858d24d8d1ed07d423f7cc, type: 3}
   transDisk: {fileID: 2100000, guid: c51d9a56ae39aa341b7f464bcc49d94a, type: 2}
   selected: 0
@@ -4056,7 +4059,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverHeight: 2.2
-  lerpSpeed: 5
+  lerpTime: 0.2
+  isHovered: 0
   blackout: {fileID: 4362962105363994262, guid: 1f90852975858d24d8d1ed07d423f7cc, type: 3}
   transDisk: {fileID: 2100000, guid: c51d9a56ae39aa341b7f464bcc49d94a, type: 2}
   selected: 0
@@ -4807,7 +4811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverHeight: 2.05
-  lerpSpeed: 6
+  lerpTime: 0.2
+  isHovered: 0
   blackout: {fileID: 4362962105363994262, guid: 1f90852975858d24d8d1ed07d423f7cc, type: 3}
   transDisk: {fileID: 2100000, guid: c51d9a56ae39aa341b7f464bcc49d94a, type: 2}
   selected: 0

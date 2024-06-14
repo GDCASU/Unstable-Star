@@ -47,7 +47,7 @@ public class AbilitySelectUI : MonoBehaviour
     {
         foreach (GameObject ability in abilities)
         {
-            if (ability.GetComponent<HoverAndLerp2>().IsMouseOver())
+            if (ability.GetComponent<HoverAndLerp2>().isHovered)
             {
                 return ability;
             }
