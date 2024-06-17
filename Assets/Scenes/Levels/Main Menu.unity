@@ -3711,6 +3711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookAroundFreedom: 6
+  lookAroundSensitivity: 3
   sliderIncrements: 10
   menuOptions:
   - {fileID: 1702179588}

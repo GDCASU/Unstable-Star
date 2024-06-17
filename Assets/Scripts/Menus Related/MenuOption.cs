@@ -70,6 +70,35 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
     }
 
     /// <summary>
+    /// Highlights this current option.
+    /// </summary>
+    public void HighlightOption()
+    {
+        audioSource.Play();
+        if (!inSubmenu)
+        {
+            transform.Rotate(new Vector3(0, 10, 0));
+            ttText.newText = optionName;
+        }
+
+        gameObject.AddComponent<GlowingItem>();
+    }
+
+    /// <summary>
+    /// Unhighlights this current option.
+    /// </summary>
+    public void UnhighlightOption()
+    {
+        if (!inSubmenu)
+        {
+            transform.rotation = defaultRotation;
+            ttText.newText = "Welcome";
+        }
+
+        gameObject.GetComponent<GlowingItem>()?.StopGlowing();
+    }
+
+    /// <summary>
     /// Puts the camera back to the original position.
     /// </summary>
     public void ResetCamera()
@@ -85,22 +114,12 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
     
     void OnMouseEnter()
     {
-        audioSource.Play();
-        if (!inSubmenu)
-        {
-            transform.Rotate(new Vector3(0, 10, 0));
-            ttText.newText = optionName;
-        }
+        HighlightOption();
     }
 
     void OnMouseExit()
     {
-        if (!inSubmenu)
-        {
-            transform.rotation = defaultRotation;
-            ttText.newText = "Welcome";
-        }
-            
+        UnhighlightOption();
     }
 
     IEnumerator MoveCamera(Vector3 targetPosition, Vector3 targetRotationEulerAngles, bool newInSub)

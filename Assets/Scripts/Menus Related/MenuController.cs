@@ -4,11 +4,13 @@
  */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public enum CurrentMenu
@@ -25,7 +27,11 @@ public class MenuManager : MonoBehaviour
 {
     [Header("Miscelaneous")]
     [SerializeField] [Range(0f,10f)] private float lookAroundFreedom;
-    [SerializeField] float sliderIncrements = 10;
+    [SerializeField] float lookAroundSensitivity = 1;       // How quickly the camera will move around due to the mouse.
+    Vector3 targetRotation;
+    Coroutine crtAngleCamera;
+
+    [SerializeField] float sliderIncrements = 10;           // Number of "increments" sliders are broken up into. How many times a user has to click in order for a slider to go from min to max.
 
     [Header("Screen Navigation References")]
     [SerializeField] MenuOption[] menuOptions;  // Credits paper stack and menu chair
@@ -136,6 +142,7 @@ public class MenuManager : MonoBehaviour
     {
         // Get camera rotation and position
         defaultCameraRotation = Camera.main.transform.eulerAngles;
+        targetRotation = defaultCameraRotation;
         defaultCameraPosition = Camera.main.transform.position;
 
         // Populate List of acts
@@ -203,21 +210,18 @@ public class MenuManager : MonoBehaviour
 
         // Subscribe to input system.
         PlayerInput.OnMenuNavigate += NavigateOptions;
+        PlayerInput.OnMousePoint += SetTargetRotation;
         PlayerInput.OnSubmit += SelectItem;
         PlayerInput.OnCancel += LoadPreviousMenu;
         PlayerInput.instance.ActivateUiControls();
 
         HighlightSelection();   // First selection should be highlighted.
+
+        crtAngleCamera = StartCoroutine(AngleTowardsTargetRotation());   // Enable camera movement
     }
 
     private void Update()
     {
-        // IAN: Update camera position for the look around effect
-        if (Camera.main.transform.position == defaultCameraPosition)
-        {
-            Camera.main.transform.eulerAngles = GetTargetRotation();
-        }
-
         // IAN HACK: This code is also here so the cheats can be rendered on the main menu without having to
         // reload the scene
         if (GameSettings.instance.areCheatsUnlocked)
@@ -234,6 +238,7 @@ public class MenuManager : MonoBehaviour
     {
         // Clean up events and reset input system to default.
         PlayerInput.OnMenuNavigate -= NavigateOptions;
+        PlayerInput.OnMousePoint -= SetTargetRotation;
         PlayerInput.OnSubmit -= SelectItem;
         PlayerInput.OnCancel -= LoadPreviousMenu;
         PlayerInput.instance.ActivateShipControls();
@@ -292,90 +297,6 @@ public class MenuManager : MonoBehaviour
         HighlightSelection();   // Ensure newly selected item is highlighted.
     }
 
-    void SelectItem()
-    {
-        SelectItem(0);
-    }
-
-    /// <summary>
-    /// Performs an action appropriate for whatever the currently
-    /// selected item is.
-    /// </summary>
-    void SelectItem(float sliderDir = 0)
-    {
-        if (printDebugs) Debug.Log("MenuController::SelectItem" +
-            "\nCurrent Menu: " + currentMenu +
-            "\nOptions Index: " + optionsIndex);
-
-        UnhighlightSelection(); // Some actions change the selected item.
-
-        // Regular option
-        if (optionsIndex < numOptions[currentMenu])
-        {
-            Button currentButton;
-            Toggle currentToggle;
-            Slider currentSlider;
-
-            switch (currentMenu)
-            {
-                case CurrentMenu.ObjectsSelection:
-                    menuOptions[optionsIndex].SelectOption();
-                    break;
-                case CurrentMenu.PrimaryOptions:
-                    currentButton = primaryOptions[optionsIndex].gameObject.GetComponent<Button>();
-                    currentButton.onClick.Invoke();
-                    break;
-                case CurrentMenu.Settings:
-                    currentButton = settingsOptions[optionsIndex].gameObject.GetComponent<Button>();
-                    currentButton.onClick.Invoke();
-                    break;
-                case CurrentMenu.Audio:
-                    currentButton = audioOptions[optionsIndex].gameObject.GetComponent<Button>();
-                    if(currentButton != null) currentButton.onClick.Invoke();
-
-                    currentToggle = audioOptions[optionsIndex].gameObject.GetComponent<Toggle>();
-                    if(currentToggle != null) currentToggle.isOn = !currentToggle.isOn;
-
-                    currentSlider = audioOptions[optionsIndex].gameObject.GetComponent<Slider>();
-                    if (currentSlider != null) currentSlider.value += sliderDir * ((currentSlider.maxValue - currentSlider.minValue) / sliderIncrements);
-
-                    break;
-                case CurrentMenu.Gameplay:
-                    currentButton = gameplayOptions[optionsIndex].gameObject.GetComponent<Button>();
-                    if (currentButton != null) currentButton.onClick.Invoke();
-
-                    currentToggle = gameplayOptions[optionsIndex].gameObject.GetComponent<Toggle>();
-                    if (currentToggle != null) currentToggle.isOn = !currentToggle.isOn;
-
-                    currentSlider = gameplayOptions[optionsIndex].gameObject.GetComponent<Slider>();
-                    if (currentSlider != null) currentSlider.value += sliderDir * ((currentSlider.maxValue - currentSlider.minValue) / sliderIncrements);
-
-                    break;
-                case CurrentMenu.Graphics:
-                    currentButton = graphicsOptions[optionsIndex].gameObject.GetComponent<Button>();
-                    if (currentButton != null) currentButton.onClick.Invoke();
-
-                    currentToggle = graphicsOptions[optionsIndex].gameObject.GetComponent<Toggle>();
-                    if (currentToggle != null) currentToggle.isOn = !currentToggle.isOn;
-
-                    currentSlider = graphicsOptions[optionsIndex].gameObject.GetComponent<Slider>();
-                    if (currentSlider != null) currentSlider.value += sliderDir * ((currentSlider.maxValue - currentSlider.minValue) / sliderIncrements);
-
-                    break;
-            }
-        }
-        // Act selection
-        else
-        {
-            int whichActArrow = (optionsIndex - numOptions[currentMenu]) % 2;     // will be either 0 or 1.
-
-            if (whichActArrow == 0) upConsoleButton.ClickButton();  // Up arrow
-            else downConsoleButton.ClickButton();  // Down arrow
-        }
-
-        HighlightSelection();   // Ensure newly selected item is highlighted.
-    }
-
     /// <summary>
     /// Handles the navigation of the main menu while not in the Object
     /// Selection phase.
@@ -384,6 +305,7 @@ public class MenuManager : MonoBehaviour
     void NavigateOptions(Vector2 dir)
     {
         if (printDebugs) Debug.Log("MenuController::NavigateOptions");
+        if (dir == Vector2.zero) return;    // No input.
 
         UnhighlightSelection(); // Can't have 2 items selected!
 
@@ -452,7 +374,7 @@ public class MenuManager : MonoBehaviour
             switch (currentMenu)
             {
                 case CurrentMenu.ObjectsSelection:
-                    menuOptions[optionsIndex].gameObject.GetComponent<GlowingItem>().StopGlowing();
+                    menuOptions[optionsIndex].UnhighlightOption();
                     break;
                 default:
                     EventSystem.current.SetSelectedGameObject(null);    // Deselects whatever UI is selected
@@ -494,10 +416,14 @@ public class MenuManager : MonoBehaviour
         // Regular option
         if (optionsIndex < numOptions[currentMenu])
         {
+            Vector3 screenPoint;
+
             switch (currentMenu)
             {
                 case CurrentMenu.ObjectsSelection:
-                    menuOptions[optionsIndex].gameObject.AddComponent<GlowingItem>();
+                    menuOptions[optionsIndex].HighlightOption();
+                    screenPoint = Camera.main.WorldToScreenPoint(menuOptions[optionsIndex].transform.position);
+                    SetTargetRotation(screenPoint);
                     break;
                 case CurrentMenu.PrimaryOptions:
                     primaryOptions[optionsIndex].Select();
@@ -531,7 +457,118 @@ public class MenuManager : MonoBehaviour
                 downConsoleButton.gameObject.AddComponent<GlowingItem>();  // Down arrow
                 downConsoleBtnLight.color = highlightedLightColor;
             }
+
+            // Make camera look
+            if (currentMenu == CurrentMenu.ObjectsSelection)
+            {
+                SetTargetRotation(new Vector2(2000, 2000));
+            }
         }
+    }
+
+    /// <summary>
+    /// Standard use for select item passing in a null for the sliderDir.
+    /// </summary>
+    void SelectItem()
+    {
+        SelectItem(null);
+    }
+
+    /// <summary>
+    /// Performs an action appropriate for whatever the currently
+    /// selected item is.
+    /// </summary>
+    void SelectItem(float? sliderDir)
+    {
+        if (printDebugs) Debug.Log("MenuController::SelectItem" +
+            "\nCurrent Menu: " + currentMenu +
+            "\nOptions Index: " + optionsIndex);
+
+        // Handle sliders.
+        if (sliderDir != null)
+        {
+            Slider currentSlider;
+
+            switch (currentMenu)
+            {
+                case CurrentMenu.Audio:
+                    currentSlider = audioOptions[optionsIndex].gameObject.GetComponent<Slider>();
+                    if (currentSlider != null) currentSlider.value += sliderDir.Value * ((currentSlider.maxValue - currentSlider.minValue) / sliderIncrements);
+
+                    break;
+                case CurrentMenu.Gameplay:
+                    currentSlider = gameplayOptions[optionsIndex].gameObject.GetComponent<Slider>();
+                    if (currentSlider != null) currentSlider.value += sliderDir.Value * ((currentSlider.maxValue - currentSlider.minValue) / sliderIncrements);
+
+                    break;
+                case CurrentMenu.Graphics:
+                    currentSlider = graphicsOptions[optionsIndex].gameObject.GetComponent<Slider>();
+                    if (currentSlider != null) currentSlider.value += sliderDir.Value * ((currentSlider.maxValue - currentSlider.minValue) / sliderIncrements);
+
+                    break;
+                default: break;
+            }
+
+            return;
+        }
+
+        UnhighlightSelection(); // Some actions change the selected item.
+
+        // Regular option
+        if (optionsIndex < numOptions[currentMenu])
+        {
+            Button currentButton;
+            Toggle currentToggle;
+
+            switch (currentMenu)
+            {
+                case CurrentMenu.ObjectsSelection:
+                    menuOptions[optionsIndex].SelectOption();
+                    break;
+                case CurrentMenu.PrimaryOptions:
+                    currentButton = primaryOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    currentButton.onClick.Invoke();
+                    break;
+                case CurrentMenu.Settings:
+                    currentButton = settingsOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    currentButton.onClick.Invoke();
+                    break;
+                case CurrentMenu.Audio:
+                    currentButton = audioOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    if (currentButton != null) currentButton.onClick.Invoke();
+
+                    currentToggle = audioOptions[optionsIndex].gameObject.GetComponent<Toggle>();
+                    if (currentToggle != null) currentToggle.isOn = !currentToggle.isOn;
+
+                    break;
+                case CurrentMenu.Gameplay:
+                    currentButton = gameplayOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    if (currentButton != null) currentButton.onClick.Invoke();
+
+                    currentToggle = gameplayOptions[optionsIndex].gameObject.GetComponent<Toggle>();
+                    if (currentToggle != null) currentToggle.isOn = !currentToggle.isOn;
+
+                    break;
+                case CurrentMenu.Graphics:
+                    currentButton = graphicsOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    if (currentButton != null) currentButton.onClick.Invoke();
+
+                    currentToggle = graphicsOptions[optionsIndex].gameObject.GetComponent<Toggle>();
+                    if (currentToggle != null) currentToggle.isOn = !currentToggle.isOn;
+
+                    break;
+            }
+        }
+        // Act selection
+        else
+        {
+            int whichActArrow = (optionsIndex - numOptions[currentMenu]) % 2;     // will be either 0 or 1.
+
+            if (whichActArrow == 0) upConsoleButton.ClickButton();  // Up arrow
+            else downConsoleButton.ClickButton();  // Down arrow
+        }
+
+        HighlightSelection();   // Ensure newly selected item is highlighted.
     }
 
     #endregion
@@ -745,14 +782,49 @@ public class MenuManager : MonoBehaviour
 
     #endregion
 
-    // Function used to make the camera move with the look around effect
-    public Vector3 GetTargetRotation()
+    /// <summary>
+    /// Finds the desired camera rotation based on mouse position.
+    /// </summary>
+    /// <param name="lookAtPosition">Position in screen space to look at.</param>
+    /// <returns>Desired rotation in Euler angles.</returns>
+    public void SetTargetRotation(Vector2 lookAtPosition)
     {
         // Get the mouse position
         float maxX = Screen.width;
         float midX = maxX / 2;
-        float mouseX = Mathf.Max(Mathf.Min(Input.mousePosition.x, maxX), 0);
+        float mouseX = Mathf.Max(Mathf.Min(lookAtPosition.x, maxX), 0);
         float rotation = lookAroundFreedom * Mathf.Sign(mouseX - midX) * Mathf.Pow(Mathf.Abs(((mouseX - midX) / midX)), 2);
-        return defaultCameraRotation + new Vector3(0f, rotation, 0f);
+        targetRotation = defaultCameraRotation + new Vector3(0f, rotation, 0f);
+
+        if (crtAngleCamera == null) StartCoroutine(AngleTowardsTargetRotation());
+    }
+
+    /// <summary>
+    /// Rotates the camera until its rotation matches the desired camera rotation.
+    /// </summary>
+    IEnumerator AngleTowardsTargetRotation()
+    {
+        while (true)
+        {
+            while (Camera.main.transform.eulerAngles != targetRotation)
+            {
+                float rotationDif = Math.Abs(Camera.main.transform.eulerAngles.y - targetRotation.y);   // Size of the rotation difference
+                float direction = Math.Sign(targetRotation.y - Camera.main.transform.eulerAngles.y);    // Direction of the rotation difference
+                float amntToRot = lookAroundSensitivity * Time.deltaTime;                               // Amount to rotate this frame
+
+                // Rotate based on speed
+                if (amntToRot < rotationDif) 
+                    Camera.main.transform.eulerAngles = new Vector3(
+                        defaultCameraRotation.x, 
+                        Camera.main.transform.eulerAngles.y + amntToRot * direction, 
+                        defaultCameraRotation.z);
+                // Rotate rest of distance (less rotation than if went by speed)
+                else Camera.main.transform.eulerAngles = targetRotation;
+
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
