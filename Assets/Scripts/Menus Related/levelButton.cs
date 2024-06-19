@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -11,10 +9,11 @@ public class levelButton : MonoBehaviour
     
     void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            // Invoke event on button pressed
-            ButtonPressed?.Invoke();
-        }
+        if (Input.GetMouseButtonDown(0)) ClickButton();
+    }
+
+    public void ClickButton()
+    {
+        ButtonPressed?.Invoke();
     }
 }

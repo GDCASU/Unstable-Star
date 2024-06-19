@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class GlowingItem : MonoBehaviour
 {
+    [SerializeField] Color glowingColor;
     Material glowingMaterial;
     MeshRenderer[] mRenderers;
-
-    [Header("Debugging")]
-    [SerializeField] bool printDebug = false;
-    [SerializeField] bool glowAtStart = false;
 
     private void Awake()
     {
         Shader shader = Shader.Find("Unlit/SFX/PulsingEffect");
         glowingMaterial = new Material(shader);
+
+        if(glowingColor != null ) glowingMaterial.color = glowingColor;
     }
 
     private void Start()
     {
         mRenderers = GetComponentsInChildren<MeshRenderer>();
 
-        if (glowAtStart) StartGlowing();
+        StartGlowing();
     }
 
     /// <summary>
@@ -29,7 +28,8 @@ public class GlowingItem : MonoBehaviour
     /// </summary>
     public void StartGlowing()
     {
-        foreach (MeshRenderer mRenderer in mRenderers) {
+        foreach (MeshRenderer mRenderer in mRenderers)
+        {
             List<Material> materials = new List<Material>(mRenderer.sharedMaterials);
             materials.Add(glowingMaterial);
             mRenderer.SetMaterials(materials);
@@ -37,7 +37,7 @@ public class GlowingItem : MonoBehaviour
     }
 
     /// <summary>
-    /// Makes the item stop glowing and resets the material.
+    /// Makes the item stop glowing and destroys this component.
     /// </summary>
     public void StopGlowing()
     {
@@ -47,5 +47,7 @@ public class GlowingItem : MonoBehaviour
             materials.Remove(glowingMaterial);
             mRenderer.SetMaterials(materials);
         }
+
+        Destroy(this);
     }
 }

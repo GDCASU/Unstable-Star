@@ -6,6 +6,9 @@ using TMPro;
 
 public class MenuOption : MonoBehaviour // changes behaviours of options part of menu
 {
+    [Header("References")]
+    [SerializeField] MenuManager menuManager;
+
     public string optionName;
     public bool subMenu;
     public Vector3 cameraPos;
@@ -46,32 +49,30 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
     {
         if (Input.GetMouseButtonDown(1) && inSubmenu) // Detect right click 
         {
-            if (moveCoroutine != null)
-                StopCoroutine(moveCoroutine);
-            //if (rotationCoroutine != null)
-            //StopCoroutine(rotationCoroutine);
             ttText.newText = "Welcome";
-            moveCoroutine = StartCoroutine(MoveCamera(defaultCameraPos, defaultCameraRotation, false));
-            //moveCoroutine = StartCoroutine(moveCameraPos(MenuManager.defaultCameraPosition));
-            //rotationCoroutine = StartCoroutine(moveCameraRotBack());
+            ResetCamera();
         }
 
     }
 
-    void OnMouseDown()
+    /// <summary>
+    /// Activates this current option.
+    /// </summary>
+    public void SelectOption()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (optionName == "Credits") ScenesManager.instance.LoadScene(Scenes.Credits);
+        if (optionName == "Credits") ScenesManager.instance.LoadScene(Scenes.Credits);
 
-            if (moveCoroutine != null)
-                StopCoroutine(moveCoroutine);
-            moveCoroutine = StartCoroutine(MoveCamera(cameraPos, cameraRotation, true));
-            inSubmenu = true;
-        }
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+        moveCoroutine = StartCoroutine(MoveCamera(cameraPos, cameraRotation, true));
+        inSubmenu = true;
+        menuManager.SetCurrentMenu(CurrentMenu.PrimaryOptions);
     }
-    
-    void OnMouseEnter()
+
+    /// <summary>
+    /// Highlights this current option.
+    /// </summary>
+    public void HighlightOption()
     {
         audioSource.Play();
         if (!inSubmenu)
@@ -79,17 +80,46 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
             transform.Rotate(new Vector3(0, 10, 0));
             ttText.newText = optionName;
         }
+
+        gameObject.AddComponent<GlowingItem>();
     }
 
-    void OnMouseExit()
+    /// <summary>
+    /// Unhighlights this current option.
+    /// </summary>
+    public void UnhighlightOption()
     {
         if (!inSubmenu)
         {
             transform.rotation = defaultRotation;
-            //transform.Rotate(new Vector3(0, -10, 0));
             ttText.newText = "Welcome";
         }
-            
+
+        gameObject.GetComponent<GlowingItem>()?.StopGlowing();
+    }
+
+    /// <summary>
+    /// Puts the camera back to the original position.
+    /// </summary>
+    public void ResetCamera()
+    {
+        if (moveCoroutine != null) StopCoroutine(moveCoroutine);
+        moveCoroutine = StartCoroutine(MoveCamera(defaultCameraPos, defaultCameraRotation, false));
+    }
+
+    void OnMouseDown()
+    {
+        if (Input.GetMouseButtonDown(0)) SelectOption();
+    }
+    
+    void OnMouseEnter()
+    {
+        HighlightOption();
+    }
+
+    void OnMouseExit()
+    {
+        UnhighlightOption();
     }
 
     IEnumerator MoveCamera(Vector3 targetPosition, Vector3 targetRotationEulerAngles, bool newInSub)
@@ -98,9 +128,6 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
 
         Vector3 initialPosition = Camera.main.transform.position;
         Quaternion initialRotation = Camera.main.transform.rotation;
-
-        // Debug.Log("INIT: " + initialPosition + "  " + initialRotation.eulerAngles);
-        // Debug.Log("TARGET: " + targetPosition + "  " + targetRotationEulerAngles);
 
         float journeyLengthPos = Vector3.Distance(initialPosition, targetPosition);
         float journeyLengthRot = Quaternion.Angle(initialRotation, Quaternion.Euler(targetRotationEulerAngles));

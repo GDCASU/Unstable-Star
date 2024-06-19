@@ -101,6 +101,7 @@ public class PlayerInput : MonoBehaviour
     #region UI EVENTS
 
     public static event System.Action<Vector2> OnMenuNavigate;
+    public static event System.Action<Vector2> OnMousePoint;
     public static event System.Action OnSubmit;
     public static event System.Action OnClick;
     public static event System.Action OnCancel;
@@ -108,8 +109,10 @@ public class PlayerInput : MonoBehaviour
     void BindBasicUiEvents()
     {
         playerControls.UI.Navigate.performed += i => OnMenuNavigate?.Invoke(i.ReadValue<Vector2>());
+        playerControls.UI.Point.performed += i => OnMousePoint?.Invoke(i.ReadValue<Vector2>());
 
         playerControls.UI.Cancel.started += i => OnCancel?.Invoke();
+        playerControls.UI.Submit.started += i => OnSubmit?.Invoke();
     }
 
     #endregion
