@@ -36,7 +36,7 @@ public class AbilityComponent : MonoBehaviour
         if (inputAbility.isOnCooldown) return;
         
         // Else, determine what ability type it is and call its function
-        switch(inputAbility.behaviour)
+        switch(inputAbility.abilityType)
         {
             case AbilityTypes.PhaseShift:
                 // Phase Shift should be blocked while on iFrames

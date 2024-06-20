@@ -7,15 +7,13 @@ public enum Scenes
 {
     IntroLoadingScreen, // 0
     MainMenu,           // 1
-    Weapon_Select_1,    // 2
+    Loadout_Select,     // 2
     CutScene_1,         // 3
     Level_1,            // 4
-    CutScene_2,         
-    Weapon_Select_2,    
+    CutScene_2,           
     CutScene_3,
     Level_2,
     CutScene_4,
-    Weapon_Select_3,
     CutScene_5,
     CutScene_6,
     Level_3,
@@ -34,6 +32,9 @@ public class ScenesManager : MonoBehaviour
     public static int currentScene { get; private set; }
     public static int currentLevel = 1;
     private Dictionary<Scenes, bool> unlockedScenes;
+
+    // Ian: Stores the target scene after the weapon select is finished
+    public Scenes nextSceneAfterWeaponSelect;
 
     private void Awake()
     {
@@ -68,9 +69,7 @@ public class ScenesManager : MonoBehaviour
             { Scenes.CutScene_4, false },
             { Scenes.CutScene_5, false },
             { Scenes.CutScene_6, false },
-            { Scenes.Weapon_Select_1, true },
-            { Scenes.Weapon_Select_2, false },
-            { Scenes.Weapon_Select_3, false },
+            { Scenes.Loadout_Select, true },
             { Scenes.Level_1, true },
             { Scenes.Level_2, true },
             { Scenes.Level_3, false },
@@ -126,48 +125,4 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene(currentScene);
     }
 
-    public void UnlockScene(Scenes scene)
-    {
-        if (!unlockedScenes.ContainsKey(scene))
-        {
-            Debug.LogError("Error: Scene does not exist");
-            return;
-        }
-
-        unlockedScenes[scene] = true;
-    }
-
-    public void LoadLevel(int level)
-    {
-        switch (level)
-        {
-            case 1:
-                LoadScene(Scenes.Weapon_Select_1);
-                break;
-            case 2:
-                LoadScene(Scenes.Weapon_Select_2);
-                break;
-            case 3:
-                LoadScene(Scenes.Weapon_Select_3);
-                break;
-            default:
-                Debug.LogError("Error: Level does not exist");
-                break;
-        }
-    }
-
-    public bool CheckLevel(int level)
-    {
-        switch (level)
-        {
-            case 1:
-                return CheckScene(Scenes.CutScene_1);
-            case 2:
-                return CheckScene(Scenes.CutScene_3);
-            case 3:
-                return CheckScene(Scenes.CutScene_4);
-            default:
-                return false;
-        }
-    }
 }

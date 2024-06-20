@@ -958,7 +958,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 79251332632088223, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
   m_PrefabInstance: {fileID: 1224360488}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1224360490}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e3a5933c257fab42a19d161bb794b45, type: 3}

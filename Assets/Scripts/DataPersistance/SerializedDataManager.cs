@@ -12,9 +12,6 @@ public class SerializedDataManager : MonoBehaviour
     // Singleton
     public static SerializedDataManager instance { get; private set;}
 
-    // Has loaded event
-    public static event System.Action LoadingFinished;
-
     // Event that will be raised telling objects to start saving if the application is quit
     public static event System.Action StartSavingEvent;
 
@@ -44,24 +41,11 @@ public class SerializedDataManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-    }
 
-    private void Start()
-    {
         // Load Data
-        StartCoroutine(AsyncLoading());
-    }
-
-    /// <summary>
-    /// Will load game data asynchronosuly
-    /// </summary>
-    private IEnumerator AsyncLoading()
-    {
         fileDataHandler = new FileDataHandler(saveFolderName, saveFileName, configFileName);
         LoadGame();
         hasLoaded = true;
-        LoadingFinished?.Invoke();
-        yield break;
     }
 
     public void NewGame()

@@ -3677,7 +3677,7 @@ GameObject:
   - component: {fileID: 543241043}
   - component: {fileID: 543241044}
   m_Layer: 0
-  m_Name: MenuManager
+  m_Name: Menu Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8390,15 +8390,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255832335}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.10938163, y: 0.8754261, z: -0.40821788, w: 0.23456968}
+  m_LocalPosition: {x: 2.3168, y: 3.3699, z: -5.6993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1529099943}
   - {fileID: 1050208896}
   - {fileID: 981017809}
-  m_Father: {fileID: 2046032606}
+  m_Father: {fileID: 1569676863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1290557847
 GameObject:
@@ -10743,6 +10743,7 @@ RectTransform:
   m_Children:
   - {fileID: 1559937317}
   - {fileID: 1290557848}
+  - {fileID: 1255832336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12049,7 +12050,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2046032606}
   m_Layer: 0
-  m_Name: Menu Cockpit
+  m_Name: Menu Cockpit Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12074,7 +12075,6 @@ Transform:
   - {fileID: 126739767}
   - {fileID: 705507995}
   - {fileID: 1337504123}
-  - {fileID: 1255832336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2062427975
