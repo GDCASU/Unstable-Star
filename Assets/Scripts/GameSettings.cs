@@ -34,9 +34,14 @@ public class GameSettings : MonoBehaviour, IDataPersistance
             return;
         }
 
-        // Subscribe to loading and saving events
-        SerializedDataManager.LoadingFinished += LoadData;
+        // Subscribe to saving events
         SerializedDataManager.StartSavingEvent += SaveData;
+    }
+
+    private void Start()
+    {
+        // Load Data
+        LoadData();
     }
 
     public void SaveData()
@@ -75,9 +80,6 @@ public class GameSettings : MonoBehaviour, IDataPersistance
 
         if (confineCursor)
             ConfineCursor(confineCursor);
-
-        // Unsubscribe from events
-        SerializedDataManager.LoadingFinished -= LoadData;
     }
 
     /// <summary>

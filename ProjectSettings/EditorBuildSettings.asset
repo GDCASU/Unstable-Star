@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Main Menu.unity
     guid: b7bd3fee91070684eaa600fa842aa55c
   - enabled: 1
-    path: Assets/Scenes/Levels/Weapon Select/WeaponSelect1.unity
-    guid: 98acc68fe62ad834db2c16896d4c5aee
+    path: Assets/Scenes/Levels/Weapon Select/Loadout Select.unity
+    guid: 6adc0dc996a49d34c843b4dbc6e873d9
   - enabled: 1
     path: Assets/Scenes/Levels/Dialogue/Act One/CutScene_1.unity
     guid: 5e84de4daa9c1f04bac73ae0059f8a0d
@@ -24,9 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Dialogue/Act One/CutScene_2.unity
     guid: 9c1b0b09b1fabb54a90d5f67e20a57ec
   - enabled: 1
-    path: Assets/Scenes/Levels/Weapon Select/WeaponSelect2.unity
-    guid: 7e421a6152a5dd04f938656972f7a1e5
-  - enabled: 1
     path: Assets/Scenes/Levels/Dialogue/Act Two/CutScene_3.unity
     guid: 483559fa3e6ad46498175314a0d34b21
   - enabled: 1
@@ -35,9 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Dialogue/Act Two/CutScene_4.unity
     guid: 3919080a5eae7d64f977d517b133707c
-  - enabled: 1
-    path: Assets/Scenes/Levels/Weapon Select/WeaponSelect3.unity
-    guid: 8fe58d4f24b8dd7458aa996109f233fd
   - enabled: 1
     path: Assets/Scenes/Levels/Dialogue/Act Three/CutScene_5.unity
     guid: fd0b8c747a27796409892aea8d36d8e5

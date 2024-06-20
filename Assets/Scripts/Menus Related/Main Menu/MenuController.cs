@@ -153,17 +153,17 @@ public class MenuManager : MonoBehaviour
 
         // ACT 1
         bool isAct1Completed = SerializedDataManager.instance.gameData.isAct1Complete;
-        GameAct act1 = new GameAct("ACT 1", true, isAct1Completed, Scenes.Weapon_Select_1);
+        GameAct act1 = new GameAct("ACT 1", true, isAct1Completed, Scenes.CutScene_1);
 
         // ACT 2
         bool isAct2Unlocked = SerializedDataManager.instance.gameData.isAct2Unlocked;
         bool isAct2Completed = SerializedDataManager.instance.gameData.isAct2Complete;
-        GameAct act2 = new GameAct("ACT 2", isAct2Unlocked, isAct2Completed, Scenes.Weapon_Select_2);
+        GameAct act2 = new GameAct("ACT 2", isAct2Unlocked, isAct2Completed, Scenes.CutScene_2);
 
         // ACT 3
         bool isAct3Unlocked = SerializedDataManager.instance.gameData.isAct3Unlocked;
         bool isAct3Completed = SerializedDataManager.instance.gameData.isAct3Complete;
-        GameAct act3 = new GameAct("ACT 3", isAct3Unlocked, isAct3Completed, Scenes.Weapon_Select_3);
+        GameAct act3 = new GameAct("ACT 3", isAct3Unlocked, isAct3Completed, Scenes.CutScene_4);
 
         // Add them to the list
         ActList.Add(act1);
@@ -592,8 +592,8 @@ public class MenuManager : MonoBehaviour
             return;
         }
         // Else, load the scene
-        Scenes selectedScene = ActList[currentActIndex].sceneEnumValue;
-        ScenesManager.instance.LoadScene(selectedScene);
+        ScenesManager.instance.nextSceneAfterWeaponSelect = ActList[currentActIndex].sceneEnumValue;
+        ScenesManager.instance.LoadScene(Scenes.Loadout_Select);
     }
 
     public void LoadCredits()

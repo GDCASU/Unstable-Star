@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponScreens : MonoBehaviour
+public class OldWeaponScreens : MonoBehaviour
 {
     [SerializeField] private WeaponSelectUI WSUI;
     private GameObject gunselected;

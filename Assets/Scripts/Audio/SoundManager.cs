@@ -84,9 +84,14 @@ public class SoundManager : MonoBehaviour, IDataPersistance
         previousMusicVolume = musicVolumeVal;
         previousSFXVolume = sfxVolumeVal;
 
-        // Subscribe to loading and saving events
-        SerializedDataManager.LoadingFinished += LoadData;
+        // Subscribe to saving events
         SerializedDataManager.StartSavingEvent += SaveData;
+    }
+
+    private void Start()
+    {
+        // Load Stored configs
+        LoadData();
     }
 
     // Debugging
@@ -101,9 +106,6 @@ public class SoundManager : MonoBehaviour, IDataPersistance
 
     public void LoadData()
     {
-        // Loading finished, unsubscribe from event
-        SerializedDataManager.LoadingFinished -= LoadData;
-
         // Load volume data from save file
         currentMasterVolumeVal = SerializedDataManager.instance.configData.masterVolumeValue;
         currentSFXVolumeValue = SerializedDataManager.instance.configData.sfxVolumeValue;

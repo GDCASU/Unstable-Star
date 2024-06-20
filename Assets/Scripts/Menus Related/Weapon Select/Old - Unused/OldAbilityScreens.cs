@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilityScreens: MonoBehaviour
+public class OldAbilityScreens: MonoBehaviour
 {
     [SerializeField] private AbilitySelectUI WSUI;
     private GameObject abilselected;
