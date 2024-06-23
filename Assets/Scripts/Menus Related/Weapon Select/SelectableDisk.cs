@@ -34,6 +34,8 @@ public class SelectableDisk : MonoBehaviour
     private Weapon diskWeapon;
     private Ability diskAbility;
 
+    #region Unity Events
+
     private void Awake()
     {
         // Set fields
@@ -43,31 +45,41 @@ public class SelectableDisk : MonoBehaviour
         _isSelected = false;
         _isUnlocked = false;
         _endPos = transform.position + _loadoutController.hoverHeight * transform.up;
+
+        
     }
 
     private void Start()
     {
-        // Check if passed scriptable object is unlocked or not
-        switch (_loadoutType)
-        {
-            case LoadoutType.Weapon:
-                // Check for weapon unlocked
-                IsWeaponUnlocked();
-                break;
-
-            case LoadoutType.Ability:
-                // Check for ability unlocked
-                IsAbilityUnlocked();
-                break;
-
-            default:
-                Debug.Log("<color=red> ERROR: Loadout Type not found at SelectableDisk::Start on GameObject = " + gameObject.name + "</color>");
-                break;
-        }
+        IsDiskUnlocked();
     }
 
     // Will trigger when the mouse hovers over its collider
     private void OnMouseEnter()
+    {
+        Highlight();
+    }
+
+    // Will trigger when the mouse stops hovering over its collider
+    private void OnMouseExit()
+    {
+        Unhighlight();
+    }
+
+    // Will trigger when the mouse clicks while over its collider
+    private void OnMouseDown()
+    {
+        Activate();
+    }
+
+    #endregion
+
+    #region Navigation
+
+    /// <summary>
+    /// Makes it clear to the user which disk is currently being looked at.
+    /// </summary>
+    public void Highlight()
     {
         // Dont do anything if locked
         if (!_isUnlocked) return;
@@ -93,9 +105,10 @@ public class SelectableDisk : MonoBehaviour
         }
     }
 
-    // Will trigger when the mouse stops hovering over its collider
-    private void OnMouseExit()
-    {
+    /// <summary>
+    /// Removes changes made by the Highlight function.
+    /// </summary>
+    public void Unhighlight() {
         // Dont do anything if locked
         if (!_isUnlocked) return;
 
@@ -120,8 +133,10 @@ public class SelectableDisk : MonoBehaviour
         }
     }
 
-    // Will trigger when the mouse clicks while over its collider
-    private void OnMouseDown()
+    /// <summary>
+    /// Performs the action of this item.
+    /// </summary>
+    public void Activate()
     {
         // Dont do anything if locked
         if (!_isUnlocked) return;
@@ -142,6 +157,8 @@ public class SelectableDisk : MonoBehaviour
                 return;
         }
     }
+
+    #endregion
 
     /// <summary>
     /// Will attempt to add/Remove the weapon disk that was clicked
@@ -212,9 +229,32 @@ public class SelectableDisk : MonoBehaviour
     }
 
     /// <summary>
+    /// Checks if the disk is unlocked.
+    /// </summary>
+    /// <returns>Whether the disk is unlocked or not.</returns>
+    public bool IsDiskUnlocked()
+    {
+        // Check if passed scriptable object is unlocked or not
+        switch (_loadoutType)
+        {
+            case LoadoutType.Weapon:
+                // Check for weapon unlocked
+                return IsWeaponUnlocked();
+
+            case LoadoutType.Ability:
+                // Check for ability unlocked
+                return IsAbilityUnlocked();
+
+            default:
+                Debug.Log("<color=red> ERROR: Loadout Type not found at SelectableDisk::Start on GameObject = " + gameObject.name + "</color>");
+                return false;
+        }
+    }
+
+    /// <summary>
     /// Checks if the weapon passed is unlocked
     /// </summary>
-    private void IsWeaponUnlocked()
+    private bool IsWeaponUnlocked()
     {
         // Its a weapon, first cast the scriptable object
         ScriptableWeapon scriptWeapon = (ScriptableWeapon)_loadoutObject;
@@ -247,7 +287,7 @@ public class SelectableDisk : MonoBehaviour
             default:
                 // Weapon wasnt found on file or isnt implemented
                 Debug.Log("<color=red> ERROR: Weapon type not found on SelectableDisk::isWeaponUnlocked on GameObject = " + gameObject.name + "</color>");
-                return;
+                return false;
         }
 
         // Set the material to transparent if not unlocked
@@ -258,12 +298,14 @@ public class SelectableDisk : MonoBehaviour
 
         // Set the weapon field to the extracted weapon
         diskWeapon = weapon;
+
+        return _isUnlocked;
     }
 
     /// <summary>
     /// Checks if the ability passed is unlocked
     /// </summary>
-    private void IsAbilityUnlocked()
+    private bool IsAbilityUnlocked()
     {
         // Its an ability, first cast the scriptable object
         ScriptableAbility scriptAbility = (ScriptableAbility)_loadoutObject;
@@ -284,7 +326,7 @@ public class SelectableDisk : MonoBehaviour
             default:
                 // Ability wasnt found on file or isnt implemented
                 Debug.Log("<color=red> ERROR: Ability type not found on SelectableDisk::isAbilityUnlocked on GameObject = " + gameObject.name + "</color>");
-                return;
+                return false;
         }
 
         // Set the material to transparent if not unlocked
@@ -295,6 +337,8 @@ public class SelectableDisk : MonoBehaviour
 
         // Set the ability field to the extracted weapon
         diskAbility = ability;
+
+        return _isUnlocked;
     }
 
     private IEnumerator HoverDisk(Vector3 targetPos)

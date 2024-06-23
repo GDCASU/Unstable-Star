@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
@@ -14,6 +15,7 @@ public class LoadoutSelectController : MonoBehaviour
     [SerializeField] private Transform abilityCameraPoint;
     [SerializeField] private GameObject buttonToAbilities;
     [SerializeField] private GameObject buttonToWeapons;
+    [SerializeField] Button btnLaunch;
     [SerializeField] private float cameraMoveDuration;
 
     [Header("Global Disks Settings")]
@@ -28,16 +30,62 @@ public class LoadoutSelectController : MonoBehaviour
     public WeaponScreens weaponScreens;
     public AbilityScreens abilityScreens;
 
+    [Header("Disks")]
+    [SerializeField] List<SelectableDisk> weaponDisks;
+    [SerializeField] List<SelectableDisk> abilityDisks;
+    public List<SelectableDisk> currentDisks
+    {
+        get { return (inWeapons ? weaponDisks : abilityDisks); }
+    }
+    public int currentSelectionSize
+    {
+        get { return currentDisks.Count + 2; }
+    }
+    int currentSelection = 0;
+    bool inWeapons = true;  // When false, in the abilities screen.
+
+    [Header("Debugging")]
+    [SerializeField] bool printDebugs = false;
+
     // Local fields
     private Coroutine warningTextFadeRoutine;
 
+    #region Unity Events
 
     private void Start()
     {
         // Clear the player's Inventory before loading in
         WeaponArsenal.instance.ClearWeaponArsenal();
         AbilityInventory.instance.ClearAbilityInventory();
+
+        // Correct for locked disks.
+        for(int i = 0; i < weaponDisks.Count; i++)
+        {
+            if (!weaponDisks[i].IsDiskUnlocked()) weaponDisks.RemoveAt(i--);
+        }
+
+        for (int i = 0; i < abilityDisks.Count; i++)
+        {
+            if (!abilityDisks[i].IsDiskUnlocked()) abilityDisks.RemoveAt(i--);
+        }
+
+        // Attach to controls
+        PlayerInput.OnMenuNavigate += Navigate;
+        PlayerInput.OnSubmit += Select;
+        PlayerInput.instance.ActivateUiControls();
+
+        HighlightSelection();
     }
+
+    private void OnDestroy()
+    {
+        // Remove hooks
+        PlayerInput.OnMenuNavigate -= Navigate;
+        PlayerInput.OnSubmit -= Select;
+        PlayerInput.instance.ActivateShipControls();
+    }
+
+    #endregion
 
     /// <summary>
     /// Function used by the launch button to go into the next scene 
@@ -61,7 +109,6 @@ public class LoadoutSelectController : MonoBehaviour
     /// <summary>
     /// Coroutine used to fade the warning text if issued
     /// </summary>
-    /// <returns></returns>
     private IEnumerator WarningTextFade()
     {
         float percentageComplete = 0;
@@ -85,6 +132,101 @@ public class LoadoutSelectController : MonoBehaviour
             yield return null;
         }
     }
+
+    #region Navigation
+
+    /// <summary>
+    /// Navigates through the menu.
+    /// </summary>
+    /// <param name="dir">Direction to navigate.</param>
+    void Navigate(Vector2 dir)
+    {
+        UnhighlightSelection();
+
+        // Increment
+        if (dir.y > 0)
+        {
+            currentSelection = (currentSelection + 1) % currentSelectionSize;
+        }
+        // Decrement
+        else if(dir.y < 0)
+        {
+            currentSelection--;
+            if(currentSelection < 0) currentSelection = currentSelectionSize - 1;
+        }
+
+        HighlightSelection();
+    }
+
+    /// <summary>
+    /// Activates the currently selected item.
+    /// </summary>
+    void Select()
+    {
+        UnhighlightSelection();
+
+        // Not a disk
+        if (currentSelection >= currentSelectionSize - 2)
+        {
+            // Arrow
+            if (currentSelection - currentDisks.Count == 0)
+            {
+                if (inWeapons)
+                {
+                    buttonToAbilities.GetComponent<Button>().onClick?.Invoke();
+                    inWeapons = false;
+                }
+                else
+                {
+                    buttonToWeapons.GetComponent<Button>().onClick?.Invoke();
+                    inWeapons = true;
+                }
+            }
+            else if (currentSelection - currentDisks.Count == 1) btnLaunch.onClick?.Invoke();    // Launch button
+        }
+        // Disk
+        else currentDisks[currentSelection].Activate();
+
+        HighlightSelection();
+    }
+
+    /// <summary>
+    /// Makes the currently selected item more visible to the user.
+    /// </summary>
+    void HighlightSelection()
+    {
+        if (printDebugs) Debug.Log("LoadoutSelectController::HighlightSelection" +
+            "\nCurrent Selection: " + currentSelection +
+            "\nCurrent Selection Size: " + currentSelectionSize +
+            "\nCurrent Disk Count: " + currentDisks.Count);
+
+        // Not a disk
+        if (currentSelection >= currentSelectionSize - 2)
+        {
+            // Arrow
+            if (currentSelection - currentDisks.Count == 0)
+            {
+                if (printDebugs) Debug.Log("LoadoutSelectController::HighlightSelection::HighlightArrow");
+
+                if (inWeapons) buttonToAbilities.GetComponent<Button>().Select();
+                else buttonToWeapons.GetComponent<Button>().Select();
+            }
+            else if (currentSelection - currentDisks.Count == 1) btnLaunch.Select();    // Launch button
+        }
+        // Disk
+        else currentDisks[currentSelection].Highlight();
+    }
+
+    /// <summary>
+    /// Reverts the changes made to the currently selected item from HighlightSelection.
+    /// </summary>
+    void UnhighlightSelection()
+    {
+        if (currentSelection >= currentSelectionSize - 2) EventSystem.current.SetSelectedGameObject(null);  // Not a disk
+        else currentDisks[currentSelection].Unhighlight();  // Disk
+    }
+
+    #endregion
 
     #region Camera Movement
 

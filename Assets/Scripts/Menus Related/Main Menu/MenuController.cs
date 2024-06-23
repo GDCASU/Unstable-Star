@@ -1,8 +1,3 @@
-/*
- * Note from Aaron
- *      I had to stop 
- */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
