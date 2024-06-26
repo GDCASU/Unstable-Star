@@ -295,7 +295,16 @@ public class SoundManager : MonoBehaviour, IDataPersistance
     /// <summary> Stop all sounds playing </summary>
     public void StopAllSounds()
     {
-        throw new System.NotImplementedException();
+        // IAN HACK: Should find a way to stop all, not pause them, but will do for now
+        FMODUnity.RuntimeManager.PauseAllEvents(paused: true);
+    }
+
+    /// <summary>
+    /// Stops all sounds under the SFX category
+    /// </summary>
+    public void StopAllSFXSounds()
+    {
+        soundLibrary.SFXBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
 }

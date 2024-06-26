@@ -16,6 +16,7 @@ MonoBehaviour:
   musicBus: Music
   sfxBus: SFX
   onLevelCombatPath: SFX/OnLevelCombat
+  SFXPath: SFX
   _tempRayGunShot:
     Guid:
       Data1: -1179885932

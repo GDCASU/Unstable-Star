@@ -24,9 +24,11 @@ public class SoundLibrary : ScriptableObject
     // Bus Groups allows us to do apply changes to a group of sound effects if playing
     [Header("Group Bus Names")]
     [SerializeField] private string onLevelCombatPath;
+    [SerializeField] private string SFXPath;
 
     // Bus variables
     public FMOD.Studio.Bus onLevelCombatBus { get; private set; }
+    public FMOD.Studio.Bus SFXBus { get; private set; }
 
 
     // FMOD Sound References: assign these on the inspector
@@ -95,6 +97,7 @@ public class SoundLibrary : ScriptableObject
     {
         // Fetch Group Buses
         onLevelCombatBus = FMODUnity.RuntimeManager.GetBus("bus:/" + onLevelCombatPath);
+        SFXBus = FMODUnity.RuntimeManager.GetBus("bus:/" + SFXPath);
 
         // TESTING EFFECTS
         TempRayGunShot = _tempRayGunShot;
@@ -132,7 +135,7 @@ public class SoundLibrary : ScriptableObject
 
     // FIXME: Most of these are stored on their scriptable objects, is it necessary to place them here?
 
-}
+    }
 
 }
 
