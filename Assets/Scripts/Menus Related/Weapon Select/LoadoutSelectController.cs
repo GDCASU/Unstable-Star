@@ -96,7 +96,7 @@ public class LoadoutSelectController : MonoBehaviour
         if (!WeaponArsenal.instance.IsWeaponArsenalEmpty())
         {
             // Not empty, go into next scene
-            ScenesManager.instance.LoadScene(ScenesManager.instance.nextSceneAfterWeaponSelect);
+            ScenesManager.instance.LoadNextScene();
         }
         else
         {
