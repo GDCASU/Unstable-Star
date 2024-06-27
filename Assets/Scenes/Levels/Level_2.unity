@@ -531,17 +531,6 @@ Transform:
   - {fileID: 705507995}
   m_Father: {fileID: 1159033017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &884139303 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 79251332632088223, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
-  m_PrefabInstance: {fileID: 5320361968160433058}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3a5933c257fab42a19d161bb794b45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &900082604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6033440294947302853, guid: 34006a0ec5964ae49a1fb138ce23d402, type: 3}
@@ -846,6 +835,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5727506257417102081, guid: ac63f42248b2fa5479e51bec678ba1ef, type: 3}
+      propertyPath: deathEffectPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8412255195681629295, guid: ac63f42248b2fa5479e51bec678ba1ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.381114
@@ -902,6 +895,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174f7322fb15b5f45a2ae8f28ffd3501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1348277586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2737914670675678338, guid: 5b099a1ee9381094e8d0ca57dc2f3d77, type: 3}
+  m_PrefabInstance: {fileID: 1438576063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1438576063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1467,7 +1465,7 @@ PrefabInstance:
     - target: {fileID: 3210391712021857464, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 884139303}
+      objectReference: {fileID: 0}
     - target: {fileID: 3210391712021857464, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetPause
@@ -1483,7 +1481,7 @@ PrefabInstance:
     - target: {fileID: 4095487491025848979, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 884139303}
+      objectReference: {fileID: 0}
     - target: {fileID: 4095487491025848979, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadMainMenu
@@ -1588,6 +1586,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 49.999878
       objectReference: {fileID: 0}
+    - target: {fileID: 7907855161455981106, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 1348277586}
     - target: {fileID: 8352074502334298674, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -10.6
@@ -1617,6 +1619,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1321827706}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: bossObject
       value: 
       objectReference: {fileID: 1874174342}
@@ -1630,7 +1636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: numPreBossBreaks
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: objectivesObject
@@ -1642,7 +1648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: numPreLevelBreaks
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9208364062231257522, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_text

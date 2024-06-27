@@ -1,4 +1,5 @@
-﻿DESC: 
+﻿
+DESC: 
 The ships warp into the Away System one by one, translating into an open sector near the abandoned factory Ebb discovered. 
 Heaps of debris of destroyed homes and civilian ships litter the area surrounding the factory. 
 It floats there in the cold stillness of space. The crew is stunned and silent. 

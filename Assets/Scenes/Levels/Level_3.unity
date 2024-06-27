@@ -320,6 +320,10 @@ PrefabInstance:
       propertyPath: currentSceneFile
       value: Act3_Sc3.txt
       objectReference: {fileID: 0}
+    - target: {fileID: 7907855161455981106, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 436180241}
     - target: {fileID: 8352074502334298674, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -10.5
@@ -330,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 128082649}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: debug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: bossObject
@@ -349,8 +353,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: numPostBossBreaks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: numPreLevelBreaks
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1633957157125825826, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
@@ -723,6 +731,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418584580}
   m_CullTransparentMesh: 1
+--- !u!1 &436180241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2737914670675678338, guid: 5b099a1ee9381094e8d0ca57dc2f3d77, type: 3}
+  m_PrefabInstance: {fileID: 62677631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &439447253
 GameObject:
   m_ObjectHideFlags: 0

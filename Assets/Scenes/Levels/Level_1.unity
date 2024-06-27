@@ -938,6 +938,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
+      propertyPath: numPreBossBreaks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8937517985013109618, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: numPostBossBreaks
       value: 1
       objectReference: {fileID: 0}
@@ -953,17 +957,6 @@ PrefabInstance:
       addedObject: {fileID: 662747890}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
---- !u!114 &1224360489 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 79251332632088223, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
-  m_PrefabInstance: {fileID: 1224360488}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224360490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3a5933c257fab42a19d161bb794b45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1224360490 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8906859990359742990, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
@@ -1128,11 +1121,11 @@ PrefabInstance:
     - target: {fileID: 7158245376276311438, guid: 3333bc9f9e6a40c4b8983454bfb39937, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1224360489}
+      objectReference: {fileID: 0}
     - target: {fileID: 8578425257680249765, guid: 3333bc9f9e6a40c4b8983454bfb39937, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1224360489}
+      objectReference: {fileID: 0}
     - target: {fileID: 9133110064788226632, guid: 3333bc9f9e6a40c4b8983454bfb39937, type: 3}
       propertyPath: m_Name
       value: Pause Menu

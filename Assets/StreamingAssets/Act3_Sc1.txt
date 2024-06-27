@@ -1,4 +1,4 @@
-﻿DESC:
+﻿DESC: 
 We open with our crew returning to their space station, preparing for what lays ahead of them. 
 JAUGHN
 NORMAL

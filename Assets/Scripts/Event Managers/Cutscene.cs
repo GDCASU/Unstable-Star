@@ -67,7 +67,7 @@ public class Cutscene : MonoBehaviour
 
     private void Update()
     {
-        if(director.state == PlayState.Playing)
+        if (director.state == PlayState.Playing)
         {
             if (debug) Debug.Log("Director is playing");
 
