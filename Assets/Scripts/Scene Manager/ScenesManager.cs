@@ -5,16 +5,15 @@ using UnityEngine.SceneManagement;
 
 public enum Scenes
 {
-    MainMenu,           // 0
-    Weapon_Select_1,    // 1
-    CutScene_1,         // 2
-    Level_1,            // 3
-    CutScene_2,         // 4
-    Weapon_Select_2,    
+    IntroLoadingScreen, // 0
+    MainMenu,           // 1
+    Loadout_Select,     // 2
+    CutScene_1,         // 3
+    Level_1,            // 4
+    CutScene_2,         // LOADOUT AFTER THIS
     CutScene_3,
     Level_2,
-    CutScene_4,
-    Weapon_Select_3,
+    CutScene_4,         // LOADOUT AFTER THIS
     CutScene_5,
     CutScene_6,
     Level_3,
@@ -31,16 +30,23 @@ public class ScenesManager : MonoBehaviour
     [SerializeField] private bool debug = false;
 
     public static int currentScene { get; private set; }
-    public static int currentLevel = 1;
     private Dictionary<Scenes, bool> unlockedScenes;
+
+    // Ian: Stores the target scene after the weapon select is finished
+    public Scenes? nextSceneAfterWeaponSelect;
 
     private void Awake()
     {
-        // Singleton: Checks if a scene object is currently in use and destroys it if true
-        if (instance != null && instance != this)
-            Destroy(gameObject);
-        else
+        // Handle Singleton
+        if (instance == null)
+        {
             instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     private void Start()
@@ -52,22 +58,19 @@ public class ScenesManager : MonoBehaviour
 
     private void InitializeDict()
     {
-        // Only possible scenes that can be loaded directly in the game are the main menu, weapon select scenes, game over, and credits
-        // All other scenes are locked by default unless unlocked for debugging purposes
         unlockedScenes = new Dictionary<Scenes, bool>
         {
+            { Scenes.IntroLoadingScreen, true},
             { Scenes.MainMenu, true },
             { Scenes.CutScene_1, true },
-            { Scenes.CutScene_2, false },
-            { Scenes.CutScene_3, false },
+            { Scenes.CutScene_2, true },
+            { Scenes.CutScene_3, true },
             { Scenes.CutScene_4, false },
             { Scenes.CutScene_5, false },
             { Scenes.CutScene_6, false },
-            { Scenes.Weapon_Select_1, true },
-            { Scenes.Weapon_Select_2, false },
-            { Scenes.Weapon_Select_3, false },
-            { Scenes.Level_1, false },
-            { Scenes.Level_2, false },
+            { Scenes.Loadout_Select, true },
+            { Scenes.Level_1, true },
+            { Scenes.Level_2, true },
             { Scenes.Level_3, false },
             { Scenes.GameOver, true },
             { Scenes.Credits, true }
@@ -100,7 +103,7 @@ public class ScenesManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Pass in the name of the scene and loads it; for use in game please use CheckScene() first before loading the scene
+    /// Pass in the name of the scene and loads it 
     /// </summary>
     /// <param name="scene"></param>
     public void LoadScene(Scenes scene)
@@ -117,52 +120,26 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadNextScene()
     {
+        // Ensure there's not a priority next scene
+        if(nextSceneAfterWeaponSelect != null)
+        {
+            Scenes temp = nextSceneAfterWeaponSelect.Value;
+            nextSceneAfterWeaponSelect = null;
+            LoadScene(temp);
+            return;
+        }
+
+        // Check for special scenes
+        if((Scenes)currentScene == Scenes.CutScene_2 || (Scenes)currentScene == Scenes.CutScene_4)
+        {
+            nextSceneAfterWeaponSelect = (Scenes)(++currentScene);
+            LoadScene(Scenes.Loadout_Select);
+            return;
+        }
+
+        // Typical behavior
         currentScene++;
         SceneManager.LoadScene(currentScene);
     }
 
-    public void UnlockScene(Scenes scene)
-    {
-        if (!unlockedScenes.ContainsKey(scene))
-        {
-            Debug.LogError("Error: Scene does not exist");
-            return;
-        }
-
-        unlockedScenes[scene] = true;
-    }
-
-    public void LoadLevel(int level)
-    {
-        switch (level)      // Weapon select scenes are always the start of the level
-        {
-            case 1:
-                LoadScene(Scenes.Weapon_Select_1);
-                break;
-            case 2:
-                LoadScene(Scenes.Weapon_Select_2);
-                break;
-            case 3:
-                LoadScene(Scenes.Weapon_Select_3);
-                break;
-            default:
-                Debug.LogError("Error: Level does not exist");
-                break;
-        }
-    }
-
-    public bool CheckLevel(int level)
-    {
-        switch (level)
-        {
-            case 1:
-                return CheckScene(Scenes.CutScene_1);
-            case 2:
-                return CheckScene(Scenes.CutScene_3);
-            case 3:
-                return CheckScene(Scenes.CutScene_4);
-            default:
-                return false;
-        }
-    }
 }

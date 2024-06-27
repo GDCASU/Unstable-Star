@@ -36,7 +36,7 @@ public class ShipController : MonoBehaviour
         PlayerInput.OnSwitchToNextWeapon += DoSwitchToNextWeapon;
         PlayerInput.OnSwitchToNextAbility += DoSwitchToNextAbility;
         PlayerInput.OnRotateAim += RotateAim;
-        PlayerInput.OnShootWeapon += ShootPlayerWeapon;
+        PlayerInput.OnShoot += ShootPlayerWeapon;
         PlayerInput.OnUseAbility += UsePlayerAbility;
         PlayerInput.OnFocusSpeedHeld += SetSpeedToFocus;
 
@@ -54,7 +54,7 @@ public class ShipController : MonoBehaviour
         PlayerInput.OnSwitchToNextWeapon -= DoSwitchToNextWeapon;
         PlayerInput.OnSwitchToNextAbility -= DoSwitchToNextAbility;
         PlayerInput.OnRotateAim -= RotateAim;
-        PlayerInput.OnShootWeapon -= ShootPlayerWeapon;
+        PlayerInput.OnShoot -= ShootPlayerWeapon;
         PlayerInput.OnUseAbility -= UsePlayerAbility;
         PlayerInput.OnFocusSpeedHeld -= SetSpeedToFocus;
     }

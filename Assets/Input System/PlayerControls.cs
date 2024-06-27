@@ -73,15 +73,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwitchNextAbility"",
-                    ""type"": ""Button"",
-                    ""id"": ""51de9c18-8f1e-42b1-86d9-18c8a2f0bb2a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""UseAbility"",
                     ""type"": ""Button"",
                     ""id"": ""a9973e8e-39c4-45b6-b889-2c9c497297da"",
@@ -98,15 +89,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Aim"",
-                    ""type"": ""Value"",
-                    ""id"": ""c27e99b1-dc2a-4026-8457-f6d3fb943a68"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""ChangeDialogue"",
@@ -337,28 +319,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8f325684-6f48-4f1f-94db-72188b358bd2"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchNextAbility"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e85eadbb-2933-47bd-81b1-bf701aee8356"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""4aadb7a4-9c5a-42cd-b3cd-62432e0e7c09"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -405,6 +365,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""62bb4fcd-ba01-4212-8a7b-b7af9aa29ceb"",
                     ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1183d31-c0bd-4edb-b6f5-9f7563370789"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -462,51 +433,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""ScrollWheel"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""08ecadaf-e0cf-43e9-834c-98e95f3ca245"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MiddleClick"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""03bb50ae-0be4-485c-a291-65c0d5dc89b4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RightClick"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""6041078b-a73b-4ad1-a2e7-589b87541811"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TrackedDevicePosition"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""b9319d9d-910d-4026-90e6-733c04f8465f"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TrackedDeviceOrientation"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""156c783b-faa0-4e67-90eb-6cc1f883ec2d"",
-                    ""expectedControlType"": ""Quaternion"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -872,61 +798,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8b376a4d-85b5-45ec-9bc9-79c1a5a13be3"",
-                    ""path"": ""<Mouse>/scroll"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""ScrollWheel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5c6aa4e7-0809-45cc-9b1f-d9dabc29c94d"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""MiddleClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""974fb6ac-1694-4945-acc9-bc0c878af66b"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""RightClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3fc4d688-1776-447d-83e8-cda21d32d3b5"",
-                    ""path"": ""<XRController>/devicePosition"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""TrackedDevicePosition"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6083e81c-b304-48d8-bdba-3d6700164129"",
-                    ""path"": ""<XRController>/deviceRotation"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""TrackedDeviceOrientation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -940,10 +811,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ShipControls_AngleLeft = m_ShipControls.FindAction("AngleLeft", throwIfNotFound: true);
         m_ShipControls_AngleRight = m_ShipControls.FindAction("AngleRight", throwIfNotFound: true);
         m_ShipControls_SwitchNextWeapon = m_ShipControls.FindAction("SwitchNextWeapon", throwIfNotFound: true);
-        m_ShipControls_SwitchNextAbility = m_ShipControls.FindAction("SwitchNextAbility", throwIfNotFound: true);
         m_ShipControls_UseAbility = m_ShipControls.FindAction("UseAbility", throwIfNotFound: true);
         m_ShipControls_FocusSpeed = m_ShipControls.FindAction("FocusSpeed", throwIfNotFound: true);
-        m_ShipControls_Aim = m_ShipControls.FindAction("Aim", throwIfNotFound: true);
         m_ShipControls_ChangeDialogue = m_ShipControls.FindAction("ChangeDialogue", throwIfNotFound: true);
         m_ShipControls_SkipDialogue = m_ShipControls.FindAction("SkipDialogue", throwIfNotFound: true);
         m_ShipControls_PauseGame = m_ShipControls.FindAction("PauseGame", throwIfNotFound: true);
@@ -954,11 +823,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
-        m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
-        m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
-        m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
-        m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
-        m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1025,10 +889,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_ShipControls_AngleLeft;
     private readonly InputAction m_ShipControls_AngleRight;
     private readonly InputAction m_ShipControls_SwitchNextWeapon;
-    private readonly InputAction m_ShipControls_SwitchNextAbility;
     private readonly InputAction m_ShipControls_UseAbility;
     private readonly InputAction m_ShipControls_FocusSpeed;
-    private readonly InputAction m_ShipControls_Aim;
     private readonly InputAction m_ShipControls_ChangeDialogue;
     private readonly InputAction m_ShipControls_SkipDialogue;
     private readonly InputAction m_ShipControls_PauseGame;
@@ -1041,10 +903,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @AngleLeft => m_Wrapper.m_ShipControls_AngleLeft;
         public InputAction @AngleRight => m_Wrapper.m_ShipControls_AngleRight;
         public InputAction @SwitchNextWeapon => m_Wrapper.m_ShipControls_SwitchNextWeapon;
-        public InputAction @SwitchNextAbility => m_Wrapper.m_ShipControls_SwitchNextAbility;
         public InputAction @UseAbility => m_Wrapper.m_ShipControls_UseAbility;
         public InputAction @FocusSpeed => m_Wrapper.m_ShipControls_FocusSpeed;
-        public InputAction @Aim => m_Wrapper.m_ShipControls_Aim;
         public InputAction @ChangeDialogue => m_Wrapper.m_ShipControls_ChangeDialogue;
         public InputAction @SkipDialogue => m_Wrapper.m_ShipControls_SkipDialogue;
         public InputAction @PauseGame => m_Wrapper.m_ShipControls_PauseGame;
@@ -1072,18 +932,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchNextWeapon.started += instance.OnSwitchNextWeapon;
             @SwitchNextWeapon.performed += instance.OnSwitchNextWeapon;
             @SwitchNextWeapon.canceled += instance.OnSwitchNextWeapon;
-            @SwitchNextAbility.started += instance.OnSwitchNextAbility;
-            @SwitchNextAbility.performed += instance.OnSwitchNextAbility;
-            @SwitchNextAbility.canceled += instance.OnSwitchNextAbility;
             @UseAbility.started += instance.OnUseAbility;
             @UseAbility.performed += instance.OnUseAbility;
             @UseAbility.canceled += instance.OnUseAbility;
             @FocusSpeed.started += instance.OnFocusSpeed;
             @FocusSpeed.performed += instance.OnFocusSpeed;
             @FocusSpeed.canceled += instance.OnFocusSpeed;
-            @Aim.started += instance.OnAim;
-            @Aim.performed += instance.OnAim;
-            @Aim.canceled += instance.OnAim;
             @ChangeDialogue.started += instance.OnChangeDialogue;
             @ChangeDialogue.performed += instance.OnChangeDialogue;
             @ChangeDialogue.canceled += instance.OnChangeDialogue;
@@ -1112,18 +966,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchNextWeapon.started -= instance.OnSwitchNextWeapon;
             @SwitchNextWeapon.performed -= instance.OnSwitchNextWeapon;
             @SwitchNextWeapon.canceled -= instance.OnSwitchNextWeapon;
-            @SwitchNextAbility.started -= instance.OnSwitchNextAbility;
-            @SwitchNextAbility.performed -= instance.OnSwitchNextAbility;
-            @SwitchNextAbility.canceled -= instance.OnSwitchNextAbility;
             @UseAbility.started -= instance.OnUseAbility;
             @UseAbility.performed -= instance.OnUseAbility;
             @UseAbility.canceled -= instance.OnUseAbility;
             @FocusSpeed.started -= instance.OnFocusSpeed;
             @FocusSpeed.performed -= instance.OnFocusSpeed;
             @FocusSpeed.canceled -= instance.OnFocusSpeed;
-            @Aim.started -= instance.OnAim;
-            @Aim.performed -= instance.OnAim;
-            @Aim.canceled -= instance.OnAim;
             @ChangeDialogue.started -= instance.OnChangeDialogue;
             @ChangeDialogue.performed -= instance.OnChangeDialogue;
             @ChangeDialogue.canceled -= instance.OnChangeDialogue;
@@ -1159,11 +1007,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_Click;
-    private readonly InputAction m_UI_ScrollWheel;
-    private readonly InputAction m_UI_MiddleClick;
-    private readonly InputAction m_UI_RightClick;
-    private readonly InputAction m_UI_TrackedDevicePosition;
-    private readonly InputAction m_UI_TrackedDeviceOrientation;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
@@ -1173,11 +1016,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @Click => m_Wrapper.m_UI_Click;
-        public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
-        public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
-        public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
-        public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
-        public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1202,21 +1040,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
-            @ScrollWheel.started += instance.OnScrollWheel;
-            @ScrollWheel.performed += instance.OnScrollWheel;
-            @ScrollWheel.canceled += instance.OnScrollWheel;
-            @MiddleClick.started += instance.OnMiddleClick;
-            @MiddleClick.performed += instance.OnMiddleClick;
-            @MiddleClick.canceled += instance.OnMiddleClick;
-            @RightClick.started += instance.OnRightClick;
-            @RightClick.performed += instance.OnRightClick;
-            @RightClick.canceled += instance.OnRightClick;
-            @TrackedDevicePosition.started += instance.OnTrackedDevicePosition;
-            @TrackedDevicePosition.performed += instance.OnTrackedDevicePosition;
-            @TrackedDevicePosition.canceled += instance.OnTrackedDevicePosition;
-            @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
-            @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
-            @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1236,21 +1059,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
-            @ScrollWheel.started -= instance.OnScrollWheel;
-            @ScrollWheel.performed -= instance.OnScrollWheel;
-            @ScrollWheel.canceled -= instance.OnScrollWheel;
-            @MiddleClick.started -= instance.OnMiddleClick;
-            @MiddleClick.performed -= instance.OnMiddleClick;
-            @MiddleClick.canceled -= instance.OnMiddleClick;
-            @RightClick.started -= instance.OnRightClick;
-            @RightClick.performed -= instance.OnRightClick;
-            @RightClick.canceled -= instance.OnRightClick;
-            @TrackedDevicePosition.started -= instance.OnTrackedDevicePosition;
-            @TrackedDevicePosition.performed -= instance.OnTrackedDevicePosition;
-            @TrackedDevicePosition.canceled -= instance.OnTrackedDevicePosition;
-            @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
-            @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
-            @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1275,10 +1083,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnAngleLeft(InputAction.CallbackContext context);
         void OnAngleRight(InputAction.CallbackContext context);
         void OnSwitchNextWeapon(InputAction.CallbackContext context);
-        void OnSwitchNextAbility(InputAction.CallbackContext context);
         void OnUseAbility(InputAction.CallbackContext context);
         void OnFocusSpeed(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
         void OnChangeDialogue(InputAction.CallbackContext context);
         void OnSkipDialogue(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
@@ -1290,10 +1096,5 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
-        void OnScrollWheel(InputAction.CallbackContext context);
-        void OnMiddleClick(InputAction.CallbackContext context);
-        void OnRightClick(InputAction.CallbackContext context);
-        void OnTrackedDevicePosition(InputAction.CallbackContext context);
-        void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
     }
 }

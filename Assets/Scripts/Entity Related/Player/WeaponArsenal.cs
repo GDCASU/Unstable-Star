@@ -39,8 +39,15 @@ public class WeaponArsenal : MonoBehaviour
     private void Awake()
     {
         // Handle Singleton
-        if (instance == null) instance = this;
-        else Destroy(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         // Give the player the default arsenal if checked
         if (loadInspectorWeapons)

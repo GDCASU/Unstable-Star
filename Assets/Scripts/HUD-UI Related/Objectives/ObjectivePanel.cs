@@ -113,7 +113,10 @@ public class ObjectivePanel : MonoBehaviour
         float percentY = (currentY + posOffset) / (highPos.y + posOffset);
         if(!up) percentY = 1f - percentY;
         float t = percentY * time;
-        if (debug) Debug.Log("t is " + t);
+
+        if (debug) Debug.Log("ObjectivePanel::MovePanel" +
+            "\nt is " + t);
+        
         yield return new WaitForSecondsRealtime(delay);
 
 		while(t < 1f)

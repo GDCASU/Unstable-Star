@@ -64,19 +64,9 @@ public class DialogueManager : MonoBehaviour
         if (canChange && (currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
         {
             if (doDebugLog) Debug.Log("DialogueManager::ChangeDialogue::End");
-            // removes the emotion sprite
-            speachDialogue.SetActive(false);
-            emotionSprite.color = new Color(0, 0, 0, 0);
 
-            dialogueObject.SetActive(false);
-            speakerText.text = "";
-            targetDialogue.text = "";
-
-            // pauses the dialogue and runs the animations
-            timelinePlayer.Resume();
-            start = false;
-            current++;
-        }
+            StopText();
+        }   
 
         // normal behaviors
         else if (canChange && start)
@@ -142,6 +132,7 @@ public class DialogueManager : MonoBehaviour
             targetDialogue.text = str.Substring(0, targetDialogue.text.Length + 1);
             yield return new WaitForSeconds(0.05f);
         }
+        canChange = true;
     }
 
     // Pauses timeline and makes the text clickable
@@ -152,6 +143,23 @@ public class DialogueManager : MonoBehaviour
         timelinePlayer.Pause();
         ChangeDialogue();
         ChangeDialogue();
+    }
+
+    // Starts timeline and makes the text stop
+    public void StopText()
+    {
+        // removes the emotion sprite
+        speachDialogue.SetActive(false);
+        emotionSprite.color = new Color(0, 0, 0, 0);
+
+        dialogueObject.SetActive(false);
+        speakerText.text = "";
+        targetDialogue.text = "";
+
+        // pauses the dialogue and runs the animations
+        timelinePlayer.Resume();
+        start = false;
+        current++;
     }
 
     // Takes information from text files and transfers into something the system can read

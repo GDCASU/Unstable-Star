@@ -15,7 +15,7 @@ public abstract class Ability
 {
     // Common Variables
     public string sName;
-    public AbilityTypes behaviour;
+    public AbilityTypes abilityType;
     public float cooldownTime;
     public float durationTime;
     public bool isOnCooldown;
@@ -46,10 +46,10 @@ public abstract class Ability
 public class GeneralAbility : Ability
 {
     // General Constructor?
-    public GeneralAbility(string name, AbilityTypes behaviour, float cooldownTime, float durationTime)
+    public GeneralAbility(string name, AbilityTypes type, float cooldownTime, float durationTime)
     {
         this.sName = name;
-        this.behaviour = behaviour;
+        this.abilityType = type;
         this.cooldownTime = cooldownTime;
         this.durationTime = durationTime;
 
@@ -63,7 +63,7 @@ public class GeneralAbility : Ability
     public GeneralAbility(string sName)
     {
         this.sName = sName;
-        this.behaviour = AbilityTypes.NULL;
+        this.abilityType = AbilityTypes.NULL;
     }
 }
 
@@ -86,7 +86,7 @@ public class PhaseShiftAbility : Ability
         this.phaseShiftEnter = phaseShiftEnter;
         this.phaseShiftExit = phaseShiftExit;
         // Static sets
-        this.behaviour = AbilityTypes.PhaseShift;
+        this.abilityType = AbilityTypes.PhaseShift;
         this.isOnCooldown = false;
         timeLeftInCooldown = 0f;
 
@@ -110,7 +110,7 @@ public class ProximityBombAbility : Ability
         this.description= description;
         this.bombExplosion = bombExplosion;
         // Static sets
-        this.behaviour = AbilityTypes.ProxiBomb;
+        this.abilityType = AbilityTypes.ProxiBomb;
         this.isOnCooldown = false;
         timeLeftInCooldown = 0f;
     }

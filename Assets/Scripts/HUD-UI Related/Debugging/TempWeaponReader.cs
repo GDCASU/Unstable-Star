@@ -78,7 +78,7 @@ public class TempWeaponReader : MonoBehaviour
             readout += "Time Left = " + input.HeatUpCounter.ToString("F2");
         }
         // Else, we are firing as long as button is held
-        else if (PlayerInput.instance.isShootHeld && !Player.Instance.isShootingLocked)
+        else if (PlayerInput.instance.isShootHeld && !Player.instance.isShootingLocked)
         {
             readout += "Firing!";
         }
@@ -95,7 +95,7 @@ public class TempWeaponReader : MonoBehaviour
         readout = playerWep.sName + "\n";
 
         // Check if we are charging the laser
-        bool isInputGood = PlayerInput.instance.isShootHeld && !Player.Instance.isShootingLocked;
+        bool isInputGood = PlayerInput.instance.isShootHeld && !Player.instance.isShootingLocked;
         bool laserChargingCheck = isInputGood && input.chargeTimeCounter < input.maxChargeUpTime && !input.isOnCooldown;
         if (laserChargingCheck)
         {
