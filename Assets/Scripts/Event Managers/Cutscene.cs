@@ -150,6 +150,20 @@ public class Cutscene : MonoBehaviour
     void ActivateNextScene()
     {
         if (debug) Debug.Log("Cutscene::ActivateNextScene");
+
+        switch (ScenesManager.currentScene) {
+            case (int)Scenes.Level_1:
+                SerializedDataManager.instance.Act1Done();
+                break;
+            case (int)Scenes.Level_2:
+                SerializedDataManager.instance.Act2Done();
+                break;
+            case (int)Scenes.Level_3:
+                SerializedDataManager.instance.Act3Done();
+                break;
+            default:
+                throw new System.Exception("How did you manage this???");
+        }
         ScenesManager.instance.LoadNextScene();
     }
 
