@@ -10,10 +10,10 @@ public enum Scenes
     Loadout_Select,     // 2
     CutScene_1,         // 3
     Level_1,            // 4
-    CutScene_2,           
+    CutScene_2,         // LOADOUT AFTER THIS
     CutScene_3,
     Level_2,
-    CutScene_4,
+    CutScene_4,         // LOADOUT AFTER THIS
     CutScene_5,
     CutScene_6,
     Level_3,
@@ -30,11 +30,10 @@ public class ScenesManager : MonoBehaviour
     [SerializeField] private bool debug = false;
 
     public static int currentScene { get; private set; }
-    public static int currentLevel = 1;
     private Dictionary<Scenes, bool> unlockedScenes;
 
     // Ian: Stores the target scene after the weapon select is finished
-    public Scenes nextSceneAfterWeaponSelect;
+    public Scenes? nextSceneAfterWeaponSelect;
 
     private void Awake()
     {
@@ -121,6 +120,24 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadNextScene()
     {
+        // Ensure there's not a priority next scene
+        if(nextSceneAfterWeaponSelect != null)
+        {
+            Scenes temp = nextSceneAfterWeaponSelect.Value;
+            nextSceneAfterWeaponSelect = null;
+            LoadScene(temp);
+            return;
+        }
+
+        // Check for special scenes
+        if((Scenes)currentScene == Scenes.CutScene_2 || (Scenes)currentScene == Scenes.CutScene_4)
+        {
+            nextSceneAfterWeaponSelect = (Scenes)(++currentScene);
+            LoadScene(Scenes.Loadout_Select);
+            return;
+        }
+
+        // Typical behavior
         currentScene++;
         SceneManager.LoadScene(currentScene);
     }

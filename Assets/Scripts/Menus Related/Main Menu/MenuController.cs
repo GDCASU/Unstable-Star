@@ -1,8 +1,3 @@
-/*
- * Note from Aaron
- *      I had to stop 
- */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public enum CurrentMenu
@@ -23,28 +19,31 @@ public enum CurrentMenu
     Graphics
 }
 
-public class MenuManager : MonoBehaviour
+public class MenuController : MonoBehaviour
 {
     [Header("Miscelaneous")]
-    [SerializeField] [Range(0f,10f)] private float lookAroundFreedom;
-    [SerializeField] float lookAroundSensitivity = 1;       // How quickly the camera will move around due to the mouse.
-    Vector3 targetRotation;
-    Coroutine crtAngleCamera;
+    [SerializeField][Range(0f, 10f)] private float lookAroundFreedom;
+    [SerializeField] private float lookAroundSensitivity = 1;       // How quickly the camera will move around due to the mouse.
+    private Vector3 targetRotation;
+    private Coroutine crtAngleCamera;
+    [SerializeField] private float sliderIncrements = 10;           // Number of "increments" sliders are broken up into. How many times a user has to click in order for a slider to go from min to max.
 
-    [SerializeField] float sliderIncrements = 10;           // Number of "increments" sliders are broken up into. How many times a user has to click in order for a slider to go from min to max.
+    [Header("Sounds")]
+    [SerializeField] private FMODUnity.EventReference _consoleButtonClicked;
+    [SerializeField] private FMODUnity.EventReference _optionHighlighted;
 
     [Header("Screen Navigation References")]
-    [SerializeField] MenuOption[] menuOptions;  // Credits paper stack and menu chair
-    [SerializeField] GameObject primaryOptionsContainer;
-    [SerializeField] Selectable[] primaryOptions;
-    [SerializeField] GameObject settingsOptionsContainer;
-    [SerializeField] Selectable[] settingsOptions;
-    [SerializeField] GameObject audioOptionsContainer;
-    [SerializeField] Selectable[] audioOptions;
-    [SerializeField] GameObject gameplayOptionsContainer;
-    [SerializeField] Selectable[] gameplayOptions;
-    [SerializeField] GameObject graphicsOptionsContainer;
-    [SerializeField] Selectable[] graphicsOptions;
+    [SerializeField] private MenuOption[] menuOptions;  // Credits paper stack and menu chair
+    [SerializeField] private GameObject primaryOptionsContainer;
+    [SerializeField] private Selectable[] primaryOptions;
+    [SerializeField] private GameObject settingsOptionsContainer;
+    [SerializeField] private Selectable[] settingsOptions;
+    [SerializeField] private GameObject audioOptionsContainer;
+    [SerializeField] private Selectable[] audioOptions;
+    [SerializeField] private GameObject gameplayOptionsContainer;
+    [SerializeField] private Selectable[] gameplayOptions;
+    [SerializeField] private GameObject graphicsOptionsContainer;
+    [SerializeField] private Selectable[] graphicsOptions;
 
     // Stores the number of options in 
     Dictionary<CurrentMenu, int> numOptions = new Dictionary<CurrentMenu, int>()
@@ -57,17 +56,17 @@ public class MenuManager : MonoBehaviour
         {CurrentMenu.Graphics, 4 }
     };
 
-    CurrentMenu currentMenu = CurrentMenu.ObjectsSelection; // Current menu
-    int optionsIndex = 0;   // Current menu selection.
+    private CurrentMenu currentMenu = CurrentMenu.ObjectsSelection; // Current menu
+    private int optionsIndex = 0;   // Current menu selection.
 
     [Header("Console Objects")]
     [SerializeField] private TMP_Text consoleActText;
     [SerializeField] private levelButton upConsoleButton;
     [SerializeField] private levelButton downConsoleButton;
-    [SerializeField] Light upConsoleBtnLight;
-    [SerializeField] Light downConsoleBtnLight;
-    [SerializeField] Color highlightedLightColor = new Color(0, 1, 0, 1);
-    Color originalLightColor;
+    [SerializeField] private Light upConsoleBtnLight;
+    [SerializeField] private Light downConsoleBtnLight;
+    [SerializeField] private Color highlightedLightColor = new Color(0, 1, 0, 1);
+    private Color originalLightColor;
 
     [Header("Audio Options")]
     [SerializeField] private Slider masterSlider;
@@ -81,19 +80,19 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Toggle fullscreenToggle;
     [SerializeField] private Slider brightnessSlider;
     [SerializeField] private Slider qualitySlider;
-    [SerializeField] TMP_Text brightnessValue;
-    [SerializeField] TMP_Text qualityValue;
+    [SerializeField] private TMP_Text brightnessValue;
+    [SerializeField] private TMP_Text qualityValue;
 
     [Header("Gameplay Options")]
     [SerializeField] private Slider sensitivitySlider;
-    [SerializeField] TMP_Text sensitivityValue;
+    [SerializeField] private TMP_Text sensitivityValue;
     [SerializeField] private Toggle invertYToggle;
 
     [Header("Cheats")]
     [SerializeField] private GameObject CheatMenuOption;
 
     [Header("Debugging")]
-    [SerializeField] bool printDebugs = false;
+    [SerializeField] private bool printDebugs = false;
 
     // Local variables
     private List<GameAct> ActList = new List<GameAct>();
@@ -179,17 +178,28 @@ public class MenuManager : MonoBehaviour
 
         // Audio
         masterSlider.value = SerializedDataManager.instance.configData.masterVolumeValue;
+        SetMasterVolume(masterSlider.value);
         sfxSlider.value = SerializedDataManager.instance.configData.sfxVolumeValue;
+        SetSFXVolume(sfxSlider.value);
         musicSlider.value = SerializedDataManager.instance.configData.musicVolumeValue;
+        SetMusicVolume(musicSlider.value);
 
         // Gameplay
         sensitivitySlider.value = SerializedDataManager.instance.configData.sensitivity;
+        SetSensitivity(sensitivitySlider.value);
         invertYToggle.isOn = SerializedDataManager.instance.configData.invertYAxis;
+        SetInversion(invertYToggle.isOn);
 
         // Graphics
         fullscreenToggle.isOn = SerializedDataManager.instance.configData.fullscreen;
+        SetFullScreen(fullscreenToggle.isOn);
         brightnessSlider.value = SerializedDataManager.instance.configData.brightness;
+        SetBrightness(brightnessSlider.value);
         qualitySlider.value = SerializedDataManager.instance.configData.quality;
+        SetQuality(qualitySlider.value);
+
+        // IAN HACK: some audio plays when the values change, so stop them at loading
+        SoundManager.instance.StopAllSFXSounds();
 
         // Cheats
         if (GameSettings.instance.areCheatsUnlocked)
@@ -621,6 +631,9 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void NextActConsoleOption()
     {
+        // Play click sound
+        SoundManager.instance.PlaySound(_consoleButtonClicked);
+
         currentActIndex++;
         // Check for array out of bounds
         if (ActList.Count - 1 < currentActIndex)
@@ -637,6 +650,9 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void PreviousActConsoleOption()
     {
+        // Play click sound
+        SoundManager.instance.PlaySound(_consoleButtonClicked);
+
         currentActIndex--;
         // Check for array out of bounds
         if (currentActIndex < 0)

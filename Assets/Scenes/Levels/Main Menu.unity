@@ -375,6 +375,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &20412230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -821,6 +833,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1578,39 +1602,43 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2046032606}
+    m_TransformParent: {fileID: 732062335}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8.931243
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.6869133
+      value: 2.6869142
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6234423
+      value: 0.19965178
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.6822953
+      value: 0.22464633
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.14398241
+      value: 0.32336497
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.55894846
+      value: 0.86912197
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.787775
+      value: -0.49459782
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.25796962
+      value: 0.000000014901161
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.020951668
+      value: 0.000000007450581
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2361,6 +2389,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: SetInversion
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3396,6 +3436,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &487186668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3713,6 +3765,20 @@ MonoBehaviour:
   lookAroundFreedom: 6
   lookAroundSensitivity: 3
   sliderIncrements: 10
+  _consoleButtonClicked:
+    Guid:
+      Data1: -1028819764
+      Data2: 1282076112
+      Data3: -1982876266
+      Data4: 763349961
+    Path: event:/SFX/Menus/Main Menu/On Console Button Clicked
+  _optionHighlighted:
+    Guid:
+      Data1: -1391722455
+      Data2: 1088513909
+      Data3: -1517737337
+      Data4: 1073420149
+    Path: event:/SFX/Menus/Main Menu/On Option Highlighted
   menuOptions:
   - {fileID: 1702179588}
   - {fileID: 814259524}
@@ -4040,6 +4106,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4535,6 +4613,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &669345357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4849,6 +4939,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728122599}
   m_CullTransparentMesh: 1
+--- !u!1 &732062334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 732062335}
+  m_Layer: 0
+  m_Name: Console Menu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &732062335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732062334}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8398519, y: 1.6903536, z: -2.4583642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 864712293}
+  - {fileID: 1569676863}
+  - {fileID: 1434217708}
+  - {fileID: 126739767}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &741820394
 GameObject:
   m_ObjectHideFlags: 0
@@ -5231,6 +5356,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752549390}
   m_CullTransparentMesh: 1
+--- !u!1 &761954649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 761954650}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &761954650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761954649}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 1.3166519, y: -1.0397463, z: -0.050935745}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1071306609}
+  - {fileID: 2123811244}
+  m_Father: {fileID: 1569676863}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &766888618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5791,6 +5949,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &856194950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6018,19 +6188,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864712289}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -2.5093}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.050935745}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1672422642}
   - {fileID: 1543698501}
   - {fileID: 927830753}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 732062335}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.4768, y: 2.0409}
+  m_AnchoredPosition: {x: 1.3166519, y: 0.35054636}
   m_SizeDelta: {x: 2.6356, y: 0.0915}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &874049586 stripped
@@ -6403,6 +6573,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7418,6 +7600,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1050435901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7577,6 +7771,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53688aa9913900249b9e07ff1c24f088, type: 3}
   m_PrefabInstance: {fileID: 1058074219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1071306607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1071306609}
+  - component: {fileID: 1071306608}
+  m_Layer: 0
+  m_Name: On Menu Option Clicked
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1071306608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071306607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 146824979
+      Data2: 1232145902
+      Data3: 655561099
+      Data4: -2081901356
+    Path: event:/SFX/Menus/Main Menu/On Menu Option Clicked
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!4 &1071306609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071306607}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 761954650}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072647990
 GameObject:
   m_ObjectHideFlags: 0
@@ -9016,6 +9273,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1420392593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9219,7 +9488,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2046032606}
+    m_TransformParent: {fileID: 732062335}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalScale.y
@@ -9227,35 +9496,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.686914
+      value: 2.6869144
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5161352
+      value: 0.19885224
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.620969
+      value: 0.09664655
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.07456875
+      value: 0.5393636
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.02095157
+      value: 0.00000020861626
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.25796932
+      value: -0.00000020861626
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.78777504
+      value: 0.49459782
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.55894846
+      value: 0.86912197
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9281,7 +9550,7 @@ PrefabInstance:
       addedObject: {fileID: 874049586}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 2138027358}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       insertIndex: -1
@@ -9381,6 +9650,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: SetFullScreen
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10228,17 +10509,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1009575251}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 543241044}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: SetCurrentMenu
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1492437778}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -10252,17 +10533,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 543241044}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: SetCurrentMenu
-        m_Mode: 3
+      - m_Target: {fileID: 1009575251}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1071306608}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1538793416
 MonoBehaviour:
@@ -10736,19 +11029,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569676859}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -2.5093}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.050935745}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 761954650}
   - {fileID: 1559937317}
   - {fileID: 1290557848}
   - {fileID: 1255832336}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 732062335}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.4768, y: 2.7301}
+  m_AnchoredPosition: {x: 1.3166519, y: 1.0397463}
   m_SizeDelta: {x: 2.6356, y: 1.0281}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1669219127
@@ -12071,8 +12365,6 @@ Transform:
   m_Children:
   - {fileID: 669345358}
   - {fileID: 283728643}
-  - {fileID: 1434217708}
-  - {fileID: 126739767}
   - {fileID: 705507995}
   - {fileID: 1337504123}
   m_Father: {fileID: 0}
@@ -12403,6 +12695,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122873482}
   m_CullTransparentMesh: 1
+--- !u!1 &2123811243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2123811244}
+  m_Layer: 0
+  m_Name: On Menu Option Highlighted
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2123811244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123811243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 761954650}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2138027354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
@@ -12746,7 +13069,6 @@ SceneRoots:
   - {fileID: 2046032606}
   - {fileID: 543241043}
   - {fileID: 187227696}
-  - {fileID: 864712293}
-  - {fileID: 1569676863}
   - {fileID: 1690764351}
+  - {fileID: 732062335}
   - {fileID: 982271971}

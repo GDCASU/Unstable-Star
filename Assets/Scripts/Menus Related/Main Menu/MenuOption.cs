@@ -7,7 +7,7 @@ using TMPro;
 public class MenuOption : MonoBehaviour // changes behaviours of options part of menu
 {
     [Header("References")]
-    [SerializeField] MenuManager menuManager;
+    [SerializeField] MenuController menuManager;
 
     public string optionName;
     public bool subMenu;
