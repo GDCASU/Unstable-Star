@@ -18,8 +18,8 @@ NORMAL
 I’ll… I’ll do my best.
 
 BREAK
+asdf
 
-Gameplay (after they clear the first satellite (lvl 1)) Textbox:
 JAUGHN
 Phew, that got a little hairy.
 
@@ -39,83 +39,13 @@ NORMAL
 I’m plotting our course to the next satellite. It won’t take long for the Coalition to respond to us.
 
 
-BREAK
-
 DESC: 
-The scene transitions to the Coalition Headquarters. A grunt approaches a large, shadowy figure.
-
-
-COALITION GRUNT
-NORMAL
-Sir, uh, we’ve detected a problem. One of our communication satellites in the Gamma-K3 Sector has been compromised.
-
-
-SHADOWY FIGURE
-…Hmm… Any sign the rebels are behind it?
-
-
-COALITION GRUNT
-It’s too early to tell for sure, but we believe so, sir.
-
-
-SHADOWY FIGURE
-…Get our communications director on the line. Tell him not to allow the rebels to take the remaining satellites, or there will be consequences.
-
-
-BREAK
-
-Gameplay (start of lvl 2)Textbox:
-REBEKAH
-HAPPY
-We’re in range of the second satellite!
-APOLLO
-NORMAL
-Ah great, they got more goons here. Well, time to get blastin’!
-
-
-EBB
-HAPPY
-H e h e h e. I can’t wait to try out my new Protokol Laser Mk. 3 on them. 
-
-
-JAUGHN
-SAD
-Ah great… here we go again!
-
-
-
-
-
-
-BREAK
-
-Gameplay (after they clear the second satellite (lvl 2) )Textbox:
-
-
-EBB
-The second satellite is now under our control. I’m seeing Coalition signals light up across the board. 
-The next battle might get a little crazy. E X C E L L E N T.
-
-
-REBEKAH
-No! Not excellent! There’s a giant fleet of Coalition ships translating into the sector!
-APOLLO
-We’ve made it this far, no backing down now! Right, Jaughn?
-
-
-JAUGHN
-Y-Yeah, right. H-haha. 
-
-
-BREAK
-
-DESC: 
-The scene transitions to the Coalition Headquarters. The large, shadowy figure from before is seen in a control room.
+Coalition Headquarters. The large, shadowy figure from before is seen in a control room.
 
 
 SHADOWY FIGURE
 NORMAL
-You have failed to prevent them from taking the second satellite. I’m assigning you to deal with the rebels personally. 
+You have failed to prevent them from taking our satellites. I’m assigning you to deal with the rebels personally. 
 
 
 Radio Station DJ
@@ -130,15 +60,10 @@ Oh really? Last I checked you were also our communications director. Do not fail
 Radio Station DJ
 Ah… yes sir. It’s time to rock.
 
-BREAK
-
 
 DESC: 
-We see the crew approaching the third radio station. The space around the radio station is incredibly busy with enemy ships. 
+The crew approaches the third radio station. The space around the radio station is incredibly busy with enemy ships. 
 They’ve clearly upped their security. In the center is one massive ship piloted by… a DJ?
-
-NOISE
-DJ music 
 
 EBB
 We’re approaching the third station… I’m detecting a massive security force. 
@@ -147,9 +72,6 @@ We’re approaching the third station… I’m detecting a massive security forc
 REBEKAH
 The Coalition knows we’re here. They’re heading right for us!
 
-
-NOISE
-[intercom screeching]
 Radio Station DJ
 Not very righteous of you, dudes. We’ll be taking back our bodacious satellites now.
 APOLLO

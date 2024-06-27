@@ -148,10 +148,13 @@ public class DialogueManager : MonoBehaviour
     // Starts timeline and makes the text stop
     public void StopText()
     {
+        if (speachDialogue == null) { return; }
+
         // removes the emotion sprite
         speachDialogue.SetActive(false);
         emotionSprite.color = new Color(0, 0, 0, 0);
 
+        // makes the dialogue box empty
         dialogueObject.SetActive(false);
         speakerText.text = "";
         targetDialogue.text = "";
@@ -184,7 +187,7 @@ public class DialogueManager : MonoBehaviour
             else if (line == "APOLLO" || line == "REBEKAH" || line == "EBB" || line == "JAUGHN" 
                 || line == "SECURITY DEFENSE SYSTEM" || line == "PRISON WARDEN" || line == "Radio Station DJ" 
                 || line == "JOHN" || line == "DJ Treble Make-R" || line == "SHADOWY FIGURE"
-                || line == "JAUGHN’S SUPERVISOR" || line == "Random Civilian" || line == "Mathematically Predictable Civilian"
+                || line == "JAUGHN’S SUPERVISOR" || line == "COALITION GRUNT" || line == "Random Civilian" || line == "Mathematically Predictable Civilian"
                 || line == "PIZZA DELIVERY DRIVER" || line == "DESC: " || line == "NOISE" || line == "BREAK") 
             { 
                 currentSpeaker = line;
@@ -204,7 +207,7 @@ public class DialogueManager : MonoBehaviour
                 act[dialogueIndex][1] = line;
                 act[dialogueIndex][2] = emotion;
                 dialogueIndex++;
-                //Debug.Log(currentSpeaker + ": " + line);
+                Debug.Log(currentSpeaker + ": " + line);
             }
         }
         return act;

@@ -26,8 +26,6 @@ If even just a few people show up, we’ll be all the better for it.
 
 DESC: 
 A few moments pass. Suddenly, the crew hear the beeping of their radar.
-NOISE
-*BEEP* *BEEP*
 EBB
 
 
@@ -35,7 +33,6 @@ I’m picking up several signals approaching us. They’re… not Coalition sign
 
 
 
-BREAK
 DESC: 
 One by one, random civilian crafts start warping into the sector. 
 Doctors, farmers, chefs, politicians, people from all walks of life are here. 
@@ -78,6 +75,9 @@ I’m picking up the Coalition’s signal near the hypergiant star. The ship the
 
 REBEKAH
 I’m navigating us there now. Everyone, follow us and prepare to fight!
+
+BREAK
+asdkfjh
 
 DESC: 
 The Rebellion crew, with the civilian fighters in tow, have cleared their way to the hypergiant star in the center of the system. 
@@ -208,41 +208,6 @@ JAUGHN
 NORMAL
 This is it! Get ready everyone!
 
-
-Gameplay (Final Boss: Phase 1)
-
-
-JOHN
-HAPPY
-Grr… there’s more of you flies to swat than I thought. 
-
-
-JAUGHN
-NORMAL
-It’s over, fake Jaughn! 
-
-
-JOHN
-SAD
-Over? It’s not over until all of you are dead! Even if I fall here, the star’s implosion will take care of the entire rebellion at once!
-
-
-EBB
-NORMAL
-We don’t have much time. He’s right. Let’s FINISH this!
-
-
-Gameplay (Final Boss: Phase 2)
-
-
-JAUGHN
-NORMAL
-You still have time to surrender, don’t make this worse on yourself!
-
-
-JOHN
-SAD
-I have no plans to surrender to the likes of you. Our plans are bigger than either of us, and I’ll make sure I see it through!
-
 BREAK
+
 END
