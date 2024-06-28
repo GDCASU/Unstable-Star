@@ -30,6 +30,8 @@ public class PlayerEditor : Editor
     //Settings
     SerializedProperty deathEffectPrefab;
     SerializedProperty deathSFX;
+    SerializedProperty shieldHitSFX;
+    SerializedProperty healthHitSFX;
 
     //Collisions
     SerializedProperty isIgnoringCollisions;
@@ -69,6 +71,8 @@ public class PlayerEditor : Editor
         //Settings
         deathEffectPrefab = serializedObject.FindProperty("deathEffectPrefab");
         deathSFX = serializedObject.FindProperty("deathSFX");
+        shieldHitSFX = serializedObject.FindProperty("shieldHitSFX");
+        healthHitSFX = serializedObject.FindProperty("healthHitSFX");
 
         //Collisions
         isIgnoringCollisions = serializedObject.FindProperty("isIgnoringCollisions");
@@ -134,6 +138,8 @@ public class PlayerEditor : Editor
         {
             EditorGUILayout.PropertyField(deathEffectPrefab);
             EditorGUILayout.PropertyField(deathSFX);
+            EditorGUILayout.PropertyField(shieldHitSFX);
+            EditorGUILayout.PropertyField(healthHitSFX);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 

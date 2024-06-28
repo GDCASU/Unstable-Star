@@ -12,6 +12,8 @@ public class Player : CombatEntity
     [SerializeField] private ScriptablePlayer playerStatsData;
     [SerializeField] private bool isShieldBroken;
     [SerializeField] private FMODUnity.EventReference deathSFX;
+    [SerializeField] private FMODUnity.EventReference shieldHitSFX;
+    [SerializeField] private FMODUnity.EventReference healthHitSFX;
     private int MAX_HEALTH; // Not serialized, since they are meant to be editted through the scriptable object
     private int MAX_SHIELD;
 
@@ -85,6 +87,7 @@ public class Player : CombatEntity
     protected override void OnDestroy()
     {
         EventData.OnPlayerDeath -= WhenPlayerDies;
+        instance = null;
     }
 
     //Update's only purpose is debugging, everything else runs on
@@ -246,9 +249,9 @@ public class Player : CombatEntity
 
     #region DAMAGE HANDLING
 
-    //Damage recieved, declared as per contract with IDamageable interface
-    //TODO: Ask design if projectiles should be deleted if colliding against
-    //an invulnerable player, or let them phase through (?) 
+    // Damage recieved, declared as per contract with IDamageable interface
+    // TODO: Ask design if projectiles should be deleted if colliding against
+    // an invulnerable player, or let them phase through (?) 
     public override void TakeDamage(int damageIn, out int dmgRecieved, out Color colorSet)
     {
         //Set these so they return properly if invulnerable
@@ -257,7 +260,7 @@ public class Player : CombatEntity
         colorSet = Color.cyan;
         
         //Dont do anything if invulnerable
-        if (isInvulnerable) { return; };
+        if (isInvulnerable) return;
 
         //Starts iFrames pertinent to damage taken
         TriggerInvulnerability(dmgInvulnTime, ignoreCollisions: true);
@@ -276,7 +279,7 @@ public class Player : CombatEntity
         HandleShieldResotredCheck();
 
         //If no damage is to be passed to hull, return
-        if (triggeredReturn) { return; };
+        if (triggeredReturn) return;
 
         //Else, damage to hull
         DealDamageToHull(healthDmgCheck, out int HullDmgRecieved);
@@ -298,6 +301,9 @@ public class Player : CombatEntity
             shieldFloat = (float)shield;
             EventData.RaiseOnShieldDamaged(shield);
 
+            // Play shield hit sound
+            SoundManager.instance.PlaySound(shieldHitSFX);
+
             //If the shield was not broken, it means no changes to health, so return and stop here
             //TODO: Ask design if any damage should be negated with shield break, lets say I recieve
             //10 damage with only 3 shield, should the hull loose 7 points?
@@ -316,6 +322,10 @@ public class Player : CombatEntity
             shieldFloat = 0;
             isShieldBroken = true;
             EventData.RaiseOnShieldBroken(shield);
+
+            // Play shield hit sound
+            SoundManager.instance.PlaySound(shieldHitSFX);
+
             //Return here to negate damage after shield break
             return true;
         }
@@ -335,6 +345,9 @@ public class Player : CombatEntity
             HullDmgRecieved = health - healthDmgCheck; //Set outgoing var
             health = healthDmgCheck;
             EventData.RaiseOnHealthLost(health);
+
+            // Play health hit sound
+            SoundManager.instance.PlaySound(healthHitSFX);
             return;
         }
         
@@ -470,6 +483,9 @@ public class Player : CombatEntity
     //Should only contain calls to animations, sounds, sfx and the like on death
     protected override void TriggerDeath()
     {
+        // Play death sound
+        SoundManager.instance.PlaySound(deathSFX);
+        
         //Stub
         EventData.RaiseOnHealthLost(health); //To remove Last Health segment from UI
         EventData.RaiseOnPlayerDeath();

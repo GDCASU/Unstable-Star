@@ -827,7 +827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 859234438590665206, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1925
+      value: 1924.9999
       objectReference: {fileID: 0}
     - target: {fileID: 919175732328177831, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -871,15 +871,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111098559265218523, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.x
-      value: 1925
+      value: 1924.9999
       objectReference: {fileID: 0}
     - target: {fileID: 2135456609453334330, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.2092
+      value: 1639.9999
       objectReference: {fileID: 0}
     - target: {fileID: 4558337194482000867, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: m_Size.y
-      value: 1639.2092
+      value: 1639.9999
       objectReference: {fileID: 0}
     - target: {fileID: 5255974818783229705, guid: d979cf06baaf7d149a5822f15449faff, type: 3}
       propertyPath: objectiveData.Array.data[1].time
