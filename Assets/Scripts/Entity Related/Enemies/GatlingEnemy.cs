@@ -14,11 +14,19 @@ public class GatlingEnemy : Enemy
     protected override void Start()
     {
         base.Start();
+        StartCoroutine(WaitToEnterScreen());
     }
 
     protected override void Update()
     {
         base.Update();
+
+        // Dont do anything until position is reached
+        if (moveDown)
+        {
+            Move();
+            return;
+        }
 
         if (canShoot)
         {
@@ -31,6 +39,26 @@ public class GatlingEnemy : Enemy
             Move();
             MoveGun();
         }
+    }
+
+    /// <summary>
+    /// Keeps the gatling crosshair on the enemy until we reached the stopping point in the screen
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator WaitToEnterScreen()
+    {
+        // Wait for ship to reach position
+        while (moveDown)
+        {
+            // Keep crosshair close
+            Vector3 newPos = new Vector3(transform.position.x, transform.position.y, crosshair.transform.position.z);
+            crosshair.transform.position = newPos;
+            yield return null;
+        }
+
+        // Reached position
+        crosshair.canFollowPlayer = true;
+        crosshair.followPlayer = true;
     }
 
     /// <summary>
