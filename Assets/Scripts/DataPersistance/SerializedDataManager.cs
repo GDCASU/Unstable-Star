@@ -103,32 +103,29 @@ public class SerializedDataManager : MonoBehaviour
 
     public void Act1Done()
     {
-
+        gameData.isAct1Complete = true;
+        gameData.isAct2Unlocked = true;
+        gameData.isLaserUnlocked = true;
+        gameData.isProxiBombUnlocked = true;
     }
 
     public void Act2Done()
     {
-
+        gameData.isAct2Complete = true;
+        gameData.isAct3Unlocked = true;
+        gameData.isGatlingUnlocked = true;
+        gameData.isPhaseShiftUnlocked = true;
     }
 
     public void Act3Done()
     {
-
-    }
-
-    public void UnlockGatlingGun()
-    {
-
-    }
-
-    public void UnlockLaserGun()
-    {
-
+        gameData.isAct3Complete = true;
+        gameData.areCheatsUnlocked = true;
     }
 
     public void UnlockCheats()
     {
-
+        // Stub
     }
 
     #endregion

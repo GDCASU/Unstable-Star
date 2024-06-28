@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{08c05f13-0dee-4971-8b11-1327d4b4e883}">
 		<property name="name">
-			<value>On Menu Option Clicked</value>
+			<value>Menu Option Clicked</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>

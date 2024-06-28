@@ -2,10 +2,10 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{a1800c3e-a372-4181-ab65-5f17c49b6783}">
 		<property name="name">
-			<value>Laser Charge Heavy</value>
+			<value>Laser Charge</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{804113a0-b7f7-4c3b-91e0-85e5b8a9bda8}</destination>
@@ -38,9 +38,6 @@
 		</relationship>
 	</object>
 	<object class="MasterTrack" id="{beee5980-713d-408f-b80a-643790472dff}">
-		<relationship name="modules">
-			<destination>{2d42688e-90ed-4f7e-8734-7a3383357f02}</destination>
-		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{a17e0006-a50c-4329-bfed-deabb225b1c4}</destination>
 		</relationship>
@@ -58,11 +55,7 @@
 	</object>
 	<object class="EventAutomatableProperties" id="{51aed05c-d871-4f3f-81b7-19a2f015951c}" />
 	<object class="MarkerTrack" id="{f97f2c11-8b29-4329-a835-dc0586aff4ba}" />
-	<object class="Timeline" id="{6e091d0f-cac6-4b3c-9d74-3bb644de92b2}">
-		<relationship name="modules">
-			<destination>{2d42688e-90ed-4f7e-8734-7a3383357f02}</destination>
-		</relationship>
-	</object>
+	<object class="Timeline" id="{6e091d0f-cac6-4b3c-9d74-3bb644de92b2}" />
 	<object class="EventMixerMaster" id="{a17e0006-a50c-4329-bfed-deabb225b1c4}">
 		<relationship name="effectChain">
 			<destination>{96fd139a-9a66-4aec-b923-496daa5fb3a0}</destination>
@@ -72,14 +65,6 @@
 		</relationship>
 		<relationship name="mixer">
 			<destination>{171962ab-d135-4ead-8467-e94887b98aa8}</destination>
-		</relationship>
-	</object>
-	<object class="SingleSound" id="{2d42688e-90ed-4f7e-8734-7a3383357f02}">
-		<property name="length">
-			<value>5</value>
-		</property>
-		<relationship name="audioFile">
-			<destination>{acaa76ac-1e41-46e6-8ffc-3cfefc780d4d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{480ec767-dfcc-4060-bd06-f5c7a2b502c6}">

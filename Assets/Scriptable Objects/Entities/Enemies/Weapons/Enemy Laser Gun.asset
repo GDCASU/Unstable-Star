@@ -18,14 +18,13 @@ MonoBehaviour:
   weaponIcon: {fileID: 0}
   sound:
     Guid:
-      Data1: -1179885932
-      Data2: 1250484582
-      Data3: 989007238
-      Data4: 152891200
-    Path: event:/TESTING/RayGunEffect
+      Data1: 1658082694
+      Data2: 1244158969
+      Data3: 1156839839
+      Data4: 547864038
+    Path: event:/SFX/Weapons/Enemies/Laser Fire
   description: 
   minDamage: 1
   maxDamage: 7
   laserCooldown: 2
   maxChargeUpTime: 4
-  isEnemy: 1

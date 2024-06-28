@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{ad0c0029-6775-40e1-872a-89a57517fb3f}">
 		<property name="name">
-			<value>On Option Highlighted</value>
+			<value>Option Highlighted</value>
 		</property>
 		<property name="outputFormat">
 			<value>0</value>

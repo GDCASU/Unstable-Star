@@ -3771,14 +3771,14 @@ MonoBehaviour:
       Data2: 1282076112
       Data3: -1982876266
       Data4: 763349961
-    Path: event:/SFX/Menus/Main Menu/On Console Button Clicked
+    Path: event:/SFX/Menus/Main Menu/Console Button Clicked
   _optionHighlighted:
     Guid:
       Data1: -1391722455
       Data2: 1088513909
       Data3: -1517737337
       Data4: 1073420149
-    Path: event:/SFX/Menus/Main Menu/On Option Highlighted
+    Path: event:/SFX/Menus/Main Menu/Option Highlighted
   menuOptions:
   - {fileID: 1702179588}
   - {fileID: 814259524}
@@ -7807,7 +7807,7 @@ MonoBehaviour:
       Data2: 1232145902
       Data3: 655561099
       Data4: -2081901356
-    Path: event:/SFX/Menus/Main Menu/On Menu Option Clicked
+    Path: event:/SFX/Menus/Main Menu/Menu Option Clicked
   Event: 
   PlayEvent: 0
   StopEvent: 0
