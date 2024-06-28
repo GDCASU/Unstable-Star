@@ -16,7 +16,8 @@ public enum CurrentMenu
     Settings,
     Audio,
     Gameplay,
-    Graphics
+    Graphics,
+    Controls
 }
 
 public class MenuController : MonoBehaviour
@@ -38,6 +39,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Selectable[] primaryOptions;
     [SerializeField] private GameObject settingsOptionsContainer;
     [SerializeField] private Selectable[] settingsOptions;
+    [SerializeField] private GameObject controlsContainer;
+    [SerializeField] private Selectable[] controlsOptions;
     [SerializeField] private GameObject audioOptionsContainer;
     [SerializeField] private Selectable[] audioOptions;
     [SerializeField] private GameObject gameplayOptionsContainer;
@@ -49,8 +52,9 @@ public class MenuController : MonoBehaviour
     Dictionary<CurrentMenu, int> numOptions = new Dictionary<CurrentMenu, int>()
     {
         {CurrentMenu.ObjectsSelection, 2 },
-        {CurrentMenu.PrimaryOptions, 3 },
+        {CurrentMenu.PrimaryOptions, 4 },
         {CurrentMenu.Settings, 4 },
+        {CurrentMenu.Controls, 1 },
         {CurrentMenu.Audio, 4 },
         {CurrentMenu.Gameplay, 4 },
         {CurrentMenu.Graphics, 4 }
@@ -283,6 +287,12 @@ public class MenuController : MonoBehaviour
                 
                 currentMenu = CurrentMenu.PrimaryOptions;
                 break;
+            case CurrentMenu.Controls:
+                controlsContainer.SetActive(false);
+                primaryOptionsContainer.SetActive(true);
+
+                currentMenu = CurrentMenu.PrimaryOptions;
+                break;
             case CurrentMenu.Audio:     // Load settings
                 audioOptionsContainer.SetActive(false);
                 settingsOptionsContainer.SetActive(true);
@@ -441,6 +451,9 @@ public class MenuController : MonoBehaviour
                 case CurrentMenu.Settings:
                     settingsOptions[optionsIndex].Select();
                     break;
+                case CurrentMenu.Controls:
+                    controlsOptions[optionsIndex].Select();
+                    break;
                 case CurrentMenu.Audio:
                     audioOptions[optionsIndex].Select();
                     break;
@@ -541,6 +554,10 @@ public class MenuController : MonoBehaviour
                     break;
                 case CurrentMenu.Settings:
                     currentButton = settingsOptions[optionsIndex].gameObject.GetComponent<Button>();
+                    currentButton.onClick.Invoke();
+                    break;
+                case CurrentMenu.Controls:
+                    currentButton = controlsOptions[optionsIndex].gameObject.GetComponent<Button>();
                     currentButton.onClick.Invoke();
                     break;
                 case CurrentMenu.Audio:
