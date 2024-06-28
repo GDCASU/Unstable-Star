@@ -45,8 +45,6 @@ public class SelectableDisk : MonoBehaviour
         _isSelected = false;
         _isUnlocked = false;
         _endPos = transform.position + _loadoutController.hoverHeight * transform.up;
-
-        
     }
 
     private void Start()
@@ -103,6 +101,9 @@ public class SelectableDisk : MonoBehaviour
                 Debug.Log("<color=red> ERROR! LoadoutType not defined in SelectableDisk::OnMouseEnter at object = " + gameObject.name + "</color>");
                 return;
         }
+
+        // Play disk raised sound
+        SoundManager.instance.PlaySound(_loadoutController.diskRaised);
     }
 
     /// <summary>
@@ -139,7 +140,12 @@ public class SelectableDisk : MonoBehaviour
     public void Activate()
     {
         // Dont do anything if locked
-        if (!_isUnlocked) return;
+        if (!_isUnlocked)
+        {
+            // Play error sound if not unlocked
+            SoundManager.instance.PlaySound(_loadoutController.failedAction);
+            return;
+        }
 
         // Attempt to add or remove selected disk to loadout
         switch (_loadoutType)
@@ -181,6 +187,9 @@ public class SelectableDisk : MonoBehaviour
             // Removed successfully, set flag
             _selectionFlagObj.SetActive(false);
             _isSelected = false;
+
+            // Play clicked sound
+            SoundManager.instance.PlaySound(_loadoutController.diskClicked);
             return;
         }
 
@@ -191,6 +200,14 @@ public class SelectableDisk : MonoBehaviour
             // Weapon was added successfully, set the flag
             _selectionFlagObj.SetActive(true);
             _isSelected = true;
+
+            // Play clicked sound
+            SoundManager.instance.PlaySound(_loadoutController.diskClicked);
+        }
+        else
+        {
+            // Wasnt added, play error sound
+            SoundManager.instance.PlaySound(_loadoutController.failedAction);
         }
     }
 
@@ -215,6 +232,9 @@ public class SelectableDisk : MonoBehaviour
             // Removed successfully, set flag
             _selectionFlagObj.SetActive(false);
             _isSelected = false;
+
+            // Play clicked sound
+            SoundManager.instance.PlaySound(_loadoutController.diskClicked);
             return;
         }
 
@@ -225,6 +245,14 @@ public class SelectableDisk : MonoBehaviour
             // Ability was added successfully, set the flag
             _selectionFlagObj.SetActive(true);
             _isSelected = true;
+
+            // Play clicked sound
+            SoundManager.instance.PlaySound(_loadoutController.diskClicked);
+        }
+        else
+        {
+            // Wasnt added, play error sound
+            SoundManager.instance.PlaySound(_loadoutController.failedAction);
         }
     }
 

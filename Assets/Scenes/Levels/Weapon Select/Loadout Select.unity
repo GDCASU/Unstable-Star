@@ -408,7 +408,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 523.83, y: 141.0532}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &155923587
@@ -2850,6 +2850,41 @@ MonoBehaviour:
   cameraMoveDuration: 4
   hoverHeight: 0.5
   hoverAnimDuration: 3
+  cameraSwitch:
+    Guid:
+      Data1: 945713602
+      Data2: 1318525325
+      Data3: 402469814
+      Data4: -2042033926
+    Path: event:/SFX/Menus/Loadout Select/Camera Switch
+  launchButton:
+    Guid:
+      Data1: -700238616
+      Data2: 1332672904
+      Data3: -1486568801
+      Data4: 467997906
+    Path: event:/SFX/Menus/Loadout Select/Launch Button
+  diskClicked:
+    Guid:
+      Data1: 675382263
+      Data2: 1108682746
+      Data3: 114595256
+      Data4: -1057495703
+    Path: event:/SFX/Menus/Loadout Select/Disk Clicked
+  diskRaised:
+    Guid:
+      Data1: -1410890902
+      Data2: 1106355583
+      Data3: -962463832
+      Data4: 158146811
+    Path: event:/SFX/Menus/Loadout Select/Disk Raised
+  failedAction:
+    Guid:
+      Data1: -381351065
+      Data2: 1264161137
+      Data3: -1590996546
+      Data4: -888493703
+    Path: event:/SFX/Menus/Loadout Select/Failed Action
   warningText: {fileID: 105391985}
   warningFadeDuration: 120
   weaponScreens:

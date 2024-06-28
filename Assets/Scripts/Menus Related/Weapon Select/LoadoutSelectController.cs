@@ -21,6 +21,11 @@ public class LoadoutSelectController : MonoBehaviour
     [Header("Global Disks Settings")]
     public float hoverHeight;
     public float hoverAnimDuration;
+    public FMODUnity.EventReference cameraSwitch;
+    public FMODUnity.EventReference launchButton;
+    public FMODUnity.EventReference diskClicked;
+    public FMODUnity.EventReference diskRaised;
+    public FMODUnity.EventReference failedAction;
 
     [Header("HUD Settings")]
     [SerializeField] private TextMeshProUGUI warningText;
@@ -95,11 +100,17 @@ public class LoadoutSelectController : MonoBehaviour
     {
         if (!WeaponArsenal.instance.IsWeaponArsenalEmpty())
         {
+            // Play launch sound
+            SoundManager.instance.PlaySound(launchButton);
+            
             // Not empty, go into next scene
             ScenesManager.instance.LoadNextScene();
         }
         else
         {
+            // Play error sound
+            SoundManager.instance.PlaySound(failedAction);
+            
             // Player hasnt selected at least one weapon, issue warning message
             if (warningTextFadeRoutine != null) StopCoroutine(warningTextFadeRoutine);
             warningTextFadeRoutine = StartCoroutine(WarningTextFade());
@@ -252,6 +263,9 @@ public class LoadoutSelectController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator MoveCamera(Vector3 targetPos, GameObject arrowToDisable, GameObject arrowToEnable)
     {
+        // Play movement sound
+        SoundManager.instance.PlaySound(cameraSwitch);
+        
         float percentageComplete = 0;
         float elapsedTime = 0;
 
