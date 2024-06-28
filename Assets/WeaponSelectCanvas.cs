@@ -14,7 +14,13 @@ public class WeaponSelectCanvas : MonoBehaviour
         PlayerInput.OnCancel += ShowWeaponMenu;
         canvas = gameObject.transform.GetChild(0).gameObject;
     }
-        
+
+    private void OnDestroy()
+    {
+        PlayerInput.OnPauseGame -= HideWeaponMenu;
+        PlayerInput.OnCancel -= ShowWeaponMenu;
+    }
+
     private void HideWeaponMenu()
     {
         canvas.SetActive(false);

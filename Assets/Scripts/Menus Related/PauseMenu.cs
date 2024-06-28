@@ -35,6 +35,7 @@ public class PauseMenu : MonoBehaviour
         PlayerInput.OnMenuNavigate += NavigateMenu;
 
         if (openOnStart) OpenPauseMenu();
+        else ClosePauseMenu();
     }
 
     private void OnDestroy()

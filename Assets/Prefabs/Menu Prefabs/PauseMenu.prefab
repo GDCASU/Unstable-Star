@@ -990,4 +990,5 @@ MonoBehaviour:
   menuButtons:
   - {fileID: 8578425257680249765}
   - {fileID: 7158245376276311438}
+  openOnStart: 0
   printDebugs: 0

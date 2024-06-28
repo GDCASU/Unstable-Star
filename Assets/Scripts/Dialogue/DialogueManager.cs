@@ -60,6 +60,8 @@ public class DialogueManager : MonoBehaviour
     // changes text, color, and emotion of dialogue box
     public void ChangeDialogue()
     {
+        if (speachDialogue == null) return;
+
         // Stops dialogue and starts timeline
         if (canChange && (currentDialogue[current] == null || currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
         {

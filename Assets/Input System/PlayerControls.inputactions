@@ -702,6 +702,17 @@
                 },
                 {
                     "name": "",
+                    "id": "40ce9f80-47e8-4956-8f3c-955b84827fd6",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "014d9b78-7f90-4d8d-a21c-0c9261d68541",
                     "path": "<Mouse>/position",
                     "interactions": "",
