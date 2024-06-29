@@ -24,6 +24,7 @@ public class ShootComponent : MonoBehaviour
     private int projectileLayer;
     private GameObject firedLaser;
     private CombatEntity entityScript;
+    private FMODUnity.StudioEventEmitter laserChargeEmitter;
     private EntityType entityType;
     private Coroutine gatlingRoutine = null;
     private Coroutine laserRoutine;
@@ -62,6 +63,12 @@ public class ShootComponent : MonoBehaviour
     {
         // Stop routines
         StopAllCoroutines();
+        // Stop charging sound if playinh
+        if (laserChargeEmitter != null)
+        {
+            laserChargeEmitter.Stop();
+            Destroy(laserChargeEmitter);
+        }
         // Since the laser is created to live independent of the creator,
         // it has to be removed manually In case of death while firing
         Destroy(firedLaser);
@@ -378,6 +385,9 @@ public class ShootComponent : MonoBehaviour
         float maxLaserWidth = 2.5f;
         float timeToFullWidth = 0.05f;
         float timeToZeroWidth = 0.5f;
+        // FMOD SOUND EMITTER
+        laserChargeEmitter = gameObject.AddComponent<FMODUnity.StudioEventEmitter>();
+        laserChargeEmitter.EventReference = input.laserChargeSFX;
 
         // Create the chargeup prefab
         GameObject chargeSphere = Instantiate(input.chargingSpherePrefab, AnchorObject.transform.position, AnchorObject.transform.rotation, AnchorObject.transform);
@@ -388,6 +398,7 @@ public class ShootComponent : MonoBehaviour
         input.chargeTimeCounter = input.maxChargeUpTime;
 
         // Charge up the laser while held, not switched and shooting not locked
+        laserChargeEmitter.Play();
         while (PlayerInput.instance.isShootHeld && WeaponArsenal.instance.GetCurrentWeapon() == input && !entityScript.isShootingLocked)
         {
             // Update UI
@@ -408,6 +419,10 @@ public class ShootComponent : MonoBehaviour
             // Wait a frame
             yield return null;
         }
+
+        // Stop charging sound
+        laserChargeEmitter.Stop();
+        Destroy(laserChargeEmitter);
 
         // If it was switched or shooting was locked, then cancel shooting
         if (WeaponArsenal.instance.GetCurrentWeapon() != input || entityScript.isShootingLocked)
@@ -492,7 +507,9 @@ public class ShootComponent : MonoBehaviour
         float maxLaserWidth = 2.5f;
         float timeToFullWidth = 0.05f;
         float timeToZeroWidth = 0.5f;
-
+        // FMOD SOUND EMITTER
+        laserChargeEmitter = gameObject.AddComponent<FMODUnity.StudioEventEmitter>();
+        laserChargeEmitter.EventReference = input.laserChargeSFX;
         // Pre-declare variables before loop
         input.isEnemyShooting = true;
         GameObject chargeSphere;
@@ -517,6 +534,9 @@ public class ShootComponent : MonoBehaviour
         rateOfChange = maxSphereDiameter / input.maxChargeUpTime;
         elapsedTime = 0f;
 
+        // Play charging laser sound
+        laserChargeEmitter.Play();
+
         // Charge up the laser
         while (elapsedTime < input.maxChargeUpTime)
         {
@@ -527,6 +547,8 @@ public class ShootComponent : MonoBehaviour
             yield return null; // Wait a frame
         }
         // Finished charging
+        laserChargeEmitter.Stop();
+        Destroy(laserChargeEmitter);
         input.chargeTimeCounter = input.maxChargeUpTime;
         currentDiameter = maxSphereDiameter;
         chargeSphere.transform.localScale = new Vector3(currentDiameter, currentDiameter, currentDiameter);
@@ -588,6 +610,8 @@ public class ShootComponent : MonoBehaviour
                 HitpointsRenderer.Instance.PrintDamage(currHit.point, dmgRecieved, colorSet);
             }
         }
+        // Play fire sound
+        SoundManager.instance.PlaySound(input.mainSound);
         // Cooldown on this laser weapon
         input.chargeTimeCounter = 0f;
         yield return cooldown;

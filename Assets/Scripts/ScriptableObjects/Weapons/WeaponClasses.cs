@@ -34,6 +34,7 @@ public abstract class Weapon
 
     // Laser variables
     public GameObject chargingSpherePrefab;
+    public FMODUnity.EventReference laserChargeSFX;
     public float maxChargeUpTime;
     public float chargeTimeCounter;
     public int minDamage;
@@ -149,9 +150,10 @@ public class Buckshot : Weapon
 public class LaserGun : Weapon
 {
     //Default Constructor
-    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, string description)
+    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, FMODUnity.EventReference laserChargeSFX, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, string description)
     {
         this.prefab = prefab;
+        this.laserChargeSFX = laserChargeSFX;
         this.chargingSpherePrefab = chargingSpherePrefab;
         this.sName = name;
         this.shootCooldownTime = cooldownTime;
