@@ -25,6 +25,7 @@ public class PhysicsConfig : MonoBehaviour
     public int PlayerLayer { get; private set; }
     public int EnemyLayer { get; private set; }
     public int HazardLayer { get; private set; }
+    public int PlayerAbilityLayer { get; private set; }
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class PhysicsConfig : MonoBehaviour
         PlayerLayer = LayerMask.NameToLayer("Player");
         EnemyLayer = LayerMask.NameToLayer("Enemy");
         HazardLayer = LayerMask.NameToLayer("Hazard");
+        PlayerAbilityLayer = LayerMask.NameToLayer("Player Abilities");
 
         //Dont change anything on the physics matrix if disabled
         if (disablePhysicsConfig) { return; }
@@ -52,6 +54,7 @@ public class PhysicsConfig : MonoBehaviour
         AllLayers.Add(PlayerLayer);
         AllLayers.Add(EnemyLayer);
         AllLayers.Add(HazardLayer);
+        AllLayers.Add(PlayerAbilityLayer);
 
         //Populate List of all layers that belong to enemies
         EnemyRelatedLayers.Add(ProjectilesEnemies);
@@ -59,6 +62,7 @@ public class PhysicsConfig : MonoBehaviour
 
         //Populate List of all layers that belong to the player
         PlayerRelatedLayers.Add(ProjectilesPlayer);
+        PlayerRelatedLayers.Add(PlayerAbilityLayer);
         PlayerRelatedLayers.Add(PlayerLayer);
 
         //Populate list of all layers belonging to the Hazards

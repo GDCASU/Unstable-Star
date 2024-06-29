@@ -16,13 +16,20 @@ MonoBehaviour:
   laserPrefab: {fileID: 6775928351072881989, guid: f2721c27f108b7e4cbc7ca3f4a7d9bb0, type: 3}
   chargingSpherePrefab: {fileID: 6819432801012968178, guid: 54ecf47a17c6ce24ab88a93a0e9ece6e, type: 3}
   weaponIcon: {fileID: 0}
-  sound:
+  laserFire:
     Guid:
       Data1: 1658082694
       Data2: 1244158969
       Data3: 1156839839
       Data4: 547864038
     Path: event:/SFX/Weapons/Enemies/Laser Fire
+  laserCharge:
+    Guid:
+      Data1: -1585443778
+      Data2: 1099015026
+      Data3: 392127915
+      Data4: -2090361916
+    Path: event:/SFX/Weapons/Enemies/Laser Charge
   description: 
   minDamage: 1
   maxDamage: 7

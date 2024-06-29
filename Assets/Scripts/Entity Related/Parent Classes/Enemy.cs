@@ -35,7 +35,7 @@ public class Enemy : CombatEntity
     private bool enterScreen = true;
     private bool exitScreen = false;
     private bool inScreen = false;
-    private bool moveDown = true;
+    protected bool moveDown = true;
 
     // References
     protected ShootComponent shootComponent;

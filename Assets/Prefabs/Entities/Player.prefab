@@ -366,6 +366,20 @@ MonoBehaviour:
       Data3: -861400440
       Data4: 1621521794
     Path: event:/SFX/Player/Ship Effects/Ship Destroyed
+  shieldHitSFX:
+    Guid:
+      Data1: 1230289418
+      Data2: 1192802137
+      Data3: 387786387
+      Data4: -21111247
+    Path: event:/SFX/Player/Ship Effects/Shield Hit
+  healthHitSFX:
+    Guid:
+      Data1: 1963263042
+      Data2: 1298559973
+      Data3: -2010596169
+      Data4: 1852961527
+    Path: event:/SFX/Player/Ship Effects/Health Hit
   IsDebugLogging: 0
   DamageTest: 0
   HealTest: 0

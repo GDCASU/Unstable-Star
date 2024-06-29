@@ -5,7 +5,7 @@
 			<value>Launch Button</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{93abaede-21e5-4de1-a597-3c74f4f807b9}</destination>
@@ -38,6 +38,9 @@
 		</relationship>
 	</object>
 	<object class="MasterTrack" id="{c25daad4-25b7-4739-91c0-2669a80ea9fc}">
+		<relationship name="modules">
+			<destination>{9d38e350-ec21-4254-a88f-0cab2b5d0cf8}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{95028ddb-3e6c-484b-8710-1a37d5ba2690}</destination>
 		</relationship>
@@ -50,12 +53,16 @@
 			<destination>{4cd81dcc-8615-42cb-bdc7-25a23e6d9af1}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5d52f108-b42b-4609-ba03-8dc29ba7a5b0}</destination>
+			<destination>{c504663e-473d-4db2-9a7d-48f15dbd4900}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{c3a007e1-0b01-4a6d-aae5-01e05aa5d07d}" />
 	<object class="MarkerTrack" id="{84fe3f66-ce36-4be4-8dfe-3c78b0e3e7fe}" />
-	<object class="Timeline" id="{412146f6-4507-47a9-9ab8-f86d9bb45565}" />
+	<object class="Timeline" id="{412146f6-4507-47a9-9ab8-f86d9bb45565}">
+		<relationship name="modules">
+			<destination>{9d38e350-ec21-4254-a88f-0cab2b5d0cf8}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerMaster" id="{95028ddb-3e6c-484b-8710-1a37d5ba2690}">
 		<relationship name="effectChain">
 			<destination>{ce4a50f4-57db-47fc-b3c6-e798439d0f82}</destination>
@@ -65,6 +72,14 @@
 		</relationship>
 		<relationship name="mixer">
 			<destination>{2de6fe04-9ada-4d7a-95c2-eb69031b7841}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{9d38e350-ec21-4254-a88f-0cab2b5d0cf8}">
+		<property name="length">
+			<value>0.36571428571428571</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{e1a028d6-6ec5-4b5e-aadc-2dafc31942df}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{a25080c1-4a28-4204-a243-ac7d7f33c6c9}">

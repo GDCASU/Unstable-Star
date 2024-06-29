@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{02903dbe-0ec5-46ca-90a4-5b3ba84b09c2}">
 		<property name="name">
-			<value>Lock On Found</value>
+			<value>Gatling Lock On</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
