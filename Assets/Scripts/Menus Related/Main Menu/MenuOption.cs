@@ -19,9 +19,6 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
     public float rotationSpeed;
     private bool inSubmenu;
 
-    public AudioClip myAudioClip;
-    private AudioSource audioSource;
-
     private Coroutine moveCoroutine;
     private Coroutine rotationCoroutine;
 
@@ -31,10 +28,6 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
 
     private void Awake()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
-        audioSource.clip = myAudioClip;
-
         defaultCameraPos = Camera.main.transform.position;
         defaultCameraRotation = Camera.main.transform.rotation.eulerAngles;
 
@@ -74,7 +67,6 @@ public class MenuOption : MonoBehaviour // changes behaviours of options part of
     /// </summary>
     public void HighlightOption()
     {
-        audioSource.Play();
         if (!inSubmenu)
         {
             transform.Rotate(new Vector3(0, 10, 0));
