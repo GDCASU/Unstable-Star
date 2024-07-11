@@ -57,6 +57,12 @@ public class DialogueManager : MonoBehaviour
         PlayerInput.OnSkipDialogue += ChangeScene;  // Change Scene inputs
     }
 
+    private void OnDestroy()
+    {
+        PlayerInput.OnChangeDialogue -= ChangeDialogue;
+        PlayerInput.OnSkipDialogue -= ChangeScene;
+    }
+
     // changes text, color, and emotion of dialogue box
     public void ChangeDialogue()
     {

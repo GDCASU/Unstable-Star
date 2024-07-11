@@ -712,6 +712,7 @@ GameObject:
   - component: {fileID: 2396537171520311744}
   - component: {fileID: 8731527452315957331}
   - component: {fileID: 9043536884415476800}
+  - component: {fileID: 9111955642539329642}
   m_Layer: 5
   m_Name: SkipButton
   m_TagString: Untagged
@@ -833,6 +834,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &9111955642539329642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432585583484985460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c208a81c3d0964f82b54dfaa76c5f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8464367396605807595
 GameObject:
   m_ObjectHideFlags: 0
