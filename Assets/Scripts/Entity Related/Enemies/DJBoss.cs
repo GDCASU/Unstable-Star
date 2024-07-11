@@ -9,7 +9,8 @@ public class DJBoss : Boss
     [SerializeField] private GameObject _shieldPrefab;
     [SerializeField] private GameObject _shieldModel;
     [SerializeField] private GameObject[] _enemyPool;
-
+    [SerializeField] private FMODUnity.EventReference _hitSFX;
+ 
     private const int MAX_HEALTH = 75;
     private const float MIN_SHIELD_X = -35f;
     private const float MAX_SHIELD_X = 35f;
@@ -37,6 +38,16 @@ public class DJBoss : Boss
         _shieldModel.SetActive(true);
 
         StartCoroutine(ShieldPhases());
+    }
+
+    public override void TakeDamage(int damageIn, out int dmgRecieved, out Color colorSet)
+    {
+        base.TakeDamage(damageIn, out int dmgRecievedBase, out Color colorSetBase);
+        dmgRecieved = dmgRecievedBase;
+        colorSet = colorSetBase;
+
+        // Play hit sound
+        SoundManager.instance.PlaySound(_hitSFX);
     }
 
     private IEnumerator ShieldPhases()
