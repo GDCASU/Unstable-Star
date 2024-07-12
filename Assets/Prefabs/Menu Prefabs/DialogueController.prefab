@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3604167900427707985}
   - component: {fileID: 6320924069648261947}
   - component: {fileID: 2194012226675323863}
-  - component: {fileID: 9188354417665188697}
   - component: {fileID: 2610264310585351380}
+  - component: {fileID: 4299506215780032527}
   m_Layer: 0
   m_Name: DialogueController
   m_TagString: Untagged
@@ -53,7 +53,7 @@ MonoBehaviour:
   speakerText: {fileID: 0}
   emotionSprite: {fileID: 0}
   timelinePlayer: {fileID: 2194012226675323863}
-  dialogueOptions: {fileID: 9188354417665188697}
+  dialogueOptions: {fileID: 0}
   dialogueObject: {fileID: 0}
   currentSceneFile: 
   doDebugLog: 0
@@ -93,68 +93,6 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - d515257c6403efc45b41629781760a1c: {fileID: 0}
---- !u!114 &9188354417665188697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069556765877585204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15ee98d77ad64c94f950ed011f36cbc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rebekahEmotions:
-  - {fileID: 21300000, guid: b32d004ff309e3e48a199d5a695362da, type: 3}
-  - {fileID: 21300000, guid: 3b285a330de66fc4dafb89fe5f71743c, type: 3}
-  - {fileID: 21300000, guid: 31f5782fe91fc7a4faba5ac1c4d1e3d2, type: 3}
-  - {fileID: 21300000, guid: 9f99ec5324e525a43928e57abb3ed550, type: 3}
-  jaughnEmotions:
-  - {fileID: 21300000, guid: 974bd968ba278134284048ab6e552ae0, type: 3}
-  - {fileID: 21300000, guid: a443b862a13849e4ea373b9c1f7b58ee, type: 3}
-  - {fileID: 21300000, guid: f0840a5d50680494a84d89771ae7450a, type: 3}
-  - {fileID: 21300000, guid: dcfcc70fdd0b07543b71463e6ef98504, type: 3}
-  apolloEmotions:
-  - {fileID: 21300000, guid: 040d49d7d9adaad448256adbb17c0420, type: 3}
-  - {fileID: 21300000, guid: 0179ea800b8e26340a6ef8cebf7383b5, type: 3}
-  - {fileID: 21300000, guid: 9bc1a03cf3240c14b952076101a30949, type: 3}
-  - {fileID: 21300000, guid: 33cef287389209a4eac066c4867a3501, type: 3}
-  ebbEmotions:
-  - {fileID: 21300000, guid: 46d0665caa74cf04bb5c7fe1770cf8f7, type: 3}
-  - {fileID: 21300000, guid: c7dee2a3b766ce741bbfd830fc742a52, type: 3}
-  - {fileID: 21300000, guid: 3e48b12ac342cf541a1d95b62ba7681c, type: 3}
-  - {fileID: 21300000, guid: d747bd55e04cb1d40b6699203efd0fe8, type: 3}
-  blankEmotions:
-  - {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
-  - {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
-  - {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
-  - {fileID: 21300000, guid: 887af93f65aa53141a530418e2432267, type: 3}
-  boss1Emotions:
-  - {fileID: 21300000, guid: fa889b6ef040e6a4a872a9787e747884, type: 3}
-  - {fileID: 21300000, guid: 2ffa229aba3d51744b27fe4d25353e4b, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  boss2Emotions:
-  - {fileID: 21300000, guid: d057e7325bea06d4d8726f3d4a9b8e11, type: 3}
-  - {fileID: 21300000, guid: cd0e736ce72fa434da015a1c52f0b85f, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  boss3Emotions:
-  - {fileID: 21300000, guid: 20216ef4fb892f24682e130a011475af, type: 3}
-  - {fileID: 21300000, guid: e9b9ec5bf1d033f4e8d5359794585a7d, type: 3}
-  - {fileID: 21300000, guid: 5ecaf5f136773964b9cf876b85c8f947, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
-  pizzaGuyEmotions:
-  - {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
-  - {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
-  - {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
-  - {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
-  shadowEmotions:
-  - {fileID: 21300000, guid: 20216ef4fb892f24682e130a011475af, type: 3}
-  - {fileID: 21300000, guid: 5ecaf5f136773964b9cf876b85c8f947, type: 3}
-  - {fileID: 21300000, guid: e9b9ec5bf1d033f4e8d5359794585a7d, type: 3}
-  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
 --- !u!114 &2610264310585351380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +138,68 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &4299506215780032527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3069556765877585204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee98d77ad64c94f950ed011f36cbc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rebekahEmotions:
+  - {fileID: 21300000, guid: b38b8accd07ebd04ab04cebad7aee487, type: 3}
+  - {fileID: 21300000, guid: 95dee111f41f8374aab884ce41c81e5b, type: 3}
+  - {fileID: 21300000, guid: 28c5e4a4467ae8b4ba7b70460ef4ceb0, type: 3}
+  - {fileID: 21300000, guid: 1b205d1a4e6702d49b85b663fa656a4d, type: 3}
+  jaughnEmotions:
+  - {fileID: 21300000, guid: d107c9e17418f3140aad09129fa90e3b, type: 3}
+  - {fileID: 21300000, guid: 2012702253feea04d9c6701758d1941d, type: 3}
+  - {fileID: 21300000, guid: 724ae41b564773945b80512e8a6c713f, type: 3}
+  - {fileID: 21300000, guid: 737dd5d0463df334fb30c967b907dc9c, type: 3}
+  apolloEmotions:
+  - {fileID: 21300000, guid: 040d49d7d9adaad448256adbb17c0420, type: 3}
+  - {fileID: 21300000, guid: 0179ea800b8e26340a6ef8cebf7383b5, type: 3}
+  - {fileID: 21300000, guid: 9bc1a03cf3240c14b952076101a30949, type: 3}
+  - {fileID: 21300000, guid: 33cef287389209a4eac066c4867a3501, type: 3}
+  ebbEmotions:
+  - {fileID: 21300000, guid: 78e2ee1207416fa47853daaf8247d5d8, type: 3}
+  - {fileID: 21300000, guid: 7b3cc1019759e0144ac32635d3f9e8b2, type: 3}
+  - {fileID: 21300000, guid: e7862f174406fdd43bf0d05fbb543983, type: 3}
+  - {fileID: 21300000, guid: c323143aedacb954c8be974e2d09fd8d, type: 3}
+  blankEmotions:
+  - {fileID: 21300000, guid: 9aaf496a32ecd8f43a3f08efad6e8d78, type: 3}
+  - {fileID: 21300000, guid: 9aaf496a32ecd8f43a3f08efad6e8d78, type: 3}
+  - {fileID: 21300000, guid: 9aaf496a32ecd8f43a3f08efad6e8d78, type: 3}
+  - {fileID: 21300000, guid: 9aaf496a32ecd8f43a3f08efad6e8d78, type: 3}
+  boss1Emotions:
+  - {fileID: 21300000, guid: fa889b6ef040e6a4a872a9787e747884, type: 3}
+  - {fileID: 21300000, guid: 2ffa229aba3d51744b27fe4d25353e4b, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  boss2Emotions:
+  - {fileID: 21300000, guid: d057e7325bea06d4d8726f3d4a9b8e11, type: 3}
+  - {fileID: 21300000, guid: cd0e736ce72fa434da015a1c52f0b85f, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  boss3Emotions:
+  - {fileID: 21300000, guid: 20216ef4fb892f24682e130a011475af, type: 3}
+  - {fileID: 21300000, guid: e9b9ec5bf1d033f4e8d5359794585a7d, type: 3}
+  - {fileID: 21300000, guid: 5ecaf5f136773964b9cf876b85c8f947, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
+  pizzaGuyEmotions:
+  - {fileID: 21300000, guid: 2d93161d6938295488a610dc286d9079, type: 3}
+  - {fileID: 21300000, guid: 2d93161d6938295488a610dc286d9079, type: 3}
+  - {fileID: 21300000, guid: 2d93161d6938295488a610dc286d9079, type: 3}
+  - {fileID: 21300000, guid: 2d93161d6938295488a610dc286d9079, type: 3}
+  shadowEmotions:
+  - {fileID: 21300000, guid: 20216ef4fb892f24682e130a011475af, type: 3}
+  - {fileID: 21300000, guid: 5ecaf5f136773964b9cf876b85c8f947, type: 3}
+  - {fileID: 21300000, guid: e9b9ec5bf1d033f4e8d5359794585a7d, type: 3}
+  - {fileID: 21300000, guid: 7f5b7b1b7e3b04745a00354fe4b8a07a, type: 3}
 --- !u!1 &3952871861753321593
 GameObject:
   m_ObjectHideFlags: 0

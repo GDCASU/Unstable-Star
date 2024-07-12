@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1108,6 +1108,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 758098698}
     - target: {fileID: 6320924069648261947, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+      propertyPath: dialogueOptions
+      value: 
+      objectReference: {fileID: 1670785429}
+    - target: {fileID: 6320924069648261947, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: currentSceneFile
       value: Act2_Sc1.txt
       objectReference: {fileID: 0}
@@ -1233,6 +1237,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: ef759d8f77b086f42b374ef464e8f0b1, type: 3}
     m_RemovedComponents:
     - {fileID: 8624068510671605050, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+    - {fileID: 9188354417665188697, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3952871861753321593, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
     m_AddedGameObjects:
@@ -1255,6 +1260,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cb82f6b917e73449aa122fbec6f1b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1670785429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4299506215780032527, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+  m_PrefabInstance: {fileID: 1670785426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee98d77ad64c94f950ed011f36cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1866859626 stripped
