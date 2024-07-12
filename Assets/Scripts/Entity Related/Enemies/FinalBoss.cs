@@ -27,6 +27,7 @@ public class FinalBoss : Boss
     [SerializeField] private GameObject _anchorObject;
     [SerializeField] private ScriptableWeapon _bulletWeapon;
     [SerializeField] private ScriptableWeapon _fireworkWeapon;
+    [SerializeField] private FMODUnity.EventReference _hitSFX;
 
     private int _currentPhase => 5 - Mathf.CeilToInt(4 * (float)health / MAX_HEALTH);
     private MoveState _moveState;
@@ -79,6 +80,16 @@ public class FinalBoss : Boss
         if(_currentPhase == 4) _moveState = MoveState.HORIZONTALFANCY;
         yield break;
 	}
+
+    public override void TakeDamage(int damageIn, out int dmgRecieved, out Color colorSet)
+    {
+        base.TakeDamage(damageIn, out int dmgRecievedBase, out Color colorSetBase);
+        dmgRecieved = dmgRecievedBase;
+        colorSet = colorSetBase;
+
+        // Play hit sound
+        SoundManager.instance.PlaySound(_hitSFX);
+    }
 
     private IEnumerator WaveAttack()
 	{
