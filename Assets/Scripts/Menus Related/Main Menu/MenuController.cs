@@ -161,12 +161,12 @@ public class MenuController : MonoBehaviour
         // ACT 2
         bool isAct2Unlocked = SerializedDataManager.instance.gameData.isAct2Unlocked;
         bool isAct2Completed = SerializedDataManager.instance.gameData.isAct2Complete;
-        GameAct act2 = new GameAct("ACT 2", isAct2Unlocked, isAct2Completed, Scenes.CutScene_2);
+        GameAct act2 = new GameAct("ACT 2", isAct2Unlocked, isAct2Completed, Scenes.CutScene_3);
 
         // ACT 3
         bool isAct3Unlocked = SerializedDataManager.instance.gameData.isAct3Unlocked;
         bool isAct3Completed = SerializedDataManager.instance.gameData.isAct3Complete;
-        GameAct act3 = new GameAct("ACT 3", isAct3Unlocked, isAct3Completed, Scenes.CutScene_4);
+        GameAct act3 = new GameAct("ACT 3", isAct3Unlocked, isAct3Completed, Scenes.CutScene_5);
 
         // Add them to the list
         ActList.Add(act1);
