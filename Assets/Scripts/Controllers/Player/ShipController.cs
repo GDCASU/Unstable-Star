@@ -74,16 +74,6 @@ public class ShipController : MonoBehaviour
 
     void movePlayer()
     {
-        //check if focus mode is activated
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            currSpeed = focusSpeed;
-        }
-        else
-        {
-            currSpeed = normalSpeed;
-        }
-
         // Move player according to input
         movementVector = PlayerInput.instance.movementInput;
         translationVector = currSpeed * Time.deltaTime * movementVector;

@@ -53,7 +53,7 @@ MonoBehaviour:
   speakerText: {fileID: 0}
   emotionSprite: {fileID: 0}
   timelinePlayer: {fileID: 2194012226675323863}
-  dialogueOptions: {fileID: 0}
+  dialogueOptions: {fileID: 4299506215780032527}
   dialogueObject: {fileID: 0}
   currentSceneFile: 
   doDebugLog: 0

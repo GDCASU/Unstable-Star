@@ -53,6 +53,9 @@ public class DialogueManager : MonoBehaviour
         currentDialogue = new string[1000][];
         currentDialogue = ReadFile(System.IO.Path.Combine(Application.streamingAssetsPath, currentSceneFile), currentDialogue);
 
+        dialogueOptions ??= GetComponent<DialogueOptions>();
+        if (dialogueOptions == null) throw new NullReferenceException("Dialogue options not initialized.");
+
         PlayerInput.OnChangeDialogue += ChangeDialogue; // Change dialogue inputs from the input system
         PlayerInput.OnSkipDialogue += ChangeScene;  // Change Scene inputs
     }
