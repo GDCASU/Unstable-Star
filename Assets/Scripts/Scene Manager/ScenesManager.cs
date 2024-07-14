@@ -137,6 +137,12 @@ public class ScenesManager : MonoBehaviour
             return;
         }
 
+        if((Scenes)currentScene == Scenes.CutScene_7)
+        {
+            LoadScene(Scenes.Credits);
+            return;
+        }
+
         // Typical behavior
         currentScene++;
         SceneManager.LoadScene(currentScene);

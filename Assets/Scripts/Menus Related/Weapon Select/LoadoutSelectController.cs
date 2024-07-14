@@ -152,6 +152,8 @@ public class LoadoutSelectController : MonoBehaviour
     /// <param name="dir">Direction to navigate.</param>
     void Navigate(Vector2 dir)
     {
+        if (dir.y == 0) return;
+
         UnhighlightSelection();
 
         // Increment
@@ -180,7 +182,7 @@ public class LoadoutSelectController : MonoBehaviour
         if (currentSelection >= currentSelectionSize - 2)
         {
             // Arrow
-            if (currentSelection - currentDisks.Count == 0)
+            if (currentSelection - currentDisks.Count == 1)
             {
                 if (inWeapons)
                 {
@@ -192,8 +194,10 @@ public class LoadoutSelectController : MonoBehaviour
                     buttonToWeapons.GetComponent<Button>().onClick?.Invoke();
                     inWeapons = true;
                 }
+
+                currentSelection = 0;
             }
-            else if (currentSelection - currentDisks.Count == 1) btnLaunch.onClick?.Invoke();    // Launch button
+            else if (currentSelection - currentDisks.Count == 0) btnLaunch.onClick?.Invoke();    // Launch button
         }
         // Disk
         else currentDisks[currentSelection].Activate();
@@ -215,14 +219,14 @@ public class LoadoutSelectController : MonoBehaviour
         if (currentSelection >= currentSelectionSize - 2)
         {
             // Arrow
-            if (currentSelection - currentDisks.Count == 0)
+            if (currentSelection - currentDisks.Count == 1)
             {
                 if (printDebugs) Debug.Log("LoadoutSelectController::HighlightSelection::HighlightArrow");
 
                 if (inWeapons) buttonToAbilities.GetComponent<Button>().Select();
                 else buttonToWeapons.GetComponent<Button>().Select();
             }
-            else if (currentSelection - currentDisks.Count == 1) btnLaunch.Select();    // Launch button
+            else if (currentSelection - currentDisks.Count == 0) btnLaunch.Select();    // Launch button
         }
         // Disk
         else currentDisks[currentSelection].Highlight();
