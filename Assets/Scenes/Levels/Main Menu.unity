@@ -6545,7 +6545,6 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0}
   moveSpeed: 0
   rotationSpeed: 0
-  myAudioClip: {fileID: 0}
 --- !u!65 &814259525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7718,6 +7717,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7804,6 +7804,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f195612dd0cf179468e0a175593b6e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRatioX: 4
+  targetRatioY: 3
 --- !u!1 &974266562
 GameObject:
   m_ObjectHideFlags: 0
@@ -12929,7 +12943,6 @@ MonoBehaviour:
   cameraRotation: {x: 7.7, y: 180, z: 0}
   moveSpeed: 5
   rotationSpeed: 1
-  myAudioClip: {fileID: 0}
 --- !u!136 &1702179590
 CapsuleCollider:
   m_ObjectHideFlags: 0
