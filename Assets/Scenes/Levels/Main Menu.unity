@@ -1668,7 +1668,7 @@ PrefabInstance:
       addedObject: {fileID: 1984945880}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1984945883}
+      addedObject: {fileID: 1984945881}
   m_SourcePrefab: {fileID: 100100000, guid: be44c69787d1a3c4c8c81b3e97c52a70, type: 3}
 --- !u!4 &126739767 stripped
 Transform:
@@ -4159,7 +4159,7 @@ MonoBehaviour:
   - {fileID: 1459295044}
   - {fileID: 856194949}
   consoleActText: {fileID: 1529099941}
-  upConsoleButton: {fileID: 1984945883}
+  upConsoleButton: {fileID: 1984945881}
   downConsoleButton: {fileID: 2138027358}
   upConsoleBtnLight: {fileID: 1032675498}
   downConsoleBtnLight: {fileID: 874049587}
@@ -6545,7 +6545,6 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0}
   moveSpeed: 0
   rotationSpeed: 0
-  myAudioClip: {fileID: 0}
 --- !u!65 &814259525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11053,6 +11052,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2138027359}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2138027360}
   m_SourcePrefab: {fileID: 100100000, guid: e9989ed2967cda44aba52dc549f32ccd, type: 3}
 --- !u!4 &1434217708 stripped
 Transform:
@@ -12929,7 +12931,6 @@ MonoBehaviour:
   cameraRotation: {x: 7.7, y: 180, z: 0}
   moveSpeed: 5
   rotationSpeed: 1
-  myAudioClip: {fileID: 0}
 --- !u!136 &1702179590
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13609,7 +13610,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.01
   m_Center: {x: 0, y: -0.0006609149, z: 7.87872e-11}
---- !u!114 &1984945883
+--- !u!114 &1984945881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14533,6 +14534,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.010000003
   m_Center: {x: 0, y: -0.00066091487, z: 0.000000014664799}
+--- !u!114 &2138027360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138027354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8591291ce5db3004abdfd7ace689f78c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &577075110308308292
 GameObject:
   m_ObjectHideFlags: 0
