@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 1304896847}
 --- !u!1 &750228001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,6 +1040,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b099a1ee9381094e8d0ca57dc2f3d77, type: 3}
+--- !u!1 &1304896847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2737914670675678338, guid: 5b099a1ee9381094e8d0ca57dc2f3d77, type: 3}
+  m_PrefabInstance: {fileID: 1304896846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1388812693 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4225263284049316183, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
@@ -1132,7 +1137,7 @@ PrefabInstance:
     - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: m_SceneBindings.Array.data[1].value
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1304896847}
     - target: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
       propertyPath: m_SceneBindings.Array.data[2].value
       value: 
@@ -1432,6 +1437,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3604167900427707985, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
   m_PrefabInstance: {fileID: 1670785426}
   m_PrefabAsset: {fileID: 0}
+--- !u!320 &1670785428 stripped
+PlayableDirector:
+  m_CorrespondingSourceObject: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+  m_PrefabInstance: {fileID: 1670785426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1670785431 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6320924069648261947, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
@@ -1550,6 +1560,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 6844730219469897457, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: listener
+      value: 
+      objectReference: {fileID: 695529485}
+    - target: {fileID: 6844730219469897457, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: playableDirector
+      value: 
+      objectReference: {fileID: 1670785428}
     - target: {fileID: 8263785909498686442, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_Events.m_Events.Array.size
       value: 1

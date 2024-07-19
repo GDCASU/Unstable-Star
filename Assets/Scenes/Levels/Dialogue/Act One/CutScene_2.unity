@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -462,6 +462,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 6844730219469897457, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: listener
+      value: 
+      objectReference: {fileID: 1894723594}
+    - target: {fileID: 6844730219469897457, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: timelineAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ede80ec92f1519a4db7488469e9f05bd, type: 2}
+    - target: {fileID: 6844730219469897457, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: playableDirector
+      value: 
+      objectReference: {fileID: 924606517}
     - target: {fileID: 8263785909498686442, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_Events.m_Events.Array.size
       value: 1
@@ -1148,6 +1160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb82f6b917e73449aa122fbec6f1b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!320 &924606517 stripped
+PlayableDirector:
+  m_CorrespondingSourceObject: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+  m_PrefabInstance: {fileID: 924606514}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &951163405
 PrefabInstance:
   m_ObjectHideFlags: 0

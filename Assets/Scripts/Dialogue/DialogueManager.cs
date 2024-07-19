@@ -49,7 +49,6 @@ public class DialogueManager : MonoBehaviour
     {
         // initializes the current act
         currentSceneFile = InputChecker();
-        print(currentSceneFile);
         currentDialogue = new string[1000][];
         currentDialogue = ReadFile(System.IO.Path.Combine(Application.streamingAssetsPath, currentSceneFile), currentDialogue);
 
@@ -250,6 +249,7 @@ public class DialogueManager : MonoBehaviour
                 // Updates the tutorial
                 if (currentSceneFile == "Act1_Sc2.txt")
                 {
+                    Debug.Log("Controller");
                     return "Act1_Sc2 Controller.txt";
                 }
             }
@@ -260,7 +260,7 @@ public class DialogueManager : MonoBehaviour
             // Updates the tutorial
             if (currentSceneFile == "Act1_Sc2.txt")
             {
-                print("Keyboard");
+                Debug.Log("Keyboard");
                 return "Act1_Sc2 Keyboard.txt";
             }
         }

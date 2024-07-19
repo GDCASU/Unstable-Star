@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 3679670425268946715}
   - component: {fileID: 3609781675993368444}
   - component: {fileID: 8263785909498686442}
+  - component: {fileID: 6844730219469897457}
   m_Layer: 0
   m_Name: Dialogue Camera
   m_TagString: Untagged
@@ -974,6 +975,21 @@ MonoBehaviour:
   m_Events:
     m_Signals: []
     m_Events: []
+--- !u!114 &6844730219469897457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464367396605807595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4135a648db060ea449c69fb2a946d05e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listener: {fileID: 0}
+  timelineAsset: {fileID: 11400000, guid: 6a769df3ed425ad45a5a1c1e4d185795, type: 2}
+  playableDirector: {fileID: 0}
 --- !u!1 &8961409735170294508
 GameObject:
   m_ObjectHideFlags: 0

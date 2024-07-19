@@ -829,6 +829,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 6844730219469897457, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: listener
+      value: 
+      objectReference: {fileID: 1757093730}
+    - target: {fileID: 6844730219469897457, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: timelineAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4599eefab3bcd5f409ec37ea26cedfe8, type: 2}
+    - target: {fileID: 6844730219469897457, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+      propertyPath: playableDirector
+      value: 
+      objectReference: {fileID: 1670785430}
     - target: {fileID: 8263785909498686442, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
       propertyPath: m_Events.m_Events.Array.size
       value: 1
@@ -1579,6 +1591,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee98d77ad64c94f950ed011f36cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!320 &1670785430 stripped
+PlayableDirector:
+  m_CorrespondingSourceObject: {fileID: 2194012226675323863, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+  m_PrefabInstance: {fileID: 1670785426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1757093730
 MonoBehaviour:
   m_ObjectHideFlags: 0
