@@ -14,8 +14,13 @@ public class DJBoss : Boss
     private const int MAX_HEALTH = 75;
     private const float MIN_SHIELD_X = -35f;
     private const float MAX_SHIELD_X = 35f;
-    private const float MIN_SHIELD_Y = -10f;
+    // IAN: Bounds are set to avoid shield bots spawning inside the boss
+    private const float BOUND_LEFT_X = -15f;
+    private const float BOUND_RIGHT_X = 20f;
+    // End added variables
+    private const float MIN_SHIELD_Y = 5f;
     private const float MAX_SHIELD_Y = 15f;
+    
     private const float VULNERABLE_TIME = 7f;
     private const int MAX_ENEMIES = 5;
     private const float ENEMY_SPAWN_Y = 50f;
@@ -68,10 +73,26 @@ public class DJBoss : Boss
                 // Generate a random position for the shield until it is not within close proximity of another shield or 100 attempts
                 for(int attempts = 0; attempts < 100; attempts++)
                 {
-                    shieldPos = new Vector3(Random.Range(MIN_SHIELD_X, MAX_SHIELD_X), Random.Range(MIN_SHIELD_Y, MAX_SHIELD_Y));
-                    if(_shieldList.Find((GameObject o) => Vector3.Distance(o.transform.position, shieldPos) < 15f) == null)
+                    // IAN: roll to spawn on right or left
+                    int result = Random.Range(0, 2);
+
+                    // Spawn on left
+                    if (result == 0)
                     {
-                        break;
+                        shieldPos = new Vector3(Random.Range(MIN_SHIELD_X, BOUND_LEFT_X), Random.Range(MIN_SHIELD_Y, MAX_SHIELD_Y));
+                        if (_shieldList.Find((GameObject o) => Vector3.Distance(o.transform.position, shieldPos) < 15f) == null)
+                        {
+                            break;
+                        }
+                    }
+                    // Else, spawn on right
+                    else
+                    {
+                        shieldPos = new Vector3(Random.Range(BOUND_RIGHT_X, MAX_SHIELD_X), Random.Range(MIN_SHIELD_Y, MAX_SHIELD_Y));
+                        if (_shieldList.Find((GameObject o) => Vector3.Distance(o.transform.position, shieldPos) < 15f) == null)
+                        {
+                            break;
+                        }
                     }
                 }
                 CreateShield(shieldPos);

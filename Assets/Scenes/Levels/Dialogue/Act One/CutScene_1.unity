@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1418,7 +1418,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 2d93161d6938295488a610dc286d9079, type: 3}
     m_RemovedComponents:
-    - {fileID: 8624068510671605050, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects:
     - {fileID: 3952871861753321593, guid: d8e51d10d9ec4434f9ad2c79bd186ba2, type: 3}
     m_AddedGameObjects:
@@ -1662,8 +1662,7 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6932105525749992276, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4225263284049316183, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
@@ -1677,7 +1676,7 @@ PrefabInstance:
       addedObject: {fileID: 922050468}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8464367396605807595, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
-      insertIndex: -1
+      insertIndex: 4
       addedObject: {fileID: 695529485}
   m_SourcePrefab: {fileID: 100100000, guid: 8e9a5f287933b1a47b88ac48b4ce8e72, type: 3}
 --- !u!1660057539 &9223372036854775807
