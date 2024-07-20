@@ -42,7 +42,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 133253f56854570409c222a87786b263, type: 3}
-  m_Name: FMOD Event Track
+  m_Name: Sound Manager
   m_EditorClassIdentifier: 
   m_Version: 3
   m_AnimClip: {fileID: 0}
@@ -2277,7 +2277,7 @@ MonoBehaviour:
       Data3: 874076342
       Data4: -865714838
     Path: event:/SFX/Dialogue/IntercomBuzz
-  StopType: 1
+  StopType: 0
   Parameters: []
 --- !u!114 &5080596473021628595
 MonoBehaviour:
