@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffectPrefab: {fileID: 0}
-  health: 10
+  health: 40
   shield: 0
   collisionDamage: 0
   timeLeftInvulnerable: 0

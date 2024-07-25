@@ -11,7 +11,7 @@ public class DJBoss : Boss
     [SerializeField] private GameObject[] _enemyPool;
     [SerializeField] private FMODUnity.EventReference _hitSFX;
  
-    private const int MAX_HEALTH = 75;
+    private const int MAX_HEALTH = 300;
     private const float MIN_SHIELD_X = -35f;
     private const float MAX_SHIELD_X = 35f;
     // IAN: Bounds are set to avoid shield bots spawning inside the boss
