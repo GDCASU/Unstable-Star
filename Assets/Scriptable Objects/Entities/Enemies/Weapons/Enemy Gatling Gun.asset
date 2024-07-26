@@ -24,8 +24,7 @@ MonoBehaviour:
     Path: event:/SFX/Weapons/Enemies/Gatling Fire
   description: 
   heatUpTime: 3
-  damage: 1
+  damage: 8
   bulletSpeed: 30
   timeBetweenShots: 0.1
-  isEnemy: 1
   shootStayTime: 4

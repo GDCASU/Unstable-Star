@@ -23,6 +23,6 @@ MonoBehaviour:
       Data4: -565483187
     Path: event:/SFX/Weapons/Player/Pistol Fire
   description: Lightweight cannon with low power and regular speed.
-  damage: 3
+  damage: 16
   bulletSpeed: 60
   shotsCooldown: 0.4
