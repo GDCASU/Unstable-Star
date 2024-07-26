@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75bcdffb4cae044cbc62c96733e4ef1, type: 3}
   m_Name: Laser Enemy
   m_EditorClassIdentifier: 
-  health: 20
+  health: 40
   shield: 0
   collisionDamage: 4
   dmgInvulnTimeSecs: 0
