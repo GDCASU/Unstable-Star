@@ -27,6 +27,7 @@ public class PlayerStatusBars : MonoBehaviour
     private List<GameObject> healthBarsColoredList = new List<GameObject>();
     private List<GameObject> shieldBarsColoredList = new List<GameObject>();
 
+    private bool finishedSetup;
     private int healthBefore;
     private int shieldBefore;
 
@@ -38,9 +39,8 @@ public class PlayerStatusBars : MonoBehaviour
         EventData.OnShieldGained += OnShieldGained;
         EventData.OnShieldDamaged += OnShieldDamaged;
         EventData.OnShieldBroken += OnShieldDamaged;
+        Player.hasLoadedStats += SetupStatBars;
 
-        // Wait for the stats to load
-        StartCoroutine(SetupStatBars());
     }
 
     // Unsubscribe from events on destroy
@@ -51,24 +51,23 @@ public class PlayerStatusBars : MonoBehaviour
         EventData.OnShieldGained -= OnShieldGained;
         EventData.OnShieldDamaged -= OnShieldDamaged;
         EventData.OnShieldBroken -= OnShieldDamaged;
+        Player.hasLoadedStats -= SetupStatBars;
     }
 
     // Setup the UI Stat Bars
     // TODO: Maybe if Max Health or Max Shield can be upgraded down the line
     // This code could be modified to account for that
-    private IEnumerator SetupStatBars()
+    private void SetupStatBars()
     {
-        while (!Player.instance.finishedLoading)
-        {
-            // Wait for max health and shield to load
-            yield return null;
-        }
-        
+        // This bool stops it from bombing the game with objects
+        if (finishedSetup) return;
+
         // Readability Vars
         int playerMaxHealth = Player.instance.GetMaxHealth();
         int playerMaxShield = Player.instance.GetMaxShield();
 
-        Debug.Log("Max Shield = " + playerMaxShield);
+        // If the values are 0 or less, dont run
+        if (playerMaxHealth < 1 || playerMaxShield < 1) return;
 
         // Scale the UI segments in respect to the player's Max Health
         if (playerMaxHealth > 1)
@@ -137,6 +136,9 @@ public class PlayerStatusBars : MonoBehaviour
         // Set variables used for going through the HUD array
         healthBefore = Player.instance.GetMaxHealth();
         shieldBefore = Player.instance.GetMaxShield();
+
+        // Finished
+        finishedSetup = true;
     }
 
     #region HEALTH CHECKS
@@ -194,5 +196,4 @@ public class PlayerStatusBars : MonoBehaviour
     }
 
     #endregion
-
 }

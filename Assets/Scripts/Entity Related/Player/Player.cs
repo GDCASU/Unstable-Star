@@ -29,18 +29,19 @@ public class Player : CombatEntity
     [SerializeField] private float shieldFloat;
 
     //Local variables
-    [HideInInspector] public bool finishedLoading; // bool used to load hud
     private ShootComponent shootComponent;
     private AbilityComponent abilityComponent;
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
 
+    // IAN HACK: The Status bars of the hud keep picking up a player object that gets destroyed or 
+    // something, so this event fixes that
+    public static System.Action hasLoadedStats;
+    private void RaiseHasLoadedStats() => hasLoadedStats?.Invoke();
+
     protected override void Awake()
     {
         base.Awake();
-
-        // bool used to load hud
-        finishedLoading = false;
 
         // Handle Singleton
         if (instance == null)
@@ -85,8 +86,6 @@ public class Player : CombatEntity
 
         // Subscribe to events
         EventData.OnPlayerDeath += WhenPlayerDies;
-        // Finished loading
-        finishedLoading = true;
     }
 
     // Unsubscribe from events on destroy
@@ -128,6 +127,9 @@ public class Player : CombatEntity
             TriggerDeath();
             DeathTest = false;
         }
+
+        // HACK: Fuh dis shit, spamming this function with update to make it load the HUD
+        RaiseHasLoadedStats();
     }
 
     #region WEAPON SYSTEMS
