@@ -321,8 +321,6 @@ public class ShootComponent : MonoBehaviour
     // Routine that will check if the fire button is still being held down for the gatling
     private IEnumerator isGatlingOnMaxHeat(Weapon input)
     {
-        Debug.Log("ENTERED HEAT ROUTINE");
-
         float heatValueOnShootStop = -1;
         float maxCounterOnEnter;
         input.HeatUpCounter = input.heatUpTimeMax;
