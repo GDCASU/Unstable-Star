@@ -111,21 +111,21 @@ public class ShootComponent : MonoBehaviour
     private IEnumerator ShootingCooldown(Weapon input)
     {
         input.isOnCooldown = true;
-        input.timeLeftInCooldown = input.shootCooldownTime;
+        input.timeLeftInCooldown = 0;
+
+        // Call UI with max once
+        input.RaiseModifyMeterCharge(input.shootCooldownTime, input.timeLeftInCooldown, Color.white);
 
         // Cooldown timer
-        while (input.timeLeftInCooldown > 0f)
+        while (input.timeLeftInCooldown < input.shootCooldownTime)
         {
             // Invoke the UI event for the weapon
             input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.timeLeftInCooldown, Color.white);
-            input.timeLeftInCooldown -= Time.deltaTime; // Compute time
+            input.timeLeftInCooldown += Time.deltaTime; // Compute time
             yield return null; // Wait a frame
         }
         input.isOnCooldown = false;
         input.timeLeftInCooldown = 0f;
-
-        // Raise cooldown event one last time and reset
-        input.RaiseModifyMeterCooldown(input.shootCooldownTime, input.timeLeftInCooldown, Color.white);
     }
 
     // Laser cooldown routine

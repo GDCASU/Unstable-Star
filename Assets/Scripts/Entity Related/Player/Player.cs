@@ -128,7 +128,7 @@ public class Player : CombatEntity
             DeathTest = false;
         }
 
-        // HACK: Fuh dis shit, spamming this function with update to make it load the HUD
+        // HACK: Fuh dis shit, spamming this event with update to make it load the HUD
         RaiseHasLoadedStats();
     }
 
