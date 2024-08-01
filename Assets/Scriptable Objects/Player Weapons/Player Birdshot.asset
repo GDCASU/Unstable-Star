@@ -22,6 +22,7 @@ MonoBehaviour:
       Data3: 989007238
       Data4: 152891200
     Path: event:/TESTING/RayGunEffect
-  damage: 1
-  bulletSpeed: 30
+  description: 
+  damage: 2
+  bulletSpeed: 60
   shotsCooldown: 0.2

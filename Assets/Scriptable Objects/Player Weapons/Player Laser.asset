@@ -16,16 +16,22 @@ MonoBehaviour:
   laserPrefab: {fileID: 5345990141035161666, guid: ce02a25aec1a0754eb739bc9702a3af3, type: 3}
   chargingSpherePrefab: {fileID: 3116827553839749471, guid: a19a52199c3b0d9468169b97257516a5, type: 3}
   weaponIcon: {fileID: 21300000, guid: 08416634395a74e45b558de639ecdb36, type: 3}
-  sound:
+  laserFire:
     Guid:
       Data1: -1320353618
       Data2: 1313116285
       Data3: -2030938228
       Data4: 1812777049
     Path: event:/SFX/Weapons/Player/Laser Fire
-  description: 
-  minDamage: 1
-  maxDamage: 10
+  laserCharge:
+    Guid:
+      Data1: -1218167532
+      Data2: 1224442511
+      Data3: -1134498389
+      Data4: -1701468616
+    Path: event:/SFX/Weapons/Player/Laser Charge
+  description: A laser cannon that can be charged up for a powerful blast.
+  minDamage: 4
+  maxDamage: 20
   laserCooldown: 1.5
   maxChargeUpTime: 3
-  isEnemy: 0

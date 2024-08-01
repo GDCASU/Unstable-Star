@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffectPrefab: {fileID: 2887401111048430277, guid: 86fafbd8ba5234d459aeebb47e8c5c17, type: 3}
-  health: 10
+  health: 40
   shield: 0
   collisionDamage: 2
   timeLeftInvulnerable: 0

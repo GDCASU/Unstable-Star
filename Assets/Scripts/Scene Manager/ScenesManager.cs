@@ -5,38 +5,48 @@ using UnityEngine.SceneManagement;
 
 public enum Scenes
 {
-    MainMenu,
-    CutScene_1,
-    Level_1,
-    CutScene_2,
+    IntroLoadingScreen, // 0
+    MainMenu,           // 1
+    Loadout_Select,     // 2
+    CutScene_1,         // 3
+    Level_1,            // 4
+    CutScene_2,         // LOADOUT AFTER THIS
     CutScene_3,
     Level_2,
-    CutScene_4,
+    CutScene_4,         // LOADOUT AFTER THIS
     CutScene_5,
-    Level_3,
     CutScene_6,
-    GameOver
+    Level_3,
+    CutScene_7,
+    GameOver,
+    Credits
 }
 
 public class ScenesManager : MonoBehaviour
 {
-    public static ScenesManager instance = null;     // Singleton instance
+    // Singleton instance
+    public static ScenesManager instance = null;
 
     [SerializeField] private bool debug = false;
 
     public static int currentScene { get; private set; }
-    public static int currentLevel = 1;
     private Dictionary<Scenes, bool> unlockedScenes;
 
-    public Animator transition;
+    // Ian: Stores the target scene after the weapon select is finished
+    public Scenes? nextSceneAfterWeaponSelect;
 
     private void Awake()
     {
-        // Singleton: Checks if a scene object is currently in use and destroys it if true
-        if (instance != null && instance != this)
-            Destroy(this);
-        else
+        // Handle Singleton
+        if (instance == null)
+        {
             instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     private void Start()
@@ -48,21 +58,30 @@ public class ScenesManager : MonoBehaviour
 
     private void InitializeDict()
     {
-        unlockedScenes = new Dictionary<Scenes, bool>();
-
-        unlockedScenes.Add(Scenes.MainMenu, true);
-        unlockedScenes.Add(Scenes.CutScene_1, true);
-        unlockedScenes.Add(Scenes.CutScene_2, true);
-        unlockedScenes.Add(Scenes.CutScene_3, true);
-        unlockedScenes.Add(Scenes.CutScene_4, false);
-        unlockedScenes.Add(Scenes.CutScene_5, false);
-        unlockedScenes.Add(Scenes.CutScene_6, false);
-        unlockedScenes.Add(Scenes.Level_1, true);
-        unlockedScenes.Add(Scenes.Level_2, true);
-        unlockedScenes.Add(Scenes.Level_3, false);
-        unlockedScenes.Add(Scenes.GameOver, false);
+        unlockedScenes = new Dictionary<Scenes, bool>
+        {
+            { Scenes.IntroLoadingScreen, true},
+            { Scenes.MainMenu, true },
+            { Scenes.CutScene_1, true },
+            { Scenes.CutScene_2, true },
+            { Scenes.CutScene_3, true },
+            { Scenes.CutScene_4, false },
+            { Scenes.CutScene_5, false },
+            { Scenes.CutScene_6, false },
+            { Scenes.Loadout_Select, true },
+            { Scenes.Level_1, true },
+            { Scenes.Level_2, true },
+            { Scenes.Level_3, false },
+            { Scenes.GameOver, true },
+            { Scenes.Credits, true }
+        };
     }
 
+    /// <summary>
+    /// Check if the scene is unlicked if not returns false; otherwise true
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <returns></returns>
     public bool CheckScene(Scenes scene)
     {
         if (!unlockedScenes.ContainsKey(scene))
@@ -83,74 +102,50 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
-    // Gets the name of the scene and loads it 
+    /// <summary>
+    /// Pass in the name of the scene and loads it 
+    /// </summary>
+    /// <param name="scene"></param>
     public void LoadScene(Scenes scene)
     {
+        currentScene = (int)scene;
         if (!unlockedScenes.ContainsKey(scene))
         {
             Debug.LogError("Scene does not exist");
             return;
         }
-        
-        UnityEngine.SceneManagement.SceneManager.LoadScene((int)scene);
+
+        SceneManager.LoadScene((int)scene);
     }
 
     public void LoadNextScene()
     {
-        currentScene++;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(currentScene);
-    }
-
-    public void UnlockScene(Scenes scene)
-    {
-        if (!unlockedScenes.ContainsKey(scene))
+        // Ensure there's not a priority next scene
+        if(nextSceneAfterWeaponSelect != null)
         {
-            Debug.LogError("Error: Scene does not exist");
+            Scenes temp = nextSceneAfterWeaponSelect.Value;
+            nextSceneAfterWeaponSelect = null;
+            LoadScene(temp);
             return;
         }
 
-        unlockedScenes[scene] = true;
-    }
-
-    public void LoadLevel(int level)
-    {
-        switch (level)
+        // Check for special scenes
+        if((Scenes)currentScene == Scenes.CutScene_2 || (Scenes)currentScene == Scenes.CutScene_4)
         {
-            case 1:
-                ScenesManager.instance.LoadScene(Scenes.CutScene_1);
-                break;
-            case 2:
-                ScenesManager.instance.LoadScene(Scenes.CutScene_3);
-                break;
-            case 3:
-                ScenesManager.instance.LoadScene(Scenes.CutScene_4);
-                break;
-            default:
-                Debug.LogError("Error: Level does not exist");
-                break;
+            nextSceneAfterWeaponSelect = (Scenes)(++currentScene);
+            LoadScene(Scenes.Loadout_Select);
+            return;
         }
-    }
 
-    public bool CheckLevel(int level)
-    {
-        switch (level)
+        if((Scenes)currentScene == Scenes.CutScene_7)
         {
-            case 1:
-                return CheckScene(Scenes.CutScene_1);
-            case 2:
-                return CheckScene(Scenes.CutScene_3);
-            case 3:
-                return CheckScene(Scenes.CutScene_4);
-            default:
-                return false;
+            LoadScene(Scenes.Credits);
+            return;
         }
+
+        // Typical behavior
+        currentScene++;
+        SceneManager.LoadScene(currentScene);
     }
 
-    IEnumerator WaitForlvl1(string scene_name)
-    {
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(1);
-        Debug.Log("Waited!");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(scene_name);
-    }
 }

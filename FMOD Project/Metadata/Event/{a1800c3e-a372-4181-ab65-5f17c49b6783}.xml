@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{a1800c3e-a372-4181-ab65-5f17c49b6783}">
 		<property name="name">
-			<value>Laser Charge Heavy</value>
+			<value>Laser Charge</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -39,7 +39,7 @@
 	</object>
 	<object class="MasterTrack" id="{beee5980-713d-408f-b80a-643790472dff}">
 		<relationship name="modules">
-			<destination>{2d42688e-90ed-4f7e-8734-7a3383357f02}</destination>
+			<destination>{6dc7abb2-f532-4bda-a66c-0dea0430ea05}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{a17e0006-a50c-4329-bfed-deabb225b1c4}</destination>
@@ -60,10 +60,13 @@
 	<object class="MarkerTrack" id="{f97f2c11-8b29-4329-a835-dc0586aff4ba}" />
 	<object class="Timeline" id="{6e091d0f-cac6-4b3c-9d74-3bb644de92b2}">
 		<relationship name="modules">
-			<destination>{2d42688e-90ed-4f7e-8734-7a3383357f02}</destination>
+			<destination>{6dc7abb2-f532-4bda-a66c-0dea0430ea05}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{a17e0006-a50c-4329-bfed-deabb225b1c4}">
+		<property name="volume">
+			<value>-6</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{96fd139a-9a66-4aec-b923-496daa5fb3a0}</destination>
 		</relationship>
@@ -74,12 +77,15 @@
 			<destination>{171962ab-d135-4ead-8467-e94887b98aa8}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{2d42688e-90ed-4f7e-8734-7a3383357f02}">
+	<object class="SingleSound" id="{6dc7abb2-f532-4bda-a66c-0dea0430ea05}">
 		<property name="length">
-			<value>5</value>
+			<value>7.032</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{774a6daf-a758-4645-8d57-bdffbb8ad46b}</destination>
+		</relationship>
 		<relationship name="audioFile">
-			<destination>{acaa76ac-1e41-46e6-8ffc-3cfefc780d4d}</destination>
+			<destination>{8bcdd8ab-1157-4bec-9e5f-f23b0bf624d1}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{480ec767-dfcc-4060-bd06-f5c7a2b502c6}">
@@ -94,6 +100,14 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{52aeecca-ac12-45ab-9adf-e137cacf0e01}" />
+	<object class="RandomizerModulator" id="{774a6daf-a758-4645-8d57-bdffbb8ad46b}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>4.16666698</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{379617bf-4243-429d-866b-30de67737be3}" />
 	<object class="MixerBusFader" id="{51d92474-ba73-4ffc-85dc-caac9d2dd4c1}" />
 </objects>

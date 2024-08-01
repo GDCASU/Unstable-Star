@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffectPrefab: {fileID: 2887401111048430277, guid: eab787005ac2b33488bda6ca2e17bed5, type: 3}
-  health: 0
-  shield: 0
+  health: -1
+  shield: -1
   collisionDamage: 2
   timeLeftInvulnerable: 0
   dmgInvulnTime: 1.5
@@ -357,11 +357,29 @@ MonoBehaviour:
   isAbilityLocked: 0
   isInvulnerable: 0
   isIgnoringCollisions: 0
-  MAX_HEALTH: 10
-  MAX_SHIELD: 5
-  shieldPerSecond: 0
-  shieldRegenDelayTime: 3
+  playerStatsData: {fileID: 11400000, guid: b8ffb57bfca87674b919c22d1b1de960, type: 2}
   isShieldBroken: 0
+  deathSFX:
+    Guid:
+      Data1: 708082322
+      Data2: 1250716585
+      Data3: -861400440
+      Data4: 1621521794
+    Path: event:/SFX/Player/Ship Effects/Ship Destroyed
+  shieldHitSFX:
+    Guid:
+      Data1: 1230289418
+      Data2: 1192802137
+      Data3: 387786387
+      Data4: -21111247
+    Path: event:/SFX/Player/Ship Effects/Shield Hit
+  healthHitSFX:
+    Guid:
+      Data1: 1963263042
+      Data2: 1298559973
+      Data3: -2010596169
+      Data4: 1852961527
+    Path: event:/SFX/Player/Ship Effects/Health Hit
   IsDebugLogging: 0
   DamageTest: 0
   HealTest: 0
@@ -381,8 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bef06b99e0291f4f852365f8f6e789f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 60
-  focusSpeed: 20
+  normalSpeed: 20
+  focusSpeed: 45
   playerCopyPrefab: {fileID: 7396476796073729095, guid: d44a161c12495f34cb93b23f5fe8a1db, type: 3}
   LaserSightAnchor: {fileID: 2771126060896347954}
 --- !u!114 &4267910268128741752
@@ -398,6 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnchorObject: {fileID: 2771126060896347954}
+  gatlingCrosshair: {fileID: 0}
 --- !u!114 &8063448138892404998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,7 +497,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.5
   m_Height: 6.5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -609,6 +628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iFramesTransparency: 0.05
   flashingInterval: 0.2
+  flashingMat: {fileID: 2100000, guid: 9d5ef72ecafafc64fb5d1e3fb4f18843, type: 2}
   subModelsWithMeshes:
   - {fileID: 4147008258176485037}
   - {fileID: 6711057458898814480}

@@ -22,9 +22,9 @@ MonoBehaviour:
       Data3: 658300835
       Data4: 440627577
     Path: event:/SFX/Weapons/Player/Gatling Fire
-  warmUpTime: 3
-  damage: 1
-  bulletSpeed: 40
+  description: A rapid fire gatling that will send barrages of bullets into the enemy.
+  heatUpTime: 3
+  damage: 2
+  bulletSpeed: 60
   timeBetweenShots: 0.1
-  isEnemy: 0
   shootStayTime: 0

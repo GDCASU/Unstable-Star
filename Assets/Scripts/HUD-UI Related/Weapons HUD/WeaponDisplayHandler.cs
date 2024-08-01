@@ -48,6 +48,8 @@ public class WeaponDisplayHandler : MonoBehaviour
     private RectTransform primaryMeterRect;
     private RectTransform secondaryMeterRect;
     private float maxMeterHeight;
+    private float lastMeterHeightPrimary;
+    private float lastMeterHeightSecondary;
 
     // Weapon References
     private Weapon primaryWep;
@@ -69,9 +71,12 @@ public class WeaponDisplayHandler : MonoBehaviour
         maxMeterHeight = primaryMeterRect.offsetMax.y * -1;
 
         // Subscribe to input events
-        PlayerInput.OnSwitchToNextWeapon += swapPanes;
         EventData.OnPlayerDeath += UnsubscribeFromEvents;
-    }
+
+        // Set variables
+        lastMeterHeightPrimary = maxMeterHeight;
+        lastMeterHeightSecondary = maxMeterHeight;
+}
 
     // Unsubscribe to input events on destroy
     private void OnDestroy()
@@ -109,6 +114,12 @@ public class WeaponDisplayHandler : MonoBehaviour
         // Return to primary
         WeaponArsenal.instance.SetCurrentWeaponToFirst();
 
+        // Subscribe to input events
+        if (WeaponArsenal.instance.GetWeaponListCount() >= 2)
+            PlayerInput.OnSwitchToNextWeapon += swapPanes;
+        else
+            secondaryCanvasObj.SetActive(false);
+
         // Attach the weapons to their UI events
         primaryWep.ModifyMeterCharge += UpdateChargeMeterPrimary;
         primaryWep.ModifyMeterCooldown += UpdateCooldownMeterPrimary;
@@ -128,52 +139,52 @@ public class WeaponDisplayHandler : MonoBehaviour
     public void ReleaseWeaponSwitch() { PlayerInput.instance.isWeaponSwitching = false; }
 
     // Called by ShootComponent to Update the meters on the HUD
-    private void UpdateCooldownMeterPrimary(float maxVal, float currVal)
+    private void UpdateCooldownMeterPrimary(float maxVal, float currVal, Color meterColor)
     {
         // Set the color to Cooldown
-        primaryMeter.color = cooldownColor;
+        primaryMeter.color = meterColor;
         // Compute height of the meter
-        float rateOfChange = maxMeterHeight / maxVal;
-        float computedHeight = rateOfChange * (maxVal - currVal);
+        float rateOfChange = (maxMeterHeight - lastMeterHeightPrimary) / maxVal;
+        float computedHeight = rateOfChange * currVal + lastMeterHeightPrimary;
         // Set the height of the meter
         primaryMeterRect.offsetMax = new Vector2 (primaryMeterRect.offsetMax.x, computedHeight * -1);
     }
 
-    private void UpdateChargeMeterPrimary(float maxVal, float currVal)
+    private void UpdateChargeMeterPrimary(float maxVal, float currVal, Color meterColor)
     {
         // Set the color to the charging color
-        primaryMeter.color = chargeColor;
+        primaryMeter.color = meterColor;
         // Compute height of the meter
         float rateOfChange = (0f - maxMeterHeight) / maxVal;
         float computedHeight = rateOfChange * (maxVal - currVal) + maxMeterHeight;
         // Set the height of the meter
         primaryMeterRect.offsetMax = new Vector2(primaryMeterRect.offsetMax.x, computedHeight * -1);
-        // If the charge is at full, Update it to the full charge color
-        if (currVal == 0f) { primaryMeter.color = fullChargeColor; }
+        // Update latest computed height for UI
+        lastMeterHeightPrimary = computedHeight;
     }
 
-    private void UpdateCooldownMeterSecondary(float maxVal, float currVal)
+    private void UpdateCooldownMeterSecondary(float maxVal, float currVal, Color meterColor)
     {
         // Set the color to Cooldown
-        secondaryMeter.color = cooldownColor;
+        secondaryMeter.color = meterColor;
         // Compute height of the meter
-        float rateOfChange = maxMeterHeight / maxVal;
-        float computedHeight = rateOfChange * (maxVal - currVal);
+        float rateOfChange = (maxMeterHeight - lastMeterHeightSecondary) / maxVal;
+        float computedHeight = rateOfChange * currVal + lastMeterHeightSecondary;
         // Set the height of the meter
         secondaryMeterRect.offsetMax = new Vector2(secondaryMeterRect.offsetMax.x, computedHeight * -1);
     }
 
-    private void UpdateChargeMeterSecondary(float maxVal, float currVal)
+    private void UpdateChargeMeterSecondary(float maxVal, float currVal, Color meterColor)
     {
         // Set the color to the charging color
-        secondaryMeter.color = chargeColor;
+        secondaryMeter.color = meterColor;
         // Compute height of the meter
         float rateOfChange = (0f - maxMeterHeight) / maxVal;
         float computedHeight = rateOfChange * (maxVal - currVal) + maxMeterHeight;
         // Set the height of the meter
         secondaryMeterRect.offsetMax = new Vector2(secondaryMeterRect.offsetMax.x, computedHeight * -1);
-        // If the charge is at full, Update it to the full charge color
-        if (currVal == 0f) { secondaryMeter.color = fullChargeColor; }
+        // Update latest computed height for UI
+        lastMeterHeightSecondary = computedHeight;
     }
 
     // Function that updates the animator controller based on Player Input
@@ -194,124 +205,44 @@ public class WeaponDisplayHandler : MonoBehaviour
             PIsInFront = true;
         }
 
-        /*
-        RectTransform secrtransform = secondary.GetComponent<RectTransform>();
-        RectTransform primrtransform = primary.GetComponent<RectTransform>();
-        if (PIsInFront)
-        {
-            currSecondary.sortingOrder = 2;
-            currPrim.sortingOrder = 1;
-            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
-            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
-            animator.SetBool("toCSTF", true);
-            animator.SetBool("toCPTF", false);
-            PIsInFront = false;
-        }
-        else if (!PIsInFront)
-        {
-            currSecondary.sortingOrder = 1;
-            currPrim.sortingOrder = 2;
-            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
-            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
-            animator.SetBool("toCPTF", true);
-            animator.SetBool("toCSTF", false);
-            PIsInFront = true;
-        }
-        UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
-        UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
-        */
-
-        /* if (animator.GetBool("toPIF") == true)
-         {
-             animator.SetBool("toCSTF", true);
-             animator.SetBool("toPIF", false);
-             //if (happened)
-             //{
-             currSecondary.sortingOrder = 2;
-             currPrim.sortingOrder = 1;
-             //}
-         }
-         if (animator.GetBool("toCSTF") == true && secrtransform.localPosition.z < 1f)
-         {
-             animator.SetBool("toSIF", true);
-             animator.SetBool("toCSTF", false);
-             PIsInFront = false;
-             //if(happened)
-             //{
-             currSecondary.sortingOrder = 2;
-             currPrim.sortingOrder = 1;
-             // }
-         }
-         if (animator.GetBool("toSIF") == true)
-         {
-             animator.SetBool("toCPTF", true);
-             animator.SetBool("toSIF", false);
-             // if (happened)
-             //{
-             currSecondary.sortingOrder = 1;
-             currPrim.sortingOrder = 2;
-             //}
-         }
-         if (animator.GetBool("toCPTF") == true && (secrtransform.localPosition.z > 59f))
-         {
-             animator.SetBool("toPIF", true);
-             animator.SetBool("toCPTF", false);
-             PIsInFront = true;
-             //if(happened)
-             //{
-             currSecondary.sortingOrder = 1;
-             currPrim.sortingOrder = 2;
-             // }
-         }*/
-
-
-        /*if (animator.GetBool("toPIF")==true&& Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            animator.SetBool("toCPTB", true);
-            animator.SetBool("toPIF", false);
-            if (happened)
-            {
-                currSecondary.sortingOrder = 2;
-                currPrim.sortingOrder = 1;
-            }
-        }*/
-        /*if(animator.GetBool("toCPTB")==true && (secrtransform.localPosition.z < 0.1f))
-        {
-            //animator.SetBool("toSIFCounter", true);
-            animator.SetBool("toSIF", true);
-            animator.SetBool("toCPTB", false);
-        }*/
-        /*if (animator.GetBool("toSIF") == true && Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            animator.SetBool("toCSTB", true);
-            animator.SetBool("toSIF", false);
-            if (happened)
-            {
-                currSecondary.sortingOrder = 1;
-                currPrim.sortingOrder = 2;
-            }
-        }
-        if(animator.GetBool("toCSTB")==true && secrtransform.localPosition.z > 55f)
-        {
-            animator.SetBool("toPIF", true);
-            animator.SetBool("toCSTB", false);
-        }*/
-
-        /*if (Input.GetKeyDown(KeyCode.N))
-        {
-            animator.SetFloat("sec_z", 60f);
-        }*/
-        //UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
-        //if (Input.GetKeyDown(KeyCode.M))
-        /*{ 
-            Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-            weaponArsenalScript.AddWeaponToArsenal(myPistol);
-
-            //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
-            testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
-        }*/
+        
     }
 
+    private void OnDisable()
+    {
+        // Set canvas order of front one to 1
+        if (secondaryCanvasObj.transform.position.z < 1)
+        {
+            secondaryCanvas.sortingOrder = 0;
+            primaryCanvas.sortingOrder = 1;
+        }
+        else
+        {
+            secondaryCanvas.sortingOrder = 1;
+            primaryCanvas.sortingOrder = 0;
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        // Lines added by aaron, Ian: What does this do?
+        primaryCanvas ??= primaryCanvasObj.GetComponent<Canvas>();
+        secondaryCanvas ??= secondaryCanvasObj.GetComponent<Canvas>();
+
+        // Set canvas order of front one to 1
+        if (secondaryCanvasObj.transform.position.z < 1)
+        {
+            secondaryCanvas.sortingOrder = 0;
+            primaryCanvas.sortingOrder = 1;
+        }
+        else
+        {
+            secondaryCanvas.sortingOrder = 1;
+            primaryCanvas.sortingOrder = 0;
+        }
+    }
+}
 
 #if false
     public void testMethodForShantanu()
@@ -454,4 +385,120 @@ public class WeaponDisplayHandler : MonoBehaviour
         }
     }
 #endif
+
+/*
+        RectTransform secrtransform = secondary.GetComponent<RectTransform>();
+        RectTransform primrtransform = primary.GetComponent<RectTransform>();
+        if (PIsInFront)
+        {
+            currSecondary.sortingOrder = 2;
+            currPrim.sortingOrder = 1;
+            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
+            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
+            animator.SetBool("toCSTF", true);
+            animator.SetBool("toCPTF", false);
+            PIsInFront = false;
+        }
+        else if (!PIsInFront)
+        {
+            currSecondary.sortingOrder = 1;
+            currPrim.sortingOrder = 2;
+            UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
+            UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
+            animator.SetBool("toCPTF", true);
+            animator.SetBool("toCSTF", false);
+            PIsInFront = true;
+        }
+        UnityEngine.Debug.Log("currSecondary.sortingOrder: " + currSecondary.sortingOrder);
+        UnityEngine.Debug.Log("currPrim.sortingOrder: " + currPrim.sortingOrder);
+        */
+
+/* if (animator.GetBool("toPIF") == true)
+ {
+     animator.SetBool("toCSTF", true);
+     animator.SetBool("toPIF", false);
+     //if (happened)
+     //{
+     currSecondary.sortingOrder = 2;
+     currPrim.sortingOrder = 1;
+     //}
+ }
+ if (animator.GetBool("toCSTF") == true && secrtransform.localPosition.z < 1f)
+ {
+     animator.SetBool("toSIF", true);
+     animator.SetBool("toCSTF", false);
+     PIsInFront = false;
+     //if(happened)
+     //{
+     currSecondary.sortingOrder = 2;
+     currPrim.sortingOrder = 1;
+     // }
+ }
+ if (animator.GetBool("toSIF") == true)
+ {
+     animator.SetBool("toCPTF", true);
+     animator.SetBool("toSIF", false);
+     // if (happened)
+     //{
+     currSecondary.sortingOrder = 1;
+     currPrim.sortingOrder = 2;
+     //}
+ }
+ if (animator.GetBool("toCPTF") == true && (secrtransform.localPosition.z > 59f))
+ {
+     animator.SetBool("toPIF", true);
+     animator.SetBool("toCPTF", false);
+     PIsInFront = true;
+     //if(happened)
+     //{
+     currSecondary.sortingOrder = 1;
+     currPrim.sortingOrder = 2;
+     // }
+ }*/
+
+
+/*if (animator.GetBool("toPIF")==true&& Input.GetKeyDown(KeyCode.LeftArrow))
+{
+    animator.SetBool("toCPTB", true);
+    animator.SetBool("toPIF", false);
+    if (happened)
+    {
+        currSecondary.sortingOrder = 2;
+        currPrim.sortingOrder = 1;
+    }
+}*/
+/*if(animator.GetBool("toCPTB")==true && (secrtransform.localPosition.z < 0.1f))
+{
+    //animator.SetBool("toSIFCounter", true);
+    animator.SetBool("toSIF", true);
+    animator.SetBool("toCPTB", false);
+}*/
+/*if (animator.GetBool("toSIF") == true && Input.GetKeyDown(KeyCode.LeftArrow))
+{
+    animator.SetBool("toCSTB", true);
+    animator.SetBool("toSIF", false);
+    if (happened)
+    {
+        currSecondary.sortingOrder = 1;
+        currPrim.sortingOrder = 2;
+    }
 }
+if(animator.GetBool("toCSTB")==true && secrtransform.localPosition.z > 55f)
+{
+    animator.SetBool("toPIF", true);
+    animator.SetBool("toCSTB", false);
+}*/
+
+/*if (Input.GetKeyDown(KeyCode.N))
+{
+    animator.SetFloat("sec_z", 60f);
+}*/
+//UnityEngine.Debug.Log(weaponArsenalScript.weaponArsenal[0].sName);
+//if (Input.GetKeyDown(KeyCode.M))
+/*{ 
+    Pistol myPistol = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+    weaponArsenalScript.AddWeaponToArsenal(myPistol);
+
+    //weaponArsenalScript.weaponArsenal[0] = new Pistol(prefab, pistolSprite, soundTag, 3f, 2, "Pistol", 3f);
+    testImage.sprite = weaponArsenalScript.weaponArsenal[0].weaponIcon;
+}*/

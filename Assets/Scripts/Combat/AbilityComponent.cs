@@ -36,7 +36,7 @@ public class AbilityComponent : MonoBehaviour
         if (inputAbility.isOnCooldown) return;
         
         // Else, determine what ability type it is and call its function
-        switch(inputAbility.behaviour)
+        switch(inputAbility.abilityType)
         {
             case AbilityTypes.PhaseShift:
                 // Phase Shift should be blocked while on iFrames
@@ -79,8 +79,11 @@ public class AbilityComponent : MonoBehaviour
 
     private IEnumerator PhaseShiftRoutine(Ability inputAbility)
     {
+        // Play enter sound
+        FMODUnity.RuntimeManager.PlayOneShot(inputAbility.phaseShiftEnter);
+
         // Entity becomes invulnerable but unable to hit others
-        entityComponent.TriggerInvulnerability(inputAbility.durationTime, ignoreCollisions: true);
+        entityComponent.TriggerInvulnerability(inputAbility.durationTime, ignoreCollisions: true, withFlash: false);
 
         // Lock Entity shooting
         entityComponent.LockShooting();
@@ -96,6 +99,9 @@ public class AbilityComponent : MonoBehaviour
 
         // Wait until ability ends
         yield return new WaitForSeconds(inputAbility.durationTime);
+
+        // Play exit sound
+        FMODUnity.RuntimeManager.PlayOneShot(inputAbility.phaseShiftExit);
 
         // Destroy the particle object
         Destroy(particleEmitter);
@@ -124,6 +130,8 @@ public class AbilityComponent : MonoBehaviour
     // Proximity bomb
     private void PerformProximityBomb(Ability inputAbility)
     {
+        // Play bomb sound
+        FMODUnity.RuntimeManager.PlayOneShot(inputAbility.bombExplosion);
         // Variables
         GameObject bomb;
         ProximityBomb bombScript;

@@ -24,9 +24,11 @@ public class SoundLibrary : ScriptableObject
     // Bus Groups allows us to do apply changes to a group of sound effects if playing
     [Header("Group Bus Names")]
     [SerializeField] private string onLevelCombatPath;
+    [SerializeField] private string SFXPath;
 
     // Bus variables
     public FMOD.Studio.Bus onLevelCombatBus { get; private set; }
+    public FMOD.Studio.Bus SFXBus { get; private set; }
 
 
     // FMOD Sound References: assign these on the inspector
@@ -35,11 +37,15 @@ public class SoundLibrary : ScriptableObject
     public FMODUnity.EventReference TempRayGunShot { get; private set; }
     [SerializeField] private FMODUnity.EventReference _tempBattleMusic;
     public static FMODUnity.EventReference TempBattleMusic { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _levelEndJingle;
+    public static FMODUnity.EventReference LevelEndJingle { get; private set; }
 
 
     [Header("Music Tracks")]
     [SerializeField] private FMODUnity.EventReference _mainMenuTrack;
     public static FMODUnity.EventReference MainMenuTrack { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _creditsTrack;
+    public static FMODUnity.EventReference CreditsTrack { get; private set; }
 
 
     [Header("Player")]
@@ -62,18 +68,45 @@ public class SoundLibrary : ScriptableObject
     [SerializeField] private FMODUnity.EventReference _asteroidDestroyed;
     public static FMODUnity.EventReference AsteroidDestroyed { get; private set; }
 
+    [Header("Dialogue")]
+    [SerializeField] private FMODUnity.EventReference _spaceshipDoorClose;
+    public static FMODUnity.EventReference SpaceshipDoorClose { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _spaceshipStartup;
+    public static FMODUnity.EventReference SpaceshipStartup { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _airEscaping;
+    public static FMODUnity.EventReference AirEscaping { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _applause;
+    public static FMODUnity.EventReference Applause { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _explosion;
+    public static FMODUnity.EventReference Explosion { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _intercomTurnOn;
+    public static FMODUnity.EventReference IntercomTurnOn { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _intercomBuzz;
+    public static FMODUnity.EventReference IntercomBuzz { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _powerDownField;
+    public static FMODUnity.EventReference PowerDownField { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _proximityAlert;
+    public static FMODUnity.EventReference ProximityAlert { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _shipCrashing;
+    public static FMODUnity.EventReference ShipCrashing { get; private set; }
+    [SerializeField] private FMODUnity.EventReference _pizzaTheme;
+    public static FMODUnity.EventReference PizzaTheme { get; private set; }
+
     // Function to initialize data, must be called by the sound manager
     public void InitializeLibrary()
     {
         // Fetch Group Buses
         onLevelCombatBus = FMODUnity.RuntimeManager.GetBus("bus:/" + onLevelCombatPath);
+        SFXBus = FMODUnity.RuntimeManager.GetBus("bus:/" + SFXPath);
 
         // TESTING EFFECTS
         TempRayGunShot = _tempRayGunShot;
         TempBattleMusic = _tempBattleMusic;
+        LevelEndJingle = _levelEndJingle;
 
         // Music Tracks
         MainMenuTrack = _mainMenuTrack;
+        CreditsTrack = _creditsTrack;
 
         // Player
         PlayerShipDestroyed = _playerShipDestroyed;
@@ -87,7 +120,20 @@ public class SoundLibrary : ScriptableObject
         // Hazards
         AsteroidDestroyed = _asteroidDestroyed;
 
-        // FIXME: Most of these are stored on their scriptable objects, is it necessary to place them here?
+        // Dialogue
+        SpaceshipDoorClose = _spaceshipDoorClose;
+        SpaceshipStartup = _spaceshipStartup;
+        AirEscaping = _airEscaping;
+        Applause = _applause;
+        Explosion = _explosion;
+        IntercomTurnOn = _intercomTurnOn;
+        IntercomBuzz = _intercomBuzz;
+        PowerDownField = _powerDownField;
+        ProximityAlert = _proximityAlert;
+        ShipCrashing = _shipCrashing;
+        PizzaTheme = _pizzaTheme;
+
+    // FIXME: Most of these are stored on their scriptable objects, is it necessary to place them here?
 
     }
 

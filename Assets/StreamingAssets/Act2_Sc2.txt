@@ -1,0 +1,104 @@
+﻿APOLLO
+HAPPY
+You ready, new guy? Here comes the first wave of security drones! 
+
+
+REBEKAH
+HAPPY
+Just remember how to fly the ship we gave you and you’ll be fine!
+
+
+EBB
+HAPPY
+I will be watching for the B O O M S. Don’t disappoint me. 
+
+
+JAUGHN
+NORMAL
+I’ll… I’ll do my best.
+
+BREAK
+asdf
+
+JAUGHN
+Phew, that got a little hairy.
+
+
+APOLLO
+NORMAL
+Ebb, you got that satellite up and running?
+
+
+EBB
+HAPPY
+Affirmative. That satellite is now as useless to the Coalition as a wet sack of gunpowder. 
+
+
+REBEKAH
+NORMAL
+I’m plotting our course to the next satellite. It won’t take long for the Coalition to respond to us.
+
+
+DESC: 
+Coalition Headquarters. The large, shadowy figure from before is seen in a control room.
+
+
+SHADOWY FIGURE
+NORMAL
+You have failed to prevent them from taking our satellites. I’m assigning you to deal with the rebels personally. 
+
+
+Radio Station DJ
+NORMAL
+But sir… I’m just a radio host.
+
+
+SHADOWY FIGURE
+Oh really? Last I checked you were also our communications director. Do not fail me, or your life will be forfeit.
+
+
+Radio Station DJ
+Ah… yes sir. It’s time to rock.
+
+
+DESC: 
+The crew approaches the third radio station. The space around the radio station is incredibly busy with enemy ships. 
+They’ve clearly upped their security. In the center is one massive ship piloted by… a DJ?
+
+EBB
+We’re approaching the third station… I’m detecting a massive security force. 
+
+
+REBEKAH
+The Coalition knows we’re here. They’re heading right for us!
+
+Radio Station DJ
+Not very righteous of you, dudes. We’ll be taking back our bodacious satellites now.
+APOLLO
+Oh brother, this guy is trying too hard to sound cool.
+
+
+JAUGHN
+Oh man, is that Treble Make-R in the Morning? I used to listen to his show all the time!
+
+
+DJ Treble Make-R
+NORMAL
+Don’t think we haven’t noticed you bogarting our turf. You have exactly one commercial break to lay down your weapons before I drop the beat!
+REBEKAH
+Uh… well this is not what I was expecting. …Where’s that music coming from?
+EBB
+It’s coming from the DJ’s ship in the center of the fleet. Let’s turn this boombox into a B O O M box!
+
+
+APOLLO
+He’s coming right at us! Strap in, guys!
+
+
+DJ Treble Make-R
+NORMAL
+Let’s rock!!
+
+BREAK
+haha
+END

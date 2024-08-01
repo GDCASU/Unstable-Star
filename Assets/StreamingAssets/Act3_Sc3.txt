@@ -1,0 +1,213 @@
+﻿DESC: 
+Meanwhile, the large, shadowy figure from before is seen boarding a ship for the Apex-12 System. 
+
+
+SHADOWY FIGURE
+So, that’s their plan then. They’ll all be gathered in one place… taking care of them will be easy. Nothing will threaten the Coalition’s plans.
+
+DESC: 
+With the Coalition’s security force out of the way, the area around Proximus 3’s orbit is now clear. 
+The crew sat patrolling around the moon, waiting for anyone who might have heard their message…
+
+
+APOLLO
+NORMAL
+So this is it, huh? Doesn’t look like anyone’s showing up.
+
+
+REBEKAH
+NORMAL
+Patience isn’t your strong suit, Apollo. They’ll get here. I’m sure of it…
+
+
+JAUGHN
+If even just a few people show up, we’ll be all the better for it.
+
+
+DESC: 
+A few moments pass. Suddenly, the crew hear the beeping of their radar.
+EBB
+
+
+I’m picking up several signals approaching us. They’re… not Coalition signals. Opening comms. 
+
+
+
+DESC: 
+One by one, random civilian crafts start warping into the sector. 
+Doctors, farmers, chefs, politicians, people from all walks of life are here. 
+Even… pizza delivery drivers…
+
+PIZZA DELIVERY DRIVER
+Hey guys! Are we late? I hope not, I don’t want to lose my tip.
+
+
+JAUGHN
+ANGRY
+YOU?! What are you doing here?! You got me arrested!!
+
+
+PIZZA DELIVERY DRIVER
+NORMAL
+Wait, really? Sorry about that, my friend. I just saw a fight comin’ on, and since the Coalition keeps taking my tip money, I decided to help out. 
+Let me make it up to you! Anyone order a side of GUNS?
+DESC: 
+The delivery sign on the roof of his ship transforms into a gun. The other ships prepare their weapons, as well. 
+
+
+Random Civilian
+We’re here to fight too!
+
+
+Mathematically Predictable Civilian
+Got your message!
+
+
+JAUGHN
+HAPPY
+Thank you, everyone! With your help, we can win this!
+
+
+EBB
+NORMAL
+I’m picking up the Coalition’s signal near the hypergiant star. The ship they have there is… massive. Damage to the star is ongoing.
+
+
+REBEKAH
+I’m navigating us there now. Everyone, follow us and prepare to fight!
+
+BREAK
+asdkfjh
+
+DESC: 
+The Rebellion crew, with the civilian fighters in tow, have cleared their way to the hypergiant star in the center of the system. 
+A giant, vacuum-like mechanical ship can be seen orbiting around it, sucking in plasma from the star.
+
+
+JAUGHN
+ANGRY
+What in blazars IS that thing??
+
+
+APOLLO
+ANGRY
+It’s… sucking the energy out of the star like some kind of giant vacuum!
+
+
+EBB
+ANGRY
+The star is incredibly unstable. An implosion… followed by a B I G BOOM is imminent. 
+
+
+REBEKAH
+SAD
+We need to figure out a way to destroy it now or it will be too late!
+
+
+DESC: 
+The fighters cautiously but urgently approach the giant ship. Their comms are suddenly interrupted by a strangely familiar voice…
+JOHN
+SAD
+Intruders, you are hereby ordered to surrender or be destroyed. You have caused untold damage to the Coalition. I won’t ask again.
+
+
+APOLLO
+NORMAL
+Wait… that voice. I know that voice.
+
+
+REBEKAH
+ANGRY
+What the f- JOHN? 
+
+
+JAUGHN
+ANGRY
+Me?
+
+
+REBEKAH
+NORMAL
+No!
+
+
+EBB
+ANGRY
+The previous Captain? He’s still alive?
+
+
+JOHN
+NORMAL
+Oh yes. Did you think I would be killed so easily?
+
+
+APOLLO
+ANGRY
+Yeah, we thought you were dead! What are you doing working for the Coalition??
+
+
+JAUGHN
+ANGRY
+Wait, who is this? I’m the Captain now, identify yourself!
+
+
+JOHN
+NORMAL
+Oh you poor fools, you didn’t tell him? I’m John, the REAL Captain, and you bought my act hook, line, and sinker. 
+I was simply undercover in your little club, so deep undercover in fact that I pretended to get arrested! 
+Your path here was entirely staged by me. I arranged for Jaughn to be put in my cell. 
+It was by my hand that you rescued this… faker instead of me.
+
+
+JAUGHN
+NORMAL
+Faker?? Wait a minute, I think you’re the fake Jaughn here!
+
+
+JOHN
+NORMAL
+And now you’ve brought the entire rebellion here. You’ve fallen right into my trap. 
+Our weapon here has absorbed enough solar plasma to kill you all in one blast. 
+And once you’re gone, peace will be restored to the galaxy.
+
+
+APOLLO
+SAD
+Peace?? You call this peace??
+
+
+JOHN
+NORMAL
+Yes, order leads to peace. You have done nothing but undermine our order, which has led to chaos. 
+Don’t you realize the coalition maintains our fragile relationship with our neighboring galaxy?
+
+
+JAUGHN
+NORMAL
+I once believed in that lie, but you’re all just a bunch of greedy hacks who will stop at nothing to keep your sham of a relationship going. 
+What good is “order” when you’re killing innocent civilians??
+
+
+JOHN
+I guess you’re too short-sighted to realize that the ends justify the means. The Coalition has led to the betterment of mankind, and our benefactors desperately need this star’s plasma. 
+We are simply here to provide.
+
+
+REBEKAH
+SAD
+But by harvesting the plasma, you’re going to blow up the star! You’re going to cause countless deaths throughout the galaxy! 
+The needs of the few don’t outweigh the needs of the many!
+
+
+JOHN
+SAD
+Very well, I guess I’ll just have to MAKE you see our side of things! Engage the Star Harvester’s Weapons Platform!
+
+
+JAUGHN
+NORMAL
+This is it! Get ready everyone!
+
+BREAK
+
+END

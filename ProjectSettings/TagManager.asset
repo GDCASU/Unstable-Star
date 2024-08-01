@@ -29,7 +29,7 @@ TagManager:
   - Enemy
   - Hazard
   - Default Projectile Layer
-  - 
+  - Player Abilities
   - 
   - 
   - 
@@ -51,4 +51,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Hud
+    uniqueID: 66370825
     locked: 0

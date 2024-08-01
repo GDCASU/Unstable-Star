@@ -6,14 +6,16 @@ using UnityEngine;
 public class Player : CombatEntity
 {
     //Singleton
-    public static Player Instance;
+    public static Player instance;
 
     //Player Related
-    [SerializeField] private int MAX_HEALTH = 10;
-    [SerializeField] private int MAX_SHIELD = 5;
-    [SerializeField] private float shieldPerSecond;
-    [SerializeField] private float shieldRegenDelayTime = 3f; // in seconds, does not stack with invulnerable time
+    [SerializeField] private ScriptablePlayer playerStatsData;
     [SerializeField] private bool isShieldBroken;
+    [SerializeField] private FMODUnity.EventReference deathSFX;
+    [SerializeField] private FMODUnity.EventReference shieldHitSFX;
+    [SerializeField] private FMODUnity.EventReference healthHitSFX;
+    private int MAX_HEALTH; // Not serialized, since they are meant to be editted through the scriptable object
+    private int MAX_SHIELD;
 
     //Settings
     [SerializeField] private bool IsDebugLogging;
@@ -32,15 +34,25 @@ public class Player : CombatEntity
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
 
+    // IAN HACK: The Status bars of the hud keep picking up a player object that gets destroyed or 
+    // something, so this event fixes that
+    public static System.Action hasLoadedStats;
+    private void RaiseHasLoadedStats() => hasLoadedStats?.Invoke();
+
     protected override void Awake()
     {
         base.Awake();
 
         // Handle Singleton
-        if (Instance != null)
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
             Destroy(gameObject);
-
-        Instance = this;
+            return;
+        }
     }
 
     private void Start()
@@ -49,10 +61,24 @@ public class Player : CombatEntity
         shootComponent = GetComponent<ShootComponent>();
         abilityComponent = GetComponent<AbilityComponent>();
 
-        //Set Stats
-        health = MAX_HEALTH;
+        // Change Stats if cheat(s) are active
+        if (GameSettings.instance.isHealth100)
+        {
+            // Health 100 cheat is active
+            MAX_HEALTH = 100;
+            health = MAX_HEALTH;
+        }
+        else
+        {
+            MAX_HEALTH = playerStatsData.maxHealth;
+            health = MAX_HEALTH;
+        }
+
+        MAX_SHIELD = playerStatsData.maxShield;
         shield = MAX_SHIELD;
         shieldFloat = shield;
+        collisionDamage = playerStatsData.collisionDamage;
+        dmgInvulnTime = playerStatsData.dmgInvulnTimeSecs;
 
         //Set Variables
         ShieldRoutine = null;
@@ -67,6 +93,7 @@ public class Player : CombatEntity
     protected override void OnDestroy()
     {
         EventData.OnPlayerDeath -= WhenPlayerDies;
+        instance = null;
     }
 
     //Update's only purpose is debugging, everything else runs on
@@ -101,6 +128,9 @@ public class Player : CombatEntity
             TriggerDeath();
             DeathTest = false;
         }
+
+        // HACK: Fuh dis shit, spamming this event with update to make it load the HUD
+        RaiseHasLoadedStats();
     }
 
     #region WEAPON SYSTEMS
@@ -119,7 +149,6 @@ public class Player : CombatEntity
     public void SwitchToNextWeapon()
     {
         WeaponArsenal.instance.SwitchToNextWeapon();
-        //TestBaseScript.myInstance.testMethodForShantanu();
     }
 
     /// <summary> Switches to the previous weapon in the arsenal </summary>
@@ -221,17 +250,17 @@ public class Player : CombatEntity
     /// <summary> Changes the amount of shield per second regenerated </summary>
     public void SetShieldRegen(float shieldPerSec)
     {
-        shieldPerSecond = shieldPerSec;
-        if (IsDebugLogging) { Debug.Log("CHANGED SHIELD REGEN AMOUNT TO " + shieldPerSecond); }
+        playerStatsData.shieldPerSecond = shieldPerSec;
+        if (IsDebugLogging) { Debug.Log("CHANGED SHIELD REGEN AMOUNT TO " + playerStatsData.shieldPerSecond); }
     }
 
     #endregion
 
     #region DAMAGE HANDLING
 
-    //Damage recieved, declared as per contract with IDamageable interface
-    //TODO: Ask design if projectiles should be deleted if colliding against
-    //an invulnerable player, or let them phase through (?) 
+    // Damage recieved, declared as per contract with IDamageable interface
+    // TODO: Ask design if projectiles should be deleted if colliding against
+    // an invulnerable player, or let them phase through (?) 
     public override void TakeDamage(int damageIn, out int dmgRecieved, out Color colorSet)
     {
         //Set these so they return properly if invulnerable
@@ -240,7 +269,7 @@ public class Player : CombatEntity
         colorSet = Color.cyan;
         
         //Dont do anything if invulnerable
-        if (isInvulnerable) { return; };
+        if (isInvulnerable) return;
 
         //Starts iFrames pertinent to damage taken
         TriggerInvulnerability(dmgInvulnTime, ignoreCollisions: true);
@@ -259,7 +288,7 @@ public class Player : CombatEntity
         HandleShieldResotredCheck();
 
         //If no damage is to be passed to hull, return
-        if (triggeredReturn) { return; };
+        if (triggeredReturn) return;
 
         //Else, damage to hull
         DealDamageToHull(healthDmgCheck, out int HullDmgRecieved);
@@ -281,6 +310,9 @@ public class Player : CombatEntity
             shieldFloat = (float)shield;
             EventData.RaiseOnShieldDamaged(shield);
 
+            // Play shield hit sound
+            SoundManager.instance.PlaySound(shieldHitSFX);
+
             //If the shield was not broken, it means no changes to health, so return and stop here
             //TODO: Ask design if any damage should be negated with shield break, lets say I recieve
             //10 damage with only 3 shield, should the hull loose 7 points?
@@ -299,6 +331,10 @@ public class Player : CombatEntity
             shieldFloat = 0;
             isShieldBroken = true;
             EventData.RaiseOnShieldBroken(shield);
+
+            // Play shield hit sound
+            SoundManager.instance.PlaySound(shieldHitSFX);
+
             //Return here to negate damage after shield break
             return true;
         }
@@ -318,6 +354,9 @@ public class Player : CombatEntity
             HullDmgRecieved = health - healthDmgCheck; //Set outgoing var
             health = healthDmgCheck;
             EventData.RaiseOnHealthLost(health);
+
+            // Play health hit sound
+            SoundManager.instance.PlaySound(healthHitSFX);
             return;
         }
         
@@ -328,7 +367,7 @@ public class Player : CombatEntity
         TriggerDeath();
     }
 
-    public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false)
+    public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false, bool withFlash = true)
     {
         // If input is less, return
         if (seconds < timeLeftInvulnerable) return;
@@ -337,7 +376,7 @@ public class Player : CombatEntity
         if (invulnRoutine != null) StopCoroutine(invulnRoutine);
 
         // Start invuln routine
-        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions));
+        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions, withFlash));
     }
 
     private void HandleShieldRegen()
@@ -358,7 +397,7 @@ public class Player : CombatEntity
     private IEnumerator ShieldRegenBehaviour()
     {
         //First, wait for shield regen delay
-        yield return new WaitForSeconds(shieldRegenDelayTime);
+        yield return new WaitForSeconds(playerStatsData.shieldRegenDelayTime);
 
         if (IsDebugLogging) { Debug.Log("STARTED REGEN SHIELD BEHAVIOUR"); }
         int shieldBefore = shield;
@@ -366,7 +405,7 @@ public class Player : CombatEntity
         //Start Regen of the shield
         while (shieldFloat < MAX_SHIELD)
         {
-            shieldFloat += shieldPerSecond * Time.deltaTime;
+            shieldFloat += playerStatsData.shieldPerSecond * Time.deltaTime;
             //Assign the float value to player's shiled, typecasted
             shield = (int)shieldFloat;
             
@@ -417,13 +456,13 @@ public class Player : CombatEntity
     }
 
     // Overriden as to allow for disabling collisions with other entities while on iFrames
-    protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
+    protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions, bool withFlash)
     {
         isInvulnerable = true;
         isIgnoringCollisions = ignoreCollisions;
         timeLeftInvulnerable = seconds;
         // Raise event for flashing effect on ship
-        EventData.RaiseOnInvulnerabilityToggled(isEntering: true);
+        if (withFlash) EventData.RaisedoFlashInvulnerabilityToggled(isEntering: true);
 
         // Runs the iframes timer
         while (timeLeftInvulnerable > 0f)
@@ -443,7 +482,7 @@ public class Player : CombatEntity
         isInvulnerable = false;
         invulnRoutine = null;
         // Raise event to stop flashing effect on ship
-        EventData.RaiseOnInvulnerabilityToggled(isEntering: false);
+        if (withFlash) EventData.RaisedoFlashInvulnerabilityToggled(isEntering: false);
     }
 
     #endregion
@@ -453,9 +492,13 @@ public class Player : CombatEntity
     //Should only contain calls to animations, sounds, sfx and the like on death
     protected override void TriggerDeath()
     {
+        // Play death sound
+        SoundManager.instance.PlaySound(deathSFX);
+        
         //Stub
         EventData.RaiseOnHealthLost(health); //To remove Last Health segment from UI
         EventData.RaiseOnPlayerDeath();
+        ScenesManager.instance.LoadScene(Scenes.GameOver);
     }
 
     //What happens to the game and the player on death
@@ -485,6 +528,7 @@ public class Player : CombatEntity
     public int GetShield() { return shield; }
     public int GetMaxShield() { return MAX_SHIELD; }
     public int GetMaxHealth() { return MAX_HEALTH; }
+
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
 

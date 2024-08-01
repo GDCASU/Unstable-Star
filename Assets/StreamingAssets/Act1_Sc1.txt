@@ -1,0 +1,197 @@
+﻿DESC: 
+JAUGHN’S JAIL CELL 
+
+DESC: 
+We open in a white and sterile jail cell. Everything is clean and well kept. Everything is perfect. We see a solemn young man is slumped over in his cell. Sitting on the edge of his bed, he ponders how he got here.
+JAUGHN
+SAD
+(Inner monologue) How long has it been? The Coalition… it feels like it's been ages since they arrested me.
+……
+Sure, maybe I shouldn’t have let that pizza driver cross the border… But come on! I get half a lifetime in jail for that?
+
+This is ridiculous…
+But…
+
+NOISE
+*The intercom buzzes.*
+ANGRY
+JAUGHN
+…
+…?!
+
+NOISE
+*buzzes*
+
+JAUGHN
+What…
+What is that noise?
+
+REBEKAH
+???
+NORMAL
+…
+Ca… tain…
+
+JAUGHN
+ANGRY
+Is that coming from…
+The broadcasting system?
+
+REBEKAH
+???
+NORMAL
+He… llo?
+Hello? Can you hear me?
+Apollo, is the frequency tuned? Are we broadcasting yet?
+
+APOLLO
+HAPPY
+Yup! The whole prison can hear us, Rebekah!
+
+REBEKAH
+HAPPY
+Captain!
+Don’t worry, Captain! We’re coming to get you!
+
+JAUGHN
+NORMAL
+Captain…?
+
+APOLLO
+HAPPY
+Alright, Ebb, we’re ready!
+
+EBB
+NORMAL
+The charge on Cell B3 is ready. Explosion imminent.
+Proceed?
+
+APOLLO
+HAPPY
+Proceed!
+Get ready to blow this sucker up!
+
+EBB
+HAPPY
+
+Affirmative.
+
+JAUGHN
+NORMAL
+What is going on?!
+
+APOLLO
+NORMAL
+DETONATE!
+
+NOISE
+*BOOM* *BOOM* *BOOM*  [Insert Explosion SFX] 
+DESC: 
+An explosion punches into the hull of the prison, blasting off the cell door and leaving a visible dent in the nearby wall. 
+As the entire structure shakes, pieces of the building crumble from above. 
+
+JAUGHN
+ANGRY
+Augh! What was that? What’s happening!?
+NOISE
+*RUMBLE**RUMBLE**RUMBLE*
+
+JAUGHN
+WHOA!! I can’t stand-
+DESC: 
+Jaughn’s footing becomes noticeably unsteady, struggling to keep his feet on the ground.
+JAUGHN
+(Inner monologue) What’s that sound? It’s getting closer… is that a ship?
+NOISE
+[Spaceship	crashing SFX]
+
+REBEKAH
+ANGRY
+Wait, who is this? This isn’t the Captain!! Apollo, I thought you said B3?!
+
+APOLLO
+ANGRY
+It WAS B3! We were told cell B3! I blew up CELL B3!
+
+EBB
+ANGRY
+How did we get it wrong? 
+
+REBEKAH
+ANGRY
+There’s no way! I double-checked! This MUST be the right cell! Maybe you didn’t follow my directions!
+
+APOLLO
+ANGRY
+I DID follow your directions! YOU’RE obviously the one who was wrong, because this guy ain’t the Captain!
+
+REBEKAH
+SAD
+Oh shut up! You couldn’t navigate your way out of a cardboard box!
+APOLLO
+SAD
+HEY-!
+
+EBB
+NORMAL
+Wait. Guys.
+
+APOLLO
+SAD
+Well maybe, if you weren’t so SMELLY, WE WOULDN’T-
+
+REBEKAH
+SAD
+QUIT IT WITH THAT! I showered LAST WEEK, moron.
+
+EBB
+NORMAL
+G u y s.
+L o o k.
+
+JAUGHN
+NORMAL
+Ugh…
+What… is going on?
+
+SECURITY DEFENSE SYSTEM
+
+ALERT! CELL BREACH DETECTED!
+
+EBB
+NORMAL
+The Captain is not present.
+Their systems have detected us. We need to get out of here now.
+
+JAUGHN
+ANGRY
+Wait, take me with you! Get me out of here!
+
+REBEKAH
+ANGRY
+Why? Can you fly a ship out of here?
+
+JAUGHN
+NORMAL
+Uh, sure! Yeah I can! Just don’t leave me here!
+
+APOLLO
+NORMAL
+Yeah, whatever. Let’s move!
+
+REBEKAH
+NORMAL
+Hop in the fighter craft we brought to the docking bay. Hurry!
+
+EBB
+NORMAL
+Temporary pilot located. Man your stations now.
+
+DESC: 
+Steeling himself, Jaughn runs into the spaceship, emerging in the cockpit. 
+After fiddling with the controls for a bit, Jaughn closes the entry door to the ship and takes off.
+NOISE
+[SFX: Spaceship door closing, spaceship powering up - vrRRRRRRR]
+
+BREAK
+END

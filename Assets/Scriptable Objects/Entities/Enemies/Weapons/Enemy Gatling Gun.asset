@@ -17,14 +17,14 @@ MonoBehaviour:
   weaponIcon: {fileID: 0}
   sound:
     Guid:
-      Data1: -1179885932
-      Data2: 1250484582
-      Data3: 989007238
-      Data4: 152891200
-    Path: event:/TESTING/RayGunEffect
-  warmUpTime: 4
-  damage: 1
+      Data1: -317815537
+      Data2: 1224764342
+      Data3: -1683810388
+      Data4: 1000455237
+    Path: event:/SFX/Weapons/Enemies/Gatling Fire
+  description: 
+  heatUpTime: 3
+  damage: 4
   bulletSpeed: 30
   timeBetweenShots: 0.1
-  isEnemy: 1
   shootStayTime: 4

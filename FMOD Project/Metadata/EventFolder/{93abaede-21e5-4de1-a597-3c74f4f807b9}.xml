@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{93abaede-21e5-4de1-a597-3c74f4f807b9}">
+		<property name="name">
+			<value>Loadout Select</value>
+		</property>
+		<relationship name="folder">
+			<destination>{71bb0fac-2047-461a-9f4f-fffd68e24e21}</destination>
+		</relationship>
+	</object>
+</objects>

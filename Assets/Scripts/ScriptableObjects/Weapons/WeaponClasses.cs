@@ -29,11 +29,12 @@ public abstract class Weapon
     public int damage;
 
     // Gatling variables
-    public float warmupTime;
-    public float warmupCounter;
+    public float heatUpTimeMax;
+    public float HeatUpCounter;
 
     // Laser variables
     public GameObject chargingSpherePrefab;
+    public FMODUnity.EventReference laserChargeSFX;
     public float maxChargeUpTime;
     public float chargeTimeCounter;
     public int minDamage;
@@ -41,7 +42,6 @@ public abstract class Weapon
 
     // Variable to override behaviour for enemies
     // EX: Make enemies always charge laser gun to full charge before firing
-    public bool isEnemy;
     public float shootingStayTime;
 
     // These variables should be useful for UI
@@ -49,11 +49,14 @@ public abstract class Weapon
     public Sprite weaponIcon;
     public string description;
 
+    // Variables used by enemies for easier implementation
+    public bool isEnemyShooting;
+
     // Event and function used by the Weapon HUD
-    public event System.Action<float, float> ModifyMeterCooldown;
-    public void RaiseModifyMeterCooldown(float maxVal, float currVal) { ModifyMeterCooldown?.Invoke(maxVal, currVal); }
-    public event System.Action<float, float> ModifyMeterCharge;
-    public void RaiseModifyMeterCharge(float maxVal, float currVal) { ModifyMeterCharge?.Invoke(maxVal, currVal); }
+    public event System.Action<float, float, Color> ModifyMeterCooldown;
+    public void RaiseModifyMeterCooldown(float maxVal, float currVal, Color meterColor) { ModifyMeterCooldown?.Invoke(maxVal, currVal, meterColor); }
+    public event System.Action<float, float, Color> ModifyMeterCharge;
+    public void RaiseModifyMeterCharge(float maxVal, float currVal, Color meterColor) { ModifyMeterCharge?.Invoke(maxVal, currVal, meterColor); }
 }
 
 /// <summary>
@@ -147,15 +150,15 @@ public class Buckshot : Weapon
 public class LaserGun : Weapon
 {
     //Default Constructor
-    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, bool isEnemy, string description)
+    public LaserGun(string name, GameObject prefab, GameObject chargingSpherePrefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, FMODUnity.EventReference laserChargeSFX, int minDamage, int maxDamage, float cooldownTime, float maxChargeUpTime, string description)
     {
         this.prefab = prefab;
+        this.laserChargeSFX = laserChargeSFX;
         this.chargingSpherePrefab = chargingSpherePrefab;
         this.sName = name;
         this.shootCooldownTime = cooldownTime;
         this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
-        this.isEnemy = isEnemy;
         this.minDamage = minDamage;
         this.maxDamage = maxDamage;
         this.maxChargeUpTime = maxChargeUpTime;
@@ -173,7 +176,7 @@ public class LaserGun : Weapon
 public class GatlingGun : Weapon
 {
     //Default Constructor
-    public GatlingGun(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, bool isEnemy, float shootingStayTime, string description)
+    public GatlingGun(GameObject prefab, Sprite weaponIcon, FMODUnity.EventReference mainSound, float speed, float warmupTime, int damage, string name, float timeBetweenShots, float shootingStayTime, string description)
     {
         this.speed = speed;
         this.prefab = prefab;
@@ -182,16 +185,12 @@ public class GatlingGun : Weapon
         this.shootCooldownTime = timeBetweenShots;
         this.mainSound = mainSound;
         this.weaponIcon = weaponIcon;
-        this.warmupTime = warmupTime;
-        this.isEnemy = isEnemy;
+        this.heatUpTimeMax = warmupTime;
         this.description = description;
-
-        // If this is an enemy entity, then set the shooting stay time
-        if (isEnemy) this.shootingStayTime = shootingStayTime;
-
+        this.shootingStayTime = shootingStayTime;
         // Static sets
         this.timeLeftInCooldown = 0f;
-        this.warmupCounter = 0f;
+        this.HeatUpCounter = 0f;
         this.weaponType = WeaponTypes.Gatling;
         this.isOnCooldown = false;
     }

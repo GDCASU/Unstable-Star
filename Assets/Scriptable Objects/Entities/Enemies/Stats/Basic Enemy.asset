@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75bcdffb4cae044cbc62c96733e4ef1, type: 3}
   m_Name: Basic Enemy
   m_EditorClassIdentifier: 
-  health: 5
-  shield: 5
-  collisionDamage: 1
-  dmgInvulnTimeSecs: 0.5
+  health: 10
+  shield: 0
+  collisionDamage: 2
+  dmgInvulnTimeSecs: 0
   weapon: {fileID: 11400000, guid: 203de00802d8047418800af8d2c0e845, type: 2}
+  enemyType: 0

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEditor.Experimental.SceneManagement;
-
 
 
 public class Wave : MonoBehaviour
@@ -62,7 +60,7 @@ public class Wave : MonoBehaviour
             else percentage = (actual - average) / Camera.main.ViewportToWorldPoint(new Vector3(0, 1f, -Camera.main.transform.position.z)).y + .5f;
 
             var toPos = Mathf.Lerp(-enemyBoundsSize, enemyBoundsSize, percentage);
-            g.GetComponent<Enemy>().setArrivalPercentUpScreen(enemyBoundsCenter + toPos);
+            g.GetComponentInChildren<Enemy>().setArrivalPercentUpScreen(enemyBoundsCenter + toPos);
         }
     }
 
@@ -73,6 +71,14 @@ public class Wave : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void ClearWave()
+    {
+        while (enemyList.Count > 0)
+        {
+            enemyList[0].GetComponentInChildren<Enemy>().TakeDamage(100, out _, out _);
+        }
     }
 
     private void RemoveEnemy(GameObject enemy)
