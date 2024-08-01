@@ -88,10 +88,12 @@ public class PlayerStatusBars : MonoBehaviour
                 //Setup blacked bar
                 GameObject segmentDark = Instantiate(healthBarBlackedOut, blackedHealthBarParent.transform);
                 segmentDark.transform.localPosition = canvasPos;
+                segmentDark.SetActive(true);
 
                 // Setup colored bar
                 GameObject segmentColor = Instantiate(healthBarColored, coloredHealthBarParent.transform);
                 segmentColor.transform.localPosition = canvasPos;
+                segmentColor.SetActive(true);
                 healthBarsColoredList.Add(segmentColor);
             }
         }
@@ -118,10 +120,12 @@ public class PlayerStatusBars : MonoBehaviour
                 //Setup blacked bar
                 GameObject segmentDark = Instantiate(shieldBarBlackedOut, blackedShieldBarParent.transform);
                 segmentDark.transform.localPosition = canvasPos;
+                segmentDark.SetActive(true);
 
                 // Setup colored bar
                 GameObject segmentColor = Instantiate(shieldBarColored, coloredShieldBarParent.transform);
                 segmentColor.transform.localPosition = canvasPos;
+                segmentColor.SetActive(true);
                 shieldBarsColoredList.Add(segmentColor);
             }
         }

@@ -14,7 +14,7 @@ public class FinalBoss : Boss
         HORIZONTALFANCY
 	}
 
-    [SerializeField] private const int MAX_HEALTH = 800;
+    [SerializeField] private const int MAX_HEALTH = 400;
     private const float MIN_X = -25f;
     private const float MAX_X = 25f;
     private const float MIN_Y = 15f;

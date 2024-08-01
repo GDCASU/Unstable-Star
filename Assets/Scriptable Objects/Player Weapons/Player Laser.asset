@@ -32,6 +32,6 @@ MonoBehaviour:
     Path: event:/SFX/Weapons/Player/Laser Charge
   description: A laser cannon that can be charged up for a powerful blast.
   minDamage: 4
-  maxDamage: 40
+  maxDamage: 20
   laserCooldown: 1.5
   maxChargeUpTime: 3
