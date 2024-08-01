@@ -23,6 +23,6 @@ MonoBehaviour:
       Data4: -1912220518
     Path: event:/SFX/Weapons/Enemies/Pistol Fire
   description: 
-  damage: 2
+  damage: 8
   bulletSpeed: 30
   shotsCooldown: 0

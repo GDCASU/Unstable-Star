@@ -179,6 +179,7 @@ public class DialogueManager : MonoBehaviour
     public string[][] ReadFile(string fileName, string[][] act)
     {
         int dialogueIndex = 0;
+        current = 0;
         string currentSpeaker = "";
         string emotion = "NORMAL";
 

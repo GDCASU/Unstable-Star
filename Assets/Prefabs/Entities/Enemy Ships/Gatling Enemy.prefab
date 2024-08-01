@@ -132,7 +132,7 @@ Animator:
   m_GameObject: {fileID: 4356754493949407404}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 091788bec5e400744b4c1296b495d5ff, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -220,9 +220,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffectPrefab: {fileID: 2887401111048430277, guid: 86fafbd8ba5234d459aeebb47e8c5c17, type: 3}
-  health: 5
-  shield: 2
-  collisionDamage: 1
+  health: 50
+  shield: 24
+  collisionDamage: 4
   timeLeftInvulnerable: 0
   dmgInvulnTime: 0
   isShootingLocked: 0
@@ -295,6 +295,7 @@ MonoBehaviour:
       Data4: -1039578200
     Path: event:/SFX/Weapons/Enemies/Gatling Lock On
   searchingSFXEmitter: {fileID: 5467257686180415832}
+  canFollowPlayer: 0
   followPlayer: 0
 --- !u!95 &5941440663502856901
 Animator:

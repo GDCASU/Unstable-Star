@@ -13,12 +13,28 @@ PrefabInstance:
       value: Laser Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2601468425888632271, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      propertyPath: health
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601468425888632271, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      propertyPath: shield
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601468425888632271, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: statsData
       value: 
       objectReference: {fileID: 11400000, guid: 84bcc1c366ef7a8479df6a08937d4509, type: 2}
     - target: {fileID: 2601468425888632271, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: shootDelay
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601468425888632271, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      propertyPath: isInvulnerable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601468425888632271, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      propertyPath: collisionDamage
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2852541011737675917, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_Height
@@ -47,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 6220606477133568811, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989504809758872600, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8353826099270414629, guid: 27498bd24ac471f4f8748f47f9a01cad, type: 3}
       propertyPath: m_LocalPosition.x
