@@ -32,6 +32,6 @@ MonoBehaviour:
     Path: event:/SFX/Weapons/Enemies/Laser Charge
   description: 
   minDamage: 4
-  maxDamage: 24
+  maxDamage: 12
   laserCooldown: 2
   maxChargeUpTime: 4

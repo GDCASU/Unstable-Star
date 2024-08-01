@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76334acb4e8ba544a9bc2c47d79de7cc, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  maxHealth: 40
-  maxShield: 20
+  maxHealth: 20
+  maxShield: 10
   shieldPerSecond: 4
   shieldRegenDelayTime: 3
   collisionDamage: 8

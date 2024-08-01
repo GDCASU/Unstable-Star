@@ -218,7 +218,7 @@ public class DialogueManager : MonoBehaviour
                 act[dialogueIndex][1] = line;
                 act[dialogueIndex][2] = emotion;
                 dialogueIndex++;
-                Debug.Log(currentSpeaker + ": " + line);
+                if (doDebugLog) Debug.Log(currentSpeaker + ": " + line);
             }
         }
         return act;

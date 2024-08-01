@@ -32,9 +32,9 @@ public class EventData : MonoBehaviour
     { OnHealthGained?.Invoke(currHealth); }
 
     /// <summary> Event that will fire on entering or exiting iFrames </summary>
-    public static System.Action<bool> OnInvulnerabilityToggled;
+    public static System.Action<bool> doFlashInvulnerabilityToggled;
     /// <summary> Event raiser for OnInvulnerabilityToggled </summary>
-    public static void RaiseOnInvulnerabilityToggled(bool isEntering) => OnInvulnerabilityToggled?.Invoke(isEntering);
+    public static void RaisedoFlashInvulnerabilityToggled(bool isEntering) => doFlashInvulnerabilityToggled?.Invoke(isEntering);
 
     #endregion
 

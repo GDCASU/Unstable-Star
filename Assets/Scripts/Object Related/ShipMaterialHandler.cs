@@ -86,13 +86,13 @@ public class ShipMaterialHandler : MonoBehaviour
         }
 
         // Subscribe to events
-        EventData.OnInvulnerabilityToggled += HandleFrameFlash;
+        EventData.doFlashInvulnerabilityToggled += HandleFrameFlash;
     }
 
     private void OnDestroy()
     {
         // Unsubscribe from events on destroy
-        EventData.OnInvulnerabilityToggled -= HandleFrameFlash;
+        EventData.doFlashInvulnerabilityToggled -= HandleFrameFlash;
     }
 
     /// <summary> Sets the ships materials back to default </summary>

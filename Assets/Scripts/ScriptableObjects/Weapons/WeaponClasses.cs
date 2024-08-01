@@ -53,10 +53,10 @@ public abstract class Weapon
     public bool isEnemyShooting;
 
     // Event and function used by the Weapon HUD
-    public event System.Action<float, float> ModifyMeterCooldown;
-    public void RaiseModifyMeterCooldown(float maxVal, float currVal) { ModifyMeterCooldown?.Invoke(maxVal, currVal); }
-    public event System.Action<float, float> ModifyMeterCharge;
-    public void RaiseModifyMeterCharge(float maxVal, float currVal) { ModifyMeterCharge?.Invoke(maxVal, currVal); }
+    public event System.Action<float, float, Color> ModifyMeterCooldown;
+    public void RaiseModifyMeterCooldown(float maxVal, float currVal, Color meterColor) { ModifyMeterCooldown?.Invoke(maxVal, currVal, meterColor); }
+    public event System.Action<float, float, Color> ModifyMeterCharge;
+    public void RaiseModifyMeterCharge(float maxVal, float currVal, Color meterColor) { ModifyMeterCharge?.Invoke(maxVal, currVal, meterColor); }
 }
 
 /// <summary>

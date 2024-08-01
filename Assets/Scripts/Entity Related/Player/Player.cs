@@ -34,6 +34,11 @@ public class Player : CombatEntity
     private Coroutine ShieldRoutine;
     private Coroutine isShieldRestoredRoutine;
 
+    // IAN HACK: The Status bars of the hud keep picking up a player object that gets destroyed or 
+    // something, so this event fixes that
+    public static System.Action hasLoadedStats;
+    private void RaiseHasLoadedStats() => hasLoadedStats?.Invoke();
+
     protected override void Awake()
     {
         base.Awake();
@@ -56,7 +61,7 @@ public class Player : CombatEntity
         shootComponent = GetComponent<ShootComponent>();
         abilityComponent = GetComponent<AbilityComponent>();
 
-        //Set Stats
+        // Change Stats if cheat(s) are active
         if (GameSettings.instance.isHealth100)
         {
             // Health 100 cheat is active
@@ -73,6 +78,7 @@ public class Player : CombatEntity
         shield = MAX_SHIELD;
         shieldFloat = shield;
         collisionDamage = playerStatsData.collisionDamage;
+        dmgInvulnTime = playerStatsData.dmgInvulnTimeSecs;
 
         //Set Variables
         ShieldRoutine = null;
@@ -122,6 +128,9 @@ public class Player : CombatEntity
             TriggerDeath();
             DeathTest = false;
         }
+
+        // HACK: Fuh dis shit, spamming this event with update to make it load the HUD
+        RaiseHasLoadedStats();
     }
 
     #region WEAPON SYSTEMS
@@ -358,7 +367,7 @@ public class Player : CombatEntity
         TriggerDeath();
     }
 
-    public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false)
+    public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false, bool withFlash = true)
     {
         // If input is less, return
         if (seconds < timeLeftInvulnerable) return;
@@ -367,7 +376,7 @@ public class Player : CombatEntity
         if (invulnRoutine != null) StopCoroutine(invulnRoutine);
 
         // Start invuln routine
-        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions));
+        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions, withFlash));
     }
 
     private void HandleShieldRegen()
@@ -447,13 +456,13 @@ public class Player : CombatEntity
     }
 
     // Overriden as to allow for disabling collisions with other entities while on iFrames
-    protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
+    protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions, bool withFlash)
     {
         isInvulnerable = true;
         isIgnoringCollisions = ignoreCollisions;
         timeLeftInvulnerable = seconds;
         // Raise event for flashing effect on ship
-        EventData.RaiseOnInvulnerabilityToggled(isEntering: true);
+        if (withFlash) EventData.RaisedoFlashInvulnerabilityToggled(isEntering: true);
 
         // Runs the iframes timer
         while (timeLeftInvulnerable > 0f)
@@ -473,7 +482,7 @@ public class Player : CombatEntity
         isInvulnerable = false;
         invulnRoutine = null;
         // Raise event to stop flashing effect on ship
-        EventData.RaiseOnInvulnerabilityToggled(isEntering: false);
+        if (withFlash) EventData.RaisedoFlashInvulnerabilityToggled(isEntering: false);
     }
 
     #endregion
@@ -517,18 +526,9 @@ public class Player : CombatEntity
     //Getters
     public int GetHealth() { return health; }
     public int GetShield() { return shield; }
-    public int GetMaxShield() { return playerStatsData.maxHealth; }
-    public int GetMaxHealth() 
-    { 
-        if (GameSettings.instance.isHealth100)
-        {
-            return 100;
-        }
-        else
-        {
-            return playerStatsData.maxHealth;
-        }
-    }
+    public int GetMaxShield() { return MAX_SHIELD; }
+    public int GetMaxHealth() { return MAX_HEALTH; }
+
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
 

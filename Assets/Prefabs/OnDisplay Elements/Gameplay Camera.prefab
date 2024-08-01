@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4829327893360913863}
   - component: {fileID: 7494575569966282148}
   m_Layer: 5
-  m_Name: First
+  m_Name: First Blacked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -788,10 +788,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabef0d55bc730449ac29342dd3db55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarBlackedOut: {fileID: 7294925882676824171}
-  healthBarColored: {fileID: 1670144958214298678}
-  shieldBarBlackedOut: {fileID: 4612360880306052643}
-  shieldBarColored: {fileID: 3454606675675292625}
+  firstHealthBar: {fileID: 5979791686941400981}
+  middleHealthBar: {fileID: 4937799611799729294}
+  coloredHealthBarParent: {fileID: 2115079460311393309}
+  blackedHealthBarParent: {fileID: 7749542340370152396}
+  healthBarBlackedOut: {fileID: 3451375812841331058}
+  healthBarColored: {fileID: 4937799611799729294}
+  firstShieldBar: {fileID: 4854208984412053960}
+  middleShieldBar: {fileID: 8410096164050023865}
+  coloredShieldBarParent: {fileID: 3275837621462230197}
+  blackedShieldBarParent: {fileID: 5235862836903613878}
+  shieldBarBlackedOut: {fileID: 3749205392238743202}
+  shieldBarColored: {fileID: 8410096164050023865}
+  healthPerBar: 3
+  shieldPerBar: 3
+  statBarsOffset: 30
 --- !u!1 &630497990772706613
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 49.999878, y: 0}
+  m_AnchoredPosition: {x: 49.999847, y: 0}
   m_SizeDelta: {x: 1, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &5959745050469382405
@@ -922,7 +933,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1639.249, z: 100}
+  m_Size: {x: 1, y: 1639.4888, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &846512148739884432
 GameObject:
@@ -1113,7 +1124,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1925.0001, y: 1, z: 100}
+  m_Size: {x: 1925, y: 1, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1415206576838660464
 GameObject:
@@ -1185,7 +1196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -100.00006, y: 0}
+  m_AnchoredPosition: {x: -100.00009, y: 0}
   m_SizeDelta: {x: 1, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!65 &8094544621132809692
@@ -1207,7 +1218,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1639.249, z: 100}
+  m_Size: {x: 1, y: 1639.4888, z: 100}
   m_Center: {x: 0.5, y: 0, z: 0}
 --- !u!1 &1899783335320020695
 GameObject:
@@ -1264,7 +1275,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1925.0001, y: 1, z: 100}
+  m_Size: {x: 1925, y: 1, z: 100}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1899885630135004576
 GameObject:
@@ -1445,7 +1456,7 @@ GameObject:
   - component: {fileID: 8862008246240217325}
   - component: {fileID: 1765553546799745887}
   m_Layer: 5
-  m_Name: First
+  m_Name: First Blacked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1929,7 +1940,7 @@ GameObject:
   - component: {fileID: 2831895049387849689}
   - component: {fileID: 4455938883663363865}
   m_Layer: 5
-  m_Name: Middle
+  m_Name: Middle Blacked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2111,7 +2122,7 @@ GameObject:
   - component: {fileID: 5714802296579863228}
   - component: {fileID: 6008550705134921109}
   m_Layer: 5
-  m_Name: Middle
+  m_Name: Middle Blacked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2649,7 +2660,7 @@ GameObject:
   - component: {fileID: 2297923361274335882}
   - component: {fileID: 2064461040937900394}
   m_Layer: 5
-  m_Name: First
+  m_Name: First Colored
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2799,7 +2810,7 @@ GameObject:
   - component: {fileID: 9141796476200084004}
   - component: {fileID: 8316647865691267969}
   m_Layer: 5
-  m_Name: Middle
+  m_Name: Middle Colored
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3034,7 +3045,7 @@ GameObject:
   - component: {fileID: 1966984534472082312}
   - component: {fileID: 2925304846277998440}
   m_Layer: 5
-  m_Name: First
+  m_Name: First Colored
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3741,7 +3752,7 @@ GameObject:
   - component: {fileID: 7946379932424595582}
   - component: {fileID: 1407888360961008152}
   m_Layer: 5
-  m_Name: Middle
+  m_Name: Middle Colored
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

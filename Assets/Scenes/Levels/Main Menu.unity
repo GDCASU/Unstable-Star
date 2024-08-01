@@ -4179,7 +4179,7 @@ MonoBehaviour:
   sensitivityValue: {fileID: 1106485218}
   invertYToggle: {fileID: 238533257}
   CheatMenuOption: {fileID: 2557459411705764567}
-  printDebugs: 1
+  printDebugs: 0
 --- !u!1 &552871783
 GameObject:
   m_ObjectHideFlags: 0

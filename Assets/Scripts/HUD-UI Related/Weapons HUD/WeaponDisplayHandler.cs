@@ -139,10 +139,10 @@ public class WeaponDisplayHandler : MonoBehaviour
     public void ReleaseWeaponSwitch() { PlayerInput.instance.isWeaponSwitching = false; }
 
     // Called by ShootComponent to Update the meters on the HUD
-    private void UpdateCooldownMeterPrimary(float maxVal, float currVal)
+    private void UpdateCooldownMeterPrimary(float maxVal, float currVal, Color meterColor)
     {
         // Set the color to Cooldown
-        primaryMeter.color = cooldownColor;
+        primaryMeter.color = meterColor;
         // Compute height of the meter
         float rateOfChange = (maxMeterHeight - lastMeterHeightPrimary) / maxVal;
         float computedHeight = rateOfChange * currVal + lastMeterHeightPrimary;
@@ -150,10 +150,10 @@ public class WeaponDisplayHandler : MonoBehaviour
         primaryMeterRect.offsetMax = new Vector2 (primaryMeterRect.offsetMax.x, computedHeight * -1);
     }
 
-    private void UpdateChargeMeterPrimary(float maxVal, float currVal)
+    private void UpdateChargeMeterPrimary(float maxVal, float currVal, Color meterColor)
     {
         // Set the color to the charging color
-        primaryMeter.color = chargeColor;
+        primaryMeter.color = meterColor;
         // Compute height of the meter
         float rateOfChange = (0f - maxMeterHeight) / maxVal;
         float computedHeight = rateOfChange * (maxVal - currVal) + maxMeterHeight;
@@ -161,14 +161,12 @@ public class WeaponDisplayHandler : MonoBehaviour
         primaryMeterRect.offsetMax = new Vector2(primaryMeterRect.offsetMax.x, computedHeight * -1);
         // Update latest computed height for UI
         lastMeterHeightPrimary = computedHeight;
-        // If the charge is at full, Update it to the full charge color
-        if (currVal == 0f) { primaryMeter.color = fullChargeColor; }
     }
 
-    private void UpdateCooldownMeterSecondary(float maxVal, float currVal)
+    private void UpdateCooldownMeterSecondary(float maxVal, float currVal, Color meterColor)
     {
         // Set the color to Cooldown
-        secondaryMeter.color = cooldownColor;
+        secondaryMeter.color = meterColor;
         // Compute height of the meter
         float rateOfChange = (maxMeterHeight - lastMeterHeightSecondary) / maxVal;
         float computedHeight = rateOfChange * currVal + lastMeterHeightSecondary;
@@ -176,10 +174,10 @@ public class WeaponDisplayHandler : MonoBehaviour
         secondaryMeterRect.offsetMax = new Vector2(secondaryMeterRect.offsetMax.x, computedHeight * -1);
     }
 
-    private void UpdateChargeMeterSecondary(float maxVal, float currVal)
+    private void UpdateChargeMeterSecondary(float maxVal, float currVal, Color meterColor)
     {
         // Set the color to the charging color
-        secondaryMeter.color = chargeColor;
+        secondaryMeter.color = meterColor;
         // Compute height of the meter
         float rateOfChange = (0f - maxMeterHeight) / maxVal;
         float computedHeight = rateOfChange * (maxVal - currVal) + maxMeterHeight;
@@ -187,8 +185,6 @@ public class WeaponDisplayHandler : MonoBehaviour
         secondaryMeterRect.offsetMax = new Vector2(secondaryMeterRect.offsetMax.x, computedHeight * -1);
         // Update latest computed height for UI
         lastMeterHeightSecondary = computedHeight;
-        // If the charge is at full, Update it to the full charge color
-        if (currVal == 0f) { secondaryMeter.color = fullChargeColor; }
     }
 
     // Function that updates the animator controller based on Player Input

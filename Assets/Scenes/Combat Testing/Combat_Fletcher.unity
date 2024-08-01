@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010086427, g: 0.052700892, b: 0.15289137, a: 1}
+  m_IndirectSpecularColor: {r: 0.0007755076, g: 0.0041316804, b: 0.019963792, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -396,14 +396,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gameplay Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 845721585523932955, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646734826145380836, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_Size.x
-      value: 1924.9999
-      objectReference: {fileID: 0}
     - target: {fileID: 4888234640289285784, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -443,22 +435,6 @@ PrefabInstance:
     - target: {fileID: 4888234640289285784, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970694018038888393, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_Size.x
-      value: 1924.9999
-      objectReference: {fileID: 0}
-    - target: {fileID: 5959745050469382405, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_Size.y
-      value: 1639.9999
-      objectReference: {fileID: 0}
-    - target: {fileID: 7424609744582626789, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094544621132809692, guid: e8a31434442894647b3c17b7ebddfc3d, type: 3}
-      propertyPath: m_Size.y
-      value: 1639.9999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

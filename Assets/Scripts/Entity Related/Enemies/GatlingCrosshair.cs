@@ -52,6 +52,9 @@ public class GatlingCrosshair : MonoBehaviour
 
     private void FollowPlayer()
     {
+        // Dont run if player is not present
+        if (Player.instance == null) return;
+        // Else, run
         Vector3 playerPos = Player.instance.gameObject.transform.position;
         // Normalized vector between the crosshair and the player
         Vector2 direction = Vector3.Normalize(playerPos - transform.position);
