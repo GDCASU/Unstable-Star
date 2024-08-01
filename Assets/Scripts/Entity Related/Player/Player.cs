@@ -29,6 +29,7 @@ public class Player : CombatEntity
     [SerializeField] private float shieldFloat;
 
     //Local variables
+    [HideInInspector] public bool finishedLoading; // bool used to load hud
     private ShootComponent shootComponent;
     private AbilityComponent abilityComponent;
     private Coroutine ShieldRoutine;
@@ -37,6 +38,9 @@ public class Player : CombatEntity
     protected override void Awake()
     {
         base.Awake();
+
+        // bool used to load hud
+        finishedLoading = false;
 
         // Handle Singleton
         if (instance == null)
@@ -56,7 +60,7 @@ public class Player : CombatEntity
         shootComponent = GetComponent<ShootComponent>();
         abilityComponent = GetComponent<AbilityComponent>();
 
-        //Set Stats
+        // Change Stats if cheat(s) are active
         if (GameSettings.instance.isHealth100)
         {
             // Health 100 cheat is active
@@ -81,6 +85,8 @@ public class Player : CombatEntity
 
         // Subscribe to events
         EventData.OnPlayerDeath += WhenPlayerDies;
+        // Finished loading
+        finishedLoading = true;
     }
 
     // Unsubscribe from events on destroy
@@ -517,18 +523,9 @@ public class Player : CombatEntity
     //Getters
     public int GetHealth() { return health; }
     public int GetShield() { return shield; }
-    public int GetMaxShield() { return playerStatsData.maxHealth; }
-    public int GetMaxHealth() 
-    { 
-        if (GameSettings.instance.isHealth100)
-        {
-            return 100;
-        }
-        else
-        {
-            return playerStatsData.maxHealth;
-        }
-    }
+    public int GetMaxShield() { return MAX_SHIELD; }
+    public int GetMaxHealth() { return MAX_HEALTH; }
+
     //This getter method may prove useful for building the UI
     public float GetShieldFloat() { return shieldFloat; }
 
