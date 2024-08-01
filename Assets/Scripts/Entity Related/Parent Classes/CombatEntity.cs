@@ -172,7 +172,7 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
     /// Will override current invulnerability if the input time is bigger than the time left invulnerable <para />
     /// NOTE: The bool ignoreCollisions is optional if the entity needs to fully ignore collisions
     /// </summary>
-    public virtual void TriggerInvulnerability(float seconds, bool ignoreCollisions = false)
+    public virtual void TriggerInvulnerability(float seconds, bool ignoreCollisions = false, bool withFlash = true)
     {
         // If input is less, return
         if (seconds < timeLeftInvulnerable)
@@ -187,12 +187,12 @@ public abstract class CombatEntity : MonoBehaviour, IDamageable
             StopCoroutine(invulnRoutine);
         }
 
-        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions));
+        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions, withFlash));
     }
 
     // Invulnerability Routine, isDamage is unused on purpose to fix an edge case solved by
     // Overriding this method on the player class
-    protected virtual IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
+    protected virtual IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions, bool withFlash)
     {
         isInvulnerable = true;
         timeLeftInvulnerable = seconds;

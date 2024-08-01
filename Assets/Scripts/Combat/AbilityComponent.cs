@@ -83,7 +83,7 @@ public class AbilityComponent : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot(inputAbility.phaseShiftEnter);
 
         // Entity becomes invulnerable but unable to hit others
-        entityComponent.TriggerInvulnerability(inputAbility.durationTime, ignoreCollisions: true);
+        entityComponent.TriggerInvulnerability(inputAbility.durationTime, ignoreCollisions: true, withFlash: false);
 
         // Lock Entity shooting
         entityComponent.LockShooting();

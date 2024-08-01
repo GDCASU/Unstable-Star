@@ -78,6 +78,7 @@ public class Player : CombatEntity
         shield = MAX_SHIELD;
         shieldFloat = shield;
         collisionDamage = playerStatsData.collisionDamage;
+        dmgInvulnTime = playerStatsData.dmgInvulnTimeSecs;
 
         //Set Variables
         ShieldRoutine = null;
@@ -366,7 +367,7 @@ public class Player : CombatEntity
         TriggerDeath();
     }
 
-    public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false)
+    public override void TriggerInvulnerability(float seconds, bool ignoreCollisions = false, bool withFlash = true)
     {
         // If input is less, return
         if (seconds < timeLeftInvulnerable) return;
@@ -375,7 +376,7 @@ public class Player : CombatEntity
         if (invulnRoutine != null) StopCoroutine(invulnRoutine);
 
         // Start invuln routine
-        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions));
+        invulnRoutine = StartCoroutine(iFramesRoutine(seconds, ignoreCollisions, withFlash));
     }
 
     private void HandleShieldRegen()
@@ -455,13 +456,13 @@ public class Player : CombatEntity
     }
 
     // Overriden as to allow for disabling collisions with other entities while on iFrames
-    protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions)
+    protected override IEnumerator iFramesRoutine(float seconds, bool ignoreCollisions, bool withFlash)
     {
         isInvulnerable = true;
         isIgnoringCollisions = ignoreCollisions;
         timeLeftInvulnerable = seconds;
         // Raise event for flashing effect on ship
-        EventData.RaiseOnInvulnerabilityToggled(isEntering: true);
+        if (withFlash) EventData.RaisedoFlashInvulnerabilityToggled(isEntering: true);
 
         // Runs the iframes timer
         while (timeLeftInvulnerable > 0f)
@@ -481,7 +482,7 @@ public class Player : CombatEntity
         isInvulnerable = false;
         invulnRoutine = null;
         // Raise event to stop flashing effect on ship
-        EventData.RaiseOnInvulnerabilityToggled(isEntering: false);
+        if (withFlash) EventData.RaisedoFlashInvulnerabilityToggled(isEntering: false);
     }
 
     #endregion
