@@ -10,8 +10,10 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XInput;
 using UnityEngine.UI;
 
 public class SkipButtonWrapper : MonoBehaviour
@@ -21,13 +23,21 @@ public class SkipButtonWrapper : MonoBehaviour
     private void Start()
     {
         btnSkip = GetComponent<Button>();
+    }
 
-        PlayerInput.OnPauseGame += SkipClicked;
+    private void OnEnable()
+    {
+        PlayerInput.OnCancel += SkipClicked;
     }
 
     private void OnDestroy()
     {
-        PlayerInput.OnPauseGame -= SkipClicked;
+        PlayerInput.OnCancel -= SkipClicked;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.OnCancel -= SkipClicked;
     }
 
     void SkipClicked()

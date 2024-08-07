@@ -175,6 +175,20 @@ public class DialogueManager : MonoBehaviour
         current++;
     }
 
+    /// <summary>
+    /// Skips this section of the text and stops the text.
+    /// </summary>
+    public void SkipText()
+    {
+        // End condition from ChangeDialogue
+        while (!(currentDialogue[current] == null || currentDialogue[current][0] == "BREAK" || currentDialogue[current][0] == "NOISE" || currentDialogue[current][0] == "END"))
+        {
+            current++;
+        }
+
+        StopText();
+    }
+
     // Takes information from text files and transfers into something the system can read
     public string[][] ReadFile(string fileName, string[][] act)
     {

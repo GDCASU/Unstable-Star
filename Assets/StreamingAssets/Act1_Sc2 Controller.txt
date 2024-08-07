@@ -1,7 +1,4 @@
-﻿DESC: 
-[TUTORIAL: PRESS SKIP TO PROGRESS]
-
-APOLLO
+﻿APOLLO
 NORMAL
 Hey, fresh meat, can you hear us? 
 I’m Apollo! You know how to fly that hunk of junk? 

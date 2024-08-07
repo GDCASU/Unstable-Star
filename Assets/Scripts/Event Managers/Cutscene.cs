@@ -181,7 +181,8 @@ public class Cutscene : MonoBehaviour
         hud.SetActive(false);
         dialogueBox.SetActive(true);
         dialogueManager.StartText();
-        PlayerInput.instance.ToggleControls(false);
+        PlayerInput.instance.ActivateUiControls();
+        //PlayerInput.instance.ToggleControls(false);
         //ChangeDialogue();
     }
 
@@ -199,7 +200,8 @@ public class Cutscene : MonoBehaviour
         hud.SetActive(true);
         dialogueBox.SetActive(false);
         director.Pause();
-        PlayerInput.instance.ToggleControls(true);
+        PlayerInput.instance.ActivateShipControls();
+        //PlayerInput.instance.ToggleControls(true);
         animator.SetTrigger("DialogueDone");
     }
 
